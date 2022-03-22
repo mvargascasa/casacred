@@ -47,7 +47,9 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-left: 15%; padding-right: 15%">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">LOGO</a>
+          <a class="navbar-brand" href="{{route('web.index')}}">
+            <img src="{{asset('casacredito-logo.svg')}}" height="40" alt="">
+          </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
