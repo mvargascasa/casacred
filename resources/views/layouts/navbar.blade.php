@@ -56,19 +56,19 @@
           <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Vende</a>
+                <a class="nav-link active" aria-current="page" href="{{route('web.servicios','asesores-bienes-raices')}}">Vende</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Créditos</a>
+                <a class="nav-link" href="{{route('web.servicios','creditos-en-ecuador')}}">Créditos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Nosotros</a>
+                <a class="nav-link" href="{{route('web.servicios','nosotros')}}">Nosotros</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Blog</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Notaria USA</a>
+                <a class="nav-link" href="{{route('web.notariausa')}}">Notaria USA</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link btn" style="background-color: #fec41a; color: #ffffff" href="#">Proyectos Nuevos</a>
