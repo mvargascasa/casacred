@@ -30,6 +30,7 @@
     
               <div class="col-12 text-white text-center p-4" style="width: 600px;background:rgba(2, 2, 2, 0.5)">
                 <h1 class="font-weight-bold heading-title" >Su sueño está aquí</h1>
+                <p style="display: none">Probando</p>
                 <h6>Casas, departamentos, Terrenos, Casas Comerciales, Quintas</h6>
 
                 <div class="btn-group pb-2">
