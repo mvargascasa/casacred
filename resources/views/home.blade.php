@@ -28,11 +28,11 @@
 @endsection
 
 @section('content')
-    <section id="prisection" style="background-size: cover;background-position: left top; width: 100%; background-repeat: no-repeat;">
+    <section id="prisection" style="background-size: cover;background-position: left top; width: 100%; background-repeat: no-repeat; background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5))">
     </section>
     
     <div style="position: relative">
-        <img class="img-fluid" src="https://blog.vivanuncios.com.mx/wp-content/uploads/2019/04/clientes-inmobiliarios.jpg" alt="">
+        <img class="img-fluid" style="filter: brightness(60%)" src="{{ asset('img/home1.jpg') }}" alt="">
         <div id="parentbuscador" style="position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
             <h3 id="txttitlebanner" class="text-center text-white">¿QUÉ TIPO DE INMUEBLE <br> ESTAS BUSCANDO?</h3>
             <div id="buscador" class="d-flex justify-content-center" style="background-color: #ffffff; border-radius: 5px; height: 50px">
@@ -89,27 +89,34 @@
     <div class="container">
         <h5 class="text-center mt-5 mb-5">- SERVICIOS <b style="font-weight: bold">INMOBILIARIOS</b> A TU ALCANCE -</h5>
         <div class="row ml-5 mr-5">
-            <div class="col-sm-4 mb-5">
-                <img style="border-radius: 5px" class="img-fluid" src="{{ asset('img/home1.png') }}" alt="">
+            <div class="col-sm-3 mb-5">
+                <img style="border-radius: 5px" class="img-fluid" src="{{ asset('img/home2.jpg') }}" alt="">
                 <div class="text-center mt-3">
-                    <h6>Créditos para ecuatorianos en USA</h6>
+                    <h6>Quiero comprar una propiedad</h6>
                     <button class="btn btn-danger text-white">Solicitar</button>
                 </div>
             </div>
-            <div class="col-sm-4 mb-5">
-                <img style="border-radius: 5px" class="img-fluid" src="{{ asset('img/home2.png') }}" alt="">
+            <div class="col-sm-3 mb-5">
+                <img style="border-radius: 5px" class="img-fluid" src="{{ asset('img/home3.jpg') }}" alt="">
                 <div class="text-center mt-3">
-                    <h6>Quiero comprar una propiedad</h6>
+                    <h6>Quiero vender una propiedad</h6>
                     <button class="btn btn-danger text-white">Comprar</button>
                 </div>
             </div>
-            <div class="col-sm-4 mb-5">
-                <img style="border-radius: 5px" class="img-fluid" src="{{ asset('img/home3.png') }}" alt="">
+            <div class="col-sm-3 mb-5">
+                <img style="border-radius: 5px" class="img-fluid" src="{{ asset('img/home4.jpg') }}" alt="">
                 <div class="text-center mt-3">
-                    <h6>Quiero vender una propiedad</h6>
+                    <h6>Tengo una propiedad en alquiler</h6>
                     <button class="btn btn-danger text-white">Vender</button>
                 </div>
             </div>
+            <div class="col-sm-3 mb-5">
+              <img style="border-radius: 5px" class="img-fluid" src="{{ asset('img/home5.jpg') }}" alt="">
+              <div class="text-center mt-3">
+                  <h6>Créditos para ecuatorianos en USA</h6>
+                  <button class="btn btn-danger text-white">Vender</button>
+              </div>
+          </div>
         </div>
     </div>
 
@@ -121,83 +128,58 @@
         </div>
     </div>
 
-    <div class="row mb-5">
-        <h4 class="text-center mt-5 mb-5">PROYECTOS NUEVOS EN ECUADOR</h4>
-        <div class="col-sm-4 d-flex justify-content-center">
-            <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem;">
-                <a style="text-decoration: none" href="https://casacreditopromotora.com/proyectos/Adra">
-                  <img class="img-fluid" style="height: 100%" src="{{ asset('/img/adra.webp') }}" class="card-img-top" alt="Proyecto Adra - Casa Credito Promotora">
-                </a>
-                  {{-- <div class="position-absolute">
-                  <p>Venta</p>
-                </div> --}}
-                <div class="card-body bg-light">
-                  <h4>ADRA</h4>
-                  <h5 class="card-title">Desde USD 99.000</h5>
-                  <p class="card-text fw-bold">Sector Edificio Vista Linda</p>
-                  <p class="card-text text-muted">Cuenca, Azuay</p>
-                  <div class="row mt-3" style="font-size: 15px">
-                    <div class="col-sm-6 d-flex align-items-center">
-                      <p><i class="fas fa-building"></i> Venta</p>
-                    </div>
-                    <div class="col-sm-6 d-flex align-items-center">
-                      <p><i class="fas fa-calendar-week"></i> Inmediata</p>
-                    </div>
+    <div class="container">
+      <div class="row mb-4">
+          <h4 class="text-center mt-5 mb-5">PROYECTOS NUEVOS EN ECUADOR</h4>
+          <div class="col-sm-4 d-flex justify-content-center">
+              <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem; height: 21rem">
+                  <a style="text-decoration: none" href="https://casacreditopromotora.com/proyectos/Adra">
+                    <img class="img-fluid" style="height: 100%" src="{{ asset('/img/adra.webp') }}" class="card-img-top" alt="Proyecto Adra - Casa Credito Promotora">
+                  </a>
+                  <div class="position-absolute" style="top: 5px; left: 5px; background-color: #2c314484; padding: 5px; font-size: 11px; border-radius: 7px; color: #ffffff;">
+                    Departamentos
+                  </div>
+                  <div class="card-body">
+                    <p style="font-size: 12px; margin-bottom: 6px" class="card-text fw-bold">Edificio Vista Linda, Cuenca</p>
+                    <h5>Adra</h5>
+                    <p style="font-size: 13px" class="card-title text-muted">Desde USD 99.000</p>
                   </div>
                 </div>
-              </div>
-        </div>
-        <div class="col-sm-4 d-flex justify-content-center">
-            <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem;">
-                <a style="text-decoration: none" href="https://casacreditopromotora.com/proyectos/Futura Narancay">
-                  <img class="img-fluid" style="height: 100%" src="{{ asset('/img/futuranarancay.webp') }}" class="card-img-top" alt="Proyecto Futura Narancay - Casa Credito Promotora">
-                </a>
-                {{-- <div class="position-absolute">
-                  <p>Venta</p>
-                </div> --}}
-                <div class="card-body bg-light">
-                  <h4>FUTURA NARANCAY</h4>
-                  <h5 class="card-title">Desde USD 78.000</h5>
-                  <p class="card-text fw-bold">Narancay</p>
-                  <p class="card-text text-muted">Cuenca, Azuay</p>
-                  <div class="row mt-3" style="font-size: 15px">
-                    <div class="col-sm-6 d-flex align-items-center">
-                      <p><i class="fas fa-building"></i> Venta</p>
-                    </div>
-                    <div class="col-sm-6 d-flex align-items-center">
-                      <p><i class="fas fa-calendar-week"></i> Inmediata</p>
-                    </div>
+          </div>
+          <div class="col-sm-4 d-flex justify-content-center">
+              <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem; height: 21rem">
+                  <a style="text-decoration: none" href="https://casacreditopromotora.com/proyectos/Futura Narancay">
+                    <img class="img-fluid" style="height: 100%" src="{{ asset('/img/futuranarancay.webp') }}" class="card-img-top" alt="Proyecto Futura Narancay - Casa Credito Promotora">
+                  </a>
+                  <div class="position-absolute" style="top: 5px; left: 5px; background-color: #2c314484; padding: 5px; font-size: 11px; border-radius: 7px; color: #ffffff;">
+                    Departamentos
+                  </div>
+                  <div class="card-body">
+                    <p style="font-size: 12px; margin-bottom: 6px" class="card-text fw-bold">Narancay, Cuenca</p>
+                    <h5>Futura Narancay</h5>
+                    <p style="font-size: 13px" class="card-title text-muted">Desde USD 78.000</p>
                   </div>
                 </div>
-              </div>
-        </div>
-        <div class="col-sm-4 d-flex justify-content-center">
-            <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem;">
-                <a style="text-decoration: none" href="https://casacreditopromotora.com/proyectos/Toscana">
-                  <img class="img-fluid" style="height: 100%" src="{{ asset('/img/toscana.webp') }}" class="card-img-top" alt="Proyecto Toscana - Casa Credito Promotora">
-                </a>
-                {{-- <div class="position-absolute">
-                  <p>Venta</p>
-                </div> --}}
-                <div class="card-body bg-light">
-                  <h4>TOSCANA</h4>
-                  <h5 class="card-title">Desde USD 150.000</h5>
-                  <p class="card-text fw-bold">Challuabamba</p>
-                  <p class="card-text text-muted">Cuenca, Azuay</p>
-                  <div class="row mt-3" style="font-size: 15px">
-                    <div class="col-sm-6 d-flex align-items-center">
-                      <p><i class="fas fa-building"></i> Venta</p>
-                    </div>
-                    <div class="col-sm-6 d-flex align-items-center">
-                      <p><i class="fas fa-calendar-week"></i> Inmediata</p>
-                    </div>
+          </div>
+          <div class="col-sm-4 d-flex justify-content-center">
+              <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem; height: 21rem">
+                  <a style="text-decoration: none" href="https://casacreditopromotora.com/proyectos/Toscana">
+                    <img class="img-fluid" style="height: 100%" src="{{ asset('/img/toscana.webp') }}" class="card-img-top" alt="Proyecto Toscana - Casa Credito Promotora">
+                  </a>
+                  <div class="position-absolute" style="top: 5px; left: 5px; background-color: #2c314484; padding: 5px; font-size: 11px; border-radius: 7px; color: #ffffff;">
+                    Condominios
+                  </div>
+                  <div class="card-body">
+                    <p style="font-size: 12px; margin-bottom: 6px" class="card-text fw-bold">Challuabamba, Cuenca</p>
+                    <h5>Toscana</h5>
+                    <p style="font-size: 13px" class="card-title text-muted">Desde USD 150.000</p>
                   </div>
                 </div>
-              </div>
-        </div>
-        <div class="d-flex justify-content-center mt-5 mb-3">
-            <a style="background-color: #2c3144; color: #ffffff" class="btn" href="https://casacreditopromotora.com/proyectos">VISITE NUESTRO CATÁLOGO DE PROYECTOS EN <b style="color: #fcc62e;">ECUADOR </b><i class="fas fa-long-arrow-alt-right"></i></a>
-        </div>
+          </div>
+          <div class="d-flex justify-content-center mt-3">
+              <a style="background-color: #2c3144; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 13px" class="btn" href="https://casacreditopromotora.com/proyectos">VISITE NUESTRO CATÁLOGO DE PROYECTOS EN <b style="color: #fcc62e;">ECUADOR </b><i class="fas fa-long-arrow-alt-right"></i></a>
+          </div>
+      </div>
     </div>
 
     <div class="row pt-5 pb-5" style="background-color: #f2f8f8; padding-left: 5%; padding-right: 5%; font-size: 13px">
@@ -241,7 +223,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script>
     window.addEventListener('load', (event) => {
-        document.getElementById('prisection').style.backgroundImage = "url('img/imgheader2.jpg')";
+        document.getElementById('prisection').style.backgroundImage = "url('img/home1.jpg')";
     });
     var sumar = document.getElementById("mas");
       var restar = document.getElementById("menos");
