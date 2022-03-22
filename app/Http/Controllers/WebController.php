@@ -23,6 +23,14 @@ class WebController extends Controller
 
     }
 
+    public function home(){
+        return view('home');
+    }
+
+    public function creditos(){
+        return view('creditos');
+    }
+
     public function propiedades(){
         $listings = Listing::where('status',1)->orderBy('id','desc')->paginate(12);
         return view('propiedades',compact('listings'));
