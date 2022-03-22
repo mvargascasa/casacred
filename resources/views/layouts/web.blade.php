@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="{{asset('favicon-new.png')}}" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+  <link rel="stylesheet" href="{{asset('css/5.0.0/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/style.css?x=5')}}">
+  <meta name="facebook-domain-verification" content="st7nmy30bjdubvp2cuvvhwuk6n2syf" />
+  
+<?php
+$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+if(strpos($actual_link, 'localhost') === false){
+?>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124437679-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-806267889'); //    Adwords
+  gtag('config', 'UA-124437679-1');//  Analytics 
+</script>
+
+<!-- Facebook Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '3081509562095231');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=3081509562095231&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+
+    
+
+<?php };// fin de if url localhost ?>
+
+  @yield('header')
+  <meta name="keywords" content="casas en venta en cuenca, departamentos en venta en cuenca, terrenos en venta en cuenta, lotes en venta en cuenca" />
+<style>
+    .wsapp{
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+    }
+    @media only screen and (max-width: 600px) {
+        .fixed-search{
+            position: fixed;
+            width: 100%;
+        }
+
+    }
+</style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light navbar-cc bg-white fixed-search" style="z-index: 100;">
+
+            <div class="d-flex flex-grow-1">
+                <span class="w-100 d-lg-none d-block pl-4">
+                    <a class="navbar-brand" href="{{route('web.index')}}">
+                        <img src="{{asset('casacredito-logo.svg')}}" height="40" alt="">
+                        </a>
+                </span>
+
+                <a class="navbar-brand d-none d-lg-inline-block px-4" href="{{route('web.index')}}">
+                    <img src="{{asset('casacredito-logo.svg')}}" height="40" alt="">
+                    </a>
+                <div class="w-100 text-right">
+                    @if(Route::is('web.index') or Route::is('web.detail') ) 
+                        <button type="button"  data-toggle="modal" data-target="#modalSearch" class="btn btn-sm btn-outline-secondary d-sm-block d-md-none">
+                            Busqueda</button> 
+                    @endif
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </div>
+
+          <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
+              <ul class="navbar-nav ml-auto flex-nowrap px-4">
+                <li class="nav-item pr-2"> <a class="nav-link @if(Route::is('web.index') or Route::is('web.detail')) active @endif" href="{{route('web.index')}}">Compra</a> </li>
+                <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/asesores-bienes-raices')) active @endif" href="{{route('web.servicios','asesores-bienes-raices')}}">Vende</a> </li>
+                <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/creditos-en-ecuador')) active @endif" href="{{route('web.servicios','creditos-en-ecuador')}}">Creditos</a> </li>
+                <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/construye')) active @endif" href="{{route('web.servicios','construye')}}">Construye</a> </li>
+                <li class="nav-item pr-2"> <a class="nav-link @if(Route::is('web.notariausa') ) active @endif" href="{{route('web.notariausa')}}">Notaría USA</a> </li>
+                <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/nosotros')) active @endif" href="{{route('web.servicios','nosotros')}}">Nosotros</a> </li>
+                
+                        <!-- Authentication Links -->
+                        @guest
+                            <li class="nav-item">  <a class="nav-link mr-6" href="{{ route('login') }}">{{ __('INGRESAR') }}</a>   </li>
+                        @else
+                            <li class="nav-item dropdown" style="z-index: 999">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown"  role="button" data-toggle="dropdown" aria-expanded="false">
+                                   {{ Auth::user()->name }} 
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{route('admin.index')}}">Dashboard</a><div class="dropdown-divider"></div></li>
+                                    <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); 
+                                       document.getElementById('logout-form').submit();"> {{ __('Logout') }} </a></li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </ul>
+                            </li>
+
+                        @endguest
+
+              </ul>
+          </div>
+      </nav>
+      </header>
+
+@yield('content')
+
+<div class="bg-white">
+<section class="container justify-content-md-center p-4  ">
+    <div class="row">
+   
+ 
+                                <h1 class="text-black-50 p-4">Casas en Venta en Cuenca Ecuador</h1>
+                            <div class="col-md-3">
+                                <h4>Ecuador</h4>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><a class="alinkred" href="{{url('casas-de-venta-en-ecuador')}}">Casas en Venta en Ecuador</a></li>
+                                    <li class="list-group-item"><a class="alinkred" href="{{url('departamentos-de-venta-en-ecuador')}}">Departamentos en Venta en Ecuador</a></li>
+                                    <li class="list-group-item"><a class="alinkred" href="{{url('terrenos-de-venta-en-ecuador')}}">Terrenos en venta en Ecuador</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h4>Cuenca</h4>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><a class="alinkred" href="{{url('casas-de-venta-en-cuenca')}}">Casas en Venta en Cuenca</a></li>
+                                    <li class="list-group-item"><a class="alinkred" href="{{url('departamentos-de-venta-en-cuenca')}}">Departamentos en Venta en Cuenca</a></li>
+                                    <li class="list-group-item"><a class="alinkred" href="{{url('terrenos-de-venta-en-cuenca')}}">Terrenos en Venta en Cuenca</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h4>Quito</h4>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><a class="alinkred" href="{{url('casas-de-venta-en-quito')}}">Casas en Venta en Quito</a></li>
+                                    <li class="list-group-item"><a class="alinkred" href="{{url('departamentos-de-venta-en-quito')}}">Departamentos en Venta en Quito</a></li>
+                                    <li class="list-group-item"><a class="alinkred" href="{{url('terrenos-de-venta-en-quito')}}">Terrenos en Venta en Quito</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h4>Guayaquil</h4>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><a class="alinkred" href="{{url('casas-de-venta-en-guayaquil')}}">Casas en Venta en Guayaquil</a></li>
+                                    <li class="list-group-item"><a class="alinkred" href="{{url('departamentos-de-venta-en-guayaquil')}}">Departamentos en Venta en Guayaquil</a></li>
+                                    <li class="list-group-item"><a class="alinkred" href="{{url('terrenos-de-venta-en-guayaquil')}}">Terrenos en Venta en Guayaquil</a></li>
+                                </ul>
+                            </div>
+
+        </div>
+  </section>
+</div>
+<footer class="text-white" style="background-color: #122944;">
+    <div class="container">
+        <div class="row ">           
+            <div class="col-12 col-md-4 p-4 small">
+                    <h5>Cuenca | Ecuador</h5>
+                        
+                        <p class="text-white-50">Lunes a Viernes 9:00 am&nbsp;a 6:00 pm</p>
+                        
+                        <p class="text-white-50">Sábados 9:00 am a 1:00 pm</p>
+                        
+                        <p class="text-white-50">Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero</p>
+                        
+                        <p class="text-white-50">Edificio Santa Lucia</p>
+                        
+                        <p><a href="tel:+59372810825"   class="asindeco">07-412-6004</a>&nbsp;/ 
+                            <a href="tel:+593983849073" class="asindeco"> 098-384-9073</a>&nbsp;&nbsp;</p>
+                        
+                        <p><a href="mailto:info@casacredito.com" class="asindeco">info@casacredito.com</a></p>
+            </div>
+            <div class="col-12 col-md-4 p-4 small">
+                    <h5>New York | EE.UU.</h5>
+                        <p class="text-white-50">Lunes a Viernes 9:00 am a 6:00 pm</p>
+
+                        <p class="text-white-50">Sábados y Domingos 9:00 am a 4:00 pm</p>
+
+                        <p class="text-white-50">67-03 Roosevelt Avenue<br>
+                        Woodside, NY 11377</p>
+
+                        <p><a href="tel:+17186903740" class="asindeco">718-690-3740</a>&nbsp;</p>
+                        <p><a href="tel:+13478460067" class="asindeco">347-846-0067</a>&nbsp;</p>
+
+                        <p><a href="mailto:info@casacredito.com" class="asindeco">info@casacredito.com</a></p>
+            </div>
+            <div class="col-12 col-md-4 p-4">
+                <h5>Sigue con Nosotros</h5>
+                        <p class="text-white-50">Ahora con Casa Credito es fácil ser dueño de su propia casa en Ecuador. </p>
+                <p class="text-muted">
+
+                    <a href="https://www.facebook.com/CasaCreditoInmobiliaria" class="asindeco px-1" target="_blank">
+                        <img src="{{asset('img/casacredito-facebook.svg')}}" alt="Facebook Notary Public Near Me" width="40" height="40">
+                    </a>
+
+                    <a href="https://www.messenger.com/t/inmobiliariacasacredito" class="asindeco px-1" target="_blank">
+                        <img src="{{asset('img/casacredito-messenger.svg')}}" alt="Messenger Notary Public Near Me" width="40" height="40">
+                    </a>
+
+                    <a href="https://www.instagram.com/inmobiliariacasacredito/" class="asindeco px-1" target="_blank">
+                        <img src="{{asset('img/casacredito-instagram.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40">
+                    </a>
+
+                    <a href="https://api.whatsapp.com/send?phone=+593983849073  " class="asindeco px-1" target="_blank">
+                        <img src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40">
+                    </a>
+
+                
+            </div>
+        </div>
+    </div>
+    <div class="text-center navfoot py-3">Copyright ©2018 Casa Crédito . All rights reserved.
+        <br><a href="{{route('web.politicas')}}" class="text-muted"> Políticas de Privacidad</a> <span class="text-muted">-</span>  <a href="{{route('web.seo')}}" class="text-muted">SEO</a>
+    </div>
+</footer>
+ <!-- Modal -->
+ <div class="modal fade" id="modalContact" tabindex="-1" role="dialog" aria-labelledby="modalContactLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-white" style="background-color: darkred !important;">
+          <span class="modal-title" id="modalContactLabel">Complete el siguiente formulario y en breve será contactado.</span>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" style="color: #FFF !important;">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="" id="mainFormLead">
+                @include('z-form')
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+  <div class="modal fade" id="modalThank" tabindex="-1" aria-labelledby="modalThankLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalThankLabel">¡Gracias por Contactarnos!</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            En breve le atenderemos.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wsapp">
+    <a href="https://api.whatsapp.com/send?phone=+593983849073" class="asindeco" target="_blank">
+        <img src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Notary Public Near Me" width="50" height="50">
+    </a>
+  </div>
+<script src="{{asset('js/5.0.0/popper.min.js')}}"></script>
+<script src="{{asset('js/5.0.0/bootstrap.min.js')}}"></script>
+
+@yield('script')
+<script>
+    const  myModal = new bootstrap.Modal(document.getElementById('modalContact'))
+    const  moThank = new bootstrap.Modal(document.getElementById('modalThank'))
+    const sendFormLead = async() =>{
+        
+        if( document.getElementById('fname').value.length>2 && document.getElementById('tlf').value.length>6 ){
+                myModal.hide()     
+                moThank.show()
+                var dataForm = new FormData(document.getElementById('mainFormLead'));
+                const response = await fetch("{{route('web.sendlead')}}",
+                { body: dataForm, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}" }  })
+                let mensaje = await response.text();
+                console.log(mensaje);
+        }else{            
+            alert('Complete el formulario para enviar información...')
+        }
+    }
+    const setInterest = (interest) =>{
+        document.getElementById('interest').value = interest;
+    }
+    
+    const sendFormDetail = async(codPro) =>{
+        if(document.getElementById('fname').value.length>3 && document.getElementById('tlf').value.length>7){
+                document.getElementById('formMsjLead').classList.toggle('d-none');
+                document.getElementById('thankMsjLead').classList.toggle('d-none');
+                document.getElementById('interestDetail').value = codPro;
+                var dataForm = new FormData(document.getElementById('formDetailProp'));
+                const response = await fetch("{{route('web.sendlead')}}",
+                { body: dataForm, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}" }  })
+                let mensaje = await response.text();
+                console.log(mensaje);
+        }else{
+            alert('Complete los Campos')
+        }
+    }
+
+</script>
+</body>
+</html>

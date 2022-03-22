@@ -1,0 +1,84 @@
+  body {
+    font-family: 'Poppins';
+    font-weight: 300;
+    /*background: #f7f8fa;*/
+    background: #f7f7f7;
+  }
+
+  .navbar-cc .navbar-brand {
+    color: darkred;
+  }
+  
+  .navbar-cc .navbar-brand:hover, .navbar-cc .navbar-brand:focus {
+    color: darkred;
+  }
+  
+  .navbar-cc .navbar-nav .nav-link {
+    /*color: rgba(99, 4, 4, 0.55);*/
+    color:darkred;
+  }
+  
+  .navbar-cc .navbar-nav .nav-link:hover, .navbar-cc .navbar-nav .nav-link:focus {
+    /*color: rgba(124, 2, 2, 0.75);*/
+    background-color: darkred;
+    color:white;
+  }
+  
+  .navbar-cc .navbar-nav .nav-link.disabled {
+    color: rgba(99, 4, 4, 0.55);
+  }
+  
+  .navbar-cc .navbar-nav .show > .nav-link,
+  .navbar-cc .navbar-nav .nav-link.active {
+    color: white;
+    background-color: darkred;
+  }
+  
+  .navbar-cc .navbar-toggler {
+    color: rgba(255, 255, 255, 0.55);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .navbar-cc .navbar-text {
+    color: rgba(255, 255, 255, 0.55);
+  }
+  
+  .navbar-cc .navbar-text a,
+  .navbar-cc .navbar-text a:hover,
+  .navbar-cc .navbar-text a:focus {
+    color: darkred;
+  }
+  .alinkred{
+    color:darkred;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-decoration: none !important;
+  }
+/*
+  .page-item.active .page-link {
+    background-color: darkred !important;
+    border-color: darkred !important;
+  }
+  .page-link {
+    color: darkred;
+  }
+  */
+  .btn-outline-danger {
+      color: white;
+      border-color: white;
+  }
+  .text-danger{
+    color:#C30000 !important;
+  }
+  .font-weight-bold {
+    font-weight: 600 !important;
+}
+.link-sindeco{
+  text-decoration: none !important;
+}
+.asindeco{
+  text-decoration: none !important;
+  color: dodgerblue !important;
+}
+
+

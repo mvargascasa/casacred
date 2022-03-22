@@ -1,0 +1,138 @@
+.quienes-somos{
+    background: rgb(24,55,84);
+    background: radial-gradient(circle, rgba(24,55,84,1) 0%, rgba(26,29,34,1) 100%);
+  }
+  .f-blue{
+    background-color: #122944;
+  }
+  .hrw{
+    border: 1px solid white;
+    width: 100px;
+  }
+  .hrb{
+    border: 1px solid #122944;
+    width: 100px;
+  }
+  .hrwf{
+    border: 1px solid white;
+    width: 100px;
+    text-align: left;
+    margin-left:0;
+    margin-top: 0;
+  }
+  /*.tit-not{
+       font-family: "Antic Didone",serif; 
+      font-weight: 600;
+  }*/
+.serviceBox{
+    background: #fff;
+    text-align: center;
+    padding: 35px 15px;
+    border-radius: 8px;
+    transition: all 0.5s ease 0s;
+    box-shadow: 0px 0px 10px grey;
+}
+.serviceBox:hover{
+    /* background: #650101; background: darkred;*/
+    background: #f1f1f1;
+}
+.serviceBox .title{
+    font-size: 30px;
+    color: #343434;
+    margin: 0 0 20px 0;
+        /* font-family: "Antic Didone",serif; 
+        font-weight: 600;*/
+}
+.serviceBox:hover .title{
+    /* color: #fff; */
+    color: black;
+}
+.serviceBox .service-icon{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid darkred;
+    margin: 0 auto 20px;
+    transition: all 0.5s ease 0s;
+}
+.serviceBox:hover .service-icon{
+    transform: scale(1.20);
+    background: #fff;
+    background-color: darkred;
+}
+.serviceBox:hover .service-img{    
+    -webkit-filter: invert(100%); /* Safari/Chrome */
+    filter: invert(100%);
+}
+.serviceBox .service-icon i{
+    font-size: 50px;
+    color: #122944;
+    line-height: 100px;
+}
+.serviceBox .description{
+    font-size: 18px;
+    color: #64676b;
+    line-height: 25px;
+    margin-bottom: 20px;
+    transition: all 0.5s ease 0s;
+}
+.serviceBox:hover .description{
+    /* color: #fff; */
+    color: black;
+}
+.serviceBox .read{
+    display: inline-block;
+    font-size: 13px;
+    color: #64676b;
+    text-transform: capitalize;
+    padding: 5px 10px;
+    border-top: 1px solid #64676b;
+    transition: all 0.5s ease 0s;
+}
+.serviceBox:hover .read{
+    color: #fff;
+    border-top-color: #fff;
+}
+@media only screen and (max-width: 990px){
+    .serviceBox{ margin-bottom: 20px; }
+}
+.btn-gray-red{
+    background-color: darkgray;
+    border-color: darkgray;
+    color:black;
+}
+.btn-gray-red:hover{
+    background-color: darkred;
+    border-color: darkred;
+    color:white;
+}
+/* .heading-title {
+    font-family: "Antic Didone",Sans-serif; 
+}*/
+label {
+    margin-bottom: 0;
+}
+
+.quienes-somos{
+    background: rgb(24,55,84);
+    background: radial-gradient(circle, rgba(24,55,84,1) 0%, rgba(26,29,34,1) 100%);
+  }
+#prisection{
+    background-attachment: fixed;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+@media only screen and (max-width: 600px) {
+    #prisection {
+        background-attachment: scroll !important;
+        background-size: 120vh !important;
+    }
+  }
+  .card-whatsapp{
+      width: 17rem; position: fixed; bottom: 10px; right: 25px; height: 180px;
+  }
+  .hide-card-whatsapp{
+      display: none;
+  }
+  
