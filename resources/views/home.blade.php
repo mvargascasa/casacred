@@ -90,10 +90,10 @@
         <h5 class="text-center mt-5 mb-5">- SERVICIOS <b style="font-weight: bold">INMOBILIARIOS</b> A TU ALCANCE -</h5>
         <div class="row ml-5 mr-5">
             <div class="col-sm-3 mb-5">
-              <div class="position-relative">
+              <div class="position-relative d-flex justify-content-center">
                 <img style="border-radius: 5px" class="img-fluid" src="{{ asset('img/home2.jpg') }}" alt="">
-                <div class="position-absolute" style="bottom:0; color: #ffffff">
-                  La casa de sus sueños aqui
+                <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size: 14px">
+                  LA CASA DE SUS SUEÑOS AQUÍ
                 </div>
               </div>
                 <div class="text-center mt-3">
@@ -102,21 +102,36 @@
                 </div>
             </div>
             <div class="col-sm-3 mb-5">
+              <div class="position-relative d-flex justify-content-center">
                 <img style="border-radius: 5px" class="img-fluid" src="{{ asset('img/home3.jpg') }}" alt="">
+                <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size:14px">
+                  AVALÚOS PARA TODO EL ECUADOR
+                </div>
+              </div>
                 <div class="text-center mt-3">
                     <h6>Quiero vender una propiedad</h6>
                     <button class="btn btn-danger text-white">Comprar</button>
                 </div>
             </div>
             <div class="col-sm-3 mb-5">
+              <div class="position-relative d-flex justify-content-center">
                 <img style="border-radius: 5px" class="img-fluid" src="{{ asset('img/home4.jpg') }}" alt="">
+                <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size: 14px">
+                  SU PROPIEDAD EN BUENAS MANOS
+                </div>
+              </div>
                 <div class="text-center mt-3">
                     <h6>Tengo una propiedad en alquiler</h6>
                     <button class="btn btn-danger text-white">Vender</button>
                 </div>
             </div>
             <div class="col-sm-3 mb-5">
-              <img style="border-radius: 5px" class="img-fluid" src="{{ asset('img/home5.jpg') }}" alt="">
+              <div class="position-relative d-flex justify-content-center">
+                <img style="border-radius: 5px" class="img-fluid" src="{{ asset('img/home5.jpg') }}" alt="">
+                <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size: 14px">
+                  RÁPIDOS Y EFECTIVOS
+                </div>
+              </div>
               <div class="text-center mt-3">
                   <h6>Créditos para ecuatorianos en USA</h6>
                   <button class="btn btn-danger text-white">Vender</button>
