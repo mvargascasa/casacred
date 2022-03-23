@@ -16,27 +16,40 @@
         max-width: 100% !important;
         overflow-x: hidden !important;
       }
-
+      a{
+        text-decoration: none;
+        color: #000000;
+      }
       @media screen and (max-width: 850px){
         .rowconstruye{
           display: none !important;
         }
         .navbar{
           padding-left: 0px !important;
-          padding-right: 0px !important; 
+          padding-right: 0px !important;
+          margin-top: 0px !important; 
         }
       }
-      .txt-color{
-        color: #3b4255 !important;
+      @media screen and (max-width: 1334px){
+        #buscador{
+          display: none !important;
+        }
+        #btnsearch{
+            display: block !important;
+        }
+      }
+      .nav-link:hover{
+        background-color: #3b4255 !important;
+        color: #ffffff !important;
       }
     </style>
 </head>
 <body style="background-color: #ffffff">
       <div class="row p-1 rowconstruye fixed-top" style="background-color: #3b4255;">
-        <div class="col-sm-6"></div>
-        <div class="col-12 col-sm-5 d-flex">
+        <div class="col-4 col-sm-3 col-md-4 col-lg-5"></div>
+        <div class="col-12 col-sm-6 col-md-7 col-lg-6 d-flex">
           <div>
-            <a href="" style="text-decoration: none; color: #ffffff">CONSTRUYE</a>
+            <a href="#" style="text-decoration: none; color: #ffffff">CONSTRUYE</a>
           </div>
           <div>
             <a href="#" style="text-decoration: none; color: #ffffff; margin-left: 7px; margin-right: 7px">MATERIALES DE CONSTRUCCIÓN</a>
@@ -45,7 +58,7 @@
             <a href="#" style="text-decoration: none; color: #ffffff"><i class="fas fa-sign-out-alt" style="color: #d71e01"></i> MI CUENTA</a>
           </div>
         </div>
-        <div class="col-sm-1"></div>
+        <div class="col-sm-1 col-md-1"></div>
       </div>
 
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="padding-left: 15%; padding-right: 15%; margin-top: 30px">
@@ -158,10 +171,11 @@
       window.onscroll = function() {
         var y = window.scrollY;
         var navbar = document.querySelector('.navbar');
+        var navbar_nav = document.querySelector('.navbar-nav');
         if(y > 100){
           navbar.classList.remove('navbar-dark');
           navbar.classList.add('bg-light');
-          navbar.classList.add('txt-color');
+          navbar_nav.classList.add('text-danger');
         } else {
           navbar.classList.add('navbar-dark');
           navbar.classList.remove('bg-light');

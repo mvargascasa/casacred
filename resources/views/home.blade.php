@@ -10,19 +10,16 @@
     <meta property="og:description"        content="Casas en Venta en Cuenca, Departamentos en venta en Cuenca, Lotes en Venta en Cuenca, Terrenos en Venta en Cuenca. Venta de Propiedades y Gestión de Créditos." />
     <meta property="og:image"              content="{{asset('img/meta-image-social-cc.jpg')}}" />
 
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
       @media screen and (max-width: 850px){
         #txttitlebanner{
           font-size: 15px !important;
         }
       }
-      @media screen and (max-width: 1334px){
-        #buscador{
-          display: none !important;
-        }
-        #btnsearch{
-            display: block !important;
-        }
+      .hover-image:hover{
+        -webkit-transform: scale(1.1); transform: scale(1.1);
+        -webkit-transition: 1s;
       }
     </style>
 @endsection
@@ -88,10 +85,10 @@
     </div>
     <div class="container">
         <h5 class="text-center mt-5 mb-5">- SERVICIOS <b style="font-weight: bold">INMOBILIARIOS</b> A TU ALCANCE -</h5>
-        <div class="row ml-5 mr-5">
+        <div data-aos="fade-up" class="row ml-5 mr-5">
             <div class="col-sm-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
-                <img style="border-radius: 5px" class="img-fluid" src="{{ asset('img/home2.jpg') }}" alt="">
+                <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home2.jpg') }}" alt="">
                 <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size: 14px">
                   LA CASA DE SUS SUEÑOS AQUÍ
                 </div>
@@ -103,7 +100,7 @@
             </div>
             <div class="col-sm-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
-                <img style="border-radius: 5px" class="img-fluid" src="{{ asset('img/home3.jpg') }}" alt="">
+                <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home3.jpg') }}" alt="">
                 <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size:14px">
                   AVALÚOS PARA TODO EL ECUADOR
                 </div>
@@ -115,7 +112,7 @@
             </div>
             <div class="col-sm-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
-                <img style="border-radius: 5px" class="img-fluid" src="{{ asset('img/home4.jpg') }}" alt="">
+                <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home4.jpg') }}" alt="">
                 <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size: 14px">
                   SU PROPIEDAD EN BUENAS MANOS
                 </div>
@@ -127,7 +124,7 @@
             </div>
             <div class="col-sm-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
-                <img style="border-radius: 5px" class="img-fluid" src="{{ asset('img/home5.jpg') }}" alt="">
+                <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home5.jpg') }}" alt="">
                 <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size: 14px">
                   RÁPIDOS Y EFECTIVOS
                 </div>
@@ -144,7 +141,7 @@
         <div class="col-sm-12 text-center text-white mt-4 mb-4">
             <h5>¿Quieres vender o rentar tu <b style="color: #fcc62e">Propiedad</b>?</h5>
             <p>Escríbenos y te asesoramos en el proceso</p>
-            <button class="btn" style="background-color: #fcc62e">INICIAR</button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn" style="background-color: #fcc62e">INICIAR</button>
         </div>
     </div>
 
@@ -236,11 +233,50 @@
             <a style="text-decoration: none; color: #000000; font-weight: bold; font-size: 11px" href="">Ver más</a>
         </div>
     </div>
+
+    {{-- DIV MODAL PARA FORMULARIO DE CONTACTO --}}
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6 class="modal-title" id="exampleModalLabel">Complete el formulario y nos contactaremos con usted</h6>
+            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="far fa-times"></i></button>
+          </div>
+          <div class="modal-body">
+            <form action="">
+              <div class="form-group mb-2">
+                <label for="nombre" class="mb-2">Nombre y Apellido</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" required>
+              </div>
+              <div class="form-group mb-2">
+                <label for="telefono" class="mb-2">Teléfono</label>
+                <input type="text" name="telefono" id="telefono" class="form-control" required>
+              </div>
+              <div class="form-group mb-2">
+                <label for="email" class="mb-2">Correo electrónico</label>
+                <input type="email" name="email" id="email" class="form-control" required>
+              </div>
+              <div class="form-group mb-2">
+                <label for="comentario" class="mb-2">Comentario</label>
+                <input type="text" name="comentario" id="comentario" class="form-control" required>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button type="submit" class="btn" style="background-color: #fec41a">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>
 @endsection
 
 @section('footer')
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 <script>
     window.addEventListener('load', (event) => {
         document.getElementById('prisection').style.backgroundImage = "url('img/home1.jpg')";
