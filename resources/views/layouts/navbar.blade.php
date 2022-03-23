@@ -168,20 +168,29 @@
 
 
     <script>
-      window.onscroll = function() {
+      var navbar = document.querySelector('.navbar');
+      let details = navigator.userAgent;
+      let regexp = /android|iphone|kindle|ipad/i;
+      var screenWidth = screen.width
+  
+      let isMobileDevice = regexp.test(details);
+      if (screenWidth <= 991) {
+        navbar.classList.remove('navbar-dark');
+        navbar.classList.remove('fixed-top');
+        navbar.classList.add('navbar-light');
+      } else {
+        window.onscroll = function() {
         var y = window.scrollY;
-        var navbar = document.querySelector('.navbar');
-        var navbar_nav = document.querySelector('.navbar-nav');
         if(y > 100){
           navbar.classList.remove('navbar-dark');
           navbar.classList.add('bg-light');
-          navbar_nav.classList.add('text-danger');
+          navbar.style.transition = "0.5s";
         } else {
           navbar.classList.add('navbar-dark');
           navbar.classList.remove('bg-light');
         }
       };
+      }
     </script>
-    
 </body>
 </html>
