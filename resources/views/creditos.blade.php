@@ -18,7 +18,7 @@
 @endsection
 
 @section('content')
-    <section id="prisection" style="background-size: cover;background-position: left top; width: 100%; background-repeat: no-repeat">
+    <section id="prisection" style="background: rgba(8, 8, 8, 0.319); background-size: cover;background-position: left top; width: 100%; background-repeat: no-repeat; background-blend-mode: darken;">
         <div class="container">
             <div class="row">
                 <div class="col-sm-4 mt-5 pt-5" style="color: #174a83">
@@ -36,7 +36,7 @@
                 <div class="col-sm-4">
                     <img src="" alt="Imagen Persona">
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4" style="margin-top: 70px">
                     <form style="background-color: #ffffff; border-radius: 5px; margin-bottom: -15px; box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" class="mt-4 pl-4 pr-4 pb-4">
                         <h5 class="text-center pt-4">Ingresa tus datos para <br> iniciar el proceso</h5>
                         <div class="mb-3">
