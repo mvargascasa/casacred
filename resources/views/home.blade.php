@@ -115,14 +115,14 @@
 
             {{-- DIV PARA MOSTRAR EL ICONO DE BUSCAR CUANDO SEA RESPONSIVE --}}
             <div class="d-flex justify-content-center">
-              <button id="btnsearch" class="btn" style="display: none; border-radius: 25px; background-color: #ff5619; padding: 6px 10px 6px 10px; color: #ffffff"><i class="fas fa-search"></i></button>
+              <button type="button" data-bs-toggle="modal" data-bs-target="#modalFilters" id="btnsearch" class="btn" style="display: none; border-radius: 25px; background-color: #ff5619; padding: 6px 10px 6px 10px; color: #ffffff"><i class="fas fa-search"></i></button>
             </div>
         </div>
     </div>
     <div class="container">
         <h5 class="text-center mt-5 mb-5">- SERVICIOS <b style="font-weight: bold">INMOBILIARIOS</b> A TU ALCANCE -</h5>
         <div data-aos="fade-up" class="row ml-5 mr-5">
-            <div class="col-sm-3 mb-5">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
                 <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home2.jpg') }}" alt="">
                 <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size: 14px">
@@ -134,7 +134,7 @@
                     <button class="btn btn-danger text-white" style="margin-top: 20px">Comprar</button>
                 </div>
             </div>
-            <div class="col-sm-3 mb-5">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
                 <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home3.jpg') }}" alt="">
                 <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size:14px">
@@ -146,7 +146,7 @@
                     <button class="btn btn-danger text-white" style="margin-top: 20px">Vender</button>
                 </div>
             </div>
-            <div class="col-sm-3 mb-5">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
                 <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home4.jpg') }}" alt="">
                 <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size: 14px">
@@ -158,7 +158,7 @@
                     <button class="btn btn-danger text-white" style="margin-top: 20px">Alquilar</button>
                 </div>
             </div>
-            <div class="col-sm-3 mb-5">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
                 <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home5.jpg') }}" alt="">
                 <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size: 14px">
@@ -184,8 +184,8 @@
     <div class="container">
       <div class="row mb-4">
           <h4 class="text-center mt-5 mb-5">PROYECTOS NUEVOS EN ECUADOR</h4>
-          <div data-aos="zoom-in-right" class="col-sm-4 d-flex justify-content-center">
-              <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem; height: 21rem">
+          <div data-aos="zoom-in-right" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
+              <div id="cardSimilarProject" class="card mb-3 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
                     <img class="img-fluid image" style="height: 100%" src="{{ asset('/img/adra.webp') }}" class="card-img-top" alt="Proyecto Adra - Casa Credito Promotora">
                   <div class="middle">
@@ -204,8 +204,8 @@
                   </div>
                 </div>
           </div>
-          <div data-aos="zoom-in" class="col-sm-4 d-flex justify-content-center">
-              <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem; height: 21rem">
+          <div data-aos="zoom-in" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
+              <div id="cardSimilarProject" class="card mb-3 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
                     <img class="img-fluid image" style="height: 100%" src="{{ asset('/img/futuranarancay.webp') }}" class="card-img-top" alt="Proyecto Futura Narancay - Casa Credito Promotora">
                     <div class="middle">
@@ -224,7 +224,7 @@
                   </div>
                 </div>
           </div>
-          <div data-aos="zoom-in-left" class="col-sm-4 d-flex justify-content-center">
+          <div data-aos="zoom-in-left" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
                     <img class="img-fluid image" style="height: 100%" src="{{ asset('/img/toscana.webp') }}" class="card-img-top" alt="Proyecto Toscana - Casa Credito Promotora">
@@ -287,7 +287,7 @@
 
     {{-- DIV MODAL PARA FORMULARIO DE CONTACTO --}}
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog  modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <h6 class="modal-title" id="exampleModalLabel">Complete el formulario y nos contactaremos con usted</h6>
@@ -315,6 +315,27 @@
           </div>
           <div class="modal-footer justify-content-center">
             <button type="submit" class="btn" style="background-color: #fec41a">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{-- DIV PARA MODAL DE FILTROS DE BUSQUEDA --}}
+    <div class="modal fade" id="modalFilters" tabindex="-1" aria-labelledby="modalFiltersLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalFiltersLabel">Filtros de Búsqueda</h5>
+            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+              <i class="far fa-times"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
