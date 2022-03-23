@@ -21,6 +21,42 @@
         -webkit-transform: scale(1.1); transform: scale(1.1);
         -webkit-transition: 1s;
       }
+      .img-container {
+        position: relative;
+      }
+
+      .image {
+        opacity: 1;
+        display: block;
+        transition: .5s ease;
+        backface-visibility: hidden;
+      }
+
+      .middle {
+        transition: .5s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      .img-container:hover .image {
+        opacity: 0.3;
+      }
+
+      .img-container:hover .middle {
+        opacity: 1;
+      }
+
+      .text {
+        background-color: #04AA6D;
+        color: white;
+        font-size: 16px;
+        padding: 16px 32px;
+      }
     </style>
 @endsection
 
@@ -95,7 +131,7 @@
               </div>
                 <div class="text-center mt-3">
                     <h6>Quiero comprar una propiedad</h6>
-                    <button class="btn btn-danger text-white">Solicitar</button>
+                    <button class="btn btn-danger text-white" style="margin-top: 20px">Comprar</button>
                 </div>
             </div>
             <div class="col-sm-3 mb-5">
@@ -107,7 +143,7 @@
               </div>
                 <div class="text-center mt-3">
                     <h6>Quiero vender una propiedad</h6>
-                    <button class="btn btn-danger text-white">Comprar</button>
+                    <button class="btn btn-danger text-white" style="margin-top: 20px">Vender</button>
                 </div>
             </div>
             <div class="col-sm-3 mb-5">
@@ -119,7 +155,7 @@
               </div>
                 <div class="text-center mt-3">
                     <h6>Tengo una propiedad en alquiler</h6>
-                    <button class="btn btn-danger text-white">Vender</button>
+                    <button class="btn btn-danger text-white" style="margin-top: 20px">Alquilar</button>
                 </div>
             </div>
             <div class="col-sm-3 mb-5">
@@ -131,13 +167,13 @@
               </div>
               <div class="text-center mt-3">
                   <h6>Créditos para ecuatorianos en USA</h6>
-                  <button class="btn btn-danger text-white">Vender</button>
+                  <button class="btn btn-danger text-white">Solicitar</button>
               </div>
           </div>
         </div>
     </div>
 
-    <div class="row" style="background-color: #2c3144; padding-top: 2%; padding-bottom: 2%">
+    <div data-aos="flip-down" class="row" style="background-color: #2c3144; padding-top: 2%; padding-bottom: 2%">
         <div class="col-sm-12 text-center text-white mt-4 mb-4">
             <h5>¿Quieres vender o rentar tu <b style="color: #fcc62e">Propiedad</b>?</h5>
             <p>Escríbenos y te asesoramos en el proceso</p>
@@ -148,11 +184,16 @@
     <div class="container">
       <div class="row mb-4">
           <h4 class="text-center mt-5 mb-5">PROYECTOS NUEVOS EN ECUADOR</h4>
-          <div class="col-sm-4 d-flex justify-content-center">
+          <div data-aos="zoom-in-right" class="col-sm-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem; height: 21rem">
-                  <a style="text-decoration: none" href="https://casacreditopromotora.com/proyectos/Adra">
-                    <img class="img-fluid" style="height: 100%" src="{{ asset('/img/adra.webp') }}" class="card-img-top" alt="Proyecto Adra - Casa Credito Promotora">
-                  </a>
+                <div class="img-container">
+                    <img class="img-fluid image" style="height: 100%" src="{{ asset('/img/adra.webp') }}" class="card-img-top" alt="Proyecto Adra - Casa Credito Promotora">
+                  <div class="middle">
+                    <div class="link">
+                      <a href="https://casacreditopromotora.com/proyectos/Adra">Ver proyecto</a>
+                    </div>
+                  </div>
+                </div>
                   <div class="position-absolute" style="top: 5px; left: 5px; background-color: #2c314484; padding: 5px; font-size: 11px; border-radius: 7px; color: #ffffff;">
                     Departamentos
                   </div>
@@ -163,11 +204,16 @@
                   </div>
                 </div>
           </div>
-          <div class="col-sm-4 d-flex justify-content-center">
+          <div data-aos="zoom-in" class="col-sm-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem; height: 21rem">
-                  <a style="text-decoration: none" href="https://casacreditopromotora.com/proyectos/Futura Narancay">
-                    <img class="img-fluid" style="height: 100%" src="{{ asset('/img/futuranarancay.webp') }}" class="card-img-top" alt="Proyecto Futura Narancay - Casa Credito Promotora">
-                  </a>
+                <div class="img-container">
+                    <img class="img-fluid image" style="height: 100%" src="{{ asset('/img/futuranarancay.webp') }}" class="card-img-top" alt="Proyecto Futura Narancay - Casa Credito Promotora">
+                    <div class="middle">
+                      <div class="link">
+                        <a href="https://casacreditopromotora.com/proyectos/Futura Narancay">Ver proyecto</a>
+                      </div>
+                    </div>
+                </div>
                   <div class="position-absolute" style="top: 5px; left: 5px; background-color: #2c314484; padding: 5px; font-size: 11px; border-radius: 7px; color: #ffffff;">
                     Departamentos
                   </div>
@@ -178,11 +224,16 @@
                   </div>
                 </div>
           </div>
-          <div class="col-sm-4 d-flex justify-content-center">
+          <div data-aos="zoom-in-left" class="col-sm-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem; height: 21rem">
-                  <a style="text-decoration: none" href="https://casacreditopromotora.com/proyectos/Toscana">
-                    <img class="img-fluid" style="height: 100%" src="{{ asset('/img/toscana.webp') }}" class="card-img-top" alt="Proyecto Toscana - Casa Credito Promotora">
-                  </a>
+                <div class="img-container">
+                    <img class="img-fluid image" style="height: 100%" src="{{ asset('/img/toscana.webp') }}" class="card-img-top" alt="Proyecto Toscana - Casa Credito Promotora">
+                    <div class="middle">
+                      <div class="link">
+                        <a href="https://casacreditopromotora.com/proyectos/Toscana">Ver proyecto</a>
+                      </div>
+                    </div>
+                </div>  
                   <div class="position-absolute" style="top: 5px; left: 5px; background-color: #2c314484; padding: 5px; font-size: 11px; border-radius: 7px; color: #ffffff;">
                     Condominios
                   </div>
