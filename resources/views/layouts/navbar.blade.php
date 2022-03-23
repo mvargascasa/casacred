@@ -26,10 +26,13 @@
           padding-right: 0px !important; 
         }
       }
+      .txt-color{
+        color: #3b4255 !important;
+      }
     </style>
 </head>
 <body style="background-color: #ffffff">
-      <div class="row p-1 rowconstruye" style="background-color: #3b4255;">
+      <div class="row p-1 rowconstruye fixed-top" style="background-color: #3b4255;">
         <div class="col-sm-6"></div>
         <div class="col-12 col-sm-5 d-flex">
           <div>
@@ -45,7 +48,7 @@
         <div class="col-sm-1"></div>
       </div>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-left: 15%; padding-right: 15%">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="padding-left: 15%; padding-right: 15%; margin-top: 30px">
         <div class="container-fluid">
           <a class="navbar-brand" href="{{route('web.index')}}">
             <img src="{{asset('casacredito-logo.svg')}}" height="40" alt="">
@@ -149,6 +152,22 @@
     </footer>
 
     @yield('footer')
+
+
+    <script>
+      window.onscroll = function() {
+        var y = window.scrollY;
+        var navbar = document.querySelector('.navbar');
+        if(y > 100){
+          navbar.classList.remove('navbar-dark');
+          navbar.classList.add('bg-light');
+          navbar.classList.add('txt-color');
+        } else {
+          navbar.classList.add('navbar-dark');
+          navbar.classList.remove('bg-light');
+        }
+      };
+    </script>
     
 </body>
 </html>
