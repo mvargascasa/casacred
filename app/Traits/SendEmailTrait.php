@@ -6,6 +6,7 @@ trait SendEmailTrait{
     public function sendemail($to, $subject, $message, $header){
 
         
+
     }
 
 }

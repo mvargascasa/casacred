@@ -331,11 +331,42 @@
             </button>
           </div>
           <div class="modal-body">
-            ...
+            <form action="">
+              <div class="form-group">
+                <label for="tipobusqueda">Tipo de búsqueda</label>
+                <select name="tipobusqueda" id="tipobusqueda" class="form-control">
+                  <option value="">Seleccione</option>
+                  <option value="Venta">Venta</option>
+                  <option value="Alquiler">Alquiler</option>
+                </select>
+              </div>
+              <div class="form-group mt-2">
+                <label for="tipopropiedad">Tipo de propiedad</label>
+                <select name="propiedad" id="tipopropiedad" class="form-control">
+                  <option value="">Seleccione</option>
+                  <option value="Departamento">Departamento</option>
+                  <option value="Casa">Casa</option>
+                </select>
+              </div>
+              <div class="form-group mt-2">
+                <label for="ciudad">Ciudad</label>
+                <select name="ciudad" id="ciudad" class="form-control">
+                  <option value="">Seleccione</option>
+                  <option value="Quito">Quito</option>
+                  <option value="Guayaquil">Guayaquil</option>
+                  <option value="Cuenca">Cuenca</option>
+                  <option value="Manta">Manta</option>
+                </select>
+              </div>
+              <div class="form-group mt-2">
+                <label for="preciodesde">Precio</label>
+                <input type="text" id="preciodesde" name="preciodesde" placeholder="Desde" class="form-control mb-2">
+                <input type="text" name="preciohasta" id="preciohasta" placeholder="Hasta" class="form-control">
+              </div>
+            </form>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+          <div class="modal-footer justify-content-center">
+            <button type="button" style="background-color: #fec41a" class="btn">Buscar</button>
           </div>
         </div>
       </div>
