@@ -402,6 +402,7 @@
         }
 
         const categoria = document.getElementById('schcat');
+        const tag = document.getElementById('schtag');
 
         categoria.addEventListener("change", function(){
             let divantiguedad = document.getElementById('divantiguedad');
@@ -409,6 +410,7 @@
                 divantiguedad.style.display = "block";
             } else {
                 divantiguedad.style.display = "none";
+                tag.value = "";
             }
         });
 </script>

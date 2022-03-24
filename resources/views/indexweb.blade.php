@@ -327,7 +327,8 @@
   const modState  = document.getElementById('mform_province');
   const modCities = document.getElementById('mform_city');
 
-  const type = document.getElementById('bform_type');    
+  const type = document.getElementById('bform_type');
+  const tag = document.getElementById('bform_tags');    
 
   window.addEventListener('load', (event) => {
         document.getElementById('prisection').style.backgroundImage = "url('img/imgheader2.jpg')";
@@ -357,6 +358,7 @@
       divantiguedad.style.display = "block"
     } else {
       divantiguedad.style.display = "none";
+      tag.value = "";
     }
   });
 
