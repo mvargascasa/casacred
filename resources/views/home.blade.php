@@ -288,13 +288,14 @@
     {{-- DIV MODAL PARA FORMULARIO DE CONTACTO --}}
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog  modal-dialog-centered">
+        <form action="{{ route('web.lead.contact') }}" method="POST">
         <div class="modal-content">
           <div class="modal-header">
             <h6 class="modal-title" id="exampleModalLabel">Complete el formulario y nos contactaremos con usted</h6>
             <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="far fa-times"></i></button>
           </div>
           <div class="modal-body">
-            <form action="">
+              @csrf
               <div class="form-group mb-2">
                 <label for="nombre" class="mb-2">Nombre y Apellido</label>
                 <input type="text" name="nombre" id="nombre" class="form-control" required>
@@ -308,15 +309,15 @@
                 <input type="email" name="email" id="email" class="form-control" required>
               </div>
               <div class="form-group mb-2">
-                <label for="comentario" class="mb-2">Comentario</label>
-                <input type="text" name="comentario" id="comentario" class="form-control" required>
+                <label for="mensaje" class="mb-2">Comentario</label>
+                <input type="text" name="mensaje" id="mensaje" class="form-control" required>
               </div>
-            </form>
           </div>
           <div class="modal-footer justify-content-center">
             <button type="submit" class="btn" style="background-color: #fec41a">Enviar</button>
           </div>
         </div>
+        </form>
       </div>
     </div>
 
@@ -371,6 +372,17 @@
         </div>
       </div>
     </div>
+
+    @if (session('emailsend'))
+      @php
+        echo "
+          <script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>
+          <script>
+            swal('Hemos enviado su información', 'Nos pondremos en contacto lo antes posible!', 'success');
+          </script>
+        ";    
+      @endphp
+    @endif
 @endsection
 
 @section('footer')

@@ -15,6 +15,7 @@ Route::get('/propiedades', [WebController::class,'propiedades'])->name('web.prop
 //NUEVAS RUTAS
 Route::get('/home', [WebController::class, 'home'])->name('web.home');
 Route::get('/creditos', [WebController::class, 'creditos'])->name('web.creditos');
+Route::post('/send-lead-contact', [WebController::class, 'sendLeadContact'])->name('web.lead.contact');
 
 Route::get('/propiedad/{listing:slug}', [WebController::class,'detail'])->name('web.detail');
 Route::get('/getcities/{idState}', [WebController::class,'getcities'])->name('web.getcities');

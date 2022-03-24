@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Listing;
 use App\Models\Service;
 use App\Models\User;
+use App\Traits\SendEmailTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class WebController extends Controller
 {
+    use SendEmailTrait;
+
     public function index(){       
         $states = DB::table('info_states')->where('country_id',63)->orderBy('name')->get();      
         if(isset($_SERVER['HTTP_USER_AGENT'])){
@@ -117,6 +120,12 @@ class WebController extends Controller
         $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
         mail('mvargas@casacredito.com,info@casacredito.com','Lead CasaCredito: '.strip_tags($request->fname), $message, $header);
     }    
+
+    public function sendLeadContact(Request $request){
+        $this->sendemail($request);
+        $request->session()->flash('emailsend', 'Se ha enviado el correo');
+        return back();
+    }
     
     public function politicas(){
         return view('politicas');
