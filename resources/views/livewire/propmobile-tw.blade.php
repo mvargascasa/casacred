@@ -152,6 +152,8 @@ function filter_properties(){
     let schsuperf   = document.getElementById('schsuperf').value;
     let schsupert   = document.getElementById('schsupert').value;
 
+    let schtag = document.getElementById('schtag').value; //nueva variable para filtrar por tags
+
     @this.set('searchtxt', schtext);  
     @this.set('order', schorder);  
     @this.set('category', schcat);  
@@ -161,6 +163,7 @@ function filter_properties(){
     @this.set('superf', schsuperf);
     @this.set('supert', schsupert);
     @this.set('pressButtom', 1);
+    @this.set('tags', schtag); //enviando la nueva variable a la clase
 
     closModal('modalSearch')
 }

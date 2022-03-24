@@ -183,7 +183,8 @@ const upscroll = () => {
         let bform_province  = document.getElementById('bform_province').value;
         let bform_city      = document.getElementById('bform_city').value;
         let bform_fromprice = document.getElementById('bform_fromprice').value;
-        let bform_uptoprice = document.getElementById('bform_uptoprice').value;   
+        let bform_uptoprice = document.getElementById('bform_uptoprice').value;
+        let bform_tags      = document.getElementById('bform_tags').value; //Nueva variable para filtrar por estado 
 
         @this.set('category', bform_category);
         @this.set('type', bform_type);
@@ -193,6 +194,8 @@ const upscroll = () => {
         @this.set('uptoprice', bform_uptoprice);
         @this.set('searchtxt', '');
         @this.set('pressButtom', 1);
+
+        @this.set('tags', bform_tags); //envio la variable para conectarla con la creada en la clase
     }
 
     function top_search(){

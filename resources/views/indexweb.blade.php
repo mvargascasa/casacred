@@ -82,19 +82,30 @@
                   <div class="mb-3">
                     <label for="bform_type" class="form-label text-danger  font-weight-bold">TIPO DE PROPIEDAD</label>
                     <select  class="form-select form-select-sm mb-3" id="bform_type">
-                          <option value="" selected></option>            
-                          <option value="23">Casas </option>
-                          <option value="24">Departamentos </option>
-                          <option value="25">Casas Comerciales</option>
-                          <option value="26">Terrenos</option>
-                          <option value="29">Quintas</option>
-                          <option value="30">Haciendas</option>
-                          <option value="32">Locales Comerciales</option>
-                          <option value="35">Oficinas</option>
-                          <option value="36">Suites</option>
-                      </select>
+                      <option value="" selected></option>            
+                      <option value="23">Casas </option>
+                      <option value="24">Departamentos </option>
+                      <option value="25">Casas Comerciales</option>
+                      <option value="26">Terrenos</option>
+                      <option value="29">Quintas</option>
+                      <option value="30">Haciendas</option>
+                      <option value="32">Locales Comerciales</option>
+                      <option value="35">Oficinas</option>
+                      <option value="36">Suites</option>
+                    </select>
                   </div>
-                  
+                  {{-- NUEVO DIV PARA BUSCAR POR ANITGUEDAD --}}
+                  <div id="divantiguedad" class="mb-3" style="display: none">
+                    <label for="bform_tags" class="form-label text-danger  font-weight-bold">ANTIGUEDAD</label>
+                    <select class="form-select form-select-sm mb-3" id="bform_tags">
+                      <option selected></option>
+                      <option value="2">Nueva</option>
+                      <option value="5">En proyecto</option>
+                      <option value="6">Usada</option>
+                      <option value="7">Colonial</option>
+                    </select>
+                  </div>
+                  {{-- TERMINA DIV --}}
                   <div class="mb-3">
                     <label for="bform_province" class="form-label text-danger  font-weight-bold">UBICACIÓN</label>
                     <select class="form-select form-select-sm mb-3" id="bform_province">
@@ -314,7 +325,9 @@
   const selCities = document.getElementById('bform_city');
 
   const modState  = document.getElementById('mform_province');
-  const modCities = document.getElementById('mform_city');    
+  const modCities = document.getElementById('mform_city');
+
+  const type = document.getElementById('bform_type');    
 
   window.addEventListener('load', (event) => {
         document.getElementById('prisection').style.backgroundImage = "url('img/imgheader2.jpg')";
@@ -336,6 +349,15 @@
           opt.value = city.name;
           selCities.appendChild(opt);
     });
+  });
+
+  type.addEventListener("change", function(){
+    let divantiguedad = document.getElementById('divantiguedad');
+    if (type.value != "26") {
+      divantiguedad.style.display = "block"
+    } else {
+      divantiguedad.style.display = "none";
+    }
   });
 
   modState.addEventListener("change", async function() {

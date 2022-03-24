@@ -14,7 +14,7 @@ class PropmobileTw extends Component
     use WithPagination;
     
     public $searchtxt,$category,$state,$city,$type,$fromprice,$uptoprice,
-            $order,$superf,$supert,
+            $order,$superf,$supert,$tags,
             $pressButtom,$totalProperties=0,$pagActual,$firstItem;
 
     protected $queryString = [  'searchtxt'=> ['except' => ''],
@@ -26,7 +26,8 @@ class PropmobileTw extends Component
                                 'fromprice'=> ['except' => ''],
                                 'uptoprice'=> ['except' => ''],
                                 'superf'=> ['except' => ''],
-                                'supert'=> ['except' => '']
+                                'supert'=> ['except' => ''],
+                                'tags' => ['except' => '']
                             ];
     public function render(Request $request)
     {
@@ -74,6 +75,10 @@ class PropmobileTw extends Component
         
         if(strlen($this->state)>2){
             $listings_filter->where('state',$this->state);
+        }
+
+        if (strlen($this->tags)>0) {
+            $listings_filter->where('listingtagstatus', $this->tags);
         }
         
         if(strlen($this->fromprice)>1 && filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT)>1){

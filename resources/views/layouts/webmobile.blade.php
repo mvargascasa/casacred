@@ -256,7 +256,20 @@
             </div>
         </div>
     </div>
-
+    {{-- NUEVO DIV PARA FILTRAR POR ANTIGUEDAD --}}
+    <div id="divantiguedad" class="mt-2" style="display: none">
+        <label for="schtag" class="block text-xs leading-5 text-gray-500">Antiguedad</label>
+        <div class="mt-1 rounded-md shadow-sm">
+            <select name="schtag" id="schtag" class="w-full px-3 py-1 rounded-md border text-sm">
+                <option value="" selected></option>
+                <option value="2">Nueva</option>
+                <option value="5">En Proyecto</option>
+                <option value="6">Usada</option>
+                <option value="7">Colonial</option>
+            </select>
+        </div>
+    </div>
+    {{-- TERMINA DIV --}}
     <div class="mt-2">
         <label for="schpricef" class="block text-xs leading-5 text-gray-500">Precio</label>            
         <div class="grid grid-cols-2 gap-4">
@@ -387,6 +400,17 @@
                 alert('Complete el formulario para enviar información...')
             }
         }
+
+        const categoria = document.getElementById('schcat');
+
+        categoria.addEventListener("change", function(){
+            let divantiguedad = document.getElementById('divantiguedad');
+            if (categoria.value != "Terrenos") {
+                divantiguedad.style.display = "block";
+            } else {
+                divantiguedad.style.display = "none";
+            }
+        });
 </script>
 @yield('script')
 </body>
