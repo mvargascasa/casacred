@@ -258,7 +258,7 @@
     </div>
     {{-- NUEVO DIV PARA FILTRAR POR ANTIGUEDAD --}}
     <div id="divantiguedad" class="mt-2" style="display: none">
-        <label for="schtag" class="block text-xs leading-5 text-gray-500">Antiguedad</label>
+        <label for="schtag" class="block text-xs leading-5 text-gray-500">Estado</label>
         <div class="mt-1 rounded-md shadow-sm">
             <select name="schtag" id="schtag" class="w-full px-3 py-1 rounded-md border text-sm">
                 <option value="" selected></option>

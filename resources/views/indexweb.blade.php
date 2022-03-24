@@ -96,7 +96,7 @@
                   </div>
                   {{-- NUEVO DIV PARA BUSCAR POR ANITGUEDAD --}}
                   <div id="divantiguedad" class="mb-3" style="display: none">
-                    <label for="bform_tags" class="form-label text-danger  font-weight-bold">ANTIGUEDAD</label>
+                    <label for="bform_tags" class="form-label text-danger  font-weight-bold">ESTADO</label>
                     <select class="form-select form-select-sm mb-3" id="bform_tags">
                       <option selected></option>
                       <option value="2">Nueva</option>
