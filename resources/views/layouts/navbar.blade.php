@@ -64,6 +64,14 @@
         text-decoration: none;
         color: #000000;
       }
+      @media screen and (max-width: 992px){
+        .divlogocenter{
+          display: none !important;
+        }
+        .divtwoptionsright{
+          margin-left: 0px !important;
+        }
+      }
       @media screen and (max-width: 850px){
         .rowconstruye{
           display: none !important;
@@ -116,7 +124,7 @@
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
         <div class="container-fluid">
           <a class="navbar-brand " href="{{route('web.index')}}">
-            <img width="80px" height="55px" src="{{asset('img/logo_actualizado.png')}}" height="40" alt="">
+            <img id="imglogo" width="80px" height="55px" src="{{asset('img/logo_actualizado.png')}}" height="40" alt="">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -145,7 +153,7 @@
             <div class="divlogocenter" style="margin-left: 16%">
               <img width="90px" height="65px" src="{{asset('img/logo_actualizado.png')}}" height="40" alt="">
             </div>
-            <div style="margin-left: 25%">
+            <div class="divtwoptionsright" style="margin-left: 25%">
               <ul class="navbar-nav">
                 <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="#">Construye</a>
@@ -251,6 +259,9 @@
           navbar.classList.remove('navbar-dark');
           navbar.classList.remove('fixed-top');
           navbar.classList.add('navbar-light');
+          divlogo.style.visibility = "visible";
+          document.getElementById('imglogo').style.width = "45px";
+          document.getElementById('imglogo').style.height = "35px";
         } else {
           window.onscroll = function() {
           var y = window.scrollY;

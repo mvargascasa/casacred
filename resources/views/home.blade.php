@@ -67,10 +67,27 @@
     @php
         $listing = \App\Models\Listing::where('product_code', 1561)->first();
         $image = explode("|", $listing->images);
+
+        $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
+        $bathroom=0;
+           
+         if(!empty($listing->heading_details)){
+           $allheadingdeatils=json_decode($listing->heading_details); 
+           foreach($allheadingdeatils as $singleedetails){ 
+             unset($singleedetails[0]);								
+             for($i=1;$i<=count($singleedetails);$i++){ 
+               if($i%2==0){  
+                 if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
+                 if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];									  
+               }								   
+             }								
+           $i++;
+           }
+         }
     @endphp
     
-    <div style="position: relative">
-        <img width="100%" height="80%" class="img-fluid" style="filter: brightness(60%)" src="{{ url('uploads/listing',$image[0]) }}" alt="">
+    <div style="position: relative"> 
+        <img width="100%" style="filter: brightness(60%)" src="{{ asset('img/IMG_628-5fc521047b0c7.jpg') }}" alt=""> 
         <div id="parentbuscador" style="position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
             <h3 id="txttitlebanner" class="text-center text-white">¿QUÉ TIPO DE INMUEBLE <br> ESTAS BUSCANDO?</h3>
             <div id="buscador" class="d-flex justify-content-center" style="background-color: #ffffff; border-radius: 5px; height: 50px">
@@ -122,6 +139,12 @@
             <div class="d-flex justify-content-center">
               <button type="button" data-bs-toggle="modal" data-bs-target="#modalFilters" id="btnsearch" class="btn" style="display: none; border-radius: 25px; background-color: #ff5619; padding: 6px 10px 6px 10px; color: #ffffff"><i class="fas fa-search"></i></button>
             </div>
+        </div>
+        <div style="position: absolute; bottom: 0; right: 10px;">
+          <div class="float-right">
+            <p style="margin: 0px" class="text-white">{{ $listing->address }}</p>
+          </div><br>
+          <p style="margin: 0px; margin-bottom: 5px" class="text-white">{{ $bedroom}} dormitorios | {{ $bathroom }} baños | {{ $listing->construction_area }} m<sup>2</sup></p>
         </div>
     </div>
     <div class="container">
