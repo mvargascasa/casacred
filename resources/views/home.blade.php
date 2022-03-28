@@ -70,7 +70,7 @@
     @endphp
     
     <div style="position: relative">
-        <img width="100%" class="img-fluid" style="filter: brightness(60%)" src="{{ url('uploads/listing',$image[0]) }}" alt="">
+        <img width="100%" height="80%" class="img-fluid" style="filter: brightness(60%)" src="{{ url('uploads/listing',$image[0]) }}" alt="">
         <div id="parentbuscador" style="position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
             <h3 id="txttitlebanner" class="text-center text-white">¿QUÉ TIPO DE INMUEBLE <br> ESTAS BUSCANDO?</h3>
             <div id="buscador" class="d-flex justify-content-center" style="background-color: #ffffff; border-radius: 5px; height: 50px">
