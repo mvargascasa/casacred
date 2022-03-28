@@ -268,9 +268,19 @@ const upscroll = () => {
       document.getElementById('mform_fromprice').value='';
       document.getElementById('mform_uptoprice').value='';
 
+
       document.getElementById('bform_tags').value = '';
       document.getElementById('bform_range').value = '';
-    } 
+
+      document.getElementById('bform_category').value = '';
+      document.getElementById('bform_type').value = '';
+      document.getElementById('bform_province').value = '';
+      document.getElementById('bform_city').value = '';
+      document.getElementById('bform_fromprice').value = '';
+      document.getElementById('bform_uptoprice').value = '';
+
+      window.location.replace('https://casacredito.com/?');
+    }
 
 </script>
 @endpush

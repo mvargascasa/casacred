@@ -152,7 +152,7 @@
                   
                   <div class="mb-3">
                     <button type="button" class="btn btn-danger px-2" onclick="filter_search()">Buscar</button>
-                    <button type="button" class="btn btn-danger px-2">Limpiar</button>.
+                    <button type="button" class="btn btn-danger px-2" onclick="clear_search()">Limpiar</button>.
                   </div>
                 </div>
               </div>
