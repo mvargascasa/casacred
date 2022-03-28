@@ -70,7 +70,7 @@
     @endphp
     
     <div style="position: relative">
-        <img class="img-fluid" style="filter: brightness(60%)" src="{{ asset('img/home1.jpg') }}" alt="">
+        <img class="img-fluid" style="filter: brightness(60%)" src="{{ url('uploads/listing',$image[7]) }}" alt="">
         <div id="parentbuscador" style="position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
             <h3 id="txttitlebanner" class="text-center text-white">¿QUÉ TIPO DE INMUEBLE <br> ESTAS BUSCANDO?</h3>
             <div id="buscador" class="d-flex justify-content-center" style="background-color: #ffffff; border-radius: 5px; height: 50px">
@@ -125,11 +125,6 @@
         </div>
     </div>
     <div class="container">
-      <div>
-        {{ $image[0] }}
-        <br>
-        <img src="{{ url('uploads/listing',$image[7]) }}" alt="Error">
-      </div>
         <h5 class="text-center mt-5 mb-5">- SERVICIOS <b style="font-weight: bold">INMOBILIARIOS</b> A TU ALCANCE -</h5>
         <div data-aos="fade-up" class="row ml-5 mr-5">
             <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
