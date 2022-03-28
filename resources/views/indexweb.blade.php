@@ -17,6 +17,15 @@
   .carousel-control-next-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='darkorange' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
   }
+  input[type=range]::-moz-range-thumb {
+    box-shadow: 0px 0px 0px #000000;
+    border: 1px solid #dc3545;
+    height: 18px;
+    width: 18px;
+    border-radius: 25px;
+    background: #dc3545;
+    cursor: pointer;
+  }
 </style>
 @livewireStyles
 @endsection
@@ -106,6 +115,19 @@
                     </select>
                   </div>
                   {{-- TERMINA DIV --}}
+
+                  {{-- div para rango de años de construccion --}}
+                  <div class="mb-3">
+                    <div class="d-flex">
+                      <label for="bform_range" class="form-label text-danger font-weight-bold ml-2 mt-2">AÑOS DE CONSTRUCCIÓN</label>
+                    </div><br>
+                    <div>
+                      <span id="rangeValue"></span>
+                      <input type="range" class="form-range" min="0" max="4" step="1" id="bform_range" onchange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)">
+                    </div>
+                  </div>
+                  {{-- termina div --}}
+
                   <div class="mb-3">
                     <label for="bform_province" class="form-label text-danger  font-weight-bold">UBICACIÓN</label>
                     <select class="form-select form-select-sm mb-3" id="bform_province">
@@ -332,6 +354,9 @@
 
   window.addEventListener('load', (event) => {
         document.getElementById('prisection').style.backgroundImage = "url('img/imgheader2.jpg')";
+        var range = new URLSearchParams(window.location.search).get('range');
+        if(range) rangeSlide(range);
+        else {rangeSlide("0");document.getElementById('bform_range').value = 0};
     });
 
   selState.addEventListener("change", async function() {
@@ -380,6 +405,18 @@
     });
   });
 
+  const rangeSlide = (value) => {
+        let stringyearsconstruction;
+        switch (value) {
+            case "0":stringyearsconstruction = "Entre 0 a 5 años";break;
+            case "1":stringyearsconstruction = "Entre 5 a 10 años";break;
+            case "2":stringyearsconstruction = "Entre 10 a 15 años";break;
+            case "3":stringyearsconstruction = "Entre 15 a 20 años";break;
+            case "4":stringyearsconstruction = "Más de 20 años";break;
+            default:break;
+        }
+        document.getElementById('rangeValue').innerHTML = stringyearsconstruction;
+    }
 </script>
     @livewireScripts
     @stack('scripts')

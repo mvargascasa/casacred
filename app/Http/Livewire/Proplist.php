@@ -14,7 +14,7 @@ class Proplist extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $searchtxt,$category,$state,$city,$type,$fromprice,$uptoprice,$pressButtom,$tags, // $tags nueva variable para filtrar
+    public $searchtxt,$category,$state,$city,$type,$fromprice,$uptoprice,$pressButtom,$tags,$range, // $tags y $range nueva variable para filtrar
             $tester;
 
     protected $queryString = [  'searchtxt'=> ['except' => ''],
@@ -24,7 +24,8 @@ class Proplist extends Component
                                 'city'=> ['except' => ''],
                                 'fromprice'=> ['except' => ''],
                                 'uptoprice'=> ['except' => ''],
-                                'tags' => ['except' => '']]; //se agrego en este array
+                                'tags' => ['except' => ''],
+                                'range' => ['except' => '']]; //se agrego en este array
 
     public function render(Request $request)
     {
@@ -56,6 +57,13 @@ class Proplist extends Component
         //buscando por tags
         if(strlen($this->tags)>0){
             $listings_filter->where('listingtagstatus', $this->tags);
+        }
+
+        //buscando por range años de construccion
+        if ($this->range != null) {
+            if(strlen($this->range)>=0){
+                $listings_filter->where('listyears', $this->range);
+            }
         }
 
         if(strlen($this->category)>2){

@@ -157,8 +157,14 @@
                 @if($garage>0)<img src="{{asset('img/garage-black.png')}}" width="15"><span class="text-danger font-weight-bold small pr-1"> {{$garage}} </span> @endif
               </div>
 
-
-          
+              @isset ($listing->listyears)
+                @php
+                    $years_construction = DB::table('listing_years')->select('description')->where('id', $listing->listyears)->get();
+                @endphp
+                <div class="pb-2 d-flex">
+                  <p class="pt-1"><b style="font-weight: 500">Años de construcción:</b> <br> {{ $years_construction[0]->description }}</p>
+                </div>
+              @endisset
               
         </div>
     </div>

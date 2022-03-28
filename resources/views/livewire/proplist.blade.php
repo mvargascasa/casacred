@@ -175,6 +175,10 @@ const upscroll = () => {
 }
   const modSearch = new bootstrap.Modal(document.getElementById('modalSearch')) 
   
+    var bform_range;
+    document.getElementById('bform_range').addEventListener('change', function(){ //si hay algun cambio en el range de anios de construccion, se manda en la variable para filtrarla
+      bform_range = document.getElementById('bform_range').value; //Nueva variable para filtrar por años de construccion
+    });
 
     function filter_search(){
 
@@ -196,6 +200,10 @@ const upscroll = () => {
         @this.set('pressButtom', 1);
 
         @this.set('tags', bform_tags); //envio la variable para conectarla con la creada en la clase
+        
+        if (this.bform_range) {
+          @this.set('range', this.bform_range); //envio la variable para conectarla con la creada en la clase
+        }
     }
 
     function top_search(){
@@ -259,6 +267,9 @@ const upscroll = () => {
       document.getElementById('mform_city').value='';
       document.getElementById('mform_fromprice').value='';
       document.getElementById('mform_uptoprice').value='';
+
+      document.getElementById('bform_tags').value = '';
+      document.getElementById('bform_range').value = '';
     } 
 
 </script>

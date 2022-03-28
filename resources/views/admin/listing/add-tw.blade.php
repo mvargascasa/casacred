@@ -103,7 +103,16 @@
                 {!! Form::text('Fund', null, ['class' => $inputs]) !!}
             </div>
         </div>
-        
+
+        {{-- nuevo div para guardar los años de construccion --}}
+        <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6 sm:grid-cols-4">
+            <div>
+                {!! Form::label('listyears', 'Años de construcción', ['class' => 'font-semibold']) !!} <br>
+                <span id="rangeValue">Entre 0 a 5 años</span>
+                {!! Form::range('listyears', null,  ['class' => 'form-range', 'min' => '0', 'max' => '4', 'step' => '1', 'onchange' => 'rangeSlide(this.value)', 'onmousemove' => 'rangeSlide(this.value)']) !!}
+            </div>
+        </div>
+        {{-- termina div --}}
 
         <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6">
             <div>          
@@ -273,7 +282,12 @@
 
 @section('endscript')
     <script src="{{asset('js/sortable.min.js')}}"></script>
-    <script>        
+    <script>    
+        window.addEventListener('load', (event) => {
+            var range =  document.getElementById('listyears').value;
+            rangeSlide(range);
+        });
+
         const gridImages = document.getElementById('gridImages');
         new Sortable(gridImages, {
             swapThreshold: 1,
@@ -341,6 +355,19 @@
     }
     const delImageUpload = (idDiv) =>{
         document.getElementById('imageUpload'+idDiv).remove();
+    }
+
+    const rangeSlide = (value) => {
+        let stringyearsconstruction;
+        switch (value) {
+            case "0":stringyearsconstruction = "Entre 0 a 5 años";break;
+            case "1":stringyearsconstruction = "Entre 5 a 10 años";break;
+            case "2":stringyearsconstruction = "Entre 10 a 15 años";break;
+            case "3":stringyearsconstruction = "Entre 15 a 20 años";break;
+            case "4":stringyearsconstruction = "Más de 20 años";break;
+            default:break;
+        }
+        document.getElementById('rangeValue').innerHTML = stringyearsconstruction;
     }
     </script>
 @endsection
