@@ -97,7 +97,7 @@
     </style>
 </head>
 <body style="background-color: #ffffff">
-      <div class="row p-1 rowconstruye fixed-top" style="background-color: #3b4255;">
+      {{-- <div class="row p-1 rowconstruye fixed-top" style="background-color: #3b4255;">
         <div class="col-4 col-sm-3 col-md-4 col-lg-5"></div>
         <div class="col-12 col-sm-6 col-md-7 col-lg-6 d-flex">
           <div>
@@ -111,12 +111,12 @@
           </div>
         </div>
         <div class="col-sm-1 col-md-1"></div>
-      </div>
+      </div> --}}
 
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="margin-top: 30px">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
         <div class="container-fluid">
           <a class="navbar-brand " href="{{route('web.index')}}">
-            <img src="{{asset('casacredito-logo.svg')}}" height="40" alt="">
+            <img width="80px" height="55px" src="{{asset('img/logo_actualizado.png')}}" height="40" alt="">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -142,9 +142,19 @@
                 <a class="nav-link btn" style="background-color: #fec41a; color: #ffffff" href="#">Proyectos Nuevos</a>
               </li> --}}
             </ul>
-          </div>
-          <div class="divlogocenter" style="margin-right: 46%">
-            <img src="{{asset('casacredito-logo.svg')}}" height="40" alt="">
+            <div class="divlogocenter" style="margin-left: 16%">
+              <img width="90px" height="65px" src="{{asset('img/logo_actualizado.png')}}" height="40" alt="">
+            </div>
+            <div style="margin-left: 25%">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="#">Construye</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="#"><i class="fas fa-sign-out-alt" style="color: #d71e01"></i> Mi cuenta</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
     </nav>
