@@ -50,14 +50,22 @@
       .img-container:hover .middle {
         opacity: 1;
       }
-
       .text {
         background-color: #04AA6D;
         color: white;
         font-size: 16px;
         padding: 16px 32px;
       }
+      #ftop_txt::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #ffffff;
+        opacity: 0.5; /* Firefox */
+      }
+      #ftop_txt:focus {
+        border:1px solid rgb(255, 255, 255);
+        box-shadow: 0 0 5px #ffffff;
+      }
     </style>
+    @livewireStyles
 @endsection
 
 @section('content')
@@ -87,10 +95,21 @@
     @endphp
     
     <div style="position: relative"> 
-        <img width="100%" style="filter: brightness(60%)" src="{{ asset('img/IMG_628-5fc521047b0c7.jpg') }}" alt=""> 
+        <img width="100%" style="filter: brightness(50%)" src="{{ asset('img/IMG_628-5fc521047b0c7.jpg') }}" alt=""> 
         <div id="parentbuscador" style="position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
-            <h3 id="txttitlebanner" class="text-center text-white">¿QUÉ TIPO DE INMUEBLE <br> ESTAS BUSCANDO?</h3>
-            <div id="buscador" class="d-flex justify-content-center" style="background-color: #ffffff; border-radius: 5px; height: 50px">
+            <h3 id="txttitlebanner" class="text-white">¿QUÉ TIPO DE INMUEBLE ESTAS BUSCANDO?</h3>
+            <div class="btn-group pb-2">
+              <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_0" autocomplete="off" value="en-venta">
+              <label style="border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_0" style="width:100px;font-size: 14px">VENTA</label>
+              
+              <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_1" autocomplete="off" value="alquilar">
+              <label style="border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_1" style="width:100px;font-size: 14px">ALQUILER</label>
+              
+              <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_2" autocomplete="off" value="proyectos">
+              <label style="border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_2" style="width:100px;font-size: 14px">PROYECTO</label>
+            </div>
+            <input type="text" id="ftop_txt" class="form-control" onkeypress="if(event.keyCode==13)top_search()" style="background-color:rgba(0, 0, 0, 0); border-radius: 0px; color: #ffffff" placeholder="Buscar por dirección, ciudad, código">
+            {{-- <div id="buscador" class="d-flex justify-content-center" style="background-color: #ffffff; border-radius: 5px; height: 50px">
               <div class="d-flex align-items-center mr-1">
                 <select class="form-select form-select-sm border-right" aria-label=".form-select-sm example" style="border: none">
                   <option selected>Ciudad</option>
@@ -133,18 +152,18 @@
                 <div>
                   <button class="btn" style="background-color: #ff5619; color: #ffffff; border-radius: 0px 5px 5px 0px; height: 50px"><i class="fas fa-search"></i> Buscar</button>
                 </div>
-            </div>
+            </div> --}}
 
             {{-- DIV PARA MOSTRAR EL ICONO DE BUSCAR CUANDO SEA RESPONSIVE --}}
             <div class="d-flex justify-content-center">
               <button type="button" data-bs-toggle="modal" data-bs-target="#modalFilters" id="btnsearch" class="btn" style="display: none; border-radius: 25px; background-color: #ff5619; padding: 6px 10px 6px 10px; color: #ffffff"><i class="fas fa-search"></i></button>
             </div>
         </div>
-        <div style="position: absolute; bottom: 0; right: 10px;">
+        <div style="position: absolute; bottom: 10px; right: 20px;">
           <div class="float-right">
-            <p style="margin: 0px" class="text-white">{{ $listing->address }}</p>
+            <p style="margin: 0px" class="text-white">@php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing->address)))) @endphp</p>
           </div><br>
-          <p style="margin: 0px; margin-bottom: 5px" class="text-white">{{ $bedroom}} dormitorios | {{ $bathroom }} baños | {{ $listing->construction_area }} m<sup>2</sup></p>
+          <p style="margin: 0px; margin-bottom: 5px" class="text-white">{{ $bedroom}} DORMITORIOS | {{ $bathroom }} BAÑOS | {{ $listing->construction_area }} M<sup>2</sup></p>
         </div>
     </div>
     <div class="container">
@@ -424,30 +443,32 @@
     window.addEventListener('load', (event) => {
         document.getElementById('prisection').style.backgroundImage = "url('img/home1.jpg')";
     });
-    var sumar = document.getElementById("mas");
-      var restar = document.getElementById("menos");
-      var contador = document.getElementById("contador");
+    // var sumar = document.getElementById("mas");
+    //   var restar = document.getElementById("menos");
+    //   var contador = document.getElementById("contador");
 
-      sumar.onclick = function() {
-        if(contador.value >= contador.min){
-          restar.disabled = false;
-        }
-        contador.value = Number(contador.value) + 1;
-      };
+    //   sumar.onclick = function() {
+    //     if(contador.value >= contador.min){
+    //       restar.disabled = false;
+    //     }
+    //     contador.value = Number(contador.value) + 1;
+    //   };
 
-      restar.onclick = function() {
-        if(contador.min == contador.value){
-          restar.disabled = true;
-        } else {
-          contador.value = Number(contador.value) - 1;
-        }
-      };
+    //   restar.onclick = function() {
+    //     if(contador.min == contador.value){
+    //       restar.disabled = true;
+    //     } else {
+    //       contador.value = Number(contador.value) - 1;
+    //     }
+    //   };
 
-      contador.onchange = function() {
-        if(Number(this.value) < contador.min){
-          alert('No puede ingresar un valor menor a ' + contador.min);
-          contador.value = contador.min;
-        }
-      };
+    //   contador.onchange = function() {
+    //     if(Number(this.value) < contador.min){
+    //       alert('No puede ingresar un valor menor a ' + contador.min);
+    //       contador.value = contador.min;
+    //     }
+    //   };
 </script>
+  @livewireScripts
+  @stack('scripts')
 @endsection
