@@ -12,6 +12,50 @@
     @yield('header')
 
     <style>
+      @keyframes fade-in-move-left {
+      0% {
+        opacity: 0;
+        transform: translateX(-3rem);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fade-in-move-right {
+      0% {
+        opacity: 0;
+        transform: translateX(0rem);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(-10rem);
+      }
+    }
+
+    @keyframes fade-in-move-down {
+      0% {
+        opacity: 0;
+        transform: translateY(-3rem);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fade-in-move-up {
+      0% {
+        opacity: 0;
+        transform: translateY(0rem);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(-8rem);
+      }
+    }
+
       html, body{
         max-width: 100% !important;
         overflow-x: hidden !important;
@@ -42,6 +86,14 @@
         background-color: #3b4255 !important;
         color: #ffffff !important;
       }
+      .navbar-brand{
+        transition: 1s;
+        visibility: hidden;
+      }
+      .divlogocenter{
+        transition: 1s;
+        visibility: hidden;
+      }
     </style>
 </head>
 <body style="background-color: #ffffff">
@@ -61,16 +113,16 @@
         <div class="col-sm-1 col-md-1"></div>
       </div>
 
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="padding-left: 15%; padding-right: 15%; margin-top: 30px">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="margin-top: 30px">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{{route('web.index')}}">
+          <a class="navbar-brand " href="{{route('web.index')}}">
             <img src="{{asset('casacredito-logo.svg')}}" height="40" alt="">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav" onmouseover="changeAppearance();" onmouseout="returnAppearance();">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{{route('web.servicios','asesores-bienes-raices')}}">Vende</a>
               </li>
@@ -86,10 +138,13 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{route('web.notariausa')}}">Notaria USA</a>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a class="nav-link btn" style="background-color: #fec41a; color: #ffffff" href="#">Proyectos Nuevos</a>
-              </li>
+              </li> --}}
             </ul>
+          </div>
+          <div class="divlogocenter" style="margin-right: 46%">
+            <img src="{{asset('casacredito-logo.svg')}}" height="40" alt="">
           </div>
         </div>
     </nav>
@@ -169,27 +224,55 @@
 
     <script>
       var navbar = document.querySelector('.navbar');
+      var divlogo = document.querySelector('.navbar-brand');
+      var divlogocenter = document.querySelector('.divlogocenter');
+
+      window.addEventListener('load', function(){
+        divlogocenter.style.visibility = "visible";
+        divlogocenter.style.animation = "fade-in-move-down 1s";
+      });
+
       let details = navigator.userAgent;
       let regexp = /android|iphone|kindle|ipad/i;
       var screenWidth = screen.width
   
       let isMobileDevice = regexp.test(details);
-      if (screenWidth <= 991) {
-        navbar.classList.remove('navbar-dark');
-        navbar.classList.remove('fixed-top');
-        navbar.classList.add('navbar-light');
-      } else {
-        window.onscroll = function() {
-        var y = window.scrollY;
-        if(y > 100){
+        if (screenWidth <= 991) {
           navbar.classList.remove('navbar-dark');
-          navbar.classList.add('bg-light');
-          navbar.style.transition = "0.5s";
+          navbar.classList.remove('fixed-top');
+          navbar.classList.add('navbar-light');
         } else {
-          navbar.classList.add('navbar-dark');
-          navbar.classList.remove('bg-light');
-        }
-      };
+          window.onscroll = function() {
+          var y = window.scrollY;
+          if(y > 100){
+            changeAppearance();
+          } else {
+            returnAppearance();
+          }
+        };
+      }
+
+      const changeAppearance = () => {
+        navbar.classList.remove('navbar-dark');
+        navbar.classList.add('bg-light');
+        navbar.style.transition = "0.5s";
+
+        divlogo.style.visibility = "visible";
+        divlogo.style.animation = "fade-in-move-left 1s";
+
+        divlogocenter.style.visibility = "hidden";
+        divlogocenter.style.animation = "fade-in-move-up 1s";
+      }
+
+      const returnAppearance = () => {
+        navbar.classList.add('navbar-dark');
+        navbar.classList.remove('bg-light');
+
+        divlogo.style.animation = "fade-in-move-right 1s";
+        divlogo.style.visibility = "hidden";
+     
+        divlogocenter.style.visibility = "visible";
+        divlogocenter.style.animation = "fade-in-move-down 1s";
       }
     </script>
 </body>
