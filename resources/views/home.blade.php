@@ -63,6 +63,11 @@
 @section('content')
     <section id="prisection" style="background-size: cover;background-position: left top; width: 100%; background-repeat: no-repeat; background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5))">
     </section>
+
+    @php
+        $listing = \App\Models\Listing::where('product_code', 1503)->first();
+        $image = explode("|", $listing->images);
+    @endphp
     
     <div style="position: relative">
         <img class="img-fluid" style="filter: brightness(60%)" src="{{ asset('img/home1.jpg') }}" alt="">
@@ -120,6 +125,11 @@
         </div>
     </div>
     <div class="container">
+      <div>
+        {{ $image[0] }}
+        <br>
+        <img src="{{ url('uploads/listing',$image[0]) }}" alt="Error">
+      </div>
         <h5 class="text-center mt-5 mb-5">- SERVICIOS <b style="font-weight: bold">INMOBILIARIOS</b> A TU ALCANCE -</h5>
         <div data-aos="fade-up" class="row ml-5 mr-5">
             <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
