@@ -128,7 +128,7 @@
       <div>
         {{ $image[0] }}
         <br>
-        <img src="{{ url('uploads/listing',$image[0]) }}" alt="Error">
+        <img src="{{ url('uploads/listing',$image[7]) }}" alt="Error">
       </div>
         <h5 class="text-center mt-5 mb-5">- SERVICIOS <b style="font-weight: bold">INMOBILIARIOS</b> A TU ALCANCE -</h5>
         <div data-aos="fade-up" class="row ml-5 mr-5">
