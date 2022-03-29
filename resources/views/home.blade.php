@@ -486,42 +486,56 @@
             </button>
           </div>
           <div class="modal-body">
-            <form action="">
+            <form action="{{ route('web.index') }}" id="formodalsearch" method="GET">
               <div class="form-group">
                 <label for="tipobusqueda">Tipo de búsqueda</label>
-                <select name="tipobusqueda" id="tipobusqueda" class="form-control">
-                  <option value="">Seleccione</option>
-                  <option value="Venta">Venta</option>
-                  <option value="Alquiler">Alquiler</option>
+                <select name="category" id="tipobusqueda" class="form-control">
+                  <option selected>Seleccione</option>
+                  <option value="en-venta">Venta</option>
+                  <option value="alquilar">Alquiler</option>
+                  <option value="proyectos">Proyecto</option>
                 </select>
               </div>
               <div class="form-group mt-2">
                 <label for="tipopropiedad">Tipo de propiedad</label>
-                <select name="propiedad" id="tipopropiedad" class="form-control">
-                  <option value="">Seleccione</option>
-                  <option value="Departamento">Departamento</option>
-                  <option value="Casa">Casa</option>
+                <select name="type" id="tipopropiedad" class="form-control">
+                  <option selected>Seleccione</option>
+                  <option value="23">Casas</option>
+                  <option value="24">Departamentos</option>
+                  <option value="25">Casas Comerciales</option>
+                  <option value="26">Terrenos</option>
+                  <option value="29">Quintas</option>
+                  <option value="30">Haciendas</option>
+                  <option value="32">Locales Comerciales</option>
+                  <option value="35">Oficinas</option>
+                  <option value="36">Suites</option>
                 </select>
               </div>
+
+              @php
+                $cities = \App\Models\Listing::select('city')->orderBy('city', 'asc')->distinct()->get();    
+              @endphp
+
               <div class="form-group mt-2">
-                <label for="ciudad">Ciudad</label>
-                <select name="ciudad" id="ciudad" class="form-control">
+                <label for="city">Ciudad</label>
+                <select name="city" id="city" class="form-control">
                   <option value="">Seleccione</option>
-                  <option value="Quito">Quito</option>
-                  <option value="Guayaquil">Guayaquil</option>
-                  <option value="Cuenca">Cuenca</option>
-                  <option value="Manta">Manta</option>
+                  @foreach ($cities as $city)
+                    @if ($city->city != null)
+                      <option value="{{ $city->city}}">{{ $city->city}}</option>  
+                    @endif
+                  @endforeach
                 </select>
               </div>
               <div class="form-group mt-2">
                 <label for="preciodesde">Precio</label>
-                <input type="text" id="preciodesde" name="preciodesde" placeholder="Desde" class="form-control mb-2">
-                <input type="text" name="preciohasta" id="preciohasta" placeholder="Hasta" class="form-control">
+                <input type="text" id="preciodesde" name="fromprice" placeholder="Desde" class="form-control mb-2">
+                <input type="text" id="preciohasta" name="uptoprice" placeholder="Hasta" class="form-control">
               </div>
             </form>
           </div>
           <div class="modal-footer justify-content-center">
-            <button type="button" style="background-color: #fec41a" class="btn">Buscar</button>
+            <button type="button" onclick="document.getElementById('formodalsearch').submit();" style="background-color: #fec41a" class="btn">Buscar</button>
           </div>
         </div>
       </div>
