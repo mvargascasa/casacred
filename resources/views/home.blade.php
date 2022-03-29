@@ -173,13 +173,13 @@
               <form action="{{ route('web.index') }}" method="GET">
                 <div class="btn-group pb-2">
                   <input type="radio" class="btn-check" name="category" id="ftop_category_0" autocomplete="off" value="en-venta">
-                  <label style="border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_0" style="width:100px;font-size: 14px">VENTA</label>
+                  <label style="border: none; border-radius: 0px;" class="btn btn-outline-danger" for="ftop_category_0" style="width:100px;font-size: 14px">VENTA</label>
                   
                   <input type="radio" class="btn-check" name="category" id="ftop_category_1" autocomplete="off" value="alquilar">
-                  <label style="border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_1" style="width:100px;font-size: 14px">ALQUILER</label>
+                  <label style="border:none; border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_1" style="width:100px;font-size: 14px">ALQUILER</label>
                   
                   <input type="radio" class="btn-check" name="category" id="ftop_category_2" autocomplete="off" value="proyectos">
-                  <label style="border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_2" style="width:100px;font-size: 14px">PROYECTO</label>
+                  <label style="border: none; border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_2" style="width:100px;font-size: 14px">PROYECTO</label>
                 </div>
                 <div class="input-group">
                   {{-- onkeypress="if(event.keyCode==13)document.getElementById('formtopsearch').submit()" --}}
