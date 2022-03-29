@@ -153,7 +153,7 @@ function filter_properties(){
     let schsupert   = document.getElementById('schsupert').value;
 
     let schtag = document.getElementById('schtag').value; //nueva variable para filtrar por tags
-    let schrange = document.getElementById('schrange').value; //nueva variable para filtrar por anios de construccion
+    //let schrange = document.getElementById('schrange').value; //nueva variable para filtrar por anios de construccion
 
     @this.set('searchtxt', schtext);  
     @this.set('order', schorder);  
@@ -165,7 +165,7 @@ function filter_properties(){
     @this.set('supert', schsupert);
     @this.set('pressButtom', 1);
     @this.set('tags', schtag); //enviando la nueva variable a la clase
-    @this.set('range', schrange);
+    //@this.set('range', schrange);
 
     closModal('modalSearch')
 }
@@ -181,7 +181,7 @@ function filter_clear(){
     document.getElementById('schsuperf').value = '';
     document.getElementById('schsupert').value = '';
     document.getElementById('schtag').value = '';
-    document.getElementById('schrange').value = '';
+    //document.getElementById('schrange').value = '';
 }
 
     

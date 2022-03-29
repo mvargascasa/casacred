@@ -14,7 +14,7 @@ class PropmobileTw extends Component
     use WithPagination;
     
     public $searchtxt,$category,$state,$city,$type,$fromprice,$uptoprice,
-            $order,$superf,$supert,$tags,$range, //se agrego estas nuevas variables tags y range para filtrar por estado (nueva, etc) o anios de construccion
+            $order,$superf,$supert,$tags,//$range, //se agrego estas nuevas variables tags y range para filtrar por estado (nueva, etc) o anios de construccion
             $pressButtom,$totalProperties=0,$pagActual,$firstItem;
 
     protected $queryString = [  'searchtxt'=> ['except' => ''],
@@ -27,8 +27,7 @@ class PropmobileTw extends Component
                                 'uptoprice'=> ['except' => ''],
                                 'superf'=> ['except' => ''],
                                 'supert'=> ['except' => ''],
-                                'tags' => ['except' => ''],
-                                'range' => ['except' => '']
+                                'tags' => ['except' => '']
                             ];
     public function render(Request $request)
     {
@@ -83,11 +82,9 @@ class PropmobileTw extends Component
         }
 
         //filtrar por anios de construccion
-        if(strlen($this->range)>=0){
-            $listings_filter->where('listyears', $this->range);
-        } else {
-            $listings_filter->where('listyears', 0);
-        }
+        // if(strlen($this->range)>=0){
+        //     $listings_filter->where('listyears', $this->range);
+        // }
         
         if(strlen($this->fromprice)>1 && filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT)>1){
             $fromprice_ = filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT);

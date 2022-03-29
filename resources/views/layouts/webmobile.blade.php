@@ -271,11 +271,11 @@
     </div>
     {{-- TERMINA DIV --}}
     {{-- div rango de anios de construccion --}}
-    <div class="mt-2">
+    {{-- <div class="mt-2">
         <label for="schrange" class="block text-xs leading-5 text-gray-500">Años de construcción</label>
         <span id="rangeValue"></span>
         <input type="range" class="form-range" min="0" max="4" step="1" id="schrange" name="schrange" onchange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)">
-    </div>
+    </div> --}}
     {{-- termina div --}}
     <div class="mt-2">
         <label for="schpricef" class="block text-xs leading-5 text-gray-500">Precio</label>            
@@ -386,11 +386,11 @@
 </div>
 </div>
 <script>
-        window.addEventListener('load', (event) => {
-            var range = new URLSearchParams(window.location.search).get('range');
-            if (range) rangeSlide(range);
-            else{rangeSlide("0");document.getElementById('schrange').value = 0;};
-        });
+        // window.addEventListener('load', (event) => {
+        //     var range = new URLSearchParams(window.location.search).get('range');
+        //     if (range) rangeSlide(range);
+        //     else{rangeSlide("0");document.getElementById('schrange').value = 0;};
+        // });
 
         function toggleNavbar(collapseID) {
             document.getElementById(collapseID).classList.toggle("hidden");
@@ -427,18 +427,18 @@
             }
         });
 
-        const rangeSlide = (value) => {
-        let stringyearsconstruction;
-        switch (value) {
-            case "0":stringyearsconstruction = "Entre 0 a 5 años";break;
-            case "1":stringyearsconstruction = "Entre 5 a 10 años";break;
-            case "2":stringyearsconstruction = "Entre 10 a 15 años";break;
-            case "3":stringyearsconstruction = "Entre 15 a 20 años";break;
-            case "4":stringyearsconstruction = "Más de 20 años";break;
-            default:break;
-        }
-        document.getElementById('rangeValue').innerHTML = stringyearsconstruction;
-    }
+    //     const rangeSlide = (value) => {
+    //     let stringyearsconstruction;
+    //     switch (value) {
+    //         case "0":stringyearsconstruction = "Entre 0 a 5 años";break;
+    //         case "1":stringyearsconstruction = "Entre 5 a 10 años";break;
+    //         case "2":stringyearsconstruction = "Entre 10 a 15 años";break;
+    //         case "3":stringyearsconstruction = "Entre 15 a 20 años";break;
+    //         case "4":stringyearsconstruction = "Más de 20 años";break;
+    //         default:break;
+    //     }
+    //     document.getElementById('rangeValue').innerHTML = stringyearsconstruction;
+    // }
 </script>
 @yield('script')
 </body>
