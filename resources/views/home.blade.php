@@ -490,7 +490,7 @@
               <div class="form-group">
                 <label for="tipobusqueda">Tipo de búsqueda</label>
                 <select name="category" id="tipobusqueda" class="form-control">
-                  <option selected>Seleccione</option>
+                  <option value="" selected>Seleccione</option>
                   <option value="en-venta">Venta</option>
                   <option value="alquilar">Alquiler</option>
                   <option value="proyectos">Proyecto</option>
@@ -499,7 +499,7 @@
               <div class="form-group mt-2">
                 <label for="tipopropiedad">Tipo de propiedad</label>
                 <select name="type" id="tipopropiedad" class="form-control">
-                  <option selected>Seleccione</option>
+                  <option value="" selected>Seleccione</option>
                   <option value="23">Casas</option>
                   <option value="24">Departamentos</option>
                   <option value="25">Casas Comerciales</option>
@@ -513,18 +513,23 @@
               </div>
 
               @php
-                $cities = \App\Models\Listing::select('city')->orderBy('city', 'asc')->distinct()->get();    
+                  $states = DB::table('info_states')->select('id', 'name')->where('country_id',63)->orderBy('name')->get();
               @endphp
+              
+              <div class="form-group mt-2">
+                <label for="selProvince">Provincia</label>
+                <select name="state" id="selProvince" class="form-control">
+                  <option value="">Seleccione</option>
+                  @foreach ($states as $state)
+                  <option value="{{ $state->name}}" data-id="{{ $state->id}}">{{ $state->name }}</option>
+                  @endforeach
+                </select>
+              </div>
 
               <div class="form-group mt-2">
                 <label for="city">Ciudad</label>
-                <select name="city" id="city" class="form-control">
+                <select name="city" id="selCity" class="form-control">
                   <option value="">Seleccione</option>
-                  @foreach ($cities as $city)
-                    @if ($city->city != null)
-                      <option value="{{ $city->city}}">{{ $city->city}}</option>  
-                    @endif
-                  @endforeach
                 </select>
               </div>
               <div class="form-group mt-2">
@@ -564,31 +569,27 @@
     window.addEventListener('load', (event) => {
         document.getElementById('prisection').style.backgroundImage = "url('img/home1.jpg')";
     });
-    // var sumar = document.getElementById("mas");
-    //   var restar = document.getElementById("menos");
-    //   var contador = document.getElementById("contador");
+    
+    const selProvince = document.getElementById('selProvince');
+    const selCity = document.getElementById('selCity');
 
-    //   sumar.onclick = function() {
-    //     if(contador.value >= contador.min){
-    //       restar.disabled = false;
-    //     }
-    //     contador.value = Number(contador.value) + 1;
-    //   };
-
-    //   restar.onclick = function() {
-    //     if(contador.min == contador.value){
-    //       restar.disabled = true;
-    //     } else {
-    //       contador.value = Number(contador.value) - 1;
-    //     }
-    //   };
-
-    //   contador.onchange = function() {
-    //     if(Number(this.value) < contador.min){
-    //       alert('No puede ingresar un valor menor a ' + contador.min);
-    //       contador.value = contador.min;
-    //     }
-    //   };
+    selProvince.addEventListener("change", async function() {
+      selCity.options.length = 0;
+    let id = selProvince.options[selProvince.selectedIndex].dataset.id;
+    const response = await fetch("{{url('getcities')}}/"+id );
+    const cities = await response.json();
+    
+    var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode('Elige Ciudad') );
+          opt.value = '';
+          selCity.appendChild(opt);
+    cities.forEach(city => {
+          var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode(city.name) );
+          opt.value = city.name;
+          selCity.appendChild(opt);
+    });
+  });
 </script>
   @livewireScripts
   @stack('scripts')
