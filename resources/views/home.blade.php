@@ -81,6 +81,60 @@
         border:1px solid rgb(255, 255, 255);
         box-shadow: 0 0 5px #ffffff;
       }
+      .a-btn-services {
+        text-decoration: none;
+        color: #000000 !important;
+      }
+
+      .cta {
+        position: relative;
+        margin: auto;
+        padding: 15px 15px;
+        transition: all 0.2s ease;
+      }
+      .cta:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        border-radius: 28px;
+        background: rgba(255, 171, 157, 0.5);
+        width: 56px;
+        height: 56px;
+        transition: all 0.3s ease;
+      }
+      .cta span {
+        position: relative;
+        font-size: 16px;
+        line-height: 18px;
+        font-weight: 900;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        vertical-align: middle;
+      }
+      .cta svg {
+        position: relative;
+        top: 0;
+        margin-left: 10px;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke: #111;
+        stroke-width: 2;
+        transform: translateX(-5px);
+        transition: all 0.3s ease;
+      }
+      .cta:hover:before {
+        width: 100%;
+        background: #ffab9d;
+      }
+      .cta:hover svg {
+        transform: translateX(0);
+      }
+      .cta:active {
+        transform: scale(0.96);
+      }
     </style>
     @livewireStyles
 @endsection
@@ -196,9 +250,9 @@
         </div>
     </div>
     <div class="container">
-        <p id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-5 mb-5">- SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A TU ALCANCE -</p>
-        <div data-aos="fade-up" class="row ml-5 mr-5">
-            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
+        <p id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-4 mb-4">- SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A TU ALCANCE -</p>
+        <div class="row">
+            <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
                 <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home2.jpg') }}" alt="">
                 <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size: 14px">
@@ -206,11 +260,17 @@
                 </div>
               </div>
                 <div class="text-center mt-3">
-                    <h6 style="margin-bottom: 50px">Quiero comprar una propiedad</h6>
-                    <a href="#" style="margin-top: 50px">Comprar</a>
+                    <h6 style="margin-bottom: 40px">Quiero comprar una propiedad</h6>
+                      <a href="{{ route('web.index') }}" class="cta a-btn-services">
+                        <span>Comprar</span>
+                        <svg width="13px" height="10px" viewBox="0 0 13 10">
+                          <path d="M1,5 L11,5"></path>
+                          <polyline points="8 1 12 5 8 9"></polyline>
+                        </svg>
+                      </a>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
+            <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
                 <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home3.jpg') }}" alt="">
                 <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size:14px">
@@ -218,11 +278,17 @@
                 </div>
               </div>
                 <div class="text-center mt-3">
-                    <h6>Quiero vender una propiedad</h6>
-                    <button class="btn btn-danger text-white" style="margin-top: 20px">Vender</button>
+                    <h6 style="margin-bottom: 40px">Quiero vender una propiedad</h6>
+                    <a href="{{ route('web.servicios', 'asesores-bienes-raices') }}" class="cta a-btn-services">
+                      <span>Vender</span>
+                      <svg width="13px" height="10px" viewBox="0 0 13 10">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                      </svg>
+                    </a>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
+            <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
                 <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home4.jpg') }}" alt="">
                 <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size: 14px">
@@ -230,11 +296,17 @@
                 </div>
               </div>
                 <div class="text-center mt-3">
-                    <h6>Tengo una propiedad en alquiler</h6>
-                    <button class="btn btn-danger text-white" style="margin-top: 20px">Alquilar</button>
+                    <h6 style="margin-bottom: 40px">Tengo una propiedad en alquiler</h6>
+                    <a href="#" class="cta a-btn-services">
+                      <span>Alquilar</span>
+                      <svg width="13px" height="10px" viewBox="0 0 13 10">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                      </svg>
+                    </a>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
+            <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
                 <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home5.jpg') }}" alt="">
                 <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size: 14px">
@@ -242,8 +314,14 @@
                 </div>
               </div>
               <div class="text-center mt-3">
-                  <h6>Créditos para ecuatorianos en USA</h6>
-                  <button class="btn btn-danger text-white">Solicitar</button>
+                  <h6 style="margin-bottom: 40px">Créditos para ecuatorianos en USA</h6>
+                  <a href="{{ route('web.servicios', 'creditos-en-ecuador') }}" class="cta a-btn-services">
+                    <span>Solicitar</span>
+                    <svg width="13px" height="10px" viewBox="0 0 13 10">
+                      <path d="M1,5 L11,5"></path>
+                      <polyline points="8 1 12 5 8 9"></polyline>
+                    </svg>
+                  </a>
               </div>
           </div>
         </div>
