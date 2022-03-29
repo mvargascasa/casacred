@@ -83,14 +83,6 @@
           margin-top: 0px !important; 
         }
       }
-      @media screen and (max-width: 1334px){
-        #buscador{
-          display: none !important;
-        }
-        #btnsearch{
-            display: block !important;
-        }
-      }
       .item-nav-link:hover{
         background-color: #3b4255 !important;
         color: #ffffff !important;

@@ -14,7 +14,24 @@
     <style>
       @media screen and (max-width: 850px){
         #txttitlebanner{
-          font-size: 15px !important;
+          font-size: 12px !important;
+          text-align: center !important;
+        }
+        #infolistingbanner{
+          font-size: 10px !important;
+          bottom: 0px !important;
+          right: 5px !important;
+        }
+        #txtserviciosinmo{
+          font-size: 13px !important;
+        }
+      }
+      @media screen and (max-width: 1040px){
+        #formtopsearch{
+          display: none !important;
+        }
+        #btnsearch{
+          display: block !important;
         }
       }
       .hover-image:hover{
@@ -98,27 +115,29 @@
         <img width="100%" style="filter: brightness(50%)" src="{{ asset('img/IMG_628-5fc521047b0c7.jpg') }}" alt=""> 
         <div id="parentbuscador" style="position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
             <h3 id="txttitlebanner" class="text-white">¿QUÉ TIPO DE INMUEBLE ESTAS BUSCANDO?</h3>
-            <form action="{{ route('web.index') }}" id="formtopsearch" method="GET">
-              <div class="btn-group pb-2">
-                <input type="radio" class="btn-check" name="category" id="ftop_category_0" autocomplete="off" value="en-venta">
-                <label style="border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_0" style="width:100px;font-size: 14px">VENTA</label>
-                
-                <input type="radio" class="btn-check" name="category" id="ftop_category_1" autocomplete="off" value="alquilar">
-                <label style="border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_1" style="width:100px;font-size: 14px">ALQUILER</label>
-                
-                <input type="radio" class="btn-check" name="category" id="ftop_category_2" autocomplete="off" value="proyectos">
-                <label style="border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_2" style="width:100px;font-size: 14px">PROYECTO</label>
-              </div>
-              <div class="input-group">
-                {{-- onkeypress="if(event.keyCode==13)document.getElementById('formtopsearch').submit()" --}}
-                <input type="text" id="ftop_txt" name="searchtxt" class="form-control" style="background-color:rgba(0, 0, 0, 0); border-radius: 0px; color: #ffffff" placeholder="Buscar por dirección, ciudad, código">
-                <span id="basic-addon2">
-                  <button type="submit" class="btn btn-outline-light" style="border-radius: 0px 5px 5px 0px">
-                    <i class="far fa-search"></i>
-                  </button>
-                </span>
-              </div>
-            </form>
+            <div id="formtopsearch">
+              <form action="{{ route('web.index') }}" method="GET">
+                <div class="btn-group pb-2">
+                  <input type="radio" class="btn-check" name="category" id="ftop_category_0" autocomplete="off" value="en-venta">
+                  <label style="border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_0" style="width:100px;font-size: 14px">VENTA</label>
+                  
+                  <input type="radio" class="btn-check" name="category" id="ftop_category_1" autocomplete="off" value="alquilar">
+                  <label style="border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_1" style="width:100px;font-size: 14px">ALQUILER</label>
+                  
+                  <input type="radio" class="btn-check" name="category" id="ftop_category_2" autocomplete="off" value="proyectos">
+                  <label style="border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_2" style="width:100px;font-size: 14px">PROYECTO</label>
+                </div>
+                <div class="input-group">
+                  {{-- onkeypress="if(event.keyCode==13)document.getElementById('formtopsearch').submit()" --}}
+                  <input type="text" id="ftop_txt" name="searchtxt" class="form-control" style="background-color:rgba(0, 0, 0, 0); border-radius: 0px; color: #ffffff" placeholder="Buscar por dirección, ciudad, código">
+                  <span id="basic-addon2">
+                    <button type="submit" class="btn btn-outline-light" style="border-radius: 0px 5px 5px 0px">
+                      <i class="far fa-search"></i>
+                    </button>
+                  </span>
+                </div>
+              </form>
+            </div>
             {{-- <div id="buscador" class="d-flex justify-content-center" style="background-color: #ffffff; border-radius: 5px; height: 50px">
               <div class="d-flex align-items-center mr-1">
                 <select class="form-select form-select-sm border-right" aria-label=".form-select-sm example" style="border: none">
@@ -166,10 +185,10 @@
 
             {{-- DIV PARA MOSTRAR EL ICONO DE BUSCAR CUANDO SEA RESPONSIVE --}}
             <div class="d-flex justify-content-center">
-              <button type="button" data-bs-toggle="modal" data-bs-target="#modalFilters" id="btnsearch" class="btn" style="display: none; border-radius: 25px; background-color: #ff5619; padding: 6px 10px 6px 10px; color: #ffffff"><i class="fas fa-search"></i></button>
+              <button type="button" data-bs-toggle="modal" data-bs-target="#modalFilters" id="btnsearch" class="btn btn-outline-light" style="display: none; border-radius: 25px; padding: 6px 10px 6px 10px;"><i class="fas fa-search"></i></button>
             </div>
         </div>
-        <div style="position: absolute; bottom: 10px; right: 20px;">
+        <div id="infolistingbanner" style="position: absolute; bottom: 10px; right: 20px;">
           <div class="float-right">
             <p style="margin: 0px" class="text-white">@php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing->address)))) @endphp</p>
           </div><br>
@@ -177,7 +196,7 @@
         </div>
     </div>
     <div class="container">
-        <p style="font-size: 20px" class="text-center mt-5 mb-5">- SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A TU ALCANCE -</p>
+        <p id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-5 mb-5">- SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A TU ALCANCE -</p>
         <div data-aos="fade-up" class="row ml-5 mr-5">
             <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
@@ -187,8 +206,8 @@
                 </div>
               </div>
                 <div class="text-center mt-3">
-                    <h6>Quiero comprar una propiedad</h6>
-                    <button class="btn btn-danger text-white" style="margin-top: 20px">Comprar</button>
+                    <h6 style="margin-bottom: 50px">Quiero comprar una propiedad</h6>
+                    <a href="#" style="margin-top: 50px">Comprar</a>
                 </div>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
