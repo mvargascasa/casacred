@@ -85,6 +85,8 @@ class PropmobileTw extends Component
         //filtrar por anios de construccion
         if(strlen($this->range)>=0){
             $listings_filter->where('listyears', $this->range);
+        } else {
+            $listings_filter->where('listyears', 0);
         }
         
         if(strlen($this->fromprice)>1 && filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT)>1){
