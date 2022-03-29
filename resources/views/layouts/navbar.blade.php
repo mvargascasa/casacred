@@ -59,6 +59,7 @@
       html, body{
         max-width: 100% !important;
         overflow-x: hidden !important;
+        font-family: 'Poppins', sans-serif;
       }
       a{
         text-decoration: none;
@@ -90,7 +91,7 @@
             display: block !important;
         }
       }
-      .nav-link:hover{
+      .item-nav-link:hover{
         background-color: #3b4255 !important;
         color: #ffffff !important;
       }
@@ -132,31 +133,33 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav" onmouseover="changeAppearance();" onmouseout="returnAppearance();">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{route('web.servicios','asesores-bienes-raices')}}">Vende</a>
+                <a class="nav-link active item-nav-link" aria-current="page" href="{{route('web.servicios','asesores-bienes-raices')}}">Vende</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{route('web.servicios','creditos-en-ecuador')}}">Créditos</a>
+                <a class="nav-link item-nav-link" href="{{route('web.servicios','creditos-en-ecuador')}}">Créditos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{route('web.servicios','nosotros')}}">Nosotros</a>
+                <a class="nav-link item-nav-link" href="{{route('web.servicios','nosotros')}}">Nosotros</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Blog</a>
+                <a class="nav-link item-nav-link" href="#">Blog</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{route('web.notariausa')}}">Notaria USA</a>
+                <a class="nav-link item-nav-link" href="{{route('web.notariausa')}}">Notaria USA</a>
               </li>
               {{-- <li class="nav-item">
                 <a class="nav-link btn" style="background-color: #fec41a; color: #ffffff" href="#">Proyectos Nuevos</a>
               </li> --}}
             </ul>
             <div class="divlogocenter" style="margin-left: 16%">
-              <img width="90px" height="65px" src="{{asset('img/logo_actualizado.png')}}" height="40" alt="">
+              <a href="{{ route('web.home') }}">
+                <img width="90px" height="65px" src="{{asset('img/logo_actualizado.png')}}" height="40" alt="">
+              </a>
             </div>
             <div class="divtwoptionsright" style="margin-left: 25%">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="#">Construye</a>
+                  <a class="nav-link" aria-current="page" target="_blank" href="https://casacreditopromotora.com/socios/construye">Construye</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="#"><i class="fas fa-sign-out-alt" style="color: #d71e01"></i> Mi cuenta</a>

@@ -98,17 +98,27 @@
         <img width="100%" style="filter: brightness(50%)" src="{{ asset('img/IMG_628-5fc521047b0c7.jpg') }}" alt=""> 
         <div id="parentbuscador" style="position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
             <h3 id="txttitlebanner" class="text-white">¿QUÉ TIPO DE INMUEBLE ESTAS BUSCANDO?</h3>
-            <div class="btn-group pb-2">
-              <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_0" autocomplete="off" value="en-venta">
-              <label style="border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_0" style="width:100px;font-size: 14px">VENTA</label>
-              
-              <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_1" autocomplete="off" value="alquilar">
-              <label style="border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_1" style="width:100px;font-size: 14px">ALQUILER</label>
-              
-              <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_2" autocomplete="off" value="proyectos">
-              <label style="border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_2" style="width:100px;font-size: 14px">PROYECTO</label>
-            </div>
-            <input type="text" id="ftop_txt" class="form-control" onkeypress="if(event.keyCode==13)top_search()" style="background-color:rgba(0, 0, 0, 0); border-radius: 0px; color: #ffffff" placeholder="Buscar por dirección, ciudad, código">
+            <form action="{{ route('web.index') }}" id="formtopsearch" method="GET">
+              <div class="btn-group pb-2">
+                <input type="radio" class="btn-check" name="category" id="ftop_category_0" autocomplete="off" value="en-venta">
+                <label style="border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_0" style="width:100px;font-size: 14px">VENTA</label>
+                
+                <input type="radio" class="btn-check" name="category" id="ftop_category_1" autocomplete="off" value="alquilar">
+                <label style="border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_1" style="width:100px;font-size: 14px">ALQUILER</label>
+                
+                <input type="radio" class="btn-check" name="category" id="ftop_category_2" autocomplete="off" value="proyectos">
+                <label style="border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_2" style="width:100px;font-size: 14px">PROYECTO</label>
+              </div>
+              <div class="input-group">
+                {{-- onkeypress="if(event.keyCode==13)document.getElementById('formtopsearch').submit()" --}}
+                <input type="text" id="ftop_txt" name="searchtxt" class="form-control" style="background-color:rgba(0, 0, 0, 0); border-radius: 0px; color: #ffffff" placeholder="Buscar por dirección, ciudad, código">
+                <span id="basic-addon2">
+                  <button type="submit" class="btn btn-outline-light" style="border-radius: 0px 5px 5px 0px">
+                    <i class="far fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </form>
             {{-- <div id="buscador" class="d-flex justify-content-center" style="background-color: #ffffff; border-radius: 5px; height: 50px">
               <div class="d-flex align-items-center mr-1">
                 <select class="form-select form-select-sm border-right" aria-label=".form-select-sm example" style="border: none">
@@ -167,7 +177,7 @@
         </div>
     </div>
     <div class="container">
-        <h5 class="text-center mt-5 mb-5">- SERVICIOS <b style="font-weight: bold">INMOBILIARIOS</b> A TU ALCANCE -</h5>
+        <p style="font-size: 20px" class="text-center mt-5 mb-5">- SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A TU ALCANCE -</p>
         <div data-aos="fade-up" class="row ml-5 mr-5">
             <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
@@ -230,7 +240,7 @@
 
     <div class="container">
       <div class="row mb-4">
-          <h4 class="text-center mt-5 mb-5">PROYECTOS NUEVOS EN ECUADOR</h4>
+          <h4 class="text-center mt-5 mb-5" style="font-weight: 400">PROYECTOS NUEVOS EN ECUADOR</h4>
           <div data-aos="zoom-in-right" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-3 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
