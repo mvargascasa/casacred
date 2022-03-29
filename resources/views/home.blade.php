@@ -251,7 +251,7 @@
     </div>
     <div class="container">
         <p id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-4 mb-4">- SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A TU ALCANCE -</p>
-        <div class="row">
+        <div class="row mr-2 ml-2">
             <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
                 <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home2.jpg') }}" alt="">
