@@ -409,35 +409,27 @@
     <div class="row pt-5 pb-5" style="background-color: #f2f8f8; padding-left: 5%; padding-right: 5%; font-size: 13px">
         <div class="col-sm-3 justify-content-center">
             <h6 style="font-weight: bold">Tipos de inmuebles populares</h6>
-            <a style="text-decoration: none; color: #000000" href="">Casas en Venta</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Casas en Alquiler</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Departamentos en Venta</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Terrenos en venta</a><br>
-            <a style="text-decoration: none; color: #000000; font-weight: bold; font-size: 11px" href="">Ver más</a>
+            <a style="text-decoration: none; color: #000000" href="{{url('casas-de-venta-en-ecuador')}}">Casas en Venta</a><br>
+            <a style="text-decoration: none; color: #000000" href="{{url('departamentos-de-venta-en-ecuador')}}">Departamentos en Venta</a><br>
+            <a style="text-decoration: none; color: #000000" href="{{url('terrenos-de-venta-en-ecuador')}}">Terrenos en venta</a><br>
         </div>
         <div class="col-sm-3 justify-content-center">
             <h6 style="font-weight: bold">Propiedades en venta</h6>
-            <a style="text-decoration: none; color: #000000" href="">Departamentos en venta: Quito</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Departamentos en venta: Guayaquil</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Departamentos en venta: Cuenca</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Departamentos en venta: Salinas</a><br>
-            <a style="text-decoration: none; color: #000000; font-weight: bold; font-size: 11px" href="">Ver más</a>
+            <a style="text-decoration: none; color: #000000" href="{{url('departamentos-de-venta-en-quito')}}">Departamentos en venta: Quito</a><br>
+            <a style="text-decoration: none; color: #000000" href="{{url('departamentos-de-venta-en-guayaquil')}}">Departamentos en venta: Guayaquil</a><br>
+            <a style="text-decoration: none; color: #000000" href="{{url('departamentos-de-venta-en-cuenca')}}">Departamentos en venta: Cuenca</a><br>
         </div>
         <div class="col-sm-3 justify-content-center">
-            <h6 style="font-weight: bold">Propiedades en alquiler</h6>
-            <a style="text-decoration: none; color: #000000" href="">Departamentos en alquiler: Quito</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Departamentos en alquiler: Guayaquil</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Departamentos en alquiler: Cuenca</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Departamentos en alquiler: Salinas</a><br>
-            <a style="text-decoration: none; color: #000000; font-weight: bold; font-size: 11px" href="">Ver más</a>
+            <h6 style="font-weight: bold">Terrenos en venta</h6>
+            <a style="text-decoration: none; color: #000000" href="{{url('terrenos-de-venta-en-quito')}}">Terrenos de venta: Quito</a><br>
+            <a style="text-decoration: none; color: #000000" href="{{url('terrenos-de-venta-en-guayaquil')}}">Terrenos de venta: Guayaquil</a><br>
+            <a style="text-decoration: none; color: #000000" href="{{url('terrenos-de-venta-en-cuenca')}}">Terrenos de venta: Cuenca</a><br>
         </div>
         <div class="col-sm-3 justify-content-center">
             <h6 style="font-weight: bold">Zonas más populares</h6>
-            <a style="text-decoration: none; color: #000000" href="">Quito</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Guayaquil</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Cuenca</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Manta</a><br>
-            <a style="text-decoration: none; color: #000000; font-weight: bold; font-size: 11px" href="">Ver más</a>
+            <a style="text-decoration: none; color: #000000" href="{{ url('quito') }}">Quito</a><br>
+            <a style="text-decoration: none; color: #000000" href="{{ url('guayaquil') }}">Guayaquil</a><br>
+            <a style="text-decoration: none; color: #000000" href="{{ url('cuenca') }}">Cuenca</a><br>
         </div>
     </div>
 

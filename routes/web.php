@@ -93,6 +93,11 @@ Route::get('/casas-de-venta-en-guayaquil', [WebController::class,'index'])->name
 Route::get('/terrenos-de-venta-en-guayaquil', [WebController::class,'index'])->name('web.terre.gua');
 Route::get('/departamentos-de-venta-en-guayaquil', [WebController::class,'index'])->name('web.depar.gua');
 
+//nuevas rutas para el footer de la nueva pagina home
+Route::get('/quito', [WebController::class, 'index'])->name('web.quito');
+Route::get('/cuenca', [WebController::class, 'index'])->name('web.cuenca');
+Route::get('/guayaquil', [WebController::class, 'index'])->name('web.guayaquil');
+
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //    return view('dashboard');
 //})->name('dashboard');

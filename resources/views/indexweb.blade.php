@@ -242,6 +242,10 @@
     if(request()->segment(1) == 'departamentos-de-venta-en-guayaquil'){ $state = "Guayas";    $type = "24";}
     if(request()->segment(1) == 'terrenos-de-venta-en-guayaquil'){      $state = "Guayas";    $type = "26";}
 
+    if(request()->segment(1) == 'quito'){      $state = "pichincha";    $type = "";} //nueva busqueda para el footer de la nueva pagina
+    if(request()->segment(1) == 'cuenca'){      $state = "azuay";    $type = "";}  //nueva busqueda para el footer de la nueva pagina
+    if(request()->segment(1) == 'guayaquil'){      $state = "Guayas";    $type = "";} //nueva busqueda para el footer de la nueva pagina
+
 @endphp
 
           @livewire('proplist', ['state' => $state,'type' => $type])
