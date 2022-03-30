@@ -283,7 +283,7 @@
               <div class="carousel-item active">
                 <div class="position-relative">
                   <img src="{{ asset('img/4.png') }}" class="d-block w-100" alt="...">
-                  <ol class="carousel-indicators position-absolute" style="margin-left: -50%; @if($ismobile) margin-bottom: -10px !important; @else margin-bottom: 10px @endif">
+                  <ol class="carousel-indicators position-absolute" style="margin-left: -50%; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
                     <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active"></li>
                     <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
                     <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2"></li>
@@ -302,7 +302,7 @@
               <div class="carousel-item">
                 <div class="position-relative">
                   <img src="{{ asset('img/3.png') }}" class="d-block w-100" alt="...">
-                    <ol class="carousel-indicators position-absolute" style="margin-left: -50%; @if($ismobile) margin-bottom: -10px !important; @else margin-bottom: 10px @endif">
+                    <ol class="carousel-indicators position-absolute" style="margin-left: -50%; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0"></li>
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1" class="active"></li>
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2"></li>
@@ -321,7 +321,7 @@
               <div class="carousel-item">
                 <div class="position-relative">
                   <img src="{{ asset('img/1.png') }}" class="d-block w-100" alt="...">
-                    <ol class="carousel-indicators position-absolute" style="margin-left: -50%; @if($ismobile) margin-bottom: -10px !important; @else margin-bottom: 10px @endif">
+                    <ol class="carousel-indicators position-absolute" style="margin-left: -50%; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0"></li>
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2" class="active"></li>
@@ -338,42 +338,8 @@
                 </div>
               </div>
             </div>
-            {{-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button> --}}
           </div>
         </div>
-
-        {{-- div propiedades destacadas  {{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}   --}}
-        {{-- <div class="row text-center">
-          <h5 class="mt-5 mb-5">Nuestras propiedades destacadas</h5>
-          <div data-aos="zoom-in" class="col-sm-4">
-            <div id="imglisting1" onmouseover="showbtnview(this)" onmouseout="hidebtnview(this)" class="position-relative">
-              <img class="img-fluid rounded" src="{{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}">
-              <a href="{{ route('web.detail', $listing1->slug) }}" class="position-absolute btn btn-outline-light imglisting1" style="bottom: 5px; right: 5px; display: none">Ver propiedad</a>
-            </div>
-            <p style="text-align: end; font-weight: 400" class="mt-3">{{ $listing1->address }}</p>
-          </div>
-          <div data-aos="zoom-in" class="col-sm-4">
-            <div id="imglisting2" onmouseover="showbtnview(this)" onmouseout="hidebtnview(this)" class="position-relative">
-              <img class="img-fluid rounded" src="{{ asset('uploads/listing/600/'.substr($listing2->images, 0, 25)) }}" alt="Casa en {{ $listing2->address}}">
-              <a href="{{ route('web.detail', $listing2->slug) }}" class="position-absolute btn btn-outline-light imglisting2" style="bottom: 5px; right: 5px; display: none">Ver propiedad</a>
-            </div>
-            <p style="text-align: end; font-weight: 400" class="mt-3">{{ $listing2->address }}</p>
-          </div>
-          <div data-aos="zoom-in" class="col-sm-4">
-            <div id="imglisting3" onmouseover="showbtnview(this)" onmouseout="hidebtnview(this)" class="position-relative">
-              <img class="img-fluid rounded" src="{{ asset('uploads/listing/600/'.substr($listing3->images, 0, 25)) }}" alt="Casa en {{ $listing3->address}}">
-              <a href="{{ route('web.detail', $listing3->slug) }}" class="position-absolute btn btn-outline-light imglisting3" style="bottom: 5px; right: 5px; display: none">Ver propiedad</a>
-            </div>
-            <p style="text-align: end; font-weight: 400" class="mt-3">{{ $listing3->address }}</p>
-          </div>
-        </div> --}}
 
         <div class="container">
         <p data-aos="fade-up" id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 mb-4">- SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A TU ALCANCE -</p>
