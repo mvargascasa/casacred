@@ -168,7 +168,7 @@
     <div style="position: relative"> 
         <img width="100%" style="filter: brightness(50%)" src="{{ asset('img/IMG_628-5fc521047b0c7.jpg') }}" alt=""> 
         <div id="parentbuscador" style="position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
-            <h3 id="txttitlebanner" class="text-white">¿QUÉ TIPO DE INMUEBLE ESTAS BUSCANDO?</h3>
+            <h4 id="txttitlebanner" class="text-white"><i>Propiedad Exclusiva, Asesoramiento Personal</i></h4>
             <div id="formtopsearch">
               <form action="{{ route('web.index') }}" method="GET">
                 <div class="btn-group pb-2">
@@ -242,7 +242,7 @@
               <button type="button" data-bs-toggle="modal" data-bs-target="#modalFilters" id="btnsearch" class="btn btn-outline-light" style="display: none; border-radius: 25px; padding: 6px 10px 6px 10px;"><i class="fas fa-search"></i></button>
             </div>
         </div>
-        <div id="infolistingbanner" style="position: absolute; bottom: 10px; right: 20px;">
+        <div id="infolistingbanner" style="position: absolute; bottom: 25px; right: 40px;">
           <div class="float-right">
             <p style="margin: 0px" class="text-white">@php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing->address)))) @endphp</p>
           </div><br>

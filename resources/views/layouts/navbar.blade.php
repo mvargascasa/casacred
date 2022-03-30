@@ -133,9 +133,9 @@
               <li class="nav-item">
                 <a class="nav-link item-nav-link" href="{{route('web.servicios','nosotros')}}">Nosotros</a>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a class="nav-link item-nav-link" href="#">Blog</a>
-              </li>
+              </li> --}}
               <li class="nav-item">
                 <a class="nav-link item-nav-link" href="{{route('web.notariausa')}}">Notaria USA</a>
               </li>
@@ -143,7 +143,7 @@
                 <a class="nav-link btn" style="background-color: #fec41a; color: #ffffff" href="#">Proyectos Nuevos</a>
               </li> --}}
             </ul>
-            <div class="divlogocenter" style="margin-left: 16%">
+            <div class="divlogocenter" style="margin-left: 20%">
               <a href="{{ route('web.home') }}">
                 <img width="90px" height="65px" src="{{asset('img/logo_actualizado.png')}}" height="40" alt="">
               </a>
