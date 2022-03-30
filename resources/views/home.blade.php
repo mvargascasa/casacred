@@ -157,7 +157,7 @@
     </section>
 
     @php
-        $listing = \App\Models\Listing::where('product_code', 1561)->first();
+        $listing = \App\Models\Listing::where('product_code', 1503)->first();
         $image = explode("|", $listing->images);
 
         $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
