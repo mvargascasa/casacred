@@ -179,7 +179,7 @@
     @endphp
     
     <div style="position: relative"> 
-        <img width="100%" style="filter: brightness(50%)" src="{{ asset('img/IMG_628-5fc521047b0c7.jpg') }}" alt=""> 
+        <img width="100%" style="filter: brightness(50%)" src="@if($ismobile) {{ asset('img/IMG_628-5fc521047b0c7-mobile.jpg') }} @else {{ asset('img/IMG_628-5fc521047b0c7.jpg') }} @endif" alt=""> 
         <div id="parentbuscador" style="position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
             <h3 id="txttitlebanner" class="text-white">¿QUÉ TIPO DE INMUEBLE ESTÁS BUSCANDO?</h3>
             <div id="formtopsearch">
