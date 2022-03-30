@@ -221,13 +221,107 @@
     <div class="container">
 
       @php
-          $listing1 = \App\Models\Listing::select('address', 'images', 'slug')->where('product_code', 1503)->first();
-          $listing2 = \App\Models\Listing::select('address', 'images', 'slug')->where('product_code', 1561)->first();
-          $listing3 = \App\Models\Listing::select('address', 'images', 'slug')->where('product_code', 1527)->first();
+          $listing1 = \App\Models\Listing::select('construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1503)->first();
+          $listing2 = \App\Models\Listing::select('construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1561)->first();
+          $listing3 = \App\Models\Listing::select('construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1527)->first();
+      
+          $bedroom1=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
+          $bathroom1=0;
+           
+          if(!empty($listing1->heading_details)){
+            $allheadingdeatils=json_decode($listing1->heading_details); 
+            foreach($allheadingdeatils as $singleedetails){ 
+              unset($singleedetails[0]);								
+              for($i=1;$i<=count($singleedetails);$i++){ 
+                if($i%2==0){  
+                  if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom1+=$singleedetails[$i];
+                  if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom1+=$singleedetails[$i];									  
+                }								   
+              }								
+            $i++;
+            }
+          }
+
+          $bedroom2=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
+          $bathroom2=0;
+           
+          if(!empty($listing2->heading_details)){
+            $allheadingdeatils=json_decode($listing2->heading_details); 
+            foreach($allheadingdeatils as $singleedetails){ 
+              unset($singleedetails[0]);								
+              for($i=1;$i<=count($singleedetails);$i++){ 
+                if($i%2==0){  
+                  if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom2+=$singleedetails[$i];
+                  if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom2+=$singleedetails[$i];									  
+                }								   
+              }								
+            $i++;
+            }
+          }
+
+          $bedroom3=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
+          $bathroom3=0;
+           
+          if(!empty($listing3->heading_details)){
+            $allheadingdeatils=json_decode($listing3->heading_details); 
+            foreach($allheadingdeatils as $singleedetails){ 
+              unset($singleedetails[0]);								
+              for($i=1;$i<=count($singleedetails);$i++){ 
+                if($i%2==0){  
+                  if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom3+=$singleedetails[$i];
+                  if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom3+=$singleedetails[$i];									  
+                }								   
+              }								
+            $i++;
+            }
+          }
       @endphp
 
+        <div>
+          <p style="font-size: 20px" class="mt-5 mb-5 text-center">Propiedades destacadas</p>
+          <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="{{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}" class="d-block w-100" alt="...">
+                <div class="float-right mt-3">
+                  <p style="font-weight: 400; margin: 0px; text-align: end">
+                    @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing1->address)))) @endphp
+                  </p>
+                  <p style="margin: 0px">{{ $bedroom1 }} dormitorios | {{ $bathroom1 }} baños | {{ $listing1->construction_area}} m<sup>2</sup></p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="{{ asset('uploads/listing/600/'.substr($listing2->images, 0, 25)) }}" class="d-block w-100" alt="...">
+                <div class="float-right mt-3">
+                  <p style="font-weight: 400; margin: 0px; text-align: end">
+                    @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing2->address)))) @endphp
+                  </p>
+                  <p style="margin: 0px">{{ $bedroom2 }} dormitorios | {{ $bathroom2 }} baños | {{ $listing2->construction_area}} m<sup>2</sup></p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="{{ asset('uploads/listing/600/'.substr($listing3->images, 0, 25)) }}" class="d-block w-100" alt="...">
+                <div class="float-right mt-3">
+                  <p style="font-weight: 400; margin: 0px; text-align: end">
+                    @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing3->address)))) @endphp
+                  </p>
+                  <p>{{ $bedroom3 }} dormitorios | {{ $bathroom3 }} baños | {{ $listing3->construction_area}} m<sup>2</sup></p>
+                </div>
+              </div>
+            </div>
+            {{-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button> --}}
+          </div>
+        </div>
+
         {{-- div propiedades destacadas  {{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}   --}}
-        <div class="row text-center">
+        {{-- <div class="row text-center">
           <h5 class="mt-5 mb-5">Nuestras propiedades destacadas</h5>
           <div data-aos="zoom-in" class="col-sm-4">
             <div id="imglisting1" onmouseover="showbtnview(this)" onmouseout="hidebtnview(this)" class="position-relative">
@@ -250,7 +344,7 @@
             </div>
             <p style="text-align: end; font-weight: 400" class="mt-3">{{ $listing3->address }}</p>
           </div>
-        </div>
+        </div> --}}
 
         <p data-aos="fade-up" id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 mb-4">- SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A TU ALCANCE -</p>
         <div class="row mr-2 ml-2 mb-4">
@@ -404,33 +498,6 @@
               <a style="background-color: #2c3144; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 13px" class="btn" href="https://casacreditopromotora.com/proyectos">VISITE NUESTRO CATÁLOGO DE PROYECTOS EN <b style="color: #fcc62e;">ECUADOR </b><i class="fas fa-long-arrow-alt-right"></i></a>
           </div>
       </div>
-    </div>
-
-    <div class="row pt-5 pb-5" style="background-color: #f2f8f8; padding-left: 5%; padding-right: 5%; font-size: 13px">
-        <div class="col-sm-3 justify-content-center">
-            <h6 style="font-weight: bold">Tipos de inmuebles populares</h6>
-            <a style="text-decoration: none; color: #000000" href="{{url('casas-de-venta-en-ecuador')}}">Casas en Venta</a><br>
-            <a style="text-decoration: none; color: #000000" href="{{url('departamentos-de-venta-en-ecuador')}}">Departamentos en Venta</a><br>
-            <a style="text-decoration: none; color: #000000" href="{{url('terrenos-de-venta-en-ecuador')}}">Terrenos en venta</a><br>
-        </div>
-        <div class="col-sm-3 justify-content-center">
-            <h6 style="font-weight: bold">Propiedades en venta</h6>
-            <a style="text-decoration: none; color: #000000" href="{{url('departamentos-de-venta-en-quito')}}">Departamentos en venta: Quito</a><br>
-            <a style="text-decoration: none; color: #000000" href="{{url('departamentos-de-venta-en-guayaquil')}}">Departamentos en venta: Guayaquil</a><br>
-            <a style="text-decoration: none; color: #000000" href="{{url('departamentos-de-venta-en-cuenca')}}">Departamentos en venta: Cuenca</a><br>
-        </div>
-        <div class="col-sm-3 justify-content-center">
-            <h6 style="font-weight: bold">Terrenos en venta</h6>
-            <a style="text-decoration: none; color: #000000" href="{{url('terrenos-de-venta-en-quito')}}">Terrenos de venta: Quito</a><br>
-            <a style="text-decoration: none; color: #000000" href="{{url('terrenos-de-venta-en-guayaquil')}}">Terrenos de venta: Guayaquil</a><br>
-            <a style="text-decoration: none; color: #000000" href="{{url('terrenos-de-venta-en-cuenca')}}">Terrenos de venta: Cuenca</a><br>
-        </div>
-        <div class="col-sm-3 justify-content-center">
-            <h6 style="font-weight: bold">Zonas más populares</h6>
-            <a style="text-decoration: none; color: #000000" href="{{ url('quito') }}">Quito</a><br>
-            <a style="text-decoration: none; color: #000000" href="{{ url('guayaquil') }}">Guayaquil</a><br>
-            <a style="text-decoration: none; color: #000000" href="{{ url('cuenca') }}">Cuenca</a><br>
-        </div>
     </div>
 
     {{-- DIV MODAL PARA FORMULARIO DE CONTACTO --}}

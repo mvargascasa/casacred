@@ -11,9 +11,89 @@
     <meta property="og:image"              content="{{asset('img/meta-image-social-cc.jpg')}}" />
 
     <style>
+        input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;margin: 0;}
+    /* FIREFOX */
+    input[type="number"] {-moz-appearance: textfield;}input[type="number"]:hover,input[type="number"]:focus {-moz-appearance: number-input;}
+    /* OTHER */
+    input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;margin: 0;}
         #labelCorreo, #inputCorreo{
             display: none;
         }
+        .input-container {
+            height: 50px;
+            position: relative;
+            width: 100%;
+        }
+        .ic1 {
+            margin-top: 10px;
+        }
+        .input {
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: 1;
+            box-sizing: border-box;
+            color: #eee;
+            font-size: 18px;
+            height: 100%;
+            outline: 0;
+            padding: 4px 20px 0;
+            width: 100%;
+        }
+        .cut {
+            background-color: #ffffff;
+            border-radius: 10px;
+            height: 20px;
+            left: 20px;
+            position: absolute;
+            top: -20px;
+            transform: translateY(0);
+            transition: transform 200ms;
+            width: 80px;
+        }
+        .cut2{
+            background-color: #ffffff;
+            border-radius: 10px;
+            height: 20px;
+            left: 20px;
+            position: absolute;
+            top: -20px;
+            transform: translateY(0);
+            transition: transform 200ms;
+            width: 120px;
+        }
+        .input:focus ~ .cut,
+        .input:focus ~ .cut2,
+        .input:not(:placeholder-shown) ~ .cut {
+            transform: translateY(8px);
+        }
+        .placeholder {
+            color: #65657b;
+            font-family: sans-serif;
+            left: 20px;
+            line-height: 14px;
+            pointer-events: none;
+            position: absolute;
+            transform-origin: 0 50%;
+            transition: transform 200ms, color 200ms;
+            top: 20px;
+        }
+        .input:focus ~ .placeholder,
+        .input:not(:placeholder-shown) ~ .placeholder {
+            transform: translateY(-30px) translateX(10px) scale(0.75);
+        }
+        .input:not(:placeholder-shown) ~ .placeholder {
+            color: #808097;
+        }
+
+        .input:focus ~ .placeholder {
+            color: #ca274a;
+        }
+        .form {
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-sizing: border-box;
+        }
+        
     </style>
 @endsection
 
@@ -21,7 +101,7 @@
     <section id="prisection" style="background: rgba(8, 8, 8, 0.319); background-size: cover;background-position: left top; width: 100%; background-repeat: no-repeat; background-blend-mode: darken;">
         <div class="container">
             <div class="row">
-                <div class="col-sm-4 mt-5 pt-5" style="color: #174a83">
+                <div class="col-sm-4 mt-5 pt-5" style="color: #0e3869">
                     <h4 class="text-center" style="font-weight: bold">Su crédito fácil, rápido <br> y seguro..!</h4>
                     <div style="margin-left: 20%">
                         <p style="margin: 0px;"><i class="far fa-calendar-alt"></i> Aprobación en 72 horas</p>
@@ -98,7 +178,7 @@
                     <p><i class="far fa-check" style="color: #ea325c"></i> Sin importar estatus migratorio</p>
                     <p><i class="far fa-check" style="color: #ea325c"></i> No necesita estar presente</p>
                 </div>
-                <button class="btn" style="background-color: #ea325c; color: #ffffff; border-radius: 0px">Solicitar crédito</button>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn" style="background-color: #ea325c; color: #ffffff; border-radius: 0px">Solicitar crédito</button>
             </div>
         </div>
         <div class="col-sm-6">
@@ -108,10 +188,10 @@
 
     <div class="row text-center mt-5">
         <h5 class="mb-5">Visiténos personalmente en nuestras <br> <b>oficinas New York</b></h5>
-        <a href="https://goo.gl/maps/ovKfQSvTmA5SBqqF6">
-            <img class="img-fluid" src="{{ asset('img/maps-ny.png') }}" alt="">
+        <a target="_blank" href="https://goo.gl/maps/ovKfQSvTmA5SBqqF6">
+            <img class="img-fluid" src="{{ asset('img/maps-nl.png') }}" alt="">
         </a>
-    </div>
+    </div>      
 
     <section id="imageBackCreditos" class="row" style="background-size: cover;background-position: left top; width: 100%; height: 200px; background-repeat: no-repeat;">
         <div class="text-center text-white" style="margin-top: 5%">
@@ -120,40 +200,47 @@
         </div>
     </section>
 
-    <div class="row pb-4 pt-4" style="background-color: #f2f8f8; padding-left: 5%; padding-right: 5%; font-size: 13px">
-        <div class="col-sm-3 justify-content-center">
-            <h6 style="font-weight: bold">Tipos de inmuebles populares</h6>
-            <a style="text-decoration: none; color: #000000" href="">Casas en Venta</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Casas en Alquiler</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Departamentos en Venta</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Terrenos en venta</a><br>
-            <a style="text-decoration: none; color: #000000; font-weight: bold; font-size: 11px" href="">Ver más</a>
+
+    {{-- modal para solicitar un credito --}}
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Solicite un crédito</h5>
+              <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="" class="form">
+                  <div class="form-group input-container ic1">
+                      <input type="text" id="cedula" name="cedula" class="form-control input" placeholder=" " required>
+                      <div class="cut"></div>
+                      <label class="placeholder" for="cedula">Cédula</label>
+                  </div>
+                  <div class="form-group input-container ic1 mt-4">
+                      <input type="text" id="name" name="name" class="form-control input" placeholder=" " required>
+                      <div class="cut2"></div>
+                      <label for="name" class="placeholder">Nombre y Apellido</label>
+                  </div>
+                  <div class="form-group input-container ic1 mt-4">
+                      <input type="number" id="number" name="number" class="form-control input" placeholder=" " required>
+                        <div class="cut"></div>
+                      <label for="number" class="placeholder">Teléfono</label>
+                  </div>
+                  <div class="form-group input-container ic1 mt-4">
+                      <input type="text" id="monto" name="monto" class="form-control input" placeholder=" " required>
+                      <div class="cut2"></div>
+                      <label for="monto" class="placeholder">Monto requerido</label>
+                  </div>
+              </form>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <button type="button" style="background-color: #ea325c; color: #ffffff" class="btn">Solicitar</button>
+            </div>
+          </div>
         </div>
-        <div class="col-sm-3 justify-content-center">
-            <h6 style="font-weight: bold">Propiedades en venta</h6>
-            <a style="text-decoration: none; color: #000000" href="">Departamentos en venta: Quito</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Departamentos en venta: Guayaquil</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Departamentos en venta: Cuenca</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Departamentos en venta: Salinas</a><br>
-            <a style="text-decoration: none; color: #000000; font-weight: bold; font-size: 11px" href="">Ver más</a>
-        </div>
-        <div class="col-sm-3 justify-content-center">
-            <h6 style="font-weight: bold">Propiedades en alquiler</h6>
-            <a style="text-decoration: none; color: #000000" href="">Departamentos en alquiler: Quito</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Departamentos en alquiler: Guayaquil</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Departamentos en alquiler: Cuenca</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Departamentos en alquiler: Salinas</a><br>
-            <a style="text-decoration: none; color: #000000; font-weight: bold; font-size: 11px" href="">Ver más</a>
-        </div>
-        <div class="col-sm-3 justify-content-center">
-            <h6 style="font-weight: bold">Zonas más populares</h6>
-            <a style="text-decoration: none; color: #000000" href="">Quito</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Guayaquil</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Cuenca</a><br>
-            <a style="text-decoration: none; color: #000000" href="">Manta</a><br>
-            <a style="text-decoration: none; color: #000000; font-weight: bold; font-size: 11px" href="">Ver más</a>
-        </div>
-    </div>
+      </div>
 @endsection
 
 @section('footer')

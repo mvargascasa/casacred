@@ -98,22 +98,6 @@
     </style>
 </head>
 <body style="background-color: #ffffff">
-      {{-- <div class="row p-1 rowconstruye fixed-top" style="background-color: #3b4255;">
-        <div class="col-4 col-sm-3 col-md-4 col-lg-5"></div>
-        <div class="col-12 col-sm-6 col-md-7 col-lg-6 d-flex">
-          <div>
-            <a href="#" style="text-decoration: none; color: #ffffff">CONSTRUYE</a>
-          </div>
-          <div>
-            <a href="#" style="text-decoration: none; color: #ffffff; margin-left: 7px; margin-right: 7px">MATERIALES DE CONSTRUCCIÓN</a>
-          </div>
-          <div>
-            <a href="#" style="text-decoration: none; color: #ffffff"><i class="fas fa-sign-out-alt" style="color: #d71e01"></i> MI CUENTA</a>
-          </div>
-        </div>
-        <div class="col-sm-1 col-md-1"></div>
-      </div> --}}
-
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
         <div class="container-fluid">
           <a class="navbar-brand " href="{{route('web.index')}}">
@@ -154,7 +138,7 @@
                   <a class="nav-link" aria-current="page" target="_blank" href="https://casacreditopromotora.com/socios/construye">Construye</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="#"><i class="fas fa-sign-out-alt" style="color: #d71e01"></i> Mi cuenta</a>
+                  <a class="nav-link" aria-current="page" href="https://casacredito.com/login"><i class="fas fa-sign-out-alt" style="color: #d71e01"></i> Mi cuenta</a>
                 </li>
               </ul>
             </div>
@@ -163,6 +147,33 @@
     </nav>
 
     @yield('content')
+
+    <div class="row pt-5 pb-5" style="background-color: #f2f8f8; padding-left: 5%; padding-right: 5%; font-size: 13px">
+      <div class="col-sm-3 justify-content-center">
+          <h6 style="font-weight: bold">Tipos de inmuebles populares</h6>
+          <a style="text-decoration: none; color: #000000" href="{{url('casas-de-venta-en-ecuador')}}">Casas en Venta</a><br>
+          <a style="text-decoration: none; color: #000000" href="{{url('departamentos-de-venta-en-ecuador')}}">Departamentos en Venta</a><br>
+          <a style="text-decoration: none; color: #000000" href="{{url('terrenos-de-venta-en-ecuador')}}">Terrenos en venta</a><br>
+      </div>
+      <div class="col-sm-3 justify-content-center">
+          <h6 style="font-weight: bold">Propiedades en venta</h6>
+          <a style="text-decoration: none; color: #000000" href="{{url('departamentos-de-venta-en-quito')}}">Departamentos en venta: Quito</a><br>
+          <a style="text-decoration: none; color: #000000" href="{{url('departamentos-de-venta-en-guayaquil')}}">Departamentos en venta: Guayaquil</a><br>
+          <a style="text-decoration: none; color: #000000" href="{{url('departamentos-de-venta-en-cuenca')}}">Departamentos en venta: Cuenca</a><br>
+      </div>
+      <div class="col-sm-3 justify-content-center">
+          <h6 style="font-weight: bold">Terrenos en venta</h6>
+          <a style="text-decoration: none; color: #000000" href="{{url('terrenos-de-venta-en-quito')}}">Terrenos de venta: Quito</a><br>
+          <a style="text-decoration: none; color: #000000" href="{{url('terrenos-de-venta-en-guayaquil')}}">Terrenos de venta: Guayaquil</a><br>
+          <a style="text-decoration: none; color: #000000" href="{{url('terrenos-de-venta-en-cuenca')}}">Terrenos de venta: Cuenca</a><br>
+      </div>
+      <div class="col-sm-3 justify-content-center">
+          <h6 style="font-weight: bold">Zonas más populares</h6>
+          <a style="text-decoration: none; color: #000000" href="{{ url('quito') }}">Quito</a><br>
+          <a style="text-decoration: none; color: #000000" href="{{ url('guayaquil') }}">Guayaquil</a><br>
+          <a style="text-decoration: none; color: #000000" href="{{ url('cuenca') }}">Cuenca</a><br>
+      </div>
+  </div>
 
     <footer class="text-white" style="background-color: #3b4255;">
         <!-- Grid container -->
@@ -176,11 +187,11 @@
                         <p>Sábados 9:00 am a 1:00 pm</p>
                     </div>
                     <div>
-                        <p><i class="fas fa-map-marker-alt" style="color: #d71e01"></i> Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero <br> Edificio Santa Lucia</p>
+                        <p><a target="_blank" style="color: #ffffff" href="https://goo.gl/maps/JC7FcYDeupTstiHn8"><i class="fas fa-map-marker-alt" style="color: #d71e01"></i> Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero</a><br> Edificio Santa Lucia</p>
                     </div>
                     <div>
                         <p style="margin: 0px"><i class="fas fa-phone-alt" style="color: #d71e01"></i> 07-412-6004 / 098-384-9073</p>
-                        <p><i class="fas fa-envelope" style="color: #d71e01"></i> info@casacredito.com</p>
+                        <p><a style="color: #ffffff" href="mailto:info@casacredito.com"><i class="fas fa-envelope" style="color: #d71e01"></i> info@casacredito.com</a></p>
                     </div>
                 </div>
               </div>
@@ -195,7 +206,7 @@
                     </div>
                     <div>
                         <p style="margin: 0px"><i class="fas fa-phone-alt" style="color: #d71e01"></i> 718-690-3740 / 347-846-0067</p>
-                        <p><i class="fas fa-envelope" style="color: #d71e01"></i> info@casacredito.com</p>
+                        <p><a style="color: #ffffff" href="mailto:info@casacredito.com"><i class="fas fa-envelope" style="color: #d71e01"></i> info@casacredito.com</a></p>
                     </div>
                 </div>
               </div>
@@ -203,17 +214,17 @@
                 <h5>Síguenos en:</h5>
                 <div class="d-flex">
                     <div style="border-radius: 15px; background-color: #ffffff; width: 25px; height: 25px; text-align: center; margin: 3px">
-                        <i class="fab fa-facebook-f" style="color: #3b4255"></i>
+                        <a href="https://www.facebook.com/CasaCreditoInmobiliaria"><i class="fab fa-facebook-f" style="color: #3b4255"></i></a>
                     </div>
                     <div style="border-radius: 15px; background-color: #ffffff; width: 25px; height: 25px; text-align: center; margin: 3px">
-                        <i class="fab fa-instagram" style="color: #3b4255"></i>
+                        <a href="https://www.instagram.com/casacreditoinmobiliaria/"><i class="fab fa-instagram" style="color: #3b4255"></i></a>
                     </div>
-                    <div style="border-radius: 15px; background-color: #ffffff; width: 25px; height: 25px; text-align: center; margin: 3px">
+                    {{-- <div style="border-radius: 15px; background-color: #ffffff; width: 25px; height: 25px; text-align: center; margin: 3px">
                         <i class="fab fa-twitter" style="color: #3b4255"></i>
                     </div>
                     <div style="border-radius: 15px; background-color: #ffffff; width: 25px; height: 25px; text-align: center; margin: 3px">
                         <i class="fab fa-youtube" style="color: #3b4255"></i>
-                    </div>
+                    </div> --}}
                     <div style="border-radius: 15px; background-color: #ffffff; width: 25px; height: 25px; text-align: center; margin: 3px">
                         <i class="fab fa-whatsapp" style="color: #3b4255"></i>
                     </div>
@@ -235,6 +246,7 @@
     @yield('footer')
 
 
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script>
       var navbar = document.querySelector('.navbar');
       var divlogo = document.querySelector('.navbar-brand');
