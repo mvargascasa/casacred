@@ -181,7 +181,7 @@
     <div style="position: relative"> 
         <img width="100%" style="filter: brightness(50%)" src="{{ asset('img/IMG_628-5fc521047b0c7.jpg') }}" alt=""> 
         <div id="parentbuscador" style="position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
-            <h4 id="txttitlebanner" class="text-white"><i>Propiedad Exclusiva, Asesoramiento Personal</i></h4>
+            <h3 id="txttitlebanner" class="text-white">¿QUÉ TIPO DE INMUEBLE ESTÁS BUSCANDO?</h3>
             <div id="formtopsearch">
               <form action="{{ route('web.index') }}" method="GET">
                 <div class="btn-group pb-2">
@@ -229,30 +229,30 @@
         {{-- div propiedades destacadas  {{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}   --}}
         <div class="row text-center">
           <h5 class="mt-5 mb-5">Nuestras propiedades destacadas</h5>
-          <div data-aos="flip-left" class="col-sm-4">
+          <div data-aos="zoom-in" class="col-sm-4">
             <div id="imglisting1" onmouseover="showbtnview(this)" onmouseout="hidebtnview(this)" class="position-relative">
-              <img class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}" alt="Casa en {{ $listing1->address}}">
+              <img class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}">
               <a href="{{ route('web.detail', $listing1->slug) }}" class="position-absolute btn btn-outline-light imglisting1" style="bottom: 5px; right: 5px; display: none">Ver propiedad</a>
             </div>
-            <p class="mt-3">{{ $listing1->address }}</p>
+            <p style="text-align: end; font-weight: 400" class="mt-3">{{ $listing1->address }}</p>
           </div>
-          <div data-aos="flip-left" class="col-sm-4">
+          <div data-aos="zoom-in" class="col-sm-4">
             <div id="imglisting2" onmouseover="showbtnview(this)" onmouseout="hidebtnview(this)" class="position-relative">
               <img class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing2->images, 0, 25)) }}" alt="Casa en {{ $listing2->address}}">
               <a href="{{ route('web.detail', $listing2->slug) }}" class="position-absolute btn btn-outline-light imglisting2" style="bottom: 5px; right: 5px; display: none">Ver propiedad</a>
             </div>
-            <p class="mt-3">{{ $listing2->address }}</p>
+            <p style="text-align: end; font-weight: 400" class="mt-3">{{ $listing2->address }}</p>
           </div>
-          <div data-aos="flip-left" class="col-sm-4">
+          <div data-aos="zoom-in" class="col-sm-4">
             <div id="imglisting3" onmouseover="showbtnview(this)" onmouseout="hidebtnview(this)" class="position-relative">
               <img class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing3->images, 0, 25)) }}" alt="Casa en {{ $listing3->address}}">
               <a href="{{ route('web.detail', $listing3->slug) }}" class="position-absolute btn btn-outline-light imglisting3" style="bottom: 5px; right: 5px; display: none">Ver propiedad</a>
             </div>
-            <p class="mt-3">{{ $listing3->address }}</p>
+            <p style="text-align: end; font-weight: 400" class="mt-3">{{ $listing3->address }}</p>
           </div>
         </div>
 
-        <p id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 mb-4">- SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A TU ALCANCE -</p>
+        <p data-aos="fade-up" id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 mb-4">- SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A TU ALCANCE -</p>
         <div class="row mr-2 ml-2 mb-4">
             <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
