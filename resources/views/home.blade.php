@@ -261,15 +261,15 @@
         <div class="row text-center">
           <h5 class="mt-5 mb-5">Nuestras propiedades destacadas</h5>
           <div class="col-sm-4">
-            <img class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}" alt="Casa en {{ $listing1->address}}">
+            <img class="img-fluid" src="{{ asset('uploads/listing/300/'.substr($listing1->images, 0, 25)) }}" alt="Casa en {{ $listing1->address}}">
             <p>{{ $listing1->address }}</p>
           </div>
           <div class="col-sm-4">
-            <img class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing2->images, 0, 25)) }}" alt="Casa en {{ $listing2->address}}">
+            <img class="img-fluid" src="{{ asset('uploads/listing/300/'.substr($listing2->images, 0, 25)) }}" alt="Casa en {{ $listing2->address}}">
             <p>{{ $listing2->address }}</p>
           </div>
           <div class="col-sm-4">
-            <img class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing3->images, 0, 25)) }}" alt="Casa en {{ $listing3->address}}">
+            <img class="img-fluid" src="{{ asset('uploads/listing/300/'.substr($listing3->images, 0, 25)) }}" alt="Casa en {{ $listing3->address}}">
             <p>{{ $listing3->address }}</p>
           </div>
         </div>
