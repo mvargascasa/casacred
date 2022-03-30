@@ -137,6 +137,7 @@
       }
       #imglisting1 > img:hover, #imglisting2 > img:hover, #imglisting3 > img:hover{
         filter: grayscale(0) !important;
+        filter: brightness(70%) !important;
       }
     </style>
     @livewireStyles
