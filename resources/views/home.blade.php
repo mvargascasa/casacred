@@ -250,6 +250,30 @@
         </div>
     </div>
     <div class="container">
+
+      @php
+          $listing1 = \App\Models\Listing::select('address', 'images')->where('product_code', 1503)->first();
+          $listing2 = \App\Models\Listing::select('address', 'images')->where('product_code', 1561)->first();
+          $listing3 = \App\Models\Listing::select('address', 'images')->where('product_code', 1570)->first();
+      @endphp
+
+        {{-- div propiedades destacadas --}}
+        <div class="row text-center">
+          <h5 class="mt-5 mb-5">Nuestras propiedades destacadas</h5>
+          <div class="col-sm-4">
+            <img class="img-fluid" src="{{ asset('uploads/listing/'.substr($listing1->images, 0, 25)) }}" alt="Casa en {{ $listing1->address}}">
+            <p>{{ $listing1->address }}</p>
+          </div>
+          <div class="col-sm-4">
+            <img class="img-fluid" src="{{ asset('uploads/listing/'.substr($listing2->images, 0, 25)) }}" alt="Casa en {{ $listing2->address}}">
+            <p>{{ $listing2->address }}</p>
+          </div>
+          <div class="col-sm-4">
+            <img class="img-fluid" src="{{ asset('uploads/listing/'.substr($listing3->images, 0, 25)) }}" alt="Casa en {{ $listing3->address}}">
+            <p>{{ $listing3->address }}</p>
+          </div>
+        </div>
+
         <p id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-5 mb-4">- SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A TU ALCANCE -</p>
         <div class="row mr-2 ml-2 mb-4">
             <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
