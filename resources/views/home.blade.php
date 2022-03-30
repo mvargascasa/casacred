@@ -213,7 +213,7 @@
       @php
           $listing1 = \App\Models\Listing::select('address', 'images', 'slug')->where('product_code', 1503)->first();
           $listing2 = \App\Models\Listing::select('address', 'images', 'slug')->where('product_code', 1561)->first();
-          $listing3 = \App\Models\Listing::select('address', 'images', 'slug')->where('product_code', 1662)->first();
+          $listing3 = \App\Models\Listing::select('address', 'images', 'slug')->where('product_code', 1527)->first();
       @endphp
 
         {{-- div propiedades destacadas  {{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}   --}}
