@@ -228,14 +228,14 @@
           </div>
           <div data-aos="flip-left" class="col-sm-4">
             <div id="imglisting2" onmouseover="showbtnview(this)" onmouseout="hidebtnview(this)" class="position-relative">
-              <img class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}" alt="Casa en {{ $listing2->address}}">
+              <img class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing2->images, 0, 25)) }}" alt="Casa en {{ $listing2->address}}">
               <a href="{{ route('web.detail', $listing2->slug) }}" class="position-absolute btn btn-outline-light imglisting2" style="bottom: 5px; right: 5px; display: none">Ver propiedad</a>
             </div>
             <p class="mt-3">{{ $listing2->address }}</p>
           </div>
           <div data-aos="flip-left" class="col-sm-4">
             <div id="imglisting3" onmouseover="showbtnview(this)" onmouseout="hidebtnview(this)" class="position-relative">
-              <img class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}" alt="Casa en {{ $listing3->address}}">
+              <img class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing3->images, 0, 25)) }}" alt="Casa en {{ $listing3->address}}">
               <a href="{{ route('web.detail', $listing3->slug) }}" class="position-absolute btn btn-outline-light imglisting3" style="bottom: 5px; right: 5px; display: none">Ver propiedad</a>
             </div>
             <p class="mt-3">{{ $listing3->address }}</p>
