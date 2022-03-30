@@ -136,7 +136,6 @@
         transform: scale(0.96);
       }
       #imglisting1 > img:hover, #imglisting2 > img:hover, #imglisting3 > img:hover{
-        filter: grayscale(0) !important;
         filter: brightness(70%) !important;
       }
     </style>
@@ -196,50 +195,6 @@
                 </div>
               </form>
             </div>
-            {{-- <div id="buscador" class="d-flex justify-content-center" style="background-color: #ffffff; border-radius: 5px; height: 50px">
-              <div class="d-flex align-items-center mr-1">
-                <select class="form-select form-select-sm border-right" aria-label=".form-select-sm example" style="border: none">
-                  <option selected>Ciudad</option>
-                  <option value="Quito">Quito</option>
-                  <option value="Guayaquil">Guayaquil</option>
-                  <option value="Cuenca">Cuenca</option>
-                  <option value="Manta">Manta</option>
-                </select>
-              </div>
-              <div class="d-flex align-items-center mr-1">
-                <select class="form-select form-select-sm border-right" aria-label=".form-select-sm example" style="border: none">
-                  <option selected>Tipo de propiedad</option>
-                  <option value="Casa">Casa</option>
-                  <option value="Departamento">Departamento</option>
-                </select>
-              </div>
-                <div style="border-radius: 0px; display: flex; align-items: center; margin-left: 10px">
-                    <b style="font-size: 14px; color: #4c535a">Precio</b> 
-                    <div>
-                      <span class="input-group-btn border" style="width: 25px; margin-left: 10px; margin-right: 10px; border-color: #ff5619 !important; margin-top: 15px; padding-right: -10px; padding-left: -10px; border-radius: 5px">
-                        <button class="btn btn-default" id="menos" type="button">-</button>
-                      </span>
-                    </div>
-                    <input
-                      style="width: 100px; border-color: #ff5619"
-                      name="cantidad"
-                      type="text"
-                      style="width:50px;text-align: center;"
-                      id="contador"
-                      class="form-control"
-                      value="20"
-                      min="10"
-                    />
-                    <div>
-                      <span class="input-group-btn border" style="width: 25px; margin-left: 10px; margin-right: 10px; border-color: #ff5619 !important; margin-top: 15px; padding-right: -10px; padding-left: -10px; border-radius: 5px">
-                        <button class="btn btn-default" id="mas" type="button">+</button>
-                      </span>
-                    </div>
-                </div>
-                <div>
-                  <button class="btn" style="background-color: #ff5619; color: #ffffff; border-radius: 0px 5px 5px 0px; height: 50px"><i class="fas fa-search"></i> Buscar</button>
-                </div>
-            </div> --}}
 
             {{-- DIV PARA MOSTRAR EL ICONO DE BUSCAR CUANDO SEA RESPONSIVE --}}
             <div class="d-flex justify-content-center">
@@ -266,21 +221,21 @@
           <h5 class="mt-5 mb-5">Nuestras propiedades destacadas</h5>
           <div data-aos="flip-left" class="col-sm-4">
             <div id="imglisting1" onmouseover="showbtnview(this)" onmouseout="hidebtnview(this)" class="position-relative">
-              <img style="filter: grayscale(1)" class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}" alt="Casa en {{ $listing1->address}}">
+              <img class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}" alt="Casa en {{ $listing1->address}}">
               <a href="{{ route('web.detail', $listing1->slug) }}" class="position-absolute btn btn-outline-light imglisting1" style="bottom: 5px; right: 5px; display: none">Ver propiedad</a>
             </div>
             <p class="mt-3">{{ $listing1->address }}</p>
           </div>
           <div data-aos="flip-left" class="col-sm-4">
             <div id="imglisting2" onmouseover="showbtnview(this)" onmouseout="hidebtnview(this)" class="position-relative">
-              <img style="filter: grayscale(1)" class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing2->images, 0, 25)) }}" alt="Casa en {{ $listing2->address}}">
+              <img class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}" alt="Casa en {{ $listing2->address}}">
               <a href="{{ route('web.detail', $listing2->slug) }}" class="position-absolute btn btn-outline-light imglisting2" style="bottom: 5px; right: 5px; display: none">Ver propiedad</a>
             </div>
             <p class="mt-3">{{ $listing2->address }}</p>
           </div>
           <div data-aos="flip-left" class="col-sm-4">
             <div id="imglisting3" onmouseover="showbtnview(this)" onmouseout="hidebtnview(this)" class="position-relative">
-              <img style="filter: grayscale(1)" class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing3->images, 0, 25)) }}" alt="Casa en {{ $listing3->address}}">
+              <img class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}" alt="Casa en {{ $listing3->address}}">
               <a href="{{ route('web.detail', $listing3->slug) }}" class="position-absolute btn btn-outline-light imglisting3" style="bottom: 5px; right: 5px; display: none">Ver propiedad</a>
             </div>
             <p class="mt-3">{{ $listing3->address }}</p>
