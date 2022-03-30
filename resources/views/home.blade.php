@@ -282,7 +282,12 @@
           <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="{{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}" class="d-block w-100" alt="...">
+                <div class="position-relative">
+                  <img src="{{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}" class="d-block w-100" alt="...">
+                  <div class="position-absolute" style="bottom: 10px; right: 10px;">
+                    <a class="btn btn-lg btn-outline-light" href="{{ route('web.detail', $listing1->slug) }}">Ver propiedad</a>
+                  </div>
+                </div>
                 <div class="float-right mt-3">
                   <p style="font-weight: 400; margin: 0px; text-align: end">
                     @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing1->address)))) @endphp
@@ -291,7 +296,12 @@
                 </div>
               </div>
               <div class="carousel-item">
-                <img src="{{ asset('uploads/listing/600/'.substr($listing2->images, 0, 25)) }}" class="d-block w-100" alt="...">
+                <div class="position-relative">
+                  <img src="{{ asset('uploads/listing/600/'.substr($listing2->images, 0, 25)) }}" class="d-block w-100" alt="...">
+                  <div class="position-absolute" style="bottom: 10px; right: 10px;">
+                    <a class="btn btn-lg btn-outline-light" href="{{ route('web.detail', $listing2->slug) }}">Ver propiedad</a>
+                  </div>
+                </div>
                 <div class="float-right mt-3">
                   <p style="font-weight: 400; margin: 0px; text-align: end">
                     @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing2->address)))) @endphp
@@ -300,7 +310,12 @@
                 </div>
               </div>
               <div class="carousel-item">
-                <img src="{{ asset('uploads/listing/600/'.substr($listing3->images, 0, 25)) }}" class="d-block w-100" alt="...">
+                <div class="position-relative">
+                  <img src="{{ asset('uploads/listing/600/'.substr($listing3->images, 0, 25)) }}" class="d-block w-100" alt="...">
+                  <div class="position-absolute" style="bottom: 10px; right: 10px;">
+                    <a class="btn btn-lg btn-outline-light" href="{{ route('web.detail', $listing3->slug) }}">Ver propiedad</a>
+                  </div>
+                </div>
                 <div class="float-right mt-3">
                   <p style="font-weight: 400; margin: 0px; text-align: end">
                     @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing3->address)))) @endphp
