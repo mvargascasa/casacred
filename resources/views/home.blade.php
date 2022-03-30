@@ -135,6 +135,9 @@
       .cta:active {
         transform: scale(0.96);
       }
+      #imglisting1 > img:hover, #imglisting2 > img:hover, #imglisting3 > img:hover{
+        filter: grayscale(0) !important;
+      }
     </style>
     @livewireStyles
 @endsection
@@ -252,25 +255,34 @@
     <div class="container">
 
       @php
-          $listing1 = \App\Models\Listing::select('address', 'images')->where('product_code', 1503)->first();
-          $listing2 = \App\Models\Listing::select('address', 'images')->where('product_code', 1561)->first();
-          $listing3 = \App\Models\Listing::select('address', 'images')->where('product_code', 1662)->first();
+          $listing1 = \App\Models\Listing::select('address', 'images', 'slug')->where('product_code', 1503)->first();
+          $listing2 = \App\Models\Listing::select('address', 'images', 'slug')->where('product_code', 1561)->first();
+          $listing3 = \App\Models\Listing::select('address', 'images', 'slug')->where('product_code', 1662)->first();
       @endphp
 
-        {{-- div propiedades destacadas --}}
+        {{-- div propiedades destacadas  {{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}   --}}
         <div class="row text-center">
           <h5 class="mt-5 mb-5">Nuestras propiedades destacadas</h5>
           <div class="col-sm-4">
-            <img class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}" alt="Casa en {{ $listing1->address}}">
-            <p>{{ $listing1->address }}</p>
+            <div id="imglisting1" onmouseover="showbtnview(this)" onmouseout="hidebtnview(this)" class="position-relative">
+              <img style="filter: grayscale(1)" class="img-fluid" src="{{ asset('img/IMG_628-5fc521047b0c7.jpg') }}" alt="Casa en {{ $listing1->address}}">
+              <a href="{{ route('web.detail', $listing1->slug) }}" class="position-absolute btn btn-outline-light imglisting1" style="bottom: 5px; right: 5px; display: none">Ver propiedad</a>
+            </div>
+            <p class="mt-3">{{ $listing1->address }}</p>
           </div>
           <div class="col-sm-4">
-            <img class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing2->images, 0, 25)) }}" alt="Casa en {{ $listing2->address}}">
-            <p>{{ $listing2->address }}</p>
+            <div id="imglisting2" onmouseover="showbtnview(this)" onmouseout="hidebtnview(this)" class="position-relative">
+              <img style="filter: grayscale(1)" class="img-fluid" src="{{ asset('img/IMG_628-5fc521047b0c7.jpg') }}" alt="Casa en {{ $listing2->address}}">
+              <a href="{{ route('web.detail', $listing2->slug) }}" class="position-absolute btn btn-outline-light imglisting2" style="bottom: 5px; right: 5px; display: none">Ver propiedad</a>
+            </div>
+            <p class="mt-3">{{ $listing2->address }}</p>
           </div>
           <div class="col-sm-4">
-            <img class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing3->images, 0, 25)) }}" alt="Casa en {{ $listing3->address}}">
-            <p>{{ $listing3->address }}</p>
+            <div id="imglisting3" onmouseover="showbtnview(this)" onmouseout="hidebtnview(this)" class="position-relative">
+              <img style="filter: grayscale(1)" class="img-fluid" src="{{ asset('img/IMG_628-5fc521047b0c7.jpg') }}" alt="Casa en {{ $listing3->address}}">
+              <a href="{{ route('web.detail', $listing3->slug) }}" class="position-absolute btn btn-outline-light imglisting3" style="bottom: 5px; right: 5px; display: none">Ver propiedad</a>
+            </div>
+            <p class="mt-3">{{ $listing3->address }}</p>
           </div>
         </div>
 
@@ -614,6 +626,15 @@
           selCity.appendChild(opt);
     });
   });
+
+  const showbtnview = (element) => {
+    let btn = document.querySelector("." + element.id);
+    btn.style.display = "block";
+  }
+  const hidebtnview = (element) => {
+    let btn = document.querySelector("." + element.id);
+    btn.style.display = "none";
+  }
 </script>
   @livewireScripts
   @stack('scripts')
