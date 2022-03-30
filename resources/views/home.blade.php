@@ -218,7 +218,7 @@
 
         {{-- div propiedades destacadas  {{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}   --}}
         <div class="row text-center">
-          <h5 class="mt-5">Nuestras propiedades destacadas</h5>
+          <h5 class="mt-5 mb-5">Nuestras propiedades destacadas</h5>
           <div data-aos="flip-left" class="col-sm-4">
             <div id="imglisting1" onmouseover="showbtnview(this)" onmouseout="hidebtnview(this)" class="position-relative">
               <img class="img-fluid" src="{{ asset('uploads/listing/600/'.substr($listing1->images, 0, 25)) }}" alt="Casa en {{ $listing1->address}}">
@@ -242,7 +242,7 @@
           </div>
         </div>
 
-        <p id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-5 mb-4">- SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A TU ALCANCE -</p>
+        <p id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 mb-4">- SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A TU ALCANCE -</p>
         <div class="row mr-2 ml-2 mb-4">
             <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
