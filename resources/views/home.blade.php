@@ -489,7 +489,7 @@
             <form action="{{ route('web.index') }}" id="formodalsearch" method="GET">
               <div class="form-group">
                 <label for="tipobusqueda">Tipo de búsqueda</label>
-                <select name="category" id="tipobusqueda" class="form-control">
+                <select name="type" id="tipobusqueda" class="form-control">
                   <option value="" selected>Seleccione</option>
                   <option value="en-venta">Venta</option>
                   <option value="alquilar">Alquiler</option>
@@ -498,17 +498,17 @@
               </div>
               <div class="form-group mt-2">
                 <label for="tipopropiedad">Tipo de propiedad</label>
-                <select name="type" id="tipopropiedad" class="form-control">
+                <select name="category" id="tipopropiedad" class="form-control">
                   <option value="" selected>Seleccione</option>
-                  <option value="23">Casas</option>
-                  <option value="24">Departamentos</option>
-                  <option value="25">Casas Comerciales</option>
-                  <option value="26">Terrenos</option>
-                  <option value="29">Quintas</option>
-                  <option value="30">Haciendas</option>
-                  <option value="32">Locales Comerciales</option>
-                  <option value="35">Oficinas</option>
-                  <option value="36">Suites</option>
+                  <option value="Casas">Casas</option>
+                  <option value="Departamentos">Departamentos</option>
+                  <option value="Casas Comerciales">Casas Comerciales</option>
+                  <option value="Terrenos">Terrenos</option>
+                  <option value="Quintas">Quintas</option>
+                  <option value="Haciendas">Haciendas</option>
+                  <option value="Locales Comerciales">Locales Comerciales</option>
+                  <option value="Oficinas">Oficinas</option>
+                  <option value="Suites">Suites</option>
                 </select>
               </div>
 
