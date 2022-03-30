@@ -99,7 +99,7 @@
         left: 0;
         display: block;
         border-radius: 28px;
-        background: rgba(255, 171, 157, 0.5);
+        background: rgba(255, 38, 0, 0.5);
         width: 56px;
         height: 56px;
         transition: all 0.3s ease;
@@ -127,7 +127,7 @@
       }
       .cta:hover:before {
         width: 100%;
-        background: #ffab9d;
+        background: #ff2600;
       }
       .cta:hover svg {
         transform: translateX(0);
@@ -138,6 +138,16 @@
       #imglisting1 > img:hover, #imglisting2 > img:hover, #imglisting3 > img:hover{
         filter: brightness(70%) !important;
       }
+      @keyframes fade-in-move-left {
+      0% {
+        opacity: 0;
+        transform: translateY(-3rem);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
     </style>
     @livewireStyles
 @endsection
@@ -586,6 +596,7 @@
   const showbtnview = (element) => {
     let btn = document.querySelector("." + element.id);
     btn.style.display = "block";
+    btn.style.animation = "fade-in-move-left 1s";
   }
   const hidebtnview = (element) => {
     let btn = document.querySelector("." + element.id);
