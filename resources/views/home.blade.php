@@ -283,7 +283,7 @@
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="position-relative">
-                  <img src="{{ asset('uploads/listing/900/'.substr($listing1->images, 0, 25)) }}" class="d-block w-100" alt="...">
+                  <img src="{{ asset('uploads/listing/'.substr($listing1->images, 0, 25)) }}" class="d-block w-100" alt="...">
                   <div class="position-absolute" style="bottom: 10px; right: 10px;">
                     <a class="btn btn-lg btn-outline-light" href="{{ route('web.detail', $listing1->slug) }}">Ver propiedad</a>
                   </div>
@@ -297,7 +297,7 @@
               </div>
               <div class="carousel-item">
                 <div class="position-relative">
-                  <img src="{{ asset('uploads/listing/900/'.substr($listing2->images, 0, 25)) }}" class="d-block w-100" alt="...">
+                  <img src="{{ asset('uploads/listing/'.substr($listing2->images, 0, 25)) }}" class="d-block w-100" alt="...">
                   <div class="position-absolute" style="bottom: 10px; right: 10px;">
                     <a class="btn btn-lg btn-outline-light" href="{{ route('web.detail', $listing2->slug) }}">Ver propiedad</a>
                   </div>
@@ -311,7 +311,7 @@
               </div>
               <div class="carousel-item">
                 <div class="position-relative">
-                  <img src="{{ asset('uploads/listing/900/'.substr($listing3->images, 0, 25)) }}" class="d-block w-100" alt="...">
+                  <img src="{{ asset('uploads/listing/'.substr($listing3->images, 0, 25)) }}" class="d-block w-100" alt="...">
                   <div class="position-absolute" style="bottom: 10px; right: 10px;">
                     <a class="btn btn-lg btn-outline-light" href="{{ route('web.detail', $listing3->slug) }}">Ver propiedad</a>
                   </div>
