@@ -11,6 +11,7 @@
     <meta property="og:image"              content="{{asset('img/meta-image-social-cc.jpg')}}" />
 
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
       @media screen and (max-width: 850px){
         #txttitlebanner{
@@ -218,7 +219,6 @@
           <p style="margin: 0px; margin-bottom: 5px" class="text-white">{{ $bedroom}} DORMITORIOS | {{ $bathroom }} BAÑOS | {{ $listing->construction_area }} M<sup>2</sup></p>
         </div>
     </div>
-    <div class="container">
 
       @php
           $listing1 = \App\Models\Listing::select('construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1503)->first();
@@ -277,15 +277,39 @@
           }
       @endphp
 
-        <div>
+        <div class="ml-3 mr-3">
           <p style="font-size: 20px" class="mt-5 mb-5 text-center">Propiedades destacadas</p>
           <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="position-relative">
-                  <img src="{{ asset('uploads/listing/'.substr($listing1->images, 0, 25)) }}" class="d-block w-100" alt="...">
-                  <div class="position-absolute" style="bottom: 10px; right: 10px;">
-                    <a class="btn btn-lg btn-outline-light" href="{{ route('web.detail', $listing1->slug) }}">Ver propiedad</a>
+                  <img src="{{ asset('img/4.png') }}" class="d-block w-100" alt="...">
+                  <div class="carousel-indicators position-absolute" style="margin-left: -50%; @if($ismobile) margin-bottom: -10px !important; @else margin-bottom: 10px @endif">
+                    <div class="carousel-indicators">
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleFade"
+                        data-bs-slide-to="0"
+                        class="active"
+                        aria-current="true"
+                        aria-label="Slide 1"
+                      ></button>
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleFade"
+                        data-bs-slide-to="1"
+                        aria-label="Slide 2"
+                      ></button>
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleFade"
+                        data-bs-slide-to="2"
+                        aria-label="Slide 3"
+                      ></button>
+                    </div>
+                  </div>
+                  <div class="position-absolute" style="@if($ismobile) bottom: 5px; right: 5px; @else bottom: 10px; right: 10px; @endif">
+                    <a class="btn @if($ismobile) btn-sm @endif btn-outline-light" href="{{ route('web.detail', $listing1->slug) }}">Ver propiedad</a>
                   </div>
                 </div>
                 <div class="float-right mt-3">
@@ -297,9 +321,33 @@
               </div>
               <div class="carousel-item">
                 <div class="position-relative">
-                  <img src="{{ asset('uploads/listing/'.substr($listing2->images, 0, 25)) }}" class="d-block w-100" alt="...">
-                  <div class="position-absolute" style="bottom: 10px; right: 10px;">
-                    <a class="btn btn-lg btn-outline-light" href="{{ route('web.detail', $listing2->slug) }}">Ver propiedad</a>
+                  <img src="{{ asset('img/3.png') }}" class="d-block w-100" alt="...">
+                  <div class="carousel-indicators position-absolute" style="margin-left: -50%; @if($ismobile) margin-bottom: -10px !important; @else margin-bottom: 10px @endif">
+                    <div class="carousel-indicators">
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleFade"
+                        data-bs-slide-to="0"
+                        aria-current="true"
+                        aria-label="Slide 1"
+                      ><i style="color: #ffffff" class="far fa-circle"></i></button>
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleFade"
+                        class="active"
+                        data-bs-slide-to="1"
+                        aria-label="Slide 2"
+                      ><i style="color: #ffffff" class="far fa-circle"></i></button>
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleFade"
+                        data-bs-slide-to="2"
+                        aria-label="Slide 3"
+                      ><i style="color: #ffffff" class="far fa-circle"></i></button>
+                    </div>
+                  </div>
+                  <div class="position-absolute" style="@if($ismobile) bottom: 5px; right: 5px; @else bottom: 10px; right: 10px; @endif">
+                    <a class="btn @if($ismobile) btn-sm @endif btn-outline-light" href="{{ route('web.detail', $listing2->slug) }}">Ver propiedad</a>
                   </div>
                 </div>
                 <div class="float-right mt-3">
@@ -311,9 +359,33 @@
               </div>
               <div class="carousel-item">
                 <div class="position-relative">
-                  <img src="{{ asset('uploads/listing/'.substr($listing3->images, 0, 25)) }}" class="d-block w-100" alt="...">
-                  <div class="position-absolute" style="bottom: 10px; right: 10px;">
-                    <a class="btn btn-lg btn-outline-light" href="{{ route('web.detail', $listing3->slug) }}">Ver propiedad</a>
+                  <img src="{{ asset('img/1.png') }}" class="d-block w-100" alt="...">
+                  <div class="carousel-indicators position-absolute" style="margin-left: -50%; @if($ismobile) margin-bottom: -10px !important; @else margin-bottom: 10px @endif">
+                    <div class="carousel-indicators">
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleFade"
+                        data-bs-slide-to="0"
+                        aria-current="true"
+                        aria-label="Slide 1"
+                      ><i style="color: #ffffff" class="far fa-circle"></i></button>
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleFade"
+                        data-bs-slide-to="1"
+                        aria-label="Slide 2"
+                      ><i style="color: #ffffff" class="far fa-circle"></i></button>
+                      <button
+                        type="button"
+                        data-bs-target="#carouselExampleFade"
+                        class="active"
+                        data-bs-slide-to="2"
+                        aria-label="Slide 3"
+                      ><i style="color: #ffffff" class="far fa-circle"></i></button>
+                    </div>
+                  </div>
+                  <div class="position-absolute" style="@if($ismobile) bottom: 5px; right: 5px; @else bottom: 10px; right: 10px; @endif">
+                    <a class="btn @if($ismobile) btn-sm @endif btn-outline-light" href="{{ route('web.detail', $listing3->slug) }}">Ver propiedad</a>
                   </div>
                 </div>
                 <div class="float-right mt-3">
@@ -361,6 +433,7 @@
           </div>
         </div> --}}
 
+        <div class="container">
         <p data-aos="fade-up" id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 mb-4">- SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A TU ALCANCE -</p>
         <div class="row mr-2 ml-2 mb-4">
             <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
@@ -638,6 +711,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script>
   AOS.init();
 </script>
