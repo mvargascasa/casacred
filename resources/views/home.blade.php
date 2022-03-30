@@ -254,7 +254,7 @@
       @php
           $listing1 = \App\Models\Listing::select('address', 'images')->where('product_code', 1503)->first();
           $listing2 = \App\Models\Listing::select('address', 'images')->where('product_code', 1561)->first();
-          $listing3 = \App\Models\Listing::select('address', 'images')->where('product_code', 1570)->first();
+          $listing3 = \App\Models\Listing::select('address', 'images')->where('product_code', 1662)->first();
       @endphp
 
         {{-- div propiedades destacadas --}}
