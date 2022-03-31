@@ -391,7 +391,7 @@
             </div>
             @else
             <div data-aos="zoom-in" class="row justify-content-center">
-                <div class="card mb-4" style="width: 18rem; margin-right: 5px; margin-left: 5px; padding-left: 0px; padding-right: 0px">
+                <div class="card mb-4" style="width: 18rem; margin-right: 10px; margin-left: 10px; padding-left: 0px; padding-right: 0px">
                   <a style="color: #000000" href="{{ route('web.detail', $listing1->slug) }}">
                     <img width="100%" src="{{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }}" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -401,7 +401,7 @@
                     </div>
                   </a>
                 </div>
-                <div class="card mb-4" style="width: 18rem; margin-right: 5px; margin-left: 5px; padding-left: 0px; padding-right: 0px">
+                <div class="card mb-4" style="width: 18rem; margin-right: 10px; margin-left: 10px; padding-left: 0px; padding-right: 0px">
                   <a style="color: #000000" href="{{ route('web.detail', $listing2->slug) }}">
                     <img src="{{ asset('uploads/listing/600/' . substr($listing2->images, 0, 25) ) }}" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -411,7 +411,7 @@
                     </div>
                   </a>
                 </div>
-                <div class="card mb-4" style="width: 18rem; margin-right: 5px; margin-left: 5px; padding-left: 0px; padding-right: 0px">
+                <div class="card mb-4" style="width: 18rem; margin-right: 10px; margin-left: 10px; padding-left: 0px; padding-right: 0px">
                   <a style="color: #000000" href="{{ route('web.detail', $listing3->slug) }}">
                     <img src="{{ asset('uploads/listing/600/' . substr($listing3->images, 0, 25) ) }}" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -421,7 +421,7 @@
                     </div>
                   </a>
                 </div>
-                <div class="card mb-4" style="width: 18rem; margin-right: 5px; margin-left: 5px; padding-left: 0px; padding-right: 0px">
+                <div class="card mb-4" style="width: 18rem; margin-right: 10px; margin-left: 10px; padding-left: 0px; padding-right: 0px">
                   <a style="color: #000000" href="{{ route('web.detail', $listing4->slug) }}">
                     <img src="{{ asset('uploads/listing/600/' . substr($listing4->images, 0, 30) ) }}" class="card-img-top" alt="...">
                     <div class="card-body">
