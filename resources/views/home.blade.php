@@ -282,7 +282,7 @@
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="position-relative">
-                  <img src="{{ asset('img/4.png') }}" class="d-block w-100" alt="...">
+                  <img src="@if($ismobile) {{ asset('uploads/listing/' . substr($listing->images, 0, 25) ) }} @else {{ asset('img/4.png') }} @endif" class="d-block w-100" alt="...">
                   <ol class="carousel-indicators position-absolute" style="margin-left: -50%; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
                     <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active"></li>
                     <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
