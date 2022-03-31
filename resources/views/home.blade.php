@@ -346,7 +346,7 @@
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <div class="position-relative">
-                    <img style="filter: brightness(70%)" src="{{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }}" class="d-block w-100" alt="...">
+                    <img style="filter: brightness(80%)" src="{{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }}" class="d-block w-100" alt="...">
                     <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px; @endif">
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active"></li>
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
@@ -366,7 +366,7 @@
                 </div>
                 <div class="carousel-item">
                   <div class="position-relative">
-                    <img src="{{ asset('uploads/listing/600/' . substr($listing2->images, 0, 25) ) }}" class="d-block w-100" alt="...">
+                    <img style="filter: brightness(80%)" src="{{ asset('uploads/listing/600/' . substr($listing2->images, 0, 25) ) }}" class="d-block w-100" alt="...">
                       <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
                         <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0"></li>
                         <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1" class="active"></li>
@@ -386,7 +386,7 @@
                 </div>
                 <div class="carousel-item">
                   <div class="position-relative">
-                    <img src="{{ asset('uploads/listing/600/' . substr($listing3->images, 0, 25) ) }}" class="d-block w-100" alt="...">
+                    <img style="filter: brightness(80%)" src="{{ asset('uploads/listing/600/' . substr($listing3->images, 0, 25) ) }}" class="d-block w-100" alt="...">
                       <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
                         <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0"></li>
                         <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
@@ -406,7 +406,7 @@
                 </div>
                 <div class="carousel-item">
                   <div class="position-relative">
-                    <img src="{{ asset('uploads/listing/600/' . substr($listing4->images, 0, 25) ) }}" class="d-block w-100" alt="...">
+                    <img style="filter: brightness(80%)" src="{{ asset('uploads/listing/600/' . substr($listing4->images, 0, 25) ) }}" class="d-block w-100" alt="...">
                       <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
                         <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0"></li>
                         <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
