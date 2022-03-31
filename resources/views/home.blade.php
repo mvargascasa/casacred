@@ -393,7 +393,7 @@
             <div data-aos="zoom-in" class="row justify-content-center">
                 <div class="card mb-4" style="width: 18rem; margin-right: 5px; margin-left: 5px; padding-left: 0px; padding-right: 0px">
                   <a style="color: #000000" href="{{ route('web.detail', $listing1->slug) }}">
-                    <img width="100%" src="{{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }}" class="img-fluid" alt="...">
+                    <img width="100%" src="{{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }}" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 style="margin: 0px" class="card-title">${{ number_format($listing1->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom1 }} dormitorios | {{ $bathroom1 }} baños | {{ $listing1->construction_area}} m<sup>2</sup></p>
@@ -423,7 +423,7 @@
                 </div>
                 <div class="card mb-4" style="width: 18rem; margin-right: 5px; margin-left: 5px; padding-left: 0px; padding-right: 0px">
                   <a style="color: #000000" href="{{ route('web.detail', $listing4->slug) }}">
-                    <img src="{{ asset('uploads/listing/600/' . substr($listing4->images, 0, 25) ) }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('uploads/listing/600/' . substr($listing4->images, 0, 29) ) }}" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 style="margin: 0px" class="card-title">${{ number_format($listing4->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom4 }} dormitorios | {{ $bathroom4 }} baños | {{ $listing4->construction_area}} m<sup>2</sup></p>
