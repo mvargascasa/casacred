@@ -254,6 +254,7 @@
           $listing1 = \App\Models\Listing::select('property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1503)->first();
           $listing2 = \App\Models\Listing::select('property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1561)->first();
           $listing3 = \App\Models\Listing::select('property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1527)->first();
+          $listing4 = \App\Models\Listing::select('property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1483)->first();
       
           $bedroom1=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
           $bathroom1=0;
@@ -300,6 +301,23 @@
                 if($i%2==0){  
                   if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom3+=$singleedetails[$i];
                   if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom3+=$singleedetails[$i];									  
+                }								   
+              }								
+            $i++;
+            }
+          }
+
+          $bedroom4=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
+          $bathroom4=0;
+           
+          if(!empty($listing4->heading_details)){
+            $allheadingdeatils=json_decode($listing4->heading_details); 
+            foreach($allheadingdeatils as $singleedetails){ 
+              unset($singleedetails[0]);								
+              for($i=1;$i<=count($singleedetails);$i++){ 
+                if($i%2==0){  
+                  if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom4+=$singleedetails[$i];
+                  if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom4+=$singleedetails[$i];									  
                 }								   
               }								
             $i++;
@@ -389,7 +407,7 @@
                     <div class="card-body">
                       <h5 style="margin: 0px" class="card-title">${{ number_format($listing2->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom2 }} dormitorios | {{ $bathroom2 }} baños | {{ $listing2->construction_area}} m<sup>2</sup></p>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing1->address }}</p>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing2->address }}</p>
                     </div>
                   </a>
                 </div>
@@ -399,17 +417,17 @@
                     <div class="card-body">
                       <h5 style="margin: 0px" class="card-title">${{ number_format($listing3->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom3 }} dormitorios | {{ $bathroom3 }} baños | {{ $listing3->construction_area}} m<sup>2</sup></p>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing1->address }}</p>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing3->address }}</p>
                     </div>
                   </a>
                 </div>
                 <div class="card mb-4" style="width: 18rem; margin-right: 5px; margin-left: 5px; padding-left: 0px; padding-right: 0px">
-                  <a style="color: #000000" href="{{ route('web.detail', $listing3->slug) }}">
-                    <img src="{{ asset('uploads/listing/600/' . substr($listing3->images, 0, 25) ) }}" class="card-img-top" alt="...">
+                  <a style="color: #000000" href="{{ route('web.detail', $listing4->slug) }}">
+                    <img src="{{ asset('uploads/listing/600/' . substr($listing4->images, 0, 25) ) }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 style="margin: 0px" class="card-title">${{ number_format($listing3->property_price) }}</h5>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom3 }} dormitorios | {{ $bathroom3 }} baños | {{ $listing3->construction_area}} m<sup>2</sup></p>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing1->address }}</p>
+                      <h5 style="margin: 0px" class="card-title">${{ number_format($listing4->property_price) }}</h5>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom4 }} dormitorios | {{ $bathroom4 }} baños | {{ $listing4->construction_area}} m<sup>2</sup></p>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing4->address }}</p>
                     </div>
                   </a>
                 </div>
