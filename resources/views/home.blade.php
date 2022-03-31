@@ -302,7 +302,7 @@
               <div class="carousel-item">
                 <div class="position-relative">
                   <img src="@if($ismobile) {{ asset('uploads/listing/600/'.substr($listing2->images, 0, 25)) }} @else {{ asset('img/3.png') }} @endif" class="d-block w-100" alt="...">
-                    <ol class="carousel-indicators position-absolute" style="margin-left: -50%; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
+                    <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0"></li>
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1" class="active"></li>
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2"></li>
@@ -321,7 +321,7 @@
               <div class="carousel-item">
                 <div class="position-relative">
                   <img src="@if($ismobile) {{ asset('uploads/listing/600/'. substr($listing3->images, 0, 25)) }} @else {{ asset('img/1.png') }} @endif" class="d-block w-100" alt="...">
-                    <ol class="carousel-indicators position-absolute" style="margin-left: -50%; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
+                    <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0"></li>
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2" class="active"></li>
