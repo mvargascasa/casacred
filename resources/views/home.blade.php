@@ -464,7 +464,7 @@
           @endif
         </div>
 
-        <div class="position-relative d-flex justify-content-center align-items-center mt-5 mb-5">
+        <div data-aos="zoom-out" class="position-relative d-flex justify-content-center align-items-center mt-5 mb-5">
           <section id="secondsection" style="@if($ismobile) height: 13rem; @else height: 32rem; @endif background-size: cover;background-position: 10% 40%; width: 100%; background-repeat: no-repeat;">
           </section>
           <div class="text-center text-white position-absolute" style="margin-top: 10%">
