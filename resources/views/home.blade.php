@@ -397,7 +397,7 @@
                     <div class="card-body">
                       <h5 style="margin: 0px" class="card-title">${{ number_format($listing1->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom1 }} dormitorios | {{ $bathroom1 }} baños | {{ $listing1->construction_area}} m<sup>2</sup></p>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing1->address }}</p>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ ucwords(strtolower($listing1->address)) }}</p>
                     </div>
                   </a>
                 </div>
@@ -423,11 +423,11 @@
                 </div>
                 <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
                   <a style="color: #000000" href="{{ route('web.detail', $listing4->slug) }}">
-                    <img src="{{ asset('uploads/listing/600/' . substr($listing4->images, 0, 30) ) }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('uploads/listing/600/' . substr($listing4->images, 0, 25) ) }}" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 style="margin: 0px" class="card-title">${{ number_format($listing4->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom4 }} dormitorios | {{ $bathroom4 }} baños | {{ $listing4->construction_area}} m<sup>2</sup></p>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ ucwords(strtolower($listing4->address)) }}</p>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing4->address }}</p>
                     </div>
                   </a>
                 </div>
