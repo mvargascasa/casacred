@@ -427,7 +427,7 @@
                     <div class="card-body">
                       <h5 style="margin: 0px" class="card-title">${{ number_format($listing4->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom4 }} dormitorios | {{ $bathroom4 }} baños | {{ $listing4->construction_area}} m<sup>2</sup></p>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ ucfirst($listing4->address) }}</p>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ ucwords($listing4->address) }}</p>
                     </div>
                   </a>
                 </div>
