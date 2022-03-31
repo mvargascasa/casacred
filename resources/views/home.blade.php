@@ -599,8 +599,8 @@
               <div class="form-group mt-2">
                 <label for="preciodesde" style="font-weight: 400">Precio</label>
                 <div class="d-flex">
-                  <input type="text" id="preciodesde" name="fromprice" placeholder="Desde" class="form-control mr-1">
-                  <input type="text" id="preciohasta" name="uptoprice" placeholder="Hasta" class="form-control">
+                  <input type="number" id="preciodesde" name="fromprice" placeholder="Desde" class="form-control mr-1">
+                  <input type="number" id="preciohasta" name="uptoprice" placeholder="Hasta" class="form-control">
                 </div>
               </div>
             </form>
