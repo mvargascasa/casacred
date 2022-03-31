@@ -346,7 +346,7 @@
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <div class="position-relative">
-                    <img src="{{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }}" class="d-block w-100" alt="...">
+                    <img style="filter: brightness(70%)" src="{{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }}" class="d-block w-100" alt="...">
                     <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px; @endif">
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active"></li>
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
@@ -427,7 +427,7 @@
               </div>
               <button style="height: 50px; margin-top: 25%" class="carousel-control-prev btn" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
                 {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> --}}
-                <span class="visually-hidden"><i style="color: #ffffff; font-size: 20px" class="far fa-angle-left"></i></span>
+                <span class="visually-hidden"><i style="color: #ffffff;font-weight:bold; font-size: 20px" class="far fa-angle-left"></i></span>
               </button>
               <button style="height: 50px; margin-top: 25%" class="carousel-control-next btn" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
                 {{-- <span class="carousel-control-next-icon" aria-hidden="true"></span> --}}
