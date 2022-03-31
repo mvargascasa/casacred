@@ -440,7 +440,7 @@
                   <a style="color: #000000" href="{{ route('web.detail', $listing1->slug) }}">
                     <div class="position-relative">
                       {{-- {{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }} --}}
-                      <img width="100%" src="{{ asset('img/IMG_628-5fc521047b0c7.jpg') }}" class="card-img-top" alt="...">
+                      <img width="100%" src="{{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }}" class="card-img-top" alt="...">
                       <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type1[0]->type_title) }}</label>
                     </div>
                     <div class="card-body">
