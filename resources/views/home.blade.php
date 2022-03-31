@@ -148,6 +148,37 @@
         transform: translateY(0);
       }
     }
+    .user-box {
+      margin-top: 20px;
+      position: relative;
+    }
+    .user-box input {
+      width: 100%;
+      padding: 10px 10px;
+      font-size: 16px;
+      margin-bottom: 30px;
+      outline: none;
+      background: transparent;
+    }
+    .user-box label {
+      position: absolute;
+      top:0;
+      left: 10px;
+      padding: 10px 0;
+      font-size: 16px;
+      pointer-events: none;
+      transition: .5s;
+    }
+    .user-box input:focus ~ label,
+    .user-box input: ~ label {
+      top: -35px;
+      left: 0;
+      color: #f40303;
+      font-size: 12px;
+    }
+    .card:hover{
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
     </style>
     @livewireStyles
 @endsection
@@ -220,9 +251,9 @@
     </div>
 
       @php
-          $listing1 = \App\Models\Listing::select('construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1503)->first();
-          $listing2 = \App\Models\Listing::select('construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1561)->first();
-          $listing3 = \App\Models\Listing::select('construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1527)->first();
+          $listing1 = \App\Models\Listing::select('property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1503)->first();
+          $listing2 = \App\Models\Listing::select('property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1561)->first();
+          $listing3 = \App\Models\Listing::select('property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1527)->first();
       
           $bedroom1=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
           $bathroom1=0;
@@ -276,69 +307,114 @@
           }
       @endphp
 
-        <div class="ml-3 mr-3">
+        <div style="margin-left: auto; margin-right: auto">
           <p style="font-size: 20px" class="mt-5 mb-5 text-center">Propiedades destacadas</p>
-          <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="position-relative">
-                  <img src="@if($ismobile) {{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }} @else {{ asset('img/4.png') }} @endif" class="d-block w-100" alt="...">
-                  <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px; @endif">
-                    <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active"></li>
-                    <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
-                    <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2"></li>
-                  </ol>
-                  <div class="position-absolute" style="@if($ismobile) bottom: 5px; right: 5px; @else bottom: 10px; right: 10px; @endif">
-                    <a class="btn @if($ismobile) btn-sm @endif btn-outline-light" href="{{ route('web.detail', $listing1->slug) }}">Ver propiedad</a>
-                  </div>
-                </div>
-                <div class="float-right mt-3">
-                  <p style="font-weight: 400; margin: 0px; text-align: end">
-                    @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing1->address)))) @endphp
-                  </p>
-                  <p style="margin: 0px">{{ $bedroom1 }} dormitorios | {{ $bathroom1 }} baños | {{ $listing1->construction_area}} m<sup>2</sup></p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="position-relative">
-                  <img src="@if($ismobile) {{ asset('uploads/listing/600/'.substr($listing2->images, 0, 25)) }} @else {{ asset('img/3.png') }} @endif" class="d-block w-100" alt="...">
-                    <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
-                      <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0"></li>
-                      <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1" class="active"></li>
+          @if ($ismobile)
+            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="position-relative">
+                    <img src="{{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }}" class="d-block w-100" alt="...">
+                    <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px; @endif">
+                      <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active"></li>
+                      <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2"></li>
                     </ol>
-                  <div class="position-absolute" style="@if($ismobile) bottom: 5px; right: 5px; @else bottom: 10px; right: 10px; @endif">
-                    <a class="btn @if($ismobile) btn-sm @endif btn-outline-light" href="{{ route('web.detail', $listing2->slug) }}">Ver propiedad</a>
+                    <div class="position-absolute" style="@if($ismobile) bottom: 5px; right: 5px; @else bottom: 10px; right: 10px; @endif">
+                      <a class="btn @if($ismobile) btn-sm @endif btn-outline-light" href="{{ route('web.detail', $listing1->slug) }}">Ver propiedad</a>
+                    </div>
+                  </div>
+                  <div class="float-right mt-3">
+                    <p style="font-weight: 400; margin: 0px; text-align: end">
+                      @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing1->address)))) @endphp
+                    </p>
+                    <p style="margin: 0px">{{ $bedroom1 }} dormitorios | {{ $bathroom1 }} baños | {{ $listing1->construction_area}} m<sup>2</sup></p>
                   </div>
                 </div>
-                <div class="float-right mt-3">
-                  <p style="font-weight: 400; margin: 0px; text-align: end">
-                    @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing2->address)))) @endphp
-                  </p>
-                  <p style="margin: 0px">{{ $bedroom2 }} dormitorios | {{ $bathroom2 }} baños | {{ $listing2->construction_area}} m<sup>2</sup></p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="position-relative">
-                  <img src="@if($ismobile) {{ asset('uploads/listing/600/'. substr($listing3->images, 0, 25)) }} @else {{ asset('img/1.png') }} @endif" class="d-block w-100" alt="...">
-                    <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
-                      <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0"></li>
-                      <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
-                      <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2" class="active"></li>
-                    </ol>
-                  <div class="position-absolute" style="@if($ismobile) bottom: 5px; right: 5px; @else bottom: 10px; right: 10px; @endif">
-                    <a class="btn @if($ismobile) btn-sm @endif btn-outline-light" href="{{ route('web.detail', $listing3->slug) }}">Ver propiedad</a>
+                <div class="carousel-item">
+                  <div class="position-relative">
+                    <img src="{{ asset('uploads/listing/600/'.substr($listing2->images, 0, 25)) }}" class="d-block w-100" alt="...">
+                      <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
+                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0"></li>
+                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1" class="active"></li>
+                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2"></li>
+                      </ol>
+                    <div class="position-absolute" style="@if($ismobile) bottom: 5px; right: 5px; @else bottom: 10px; right: 10px; @endif">
+                      <a class="btn @if($ismobile) btn-sm @endif btn-outline-light" href="{{ route('web.detail', $listing2->slug) }}">Ver propiedad</a>
+                    </div>
+                  </div>
+                  <div class="float-right mt-3">
+                    <p style="font-weight: 400; margin: 0px; text-align: end">
+                      @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing2->address)))) @endphp
+                    </p>
+                    <p style="margin: 0px">{{ $bedroom2 }} dormitorios | {{ $bathroom2 }} baños | {{ $listing2->construction_area}} m<sup>2</sup></p>
                   </div>
                 </div>
-                <div class="float-right mt-3">
-                  <p style="font-weight: 400; margin: 0px; text-align: end">
-                    @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing3->address)))) @endphp
-                  </p>
-                  <p>{{ $bedroom3 }} dormitorios | {{ $bathroom3 }} baños | {{ $listing3->construction_area}} m<sup>2</sup></p>
+                <div class="carousel-item">
+                  <div class="position-relative">
+                    <img src="{{ asset('uploads/listing/600/'. substr($listing3->images, 0, 25)) }}" class="d-block w-100" alt="...">
+                      <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
+                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0"></li>
+                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
+                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2" class="active"></li>
+                      </ol>
+                    <div class="position-absolute" style="@if($ismobile) bottom: 5px; right: 5px; @else bottom: 10px; right: 10px; @endif">
+                      <a class="btn @if($ismobile) btn-sm @endif btn-outline-light" href="{{ route('web.detail', $listing3->slug) }}">Ver propiedad</a>
+                    </div>
+                  </div>
+                  <div class="float-right mt-3">
+                    <p style="font-weight: 400; margin: 0px; text-align: end">
+                      @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing3->address)))) @endphp
+                    </p>
+                    <p>{{ $bedroom3 }} dormitorios | {{ $bathroom3 }} baños | {{ $listing3->construction_area}} m<sup>2</sup></p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+            @else
+            <div class="row justify-content-center">
+                <div class="card" style="width: 18rem; margin-right: 5px; margin-left: 5px">
+                  <a style="color: #000000" href="{{ route('web.detail', $listing1->slug) }}">
+                    <img src="{{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 style="margin: 0px" class="card-title">${{ $listing1->property_price}}</h5>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom1 }} dormitorios | {{ $bathroom1 }} baños | {{ $listing1->construction_area}} m<sup>2</sup></p>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing1->address }}</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="card" style="width: 18rem; margin-right: 5px; margin-left: 5px">
+                  <a style="color: #000000" href="{{ route('web.detail', $listing2->slug) }}">
+                    <img src="{{ asset('uploads/listing/600/' . substr($listing2->images, 0, 25) ) }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 style="margin: 0px" class="card-title">${{ $listing2->property_price}}</h5>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom2 }} dormitorios | {{ $bathroom2 }} baños | {{ $listing2->construction_area}} m<sup>2</sup></p>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing1->address }}</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="card" style="width: 18rem; margin-right: 5px; margin-left: 5px">
+                  <a style="color: #000000" href="{{ route('web.detail', $listing3->slug) }}">
+                    <img src="{{ asset('uploads/listing/600/' . substr($listing3->images, 0, 25) ) }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 style="margin: 0px" class="card-title">${{ $listing3->property_price}}</h5>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom3 }} dormitorios | {{ $bathroom3 }} baños | {{ $listing3->construction_area}} m<sup>2</sup></p>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing1->address }}</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="card" style="width: 18rem; margin-right: 5px; margin-left: 5px">
+                  <a style="color: #000000" href="{{ route('web.detail', $listing3->slug) }}">
+                    <img src="{{ asset('uploads/listing/600/' . substr($listing3->images, 0, 25) ) }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 style="margin: 0px" class="card-title">${{ $listing3->property_price}}</h5>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom3 }} dormitorios | {{ $bathroom3 }} baños | {{ $listing3->construction_area}} m<sup>2</sup></p>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing1->address }}</p>
+                    </div>
+                  </a>
+                </div>
+            </div>
+          @endif
         </div>
 
         <div class="container">
@@ -501,27 +577,27 @@
       <div class="modal-dialog  modal-dialog-centered">
         <form action="{{ route('web.lead.contact') }}" method="POST">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header" style="background-color: #fec41a">
             <h6 class="modal-title" id="exampleModalLabel">Complete el formulario y nos contactaremos con usted</h6>
             <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="far fa-times"></i></button>
           </div>
           <div class="modal-body">
               @csrf
-              <div class="form-group mb-2">
-                <label for="nombre" class="mb-2">Nombre y Apellido</label>
-                <input type="text" name="nombre" id="nombre" class="form-control" required>
+              <div class="form-group mb-2 user-box">
+                <input style="border-radius: 10px 10px 10px 10px" type="text" name="nombre" id="nombre" class="form-control" required>
+                <label for="nombre" class="mb-2 text-muted">Nombre y Apellido</label>
               </div>
-              <div class="form-group mb-2">
-                <label for="telefono" class="mb-2">Teléfono</label>
-                <input type="text" name="telefono" id="telefono" class="form-control" required>
+              <div class="form-group mb-2 user-box">
+                <input style="border-radius: 10px 10px 10px 10px" type="number" name="telefono" id="telefono" class="form-control" required>
+                <label for="telefono" class="mb-2 text-muted">Teléfono</label>
               </div>
-              <div class="form-group mb-2">
-                <label for="email" class="mb-2">Correo electrónico</label>
-                <input type="email" name="email" id="email" class="form-control" required>
+              <div class="form-group mb-2 user-box">
+                <input style="border-radius: 10px 10px 10px 10px" type="email" name="email" id="email" class="form-control" required>
+                <label for="email" class="mb-2 text-muted">Correo electrónico</label>
               </div>
-              <div class="form-group mb-2">
-                <label for="mensaje" class="mb-2">Comentario</label>
-                <input type="text" name="mensaje" id="mensaje" class="form-control" required>
+              <div class="form-group mb-1 user-box">
+                <input style="border-radius: 10px 10px 10px 10px" type="text" name="mensaje" id="mensaje" class="form-control" required>
+                <label for="mensaje" class="mb-2 text-muted">Comentario</label>
               </div>
           </div>
           <div class="modal-footer justify-content-center">
