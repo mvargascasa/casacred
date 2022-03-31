@@ -457,11 +457,14 @@
                     </div>
                   </a>
                 </div>
+                <div class="d-flex justify-content-center mt-3">
+                  <a style="background-color: #2c3144; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 13px" class="btn" href="{{ route('web.index') }}">Ver todas las propiedades <i style="color: #fcc62e" class="fas fa-long-arrow-alt-right"></i></a>
+              </div>
             </div>
           @endif
         </div>
 
-        <div class="position-relative d-flex justify-content-center align-items-center">
+        <div class="position-relative d-flex justify-content-center align-items-center mt-5 mb-5">
           <section id="secondsection" style="@if($ismobile) height: 13rem; @else height: 32rem; @endif background-size: cover;background-position: 10% 40%; width: 100%; background-repeat: no-repeat;">
           </section>
           <div class="text-center text-white position-absolute" style="margin-top: 10%">
