@@ -772,8 +772,8 @@
               </div>
             </form>
           </div>
-          <div class="modal-footer justify-content-center" style="background-color: #e71131;">
-            <button type="button" onclick="document.getElementById('formodalsearch').submit();" class="btn btn-light">Buscar</button>
+          <div class="modal-footer justify-content-center">
+            <button type="button" onclick="document.getElementById('formodalsearch').submit();" class="btn" style="background-color: #e71131; color: #ffffff">Buscar</button>
           </div>
         </div>
       </div>
