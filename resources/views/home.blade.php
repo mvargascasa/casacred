@@ -23,7 +23,7 @@
           right: 5px !important;
         }
         #txtserviciosinmo{
-          font-size: 13px !important;
+          font-size: 15px !important;
         }
       }
       @media screen and (max-width: 1040px){
@@ -342,7 +342,7 @@
         </div>
 
         <div class="container">
-        <p data-aos="fade-up" id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 mb-4">- SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A TU ALCANCE -</p>
+        <p data-aos="fade-up" id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 mb-4">SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A TU ALCANCE</p>
         <div class="row mr-2 ml-2 mb-4">
             <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
