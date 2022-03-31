@@ -425,11 +425,11 @@
                   </div>
                 </div>
               </div>
-              <button style="height: 50px; margin-top: 18%" class="carousel-control-prev btn" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+              <button style="height: 50px; margin-top: 25%" class="carousel-control-prev btn" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
                 {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> --}}
                 <span class="visually-hidden"><i style="color: #ffffff; font-size: 20px" class="far fa-angle-left"></i></span>
               </button>
-              <button style="height: 50px; margin-top: 18%" class="carousel-control-next btn" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+              <button style="height: 50px; margin-top: 25%" class="carousel-control-next btn" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
                 {{-- <span class="carousel-control-next-icon" aria-hidden="true"></span> --}}
                 <span class="visually-hidden"><i style="color: #ffffff; font-size: 20px" class="far fa-angle-right"></i></span>
               </button>
