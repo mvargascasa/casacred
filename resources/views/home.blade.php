@@ -351,6 +351,7 @@
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active"></li>
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
                       <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2"></li>
+                      <li data-bs-target="#carouselExampleFade" data-bs-slide-to="3"></li>
                     </ol>
                     <div class="position-absolute" style="@if($ismobile) bottom: 5px; right: 5px; @else bottom: 10px; right: 10px; @endif">
                       <a class="btn @if($ismobile) btn-sm @endif btn-outline-light" href="{{ route('web.detail', $listing1->slug) }}">Ver propiedad</a>
@@ -365,11 +366,12 @@
                 </div>
                 <div class="carousel-item">
                   <div class="position-relative">
-                    <img src="{{ asset('uploads/listing/600/'.substr($listing2->images, 0, 25)) }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('uploads/listing/600/' . substr($listing2->images, 0, 25) ) }}" class="d-block w-100" alt="...">
                       <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
                         <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0"></li>
                         <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1" class="active"></li>
                         <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2"></li>
+                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="3"></li>
                       </ol>
                     <div class="position-absolute" style="@if($ismobile) bottom: 5px; right: 5px; @else bottom: 10px; right: 10px; @endif">
                       <a class="btn @if($ismobile) btn-sm @endif btn-outline-light" href="{{ route('web.detail', $listing2->slug) }}">Ver propiedad</a>
@@ -384,11 +386,12 @@
                 </div>
                 <div class="carousel-item">
                   <div class="position-relative">
-                    <img src="{{ asset('uploads/listing/600/'. substr($listing3->images, 0, 25)) }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('uploads/listing/600/' . substr($listing3->images, 0, 25) ) }}" class="d-block w-100" alt="...">
                       <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
                         <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0"></li>
                         <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
                         <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2" class="active"></li>
+                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="3"></li>
                       </ol>
                     <div class="position-absolute" style="@if($ismobile) bottom: 5px; right: 5px; @else bottom: 10px; right: 10px; @endif">
                       <a class="btn @if($ismobile) btn-sm @endif btn-outline-light" href="{{ route('web.detail', $listing3->slug) }}">Ver propiedad</a>
@@ -401,14 +404,43 @@
                     <p>{{ $bedroom3 }} dormitorios | {{ $bathroom3 }} baños | {{ $listing3->construction_area}} m<sup>2</sup></p>
                   </div>
                 </div>
+                <div class="carousel-item">
+                  <div class="position-relative">
+                    <img src="{{ asset('uploads/listing/600/' . substr($listing4->images, 0, 25) ) }}" class="d-block w-100" alt="...">
+                      <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
+                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0"></li>
+                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
+                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2"></li>
+                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="3" class="active"></li>
+                      </ol>
+                    <div class="position-absolute" style="@if($ismobile) bottom: 5px; right: 5px; @else bottom: 10px; right: 10px; @endif">
+                      <a class="btn @if($ismobile) btn-sm @endif btn-outline-light" href="{{ route('web.detail', $listing4->slug) }}">Ver propiedad</a>
+                    </div>
+                  </div>
+                  <div class="float-right mt-3">
+                    <p style="font-weight: 400; margin: 0px; text-align: end">
+                      @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing4->address)))) @endphp
+                    </p>
+                    <p>{{ $bedroom4 }} dormitorios | {{ $bathroom4 }} baños | {{ $listing4->construction_area}} m<sup>2</sup></p>
+                  </div>
+                </div>
               </div>
+              <button style="height: 50px; margin-top: 13%" class="carousel-control-prev btn" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> --}}
+                <span class="visually-hidden"><i style="color: #ffffff; font-size: 20px" class="far fa-angle-left"></i></span>
+              </button>
+              <button style="height: 50px; margin-top: 13%" class="carousel-control-next btn" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                {{-- <span class="carousel-control-next-icon" aria-hidden="true"></span> --}}
+                <span class="visually-hidden"><i style="color: #ffffff; font-size: 20px" class="far fa-angle-right"></i></span>
+              </button>
             </div>
             @else
             <div data-aos="zoom-in" class="row justify-content-center">
                 <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
                   <a style="color: #000000" href="{{ route('web.detail', $listing1->slug) }}">
                     <div class="position-relative">
-                      <img width="100%" src="{{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }}" class="card-img-top" alt="...">
+                      {{-- {{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }} --}}
+                      <img width="100%" src="{{ asset('img/IMG_628-5fc521047b0c7.jpg') }}" class="card-img-top" alt="...">
                       <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type1[0]->type_title) }}</label>
                     </div>
                     <div class="card-body">
