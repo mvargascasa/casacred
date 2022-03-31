@@ -414,7 +414,7 @@
                     <div class="card-body">
                       <h5 style="margin: 0px" class="card-title">${{ number_format($listing1->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom1 }} dormitorios | {{ $bathroom1 }} baños | {{ $listing1->construction_area}} m<sup>2</sup></p>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ ucwords(strtolower($listing1->address)) }}</p>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ str_replace(",", " |", ucwords(strtolower($listing1->address))) }}</p>
                     </div>
                   </a>
                 </div>
@@ -427,7 +427,7 @@
                     <div class="card-body">
                       <h5 style="margin: 0px" class="card-title">${{ number_format($listing2->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom2 }} dormitorios | {{ $bathroom2 }} baños | {{ $listing2->construction_area}} m<sup>2</sup></p>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing2->address }}</p>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ str_replace(",", " |", $listing2->address) }}</p>
                     </div>
                   </a>
                 </div>
@@ -440,7 +440,7 @@
                     <div class="card-body">
                       <h5 style="margin: 0px" class="card-title">${{ number_format($listing3->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom3 }} dormitorios | {{ $bathroom3 }} baños | {{ $listing3->construction_area}} m<sup>2</sup></p>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing3->address }}</p>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{  str_replace(",", " |", $listing3->address) }}</p>
                     </div>
                   </a>
                 </div>
@@ -453,7 +453,7 @@
                     <div class="card-body">
                       <h5 style="margin: 0px" class="card-title">${{ number_format($listing4->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom4 }} dormitorios | {{ $bathroom4 }} baños | {{ $listing4->construction_area}} m<sup>2</sup></p>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing4->address }}</p>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{  str_replace(",", " |", $listing4->address) }}</p>
                     </div>
                   </a>
                 </div>
