@@ -147,7 +147,7 @@
             <div class="divtwoptionsright" style="margin-left: 25%">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" target="_blank" href="https://casacreditopromotora.com/socios/construye">Construye</a>
+                  <a class="nav-link" aria-current="page" href="{{ route('web.servicios', 'construye') }}">Construye</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="https://casacredito.com/login"><i class="fas fa-sign-out-alt" style="color: #d71e01"></i> Mi cuenta</a>
