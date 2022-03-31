@@ -252,9 +252,9 @@
 
       @php
           $listing1 = \App\Models\Listing::select('property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1661)->first();
-          $listing2 = \App\Models\Listing::select('property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1650)->first();
-          $listing3 = \App\Models\Listing::select('property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1621)->first();
-          $listing4 = \App\Models\Listing::select('property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1661)->first();
+          $listing2 = \App\Models\Listing::select('property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1658)->first();
+          $listing3 = \App\Models\Listing::select('property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1650)->first();
+          $listing4 = \App\Models\Listing::select('property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1621)->first();
       
           $bedroom1=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
           $bathroom1=0;
