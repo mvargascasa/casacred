@@ -534,9 +534,9 @@
 
     {{-- DIV PARA MODAL DE FILTROS DE BUSQUEDA --}}
     <div class="modal fade" id="modalFilters" tabindex="-1" aria-labelledby="modalFiltersLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header" style="background-color: #e71131; color: #ffffff">
             <h5 class="modal-title" id="modalFiltersLabel">Filtros de Búsqueda</h5>
             <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
               <i class="far fa-times"></i>
@@ -545,7 +545,7 @@
           <div class="modal-body">
             <form action="{{ route('web.index') }}" id="formodalsearch" method="GET">
               <div class="form-group">
-                <label for="tipobusqueda">Tipo de búsqueda</label>
+                <label for="tipobusqueda" style="font-weight: 400">Tipo de búsqueda</label>
                 <select name="type" id="tipobusqueda" class="form-control">
                   <option value="" selected>Seleccione</option>
                   <option value="en-venta">Venta</option>
@@ -554,7 +554,7 @@
                 </select>
               </div>
               <div class="form-group mt-2">
-                <label for="tipopropiedad">Tipo de propiedad</label>
+                <label for="tipopropiedad" style="font-weight: 400">Tipo de propiedad</label>
                 <select name="category" id="tipopropiedad" class="form-control">
                   <option value="" selected>Seleccione</option>
                   <option value="Casas">Casas</option>
@@ -574,30 +574,39 @@
               @endphp
 
               <div class="form-group mt-2">
-                <label for="selProvince">Provincia</label>
-                <select name="state" id="selProvince" class="form-control">
-                  <option value="">Seleccione</option>
-                  @foreach ($states as $state)
-                  <option value="{{ $state->name}}" data-id="{{ $state->id}}">{{ $state->name }}</option>
-                  @endforeach
-                </select>
+                <div class="d-flex">
+                  <div class="mr-1" style="width: 100%">
+                    <label for="selProvince" style="font-weight: 400">Provincia</label>
+                    <select name="state" id="selProvince" class="form-control">
+                      <option value="">Seleccione</option>
+                      @foreach ($states as $state)
+                      <option value="{{ $state->name}}" data-id="{{ $state->id}}">{{ $state->name }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                  <div style="width: 100%">
+                    <label for="city" style="font-weight: 400">Ciudad</label>
+                    <select name="city" id="selCity" class="form-control">
+                      <option value="">Seleccione</option>
+                    </select>
+                  </div>
+                </div> 
               </div>
 
               <div class="form-group mt-2">
-                <label for="city">Ciudad</label>
-                <select name="city" id="selCity" class="form-control">
-                  <option value="">Seleccione</option>
-                </select>
               </div>
+
               <div class="form-group mt-2">
-                <label for="preciodesde">Precio</label>
-                <input type="text" id="preciodesde" name="fromprice" placeholder="Desde" class="form-control mb-2">
-                <input type="text" id="preciohasta" name="uptoprice" placeholder="Hasta" class="form-control">
+                <label for="preciodesde" style="font-weight: 400">Precio</label>
+                <div class="d-flex">
+                  <input type="text" id="preciodesde" name="fromprice" placeholder="Desde" class="form-control mr-1">
+                  <input type="text" id="preciohasta" name="uptoprice" placeholder="Hasta" class="form-control">
+                </div>
               </div>
             </form>
           </div>
-          <div class="modal-footer justify-content-center">
-            <button type="button" onclick="document.getElementById('formodalsearch').submit();" style="background-color: #fec41a" class="btn">Buscar</button>
+          <div class="modal-footer justify-content-center" style="background-color: #e71131;">
+            <button type="button" onclick="document.getElementById('formodalsearch').submit();" class="btn btn-light">Buscar</button>
           </div>
         </div>
       </div>

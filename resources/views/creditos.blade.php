@@ -187,7 +187,7 @@
     </div>
 
     <div class="row text-center mt-5">
-        <h5 class="mb-5">Visiténos personalmente en nuestras <br> <b>oficinas New York</b></h5>
+        <h5 class="mb-5">Visítenos personalmente en nuestras <br> <b>oficinas New York</b></h5>
         <a target="_blank" href="https://goo.gl/maps/ovKfQSvTmA5SBqqF6">
             <img class="img-fluid" src="{{ asset('img/maps-nl.png') }}" alt="">
         </a>
