@@ -25,6 +25,12 @@
         #txtserviciosinmo{
           font-size: 15px !important;
         }
+        #inforowconstruye1{
+          font-size: 14px !important;
+        }
+        #inforowconstruye2{
+          font-size: 11px !important;
+        }
       }
       @media screen and (max-width: 1040px){
         #formtopsearch{
@@ -178,6 +184,9 @@
     }
     .card:hover{
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+    #secondsection{
+      filter: brightness(60%);
     }
     </style>
     @livewireStyles
@@ -450,6 +459,18 @@
                 </div>
             </div>
           @endif
+        </div>
+
+        <div class="position-relative d-flex justify-content-center align-items-center">
+          <section id="secondsection" style="@if($ismobile) height: 13rem; @else height: 32rem; @endif background-size: cover;background-position: 10% 40%; width: 100%; background-repeat: no-repeat;">
+          </section>
+          <div class="text-center text-white position-absolute" style="margin-top: 10%">
+            <div>
+              <p id="inforowconstruye1" style="font-weight: 300; margin: 0; font-size: 23px">¿Necesita construir una vivienda propia?</p>
+              <p id="inforowconstruye2" style="font-weight: 600; margin: 0; margin-bottom: 10px; font-size: 19px">Conozca más sobre nuestros servicios</p>
+            </div>
+            <a href="{{ route('web.servicios', 'construye') }}" class="btn btn-outline-light" style="border-radius: 25px; width: 40%">Leer más</a>
+          </div>
         </div>
 
         <div class="container">
@@ -745,6 +766,7 @@
 <script>
     window.addEventListener('load', (event) => {
         document.getElementById('prisection').style.backgroundImage = "url('img/home1.jpg')";
+        document.getElementById('secondsection').style.backgroundImage = "url('img/imgbannermiddle.jpg')";
     });
     
     const selProvince = document.getElementById('selProvince');
