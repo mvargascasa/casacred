@@ -377,7 +377,7 @@
                   <a style="color: #000000" href="{{ route('web.detail', $listing1->slug) }}">
                     <img width="100%" src="{{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }}" class="img-fluid" alt="...">
                     <div class="card-body">
-                      <h5 style="margin: 0px" class="card-title">${{ $listing1->property_price}}</h5>
+                      <h5 style="margin: 0px" class="card-title">${{ number_format($listing1->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom1 }} dormitorios | {{ $bathroom1 }} baños | {{ $listing1->construction_area}} m<sup>2</sup></p>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing1->address }}</p>
                     </div>
@@ -387,7 +387,7 @@
                   <a style="color: #000000" href="{{ route('web.detail', $listing2->slug) }}">
                     <img src="{{ asset('uploads/listing/600/' . substr($listing2->images, 0, 25) ) }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 style="margin: 0px" class="card-title">${{ $listing2->property_price}}</h5>
+                      <h5 style="margin: 0px" class="card-title">${{ number_format($listing2->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom2 }} dormitorios | {{ $bathroom2 }} baños | {{ $listing2->construction_area}} m<sup>2</sup></p>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing1->address }}</p>
                     </div>
@@ -397,7 +397,7 @@
                   <a style="color: #000000" href="{{ route('web.detail', $listing3->slug) }}">
                     <img src="{{ asset('uploads/listing/600/' . substr($listing3->images, 0, 25) ) }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 style="margin: 0px" class="card-title">${{ $listing3->property_price}}</h5>
+                      <h5 style="margin: 0px" class="card-title">${{ number_format($listing3->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom3 }} dormitorios | {{ $bathroom3 }} baños | {{ $listing3->construction_area}} m<sup>2</sup></p>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing1->address }}</p>
                     </div>
@@ -407,7 +407,7 @@
                   <a style="color: #000000" href="{{ route('web.detail', $listing3->slug) }}">
                     <img src="{{ asset('uploads/listing/600/' . substr($listing3->images, 0, 25) ) }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 style="margin: 0px" class="card-title">${{ $listing3->property_price}}</h5>
+                      <h5 style="margin: 0px" class="card-title">${{ number_format($listing3->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom3 }} dormitorios | {{ $bathroom3 }} baños | {{ $listing3->construction_area}} m<sup>2</sup></p>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $listing1->address }}</p>
                     </div>
