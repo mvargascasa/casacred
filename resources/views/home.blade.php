@@ -251,11 +251,16 @@
     </div>
 
       @php
-          $listing1 = \App\Models\Listing::select('property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1661)->first();
-          $listing2 = \App\Models\Listing::select('property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1658)->first();
-          $listing3 = \App\Models\Listing::select('property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1650)->first();
-          $listing4 = \App\Models\Listing::select('property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1621)->first();
+          $listing1 = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1661)->first();
+          $listing2 = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1658)->first();
+          $listing3 = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1650)->first();
+          $listing4 = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1621)->first();
       
+          $type1 = DB::table('listing_types')->select('type_title')->where('id', $listing1->listingtype)->get();
+          $type2 = DB::table('listing_types')->select('type_title')->where('id', $listing2->listingtype)->get();
+          $type3 = DB::table('listing_types')->select('type_title')->where('id', $listing3->listingtype)->get();
+          $type4 = DB::table('listing_types')->select('type_title')->where('id', $listing4->listingtype)->get();
+
           $bedroom1=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
           $bathroom1=0;
            
@@ -393,7 +398,10 @@
             <div data-aos="zoom-in" class="row justify-content-center">
                 <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
                   <a style="color: #000000" href="{{ route('web.detail', $listing1->slug) }}">
-                    <img width="100%" src="{{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }}" class="card-img-top" alt="...">
+                    <div class="position-relative">
+                      <img width="100%" src="{{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }}" class="card-img-top" alt="...">
+                      <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type1[0]->type_title) }}</label>
+                    </div>
                     <div class="card-body">
                       <h5 style="margin: 0px" class="card-title">${{ number_format($listing1->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom1 }} dormitorios | {{ $bathroom1 }} baños | {{ $listing1->construction_area}} m<sup>2</sup></p>
@@ -403,7 +411,10 @@
                 </div>
                 <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
                   <a style="color: #000000" href="{{ route('web.detail', $listing2->slug) }}">
-                    <img src="{{ asset('uploads/listing/600/' . substr($listing2->images, 0, 25) ) }}" class="card-img-top" alt="...">
+                    <div class="position-relative">
+                      <img src="{{ asset('uploads/listing/600/' . substr($listing2->images, 0, 25) ) }}" class="card-img-top" alt="...">
+                      <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type2[0]->type_title) }}</label>
+                    </div>
                     <div class="card-body">
                       <h5 style="margin: 0px" class="card-title">${{ number_format($listing2->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom2 }} dormitorios | {{ $bathroom2 }} baños | {{ $listing2->construction_area}} m<sup>2</sup></p>
@@ -413,7 +424,10 @@
                 </div>
                 <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
                   <a style="color: #000000" href="{{ route('web.detail', $listing3->slug) }}">
-                    <img src="{{ asset('uploads/listing/600/' . substr($listing3->images, 0, 25) ) }}" class="card-img-top" alt="...">
+                    <div class="position-relative">
+                      <img src="{{ asset('uploads/listing/600/' . substr($listing3->images, 0, 25) ) }}" class="card-img-top" alt="...">
+                      <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type3[0]->type_title) }}</label>
+                    </div>
                     <div class="card-body">
                       <h5 style="margin: 0px" class="card-title">${{ number_format($listing3->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom3 }} dormitorios | {{ $bathroom3 }} baños | {{ $listing3->construction_area}} m<sup>2</sup></p>
@@ -423,7 +437,10 @@
                 </div>
                 <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
                   <a style="color: #000000" href="{{ route('web.detail', $listing4->slug) }}">
-                    <img src="{{ asset('uploads/listing/600/' . substr($listing4->images, 0, 25) ) }}" class="card-img-top" alt="...">
+                    <div class="position-relative">
+                      <img src="{{ asset('uploads/listing/600/' . substr($listing4->images, 0, 25) ) }}" class="card-img-top" alt="...">
+                      <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type4[0]->type_title) }}</label>
+                    </div>
                     <div class="card-body">
                       <h5 style="margin: 0px" class="card-title">${{ number_format($listing4->property_price) }}</h5>
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom4 }} dormitorios | {{ $bathroom4 }} baños | {{ $listing4->construction_area}} m<sup>2</sup></p>
