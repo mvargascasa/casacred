@@ -342,7 +342,7 @@
         <div style="margin-left: auto; margin-right: auto">
           <p style="font-size: 20px" class="mt-5 mb-5 text-center">Propiedades destacadas</p>
           @if ($ismobile)
-            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade ml-3 mr-3" data-bs-ride="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <div class="position-relative">
