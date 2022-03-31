@@ -88,6 +88,12 @@
           padding-right: 0px !important;
           margin-top: 0px !important; 
         }
+        #col1-footer, #col2-footer{
+          font-size: 12px !important;
+        }
+        #divny{
+          margin-top: 0px !important;
+        }
       }
       .item-nav-link:hover{
         background-color: #3b4255 !important;
@@ -187,38 +193,28 @@
           <div class="row">
               <div class="col-sm-4">
                 <h5>Cuenca | Ecuador</h5>
-                <div style="font-size: 15px">
-                    <div>
-                        <p style="margin: 0px">Lunes a Viernes 09:00 am a 6:00 pm</p>
-                        <p>Sábados 9:00 am a 1:00 pm</p>
-                    </div>
-                    <div>
-                        <p><a target="_blank" style="color: #ffffff" href="https://goo.gl/maps/JC7FcYDeupTstiHn8"><i class="fas fa-map-marker-alt" style="color: #d71e01"></i> Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero</a><br> Edificio Santa Lucia</p>
-                    </div>
-                    <div>
-                        <p style="margin: 0px"><i class="fas fa-phone-alt" style="color: #d71e01"></i> 07-412-6004 / 098-384-9073</p>
-                        <p><a style="color: #ffffff" href="mailto:info@casacredito.com"><i class="fas fa-envelope" style="color: #d71e01"></i> info@casacredito.com</a></p>
-                    </div>
+                <div id="col1-footer" style="font-size: 15px">
+                    <p style="margin-bottom: 5px">Lunes a Viernes 09:00 am a 6:00 pm</p>
+                    <p style="margin-bottom: 5px">Sábados 9:00 am a 1:00 pm</p>
+                    <p style="margin-bottom: 5px"><a target="_blank" style="color: #ffffff" href="https://goo.gl/maps/JC7FcYDeupTstiHn8"><i class="fas fa-map-marker-alt" style="color: #d71e01"></i> Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero</a></p>
+                    <p style="margin-bottom: 5px">Edificio Santa Lucia</p>
+                    <p style="margin-bottom: 5px"><i class="fas fa-phone-alt" style="color: #d71e01"></i> 07-412-6004 / 098-384-9073</p>
+                    <p><a style="color: #ffffff" href="mailto:info@casacredito.com"><i class="fas fa-envelope" style="color: #d71e01"></i> info@casacredito.com</a></p>
                 </div>
               </div>
               <div class="col-sm-4">
                 <h5>New York | EE.UU.</h5>
-                <div style="font-size: 15px">
-                    <div>
-                        <p>Lunes a Viernes 09:00 am a 6:00 pm</p>
-                    </div>
-                    <div style="margin-top: 35px">
-                        <p><i class="fas fa-map-marker-alt" style="color: #d71e01"></i> 67-03 Roosevelt Avenue <br> Woodside, NY 11377</p>
-                    </div>
-                    <div>
-                        <p style="margin: 0px"><i class="fas fa-phone-alt" style="color: #d71e01"></i> 718-690-3740 / 347-846-0067</p>
-                        <p><a style="color: #ffffff" href="mailto:info@casacredito.com"><i class="fas fa-envelope" style="color: #d71e01"></i> info@casacredito.com</a></p>
-                    </div>
+                <div id="col2-footer" style="font-size: 15px">
+                    <p style="margin-bottom: 5px">Lunes a Viernes 09:00 am a 6:00 pm</p>
+                    <p style="margin-bottom: 5px"><i class="fas fa-map-marker-alt" style="color: #d71e01"></i> 67-03 Roosevelt Avenue <br></p>
+                    <p style="margin-bottom: 5px">Woodside, NY 11377</p>
+                    <p style="margin-bottom: 5px"><i class="fas fa-phone-alt" style="color: #d71e01"></i> 718-690-3740 / 347-846-0067</p>
+                    <p><a style="color: #ffffff" href="mailto:info@casacredito.com"><i class="fas fa-envelope" style="color: #d71e01"></i> info@casacredito.com</a></p>
                 </div>
               </div>
               <div class="col-sm-4">
                 <h5>Síguenos en:</h5>
-                <div class="d-flex">
+                <div id="col3-footer" class="d-flex">
                     <div style="border-radius: 15px; background-color: #ffffff; width: 25px; height: 25px; text-align: center; margin: 3px">
                         <a href="https://www.facebook.com/CasaCreditoInmobiliaria"><i class="fab fa-facebook-f" style="color: #3b4255"></i></a>
                     </div>
