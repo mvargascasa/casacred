@@ -459,21 +459,44 @@
             </div>
             @else
             <div data-aos="zoom-in" class="row justify-content-center">
+              @foreach ($listings as $listing)
                 <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
-                  <a style="color: #000000" href="{{ route('web.detail', $listing1->slug) }}">
+                  <a style="color: #000000" href="{{ route('web.detail', $listing->slug) }}">
                     <div class="position-relative">
                       {{-- {{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }} --}}
-                      <img width="100%" src="{{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }}" class="card-img-top" alt="...">
-                      <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type1[0]->type_title) }}</label>
+                      <img width="100%" src="{{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }}" class="card-img-top" alt="...">
+                      @php
+                          $type = DB::table('listing_types')->select('type_title')->where('id', $listing->listingtype)->get();
+                      @endphp
+                      <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type[0]->type_title) }}</label>
                     </div>
                     <div class="card-body">
-                      <h5 style="margin: 0px" class="card-title">${{ number_format($listing1->property_price) }}</h5>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom1 }} dormitorios | {{ $bathroom1 }} baños | {{ $listing1->construction_area}} m<sup>2</sup></p>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ str_replace(",", " |", ucwords(strtolower($listing1->address))) }}</p>
+                      <h5 style="margin: 0px" class="card-title">${{ number_format($listing->property_price) }}</h5>
+                      @php
+                          $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
+                          $bathroom=0;
+                          
+                          if(!empty($listing->heading_details)){
+                            $allheadingdeatils=json_decode($listing->heading_details); 
+                            foreach($allheadingdeatils as $singleedetails){ 
+                              unset($singleedetails[0]);								
+                              for($i=1;$i<=count($singleedetails);$i++){ 
+                                if($i%2==0){  
+                                  if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
+                                  if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];									  
+                                }								   
+                              }								
+                            $i++;
+                            }
+                          }
+                      @endphp
+                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif | {{ $bathroom }} @if($bathroom > 1) baños @else baño @endif | {{ $listing->construction_area}} m<sup>2</sup></p>
+                      <p style="font-size: 14px; margin: 0px" class="card-text">@if($listing->slug == "totoracocha-en-venta-casa-nueva-recien-terminada-75579") {{ str_replace(",", " |", ucwords(strtolower($listing->address))) }} @else {{ str_replace(",", " |", $listing->address) }} @endif</p>
                     </div>
                   </a>
                 </div>
-                <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
+              @endforeach
+                {{-- <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
                   <a style="color: #000000" href="{{ route('web.detail', $listing2->slug) }}">
                     <div class="position-relative">
                       <img src="{{ asset('uploads/listing/600/' . substr($listing2->images, 0, 25) ) }}" class="card-img-top" alt="...">
@@ -485,8 +508,8 @@
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{ str_replace(",", " |", $listing2->address) }}</p>
                     </div>
                   </a>
-                </div>
-                <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
+                </div> --}}
+                {{-- <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
                   <a style="color: #000000" href="{{ route('web.detail', $listing3->slug) }}">
                     <div class="position-relative">
                       <img src="{{ asset('uploads/listing/600/' . substr($listing3->images, 0, 25) ) }}" class="card-img-top" alt="...">
@@ -498,8 +521,8 @@
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{  str_replace(",", " |", $listing3->address) }}</p>
                     </div>
                   </a>
-                </div>
-                <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
+                </div> --}}
+                {{-- <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
                   <a style="color: #000000" href="{{ route('web.detail', $listing4->slug) }}">
                     <div class="position-relative">
                       <img src="{{ asset('uploads/listing/600/' . substr($listing4->images, 0, 25) ) }}" class="card-img-top" alt="...">
@@ -511,7 +534,7 @@
                       <p style="font-size: 14px; margin: 0px" class="card-text">{{  str_replace(",", " |", $listing4->address) }}</p>
                     </div>
                   </a>
-                </div>
+                </div> --}}
             </div>
           @endif
           <div class="d-flex justify-content-center mt-3">
