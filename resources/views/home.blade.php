@@ -181,7 +181,7 @@
     #secondsection{
       filter: brightness(60%);
     }
-    .carousel-fade .carousel-item {
+    #carouselExampleFadeBanner .carousel-item {
       opacity: 1;
       transition-duration: .3s;
       transition-property: 0;
