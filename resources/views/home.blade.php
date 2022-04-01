@@ -13,15 +13,8 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
       @media screen and (max-width: 850px){
-        #txttitlebanner{
-          font-size: 12px !important;
-          text-align: center !important;
-        }
-        #infolistingbanner{
-          font-size: 10px !important;
-          bottom: 0px !important;
-          right: 5px !important;
-        }
+        #txttitlebanner{font-size: 12px !important;text-align: center !important;}
+        #infolistingbanner{font-size: 10px !important;bottom: 0px !important;right: 5px !important;}
         #txtserviciosinmo{
           font-size: 15px !important;
         }
@@ -260,86 +253,7 @@
     </div>
 
       @php
-
           $listings = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1661)->orWhere('product_code', 1658)->orWhere('product_code', 1650)->orWhere('product_code', 1621)->get();
-
-          $listing1 = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1661)->first();
-          $listing2 = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1658)->first();
-          $listing3 = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1650)->first();
-          $listing4 = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1621)->first();
-      
-          $type1 = DB::table('listing_types')->select('type_title')->where('id', $listing1->listingtype)->get();
-          $type2 = DB::table('listing_types')->select('type_title')->where('id', $listing2->listingtype)->get();
-          $type3 = DB::table('listing_types')->select('type_title')->where('id', $listing3->listingtype)->get();
-          $type4 = DB::table('listing_types')->select('type_title')->where('id', $listing4->listingtype)->get();
-
-          $bedroom1=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
-          $bathroom1=0;
-           
-          if(!empty($listing1->heading_details)){
-            $allheadingdeatils=json_decode($listing1->heading_details); 
-            foreach($allheadingdeatils as $singleedetails){ 
-              unset($singleedetails[0]);								
-              for($i=1;$i<=count($singleedetails);$i++){ 
-                if($i%2==0){  
-                  if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom1+=$singleedetails[$i];
-                  if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom1+=$singleedetails[$i];									  
-                }								   
-              }								
-            $i++;
-            }
-          }
-
-          $bedroom2=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
-          $bathroom2=0;
-           
-          if(!empty($listing2->heading_details)){
-            $allheadingdeatils=json_decode($listing2->heading_details); 
-            foreach($allheadingdeatils as $singleedetails){ 
-              unset($singleedetails[0]);								
-              for($i=1;$i<=count($singleedetails);$i++){ 
-                if($i%2==0){  
-                  if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom2+=$singleedetails[$i];
-                  if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom2+=$singleedetails[$i];									  
-                }								   
-              }								
-            $i++;
-            }
-          }
-
-          $bedroom3=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
-          $bathroom3=0;
-           
-          if(!empty($listing3->heading_details)){
-            $allheadingdeatils=json_decode($listing3->heading_details); 
-            foreach($allheadingdeatils as $singleedetails){ 
-              unset($singleedetails[0]);								
-              for($i=1;$i<=count($singleedetails);$i++){ 
-                if($i%2==0){  
-                  if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom3+=$singleedetails[$i];
-                  if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom3+=$singleedetails[$i];									  
-                }								   
-              }								
-            $i++;
-            }
-          }
-
-          $bedroom4=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
-          $bathroom4=0;
-           
-          if(!empty($listing4->heading_details)){
-            $allheadingdeatils=json_decode($listing4->heading_details); 
-            foreach($allheadingdeatils as $singleedetails){ 
-              unset($singleedetails[0]);								
-              for($i=1;$i<=count($singleedetails);$i++){ 
-                if($i%2==0){  
-                  if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom4+=$singleedetails[$i];
-                  if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom4+=$singleedetails[$i];									  
-                }								   
-              }								
-            $i++;
-            }
-          }
       @endphp
 
         <div style="margin-left: auto; margin-right: auto">
@@ -354,7 +268,6 @@
               <div class="carousel-inner">
                 @foreach ($listings as $listing)
                   <div class="carousel-item {{ $loop->first ? 'active' : ' '}}">
-                    {{-- {{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }} --}}
                     <div class="position-relative">
                       <img style="filter: brightness(80%)" src="{{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }}" class="d-block w-100" alt="...">
                       <div class="position-absolute" style="bottom: 5px; right: 5px;">
@@ -387,66 +300,6 @@
                     </div>
                   </div>
                 @endforeach
-                {{-- <div class="carousel-item">
-                  <div class="position-relative">
-                    <img style="filter: brightness(80%)" src="{{ asset('uploads/listing/600/' . substr($listing2->images, 0, 25) ) }}" class="d-block w-100" alt="...">
-                      <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
-                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0"></li>
-                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1" class="active"></li>
-                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2"></li>
-                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="3"></li>
-                      </ol>
-                    <div class="position-absolute" style="@if($ismobile) bottom: 5px; right: 5px; @else bottom: 10px; right: 10px; @endif">
-                      <a class="btn @if($ismobile) btn-sm @endif btn-outline-light" href="{{ route('web.detail', $listing2->slug) }}">Ver propiedad</a>
-                    </div>
-                  </div>
-                  <div class="float-right mt-3">
-                    <p style="font-weight: 400; margin: 0px; text-align: end">
-                      @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing2->address)))) @endphp
-                    </p>
-                    <p style="margin: 0px">{{ $bedroom2 }} dormitorios | {{ $bathroom2 }} baños | {{ $listing2->construction_area}} m<sup>2</sup></p>
-                  </div>
-                </div> --}}
-                {{-- <div class="carousel-item">
-                  <div class="position-relative">
-                    <img style="filter: brightness(80%)" src="{{ asset('uploads/listing/600/' . substr($listing3->images, 0, 25) ) }}" class="d-block w-100" alt="...">
-                      <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
-                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0"></li>
-                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
-                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2" class="active"></li>
-                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="3"></li>
-                      </ol>
-                    <div class="position-absolute" style="@if($ismobile) bottom: 5px; right: 5px; @else bottom: 10px; right: 10px; @endif">
-                      <a class="btn @if($ismobile) btn-sm @endif btn-outline-light" href="{{ route('web.detail', $listing3->slug) }}">Ver propiedad</a>
-                    </div>
-                  </div>
-                  <div class="float-right mt-3">
-                    <p style="font-weight: 400; margin: 0px; text-align: end">
-                      @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing3->address)))) @endphp
-                    </p>
-                    <p>{{ $bedroom3 }} dormitorios | {{ $bathroom3 }} baños | {{ $listing3->construction_area}} m<sup>2</sup></p>
-                  </div>
-                </div> --}}
-                {{-- <div class="carousel-item">
-                  <div class="position-relative">
-                    <img style="filter: brightness(80%)" src="{{ asset('uploads/listing/600/' . substr($listing4->images, 0, 25) ) }}" class="d-block w-100" alt="...">
-                      <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
-                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0"></li>
-                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
-                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2"></li>
-                        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="3" class="active"></li>
-                      </ol>
-                    <div class="position-absolute" style="@if($ismobile) bottom: 5px; right: 5px; @else bottom: 10px; right: 10px; @endif">
-                      <a class="btn @if($ismobile) btn-sm @endif btn-outline-light" href="{{ route('web.detail', $listing4->slug) }}">Ver propiedad</a>
-                    </div>
-                  </div>
-                  <div class="float-right mt-3">
-                    <p style="font-weight: 400; margin: 0px; text-align: end">
-                      @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing4->address)))) @endphp
-                    </p>
-                    <p>{{ $bedroom4 }} dormitorios | {{ $bathroom4 }} baños | {{ $listing4->construction_area}} m<sup>2</sup></p>
-                  </div>
-                </div> --}}
               </div>
               <button style="height: 50px; margin-top: 25%" class="carousel-control-prev btn" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
                 {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> --}}
@@ -496,45 +349,6 @@
                   </a>
                 </div>
               @endforeach
-                {{-- <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
-                  <a style="color: #000000" href="{{ route('web.detail', $listing2->slug) }}">
-                    <div class="position-relative">
-                      <img src="{{ asset('uploads/listing/600/' . substr($listing2->images, 0, 25) ) }}" class="card-img-top" alt="...">
-                      <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type2[0]->type_title) }}</label>
-                    </div>
-                    <div class="card-body">
-                      <h5 style="margin: 0px" class="card-title">${{ number_format($listing2->property_price) }}</h5>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom2 }} dormitorios | {{ $bathroom2 }} baños | {{ $listing2->construction_area}} m<sup>2</sup></p>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ str_replace(",", " |", $listing2->address) }}</p>
-                    </div>
-                  </a>
-                </div> --}}
-                {{-- <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
-                  <a style="color: #000000" href="{{ route('web.detail', $listing3->slug) }}">
-                    <div class="position-relative">
-                      <img src="{{ asset('uploads/listing/600/' . substr($listing3->images, 0, 25) ) }}" class="card-img-top" alt="...">
-                      <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type3[0]->type_title) }}</label>
-                    </div>
-                    <div class="card-body">
-                      <h5 style="margin: 0px" class="card-title">${{ number_format($listing3->property_price) }}</h5>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom3 }} dormitorios | {{ $bathroom3 }} baños | {{ $listing3->construction_area}} m<sup>2</sup></p>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{  str_replace(",", " |", $listing3->address) }}</p>
-                    </div>
-                  </a>
-                </div> --}}
-                {{-- <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
-                  <a style="color: #000000" href="{{ route('web.detail', $listing4->slug) }}">
-                    <div class="position-relative">
-                      <img src="{{ asset('uploads/listing/600/' . substr($listing4->images, 0, 25) ) }}" class="card-img-top" alt="...">
-                      <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type4[0]->type_title) }}</label>
-                    </div>
-                    <div class="card-body">
-                      <h5 style="margin: 0px" class="card-title">${{ number_format($listing4->property_price) }}</h5>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom4 }} dormitorios | {{ $bathroom4 }} baños | {{ $listing4->construction_area}} m<sup>2</sup></p>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{  str_replace(",", " |", $listing4->address) }}</p>
-                    </div>
-                  </a>
-                </div> --}}
             </div>
           @endif
           <div class="d-flex justify-content-center mt-3">
