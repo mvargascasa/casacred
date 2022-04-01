@@ -260,6 +260,9 @@
     </div>
 
       @php
+
+          $listings = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1561)->orWhere('product_code', 1658)->orWhere('product_code', 1650)->orWhere('product_code', 1621)->get();
+
           $listing1 = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1661)->first();
           $listing2 = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1658)->first();
           $listing3 = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1650)->first();
@@ -342,29 +345,49 @@
         <div style="margin-left: auto; margin-right: auto">
           <p style="font-size: 20px" class="mt-5 mb-5 text-center">Propiedades destacadas</p>
           @if ($ismobile)
-            <div id="carouselExampleFade" class="carousel slide carousel-fade ml-3 mr-3" data-bs-ride="carousel">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade ml-3 mr-3 position-relative" data-bs-ride="carousel">
+              <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; bottom: 50px !important;">
+                @foreach ($listings as $listing)
+                  <li data-bs-target="#carouselExampleFade" data-bs-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : ''}}"></li>  
+                @endforeach
+              </ol>
               <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <div class="position-relative">
-                    <img style="filter: brightness(80%)" src="{{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }}" class="d-block w-100" alt="...">
-                    <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px; @endif">
-                      <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active"></li>
-                      <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
-                      <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2"></li>
-                      <li data-bs-target="#carouselExampleFade" data-bs-slide-to="3"></li>
-                    </ol>
-                    <div class="position-absolute" style="@if($ismobile) bottom: 5px; right: 5px; @else bottom: 10px; right: 10px; @endif">
-                      <a class="btn @if($ismobile) btn-sm @endif btn-outline-light" href="{{ route('web.detail', $listing1->slug) }}">Ver propiedad</a>
+                @foreach ($listings as $listing)
+                  <div class="carousel-item {{ $loop->first ? 'active' : ' '}}">
+                    {{-- {{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }} --}}
+                    <div class="position-relative">
+                      <img style="filter: brightness(80%)" src="{{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }}" class="d-block w-100" alt="...">
+                      <div class="position-absolute" style="bottom: 5px; right: 5px;">
+                        <a class="btn btn-sm btn-outline-light" href="{{ route('web.detail', $listing->slug) }}">Ver propiedad</a>
+                      </div>
+                    </div>
+                    <div class="float-right mt-3">
+                      <p style="font-weight: 400; margin: 0px; text-align: end">
+                        @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing->address)))) @endphp
+                      </p>
+                      @php
+                          $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
+                          $bathroom=0;
+                          
+                          if(!empty($listing->heading_details)){
+                            $allheadingdeatils=json_decode($listing->heading_details); 
+                            foreach($allheadingdeatils as $singleedetails){ 
+                              unset($singleedetails[0]);								
+                              for($i=1;$i<=count($singleedetails);$i++){ 
+                                if($i%2==0){  
+                                  if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
+                                  if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];									  
+                                }								   
+                              }								
+                            $i++;
+                            }
+                          }
+                      @endphp
+                      <p style="margin: 0px">{{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif | {{ $bathroom }} @if($bathroom > 1) baños @else baño @endif | {{ $listing->construction_area}} m<sup>2</sup></p>
                     </div>
                   </div>
-                  <div class="float-right mt-3">
-                    <p style="font-weight: 400; margin: 0px; text-align: end">
-                      @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing1->address)))) @endphp
-                    </p>
-                    <p style="margin: 0px">{{ $bedroom1 }} dormitorios | {{ $bathroom1 }} baños | {{ $listing1->construction_area}} m<sup>2</sup></p>
-                  </div>
-                </div>
-                <div class="carousel-item">
+                @endforeach
+                {{-- <div class="carousel-item">
                   <div class="position-relative">
                     <img style="filter: brightness(80%)" src="{{ asset('uploads/listing/600/' . substr($listing2->images, 0, 25) ) }}" class="d-block w-100" alt="...">
                       <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
@@ -383,8 +406,8 @@
                     </p>
                     <p style="margin: 0px">{{ $bedroom2 }} dormitorios | {{ $bathroom2 }} baños | {{ $listing2->construction_area}} m<sup>2</sup></p>
                   </div>
-                </div>
-                <div class="carousel-item">
+                </div> --}}
+                {{-- <div class="carousel-item">
                   <div class="position-relative">
                     <img style="filter: brightness(80%)" src="{{ asset('uploads/listing/600/' . substr($listing3->images, 0, 25) ) }}" class="d-block w-100" alt="...">
                       <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
@@ -403,8 +426,8 @@
                     </p>
                     <p>{{ $bedroom3 }} dormitorios | {{ $bathroom3 }} baños | {{ $listing3->construction_area}} m<sup>2</sup></p>
                   </div>
-                </div>
-                <div class="carousel-item">
+                </div> --}}
+                {{-- <div class="carousel-item">
                   <div class="position-relative">
                     <img style="filter: brightness(80%)" src="{{ asset('uploads/listing/600/' . substr($listing4->images, 0, 25) ) }}" class="d-block w-100" alt="...">
                       <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; @if($ismobile) margin-bottom: 0px !important; @else margin-bottom: 10px @endif">
@@ -423,7 +446,7 @@
                     </p>
                     <p>{{ $bedroom4 }} dormitorios | {{ $bathroom4 }} baños | {{ $listing4->construction_area}} m<sup>2</sup></p>
                   </div>
-                </div>
+                </div> --}}
               </div>
               <button style="height: 50px; margin-top: 25%" class="carousel-control-prev btn" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
                 {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> --}}
