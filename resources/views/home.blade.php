@@ -215,7 +215,7 @@
            }
          }
     @endphp
-        <div id="carouselExampleFade" class="carousel slide carousel-fade"  data-bs-ride="carousel" data-bs-interval="4000">
+        <div id="carouselExampleFadeBanner" class="carousel slide carousel-fade"  data-bs-ride="carousel" data-bs-interval="4000">
           <div class="carousel-inner">
             <div class="carousel-item active" style="position: relative">
               <img class="img-fluid" style="filter: brightness(50%); width: 100vw; height: 48vw" src="{{ asset('img/banner.webp') }}" alt=""> 
