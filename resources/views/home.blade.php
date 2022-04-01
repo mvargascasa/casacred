@@ -489,11 +489,11 @@
                     </div>
                   </a>
                 </div>
-                <div class="d-flex justify-content-center mt-3">
-                  <a style="background-color: #2c3144; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 13px" class="btn" href="{{ route('web.index') }}">Ver todas las propiedades <i style="color: #fcc62e" class="fas fa-long-arrow-alt-right"></i></a>
-              </div>
             </div>
           @endif
+          <div class="d-flex justify-content-center mt-3">
+            <a style="background-color: #2c3144; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 13px" class="btn" href="{{ route('web.index') }}">Ver todas las propiedades <i style="color: #fcc62e" class="fas fa-long-arrow-alt-right"></i></a>
+          </div>
         </div>
 
         <div data-aos="zoom-out" class="position-relative d-flex justify-content-center align-items-center mt-5 mb-5">
