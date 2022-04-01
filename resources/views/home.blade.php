@@ -187,9 +187,6 @@
 @endsection
 
 @section('content')
-    <section id="prisection" style="background-size: cover;background-position: left top; width: 100%; background-repeat: no-repeat; background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5))">
-    </section>
-
     @php
         $listing = \App\Models\Listing::where('product_code', 1503)->first();
         $image = explode("|", $listing->images);
@@ -352,7 +349,7 @@
         <div class="row mr-2 ml-2 mb-4">
             <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
-                <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home2.jpg') }}" alt="">
+                <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home2.webp') }}" alt="">
                 <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size: 14px">
                   LA CASA DE SUS SUEÑOS AQUÍ
                 </div>
@@ -370,7 +367,7 @@
             </div>
             <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
-                <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home3.jpg') }}" alt="">
+                <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home3.webp') }}" alt="">
                 <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size:14px">
                   AVALÚOS PARA TODO EL ECUADOR
                 </div>
@@ -388,7 +385,7 @@
             </div>
             <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
-                <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home4.jpg') }}" alt="">
+                <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home4.webp') }}" alt="">
                 <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size: 14px">
                   SU PROPIEDAD EN BUENAS MANOS
                 </div>
@@ -406,7 +403,7 @@
             </div>
             <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
               <div class="position-relative d-flex justify-content-center">
-                <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home5.jpg') }}" alt="">
+                <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home5.webp') }}" alt="">
                 <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size: 14px">
                   RÁPIDOS Y EFECTIVOS
                 </div>
@@ -639,8 +636,7 @@
 </script>
 <script>
     window.addEventListener('load', (event) => {
-        document.getElementById('prisection').style.backgroundImage = "url('img/home1.jpg')";
-        document.getElementById('secondsection').style.backgroundImage = "url('img/imgbannermiddle.jpg')";
+        document.getElementById('secondsection').style.backgroundImage = "url('img/imgbannermiddle.webp')";
     });
     
     const selProvince = document.getElementById('selProvince');
