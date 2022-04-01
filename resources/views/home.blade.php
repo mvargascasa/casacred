@@ -181,6 +181,11 @@
     #secondsection{
       filter: brightness(60%);
     }
+    .carousel-fade .carousel-item {
+      opacity: 1;
+      transition-duration: .3s;
+      transition-property: 0;
+    }
     </style>
     @livewireStyles
 @endsection
@@ -199,7 +204,7 @@
          if(!empty($listing->heading_details)){
            $allheadingdeatils=json_decode($listing->heading_details); 
            foreach($allheadingdeatils as $singleedetails){ 
-             unset($singleedetails[0]);								
+             unset($singleedetails[0]);				
              for($i=1;$i<=count($singleedetails);$i++){ 
                if($i%2==0){  
                  if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
@@ -210,48 +215,26 @@
            }
          }
     @endphp
-    
-    <div style="position: relative"> 
-        <img width="100%" style="filter: brightness(50%)" src="@if($ismobile) {{ asset('img/IMG_628-5fc521047b0c7-mobile.jpg') }} @else {{ asset('img/IMG_628-5fc521047b0c7.jpg') }} @endif" alt=""> 
-        <div id="parentbuscador" style="position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
-            <h3 id="txttitlebanner" class="text-white">¿QUÉ TIPO DE INMUEBLE ESTÁS BUSCANDO?</h3>
-            <div id="formtopsearch">
-              <form action="{{ route('web.index') }}" method="GET">
-                <div class="btn-group pb-2">
-                  <input type="radio" class="btn-check" name="category" id="ftop_category_0" autocomplete="off" value="en-venta">
-                  <label style="border: none; border-radius: 0px;" class="btn btn-outline-danger" for="ftop_category_0" style="width:100px;font-size: 14px">VENTA</label>
-                  
-                  <input type="radio" class="btn-check" name="category" id="ftop_category_1" autocomplete="off" value="alquilar">
-                  <label style="border:none; border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_1" style="width:100px;font-size: 14px">ALQUILER</label>
-                  
-                  <input type="radio" class="btn-check" name="category" id="ftop_category_2" autocomplete="off" value="proyectos">
-                  <label style="border: none; border-radius: 0px" class="btn btn-outline-danger" for="ftop_category_2" style="width:100px;font-size: 14px">PROYECTO</label>
-                </div>
-                <div class="input-group">
-                  {{-- onkeypress="if(event.keyCode==13)document.getElementById('formtopsearch').submit()" --}}
-                  <input type="text" id="ftop_txt" name="searchtxt" class="form-control" style="background-color:rgba(0, 0, 0, 0); border-radius: 0px; color: #ffffff" placeholder="Buscar por dirección, ciudad, código">
-                  <span id="basic-addon2">
-                    <button type="submit" class="btn btn-outline-light" style="border-radius: 0px 5px 5px 0px">
-                      <i class="far fa-search"></i>
-                    </button>
-                  </span>
-                </div>
-              </form>
+        <div id="carouselExampleFade" class="carousel slide carousel-fade"  data-bs-ride="carousel" data-bs-interval="4000">
+          <div class="carousel-inner">
+            <div class="carousel-item active" style="position: relative">
+              <img class="img-fluid" style="filter: brightness(50%); width: 100vw; height: 48vw" src="{{ asset('img/banner.webp') }}" alt=""> 
+              @include('layouts.homesearch')
             </div>
-
-            {{-- DIV PARA MOSTRAR EL ICONO DE BUSCAR CUANDO SEA RESPONSIVE --}}
-            <div class="d-flex justify-content-center">
-              <button type="button" data-bs-toggle="modal" data-bs-target="#modalFilters" id="btnsearch" class="btn btn-outline-light" style="display: none; border-radius: 25px; padding: 6px 10px 6px 10px;"><i class="fas fa-search"></i></button>
+            <div class="carousel-item" style="position: relative">
+              <img class="img-fluid" style="filter: brightness(50%); width: 100vw; height: 48vw" src="{{ asset('img/banner1.webp') }}" alt="">
+              @include('layouts.homesearch')
             </div>
-        </div>
-        <div id="infolistingbanner" style="position: absolute; bottom: 25px; right: 40px;">
-          <div class="float-right">
-            <p style="margin: 0px" class="text-white">@php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing->address)))) @endphp</p>
-          </div><br>
-          <p style="margin: 0px; margin-bottom: 5px" class="text-white">{{ $bedroom}} DORMITORIOS | {{ $bathroom }} BAÑOS | {{ $listing->construction_area }} M<sup>2</sup></p>
-        </div>
-    </div>
-
+            <div class="carousel-item" style="position: relative">
+              <img class="img-fluid" style="filter: brightness(50%); width: 100vw; height: 48vw" src="{{ asset('img/banner2.webp') }}" alt="">
+              @include('layouts.homesearch')
+            </div>
+            <div class="carousel-item" style="position: relative">
+              <img class="img-fluid" style="filter: brightness(50%); width: 100vw; height: 48vw" src="{{ asset('img/banner4.webp') }}" alt="">
+              @include('layouts.homesearch')
+            </div>
+          </div>
+        </div> 
       @php
           $listings = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1661)->orWhere('product_code', 1658)->orWhere('product_code', 1650)->orWhere('product_code', 1621)->get();
       @endphp
