@@ -266,8 +266,8 @@
           navbar.classList.remove('fixed-top');
           navbar.classList.add('navbar-light');
           divlogo.style.visibility = "visible";
-          document.getElementById('imglogo').style.width = "55px";
-          document.getElementById('imglogo').style.height = "45px";
+          document.getElementById('imglogo').style.width = "60px";
+          document.getElementById('imglogo').style.height = "50px";
         } else {
           window.onscroll = function() {
           var y = window.scrollY;
