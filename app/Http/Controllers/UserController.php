@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function __construct()    {    
         $this->middleware(function ($request, $next) {
-            if (Auth::id()==123) return $next($request);
+            if (Auth::id()==123 || Auth::id()==147) return $next($request);
             else return redirect()->route('admin.index');
         });           
                
