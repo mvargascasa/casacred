@@ -328,7 +328,7 @@
             </div>
           @endif
           <div class="d-flex justify-content-center mt-3">
-            <a style="background-color: #2c3144; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 19px" class="btn" href="{{ route('web.index') }}">Ver todas <i style="color: #fcc62e" class="fas fa-long-arrow-alt-right"></i></a>
+            <a style="background-color: #2c3144; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 18px" class="btn" href="{{ route('web.index') }}">Ver todas <i style="color: #fcc62e" class="fas fa-long-arrow-alt-right"></i></a>
           </div>
         </div>
 
