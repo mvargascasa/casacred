@@ -1,5 +1,5 @@
 <div id="parentbuscador" style="position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
-    <h3 id="txttitlebanner" class="text-white">¿QUÉ TIPO DE INMUEBLE ESTÁS BUSCANDO?</h3>
+    <h3 id="txttitlebanner" class="text-white">¿QUÉ TIPO DE INMUEBLE ESTÁ BUSCANDO?</h3>
     <div id="formtopsearch">
       <form action="{{ route('web.index') }}" method="GET">
         <div class="btn-group pb-2">

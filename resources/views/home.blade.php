@@ -233,7 +233,7 @@
       @endphp
 
         <div style="margin-left: auto; margin-right: auto">
-          <p style="font-size: 20px" class="mt-5 mb-5 text-center">Propiedades destacadas</p>
+          <p style="font-size: 20px; font-weight: 500" class="mt-5 mb-5 text-center">Propiedades destacadas</p>
           @if ($ismobile)
             <div id="carouselExampleFade" class="carousel slide carousel-fade ml-3 mr-3 position-relative" data-bs-ride="carousel">
               <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; bottom: 50px !important;">
@@ -328,7 +328,7 @@
             </div>
           @endif
           <div class="d-flex justify-content-center mt-3">
-            <a style="background-color: #2c3144; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 13px" class="btn" href="{{ route('web.index') }}">Ver todas las propiedades <i style="color: #fcc62e" class="fas fa-long-arrow-alt-right"></i></a>
+            <a style="background-color: #2c3144; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 19px" class="btn" href="{{ route('web.index') }}">Ver todas <i style="color: #fcc62e" class="fas fa-long-arrow-alt-right"></i></a>
           </div>
         </div>
 
@@ -424,8 +424,8 @@
 
     <div data-aos="flip-down" class="row" style="background-color: #2c3144; padding-top: 2%; padding-bottom: 2%">
         <div class="col-sm-12 text-center text-white mt-4 mb-4">
-            <h5>¿Quieres vender o rentar tu <b style="color: #fcc62e">Propiedad</b>?</h5>
-            <p>Escríbenos y te asesoramos en el proceso</p>
+            <h5>¿Quiere vender o rentar su <b style="color: #fcc62e">Propiedad</b>?</h5>
+            <p>Escríbanos y lo asesoramos en el proceso</p>
             <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn" style="background-color: #fcc62e">INICIAR</button>
         </div>
     </div>
