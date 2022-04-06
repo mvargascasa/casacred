@@ -60,7 +60,7 @@
           </div>
   
           <div class="input-group d-flex mb-3">
-                <select name="ptype" id="ftop_ptype" class="form-control">
+                <select name="ptype" id="ftop_ptype" class="form-control form-select">
                       <option value="">Todas</option>	
                       <option value="23">Casas </option>
                       <option value="24">Departamentos </option>
