@@ -77,7 +77,7 @@
           </div>
         </div>
         <div class="d-flex justify-content-center">
-          <button type="button" data-bs-toggle="modal" data-bs-target="#modalFilters" id="btnsearch" class="btn btn-outline-light" style="display: none; border-radius: 25px; padding: 6px 10px 6px 10px;"><i class="fas fa-search"></i></button>
+          <button type="button" data-bs-toggle="modal" data-bs-target="#modalFilters" id="btnsearch" class="btn btn-outline-light" style="display: none; border-radius: 25px; padding: 6px 10px 6px 10px; background-color: #dc3545; color: #ffffff""><i class="fas fa-search"></i></button>
         </div>
       </form>       
 

@@ -157,10 +157,10 @@
                   <img src="{{asset('casacredito-logo.svg')}}" height="40" alt="">
                   </a>
               <div class="w-100 text-right">
-                  @if(Route::is('web.index') or Route::is('web.detail') ) 
-                      <button type="button"  data-toggle="modal" data-target="#modalSearch" class="btn btn-sm btn-outline-secondary d-sm-block d-md-none">
+                  {{-- @if(Route::is('web.index') or Route::is('web.detail') ) 
+                      <button type="button"  data-bs-toggle="modal" data-bs-target="#modalSearch" class="btn btn-sm btn-outline-secondary d-sm-block d-md-none">
                           Busqueda</button> 
-                  @endif
+                  @endif --}}
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#myNavbar">
                       <span class="navbar-toggler-icon"></span>
                   </button>

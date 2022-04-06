@@ -526,6 +526,7 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog  modal-dialog-centered">
         <form action="{{ route('web.lead.contact') }}" method="POST">
+          @csrf
         <div class="modal-content">
           <div class="modal-header" style="background-color: #dc3545; color: #ffffff">
             <h6 class="modal-title" id="exampleModalLabel">Complete el formulario y nos contactaremos con usted</h6>
