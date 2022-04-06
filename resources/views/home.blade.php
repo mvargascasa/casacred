@@ -170,7 +170,7 @@
     }
     .user-box input:focus ~ label,
     .user-box input: ~ label {
-      top: -35px;
+      top: -50px;
       left: 0;
       color: #f40303;
       font-size: 12px;
@@ -181,7 +181,38 @@
     #secondsection{
       filter: brightness(60%);
     }
+    .btn:focus{
+      box-shadow: none !important;
+      outline: none !important;
+    }
     .carousel-item{position:relative;display:none;float:left;width:100%;margin-right:-100%;-webkit-backface-visibility:hidden;backface-visibility:hidden;transition:transform .6s ease-in-out}@media(prefers-reduced-motion:reduce){.carousel-item{transition:none}}.carousel-item-next,.carousel-item-prev,.carousel-item.active{display:block}/*!rtl:begin:ignore*/.active.carousel-item-end,.carousel-item-next:not(.carousel-item-start){transform:translateX(100%)}.active.carousel-item-start,.carousel-item-prev:not(.carousel-item-end){transform:translateX(-100%)}/*!rtl:end:ignore*/.carousel-fade .carousel-item{opacity:0;transition-property:opacity;transform:none}.carousel-fade .carousel-item-next.carousel-item-start,.carousel-fade .carousel-item-prev.carousel-item-end,.carousel-fade .carousel-item.active{z-index:1;opacity:1}.carousel-fade .active.carousel-item-end,.carousel-fade .active.carousel-item-start{z-index:0;opacity:0;transition:opacity 0s .6s}@media(prefers-reduced-motion:reduce){.carousel-fade .active.carousel-item-end,.carousel-fade .active.carousel-item-start{transition:none}}
+    @media screen and (max-width: 990px){
+      .carousel-inner{
+        height: 50vw !important;
+      }
+      #parentBuscador{
+        top: 10% !important;
+        left: 25% !important;
+      }
+    }
+    @media screen and (max-width: 850px){
+      .carousel-inner{
+        height: 100vw !important;
+      }
+      #parentBuscador{
+        top: 0 !important;
+        left: 0 !important;
+      }
+      #txtcasas{
+        display: none !important;
+      }
+      .carousel-inner .row{
+        min-height: 250px !important;
+      }
+      .carousel-inner .row .col-12{
+        width: 425px !important;
+      }
+    }
     </style>
     @livewireStyles
 @endsection
@@ -209,7 +240,7 @@
          }
     @endphp
         <div id="carouselExampleFadeBanner" class="carousel slide carousel-fade"  data-bs-ride="carousel" data-bs-interval="4000">
-          <div class="carousel-inner">
+          <div class="carousel-inner" style="height: 40vw">
             <div class="carousel-item active" style="position: relative">
               <img class="img-fluid" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 60vw; @else height: 48vw; @endif" src="{{ asset('img/banner.webp') }}" alt=""> 
               @include('layouts.homesearch')
@@ -228,111 +259,70 @@
             </div>
           </div>
         </div> 
-      @php
-          $listings = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1661)->orWhere('product_code', 1658)->orWhere('product_code', 1650)->orWhere('product_code', 1621)->get();
-      @endphp
 
-        <div style="margin-left: auto; margin-right: auto">
-          <p style="font-size: 20px; font-weight: 500" class="mt-5 mb-5 text-center">Propiedades destacadas</p>
-          @if ($ismobile)
-            <div id="carouselExampleFade" class="carousel slide carousel-fade ml-3 mr-3 position-relative" data-bs-ride="carousel">
-              <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; bottom: 50px !important;">
-                @foreach ($listings as $listing)
-                  <li data-bs-target="#carouselExampleFade" data-bs-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : ''}}"></li>  
-                @endforeach
-              </ol>
-              <div class="carousel-inner">
-                @foreach ($listings as $listing)
-                  <div class="carousel-item {{ $loop->first ? 'active' : ' '}}">
-                    <div class="position-relative">
-                      <img style="filter: brightness(80%)" src="{{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }}" class="d-block w-100" alt="...">
-                      <div class="position-absolute" style="bottom: 5px; right: 5px;">
-                        <a class="btn btn-sm btn-outline-light" href="{{ route('web.detail', $listing->slug) }}">Ver propiedad</a>
-                      </div>
-                    </div>
-                    <div class="float-right mt-3">
-                      <p style="font-weight: 400; margin: 0px; text-align: end">
-                        @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing->address)))) @endphp
-                      </p>
-                      @php
-                          $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
-                          $bathroom=0;
-                          
-                          if(!empty($listing->heading_details)){
-                            $allheadingdeatils=json_decode($listing->heading_details); 
-                            foreach($allheadingdeatils as $singleedetails){ 
-                              unset($singleedetails[0]);								
-                              for($i=1;$i<=count($singleedetails);$i++){ 
-                                if($i%2==0){  
-                                  if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
-                                  if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];									  
-                                }								   
-                              }								
-                            $i++;
-                            }
-                          }
-                      @endphp
-                      <p style="margin: 0px">{{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif | {{ $bathroom }} @if($bathroom > 1) baños @else baño @endif | {{ $listing->construction_area}} m<sup>2</sup></p>
-                    </div>
-                  </div>
-                @endforeach
-              </div>
-              <button style="height: 50px; margin-top: 25%" class="carousel-control-prev btn" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> --}}
-                <span class="visually-hidden"><i style="color: #ffffff;font-weight:bold; font-size: 20px" class="far fa-angle-left"></i></span>
-              </button>
-              <button style="height: 50px; margin-top: 25%" class="carousel-control-next btn" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                {{-- <span class="carousel-control-next-icon" aria-hidden="true"></span> --}}
-                <span class="visually-hidden"><i style="color: #ffffff; font-size: 20px" class="far fa-angle-right"></i></span>
-              </button>
-            </div>
-            @else
-            <div data-aos="zoom-in" class="row justify-content-center">
-              @foreach ($listings as $listing)
-                <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
-                  <a style="color: #000000" href="{{ route('web.detail', $listing->slug) }}">
-                    <div class="position-relative">
-                      {{-- {{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }} --}}
-                      <img width="100%" src="{{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }}" class="card-img-top" alt="...">
-                      @php
-                          $type = DB::table('listing_types')->select('type_title')->where('id', $listing->listingtype)->get();
-                      @endphp
-                      <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type[0]->type_title) }}</label>
-                    </div>
-                    <div class="card-body">
-                      <h5 style="margin: 0px" class="card-title">${{ number_format($listing->property_price) }}</h5>
-                      @php
-                          $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
-                          $bathroom=0;
-                          
-                          if(!empty($listing->heading_details)){
-                            $allheadingdeatils=json_decode($listing->heading_details); 
-                            foreach($allheadingdeatils as $singleedetails){ 
-                              unset($singleedetails[0]);								
-                              for($i=1;$i<=count($singleedetails);$i++){ 
-                                if($i%2==0){  
-                                  if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
-                                  if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];									  
-                                }								   
-                              }								
-                            $i++;
-                            }
-                          }
-                      @endphp
-                      <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif | {{ $bathroom }} @if($bathroom > 1) baños @else baño @endif | {{ $listing->construction_area}} m<sup>2</sup></p>
-                      <p style="font-size: 14px; margin: 0px" class="card-text">@if($listing->slug == "totoracocha-en-venta-casa-nueva-recien-terminada-75579") {{ str_replace(",", " |", ucwords(strtolower($listing->address))) }} @else {{ str_replace(",", " |", $listing->address) }} @endif</p>
-                    </div>
-                  </a>
+        <div class="container pt-5">
+          <p id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 mb-5">SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A SU ALCANCE</p>
+          <div class="row mr-2 ml-2">
+              <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
+                <div class="position-relative d-flex justify-content-center">
+                  <img style="border-radius: 5px;" class="img-fluid hover-image" src="{{ asset('img/CAS-IDEAL.webp') }}" alt="">
                 </div>
-              @endforeach
+                  <div class="text-center mt-5">
+                        <a class="btn cta a-btn-services" href="{{ route('web.propiedades') }}">
+                          <span>Comprar</span>
+                          <svg width="13px" height="10px" viewBox="0 0 13 10">
+                            <path d="M1,5 L11,5"></path>
+                            <polyline points="8 1 12 5 8 9"></polyline>
+                          </svg>
+                        </a>
+                  </div>
+              </div>
+              <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
+                <div class="position-relative d-flex justify-content-center">
+                  <img style="border-radius: 5px;" class="img-fluid hover-image" src="{{ asset('img/VENDA-SU-PROPIEDAD.webp') }}" alt="">
+                </div>
+                  <div class="text-center mt-5">
+                      <button class="btn cta a-btn-services" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-whatever="Vender una propiedad">
+                        <span>Vender</span>
+                        <svg width="13px" height="10px" viewBox="0 0 13 10">
+                          <path d="M1,5 L11,5"></path>
+                          <polyline points="8 1 12 5 8 9"></polyline>
+                        </svg>
+                      </button>
+                  </div>
+              </div>
+              <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
+                <div class="position-relative d-flex justify-content-center">
+                  <img style="border-radius: 5px;" class="img-fluid hover-image" src="{{ asset('img/ALQUILE.webp') }}" alt="">
+                </div>
+                  <div class="text-center mt-5">
+                      <button class="btn cta a-btn-services" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
+                        <span>Alquilar</span>
+                        <svg width="13px" height="10px" viewBox="0 0 13 10">
+                          <path d="M1,5 L11,5"></path>
+                          <polyline points="8 1 12 5 8 9"></polyline>
+                        </svg>
+                      </button>
+                  </div>
+              </div>
+              <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
+                <div class="position-relative d-flex justify-content-center">
+                  <img style="border-radius: 5px;" class="img-fluid hover-image" src="{{ asset('img/CREDITOS.webp') }}" alt="">
+                </div>
+                <div class="text-center mt-5">
+                    <a href="{{ route('web.servicios', 'creditos-en-ecuador') }}" class="btn cta a-btn-services">
+                      <span>Solicitar</span>
+                      <svg width="13px" height="10px" viewBox="0 0 13 10">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                      </svg>
+                    </a>
+                </div>
             </div>
-          @endif
-          <div class="d-flex justify-content-center mt-3">
-            <a style="background-color: #2c3144; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 18px" class="btn" href="{{ route('web.index') }}">Ver todas <i style="color: #fcc62e" class="fas fa-long-arrow-alt-right"></i></a>
           </div>
-        </div>
+      </div>
 
-        <div data-aos="zoom-out" class="position-relative d-flex justify-content-center align-items-center mt-5 mb-5">
+        <div data-aos="zoom-out" class="position-relative d-flex justify-content-center align-items-center mt-4 mb-5">
           <section id="secondsection" style="@if($ismobile) height: 13rem; @else height: 32rem; @endif background-size: cover;background-position: 10% 40%; width: 100%; background-repeat: no-repeat;">
           </section>
           <div class="text-center text-white position-absolute" style="margin-top: 10%">
@@ -344,83 +334,112 @@
           </div>
         </div>
 
-        <div class="container">
-        <p data-aos="fade-up" id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 mb-4">SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A SU ALCANCE</p>
-        <div class="row mr-2 ml-2 mb-4">
-            <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
-              <div class="position-relative d-flex justify-content-center">
-                <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home2.webp') }}" alt="">
-                <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size: 14px">
-                  LA CASA DE SUS SUEÑOS AQUÍ
+
+        
+      @php
+        $listings = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1661)->orWhere('product_code', 1658)->orWhere('product_code', 1650)->orWhere('product_code', 1621)->get();
+      @endphp
+
+    <div style="margin-left: auto; margin-right: auto" class="mb-5">
+      <p style="font-size: 20px; font-weight: 500" class="mt-5 mb-5 text-center">Propiedades destacadas</p>
+      @if ($ismobile)
+        <div id="carouselExampleFade" class="carousel slide carousel-fade ml-3 mr-3 position-relative" data-bs-ride="carousel">
+          <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; bottom: 50px !important;">
+            @foreach ($listings as $listing)
+              <li data-bs-target="#carouselExampleFade" data-bs-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : ''}}"></li>  
+            @endforeach
+          </ol>
+          <div class="carousel-inner">
+            @foreach ($listings as $listing)
+              <div class="carousel-item {{ $loop->first ? 'active' : ' '}}">
+                <div class="position-relative">
+                  <img style="filter: brightness(80%)" src="{{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }}" class="d-block w-100" alt="...">
+                  <div class="position-absolute" style="bottom: 5px; right: 5px;">
+                    <a class="btn btn-sm btn-outline-light" href="{{ route('web.detail', $listing->slug) }}">Ver propiedad</a>
+                  </div>
+                </div>
+                <div class="float-right mt-3">
+                  <p style="font-weight: 400; margin: 0px; text-align: end">
+                    @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing->address)))) @endphp
+                  </p>
+                  @php
+                      $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
+                      $bathroom=0;
+                      
+                      if(!empty($listing->heading_details)){
+                        $allheadingdeatils=json_decode($listing->heading_details); 
+                        foreach($allheadingdeatils as $singleedetails){ 
+                          unset($singleedetails[0]);								
+                          for($i=1;$i<=count($singleedetails);$i++){ 
+                            if($i%2==0){  
+                              if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
+                              if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];									  
+                            }								   
+                          }								
+                        $i++;
+                        }
+                      }
+                  @endphp
+                  <p style="margin: 0px">{{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif | {{ $bathroom }} @if($bathroom > 1) baños @else baño @endif | {{ $listing->construction_area}} m<sup>2</sup></p>
                 </div>
               </div>
-                <div class="text-center mt-3">
-                    <h6 style="margin-bottom: 40px">Quiero comprar una propiedad</h6>
-                      <a href="{{ route('web.index') }}" class="cta a-btn-services">
-                        <span>Comprar</span>
-                        <svg width="13px" height="10px" viewBox="0 0 13 10">
-                          <path d="M1,5 L11,5"></path>
-                          <polyline points="8 1 12 5 8 9"></polyline>
-                        </svg>
-                      </a>
-                </div>
-            </div>
-            <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
-              <div class="position-relative d-flex justify-content-center">
-                <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home3.webp') }}" alt="">
-                <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size:14px">
-                  AVALÚOS PARA TODO EL ECUADOR
-                </div>
-              </div>
-                <div class="text-center mt-3">
-                    <h6 style="margin-bottom: 40px">Quiero vender una propiedad</h6>
-                    <a href="{{ route('web.servicios', 'asesores-bienes-raices') }}" class="cta a-btn-services">
-                      <span>Vender</span>
-                      <svg width="13px" height="10px" viewBox="0 0 13 10">
-                        <path d="M1,5 L11,5"></path>
-                        <polyline points="8 1 12 5 8 9"></polyline>
-                      </svg>
-                    </a>
-                </div>
-            </div>
-            <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
-              <div class="position-relative d-flex justify-content-center">
-                <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home4.webp') }}" alt="">
-                <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size: 14px">
-                  SU PROPIEDAD EN BUENAS MANOS
-                </div>
-              </div>
-                <div class="text-center mt-3">
-                    <h6 style="margin-bottom: 40px">Tengo una propiedad en alquiler</h6>
-                    <a href="#" class="cta a-btn-services">
-                      <span>Alquilar</span>
-                      <svg width="13px" height="10px" viewBox="0 0 13 10">
-                        <path d="M1,5 L11,5"></path>
-                        <polyline points="8 1 12 5 8 9"></polyline>
-                      </svg>
-                    </a>
-                </div>
-            </div>
-            <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
-              <div class="position-relative d-flex justify-content-center">
-                <img style="border-radius: 5px" class="img-fluid hover-image" src="{{ asset('img/home5.webp') }}" alt="">
-                <div class="position-absolute" style="bottom:0; color: #ffffff; margin: auto; font-size: 14px">
-                  RÁPIDOS Y EFECTIVOS
-                </div>
-              </div>
-              <div class="text-center mt-3">
-                  <h6 style="margin-bottom: 40px">Créditos para ecuatorianos en USA</h6>
-                  <a href="{{ route('web.servicios', 'creditos-en-ecuador') }}" class="cta a-btn-services">
-                    <span>Solicitar</span>
-                    <svg width="13px" height="10px" viewBox="0 0 13 10">
-                      <path d="M1,5 L11,5"></path>
-                      <polyline points="8 1 12 5 8 9"></polyline>
-                    </svg>
-                  </a>
-              </div>
+            @endforeach
           </div>
+          <button style="height: 50px; margin-top: 25%" class="carousel-control-prev btn" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> --}}
+            <span class="visually-hidden"><i style="color: #ffffff;font-weight:bold; font-size: 20px" class="far fa-angle-left"></i></span>
+          </button>
+          <button style="height: 50px; margin-top: 25%" class="carousel-control-next btn" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            {{-- <span class="carousel-control-next-icon" aria-hidden="true"></span> --}}
+            <span class="visually-hidden"><i style="color: #ffffff; font-size: 20px" class="far fa-angle-right"></i></span>
+          </button>
         </div>
+        @else
+        <div data-aos="zoom-in" class="row justify-content-center">
+          @foreach ($listings as $listing)
+            <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
+              <a style="color: #000000" href="{{ route('web.detail', $listing->slug) }}">
+                <div class="position-relative">
+                  {{-- {{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }} --}}
+                  <img width="100%" src="{{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }}" class="card-img-top" alt="...">
+                  @php
+                      $type = DB::table('listing_types')->select('type_title')->where('id', $listing->listingtype)->get();
+                  @endphp
+                  <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type[0]->type_title) }}</label>
+                </div>
+                <div class="card-body">
+                  <h5 style="margin: 0px" class="card-title">${{ number_format($listing->property_price) }}</h5>
+                  @php
+                      $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
+                      $bathroom=0;
+                      
+                      if(!empty($listing->heading_details)){
+                        $allheadingdeatils=json_decode($listing->heading_details); 
+                        foreach($allheadingdeatils as $singleedetails){ 
+                          unset($singleedetails[0]);								
+                          for($i=1;$i<=count($singleedetails);$i++){ 
+                            if($i%2==0){  
+                              if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
+                              if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];									  
+                            }								   
+                          }								
+                        $i++;
+                        }
+                      }
+                  @endphp
+                  <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif | {{ $bathroom }} @if($bathroom > 1) baños @else baño @endif | {{ $listing->construction_area}} m<sup>2</sup></p>
+                  <p style="font-size: 14px; margin: 0px" class="card-text">@if($listing->slug == "totoracocha-en-venta-casa-nueva-recien-terminada-75579") {{ str_replace(",", " |", ucwords(strtolower($listing->address))) }} @else {{ str_replace(",", " |", $listing->address) }} @endif</p>
+                </div>
+              </a>
+            </div>
+          @endforeach
+        </div>
+      @endif
+      <div class="d-flex justify-content-center mt-3">
+        <a style="background-color: #2c3144; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 18px" class="btn" href="{{ route('web.propiedades') }}">Ver todas <i style="color: #fcc62e" class="fas fa-long-arrow-alt-right"></i></a>
+      </div>
     </div>
+
 
     <div data-aos="flip-down" class="row" style="background-color: #2c3144; padding-top: 2%; padding-bottom: 2%">
         <div class="col-sm-12 text-center text-white mt-4 mb-4">
@@ -504,7 +523,7 @@
       <div class="modal-dialog  modal-dialog-centered">
         <form action="{{ route('web.lead.contact') }}" method="POST">
         <div class="modal-content">
-          <div class="modal-header" style="background-color: #fec41a">
+          <div class="modal-header" style="background-color: #8b0000; color: #ffffff">
             <h6 class="modal-title" id="exampleModalLabel">Complete el formulario y nos contactaremos con usted</h6>
             <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="far fa-times"></i></button>
           </div>
@@ -523,17 +542,184 @@
                 <label for="email" class="mb-2 text-muted">Correo electrónico</label>
               </div>
               <div class="form-group mb-1 user-box">
-                <input style="border-radius: 10px 10px 10px 10px" type="text" name="mensaje" id="mensaje" class="form-control" required>
+                <textarea style="border-radius: 10px 10px 10px 10px" name="mensaje" id="mensaje" rows="3" class="form-control" required></textarea>
                 <label for="mensaje" class="mb-2 text-muted">Comentario</label>
               </div>
           </div>
           <div class="modal-footer justify-content-center">
-            <button type="submit" class="btn" style="background-color: #fec41a">Enviar</button>
+            <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff">Enviar</button>
           </div>
         </div>
         </form>
       </div>
     </div>
+
+    @php
+      $provinces = DB::table('info_states')->where('country_id', 63)->get();
+    @endphp
+
+    {{-- modal para solicitar servicio vender --}}
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #8b0000; color: #ffffff">
+            <h5 class="modal-title" id="exampleModalLongTitle">Vender una propiedad</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group mt-2">
+              <label for="name">Nombre y Apellido</label>
+              <input type="text" name="name" id="name" class="form-control" required>
+            </div>
+            <div class="form-group mt-2">
+              <label for="phone">Teléfono</label>
+              <input type="number" name="phone" id="phone" class="form-control" required>
+            </div>
+            <div class="form-group mt-2">
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            <div class="form-group mt-2">
+              <label for="tipopropiedad">Tipo de propiedad</label>
+              @php
+                $types = DB::table('listing_types')->get();
+              @endphp
+              <select class="form-select" name="tipopropiedad">
+                <option value="">Seleccione</option>
+                @foreach ($types as $type)
+                  <option value="{{$type->type_title}}">{{$type->type_title}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group mt-2 d-flex">
+              <div class="mr-1" style="width: 100%">
+                <label for="province">Provincia</label>
+                <select name="province" class="form-select" id="selProvince">
+                  <option value="">Seleccione</option>
+                  @foreach ($provinces as $province)
+                  <option value="{{ $province->name}}" data-id="{{ $province->id}}">{{ $province->name }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div style="width: 100%">
+                <label for="city">Ciudad</label>
+                <select class="form-select" name="city" id="selCity">
+                  <option value="">Seleccione</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn" style="background: #8b0000; color: #ffffff">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{-- termina modal --}}
+
+    {{-- modal para servicio alquiler --}}
+    <div class="modal fade" id="modalAlquiler" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #dc3545; color: #ffffff">
+            <h5 class="modal-title" id="exampleModalLongTitle">Alquilar una propiedad</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div>
+            <div class="d-flex mt-2 mr-3 ml-3">
+              <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+              <label class="btn btn-outline-secondary btn-block" for="success-outlined" style="border-radius: 0px" onclick="showbuscar(this);">Buscar una propiedad</label>
+              <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+              <label class="btn btn-outline-secondary btn-block" for="danger-outlined" style="border-radius: 0px" onclick="showalquilar(this);">Poner en alquiler</label>
+            </div>
+          </div>
+          <div id="body1">
+            <form action="{{ route('web.lead.contact')}}" method="POST">
+              @csrf
+            <div class="modal-body">
+              <input type="hidden" name="interest" id="interest" value="Busca Alquiler">
+              <div class="form-group">
+                <label for="">Nombre y Apellido</label>
+                <input type="text" id="nameb1" name="name" class="form-control" required>
+              </div>
+              <div class="form-group mt-2">
+                <label for="">Teléfono</label>
+                <input type="number" id="phoneb1" name="phone" class="form-control" required>
+              </div>
+              <div class="form-group mt-2">
+                  <label for="state">Provincia</label>
+                  <select class="form-select" name="state" id="selProvinceb" required>
+                    <option value="">Seleccione</option>
+                    @foreach ($provinces as $province)
+                    <option value="{{ $province->name}}" data-id="{{ $province->id}}">{{ $province->name }}</option>
+                    @endforeach
+                  </select>
+              </div>
+              <div class="form-group mt-2">
+                  <label for="city">Ciudad</label>
+                  <select class="form-select" name="city" id="selCityb" required>
+                    <option value="">Seleccione</option>
+                  </select>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <button type="submit" class="btn" style="background-color: #dc3545; color: #ffffff">Ver opciones</button>
+            </div>
+            </form>
+          </div>
+          <div id="body2" style="display: none">
+            <form action="{{ route('web.lead.contact') }}" method="POST">
+              @csrf
+            <div class="modal-body">
+              <input type="hidden" name="interest" value="Poner en Alquiler">
+              <div class="form-group">
+                <label for="">Nombre y Apellido</label>
+                <input type="text" class="form-control" name="name" required>
+              </div>
+              <div class="form-group mt-2">
+                <label for="">Teléfono</label>
+                <input type="number" class="form-control" name="phone" required>
+              </div>
+              <div class="form-group mt-2">
+                <label for="">Tipo de propiedad</label>
+                <select class="form-select" name="type" id="">
+                  <option value="">Seleccione</option>
+                  @foreach ($types as $type)
+                      <option value="{{ $type->type_title }}">{{ $type->type_title }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="form-group mt-2 d-flex">
+                <div class="mr-1" style="width: 100%">
+                  <label for="province">Provincia</label>
+                  <select name="province" class="form-select" id="selProvincec">
+                    <option value="">Seleccione</option>
+                    @foreach ($provinces as $province)
+                    <option value="{{ $province->name}}" data-id="{{ $province->id}}">{{ $province->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div style="width: 100%">
+                  <label for="city">Ciudad</label>
+                  <select class="form-select" name="city" id="selCityc">
+                    <option value="">Seleccione</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <button type="submit" class="btn btn-primary" style="background-color: #dc3545; color: #ffffff">Enviar</button>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{-- termina modal --}}
 
     {{-- DIV PARA MODAL DE FILTROS DE BUSQUEDA --}}
     <div class="modal fade" id="modalFilters" tabindex="-1" aria-labelledby="modalFiltersLabel" aria-hidden="true">
@@ -642,6 +828,12 @@
     const selProvince = document.getElementById('selProvince');
     const selCity = document.getElementById('selCity');
 
+    const selProvinceb = document.getElementById('selProvinceb');
+    const selCityb = document.getElementById('selCityb');
+
+    const selProvincec = document.getElementById('selProvincec');
+    const selCityc = document.getElementById('selCityc');
+
     selProvince.addEventListener("change", async function() {
       selCity.options.length = 0;
     let id = selProvince.options[selProvince.selectedIndex].dataset.id;
@@ -660,15 +852,51 @@
     });
   });
 
-  const showbtnview = (element) => {
-    let btn = document.querySelector("." + element.id);
-    btn.style.display = "block";
-    btn.style.animation = "fade-in-move-left 1s";
-  }
-  const hidebtnview = (element) => {
-    let btn = document.querySelector("." + element.id);
-    btn.style.display = "none";
-  }
+  selProvinceb.addEventListener("change", async function() {
+      selCityb.options.length = 0;
+    let id = selProvinceb.options[selProvinceb.selectedIndex].dataset.id;
+    const response = await fetch("{{url('getcities')}}/"+id );
+    const cities = await response.json();
+    
+    var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode('Elige Ciudad') );
+          opt.value = '';
+          selCityb.appendChild(opt);
+    cities.forEach(city => {
+          var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode(city.name) );
+          opt.value = city.name;
+          selCityb.appendChild(opt);
+    });
+  });
+
+  selProvincec.addEventListener("change", async function() {
+      selCityc.options.length = 0;
+    let id = selProvincec.options[selProvincec.selectedIndex].dataset.id;
+    const response = await fetch("{{url('getcities')}}/"+id );
+    const cities = await response.json();
+    
+    var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode('Elige Ciudad') );
+          opt.value = '';
+          selCityc.appendChild(opt);
+    cities.forEach(city => {
+          var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode(city.name) );
+          opt.value = city.name;
+          selCityc.appendChild(opt);
+    });
+  });
+
+  function showbuscar(btn){
+        document.getElementById('body1').style.display = "block";
+        document.getElementById('body2').style.display = "none";
+    }
+
+    function showalquilar(btn){
+        document.getElementById('body1').style.display = "none";
+        document.getElementById('body2').style.display = "block";
+    }
 </script>
   @livewireScripts
   @stack('scripts')

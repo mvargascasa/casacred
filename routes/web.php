@@ -9,9 +9,8 @@ use App\Http\Controllers\WebController;
 use App\Models\Listing;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [WebController::class,'index'])->name('web.index');
-Route::get('/propiedades', [WebController::class,'propiedades'])->name('web.propiedades');
-
+Route::get('/', [WebController::class,'home'])->name('web.index');
+Route::get('/propiedades', [WebController::class,'index'])->name('web.propiedades');
 //NUEVAS RUTAS
 Route::get('/home', [WebController::class, 'home'])->name('web.home');
 Route::get('/creditos', [WebController::class, 'creditos'])->name('web.creditos');

@@ -92,7 +92,7 @@ if(strpos($actual_link, 'localhost') === false){
 
           <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
               <ul class="navbar-nav ml-auto flex-nowrap px-4">
-                <li class="nav-item pr-2"> <a class="nav-link @if(Route::is('web.index') or Route::is('web.detail')) active @endif" href="{{route('web.index')}}">Compra</a> </li>
+                <li class="nav-item pr-2"> <a class="nav-link @if(Route::is('web.propiedades') or Route::is('web.detail')) active @endif" href="{{route('web.propiedades')}}">Compra</a> </li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/asesores-bienes-raices')) active @endif" href="{{route('web.servicios','asesores-bienes-raices')}}">Vende</a> </li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/creditos-en-ecuador')) active @endif" href="{{route('web.servicios','creditos-en-ecuador')}}">Creditos</a> </li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/construye')) active @endif" href="{{route('web.servicios','construye')}}">Construye</a> </li>

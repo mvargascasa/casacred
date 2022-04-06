@@ -99,18 +99,10 @@
         background-color: #3b4255 !important;
         color: #ffffff !important;
       }
-      .navbar-brand{
-        transition: 1s;
-        visibility: hidden;
-      }
-      .divlogocenter{
-        transition: 1s;
-        visibility: hidden;
-      }
     </style>
 </head>
 <body style="background-color: #ffffff">
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+    {{-- <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
         <div class="container-fluid">
           <a class="navbar-brand " href="{{route('web.index')}}">
             <img id="imglogo" width="80px" height="55px" src="{{asset('img/logo_actualizado.png')}}" height="40" alt="">
@@ -129,15 +121,9 @@
               <li class="nav-item">
                 <a class="nav-link item-nav-link" href="{{route('web.servicios','nosotros')}}">Nosotros</a>
               </li>
-              {{-- <li class="nav-item">
-                <a class="nav-link item-nav-link" href="#">Blog</a>
-              </li> --}}
               <li class="nav-item">
                 <a class="nav-link item-nav-link" href="{{route('web.notariausa')}}">Notaria USA</a>
               </li>
-              {{-- <li class="nav-item">
-                <a class="nav-link btn" style="background-color: #fec41a; color: #ffffff" href="#">Proyectos Nuevos</a>
-              </li> --}}
             </ul>
             <div class="divlogocenter" style="margin-left: 20%">
               <a href="{{ route('web.home') }}">
@@ -156,7 +142,64 @@
             </div>
           </div>
         </div>
+    </nav> --}}
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light navbar-cc bg-white fixed-top" style="z-index: 100;">
+
+          <div class="d-flex flex-grow-1">
+              <span class="w-100 d-lg-none d-block pl-4">
+                  <a class="navbar-brand" href="{{route('web.index')}}">
+                      <img src="{{asset('casacredito-logo.svg')}}" height="40" alt="">
+                      </a>
+              </span>
+
+              <a class="navbar-brand d-none d-lg-inline-block px-4" href="{{route('web.index')}}">
+                  <img src="{{asset('casacredito-logo.svg')}}" height="40" alt="">
+                  </a>
+              <div class="w-100 text-right">
+                  @if(Route::is('web.index') or Route::is('web.detail') ) 
+                      <button type="button"  data-toggle="modal" data-target="#modalSearch" class="btn btn-sm btn-outline-secondary d-sm-block d-md-none">
+                          Busqueda</button> 
+                  @endif
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+                      <span class="navbar-toggler-icon"></span>
+                  </button>
+              </div>
+          </div>
+
+        <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
+            <ul class="navbar-nav ml-auto flex-nowrap px-4">
+              <li class="nav-item pr-2"> <a class="nav-link @if(Route::is('web.propiedades') or Route::is('web.detail')) active @endif" href="{{route('web.propiedades')}}">Compra</a> </li>
+              <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/asesores-bienes-raices')) active @endif" href="{{route('web.servicios','asesores-bienes-raices')}}">Vende</a> </li>
+              <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/creditos-en-ecuador')) active @endif" href="{{route('web.servicios','creditos-en-ecuador')}}">Creditos</a> </li>
+              <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/construye')) active @endif" href="{{route('web.servicios','construye')}}">Construye</a> </li>
+              <li class="nav-item pr-2"> <a class="nav-link @if(Route::is('web.notariausa') ) active @endif" href="{{route('web.notariausa')}}">Notaría USA</a> </li>
+              <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/nosotros')) active @endif" href="{{route('web.servicios','nosotros')}}">Nosotros</a> </li>
+              
+                      <!-- Authentication Links -->
+                      @guest
+                          <li class="nav-item">  <a class="nav-link mr-6" href="{{ route('login') }}">{{ __('INGRESAR') }}</a>   </li>
+                      @else
+                          <li class="nav-item dropdown" style="z-index: 999">
+                              <a class="nav-link dropdown-toggle" id="navbarDropdown"  role="button" data-toggle="dropdown" aria-expanded="false">
+                                 {{ Auth::user()->name }} 
+                              </a>
+                              <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                  <li><a class="dropdown-item" href="{{route('admin.index')}}">Dashboard</a><div class="dropdown-divider"></div></li>
+                                  <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); 
+                                     document.getElementById('logout-form').submit();"> {{ __('Logout') }} </a></li>
+                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                      @csrf
+                                  </form>
+                              </ul>
+                          </li>
+
+                      @endguest
+
+            </ul>
+        </div>
     </nav>
+    </header>
 
     @yield('content')
 
@@ -249,58 +292,58 @@
     <script>
       var navbar = document.querySelector('.navbar');
       var divlogo = document.querySelector('.navbar-brand');
-      var divlogocenter = document.querySelector('.divlogocenter');
+      //var divlogocenter = document.querySelector('.divlogocenter');
 
       window.addEventListener('load', function(){
-        divlogocenter.style.visibility = "visible";
-        divlogocenter.style.animation = "fade-in-move-down 1s";
+        //divlogocenter.style.visibility = "visible";
+        //divlogocenter.style.animation = "fade-in-move-down 1s";
       });
 
       let details = navigator.userAgent;
       let regexp = /android|iphone|kindle|ipad/i;
       var screenWidth = screen.width
   
-      let isMobileDevice = regexp.test(details);
-        if (screenWidth <= 991) {
-          navbar.classList.remove('navbar-dark');
-          navbar.classList.remove('fixed-top');
-          navbar.classList.add('navbar-light');
-          divlogo.style.visibility = "visible";
-          document.getElementById('imglogo').style.width = "60px";
-          document.getElementById('imglogo').style.height = "50px";
-        } else {
-          window.onscroll = function() {
-          var y = window.scrollY;
-          if(y > 100){
-            changeAppearance();
-          } else {
-            returnAppearance();
-          }
-        };
-      }
+      // let isMobileDevice = regexp.test(details);
+      //   if (screenWidth <= 991) {
+      //     navbar.classList.remove('navbar-dark');
+      //     navbar.classList.remove('fixed-top');
+      //     navbar.classList.add('navbar-light');
+      //     divlogo.style.visibility = "visible";
+      //     document.getElementById('imglogo').style.width = "60px";
+      //     document.getElementById('imglogo').style.height = "50px";
+      //   } else {
+      //     window.onscroll = function() {
+      //     var y = window.scrollY;
+      //     if(y > 100){
+      //       changeAppearance();
+      //     } else {
+      //       returnAppearance();
+      //     }
+      //   };
+      // }
 
-      const changeAppearance = () => {
-        navbar.classList.remove('navbar-dark');
-        navbar.classList.add('bg-light');
-        navbar.style.transition = "0.5s";
+      // const changeAppearance = () => {
+      //   navbar.classList.remove('navbar-dark');
+      //   navbar.classList.add('bg-light');
+      //   navbar.style.transition = "0.5s";
 
-        divlogo.style.visibility = "visible";
-        divlogo.style.animation = "fade-in-move-left 1s";
+      //   divlogo.style.visibility = "visible";
+      //   divlogo.style.animation = "fade-in-move-left 1s";
 
-        divlogocenter.style.visibility = "hidden";
-        divlogocenter.style.animation = "fade-in-move-up 1s";
-      }
+      //   divlogocenter.style.visibility = "hidden";
+      //   divlogocenter.style.animation = "fade-in-move-up 1s";
+      // }
 
-      const returnAppearance = () => {
-        navbar.classList.add('navbar-dark');
-        navbar.classList.remove('bg-light');
+      // const returnAppearance = () => {
+      //   navbar.classList.add('navbar-dark');
+      //   navbar.classList.remove('bg-light');
 
-        divlogo.style.animation = "fade-in-move-right 1s";
-        divlogo.style.visibility = "hidden";
+      //   divlogo.style.animation = "fade-in-move-right 1s";
+      //   divlogo.style.visibility = "hidden";
      
-        divlogocenter.style.visibility = "visible";
-        divlogocenter.style.animation = "fade-in-move-down 1s";
-      }
+      //   divlogocenter.style.visibility = "visible";
+      //   divlogocenter.style.animation = "fade-in-move-down 1s";
+      // }
     </script>
 </body>
 </html>
