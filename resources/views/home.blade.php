@@ -264,7 +264,7 @@
           </div>
         </div> 
 
-        <div class="container @if($mobile) pt-4 @else pt-5 @endif">
+        <div class="container @if($ismobile) pt-4 @else pt-5 @endif">
           <p id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 mb-5">SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A SU ALCANCE</p>
           <div class="row mr-2 ml-2">
               <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
