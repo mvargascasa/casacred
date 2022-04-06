@@ -839,7 +839,7 @@
 
     selProvince.addEventListener("change", async function() {
       selCity.options.length = 0;
-    let id = selProvince.options[selProvincea.selectedIndex].dataset.id;
+    let id = selProvince.options[selProvince.selectedIndex].dataset.id;
     const response = await fetch("{{url('getcities')}}/"+id );
     const cities = await response.json();
     
