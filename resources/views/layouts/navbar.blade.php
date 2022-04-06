@@ -161,7 +161,7 @@
                       <button type="button"  data-toggle="modal" data-target="#modalSearch" class="btn btn-sm btn-outline-secondary d-sm-block d-md-none">
                           Busqueda</button> 
                   @endif
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#myNavbar">
                       <span class="navbar-toggler-icon"></span>
                   </button>
               </div>
