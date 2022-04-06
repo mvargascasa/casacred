@@ -29,9 +29,19 @@
       <button type="button" data-bs-toggle="modal" data-bs-target="#modalFilters" id="btnsearch" class="btn btn-outline-light" style="display: none; border-radius: 25px; padding: 6px 10px 6px 10px;"><i class="fas fa-search"></i></button>
     </div>
 </div> --}}
-<div id="parentBuscador" style="position: absolute; top: 15%; left: 30%;">
+@if ($ismobile)
+<div id="searchmobile" style="width: 80vw">
+  <div style="text-align: center; color: #ffffff; background-color: rgba(2, 2, 2, 0.5); padding-top: 5%; padding-bottom: 5%; margin: 0px">
+    <h3>Su sueño está aquí</h3>
+    <div class="d-flex justify-content-center">
+      <button type="button" data-bs-toggle="modal" data-bs-target="#modalFilters" id="btnsearch" class="btn" style="display: none; border-radius: 25px; padding: 6px 10px 6px 10px; background-color: #dc3545; color: #ffffff"><i class="fas fa-search"></i></button>
+    </div>
+  </div>
+</div>
+@else
+<div id="parentBuscador" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center">
         
-  <div class="row align-items-center d-flex justify-content-center" style="margin: 0; min-height: 450px;">
+  <div class="row align-items-center d-flex justify-content-center" style="margin: 0; min-height: 250px;">
 
       <div class="col-12 text-white text-center p-4" style="width: 600px;background:rgba(2, 2, 2, 0.5)">
         <h1 class="font-weight-bold heading-title" >Su sueño está aquí</h1>
@@ -75,3 +85,4 @@
 
 </div>
 </div>
+@endif

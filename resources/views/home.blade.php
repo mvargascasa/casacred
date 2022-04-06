@@ -186,32 +186,36 @@
       outline: none !important;
     }
     .carousel-item{position:relative;display:none;float:left;width:100%;margin-right:-100%;-webkit-backface-visibility:hidden;backface-visibility:hidden;transition:transform .6s ease-in-out}@media(prefers-reduced-motion:reduce){.carousel-item{transition:none}}.carousel-item-next,.carousel-item-prev,.carousel-item.active{display:block}/*!rtl:begin:ignore*/.active.carousel-item-end,.carousel-item-next:not(.carousel-item-start){transform:translateX(100%)}.active.carousel-item-start,.carousel-item-prev:not(.carousel-item-end){transform:translateX(-100%)}/*!rtl:end:ignore*/.carousel-fade .carousel-item{opacity:0;transition-property:opacity;transform:none}.carousel-fade .carousel-item-next.carousel-item-start,.carousel-fade .carousel-item-prev.carousel-item-end,.carousel-fade .carousel-item.active{z-index:1;opacity:1}.carousel-fade .active.carousel-item-end,.carousel-fade .active.carousel-item-start{z-index:0;opacity:0;transition:opacity 0s .6s}@media(prefers-reduced-motion:reduce){.carousel-fade .active.carousel-item-end,.carousel-fade .active.carousel-item-start{transition:none}}
-    @media screen and (max-width: 990px){
-      .carousel-inner{
-        height: 50vw !important;
-      }
+    @media screen and (max-width: 1100px){
       #parentBuscador{
-        top: 10% !important;
-        left: 25% !important;
+        padding-top: 7% !important;
       }
     }
     @media screen and (max-width: 850px){
-      .carousel-inner{
-        height: 100vw !important;
-      }
-      #parentBuscador{
-        top: 0 !important;
-        left: 0 !important;
+      #searchmobile{
+        padding-top: 26% !important;
       }
       #txtcasas{
         display: none !important;
       }
       .carousel-inner .row{
-        min-height: 250px !important;
+        min-height: 600px !important;
       }
       .carousel-inner .row .col-12{
         width: 425px !important;
       }
+    }
+    #parentBuscador{
+      padding-top: 15%;
+    }
+    #parentBuscador, #searchmobile{
+      overflow: auto; /* Recommended in case content is larger than the container */
+      margin: 0 auto;
+      position: absolute; /* Break it out of the regular flow */
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0; /* Set the bounds in which to center it, relative to its parent/container */
     }
     </style>
     @livewireStyles
@@ -240,21 +244,21 @@
          }
     @endphp
         <div id="carouselExampleFadeBanner" class="carousel slide carousel-fade"  data-bs-ride="carousel" data-bs-interval="4000">
-          <div class="carousel-inner" style="height: 40vw">
+          <div class="carousel-inner" style="height: @if($ismobile) 70vw; @else 40vw; @endif">
             <div class="carousel-item active" style="position: relative">
-              <img class="img-fluid" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 60vw; @else height: 48vw; @endif" src="{{ asset('img/banner.webp') }}" alt=""> 
+              <img class="img-fluid" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" src="{{ asset('img/banner.webp') }}" alt=""> 
               @include('layouts.homesearch')
             </div>
             <div class="carousel-item" style="position: relative">
-              <img class="img-fluid" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 60vw; @else height: 48vw; @endif" src="{{ asset('img/banner1.webp') }}" alt="">
+              <img class="img-fluid" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" src="{{ asset('img/banner1.webp') }}" alt="">
               @include('layouts.homesearch')
             </div>
             <div class="carousel-item" style="position: relative">
-              <img class="img-fluid" style="filter: brightness(50%); width: 100vw;@if($ismobile) height: 60vw; @else height: 48vw; @endif" src="{{ asset('img/banner2.webp') }}" alt="">
+              <img class="img-fluid" style="filter: brightness(50%); width: 100vw;@if($ismobile) height: 70vw; @else height: 40vw; @endif" src="{{ asset('img/banner2.webp') }}" alt="">
               @include('layouts.homesearch')
             </div>
             <div class="carousel-item" style="position: relative">
-              <img class="img-fluid" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 60vw; @else height: 48vw; @endif" src="{{ asset('img/banner4.webp') }}" alt="">
+              <img class="img-fluid" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" src="{{ asset('img/banner4.webp') }}" alt="">
               @include('layouts.homesearch')
             </div>
           </div>
@@ -523,7 +527,7 @@
       <div class="modal-dialog  modal-dialog-centered">
         <form action="{{ route('web.lead.contact') }}" method="POST">
         <div class="modal-content">
-          <div class="modal-header" style="background-color: #8b0000; color: #ffffff">
+          <div class="modal-header" style="background-color: #dc3545; color: #ffffff">
             <h6 class="modal-title" id="exampleModalLabel">Complete el formulario y nos contactaremos con usted</h6>
             <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="far fa-times"></i></button>
           </div>
@@ -547,7 +551,7 @@
               </div>
           </div>
           <div class="modal-footer justify-content-center">
-            <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff">Enviar</button>
+            <button type="submit" class="btn" style="background-color: #dc3545; color: #ffffff">Enviar</button>
           </div>
         </div>
         </form>
@@ -562,7 +566,7 @@
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header" style="background-color: #8b0000; color: #ffffff">
+          <div class="modal-header" style="background-color: #dc3545; color: #ffffff">
             <h5 class="modal-title" id="exampleModalLongTitle">Vender una propiedad</h5>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -596,7 +600,7 @@
             <div class="form-group mt-2 d-flex">
               <div class="mr-1" style="width: 100%">
                 <label for="province">Provincia</label>
-                <select name="province" class="form-select" id="selProvince">
+                <select name="province" class="form-select" id="selProvincea">
                   <option value="">Seleccione</option>
                   @foreach ($provinces as $province)
                   <option value="{{ $province->name}}" data-id="{{ $province->id}}">{{ $province->name }}</option>
@@ -605,14 +609,14 @@
               </div>
               <div style="width: 100%">
                 <label for="city">Ciudad</label>
-                <select class="form-select" name="city" id="selCity">
+                <select class="form-select" name="city" id="selCitya">
                   <option value="">Seleccione</option>
                 </select>
               </div>
             </div>
           </div>
           <div class="modal-footer justify-content-center">
-            <button type="button" class="btn" style="background: #8b0000; color: #ffffff">Enviar</button>
+            <button type="button" class="btn" style="background: #dc3545; color: #ffffff">Enviar</button>
           </div>
         </div>
       </div>
@@ -732,7 +736,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form action="{{ route('web.index') }}" id="formodalsearch" method="GET">
+            <form action="{{ route('web.propiedades') }}" id="formodalsearch" method="GET">
               <div class="form-group">
                 <label for="tipobusqueda" style="font-weight: 400">Tipo de búsqueda</label>
                 <select name="type" id="tipobusqueda" class="form-control">
@@ -781,10 +785,6 @@
                   </div>
                 </div> 
               </div>
-
-              <div class="form-group mt-2">
-              </div>
-
               <div class="form-group mt-2">
                 <label for="preciodesde" style="font-weight: 400">Precio</label>
                 <div class="d-flex">
@@ -828,6 +828,9 @@
     const selProvince = document.getElementById('selProvince');
     const selCity = document.getElementById('selCity');
 
+    const selProvincea = document.getElementById('selProvincea');
+    const selCitya = document.getElementById('selCitya');    
+
     const selProvinceb = document.getElementById('selProvinceb');
     const selCityb = document.getElementById('selCityb');
 
@@ -836,7 +839,7 @@
 
     selProvince.addEventListener("change", async function() {
       selCity.options.length = 0;
-    let id = selProvince.options[selProvince.selectedIndex].dataset.id;
+    let id = selProvince.options[selProvincea.selectedIndex].dataset.id;
     const response = await fetch("{{url('getcities')}}/"+id );
     const cities = await response.json();
     
@@ -849,6 +852,24 @@
           opt.appendChild( document.createTextNode(city.name) );
           opt.value = city.name;
           selCity.appendChild(opt);
+    });
+  });
+
+    selProvincea.addEventListener("change", async function() {
+      selCitya.options.length = 0;
+    let id = selProvincea.options[selProvincea.selectedIndex].dataset.id;
+    const response = await fetch("{{url('getcities')}}/"+id );
+    const cities = await response.json();
+    
+    var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode('Elige Ciudad') );
+          opt.value = '';
+          selCitya.appendChild(opt);
+    cities.forEach(city => {
+          var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode(city.name) );
+          opt.value = city.name;
+          selCitya.appendChild(opt);
     });
   });
 
