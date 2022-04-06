@@ -49,18 +49,18 @@
         <form action="{{route('web.propiedades')}}" method="GET">
         <div id="formtopsearch">
           <div class="btn-group pb-2">
-            <input type="radio" class="btn-check" name="category" id="ftop_category_0" autocomplete="off" value="en-venta">
+            <input type="radio" class="btn-check form-control" name="category" id="ftop_category_0" autocomplete="off" value="en-venta">
             <label class="btn btn-outline-danger" for="ftop_category_0" style="width:100px;font-size: 14px">VENTA</label>
             
-            <input type="radio" class="btn-check" name="category" id="ftop_category_1" autocomplete="off" value="alquilar">
+            <input type="radio" class="btn-check form-control" name="category" id="ftop_category_1" autocomplete="off" value="alquilar">
             <label class="btn btn-outline-danger" for="ftop_category_1" style="width:100px;font-size: 14px">ALQUILER</label>
             
-            <input type="radio" class="btn-check" name="category" id="ftop_category_2" autocomplete="off" value="proyectos">
+            <input type="radio" class="btn-check form-control" name="category" id="ftop_category_2" autocomplete="off" value="proyectos">
             <label class="btn btn-outline-danger" for="ftop_category_2" style="width:100px;font-size: 14px">PROYECTO</label>
           </div>
   
-          <div class="input-group mb-3">
-                <select class="form-select" id="ftop_type" name="type" style="max-width:200px;">
+          <div class="input-group d-flex mb-3">
+                <select name="ptype" id="ftop_ptype" class="form-control">
                       <option value="">Todas</option>	
                       <option value="23">Casas </option>
                       <option value="24">Departamentos </option>
@@ -74,10 +74,10 @@
                 </select>
                 <input type="text" id="ftop_txt" name="searchtxt" class="form-control" onkeypress="if(event.keyCode==13)top_search()">
                 <button type="submit" class="btn btn-danger" >BUSCAR</button>
-          </div>
         </div>
         <div class="d-flex justify-content-center">
           <button type="button" data-bs-toggle="modal" data-bs-target="#modalFilters" id="btnsearch" class="btn btn-outline-light" style="display: none; border-radius: 25px; padding: 6px 10px 6px 10px; background-color: #dc3545; color: #ffffff""><i class="fas fa-search"></i></button>
+        </div>
         </div>
       </form>       
 

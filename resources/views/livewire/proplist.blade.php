@@ -205,7 +205,7 @@ const upscroll = () => {
           @this.set('range', this.bform_range); //envio la variable para conectarla con la creada en la clase
         }
     }
-
+    
     function top_search(){
       
       let check1 = document.getElementById('ftop_category_0');
@@ -215,6 +215,13 @@ const upscroll = () => {
       let tform_type = document.getElementById('ftop_type').value;  
       let tform_txt  = document.getElementById('ftop_txt').value;  
       let tform_category = '';
+      
+      let bandera_tform_ptype = document.body.contains(document.getElementById('ftop_ptype'));
+
+      if(bandera_tform_ptype){
+        let tform_ptype = document.getElementById('ftop_ptype').value//new variable
+        @this.set('ptype', tform_ptype);
+      }
 
       if(check1.checked){tform_category=check1.value}
       if(check2.checked){tform_category=check2.value}
@@ -226,6 +233,7 @@ const upscroll = () => {
       document.getElementById('bform_city').value = '';
       document.getElementById('bform_fromprice').value = '';
       document.getElementById('bform_uptoprice').value = ''; 
+
 
         @this.set('category', tform_category);
         @this.set('searchtxt', tform_txt);
