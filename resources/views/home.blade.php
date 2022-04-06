@@ -264,7 +264,7 @@
           </div>
         </div> 
 
-        <div class="container pt-5">
+        <div class="container @if($mobile) pt-4 @else pt-5 @endif">
           <p id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 mb-5">SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A SU ALCANCE</p>
           <div class="row mr-2 ml-2">
               <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
@@ -636,7 +636,7 @@
           <div>
             <div class="d-flex mt-2 mr-3 ml-3">
               <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
-              <label class="btn btn-outline-secondary btn-block" for="success-outlined" style="border-radius: 0px" onclick="showbuscar(this);">Buscar una propiedad</label>
+              <label class="btn btn-outline-secondary btn-block" for="success-outlined" style="border-radius: 0px" onclick="showbuscar(this);">Buscar un alquiler</label>
               <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
               <label class="btn btn-outline-secondary btn-block" for="danger-outlined" style="border-radius: 0px" onclick="showalquilar(this);">Poner en alquiler</label>
             </div>
