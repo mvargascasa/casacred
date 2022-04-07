@@ -2,7 +2,7 @@
 @section('header')
     <title>Casas en venta en Cuenca Ecuador</title>
     <meta name="description" content="Casas en Venta en Cuenca, Departamentos en venta en Cuenca, Lotes en Venta en Cuenca, Terrenos en Venta en Cuenca. Venta de Propiedades y Gestión de Créditos."/>
-    <meta name="keywords" content="Casas en venta en cuenca, Apartamentos en venta en cuenca, terrenos en venta en cuenca, lotes en venta en cuenca">
+    <meta name="keywords" content="Casas en venta en cuenca, Apartamentos en venta en cuenca, terrenos en venta en cuenca, lotes en venta en cuenca, Compra, Casas a crédito, Casas económicas , Casas, Departamento, Terrenos, Locales comerciales, Oficinas, Bodegas, Ecuador, Venta, Arriendo, Oportunidad, Avaluos, Avalous y Catastros, Avaluos de propiedades, Yunguilla, Cuenca, casas bonitas">
 
     <meta property="og:url"                content="{{route('web.index')}}" />
     <meta property="og:type"               content="website" />
