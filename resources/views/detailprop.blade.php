@@ -468,7 +468,7 @@
                   </div>
                   <div class="d-grid gap-2">
                     <button id="btnEnviar" type="button" class="btn btn-block mb-1"  onclick="sendFormDetail({{$listing->product_code}})">Enviar</button>
-                    <a id="btnWhatsapp" target="_blank" class="btn btn-block" href="https://wa.me/+593964085651/?text=Me interesa esta propiedad con código: {{ $listing->product_code}}">Contactar por Whatsapp <i id="iconwpp" class="fab fa-whatsapp"></i></a>
+                    <a id="btnWhatsapp" target="_blank" class="btn btn-block" href="https://wa.me/+593983849073/?text=Me interesa esta propiedad con código: {{ $listing->product_code}}">Contactar por Whatsapp <i id="iconwpp" class="fab fa-whatsapp"></i></a>
                   </div>
                 </form>
                   <p id="textoCondicionesEmail">Al enviar está aceptando los términos de Uso y la Política de privacidad</p>
