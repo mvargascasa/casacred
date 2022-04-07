@@ -503,7 +503,7 @@
         </div>
       </div>
 
-      @php
+      {{-- @php
           $listingsSimilar = \App\Models\Listing::select('listing_title', 'images', 'property_price', 'heading_details', 'city', 'state', 'country', 'slug', 'listingtype')->where('city', $listing->city)->where('status', 1)->where('listingtype', $listing->listingtype)->inRandomOrder()->limit(4)->get();
       @endphp
       <div class="row mt-5 pt-5 justify-content-center">
@@ -540,7 +540,7 @@
           </a>
           </div>
           @endforeach
-      </div>
+      </div> --}}
 
         </div>
         {{-- @if(isset($mobile) && $mobile==true)
