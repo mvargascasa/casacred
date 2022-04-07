@@ -113,8 +113,6 @@ class WebController extends Controller
     
     public function sendlead(Request $request){
 
-        return $request;
-
         $message = "<br><strong>Nuevo Lead</strong>
                     <br> Nombre: ". strip_tags($request->fname)."
                     <br> Telef: ".  strip_tags($request->tlf)."
@@ -129,6 +127,7 @@ class WebController extends Controller
         $header .= "MIME-Version: 1.0\r\n";
         $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
         mail('mvargas@casacredito.com,info@casacredito.com','Lead CasaCredito: '.strip_tags($request->fname), $message, $header);
+        //mvargas@casacredito.com,info@casacredito.com
     }    
 
     public function sendLeadContact(Request $request){
