@@ -293,7 +293,7 @@
                   @isset($listing->land_area)
                       <div class="col-sm-6 d-flex">
                         <i style="font-size: 20px; margin-right: 5px" class="far fa-ruler-combined"></i>
-                        <p>Área Interior: {{ $listing->land_area}}</p>
+                        <p>Área Interior: {{ $listing->land_area}} m<sup>2</sup></p>
                       </div>
                   @endisset
                   @if($bathroom > 0)
@@ -305,7 +305,7 @@
                   @isset($listing->construction_area)
                     <div class="col-sm-6 d-flex">
                       <i style="font-size: 20px; margin-right: 5px" class="fas fa-expand-arrows-alt"></i>
-                      <p>Área Total: {{ $listing->construction_area}}</p>
+                      <p>Área Total: {{ $listing->construction_area}} m<sup>2</sup></p>
                     </div>
                   @endisset
                   @if ($bedroom > 0)
