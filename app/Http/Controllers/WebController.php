@@ -77,8 +77,9 @@ class WebController extends Controller
         $services = DB::table('listing_services')->get();
         $types = DB::table('listing_types')->get();  
         $details = DB::table('listing_characteristics')->get();  
-        if($ismobile) return view('detailmobile',compact('listing','details','benefits','services','types'));
-        else          return view('detailprop',compact('listing','details','benefits','services','types','mobile'));
+        // if($ismobile) return view('detailmobile',compact('listing','details','benefits','services','types'));
+        // else          
+        return view('detailprop',compact('listing','details','benefits','services','types','mobile'));
     }
     
     public function getcities($id){
@@ -136,7 +137,7 @@ class WebController extends Controller
 
         $request->session()->flash('emailsend', 'Se ha enviado el correo');
 
-        if($request->type){
+        if($request->type || $request->interest == "Vender una propiedad"){
             return back();
         } else{
             return redirect()->route('web.propiedades');

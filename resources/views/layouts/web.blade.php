@@ -60,8 +60,94 @@ if(strpos($actual_link, 'localhost') === false){
             position: fixed;
             width: 100%;
         }
-
     }
+    input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;margin: 0;}
+      /* FIREFOX */
+      input[type="number"] {-moz-appearance: textfield;}input[type="number"]:hover,input[type="number"]:focus {-moz-appearance: number-input;}
+      /* OTHER */
+      input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;margin: 0;}
+      
+      @keyframes fade-in-move-left {
+      0% {
+        opacity: 0;
+        transform: translateX(-3rem);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fade-in-move-right {
+      0% {
+        opacity: 0;
+        transform: translateX(0rem);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(-10rem);
+      }
+    }
+
+    @keyframes fade-in-move-down {
+      0% {
+        opacity: 0;
+        transform: translateY(-3rem);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fade-in-move-up {
+      0% {
+        opacity: 0;
+        transform: translateY(0rem);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(-8rem);
+      }
+    }
+
+      html, body{
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        font-family: 'Poppins', sans-serif;
+      }
+      a{
+        text-decoration: none;
+        color: #000000;
+      }
+      @media screen and (max-width: 992px){
+        .divlogocenter{
+          display: none !important;
+        }
+        .divtwoptionsright{
+          margin-left: 0px !important;
+        }
+      }
+      @media screen and (max-width: 850px){
+        .rowconstruye{
+          display: none !important;
+        }
+        .navbar{
+          padding-left: 0px !important;
+          padding-right: 0px !important;
+          margin-top: 0px !important; 
+        }
+        #col1-footer, #col2-footer{
+          font-size: 12px !important;
+        }
+        #divny{
+          margin-top: 0px !important;
+        }
+      }
+      .item-nav-link:hover{
+        background-color: #3b4255 !important;
+        color: #ffffff !important;
+      }
 </style>
 </head>
 <body>
@@ -299,7 +385,7 @@ if(strpos($actual_link, 'localhost') === false){
     
     const sendFormDetail = async(codPro) =>{
         if(document.getElementById('fname').value.length>3 && document.getElementById('tlf').value.length>7){
-                document.getElementById('formMsjLead').classList.toggle('d-none');
+                //document.getElementById('formMsjLead').classList.toggle('d-none');
                 document.getElementById('thankMsjLead').classList.toggle('d-none');
                 document.getElementById('interestDetail').value = codPro;
                 var dataForm = new FormData(document.getElementById('formDetailProp'));
@@ -307,6 +393,10 @@ if(strpos($actual_link, 'localhost') === false){
                 { body: dataForm, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}" }  })
                 let mensaje = await response.text();
                 console.log(mensaje);
+                document.getElementById('fname').value = "";
+                document.getElementById('tlf').value = "";
+                document.getElementById('email').value = "";
+                document.getElementById('message').value = "Hola, me interesa este inmueble y quiero que me contacten. Gracias";
         }else{
             alert('Complete los Campos')
         }

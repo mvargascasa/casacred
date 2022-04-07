@@ -1,4 +1,4 @@
-@extends('layouts.navbar')
+@extends('layouts.web')
 @section('header')
     <title>Casas en venta en Cuenca Ecuador</title>
     <meta name="description" content="Casas en Venta en Cuenca, Departamentos en venta en Cuenca, Lotes en Venta en Cuenca, Terrenos en Venta en Cuenca. Venta de Propiedades y Gestión de Créditos."/>
@@ -286,7 +286,7 @@
                   <img style="border-radius: 5px;" class="img-fluid hover-image" src="{{ asset('img/VENDA-SU-PROPIEDAD.webp') }}" alt="">
                 </div>
                   <div class="text-center mt-5">
-                      <button class="btn cta a-btn-services" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-whatever="Vender una propiedad">
+                      <button class="btn cta a-btn-services" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-whatever="  una propiedad">
                         <span>Vender</span>
                         <svg width="13px" height="10px" viewBox="0 0 13 10">
                           <path d="M1,5 L11,5"></path>
@@ -573,7 +573,10 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+          <form action="{{ route('web.lead.contact') }}" method="POST">
+            @csrf
           <div class="modal-body">
+            <input type="hidden" name="interest" value="Vender una propiedad">
             <div class="form-group mt-2">
               <label for="name">Nombre y Apellido</label>
               <input type="text" name="name" id="name" class="form-control" required>
@@ -617,8 +620,9 @@
             </div>
           </div>
           <div class="modal-footer justify-content-center">
-            <button type="button" class="btn" style="background: #dc3545; color: #ffffff">Enviar</button>
+            <button type="submit" class="btn" style="background: #dc3545; color: #ffffff">Enviar</button>
           </div>
+        </form>
         </div>
       </div>
     </div>
@@ -814,7 +818,7 @@
     @endif
 @endsection
 
-@section('footer')
+@section('script')
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
