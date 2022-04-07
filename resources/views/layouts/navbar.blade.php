@@ -14,7 +14,7 @@
     <style>
       .wsapp{
         position: fixed;
-        bottom: 80px;
+        bottom: 40px;
         right: 20px;
       }
       input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;margin: 0;}
