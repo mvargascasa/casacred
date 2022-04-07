@@ -89,6 +89,9 @@
 .carousel-item img {
     width: 50%;
 }
+.cardsimilarlisting:hover{
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
         
 </style>
 @endsection
@@ -511,7 +514,7 @@
         @foreach ($listingsSimilar as $listing_s)
         <div class="col-sm-3 mb-2 d-flex justify-content-center">
           <a style="text-decoration: none; color: #000000" href="{{ route('web.detail', $listing_s->slug) }}">
-            <div class="card" style="width: 18rem;">
+            <div class="card cardsimilarlisting" style="width: 18rem;">
               <img class="card-img-top" src="{{ asset('uploads/listing/600/'. strtok($listing_s->images, '|')) }}" alt="{{ $listing_s->listing_title}}">
               <div class="card-body">
                 <h5 style="margin: 0px" class="card-title">${{ number_format($listing_s->property_price) }}</h5>
