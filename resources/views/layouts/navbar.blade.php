@@ -12,6 +12,11 @@
     @yield('header')
 
     <style>
+      .wsapp{
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+      }
       input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;margin: 0;}
       /* FIREFOX */
       input[type="number"] {-moz-appearance: textfield;}input[type="number"]:hover,input[type="number"]:focus {-moz-appearance: number-input;}
@@ -287,6 +292,12 @@
         </div>
         <!-- Copyright -->
     </footer>
+
+    <div class="wsapp">
+      <a href="https://api.whatsapp.com/send?phone=+593983849073" class="asindeco" target="_blank">
+          <img src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Notary Public Near Me" width="50" height="50">
+      </a>
+    </div>
 
     @yield('footer')
     <script>
