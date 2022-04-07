@@ -533,7 +533,9 @@
                     }
                   }
                 @endphp
-                <p style="font-size: 15px; margin: 0px" class="card-text">{{ $bedroom }} @if($bedroom > 1) habitaciones @else habitación @endif {{ $bathroom }} @if($bathroom > 1) baños @else baño @endif</p>
+                @if ($bedroom > 0 || $bathroom > 0)
+                <p style="font-size: 15px; margin: 0px" class="card-text">@if($bedroom > 0){{ $bedroom }} @if($bedroom > 1) habitaciones @else habitación @endif @endif @if($bathroom > 0) {{ $bathroom }} @if($bathroom > 1) baños @else baño @endif @endif</p>
+                @endif
                 <p style="font-size: 15px; margin: 0px" class="card-text">@isset($listing_s->country) {{ $listing_s->country }} | @endisset {{ $listing_s->state }} | {{ $listing_s->city }}</p>
               </div>
             </div>
