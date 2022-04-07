@@ -275,14 +275,14 @@
             @endisset  
           </div>
 
-          {{-- @php
+          @php
             $countarrayimages = 0;
             foreach (array_filter(explode("|", $listing->images)) as $image) {
               $countarrayimages++;
             }    
-          @endphp --}}
+          @endphp
 
-          <div class="row mt-5">
+          <div class="row @if($mobile) @if($countarrayimages < 5) mt-5 @else mt-1 @endif @else mt-5 @endif">
             <div class="col-sm-1"></div>
             <div class="col-12 col-sm-11">
               <div class="row">
