@@ -66,54 +66,9 @@ if(strpos($actual_link, 'localhost') === false){
       input[type="number"] {-moz-appearance: textfield;}input[type="number"]:hover,input[type="number"]:focus {-moz-appearance: number-input;}
       /* OTHER */
       input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;margin: 0;}
-      
-      @keyframes fade-in-move-left {
-      0% {
-        opacity: 0;
-        transform: translateX(-3rem);
-      }
-      100% {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes fade-in-move-right {
-      0% {
-        opacity: 0;
-        transform: translateX(0rem);
-      }
-      100% {
-        opacity: 1;
-        transform: translateX(-10rem);
-      }
-    }
-
-    @keyframes fade-in-move-down {
-      0% {
-        opacity: 0;
-        transform: translateY(-3rem);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fade-in-move-up {
-      0% {
-        opacity: 0;
-        transform: translateY(0rem);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(-8rem);
-      }
-    }
 
       html, body{
-        max-width: 100% !important;
-        overflow-x: hidden !important;
+        max-width: 100% !important;     
         font-family: 'Poppins', sans-serif;
       }
       a{

@@ -31,8 +31,8 @@
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='darkorange' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
 }
 .divEmail{
-  position: sticky;
-  top: 10px;
+  position: sticky !important;
+  top: 10px !important;
 }
 .formEmail{
   background-color: rgb(244, 247, 248);
@@ -515,7 +515,6 @@
               <img class="card-img-top" src="{{ asset('uploads/listing/'. substr($listing_s->images, 0, 25)) }}" alt="Card image cap">
               <div class="card-body">
                 <h5 style="margin: 0px" class="card-title">${{ number_format($listing_s->property_price) }}</h5>
-                <h4>{{ $listing->listingtype }}</h4>
                 @php
                   $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
                   $bathroom=0;$garage=0;$squarefit=0;
