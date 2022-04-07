@@ -282,7 +282,7 @@
             }    
           @endphp
 
-          <div class="row @if($mobile) @if($countarrayimages < 5) mt-5 @else mt-1 @endif @else mt-5 @endif">
+          <div class="row @if($mobile) @if($countarrayimages < 5) mt-5 @elseif($countarrayimages > 5 && $countarrayimages < 7) mt-3 @else mt-1 @endif @else mt-5 @endif">
             <div class="col-sm-1"></div>
             <div class="col-12 col-sm-11">
               <div class="row">
