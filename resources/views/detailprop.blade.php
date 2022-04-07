@@ -27,6 +27,12 @@
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='darkorange' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
 }
 
+@media screen and (max-width: 850px){
+  #custCarousel .carousel-indicators {
+    margin-top: 0px !important;
+}
+}
+
 .carousel-control-next-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='darkorange' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
 }
@@ -65,7 +71,7 @@
 #custCarousel .carousel-indicators {
     position: static;
     margin: 0px !important;
-    margin-bottom: 7% !important;
+    margin-bottom: 7% !important; 
 }
 
 #custCarousel .carousel-indicators>li {
@@ -168,7 +174,7 @@
                                 <img style="width: 100%" src="{{url('uploads/listing',$img)}}"  data-slide-to="{{$iiListing}}" class="d-block w-100 ccimgpro" style="object-fit:contain " alt="{{$listing->listing_title}}-{{$iiListing++}}"> 
                               </div>
                             @endforeach
-                          </div> <!-- Left right --> <a class="carousel-control-prev" href="#custCarousel" data-slide="prev"> <span class="carousel-control-prev-icon"></span> </a> <a class="carousel-control-next" href="#custCarousel" data-slide="next"> <span class="carousel-control-next-icon"></span> </a> <!-- Thumbnails -->
+                          </div> <!-- Left right --> <a style="margin-bottom: 30px" class="carousel-control-prev" href="#custCarousel" data-slide="prev"> <span class="carousel-control-prev-icon"></span> </a> <a style="margin-bottom: 30px" class="carousel-control-next" href="#custCarousel" data-slide="next"> <span class="carousel-control-next-icon"></span> </a> <!-- Thumbnails -->
                           <ol class="carousel-indicators list-inline">
                             @php $iiListing=0 @endphp
                             @foreach(array_filter(explode("|", $listing->images)) as $img)
@@ -432,9 +438,9 @@
           </div>
         </div>
       </div>
-
+      
       {{-- aqui --}}
-      <div class="col-sm-12 col-md-12 col-lg-6 col-xl-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
         <div class="divEmail d-flex justify-content-center" style="margin-top: @if($mobile) 0%; @else 22%; @endif">
           <div class="row">
             <div class="col-sm-12 col-md-6 col-lg-12 col-xl-12">
@@ -512,7 +518,7 @@
       <div class="row mt-5 pt-5 justify-content-center">
         <h5 class="text-center mb-5">Propiedades similares</h5>
         @foreach ($listingsSimilar as $listing_s)
-        <div class="col-sm-3 mb-2 d-flex justify-content-center">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 mb-2 d-flex justify-content-center">
           <a style="text-decoration: none; color: #000000" href="{{ route('web.detail', $listing_s->slug) }}">
             <div class="card cardsimilarlisting" style="width: 18rem;">
               <img class="card-img-top" src="{{ asset('uploads/listing/600/'. strtok($listing_s->images, '|')) }}" alt="{{ $listing_s->listing_title}}">
