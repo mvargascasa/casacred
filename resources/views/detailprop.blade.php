@@ -27,11 +27,12 @@
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='darkorange' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
 }
 
-@media screen and (max-width: 850px){
+/* @media screen and (max-width: 850px){
   #custCarousel .carousel-indicators {
     margin-top: 0px !important;
+    margin-bottom: 7% !important; 
 }
-}
+} */
 
 .carousel-control-next-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='darkorange' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
@@ -69,9 +70,8 @@
     height: 100%
 }
 #custCarousel .carousel-indicators {
-    position: static;
+    position: static; 
     margin: 0px !important;
-    margin-bottom: 7% !important; 
 }
 
 #custCarousel .carousel-indicators>li {
@@ -275,7 +275,14 @@
             @endisset  
           </div>
 
-          <div class="row">
+          {{-- @php
+            $countarrayimages = 0;
+            foreach (array_filter(explode("|", $listing->images)) as $image) {
+              $countarrayimages++;
+            }    
+          @endphp --}}
+
+          <div class="row mt-5">
             <div class="col-sm-1"></div>
             <div class="col-12 col-sm-11">
               <div class="row">
