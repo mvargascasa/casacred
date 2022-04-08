@@ -151,34 +151,6 @@
         transform: translateY(0);
       }
     }
-    .user-box {
-      margin-top: 20px;
-      position: relative;
-    }
-    .user-box input {
-      width: 100%;
-      padding: 10px 10px;
-      font-size: 16px;
-      margin-bottom: 30px;
-      outline: none;
-      background: transparent;
-    }
-    .user-box label {
-      position: absolute;
-      top:0;
-      left: 10px;
-      padding: 10px 0;
-      font-size: 16px;
-      pointer-events: none;
-      transition: .5s;
-    }
-    .user-box input:focus ~ label,
-    .user-box input: ~ label {
-      top: -50px;
-      left: 0;
-      color: #f40303;
-      font-size: 12px;
-    }
     .card:hover{
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
@@ -538,21 +510,21 @@
           </div>
           <div class="modal-body">
               @csrf
-              <div class="form-group mb-2 user-box">
-                <input style="border-radius: 10px 10px 10px 10px" type="text" name="nombre" id="nombre" class="form-control" required>
+              <div class="form-group mb-2">
                 <label for="nombre" class="mb-2 text-muted">Nombre y Apellido</label>
+                <input style="border-radius: 10px 10px 10px 10px" type="text" name="nombre" id="nombre" class="form-control" required>
               </div>
-              <div class="form-group mb-2 user-box">
-                <input style="border-radius: 10px 10px 10px 10px" type="number" name="telefono" id="telefono" class="form-control" required>
+              <div class="form-group mb-2">
                 <label for="telefono" class="mb-2 text-muted">Teléfono</label>
+                <input style="border-radius: 10px 10px 10px 10px" type="number" name="telefono" id="telefono" class="form-control" required>
               </div>
-              <div class="form-group mb-2 user-box">
-                <input style="border-radius: 10px 10px 10px 10px" type="email" name="email" id="email" class="form-control" required>
+              <div class="form-group mb-2">
                 <label for="email" class="mb-2 text-muted">Correo electrónico</label>
+                <input style="border-radius: 10px 10px 10px 10px" type="email" name="email" id="email" class="form-control" required>
               </div>
-              <div class="form-group mb-1 user-box">
-                <textarea style="border-radius: 10px 10px 10px 10px" name="mensaje" id="mensaje" rows="3" class="form-control" required></textarea>
+              <div class="form-group mb-1">
                 <label for="mensaje" class="mb-2 text-muted">Comentario</label>
+                <textarea style="border-radius: 10px 10px 10px 10px" name="mensaje" id="mensaje" rows="3" class="form-control" required></textarea>
               </div>
           </div>
           <div class="modal-footer justify-content-center">

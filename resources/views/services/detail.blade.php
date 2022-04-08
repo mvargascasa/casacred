@@ -11,6 +11,24 @@
 <meta property="og:description"        content="{{$service->page_seocescription}}" />
 <meta property="og:image"              content="{{asset('img/meta-image-social-cc.jpg')}}" />
 
+<style>
+  input:required:focus:valid {
+    background: url("https://assets.digitalocean.com/labs/icons/hand-thumbs-up.svg") no-repeat 95% 50% rgba(159, 240, 159, 0.796);
+    background-size: 25px;
+  }
+  input:focus:invalid {
+    background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg") no-repeat 95% 50% rgba(250, 164, 130, 0.66);
+    background-size: 25px;
+  }
+  input:focus, textarea:focus{
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+  }
+</style>
+
 @endsection
 
 
@@ -59,11 +77,51 @@
                         </ul>
                       @endforeach
                     </div>
-                </div>
+                  </div>
+                  @if ($service->page_title === "Créditos Hipotecarios" || $service->page_title === "Créditos de Consumo" || $service->page_title === "Créditos de Construcción")
+                  <div class="card">
+                    <div class="card-header text-center bg-danger text-white">
+                      <h6 class="mt-3">¿Necesita más información?</h6>
+                      <p>¡Nosotros lo llamamos!</p>
+                    </div>
+                    <form action="{{ route('web.lead.contact') }}" method="POST">
+                      @csrf
+                    <div class="card-body">
+                      <input type="hidden" name="interest" class="form-control" value="{{ $service->page_title }}">
+                        <div class="form-group mb-2">
+                          <input style="font-size: 14px" type="text" class="form-control" name="name" placeholder="Nombre y Apellido" required>
+                        </div>
+                        <div class="form-group mb-2">
+                          <input style="font-size: 14px" type="number" class="form-control" name="phone" id="phone" placeholder="Teléfono" required>
+                        </div>
+                        <div class="form-group mb-2">
+                          <input style="font-size: 14px" type="email" class="form-control" name="email" id="email" placeholder="Correo electrónico" required>
+                        </div>
+                        <div class="form-group mb-2">
+                          <textarea style="font-size: 14px" name="message" class="form-control" id="message" rows="3" placeholder="Mensaje">Deseo más información sobre {{ $service->page_title }}</textarea>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3">
+                          <button type="submit" class="btn btn-danger">Enviar</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  @endif
             </div>
         </div>
     </div>
 <section>
+
+  @if (session('emailsend'))
+      @php
+        echo "
+          <script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>
+          <script>
+            swal('Hemos enviado su información', 'Nos pondremos en contacto lo antes posible!', 'success');
+          </script>
+        ";    
+      @endphp
+    @endif
 
 @endsection
 

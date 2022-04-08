@@ -137,12 +137,21 @@ class WebController extends Controller
 
         $request->session()->flash('emailsend', 'Se ha enviado el correo');
 
-        if($request->type || $request->interest == "Vender una propiedad"){
-            return back();
-        } else{
-            return redirect()->route('web.propiedades');
+        switch ($request->interest) {
+            case 'Vender una propiedad':
+            case 'Poner en Alquiler':
+            case 'Créditos Hipotecarios':
+            case 'Créditos de Consumo':
+            case 'Créditos de Construcción':
+                return back();
+                break;
+            case 'Busca Alquiler':
+                return redirect()->route('web.propiedades');
+                break;
+            default:
+                return back();
+                break;
         }
-
     }
     
     public function politicas(){
