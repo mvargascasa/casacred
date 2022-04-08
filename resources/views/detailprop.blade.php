@@ -13,7 +13,7 @@
     }
 @endphp
 <meta name="description" content="{{mb_substr(trim(strip_tags($listing->listing_description)),0,180)}}..."/>
-<meta name="keywords" content="Casas en venta en cuenca ecuador, Apartamentos en venta en cuenca ecuador, terrenos en venta en cuenca ecuador, lotes en venta en cuenca ecuador, {{ $type->type_title }}en {{ $status }} en {{ strtolower(str_replace(",", "", $listing->address)) }}">
+<meta name="keywords" content="Casas en venta en cuenca ecuador, Apartamentos en venta en cuenca ecuador, terrenos en venta en cuenca ecuador, lotes en venta en cuenca ecuador, {{ $type->type_title }} en {{ $status }} en {{ strtolower($listing->city . " " . $listing->state) }}">
 
 <meta property="og:url"                content="{{route('web.detail',$listing->slug)}}" />
 <meta property="og:type"               content="website" />
