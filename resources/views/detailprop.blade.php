@@ -1,8 +1,19 @@
 @extends('layouts.web')
 @section('header')
 <title>{{$listing->product_code}} {{$listing->listing_title}} - CasaCredito</title>
+@php
+    $type = DB::table('listing_types')->select('type_title')->where('id', $listing->listingtype)->first();
+    $status;
+    switch ($listing->listingtypestatus) {
+      case 'en-venta' : $status = 'venta'; break;
+      case 'En venta' : $status = 'venta'; break;
+      case 'on sale' : $status = 'venta'; break;
+      case 'alquilar' : $status = 'alquiler'; break;
+      case 'proyectos' : $status = 'proyectos'; break;
+    }
+@endphp
 <meta name="description" content="{{mb_substr(trim(strip_tags($listing->listing_description)),0,180)}}..."/>
-<meta name="keywords" content="Casas en venta en cuenca ecuador, Apartamentos en venta en cuenca ecuador, terrenos en venta en cuenca ecuador, lotes en venta en cuenca ecuador">
+<meta name="keywords" content="Casas en venta en cuenca ecuador, Apartamentos en venta en cuenca ecuador, terrenos en venta en cuenca ecuador, lotes en venta en cuenca ecuador, {{ $type->type_title }}en {{ $status }} en {{ strtolower(str_replace(",", "", $listing->address)) }}">
 
 <meta property="og:url"                content="{{route('web.detail',$listing->slug)}}" />
 <meta property="og:type"               content="website" />

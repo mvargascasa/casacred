@@ -287,7 +287,7 @@ const upscroll = () => {
       document.getElementById('bform_fromprice').value = '';
       document.getElementById('bform_uptoprice').value = '';
 
-      window.location.replace('https://casacredito.com/?');
+      window.location.replace('https://casacredito.com/propiedades?');
     }
 
 </script>
