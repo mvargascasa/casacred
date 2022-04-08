@@ -12,6 +12,10 @@
 
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
+      html, body {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
       @media screen and (max-width: 850px){
         #txttitlebanner{font-size: 12px !important;text-align: center !important;}
         #infolistingbanner{font-size: 10px !important;bottom: 0px !important;right: 5px !important;}

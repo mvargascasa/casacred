@@ -163,7 +163,7 @@
                       <!-- https://casacredito.com/uploads/listing/600/IMG_674-60b94d88c1e28.jpg -->
 
                         <div class="carousel-item active">                            
-                          <div class="card" > <a href="https://casacredito.com/?searchtxt=Ricaurte">
+                          <div class="card" > <a href="https://casacredito.com/propiedades?searchtxt=Ricaurte">
                             <img src="https://casacredito.com/uploads/listing/600/IMG_674-60b94d88c1e28.jpg" class="card-img-top" alt="..."></a>
                             <div class="card-body text-center">
                               <h5 class="card-title">Ricaurte</h5>
@@ -172,7 +172,7 @@
                         </div>
                     
                         <div class="carousel-item">
-                          <div class="card" > <a href="https://casacredito.com/?searchtxt=Yunguilla">
+                          <div class="card" > <a href="https://casacredito.com/propiedades?searchtxt=Yunguilla">
                             <img src="https://casacredito.com/uploads/listing/600/IMG_684-60f9cc142c5c2.jpg" class="card-img-top" alt="..."></a>
                             <div class="card-body text-center">
                               <h5 class="card-title">Yunguilla</h5>
@@ -181,7 +181,7 @@
                         </div>   
                     
                         <div class="carousel-item">
-                          <div class="card" > <a href="https://casacredito.com/?searchtxt=Totoracocha">
+                          <div class="card" > <a href="https://casacredito.com/propiedades?searchtxt=Totoracocha">
                             <img src="https://casacredito.com/uploads/listing/600/IMG_543-60469a976c4a7.jpg" class="card-img-top" alt="..."></a>
                             <div class="card-body text-center">
                               <h5 class="card-title">Totoracocha</h5>
@@ -190,7 +190,7 @@
                         </div>   
                     
                         <div class="carousel-item">
-                          <div class="card" > <a href="https://casacredito.com/?searchtxt=Baños">
+                          <div class="card" > <a href="https://casacredito.com/propiedades?searchtxt=Baños">
                             <img src="https://casacredito.com/uploads/listing/600/IMG_655-60da2fbb14a6a.jpg" class="card-img-top" alt="..."></a>
                             <div class="card-body text-center">
                               <h5 class="card-title">Baños</h5>
@@ -199,7 +199,7 @@
                         </div>   
                     
                         <div class="carousel-item">
-                          <div class="card" > <a href="https://casacredito.com/?searchtxt=Racar">
+                          <div class="card" > <a href="https://casacredito.com/propiedades?searchtxt=Racar">
                             <img src="https://casacredito.com/uploads/listing/600/1596045872_gallery.1331.jpg" class="card-img-top" alt="..."></a>
                             <div class="card-body text-center">
                               <h5 class="card-title">Racar</h5>
