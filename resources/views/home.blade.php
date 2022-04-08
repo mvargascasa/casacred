@@ -504,7 +504,7 @@
         <form action="{{ route('web.lead.contact') }}" method="POST">
           @csrf
         <div class="modal-content">
-          <div class="modal-header" style="background-color: #dc3545; color: #ffffff">
+          <div class="modal-header" style="background-color: #8b0000; color: #ffffff">
             <h6 class="modal-title" id="exampleModalLabel">Complete el formulario y nos contactaremos con usted</h6>
             <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="far fa-times"></i></button>
           </div>
@@ -528,7 +528,7 @@
               </div>
           </div>
           <div class="modal-footer justify-content-center">
-            <button type="submit" class="btn" style="background-color: #dc3545; color: #ffffff">Enviar</button>
+            <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff">Enviar</button>
           </div>
         </div>
         </form>
@@ -543,7 +543,7 @@
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header" style="background-color: #dc3545; color: #ffffff">
+          <div class="modal-header" style="background-color: #8b0000; color: #ffffff">
             <h5 class="modal-title" id="exampleModalLongTitle">Vender una propiedad</h5>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -596,7 +596,7 @@
             </div>
           </div>
           <div class="modal-footer justify-content-center">
-            <button type="submit" class="btn" style="background: #dc3545; color: #ffffff">Enviar</button>
+            <button type="submit" class="btn" style="background: #8b0000; color: #ffffff">Enviar</button>
           </div>
         </form>
         </div>
@@ -608,7 +608,7 @@
     <div class="modal fade" id="modalAlquiler" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header" style="background-color: #dc3545; color: #ffffff">
+          <div class="modal-header" style="background-color: #8b0000; color: #ffffff">
             <h5 class="modal-title" id="exampleModalLongTitle">Alquilar una propiedad</h5>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -652,7 +652,7 @@
               </div>
             </div>
             <div class="modal-footer justify-content-center">
-              <button type="submit" class="btn" style="background-color: #dc3545; color: #ffffff">Ver opciones</button>
+              <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff">Ver opciones</button>
             </div>
             </form>
           </div>
@@ -697,7 +697,7 @@
               </div>
             </div>
             <div class="modal-footer justify-content-center">
-              <button type="submit" class="btn btn-primary" style="background-color: #dc3545; color: #ffffff">Enviar</button>
+              <button type="submit" class="btn btn-primary" style="background-color: #8b0000; color: #ffffff">Enviar</button>
             </div>
           </form>
           </div>
@@ -710,7 +710,7 @@
     <div class="modal fade" id="modalFilters" tabindex="-1" aria-labelledby="modalFiltersLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header" style="background-color: #e71131; color: #ffffff">
+          <div class="modal-header" style="background-color: #8b0000; color: #ffffff">
             <h5 class="modal-title" id="modalFiltersLabel">Filtros de Búsqueda</h5>
             <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
               <i class="far fa-times"></i>
@@ -776,7 +776,7 @@
             </form>
           </div>
           <div class="modal-footer justify-content-center">
-            <button type="button" onclick="document.getElementById('formodalsearch').submit();" class="btn" style="background-color: #e71131; color: #ffffff">Buscar</button>
+            <button type="button" onclick="document.getElementById('formodalsearch').submit();" class="btn" style="background-color: #8b0000; color: #ffffff">Buscar</button>
           </div>
         </div>
       </div>

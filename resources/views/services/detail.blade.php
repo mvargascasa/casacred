@@ -80,7 +80,7 @@
                   </div>
                   @if ($service->page_title === "Créditos Hipotecarios" || $service->page_title === "Créditos de Consumo" || $service->page_title === "Créditos de Construcción")
                   <div class="card">
-                    <div class="card-header text-center bg-danger text-white">
+                    <div class="card-header text-center text-white" style="background-color: #8b0000">
                       <h6 class="mt-3">¿Necesita más información?</h6>
                       <p>¡Nosotros lo llamamos!</p>
                     </div>
@@ -101,7 +101,7 @@
                           <textarea style="font-size: 14px" name="message" class="form-control" id="message" rows="3" placeholder="Mensaje">Deseo más información sobre {{ $service->page_title }}</textarea>
                         </div>
                         <div class="d-flex justify-content-center mt-3">
-                          <button type="submit" class="btn btn-danger">Enviar</button>
+                          <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff">Enviar</button>
                         </div>
                       </div>
                     </form>
