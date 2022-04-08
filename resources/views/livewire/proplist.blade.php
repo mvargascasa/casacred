@@ -223,9 +223,9 @@ const upscroll = () => {
         @this.set('ptype', tform_ptype);
       }
 
-      if(check1.checked){tform_category=check1.value}
-      if(check2.checked){tform_category=check2.value}
-      if(check3.checked){tform_category=check3.value}
+      if(check1.checked){tform_category=check1.value;changeImageBanner(tform_category);}
+      if(check2.checked){tform_category=check2.value;changeImageBanner(tform_category);}
+      if(check3.checked){tform_category=check3.value;changeImageBanner(tform_category);}
 
       document.getElementById('bform_category').value = '';
       document.getElementById('bform_type').value = '';

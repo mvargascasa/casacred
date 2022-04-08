@@ -32,7 +32,7 @@
 
 @section('content')
 
-    <section id="prisection" style="background-size: cover;background-position: left top; width: 100%; background-repeat: no-repeat;">
+    <section id="prisection" style="background-size: cover;background-position: 0rem 23%; width: 100%; background-repeat: no-repeat;">
       <div>
         
           <div class="row align-items-center d-flex justify-content-center" style="margin: 0; min-height: 450px;">
@@ -357,11 +357,25 @@
   const tag = document.getElementById('bform_tags');    
 
   window.addEventListener('load', (event) => {
-        document.getElementById('prisection').style.backgroundImage = "url('img/imgheader2.jpg')";
+        //document.getElementById('prisection').style.backgroundImage = "url('img/imgheader2.jpg')";
+        let category = new URLSearchParams(window.location.search).get('category');
+        changeImageBanner(category);
         var range = new URLSearchParams(window.location.search).get('range');
         if(range) rangeSlide(range);
         else {rangeSlide("0");document.getElementById('bform_range').value = 0};
     });
+
+    const changeImageBanner = (category = "en-venta") => {
+      if (category) {
+        switch (category) {
+          case "en-venta": document.getElementById('prisection').style.backgroundImage = "url('img/imgheader2.jpg')";break;
+          case "alquilar": document.getElementById('prisection').style.backgroundImage = "url('img/RENTAS.webp')";break;
+          case "proyectos": document.getElementById('prisection').style.backgroundImage = "url('img/PROYECTOS.webp')";break;
+        }
+      } else {
+        document.getElementById('prisection').style.backgroundImage = "url('img/imgheader2.jpg')";
+      }
+    }
 
   selState.addEventListener("change", async function() {
     selCities.options.length = 0;
