@@ -12,21 +12,8 @@
 <meta property="og:image"              content="{{asset('img/meta-image-social-cc.jpg')}}" />
 
 <style>
-  input:required:focus:valid {
-    background: url("https://assets.digitalocean.com/labs/icons/hand-thumbs-up.svg") no-repeat 95% 50% rgba(159, 240, 159, 0.796);
-    background-size: 25px;
-  }
-  input:focus:invalid {
-    background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg") no-repeat 95% 50% rgba(250, 164, 130, 0.66);
-    background-size: 25px;
-  }
-  input:focus, textarea:focus{
-    outline:none !important;
-    outline-width: 0 !important;
-    box-shadow: none !important;
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-  }
+  @media screen and (max-width: 1400px){#txt_info{padding-top: 5rem !important;}}
+  @media screen and (max-width: 1200px){#txt_info{padding-top: 2rem !important;}}
 </style>
 
 @endsection
@@ -54,7 +41,7 @@
 <section class="bg-white">
     <div class="container">
         <div class="row py-4">            
-            <div class="col-12 col-sm-9">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
                 <div class="card my-4">
                     <div class="card-body">
                       <h6 class="card-title text-danger text-uppercase">{{$service->page_title}}</h6> <hr>
@@ -62,7 +49,7 @@
                     </div>
                 </div>
             </div> 
-            <div class="col-12 col-sm-3">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
                 <div class="card my-4">
                     <div class="card-body">
                       <h6 class="card-title text-danger text-uppercase">Links</h6> <hr>
@@ -78,7 +65,30 @@
                       @endforeach
                     </div>
                   </div>
+
                   @if ($service->page_title === "Créditos Hipotecarios" || $service->page_title === "Créditos de Consumo" || $service->page_title === "Créditos de Construcción")
+                  <div class="card position-relative">
+                    <img src="@if($service->page_title === "Créditos Hipotecarios") {{ asset('img/CREDITO-HIPOTECARIO.jpg') }} @elseif($service->page_title === "Créditos de Consumo") {{ asset('img/CONSUMO.jpg')}} @elseif($service->page_title === "Créditos de Construcción") {{ asset('img/CONSTRUCCION.jpg') }} @endif" class="img-fluid rounded" alt="{{ $service->page_title }}">
+                    <div class="position-absolute" style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%">
+                      <div class="text-center">
+                        <div id="txt_info" style="padding-top: 8rem">
+                          <img src="{{ asset('img/ECUADOR-04.png') }}" width="35px" alt="">
+                          <img src="{{ asset('img/USA-05.png') }}" width="35px" alt="">
+                        </div>
+                        <p class="text-white" style="font-weight: 500; font-size: 15px">Créditos para <br> ecuatorianos que residen <br> en Estados Unidos</p>
+                      </div>
+                    </div>
+                    <div class="position-absolute" style="bottom: 0; left: 0; width: 100%; background-color: #8b0000; height: 60px">
+                      <div class="position-relative" style="display: flex; justify-content: center; text-align: center">
+                        <div class="position-absolute" style="top: 0; margin-top: -20px">
+                          <i style="background-color: #8b0000; color: #ffffff; padding: 5px; border-radius: 25px" class="fal fa-usd-circle fa-2x"></i>
+                          <p class="text-white" style="font-size: 14px">Solicite su crédito <u style="cursor: pointer" onclick="setInterest('{{$service->page_title}}')" data-toggle="modal" data-target="#modalContact">AQUÍ</u></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  @endif
+                  {{-- @if ($service->page_title === "Créditos Hipotecarios" || $service->page_title === "Créditos de Consumo" || $service->page_title === "Créditos de Construcción")
                   <div class="card">
                     <div class="card-header text-center text-white" style="background-color: #8b0000">
                       <h6 class="mt-3">¿Necesita más información?</h6>
@@ -106,7 +116,7 @@
                       </div>
                     </form>
                   </div>
-                  @endif
+                  @endif --}}
             </div>
         </div>
     </div>
