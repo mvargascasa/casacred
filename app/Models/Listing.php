@@ -15,6 +15,7 @@ class Listing extends Model
         'listing_description','listing_type','address','state','city','listingtype',
         'listingcharacteristic','listinglistservices','listingtypestatus','listingtagstatus',
         'listyears',//se agrego esta nueva variable
+        'lat', 'lng', //nuevas variables
         'status','user_id',
         'threedegreeview','heading_details','owner_name',
     ];   
