@@ -222,7 +222,7 @@
         <div id="carouselExampleFadeBanner" class="carousel slide carousel-fade"  data-bs-ride="carousel" data-bs-interval="4000">
           <div class="carousel-inner" style="height: @if($ismobile) 70vw; @else 40vw; @endif">
             <div class="carousel-item active" style="position: relative">
-              <img class="img-fluid" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" src="{{ asset('img/banner.webp') }}" alt=""> 
+              <img class="img-fluid" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" src="{{ asset('img/bannerb.webp') }}" alt=""> 
               @include('layouts.homesearch')
             </div>
             <div class="carousel-item" style="position: relative">
