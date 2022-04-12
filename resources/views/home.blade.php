@@ -435,7 +435,7 @@
           <div data-aos="zoom-in-right" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-3 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
-                    <img class="img-fluid image" width="400px" height="300px" src="{{ asset('/img/adra.webp') }}" class="card-img-top" alt="Proyecto Adra - Casa Credito Promotora">
+                    <img class="image" width="100%" height="100%" src="{{ asset('/img/adra.webp') }}" class="card-img-top" alt="Proyecto Adra - Casa Credito Promotora">
                   <div class="middle">
                     <div class="link">
                       <a href="https://casacreditopromotora.com/proyectos/Adra">Ver proyecto</a>
