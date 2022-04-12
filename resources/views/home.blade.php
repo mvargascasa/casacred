@@ -11,6 +11,9 @@
     <meta property="og:image"              content="{{asset('img/meta-image-social-cc.jpg')}}" />
 
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
+
     <style>
       html, body {
         max-width: 100% !important;
@@ -192,6 +195,15 @@
       left: 0;
       bottom: 0;
       right: 0; /* Set the bounds in which to center it, relative to its parent/container */
+    }
+    .lazyLoad {
+        width: 100%;
+        opacity: 0;
+    }
+
+    .visible {
+        transition: opacity 1000ms ease;
+        opacity: 1;
     }
     </style>
     @livewireStyles
@@ -435,7 +447,7 @@
           <div data-aos="zoom-in-right" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-3 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
-                    <img class="img-fluid image" src="{{ asset('/img/adra_50.webp') }}" class="card-img-top" alt="Proyecto Adra - Casa Credito Promotora">
+                    <img class="img-fluid image lazyLoad" data-src="{{ asset('/img/adra_50.webp') }}" class="card-img-top" alt="Proyecto Adra - Casa Credito Promotora">
                   <div class="middle">
                     <div class="link">
                       <a href="https://casacreditopromotora.com/proyectos/Adra">Ver proyecto</a>
@@ -455,7 +467,7 @@
           <div data-aos="zoom-in" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-3 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
-                    <img class="img-fluid image" src="{{ asset('/img/futuranarancay_50.webp') }}" class="card-img-top" alt="Proyecto Futura Narancay - Casa Credito Promotora">
+                    <img class="img-fluid image lazyLoad" data-src="{{ asset('/img/futuranarancay_50.webp') }}" class="card-img-top" alt="Proyecto Futura Narancay - Casa Credito Promotora">
                     <div class="middle">
                       <div class="link">
                         <a href="https://casacreditopromotora.com/proyectos/Futura Narancay">Ver proyecto</a>
@@ -475,7 +487,7 @@
           <div data-aos="zoom-in-left" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
-                    <img class="img-fluid image" src="{{ asset('/img/toscana_50.webp') }}" class="card-img-top" alt="Proyecto Toscana - Casa Credito Promotora">
+                    <img class="img-fluid image lazyLoad" data-src="{{ asset('/img/toscana_50.webp') }}" class="card-img-top" alt="Proyecto Toscana - Casa Credito Promotora">
                     <div class="middle">
                       <div class="link">
                         <a href="https://casacreditopromotora.com/proyectos/Toscana">Ver proyecto</a>
@@ -899,6 +911,31 @@
         document.getElementById('body1').style.display = "none";
         document.getElementById('body2').style.display = "block";
     }
+
+    function onScrollEvent(entries, observer) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                var attributes = entry.target.attributes;
+                var src = attributes['data-src'].textContent;
+                entry.target.src = src;
+                entry.target.classList.add('visible');
+            }
+        });
+    }
+
+    // Utilizamos como objetivos todos los
+    // elementos que tengan la clase lazyLoad,
+    // que vimos en el HTML de ejemplo.
+    var targets = document.querySelectorAll('.lazyLoad');
+
+    // Instanciamos un nuevo observador.
+    var observer = new IntersectionObserver(onScrollEvent);
+
+    // Y se lo aplicamos a cada una de las
+    // imágenes.
+    targets.forEach(function(entry) {
+        observer.observe(entry);
+    });
 </script>
   @livewireScripts
   @stack('scripts')

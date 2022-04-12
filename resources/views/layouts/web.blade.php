@@ -64,9 +64,6 @@ if(strpos($actual_link, 'localhost') === false){
 
   @yield('header')
   <meta name="keywords" content="casas en venta en cuenca, departamentos en venta en cuenca, terrenos en venta en cuenta, lotes en venta en cuenca" />
-
-  <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
-
 <style>
    body {
         max-width: 100% !important;
@@ -125,16 +122,6 @@ if(strpos($actual_link, 'localhost') === false){
         background-color: #3b4255 !important;
         color: #ffffff !important;
       }
-
-      .lazyLoad {
-    width: 100%;
-    opacity: 0;
-}
-
-.visible {
-    transition: opacity 1000ms ease;
-    opacity: 1;
-}
 </style>
 </head>
 <body>
@@ -388,32 +375,6 @@ if(strpos($actual_link, 'localhost') === false){
             alert('Complete los Campos')
         }
     }
-
-    function onScrollEvent(entries, observer) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                var attributes = entry.target.attributes;
-                var src = attributes['data-src'].textContent;
-                entry.target.src = src;
-                entry.target.classList.add('visible');
-            }
-        });
-    }
-
-    // Utilizamos como objetivos todos los
-    // elementos que tengan la clase lazyLoad,
-    // que vimos en el HTML de ejemplo.
-    var targets = document.querySelectorAll('.lazyLoad');
-
-    // Instanciamos un nuevo observador.
-    var observer = new IntersectionObserver(onScrollEvent);
-
-    // Y se lo aplicamos a cada una de las
-    // imágenes.
-    targets.forEach(function(entry) {
-        observer.observe(entry);
-    });
-
 </script>
 </body>
 </html>
