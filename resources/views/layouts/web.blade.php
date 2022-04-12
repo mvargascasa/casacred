@@ -270,23 +270,25 @@ if(strpos($actual_link, 'localhost') === false){
             <div class="col-12 col-md-4 p-4">
                 <h5>Sigue con Nosotros</h5>
                         <p class="text-white-50">Ahora con Casa Credito es fácil ser dueño de su propia casa en Ecuador. </p>
-                <p class="text-muted">
+              
+                        <div class="d-flex">
+                          <a href="https://www.facebook.com/CasaCreditoInmobiliaria" class="asindeco px-1" target="_blank">
+                              <img class="lazyLoad" data-src="{{asset('img/casacredito-facebook.svg')}}" alt="Facebook Notary Public Near Me" width="40" height="40">
+                          </a>
+      
+                          <a href="https://www.messenger.com/t/inmobiliariacasacredito" class="asindeco px-1" target="_blank">
+                              <img class="lazyLoad" data-src="{{asset('img/casacredito-messenger.svg')}}" alt="Messenger Notary Public Near Me" width="40" height="40">
+                          </a>
+      
+                          <a href="https://www.instagram.com/inmobiliariacasacredito/" class="asindeco px-1" target="_blank">
+                              <img class="lazyLoad" data-src="{{asset('img/casacredito-instagram.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40">
+                          </a>
+      
+                          <a href="https://api.whatsapp.com/send?phone=+593983849073  " class="asindeco px-1" target="_blank">
+                              <img class="lazyLoad" data-src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40">
+                          </a>
+                        </div>
 
-                    <a href="https://www.facebook.com/CasaCreditoInmobiliaria" class="asindeco px-1" target="_blank">
-                        <img class="lazyLoad" data-src="{{asset('img/casacredito-facebook.svg')}}" alt="Facebook Notary Public Near Me" width="40" height="40">
-                    </a>
-
-                    <a href="https://www.messenger.com/t/inmobiliariacasacredito" class="asindeco px-1" target="_blank">
-                        <img class="lazyLoad" data-src="{{asset('img/casacredito-messenger.svg')}}" alt="Messenger Notary Public Near Me" width="40" height="40">
-                    </a>
-
-                    <a href="https://www.instagram.com/inmobiliariacasacredito/" class="asindeco px-1" target="_blank">
-                        <img class="lazyLoad" data-src="{{asset('img/casacredito-instagram.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40">
-                    </a>
-
-                    <a href="https://api.whatsapp.com/send?phone=+593983849073  " class="asindeco px-1" target="_blank">
-                        <img class="lazyLoad" data-src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40">
-                    </a>
 
                 
             </div>
