@@ -14,6 +14,7 @@
 <style>
   @media screen and (max-width: 1400px){#txt_info{padding-top: 5rem !important;}}
   @media screen and (max-width: 1200px){#txt_info{padding-top: 2rem !important;}}
+  @media screen and (max-width: 850px){#txt_info{padding-top: 13rem !important;}#card_creditos{margin-left: 7px; margin-right: 7px}}
 </style>
 
 @endsection
@@ -67,7 +68,7 @@
                   </div>
 
                   @if ($service->page_title === "Créditos Hipotecarios" || $service->page_title === "Créditos de Consumo" || $service->page_title === "Créditos de Construcción")
-                  <div class="card position-relative">
+                  <div id="card_creditos" class="card position-relative">
                     <img src="@if($service->page_title === "Créditos Hipotecarios") {{ asset('img/CREDITO-HIPOTECARIO.jpg') }} @elseif($service->page_title === "Créditos de Consumo") {{ asset('img/CONSUMO.jpg')}} @elseif($service->page_title === "Créditos de Construcción") {{ asset('img/CONSTRUCCION.jpg') }} @endif" class="img-fluid rounded" alt="{{ $service->page_title }}">
                     <div class="position-absolute" style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%">
                       <div class="text-center">
@@ -75,14 +76,14 @@
                           <img src="{{ asset('img/ECUADOR-04.png') }}" width="35px" alt="">
                           <img src="{{ asset('img/USA-05.png') }}" width="35px" alt="">
                         </div>
-                        <p class="text-white" style="font-weight: 500; font-size: 15px">Créditos para <br> ecuatorianos que residen <br> en Estados Unidos</p>
+                        <p class="text-white" style="font-weight: 500; font-size: 15px">{{ $service->page_title}} para <br> ecuatorianos que residen <br> en Estados Unidos</p>
                       </div>
                     </div>
-                    <div class="position-absolute" style="bottom: 0; left: 0; width: 100%; background-color: #8b0000; height: 60px">
+                    <div class="position-absolute" onclick="setInterest('{{$service->page_title}}')" data-toggle="modal" data-target="#modalContact" style="bottom: 0; left: 0; width: 100%; background-color: #8b0000; height: 60px; cursor: pointer">
                       <div class="position-relative" style="display: flex; justify-content: center; text-align: center">
                         <div class="position-absolute" style="top: 0; margin-top: -20px">
                           <i style="background-color: #8b0000; color: #ffffff; padding: 5px; border-radius: 25px" class="fal fa-usd-circle fa-2x"></i>
-                          <p class="text-white" style="font-size: 14px">Solicite su crédito <u style="cursor: pointer" onclick="setInterest('{{$service->page_title}}')" data-toggle="modal" data-target="#modalContact">AQUÍ</u></p>
+                          <p class="text-white" style="font-size: 14px">Solicite su crédito <u>AQUÍ</u></p>
                         </div>
                       </div>
                     </div>
