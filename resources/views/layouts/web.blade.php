@@ -267,19 +267,19 @@ if(strpos($actual_link, 'localhost') === false){
                 <p class="text-muted">
 
                     <a href="https://www.facebook.com/CasaCreditoInmobiliaria" class="asindeco px-1" target="_blank">
-                        <img src="{{asset('img/casacredito-facebook.svg')}}" alt="Facebook Notary Public Near Me" width="40" height="40">
+                        <img class="lazyLoad" data-src="{{asset('img/casacredito-facebook.svg')}}" alt="Facebook Notary Public Near Me" width="40" height="40">
                     </a>
 
                     <a href="https://www.messenger.com/t/inmobiliariacasacredito" class="asindeco px-1" target="_blank">
-                        <img src="{{asset('img/casacredito-messenger.svg')}}" alt="Messenger Notary Public Near Me" width="40" height="40">
+                        <img class="lazyLoad" data-src="{{asset('img/casacredito-messenger.svg')}}" alt="Messenger Notary Public Near Me" width="40" height="40">
                     </a>
 
                     <a href="https://www.instagram.com/inmobiliariacasacredito/" class="asindeco px-1" target="_blank">
-                        <img src="{{asset('img/casacredito-instagram.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40">
+                        <img class="lazyLoad" data-src="{{asset('img/casacredito-instagram.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40">
                     </a>
 
                     <a href="https://api.whatsapp.com/send?phone=+593983849073  " class="asindeco px-1" target="_blank">
-                        <img src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40">
+                        <img class="lazyLoad" data-src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40">
                     </a>
 
                 

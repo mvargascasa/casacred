@@ -345,7 +345,7 @@
             @foreach ($listings as $listing)
               <div class="carousel-item {{ $loop->first ? 'active' : ' '}}">
                 <div class="position-relative">
-                  <img style="filter: brightness(80%)" src="{{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }}" class="d-block w-100" alt="...">
+                  <img style="filter: brightness(80%)" data-src="{{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }}" class="d-block w-100 lazyLoad" alt="...">
                   <div class="position-absolute" style="bottom: 5px; right: 5px;">
                     <a class="btn btn-sm btn-outline-light" href="{{ route('web.detail', $listing->slug) }}">Ver propiedad</a>
                   </div>
