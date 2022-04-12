@@ -937,6 +937,6 @@
         observer.observe(entry);
     });
 </script>
-  @livewireScripts
-  @stack('scripts')
+  {{-- @livewireScripts
+  @stack('scripts') --}}
 @endsection
