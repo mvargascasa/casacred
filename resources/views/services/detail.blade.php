@@ -68,8 +68,8 @@
                   </div>
 
                   @if ($service->page_title === "Créditos Hipotecarios" || $service->page_title === "Créditos de Consumo" || $service->page_title === "Créditos de Construcción")
-                  <div id="card_creditos" class="card position-relative">
-                    <img src="@if($service->page_title === "Créditos Hipotecarios") {{ asset('img/CREDITO-HIPOTECARIO.jpg') }} @elseif($service->page_title === "Créditos de Consumo") {{ asset('img/CONSUMO.jpg')}} @elseif($service->page_title === "Créditos de Construcción") {{ asset('img/CONSTRUCCION.jpg') }} @endif" class="img-fluid rounded" alt="{{ $service->page_title }}">
+                  <div id="card_creditos" style="border: none" class="card position-relative">
+                    <img class="img-fluid rounded" src="@if($service->page_title === "Créditos Hipotecarios") {{ asset('img/CREDITO-HIPOTECARIO.jpg') }} @elseif($service->page_title === "Créditos de Consumo") {{ asset('img/CONSUMO.jpg')}} @elseif($service->page_title === "Créditos de Construcción") {{ asset('img/CONSTRUCCION.jpg') }} @endif" alt="{{ $service->page_title }} para Ecuatorianos residentes en Estados Unidos">
                     <div class="position-absolute" style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%">
                       <div class="text-center">
                         <div id="txt_info" style="padding-top: 8rem">
