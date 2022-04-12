@@ -533,7 +533,7 @@
       @php
           $listingsSimilar = \App\Models\Listing::select('listing_title', 'images', 'property_price', 'heading_details', 'city', 'state', 'country', 'slug', 'listingtype')->where('city', $listing->city)->where('status', 1)->where('listingtype', $listing->listingtype)->inRandomOrder()->limit(4)->get();
       @endphp
-      <div class="row mt-5 pt-5 justify-content-center">
+      <div class="row mt-5 justify-content-center">
         <h5 class="text-center mb-5">Propiedades similares</h5>
         @foreach ($listingsSimilar as $listing_s)
         <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 mb-2 d-flex justify-content-center">
