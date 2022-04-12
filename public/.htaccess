@@ -34,20 +34,3 @@
     RewriteRule ^(.*?)index\.php(?:/(.*))?$ /$1$2? [L,R=302,NC,NE]
 
 </IfModule>
-
-<IfModule mod_expires.c>
-ExpiresActive On
-ExpiresDefault "access plus 1 month"
-ExpiresByType text/css "access plus 1 month"
-ExpiresByType text/plain "access plus 1 month"
-ExpiresByType image/gif "access plus 1 month"
-ExpiresByType image/png "access plus 1 month"
-ExpiresByType image/jpeg "access plus 1 month"
-ExpiresByType image/svg "access plus 1 month"
-ExpiresByType image/webp "access plus 1 month"
-ExpiresByType image/x-icon "access plus 3 months"
-ExpiresByType application/x-javascript "access plus 1 month"
-ExpiresByType application/javascript "access plus 1 month"
-ExpiresByType text/javascript "access plus 1 month"
-ExpiresByType application/x-icon "access plus 3 months"
-</IfModule>
