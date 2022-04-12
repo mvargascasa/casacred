@@ -87,7 +87,6 @@ if(strpos($actual_link, 'localhost') === false){
       input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;margin: 0;}
 
       html, body{
-        max-width: 100% !important;     
         font-family: 'Poppins', sans-serif;
       }
       a{
