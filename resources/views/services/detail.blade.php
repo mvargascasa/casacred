@@ -83,7 +83,7 @@
                       <div class="position-relative" style="display: flex; justify-content: center; text-align: center">
                         <div class="position-absolute" style="top: 0; margin-top: -20px">
                           <i style="background-color: #c30000; color: #ffffff; padding: 5px; border-radius: 25px" class="fal fa-usd-circle fa-2x"></i>
-                          <p class="text-white" style="font-size: 14px">Solicite su crédito <u>AQUÍ</u></p>
+                          <p class="text-white" style="font-size: 14px; font-weight: 400">Solicite su crédito <u>AQUÍ</u></p>
                         </div>
                       </div>
                     </div>
