@@ -317,8 +317,8 @@ if(strpos($actual_link, 'localhost') === false){
         <img src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Notary Public Near Me" width="50" height="50">
     </a>
   </div>
-<script src="{{asset('js/5.0.0/popper.min.js')}}"></script>
-<script src="{{asset('js/5.0.0/bootstrap.min.js')}}"></script>
+<script defer src="{{asset('js/5.0.0/popper.min.js')}}"></script>
+<script defer src="{{asset('js/5.0.0/bootstrap.min.js')}}"></script>
 
 @yield('script')
 <script>
