@@ -20,6 +20,8 @@
 <meta property="og:title"              content="{{$listing->listing_title}}" />
 <meta property="og:description"        content="{{mb_substr(trim(strip_tags($listing->listing_description)),0,180)}}..." />
 
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 @php $firstImg = array_filter(explode("|", $listing->images)) @endphp
 <meta property="og:image"              content="{{url('uploads/listing/600',$firstImg[0]??'')}}" />
 <style>
@@ -533,12 +535,12 @@
       @php
           $listingsSimilar = \App\Models\Listing::select('listing_title', 'images', 'property_price', 'heading_details', 'city', 'state', 'country', 'slug', 'listingtype')->where('city', $listing->city)->where('status', 1)->where('listingtype', $listing->listingtype)->inRandomOrder()->limit(4)->get();
       @endphp
-      <div class="row mt-5 justify-content-center">
+      <div class="row mt-5 justify-content-center" data-aos="zoom-in">
         <h5 class="text-center mb-5">Propiedades similares</h5>
         @foreach ($listingsSimilar as $listing_s)
         <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 mb-2 d-flex justify-content-center">
           <a style="text-decoration: none; color: #000000" href="{{ route('web.detail', $listing_s->slug) }}">
-            <div class="card cardsimilarlisting" style="width: 18rem;">
+            <div data-aos="zoom-in" class="card cardsimilarlisting" style="width: 18rem;">
               <img class="card-img-top" src="{{ asset('uploads/listing/600/'. strtok($listing_s->images, '|')) }}" alt="{{ $listing_s->listing_title}}">
               <div class="card-body">
                 <h5 style="margin: 0px" class="card-title">${{ number_format($listing_s->property_price) }}</h5>
@@ -582,6 +584,10 @@
 @endsection
 
 @section('script')
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 <script>
     //     var myCarousel = document.querySelector('#carouselControls');
     //     var carousel = new bootstrap.Carousel(myCarousel);
