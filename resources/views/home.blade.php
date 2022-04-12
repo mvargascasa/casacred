@@ -487,7 +487,7 @@
           <div data-aos="zoom-in-left" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
-                    <img class="img-fluid image lazyLoad" data-src="{{ asset('/img/toscana_50.webp') }}" class="card-img-top" alt="Proyecto Toscana - Casa Credito Promotora">
+                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="{{ asset('/img/toscana_50.webp') }}" class="card-img-top" alt="Proyecto Toscana - Casa Credito Promotora">
                     <div class="middle">
                       <div class="link">
                         <a href="https://casacreditopromotora.com/proyectos/Toscana">Ver proyecto</a>
