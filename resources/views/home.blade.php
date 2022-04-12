@@ -435,7 +435,7 @@
           <div data-aos="zoom-in-right" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-3 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
-                    <img class="image" style="width: 319px; height: 200px" src="{{ asset('/img/adra.webp') }}" class="card-img-top" alt="Proyecto Adra - Casa Credito Promotora">
+                    <img class="img-fluid image" src="{{ asset('/img/adra_50.webp') }}" class="card-img-top" alt="Proyecto Adra - Casa Credito Promotora">
                   <div class="middle">
                     <div class="link">
                       <a href="https://casacreditopromotora.com/proyectos/Adra">Ver proyecto</a>
@@ -455,7 +455,7 @@
           <div data-aos="zoom-in" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-3 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
-                    <img class="img-fluid image" src="{{ asset('/img/futuranarancay.webp') }}" class="card-img-top" alt="Proyecto Futura Narancay - Casa Credito Promotora">
+                    <img class="img-fluid image" src="{{ asset('/img/futuranarancay_50.webp') }}" class="card-img-top" alt="Proyecto Futura Narancay - Casa Credito Promotora">
                     <div class="middle">
                       <div class="link">
                         <a href="https://casacreditopromotora.com/proyectos/Futura Narancay">Ver proyecto</a>
@@ -475,7 +475,7 @@
           <div data-aos="zoom-in-left" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
-                    <img class="img-fluid image" src="{{ asset('/img/toscana.webp') }}" class="card-img-top" alt="Proyecto Toscana - Casa Credito Promotora">
+                    <img class="img-fluid image" src="{{ asset('/img/toscana_50.webp') }}" class="card-img-top" alt="Proyecto Toscana - Casa Credito Promotora">
                     <div class="middle">
                       <div class="link">
                         <a href="https://casacreditopromotora.com/proyectos/Toscana">Ver proyecto</a>
