@@ -222,19 +222,19 @@
         <div id="carouselExampleFadeBanner" class="carousel slide carousel-fade"  data-bs-ride="carousel" data-bs-interval="4000">
           <div class="carousel-inner" style="height: @if($ismobile) 70vw; @else 40vw; @endif">
             <div class="carousel-item active" style="position: relative">
-              <img class="img-fluid" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" src="{{ asset('img/bannerb.webp') }}" alt=""> 
+              <img class="img-fluid lazyLoad" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" data-src="{{ asset('img/bannerb.webp') }}" alt=""> 
               @include('layouts.homesearch')
             </div>
             <div class="carousel-item" style="position: relative">
-              <img class="img-fluid" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" src="{{ asset('img/banner1.webp') }}" alt="">
+              <img class="img-fluid lazyLoad" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" data-src="{{ asset('img/banner1.webp') }}" alt="">
               @include('layouts.homesearch')
             </div>
             <div class="carousel-item" style="position: relative">
-              <img class="img-fluid" style="filter: brightness(50%); width: 100vw;@if($ismobile) height: 70vw; @else height: 40vw; @endif" src="{{ asset('img/banner2.webp') }}" alt="">
+              <img class="img-fluid lazyLoad" style="filter: brightness(50%); width: 100vw;@if($ismobile) height: 70vw; @else height: 40vw; @endif" data-src="{{ asset('img/banner2.webp') }}" alt="">
               @include('layouts.homesearch')
             </div>
             <div class="carousel-item" style="position: relative">
-              <img class="img-fluid" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" src="{{ asset('img/banner4.webp') }}" alt="">
+              <img class="img-fluid lazyLoad" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" data-src="{{ asset('img/banner4.webp') }}" alt="">
               @include('layouts.homesearch')
             </div>
           </div>
@@ -245,7 +245,7 @@
           <div class="row mr-2 ml-2">
               <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
                 <div class="position-relative d-flex justify-content-center">
-                  <img style="border-radius: 5px;" class="img-fluid hover-image" src="{{ asset('img/CAS-IDEAL.webp') }}" alt="">
+                  <img style="border-radius: 5px;" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/CAS-IDEAL.webp') }}" alt="">
                 </div>
                   <div class="text-center mt-5">
                         <a class="btn cta a-btn-services" href="{{ route('web.propiedades') }}">
@@ -259,7 +259,7 @@
               </div>
               <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
                 <div class="position-relative d-flex justify-content-center">
-                  <img style="border-radius: 5px;" class="img-fluid hover-image" src="{{ asset('img/VENDA-SU-PROPIEDAD.webp') }}" alt="">
+                  <img style="border-radius: 5px;" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/VENDA-SU-PROPIEDAD.webp') }}" alt="">
                 </div>
                   <div class="text-center mt-5">
                       <button class="btn cta a-btn-services" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-whatever="  una propiedad">
@@ -273,7 +273,7 @@
               </div>
               <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
                 <div class="position-relative d-flex justify-content-center">
-                  <img style="border-radius: 5px;" class="img-fluid hover-image" src="{{ asset('img/ALQUILE.webp') }}" alt="">
+                  <img style="border-radius: 5px;" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/ALQUILE.webp') }}" alt="">
                 </div>
                   <div class="text-center mt-5">
                       <button class="btn cta a-btn-services" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
@@ -287,7 +287,7 @@
               </div>
               <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
                 <div class="position-relative d-flex justify-content-center">
-                  <img style="border-radius: 5px;" class="img-fluid hover-image" src="{{ asset('img/CREDITOS.webp') }}" alt="">
+                  <img style="border-radius: 5px;" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/CREDITOS.webp') }}" alt="">
                 </div>
                 <div class="text-center mt-5">
                     <a href="{{ route('web.servicios', 'creditos-en-ecuador') }}" class="btn cta a-btn-services">
