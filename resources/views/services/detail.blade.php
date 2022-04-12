@@ -69,12 +69,12 @@
 
                   @if ($service->page_title === "Créditos Hipotecarios" || $service->page_title === "Créditos de Consumo" || $service->page_title === "Créditos de Construcción")
                   <div id="card_creditos" style="border: none" class="card position-relative">
-                    <img class="img-fluid rounded" src="@if($service->page_title === "Créditos Hipotecarios") {{ asset('img/CREDITO-HIPOTECARIO.jpg') }} @elseif($service->page_title === "Créditos de Consumo") {{ asset('img/CONSUMO.jpg')}} @elseif($service->page_title === "Créditos de Construcción") {{ asset('img/CONSTRUCCION.jpg') }} @endif" alt="{{ $service->page_title }} para Ecuatorianos residentes en Estados Unidos">
+                    <img class="img-fluid rounded" src="@if($service->page_title === "Créditos Hipotecarios") {{ asset('img/CREDITO-HIPOTECARIO.webp') }} @elseif($service->page_title === "Créditos de Consumo") {{ asset('img/CONSUMO.webp')}} @elseif($service->page_title === "Créditos de Construcción") {{ asset('img/CONSTRUCCION.webp') }} @endif" alt="{{ $service->page_title }} para Ecuatorianos residentes en Estados Unidos">
                     <div class="position-absolute" style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%">
                       <div class="text-center">
                         <div id="txt_info" style="padding-top: 8rem">
-                          <img src="{{ asset('img/ECUADOR-04.png') }}" width="35px" alt="">
-                          <img src="{{ asset('img/USA-05.png') }}" width="35px" alt="">
+                          <img src="{{ asset('img/ECUADOR-04.webp') }}" width="35px" alt="{{ $service->page_title }} para Ecuatorianos residentes en Estados Unidos">
+                          <img src="{{ asset('img/USA-05.webp') }}" width="35px" alt="{{ $service->page_title }} para Ecuatorianos residentes en Estados Unidos">
                         </div>
                         <p class="text-white" style="font-weight: 500; font-size: 15px">{{ $service->page_title}} para <br> ecuatorianos que residen <br> en Estados Unidos</p>
                       </div>
