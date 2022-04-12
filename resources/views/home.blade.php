@@ -271,7 +271,7 @@
               </div>
               <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
                 <div class="position-relative d-flex justify-content-center">
-                  <img style="border-radius: 5px;" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/VENDA-SU-PROPIEDAD.webp') }}" alt="">
+                  <img style="border-radius: 5px;" width="100%" height="100%" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/VENDA-SU-PROPIEDAD.webp') }}" alt="">
                 </div>
                   <div class="text-center mt-5">
                       <button class="btn cta a-btn-services" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-whatever="  una propiedad">
@@ -285,7 +285,7 @@
               </div>
               <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
                 <div class="position-relative d-flex justify-content-center">
-                  <img style="border-radius: 5px;" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/ALQUILE.webp') }}" alt="">
+                  <img style="border-radius: 5px;" width="100%" height="100%" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/ALQUILE.webp') }}" alt="">
                 </div>
                   <div class="text-center mt-5">
                       <button class="btn cta a-btn-services" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
@@ -299,7 +299,7 @@
               </div>
               <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
                 <div class="position-relative d-flex justify-content-center">
-                  <img style="border-radius: 5px;" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/CREDITOS.webp') }}" alt="">
+                  <img style="border-radius: 5px;" width="100%" height="100%" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/CREDITOS.webp') }}" alt="">
                 </div>
                 <div class="text-center mt-5">
                     <a href="{{ route('web.servicios', 'creditos-en-ecuador') }}" class="btn cta a-btn-services">
@@ -345,7 +345,7 @@
             @foreach ($listings as $listing)
               <div class="carousel-item {{ $loop->first ? 'active' : ' '}}">
                 <div class="position-relative">
-                  <img style="filter: brightness(80%)" data-src="{{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }}" class="d-block w-100 lazyLoad" alt="...">
+                  <img style="filter: brightness(80%)" width="100%" height="100%" data-src="{{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }}" class="d-block w-100 lazyLoad" alt="...">
                   <div class="position-absolute" style="bottom: 5px; right: 5px;">
                     <a class="btn btn-sm btn-outline-light" href="{{ route('web.detail', $listing->slug) }}">Ver propiedad</a>
                   </div>
@@ -447,7 +447,7 @@
           <div data-aos="zoom-in-right" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-3 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
-                    <img class="img-fluid image lazyLoad" data-src="{{ asset('/img/adra_50.webp') }}" class="card-img-top" alt="Proyecto Adra - Casa Credito Promotora">
+                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="{{ asset('/img/adra_50.webp') }}" class="card-img-top" alt="Proyecto Adra - Casa Credito Promotora">
                   <div class="middle">
                     <div class="link">
                       <a href="https://casacreditopromotora.com/proyectos/Adra">Ver proyecto</a>
@@ -467,7 +467,7 @@
           <div data-aos="zoom-in" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-3 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
-                    <img class="img-fluid image lazyLoad" data-src="{{ asset('/img/futuranarancay_50.webp') }}" class="card-img-top" alt="Proyecto Futura Narancay - Casa Credito Promotora">
+                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="{{ asset('/img/futuranarancay_50.webp') }}" class="card-img-top" alt="Proyecto Futura Narancay - Casa Credito Promotora">
                     <div class="middle">
                       <div class="link">
                         <a href="https://casacreditopromotora.com/proyectos/Futura Narancay">Ver proyecto</a>
@@ -487,7 +487,7 @@
           <div data-aos="zoom-in-left" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
-                    <img class="img-fluid image lazyLoad" data-src="{{ asset('/img/toscana_50.webp') }}" class="card-img-top" alt="Proyecto Toscana - Casa Credito Promotora">
+                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="{{ asset('/img/toscana_50.webp') }}" class="card-img-top" alt="Proyecto Toscana - Casa Credito Promotora">
                     <div class="middle">
                       <div class="link">
                         <a href="https://casacreditopromotora.com/proyectos/Toscana">Ver proyecto</a>
