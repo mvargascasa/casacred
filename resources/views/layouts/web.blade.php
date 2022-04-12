@@ -50,6 +50,10 @@ if(strpos($actual_link, 'localhost') === false){
   @yield('header')
   <meta name="keywords" content="casas en venta en cuenca, departamentos en venta en cuenca, terrenos en venta en cuenta, lotes en venta en cuenca" />
 <style>
+  html, body {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
     .wsapp{
         position: fixed;
         bottom: 80px;
