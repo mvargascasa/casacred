@@ -39,6 +39,7 @@
 .carousel-control-prev-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='darkorange' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
 }
+@media screen and (max-width: 1200px){.divEmail{margin-top: 15px !important;}}
 
 /* @media screen and (max-width: 850px){
   #custCarousel .carousel-indicators {
@@ -460,10 +461,10 @@
       </div>
       
       {{-- aqui --}}
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-3">
         <div class="divEmail d-flex justify-content-center" style="margin-top: @if($mobile) 0%; @else 22%; @endif">
           <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-12 col-xl-12">
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-12">
               <div class=" formEmail rounded">
                 <div style="padding-top: 20px; padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
                   <p style="font-weight: 500">Quiero más información de esta propiedad</p>
@@ -492,7 +493,7 @@
                 En breve le atenderemos.
               </div>
             </div>
-            <div class="col-sm-12 col-md-6 col-lg-12 col-xl-12">
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-12">
               <div class="mt-3" style="position: relative">
                 <img style="filter: brightness(50%); border-radius: 12px" class="img-fluid" src="{{ asset('img/toscana.webp') }}" alt="">
                 <div class="text-center" style="position: absolute; top: 0; left: 0; color: #ffffff; margin: 12px">
@@ -538,7 +539,7 @@
       <div class="row mt-5 justify-content-center" data-aos="zoom-in">
         <h5 class="text-center mb-5">Propiedades similares</h5>
         @foreach ($listingsSimilar as $listing_s)
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 mb-2 d-flex justify-content-center">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 mb-2 d-flex justify-content-center text-center">
           <a style="text-decoration: none; color: #000000" href="{{ route('web.detail', $listing_s->slug) }}">
             <div data-aos="zoom-in" class="card cardsimilarlisting" style="width: 18rem;">
               <img class="card-img-top" src="{{ asset('uploads/listing/600/'. strtok($listing_s->images, '|')) }}" alt="{{ $listing_s->listing_title}}">

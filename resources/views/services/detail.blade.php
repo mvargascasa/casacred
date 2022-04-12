@@ -79,10 +79,10 @@
                         <p class="text-white" style="font-weight: 500; font-size: 15px">{{ $service->page_title}} para <br> ecuatorianos que residen <br> en Estados Unidos</p>
                       </div>
                     </div>
-                    <div class="position-absolute" onclick="setInterest('{{$service->page_title}}')" data-toggle="modal" data-target="#modalContact" style="bottom: 0; left: 0; width: 100%; background-color: #8b0000; height: 60px; cursor: pointer">
+                    <div class="position-absolute" onclick="setInterest('{{$service->page_title}}')" data-toggle="modal" data-target="#modalContact" style="bottom: 0; left: 0; width: 100%; background-color: #c30000; height: 60px; cursor: pointer">
                       <div class="position-relative" style="display: flex; justify-content: center; text-align: center">
                         <div class="position-absolute" style="top: 0; margin-top: -20px">
-                          <i style="background-color: #8b0000; color: #ffffff; padding: 5px; border-radius: 25px" class="fal fa-usd-circle fa-2x"></i>
+                          <i style="background-color: #c30000; color: #ffffff; padding: 5px; border-radius: 25px" class="fal fa-usd-circle fa-2x"></i>
                           <p class="text-white" style="font-size: 14px">Solicite su crédito <u>AQUÍ</u></p>
                         </div>
                       </div>
