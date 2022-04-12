@@ -7,10 +7,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
   {{-- <link rel="stylesheet" href="{{asset('css/5.0.0/bootstrap.min.css')}}"> --}}
+  <link rel="preload" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    </noscript>
+
   <link rel="preload" href="{{ asset('css/5.0.0/bootstrap.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
         <link rel="stylesheet" href="{{ asset('css/5.0.0/bootstrap.min.css') }}">
     </noscript>
+    
   <link rel="stylesheet" href="{{asset('css/style.css?x=5')}}">
   <meta name="facebook-domain-verification" content="st7nmy30bjdubvp2cuvvhwuk6n2syf" />
   
