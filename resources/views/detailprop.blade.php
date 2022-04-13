@@ -185,7 +185,7 @@
                             @php $iiListing=0 @endphp
                             @foreach(array_filter(explode("|", $listing->images)) as $img)
                               <div class="carousel-item @if($iiListing==0) active @endif"> 
-                                <img style="width: 100%" src="{{url('uploads/listing',$img)}}"  data-slide-to="{{$iiListing}}" class="d-block w-100 ccimgpro" style="object-fit:contain " alt="{{$listing->listing_title}}-{{$iiListing++}}"> 
+                                <img style="width: 100%; height: 100%" src="{{url('uploads/listing',$img)}}"  data-slide-to="{{$iiListing}}" class="d-block w-100 ccimgpro" style="object-fit:contain " alt="{{$listing->listing_title}}-{{$iiListing++}}"> 
                               </div>
                             @endforeach
                           </div> <!-- Left right --> <a style="margin-bottom: 30px" class="carousel-control-prev" href="#custCarousel" data-slide="prev"> <span class="carousel-control-prev-icon"></span> </a> <a style="margin-bottom: 30px" class="carousel-control-next" href="#custCarousel" data-slide="next"> <span class="carousel-control-next-icon"></span> </a> <!-- Thumbnails -->
@@ -194,7 +194,7 @@
                             @foreach(array_filter(explode("|", $listing->images)) as $img)
                               <li class="list-inline-item @if($iiListing==0) active @endif"> 
                                 <a id="carousel-selector-{{$iiListing}}" class="selected" data-slide-to="{{$iiListing}}" data-target="#custCarousel" alt="{{$listing->listing_title}}-{{$iiListing++}}"> 
-                                  <img src="{{url('uploads/listing',$img)}}" class="img-fluid"> 
+                                  <img width="100%" height="100%" src="{{url('uploads/listing',$img)}}" class="img-fluid"> 
                                 </a> 
                               </li>
                               @endforeach
