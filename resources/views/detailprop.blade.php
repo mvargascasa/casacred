@@ -188,7 +188,7 @@
                             @php $iiListing=0 @endphp
                             @foreach(array_filter(explode("|", $listing->images)) as $img)
                               <div class="carousel-item @if($iiListing==0) active @endif"> 
-                                <img style="width: 100%; height: 100%" data-src="{{url('uploads/listing',$img)}}"  data-slide-to="{{$iiListing}}" class="d-block w-100 ccimgpro lazyLoad" style="object-fit:contain " alt="{{$listing->listing_title}}-{{$iiListing++}}"> 
+                                <img style="width: 100%; height: 100%" data-src="@if($mobile) {{url('uploads/listing/600',$img)}} @else {{url('uploads/listing',$img)}} @endif"  data-slide-to="{{$iiListing}}" class="d-block w-100 ccimgpro lazyLoad" style="object-fit:contain " alt="{{$listing->listing_title}}-{{$iiListing++}}"> 
                               </div>
                             @endforeach
                           </div> <!-- Left right --> <a style="margin-bottom: 30px" class="carousel-control-prev" href="#custCarousel" data-slide="prev"> <span class="carousel-control-prev-icon"></span> </a> <a style="margin-bottom: 30px" class="carousel-control-next" href="#custCarousel" data-slide="next"> <span class="carousel-control-next-icon"></span> </a> <!-- Thumbnails -->
