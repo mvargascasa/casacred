@@ -65,16 +65,10 @@ if(strpos($actual_link, 'localhost') === false){
   @yield('header')
   <meta name="keywords" content="casas en venta en cuenca, departamentos en venta en cuenca, terrenos en venta en cuenta, lotes en venta en cuenca" />
 <style>
-  @font-face {
-    font-family: 'Pacifico';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Pacifico Regular'), local('Pacifico-Regular'), url('https://fonts.gstatic.com/s/pacifico/v12/FwZY7-Qmy14u9lezJ-6H6MmBp0u-.woff2') format('woff2');
-    font-display: swap;
-  }
    body {
         max-width: 100% !important;
         overflow-x: hidden !important;
+        font-display: swap !important;
     }
     .wsapp{
         position: fixed;
