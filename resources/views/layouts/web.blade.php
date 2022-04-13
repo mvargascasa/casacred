@@ -6,11 +6,11 @@
   <link rel="icon" href="{{asset('favicon-new.png')}}" type="image/x-icon" />
   {{-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">  --}}
   {{-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/> --}}
-  <link rel="stylesheet" href="{{asset('css/5.0.0/bootstrap.min.css')}}">
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet" href="{{asset('css/5.0.0/bootstrap.min.css')}}" media="print" onload="this.media='all'">
+  {{-- <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    </noscript>
+    </noscript> --}}
   
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" media="print" onload="this.media='all'">
 
