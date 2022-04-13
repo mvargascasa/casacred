@@ -196,9 +196,9 @@
                             @php $iiListing=0 @endphp
                             @foreach(array_filter(explode("|", $listing->images)) as $img)
                               <li class="list-inline-item @if($iiListing==0) active @endif"> 
-                                <a id="carousel-selector-{{$iiListing}}" class="selected" data-slide-to="{{$iiListing}}" data-target="#custCarousel" alt="{{$listing->listing_title}}-{{$iiListing++}}"> 
-                                  <img width="100%" height="100%" data-src="{{url('uploads/listing',$img)}}" class="img-fluid lazyLoad"> 
-                                </a> 
+                                <div id="carousel-selector-{{$iiListing}}" class="selected" data-slide-to="{{$iiListing}}" data-target="#custCarousel" alt="{{$listing->listing_title}}-{{$iiListing++}}"> 
+                                  <img width="100%" height="100%" data-src="{{url('uploads/listing/300/',$img)}}" class="img-fluid lazyLoad"> 
+                                </div> 
                               </li>
                               @endforeach
                           </ol>
