@@ -7,9 +7,9 @@
   {{-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">  --}}
   {{-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/> --}}
   <link rel="stylesheet" href="{{asset('css/5.0.0/bootstrap.min.css')}}">
-  <link rel="preload" href="https://fonts.googleapis.com/css2?display=swap&family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Poppins:wght@300;400;500;600;700&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     </noscript>
 
   <link rel="preload" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -195,8 +195,6 @@ if(strpos($actual_link, 'localhost') === false){
 <div class="bg-white">
 <section class="container justify-content-md-center p-4  ">
     <div class="row">
-   
- 
                                 <h1 class="text-black-50 p-4">Casas en Venta en Cuenca Ecuador</h1>
                             <div class="col-md-3">
                                 <h4>Ecuador</h4>
@@ -244,9 +242,10 @@ if(strpos($actual_link, 'localhost') === false){
                         
                         <p class="text-white-50">Sábados 9:00 am a 1:00 pm</p>
                         
-                        <p class="text-white-50">Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero</p>
-                        
-                        <p class="text-white-50">Edificio Santa Lucia</p>
+                        <p style="margin: 0px" class="text-white-50"><b style="font-weight: 300; color: #ffffff; margin: 0px">Oficina 1:</b> Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero</p>                        
+                        <p class="text-white-50" >Edificio Santa Lucia</p>
+
+                        <p class="text-white-50"><b style="font-weight: 300; color: #ffffff">Oficina 2:</b> Av. Fray Vicente Solano y Remigio Tamariz Crespo</p>
                         
                         <p><a href="tel:+59372810825"   class="asindeco">07-412-6004</a>&nbsp;/ 
                             <a href="tel:+593983849073" class="asindeco"> 098-384-9073</a>&nbsp;&nbsp;</p>
