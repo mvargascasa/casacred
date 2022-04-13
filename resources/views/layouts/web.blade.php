@@ -94,6 +94,7 @@ if(strpos($actual_link, 'localhost') === false){
       input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;margin: 0;}
 
       html, body{
+        max-width: 100% !important;
         font-family: 'Poppins', sans-serif;
       }
       a{
@@ -272,19 +273,19 @@ if(strpos($actual_link, 'localhost') === false){
               
                         <div class="d-flex">
                           <a href="https://www.facebook.com/CasaCreditoInmobiliaria" class="asindeco px-1" target="_blank">
-                              <img class="lazyLoad" data-src="{{asset('img/casacredito-facebook.svg')}}" alt="Facebook Notary Public Near Me" width="40" height="40">
-                          </a>
+                              <img src="{{asset('img/casacredito-facebook.svg')}}" alt="Facebook Notary Public Near Me" width="40" height="40">
+                            </a>
       
                           <a href="https://www.messenger.com/t/inmobiliariacasacredito" class="asindeco px-1" target="_blank">
-                              <img class="lazyLoad" data-src="{{asset('img/casacredito-messenger.svg')}}" alt="Messenger Notary Public Near Me" width="40" height="40">
+                              <img src="{{asset('img/casacredito-messenger.svg')}}" alt="Messenger Notary Public Near Me" width="40" height="40">
                           </a>
       
                           <a href="https://www.instagram.com/inmobiliariacasacredito/" class="asindeco px-1" target="_blank">
-                              <img class="lazyLoad" data-src="{{asset('img/casacredito-instagram.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40">
+                              <img src="{{asset('img/casacredito-instagram.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40">
                           </a>
       
                           <a href="https://api.whatsapp.com/send?phone=+593983849073  " class="asindeco px-1" target="_blank">
-                              <img class="lazyLoad" data-src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40">
+                              <img src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40">
                           </a>
                         </div>
 
