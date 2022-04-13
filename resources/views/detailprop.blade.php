@@ -22,6 +22,8 @@
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
+<script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
+
 @php $firstImg = array_filter(explode("|", $listing->images)) @endphp
 <meta property="og:image"              content="{{url('uploads/listing/600',$firstImg[0]??'')}}" />
 <style>
@@ -112,14 +114,15 @@
 .cardsimilarlisting:hover{
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
-        
+  .lazyLoad {width: 100%;opacity: 0;}
+  .visible {transition: opacity 1000ms ease;opacity: 1;} 
 </style>
 @endsection
 
 @section('content')
   <div class="container">
-    <div style="display: none" class="row pt-3">
-      {{-- aqui --}}
+    {{-- <div style="display: none" class="row pt-3">
+      aqui
       <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">          
         <h5 class="font-weight-bold">{{$listing->listing_title}}</h5>
         <h6 class="text-muted">{{$listing->address}}</h6>
@@ -135,7 +138,7 @@
           <img src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Casacredito" width="30" height="30">
         </a>
       </div>
-    </div>
+    </div> --}}
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8">
 
@@ -185,7 +188,7 @@
                             @php $iiListing=0 @endphp
                             @foreach(array_filter(explode("|", $listing->images)) as $img)
                               <div class="carousel-item @if($iiListing==0) active @endif"> 
-                                <img style="width: 100%; height: 100%" src="{{url('uploads/listing',$img)}}"  data-slide-to="{{$iiListing}}" class="d-block w-100 ccimgpro" style="object-fit:contain " alt="{{$listing->listing_title}}-{{$iiListing++}}"> 
+                                <img style="width: 100%; height: 100%" data-src="{{url('uploads/listing',$img)}}"  data-slide-to="{{$iiListing}}" class="d-block w-100 ccimgpro lazyLoad" style="object-fit:contain " alt="{{$listing->listing_title}}-{{$iiListing++}}"> 
                               </div>
                             @endforeach
                           </div> <!-- Left right --> <a style="margin-bottom: 30px" class="carousel-control-prev" href="#custCarousel" data-slide="prev"> <span class="carousel-control-prev-icon"></span> </a> <a style="margin-bottom: 30px" class="carousel-control-next" href="#custCarousel" data-slide="next"> <span class="carousel-control-next-icon"></span> </a> <!-- Thumbnails -->
@@ -194,7 +197,7 @@
                             @foreach(array_filter(explode("|", $listing->images)) as $img)
                               <li class="list-inline-item @if($iiListing==0) active @endif"> 
                                 <a id="carousel-selector-{{$iiListing}}" class="selected" data-slide-to="{{$iiListing}}" data-target="#custCarousel" alt="{{$listing->listing_title}}-{{$iiListing++}}"> 
-                                  <img width="100%" height="100%" src="{{url('uploads/listing',$img)}}" class="img-fluid"> 
+                                  <img width="100%" height="100%" data-src="{{url('uploads/listing',$img)}}" class="img-fluid lazyLoad"> 
                                 </a> 
                               </li>
                               @endforeach
@@ -272,13 +275,13 @@
 							  }
               }
             @endphp
-            <div class="pb-2">
+            {{-- <div class="pb-2">
               @if($listing->construction_area>0)<img src="{{asset('img/house.png')}}" width="15"><span class="text-danger font-weight-bold small pr-1"> {{$listing->construction_area}}m<sup>2</sup> </span> @endif
               @if($listing->land_area>0)<img src="{{asset('img/floor.png')}}" width="15"><span class="text-danger font-weight-bold small pr-1"> {{$listing->land_area}}m<sup>2</sup> </span> @endif
               @if($bedroom>0)<img src="{{asset('img/bed-black.png')}}" width="15"><span class="text-danger font-weight-bold small pr-2"> {{$bedroom}} </span> @endif
               @if($bathroom>0)<img src="{{asset('img/bathroom-black.png')}}" width="15"><span class="text-danger font-weight-bold small pr-1"> {{$bathroom}} </span> @endif
               @if($garage>0)<img src="{{asset('img/garage-black.png')}}" width="15"><span class="text-danger font-weight-bold small pr-1"> {{$garage}} </span> @endif
-            </div>
+            </div> --}}
             @isset ($listing->listyears)
               @php
                 $years_construction = DB::table('listing_years')->select('description')->where('id', $listing->listyears)->get();
@@ -443,7 +446,7 @@
                   En breve le atenderemos.
                 </div>
               </div>    --}}
-              <div style="display: none" class="card my-4">
+              {{-- <div style="display: none" class="card my-4">
                 <div class="card-body">
                   <h6 class="card-title text-danger">CONTÁCTANOS</h6> <hr>        
                   <div class="d-flex justify-content-center">
@@ -454,7 +457,7 @@
                   <div class="d-flex justify-content-center text-muted">718-690-3740</div>
                   <div class="d-flex justify-content-center text-muted">ventas@casacredito.com</div>
                 </div>
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>
@@ -495,7 +498,7 @@
             </div>
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-12">
               <div class="mt-3" style="position: relative">
-                <img style="filter: brightness(50%); border-radius: 12px" class="img-fluid" src="{{ asset('img/toscana.webp') }}" alt="">
+                <img width="100%" height="100%" style="filter: brightness(50%); border-radius: 12px" class="img-fluid lazyLoad" data-src="{{ asset('img/toscana.webp') }}" alt="">
                 <div class="text-center" style="position: absolute; top: 0; left: 0; color: #ffffff; margin: 12px">
                   <p style="font-weight: 600">Conozca los proyectos de vivienda en Cuenca</p>
                 </div>
@@ -542,7 +545,7 @@
         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 mb-2 d-flex justify-content-center text-center">
           <a style="text-decoration: none; color: #000000" href="{{ route('web.detail', $listing_s->slug) }}">
             <div data-aos="zoom-in" class="card cardsimilarlisting" style="width: 18rem;">
-              <img class="card-img-top" src="{{ asset('uploads/listing/600/'. strtok($listing_s->images, '|')) }}" alt="{{ $listing_s->listing_title}}">
+              <img class="card-img-top lazyLoad" width="100%" height="100%" data-src="{{ asset('uploads/listing/600/'. strtok($listing_s->images, '|')) }}" alt="{{ $listing_s->listing_title}}">
               <div class="card-body">
                 <h5 style="margin: 0px" class="card-title">${{ number_format($listing_s->property_price) }}</h5>
                 @php
@@ -597,5 +600,26 @@
     //     carousel.to(nro)
     // };
 
+    function onScrollEvent(entries, observer) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                var attributes = entry.target.attributes;
+                var src = attributes['data-src'].textContent;
+                entry.target.src = src;
+                entry.target.classList.add('visible');
+            }
+        });
+    }
+
+    var targets = document.querySelectorAll('.lazyLoad');
+
+    // Instanciamos un nuevo observador.
+    var observer = new IntersectionObserver(onScrollEvent);
+
+    // Y se lo aplicamos a cada una de las
+    // imágenes.
+    targets.forEach(function(entry) {
+        observer.observe(entry);
+    });
 </script>
 @endsection
