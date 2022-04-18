@@ -183,6 +183,7 @@ const upscroll = () => {
     //funcion que envia el valor del input radio button al hacerlo click
     function btnradio_search(btnradio){
       @this.set('category', btnradio.value);
+      changeImageBanner(btnradio.value);
     }
 
     function filter_search(){
