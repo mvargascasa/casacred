@@ -84,7 +84,7 @@
                 @php
                     $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
                       $bathroom=0;$garage=0;$squarefit=0;
-                      
+
 
 											if(!empty($listing->heading_details)){
                         $allheadingdeatils=json_decode($listing->heading_details); 
@@ -179,6 +179,11 @@ const upscroll = () => {
     document.getElementById('bform_range').addEventListener('change', function(){ //si hay algun cambio en el range de anios de construccion, se manda en la variable para filtrarla
       bform_range = document.getElementById('bform_range').value; //Nueva variable para filtrar por años de construccion
     });
+
+    //funcion que envia el valor del input radio button al hacerlo click
+    function btnradio_search(btnradio){
+      @this.set('category', btnradio.value);
+    }
 
     function filter_search(){
 

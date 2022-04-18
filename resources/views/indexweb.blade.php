@@ -42,13 +42,13 @@
                 <h6>Casas, departamentos, Terrenos, Casas Comerciales, Quintas</h6>
 
                 <div class="btn-group pb-2">
-                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_0" autocomplete="off" value="en-venta">
+                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_0" autocomplete="off" value="en-venta" @if(\Request::get('category') != null) @if(\Request::get('category') === "en-venta") checked @endif @endif onclick="btnradio_search(this)">
                   <label class="btn btn-outline-danger" for="ftop_category_0" style="width:100px;font-size: 14px">VENTA</label>
                   
-                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_1" autocomplete="off" value="alquilar">
+                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_1" autocomplete="off" value="alquilar" @if(\Request::get('category') != null) @if(\Request::get('category') === "alquilar") checked @endif @endif onclick="btnradio_search(this)">
                   <label class="btn btn-outline-danger" for="ftop_category_1" style="width:100px;font-size: 14px">ALQUILER</label>
                   
-                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_2" autocomplete="off" value="proyectos">
+                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_2" autocomplete="off" value="proyectos" @if(\Request::get('category') != null) @if(\Request::get('category') === "proyectos") checked @endif @endif onclick="btnradio_search(this)">
                   <label class="btn btn-outline-danger" for="ftop_category_2" style="width:100px;font-size: 14px">PROYECTO</label>
                 </div>
     
