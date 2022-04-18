@@ -1,7 +1,29 @@
 @extends('layouts.web')
 @section('header')
-<title>Casas en venta Cuenca Ecuador - Casa Crédito Encuentra la casa de tus sueños</title>
-<meta name="description" content="Casas en Venta en Cuenca, Departamentos en venta en Cuenca, Lotes en Venta en Cuenca, Terrenos en Venta en Cuenca. Venta de Propiedades y Gestión de Créditos."/>
+{{-- @if(request()->segment(1) != null && request()->segment(1) != "propiedades") --}}
+  @switch(request()->segment(1))
+      @case('casas-de-venta-en-ecuador')
+      @case('departamentos-de-venta-en-ecuador')
+      @case('terrenos-de-venta-en-ecuador')
+      @case('casas-de-venta-en-cuenca')
+      @case('departamentos-de-venta-en-cuenca')
+      @case('terrenos-de-venta-en-cuenca')
+      @case('casas-de-venta-en-quito')
+      @case('departamentos-de-venta-en-quito')
+      @case('terrenos-de-venta-en-quito')
+      @case('casas-de-venta-en-guayaquil')
+      @case('departamentos-de-venta-en-guayaquil')
+      @case('terrenos-de-venta-en-guayaquil')
+        @php
+            $meta_seo = request()->segment(1);
+        @endphp
+          @break
+      @default 
+  @endswitch
+{{-- @endif --}}
+
+<title>@isset($meta_seo){{ ucfirst(str_replace('-', ' ', $meta_seo)) }} - Casa Crédito  @else Casas en venta Cuenca Ecuador - Casa Crédito Encuentra la casa de tus sueños @endisset</title>
+<meta name="description" content="@isset($meta_seo)En Casa Crédito contamos con {{ucfirst(str_replace('-', ' ', $meta_seo)) }}. Acceda a nuestro sitio web y encuentre la casa de sus sueños @else Casas en Venta en Cuenca, Departamentos en venta en Cuenca, Lotes en Venta en Cuenca, Terrenos en Venta en Cuenca. Venta de Propiedades y Gestión de Créditos. @endisset"/>
 <meta name="keywords" content="Casas en venta en cuenca, Apartamentos en venta en cuenca, terrenos en venta en cuenca, lotes en venta en cuenca">
 
 <meta property="og:url"                content="{{route('web.index')}}" />

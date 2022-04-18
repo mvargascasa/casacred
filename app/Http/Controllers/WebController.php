@@ -258,7 +258,7 @@ class WebController extends Controller
         }else{ $ismobile = false; }
         return $mobile;
     }
-	
+ 
 
 
 }
