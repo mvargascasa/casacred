@@ -19,11 +19,20 @@
   }
   input[type=range]::-moz-range-thumb {
     box-shadow: 0px 0px 0px #000000;
-    border: 1px solid #dc3545;
+    border: 1px solid #ff0000;
     height: 18px;
     width: 18px;
     border-radius: 25px;
-    background: #dc3545;
+    background: #ff0000;
+    cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    box-shadow: 0px 0px 0px #000000;
+    border: 1px solid #ff0000;
+    height: 18px;
+    width: 18px;
+    border-radius: 25px;
+    background: #ff0000;
     cursor: pointer;
   }
 </style>
