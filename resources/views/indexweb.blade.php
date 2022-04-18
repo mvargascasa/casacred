@@ -28,8 +28,8 @@
 
 <meta property="og:url"                content="{{route('web.index')}}" />
 <meta property="og:type"               content="website" />
-<meta property="og:title"              content="Casa Crédito Encuentra la casa de tus sueños." />
-<meta property="og:description"        content="Casas en Venta en Cuenca, Departamentos en venta en Cuenca, Lotes en Venta en Cuenca, Terrenos en Venta en Cuenca. Venta de Propiedades y Gestión de Créditos." />
+<meta property="og:title"              content="@isset($meta_seo){{ucfirst(str_replace('-', ' ', $meta_seo))}} - Casa Crédito @else Casa Crédito Encuentra la casa de tus sueños. @endisset" />
+<meta property="og:description"        content="@isset($meta_seo)En Casa Crédito Contamos con {{ucfirst(str_replace('-', ' ', $meta_seo))}}. Acceda a nuestro sitio web y encuentre la casa de sus sueños @else Casas en Venta en Cuenca, Departamentos en venta en Cuenca, Lotes en Venta en Cuenca, Terrenos en Venta en Cuenca. Venta de Propiedades y Gestión de Créditos. @endisset" />
 <meta property="og:image"              content="{{asset('img/meta-image-social-cc.jpg')}}" />
 <style>
   .carousel-control-prev-icon {
