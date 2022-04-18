@@ -50,13 +50,13 @@
         <div id="formtopsearch">
           <div class="btn-group pb-2">
             <input type="radio" class="btn-check form-control" name="category" id="ftop_category_0" autocomplete="off" value="en-venta" onclick="btnradio_search();">
-            <label class="btn btn-outline-danger" for="ftop_category_0" style="width:100px;font-size: 14px">VENTA</label>
+            <label class="btn btn-outline-danger" for="ftop_category_0" style="width:100px;font-size: 14px">COMPRAR</label>
             
             <input type="radio" class="btn-check form-control" name="category" id="ftop_category_1" autocomplete="off" value="alquilar" onclick="btnradio_search();">
-            <label class="btn btn-outline-danger" for="ftop_category_1" style="width:100px;font-size: 14px">ALQUILER</label>
+            <label class="btn btn-outline-danger" for="ftop_category_1" style="width:100px;font-size: 14px">ALQUILAR</label>
             
             <input type="radio" class="btn-check form-control" name="category" id="ftop_category_2" autocomplete="off" value="proyectos" onclick="btnradio_search();">
-            <label class="btn btn-outline-danger" for="ftop_category_2" style="width:100px;font-size: 14px">PROYECTO</label>
+            <label class="btn btn-outline-danger" for="ftop_category_2" style="width:100px;font-size: 14px">PROYECTOS</label>
           </div>
   
           <div class="input-group d-flex mb-3">
