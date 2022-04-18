@@ -15,13 +15,14 @@ class Proplist extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $searchtxt,$category,$state,$city,$type,$fromprice,$uptoprice,$pressButtom,$tags,$range, // $tags y $range nueva variable para filtrar
-            $tester, $ptype;
+            $tester, $ptype, $pstate;
 
     protected $queryString = [  'searchtxt'=> ['except' => ''],
                                 'category'=> ['except' => ''],
                                 'type'=> ['except' => ''],
                                 'ptype' => ['except' => ''], // new variable
                                 'state'=> ['except' => ''],
+                                'pstate' => ['except' => ''],
                                 'city'=> ['except' => ''],
                                 'fromprice'=> ['except' => ''],
                                 'uptoprice'=> ['except' => ''],
@@ -100,6 +101,12 @@ class Proplist extends Component
         
         if(strlen($this->state)>2){
             $listings_filter->where('state',$this->state);
+            $this->pstate = null;
+        }
+
+        if(strlen($this->pstate)>2){
+            $listings_filter->where('state',$this->pstate);
+            $this->state = null;
         }
         
         if(strlen($this->fromprice)>1 && filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT)>1){

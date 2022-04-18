@@ -229,6 +229,13 @@ const upscroll = () => {
         @this.set('ptype', tform_ptype);
       }
 
+      let bandera_tform_pstate = document.body.contains(document.getElementById('selProvinceb'));
+
+      if(bandera_tform_pstate){
+        let tform_pstate = document.getElementById('selProvinceb').value;
+        @this.set('pstate', tform_pstate);
+      }
+
       if(check1.checked){tform_category=check1.value;changeImageBanner(tform_category);}
       if(check2.checked){tform_category=check2.value;changeImageBanner(tform_category);}
       if(check3.checked){tform_category=check3.value;changeImageBanner(tform_category);}
