@@ -231,24 +231,19 @@
            }
          }
     @endphp
+
         <div id="carouselExampleFadeBanner" class="carousel slide carousel-fade"  data-bs-ride="carousel" data-bs-interval="4000">
           <div class="carousel-inner" style="height: @if($ismobile) 70vw; @else 40vw; @endif">
-            <div class="carousel-item active" style="position: relative">
-              <img class="img-fluid lazyLoad" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" data-src="{{ asset('img/bannerb.webp') }}" alt=""> 
-              @include('layouts.homesearch')
-            </div>
-            <div class="carousel-item" style="position: relative">
-              <img class="img-fluid lazyLoad" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" data-src="{{ asset('img/banner1.webp') }}" alt="">
-              @include('layouts.homesearch')
-            </div>
-            <div class="carousel-item" style="position: relative">
-              <img class="img-fluid lazyLoad" style="filter: brightness(50%); width: 100vw;@if($ismobile) height: 70vw; @else height: 40vw; @endif" data-src="{{ asset('img/banner2.webp') }}" alt="">
-              @include('layouts.homesearch')
-            </div>
-            <div class="carousel-item" style="position: relative">
-              <img class="img-fluid lazyLoad" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" data-src="{{ asset('img/banner4.webp') }}" alt="">
-              @include('layouts.homesearch')
-            </div>
+            @php
+              $count = 0;
+            @endphp
+            @for ($i = 1; $i < 5; $i++)
+              <div class="carousel-item @if($count === 0) active @endif">
+                <img class="img-fluid lazyLoad" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" data-src="{{ asset('img/banner'. $i .'.webp') }}" alt="">   
+                @php $count++; @endphp
+                @include('layouts.homesearch')
+              </div>
+              @endfor
           </div>
         </div> 
 
@@ -936,6 +931,12 @@
     targets.forEach(function(entry) {
         observer.observe(entry);
     });
+
+    //Enviar formulario cuando de click en uno de los radio button
+    const btnradio_search = () => {
+      document.getElementById('formhomesearch').submit();
+    }
+    
 </script>
   {{-- @livewireScripts
   @stack('scripts') --}}

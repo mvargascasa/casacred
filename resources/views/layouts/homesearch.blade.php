@@ -46,16 +46,16 @@
       <div class="col-12 text-white text-center p-4" style="width: 600px;background:rgba(2, 2, 2, 0.5)">
         <h1 class="font-weight-bold heading-title" >Su sueño está aquí</h1>
         <h6 id="txtcasas">Casas, departamentos, Terrenos, Casas Comerciales, Quintas</h6>
-        <form action="{{route('web.propiedades')}}" method="GET">
+        <form id="formhomesearch" action="{{route('web.propiedades')}}" method="GET">
         <div id="formtopsearch">
           <div class="btn-group pb-2">
-            <input type="radio" class="btn-check form-control" name="category" id="ftop_category_0" autocomplete="off" value="en-venta">
+            <input type="radio" class="btn-check form-control" name="category" id="ftop_category_0" autocomplete="off" value="en-venta" onclick="btnradio_search();">
             <label class="btn btn-outline-danger" for="ftop_category_0" style="width:100px;font-size: 14px">VENTA</label>
             
-            <input type="radio" class="btn-check form-control" name="category" id="ftop_category_1" autocomplete="off" value="alquilar">
+            <input type="radio" class="btn-check form-control" name="category" id="ftop_category_1" autocomplete="off" value="alquilar" onclick="btnradio_search();">
             <label class="btn btn-outline-danger" for="ftop_category_1" style="width:100px;font-size: 14px">ALQUILER</label>
             
-            <input type="radio" class="btn-check form-control" name="category" id="ftop_category_2" autocomplete="off" value="proyectos">
+            <input type="radio" class="btn-check form-control" name="category" id="ftop_category_2" autocomplete="off" value="proyectos" onclick="btnradio_search();">
             <label class="btn btn-outline-danger" for="ftop_category_2" style="width:100px;font-size: 14px">PROYECTO</label>
           </div>
   
