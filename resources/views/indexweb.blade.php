@@ -31,6 +31,12 @@
 @endsection
 
 @section('content')
+    @php
+      $category="";$ptype="";$searchtxt="";
+      if(Request()->get('category') != null){$category = Request()->get('category');}
+      if(Request()->get('ptype') != null){$ptype = Request()->get('ptype');}
+      if(Request()->get('searchtxt') != null){$searchtxt = Request()->get('searchtxt');}
+    @endphp
 
     <section id="prisection" style="background-size: cover;background-position: 0rem 23%; width: 100%; background-repeat: no-repeat;">
       <div>
@@ -42,30 +48,31 @@
                 <h6>Casas, departamentos, Terrenos, Casas Comerciales, Quintas</h6>
 
                 <div class="btn-group pb-2">
-                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_0" autocomplete="off" value="en-venta" @if(\Request::get('category') != null) @if(\Request::get('category') === "en-venta") checked @endif @endif onclick="btnradio_search(this)">
+                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_0" autocomplete="off" value="en-venta" @if($category === "en-venta") checked @endif onclick="btnradio_search(this)">
                   <label class="btn btn-outline-danger" for="ftop_category_0" style="width:100px;font-size: 14px">COMPRAR</label>
                   
-                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_1" autocomplete="off" value="alquilar" @if(\Request::get('category') != null) @if(\Request::get('category') === "alquilar") checked @endif @endif onclick="btnradio_search(this)">
+                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_1" autocomplete="off" value="alquilar" @if($category === "alquilar") checked @endif onclick="btnradio_search(this)">
                   <label class="btn btn-outline-danger" for="ftop_category_1" style="width:100px;font-size: 14px">ALQUILAR</label>
                   
-                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_2" autocomplete="off" value="proyectos" @if(\Request::get('category') != null) @if(\Request::get('category') === "proyectos") checked @endif @endif onclick="btnradio_search(this)">
+                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_2" autocomplete="off" value="proyectos" @if($category === "proyectos") checked @endif onclick="btnradio_search(this)">
                   <label class="btn btn-outline-danger" for="ftop_category_2" style="width:100px;font-size: 14px">PROYECTOS</label>
                 </div>
+
     
                 <div class="input-group mb-3">
                       <select class="form-select" id="ftop_type" style="max-width:200px;">
                             <option value="">Todas</option>	
-                            <option value="23">Casas </option>
-                            <option value="24">Departamentos </option>
-                            <option value="25">Casas Comerciales</option>
-                            <option value="26">Terrenos</option>
-                            <option value="29">Quintas</option>
-                            <option value="30">Haciendas</option>
-                            <option value="32">Locales Comerciales</option>
-                            <option value="35">Oficinas</option>
-                            <option value="36">Suites</option>
+                            <option value="23" @if($ptype === "23") selected @endif>Casas </option>
+                            <option value="24" @if($ptype === "24") selected @endif>Departamentos </option>
+                            <option value="25" @if($ptype === "25") selected @endif>Casas Comerciales</option>
+                            <option value="26" @if($ptype === "26") selected @endif>Terrenos</option>
+                            <option value="29" @if($ptype === "29") selected @endif>Quintas</option>
+                            <option value="30" @if($ptype === "30") selected @endif>Haciendas</option>
+                            <option value="32" @if($ptype === "32") selected @endif>Locales Comerciales</option>
+                            <option value="35" @if($ptype === "35") selected @endif>Oficinas</option>
+                            <option value="36" @if($ptype === "36") selected @endif>Suites</option>
                       </select>
-                      <input type="text" id="ftop_txt" class="form-control" onkeypress="if(event.keyCode==13)top_search()">
+                      <input type="text" id="ftop_txt" class="form-control" @if($searchtxt != null) value="{{$searchtxt}}" @endif onkeypress="if(event.keyCode==13)top_search()">
                       <button type="button" class="btn btn-danger"  onclick="top_search()">BUSCAR</button>
                 </div>       
 
