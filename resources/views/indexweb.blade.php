@@ -262,7 +262,7 @@
               </div>
 
               <div class="col mt-2">
-                <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" data-interval="3000">
                   <div class="carousel-inner" style="border-radius: 5px">
 
                     <div class="carousel-item active">

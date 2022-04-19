@@ -9,7 +9,7 @@
     @foreach($listings as $listing)
         @php $ii++; @endphp 
 
-        @if($ii==6)
+        @if($ii==8)
           <div class="card row mb-3" style="border-top:1px #FA7B34 solid">
             <div class="row">
               <a data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('ANUNCIO CREDITOS EN ECUADOR')">
@@ -18,7 +18,7 @@
              </div>
           </div>
         @endif
-        @if($ii==11)
+        @if($ii==13)
         <div class="card row mb-3" style="border-top:1px #FA7B34 solid">
           <div class="row">            
             <a data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('ANUNCIO VENDE CON NOSOTROS')">
