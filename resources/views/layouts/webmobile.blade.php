@@ -135,8 +135,8 @@
             <p class="text-gray-400 text-xs p-1">67-03 Roosevelt Avenue<br>
             Woodside, NY 11377</p>
             <p class="py-2"><a href="tel:+17186903740" class="text-blue-400 text-sm">718-690-3740</a>                    
-                <span class="text-blue-400 text-sm" >&nbsp; / &nbsp;</span>
-                <a href="tel:+13478460067" class="text-blue-400 text-sm">347-846-0067</a>&nbsp;</p>
+                {{-- <span class="text-blue-400 text-sm" >&nbsp; / &nbsp;</span> --}}
+                {{-- <a href="tel:+13478460067" class="text-blue-400 text-sm">347-846-0067</a>&nbsp;</p> --}}
             <p><a href="mailto:info@casacredito.com" class="text-blue-400 text-md">info@casacredito.com</a></p>
 </div>
 
