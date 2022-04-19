@@ -9,20 +9,20 @@
     @foreach($listings as $listing)
         @php $ii++; @endphp 
 
-        @if($ii==8)
-          <div class="card row mb-3" style="border-top:1px #FA7B34 solid">
-            <div class="row">
-              <a data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('ANUNCIO CREDITOS EN ECUADOR')">
-                  <img class="img-fluid p-0"  onclick="openModal('openLead')" src="{{asset('img/creditos-para-ecuatorianos-en-eeuu-24-horas-web.jpg')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
-              </a>
-             </div>
-          </div>
-        @endif
-        @if($ii==13)
+        @if($ii==9)
         <div class="card row mb-3" style="border-top:1px #FA7B34 solid">
           <div class="row">            
             <a data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('ANUNCIO VENDE CON NOSOTROS')">
                 <img class="img-fluid p-0"  src="{{asset('img/vende-tu-propiedad-en-casacredito-web.jpg')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
+            </a>
+           </div>
+        </div>
+        @endif
+        @if($ii==14)
+        <div class="card row mb-3" style="border-top:1px #FA7B34 solid">
+          <div class="row">
+            <a data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('ANUNCIO CREDITOS EN ECUADOR')">
+                <img class="img-fluid p-0"  onclick="openModal('openLead')" src="{{asset('img/creditos-para-ecuatorianos-en-eeuu-24-horas-web.jpg')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
             </a>
            </div>
         </div>
