@@ -258,7 +258,7 @@ if(strpos($actual_link, 'localhost') === false){
                         Woodside, NY 11377</p>
 
                         <p><a href="tel:+17186903740" class="asindeco">718-690-3740</a>&nbsp;</p>
-                        <p><a href="tel:+13478460067" class="asindeco">347-846-0067</a>&nbsp;</p>
+                        {{-- <p><a href="tel:+13478460067" class="asindeco">347-846-0067</a>&nbsp;</p> --}}
 
                         <p><a href="mailto:info@casacredito.com" class="asindeco">info@casacredito.com</a></p>
             </div>
