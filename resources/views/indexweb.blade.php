@@ -260,6 +260,84 @@
                     </a>
                 </div>
               </div>
+
+              <div class="col mt-2">
+                <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner" style="border-radius: 5px">
+
+                    <div class="carousel-item active">
+                      <img src="{{ asset('img/CREDITO-HIPOTECARIO.webp') }}" class="d-block w-100" alt="...">
+                      <div class="carousel-caption" style="margin-bottom: 25px">
+                        <div class="text-center">
+                          <div id="txt_info" style="padding-top: 8rem">
+                            <img src="{{ asset('img/ECUADOR-04.webp') }}" width="35px" alt="Creditos Hipotecarios para Ecuatorianos residentes en Estados Unidos">
+                            <img src="{{ asset('img/USA-05.webp') }}" width="35px" alt="Creditos Hipotecarios para Ecuatorianos residentes en Estados Unidos">
+                          </div>
+                          <p class="text-white" style="font-weight: 500; font-size: 15px">Créditos Hipotecarios para ecuatorianos que residen en Estados Unidos</p>
+                        </div>
+                      </div>
+                      <div class="position-absolute" onclick="setInterest('Créditos Hipotecarios')" data-toggle="modal" data-target="#modalContact" style="bottom: 0; left: 0; width: 100%; background-color: #c30000; height: 60px; cursor: pointer">
+                        <div class="position-relative" style="display: flex; justify-content: center; text-align: center">
+                          <div class="position-absolute" style="top: 0; margin-top: -20px">
+                            <i style="background-color: #c30000; color: #ffffff; padding: 5px; border-radius: 25px" class="fal fa-usd-circle fa-2x"></i>
+                            <p class="text-white" style="font-size: 14px; font-weight: 400">Solicite su crédito <u>AQUÍ</u></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="carousel-item">
+                      <img src="{{ asset('img/CONSUMO.webp') }}" class="d-block w-100" alt="...">
+                      <div class="carousel-caption" style="margin-bottom: 25px">
+                        <div class="text-center">
+                          <div id="txt_info" style="padding-top: -50px">
+                            <img src="{{ asset('img/ECUADOR-04.webp') }}" width="35px" alt="Creditos de consumo para Ecuatorianos residentes en Estados Unidos">
+                            <img src="{{ asset('img/USA-05.webp') }}" width="35px" alt="Creditos de consumo para Ecuatorianos residentes en Estados Unidos">
+                          </div>
+                          <p class="text-white" style="font-weight: 500; font-size: 15px">Créditos de Consumo para ecuatorianos que residen en Estados Unidos</p>
+                        </div>
+                      </div>
+                      <div class="position-absolute" onclick="setInterest('Créditos de Consumo')" data-toggle="modal" data-target="#modalContact" style="bottom: 0; left: 0; width: 100%; background-color: #c30000; height: 60px; cursor: pointer">
+                        <div class="position-relative" style="display: flex; justify-content: center; text-align: center">
+                          <div class="position-absolute" style="top: 0; margin-top: -20px">
+                            <i style="background-color: #c30000; color: #ffffff; padding: 5px; border-radius: 25px" class="fal fa-usd-circle fa-2x"></i>
+                            <p class="text-white" style="font-size: 14px; font-weight: 400">Solicite su crédito <u>AQUÍ</u></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="carousel-item">
+                      <img src="{{ asset('img/CONSTRUCCION.webp') }}" class="d-block w-100" alt="...">
+                      <div class="carousel-caption" style="margin-bottom: 25px">
+                        <div class="text-center">
+                          <div id="txt_info" style="padding-top: -50px">
+                            <img src="{{ asset('img/ECUADOR-04.webp') }}" width="35px" alt="Creditos de Construcción para Ecuatorianos residentes en Estados Unidos">
+                            <img src="{{ asset('img/USA-05.webp') }}" width="35px" alt="Creditos de Construcción para Ecuatorianos residentes en Estados Unidos">
+                          </div>
+                          <p class="text-white" style="font-weight: 500; font-size: 15px">Créditos de Construcción para ecuatorianos que residen en Estados Unidos</p>
+                        </div>
+                      </div>
+                      <div class="position-absolute" onclick="setInterest('Créditos de Construcción')" data-toggle="modal" data-target="#modalContact" style="bottom: 0; left: 0; width: 100%; background-color: #c30000; height: 60px; cursor: pointer">
+                        <div class="position-relative" style="display: flex; justify-content: center; text-align: center">
+                          <div class="position-absolute" style="top: 0; margin-top: -20px">
+                            <i style="background-color: #c30000; color: #ffffff; padding: 5px; border-radius: 25px" class="fal fa-usd-circle fa-2x"></i>
+                            <p class="text-white" style="font-size: 14px; font-weight: 400">Solicite su crédito <u>AQUÍ</u></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {{-- <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </button> --}}
+                </div>
+              </div>
         </div>   
 
 @php
