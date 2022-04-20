@@ -20,7 +20,7 @@
 <section id="prisection" style="background-size: cover;background-position: center top; background-repeat: no-repeat;">
     <div>
   
-      <div class="row p-4 p-md-5 align-items-end" style="min-height: 450px;background:rgba(2, 2, 2, 0.5)">
+      <div class="row p-4 p-md-5 align-items-end" style="min-height: @if($ismobile) 310px @else 450px @endif; background:rgba(2, 2, 2, 0.5)">
   
         <div class="col-12 text-white text-center">
                         {!!$service->headertxt!!}  

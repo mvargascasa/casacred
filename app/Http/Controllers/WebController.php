@@ -103,8 +103,9 @@ class WebController extends Controller
     }
     
     public function servicios(Service $service){
+        $ismobile = $this->isMobile();
         $services=Service::where('status',1)->where('parent',$service->id)->get();
-        return view('services.subs',compact('services','service'));
+        return view('services.subs',compact('services','service', 'ismobile'));
     }     
     
     public function servicio(Service $service){        
