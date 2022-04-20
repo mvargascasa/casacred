@@ -46,7 +46,7 @@
                 <a href="{{route('admin.properties')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/properties*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 py-4">Propiedades</span>
                 </a>          
-@if (Auth::id()==123 || Auth::id()==147)
+@if (Auth::id()==123 || Auth::id()==147 || Auth::id()==15)
         
                 <a href="{{route('admin.contacts')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/contacts*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 py-4">Contactos</span>
