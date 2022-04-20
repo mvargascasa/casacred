@@ -116,6 +116,28 @@
     }
   .lazyLoad {width: 100%;opacity: 0;}
   .visible {transition: opacity 1000ms ease;opacity: 1;} 
+
+  #carousel-thumbs {
+  background: rgba(255,255,255,.3);
+  bottom: 0;
+  left: 0;
+  padding: 0 50px;
+  right: 0;
+}
+#carousel-thumbs img {
+  border: 5px solid transparent;
+  cursor: pointer;
+}
+#carousel-thumbs img:hover {
+  border-color: rgba(255,255,255,.3);
+}
+#carousel-thumbs .selected img {
+  border-color: #fff;
+}
+.carousel-control-prev,
+.carousel-control-next {
+  width: 50px;
+}
 </style>
 @endsection
 
@@ -182,7 +204,7 @@
 
               <div class="row">
                   <div class="col-md-12">
-                      <div id="custCarousel" class="carousel slide" data-ride="carousel">
+                      {{-- <div id="custCarousel" class="carousel slide" data-ride="carousel">
                           <!-- slides -->
                           <div class="carousel-inner">
                             @php $iiListing=0 @endphp
@@ -202,7 +224,119 @@
                               </li>
                               @endforeach
                           </ol>
+                      </div> --}}
+
+                      {{-- thumbnails carousel prueba --}}
+                      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                          @php $iiListing=0 @endphp
+                          @foreach (array_filter(explode("|", $listing->images)) as $img)
+                            <div class="carousel-item @if($iiListing==0) active @endif" data-slide-number="{{ $iiListing }}">
+                              <img style="width: 100%; height: 100%" data-src="{{ url('uploads/listing', $img) }}" class="d-block w-100 ccimgpro lazyLoad" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$listing->listing_title}}-{{$iiListing++}}">
+                            </div>
+                          @endforeach
+                        </div>
                       </div>
+
+                      @php
+                        $arrayImages = [];
+                        foreach (array_filter(explode("|", $listing->images)) as $img){
+                          array_push($arrayImages, $img);
+                        }
+                      @endphp
+
+                      <div id="carousel-thumbs" class="carousel slide mt-2" data-ride="carousel" style="margin-left: -20px; margin-right: -20px">
+                        <div class="carousel-inner justify-content-center">
+                          <div class="carousel-item active">
+                            <div class="row mx-0 justify-content-center">
+                              @php
+                                  if(count($arrayImages) < 6){
+                                    $aux = count($arrayImages);
+                                  } else {
+                                    $aux = 6;
+                                  }
+                              @endphp
+                              @for ($i = 0; $i < $aux; $i++)
+                                <div id="carousel-selector-{{ $i }}" class="thumb col-2 col-sm-2 px-0 selected" data-slide-to="{{$i}}" data-target="#myCarousel">
+                                  @isset($arrayImages[$i])
+                                    <img style="width: 100%;" data-src="{{ url('uploads/listing/300/', $arrayImages[$i]) }}" class="img-fluid lazyLoad" alt="{{$listing->listing_title}}-{{ $i}}">     
+                                  @endisset
+                                </div>   
+                              @endfor
+                            </div>
+                          </div>
+
+                          @if(count($arrayImages) > 6)
+                          <div class="carousel-item">
+                            <div class="row mx-0">
+                              @for ($i = 6; $i < 12; $i++)
+                                <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-slide-to="{{$i}}" data-target="#myCarousel">
+                                  @isset($arrayImages[$i])
+                                    <img style="width: 100%;" data-src="{{ url('uploads/listing/300/', $arrayImages[$i]) }}" class="img-fluid lazyLoad" alt="{{$listing->listing_title}}-{{$i}}">  
+                                  @endisset
+                                </div>
+                              @endfor
+                            </div>
+                          </div> 
+                          @endif
+
+                          @if(count($arrayImages) > 12)
+                          <div class="carousel-item">
+                            <div class="row mx-0">
+                              @for ($i = 12; $i < 18; $i++)
+                                <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-slide-to="{{$i}}" data-target="#myCarousel">
+                                  @isset($arrayImages[$i])
+                                    <img style="width: 100%;" data-src="{{ url('uploads/listing/300/', $arrayImages[$i]) }}" class="img-fluid lazyLoad" alt="{{$listing->listing_title}}-{{$i}}">  
+                                  @endisset
+                                </div>
+                              @endfor
+                            </div>
+                          </div>
+                          @endif
+
+                          @if(count($arrayImages) > 18)
+                          <div class="carousel-item">
+                            <div class="row mx-0">
+                              @for ($i = 18; $i < 24; $i++)
+                                <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-slide-to="{{$i}}" data-target="#myCarousel">
+                                  @isset($arrayImages[$i])
+                                    <img style="width: 100%;" data-src="{{ url('uploads/listing/300/', $arrayImages[$i]) }}" class="img-fluid lazyLoad" alt="{{$listing->listing_title}}-{{$i}}">  
+                                  @endisset
+                                </div>
+                              @endfor
+                            </div>
+                          </div>
+                          @endif
+
+                          @if(count($arrayImages) > 24)
+                          <div class="carousel-item">
+                            <div class="row mx-0">
+                              @for ($i = 24; $i < 30; $i++)
+                                <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-slide-to="{{$i}}" data-target="#myCarousel">
+                                  @isset($arrayImages[$i])
+                                    <img style="width: 100%;" data-src="{{ url('uploads/listing/300/', $arrayImages[$i]) }}" class="img-fluid lazyLoad" alt="{{$listing->listing_title}}-{{$i}}">  
+                                  @endisset
+                                </div>
+                              @endfor
+                            </div>
+                          </div>
+                          @endif
+
+                        </div>
+
+                        @if(count($arrayImages) > 6)
+                        <a class="carousel-control-prev" href="#carousel-thumbs" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel-thumbs" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </a>
+                        @endif
+                      </div>
+                      {{-- termina carousel thumbnails prueba --}}
+
                   </div>
               </div>
 
@@ -299,7 +433,7 @@
             }    
           @endphp
 
-          <div class="row @if($mobile) @if($countarrayimages < 5) mt-5 @elseif($countarrayimages > 5 && $countarrayimages < 7) mt-4 @elseif($countarrayimages >= 7) mt-3 @else mt-1 @endif @else mt-5 @endif">
+          <div class="row">
             <div class="col-sm-1"></div>
             <div class="col-12 col-sm-11">
               <div class="row">
@@ -610,16 +744,14 @@
             }
         });
     }
-
     var targets = document.querySelectorAll('.lazyLoad');
-
     // Instanciamos un nuevo observador.
     var observer = new IntersectionObserver(onScrollEvent);
-
     // Y se lo aplicamos a cada una de las
     // imágenes.
     targets.forEach(function(entry) {
         observer.observe(entry);
     });
+
 </script>
 @endsection
