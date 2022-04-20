@@ -259,7 +259,7 @@
                               @for ($i = 0; $i < $aux; $i++)
                                 <div id="carousel-selector-{{ $i }}" class="thumb col-2 col-sm-2 px-0 selected" data-slide-to="{{$i}}" data-target="#myCarousel">
                                   @isset($arrayImages[$i])
-                                    <img src="{{ url('uploads/listing/300/', $arrayImages[$i]) }}" class="img-fluid" alt="{{$listing->listing_title}}-{{ $i}}">     
+                                    <img style="width: 100%" src="{{ url('uploads/listing/300/', $arrayImages[$i]) }}" class="img-fluid" alt="{{$listing->listing_title}}-{{ $i}}">     
                                   @endisset
                                 </div>   
                               @endfor
