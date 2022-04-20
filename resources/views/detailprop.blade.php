@@ -246,7 +246,7 @@
                       @endphp
 
                       <div id="carousel-thumbs" class="carousel slide mt-2" data-ride="carousel" style="margin-left: -20px; margin-right: -20px">
-                        <div class="carousel-inner justify-content-center">
+                        <div class="carousel-inner">
                           <div class="carousel-item active">
                             <div class="row mx-0 justify-content-center">
                               @php
@@ -268,7 +268,7 @@
 
                           @if(count($arrayImages) > 6)
                           <div class="carousel-item">
-                            <div class="row mx-0">
+                            <div class="row mx-0 justify-content-center">
                               @for ($i = 6; $i < 12; $i++)
                                 <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-slide-to="{{$i}}" data-target="#myCarousel">
                                   @isset($arrayImages[$i])
@@ -282,7 +282,7 @@
 
                           @if(count($arrayImages) > 12)
                           <div class="carousel-item">
-                            <div class="row mx-0">
+                            <div class="row mx-0 justify-content-center">
                               @for ($i = 12; $i < 18; $i++)
                                 <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-slide-to="{{$i}}" data-target="#myCarousel">
                                   @isset($arrayImages[$i])
@@ -296,7 +296,7 @@
 
                           @if(count($arrayImages) > 18)
                           <div class="carousel-item">
-                            <div class="row mx-0">
+                            <div class="row mx-0 justify-content-center">
                               @for ($i = 18; $i < 24; $i++)
                                 <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-slide-to="{{$i}}" data-target="#myCarousel">
                                   @isset($arrayImages[$i])
@@ -310,7 +310,7 @@
 
                           @if(count($arrayImages) > 24)
                           <div class="carousel-item">
-                            <div class="row mx-0">
+                            <div class="row mx-0 justify-content-center">
                               @for ($i = 24; $i < 30; $i++)
                                 <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-slide-to="{{$i}}" data-target="#myCarousel">
                                   @isset($arrayImages[$i])
