@@ -228,7 +228,7 @@ if(strpos($actual_link, 'localhost') === false){
         </div>
   </section>
 </div>
-<footer class="text-white" style="background-color: #122944;">
+<footer class="text-white" style="background-color: rgb(31, 66, 115);">
     <div class="container">
         <div class="row ">           
             <div class="col-12 col-md-4 p-4 small">
