@@ -51,7 +51,7 @@
       100% {
         opacity: 1;
         transform: translateY(0);
-        margin-top: 50px;
+        margin-top: 100px;
       }
     }
     #modalSearch{
@@ -62,7 +62,7 @@
   @yield('header')
 </head>
 
-<body class="text-gray-800 antialiased bg-gray-100">
+<body class="text-gray-800 antialiased bg-gray-100" id="body">
     <nav id="enfoque" class="z-50 w-full flex flex-wrap items-center justify-between px-2 py-1 bg-white shadow-lg">
         <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
             <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
@@ -217,7 +217,7 @@
 </div> 
 
 
-<div id="modalSearch" class="modal z-50 fixed left-0 top-0 justify-center items-center bg-black bg-opacity-50 hidden" style="margin-top: 50px">
+<div id="modalSearch" class="modal z-50 fixed left-0 top-0 justify-center items-center bg-black bg-opacity-50 hidden" style="margin-top: 100px">
 <!-- modal -->
 <div class="bg-white rounded shadow-lg w-10/12 md:w-1/3 w-full">
   <!-- modal header -->
@@ -329,9 +329,9 @@
     </div>
     
     <div class="flex">        
-        <div class="mt-4"><span class="flex justify-left items-left"> 
-            <button onclick="filter_clear()" class="p-2 text-gray-500 rounded-md border border-gray-300">Limpiar Campos</button></span></div>
-        <div class="mt-4"><span class="flex justify-center items-center h-full" style="margin-left: 5px"> 
+        <div class="mt-4 w-full"><span class="flex justify-left items-left"> 
+            <button onclick="filter_clear()" class="p-2 text-gray-500 rounded-md border border-gray-300 w-full">Limpiar Campos</button></span></div>
+        <div class="mt-4 w-full"><span class="flex justify-center items-center h-full" style="margin-left: 5px"> 
             <button onclick="filter_properties()" class="rounded-md text-sm text-white bg-red-900 p-2 h-full">BUSCAR PROPIEDADES</button></span></div>
     </div>
 
@@ -431,7 +431,7 @@
             else return false;
         }
         
-        function openModal(nModal) { document.getElementById(nModal).classList.remove('hidden')}
+        function openModal(nModal) { document.getElementById(nModal).classList.remove('hidden');}
         function closModal(nModal) { document.getElementById(nModal).classList.add('hidden')}
 
         const sendFormLead = async() =>{
