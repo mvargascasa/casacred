@@ -412,13 +412,13 @@
         //     else{rangeSlide("0");document.getElementById('schrange').value = 0;};
         // });
 
-        // window.addEventListener('click', function(e) {
-        //     if (!document.getElementById("modalSearch").contains(e.target)) {
-        //         if(!containsClass("modalSearch")){
-        //             document.getElementById("modalSearch").classList.add('hidden');
-        //         }
-        //     }
-        // })
+        window.addEventListener('click', function(e) {
+            if (!document.getElementById("modalSearch").contains(e.target)) {
+                if(!containsClass("modalSearch")){
+                    document.getElementById("modalSearch").classList.add('hidden');
+                }
+            }
+        })
 
         function toggleNavbar(collapseID) {
             document.getElementById(collapseID).classList.toggle("hidden");
