@@ -6,6 +6,8 @@
   <link rel="icon" href="{{asset('favicon-new.png')}}" type="image/x-icon" />
   <link rel="stylesheet" href="{{ asset('css/app.css') }}?id=8">
   <meta name="facebook-domain-verification" content="st7nmy30bjdubvp2cuvvhwuk6n2syf" />
+
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" media="print" onload="this.media='all'">
   
 <?php
     $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -40,6 +42,23 @@
 
 <?php };// fin de if url localhost ?>
 
+<style>
+    @keyframes fade-in-move-down {
+      0% {
+        opacity: 0;
+        transform: translateY(-3rem);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+        margin-top: 50px;
+      }
+    }
+    #modalSearch{
+        animation: fade-in-move-down 0.5s ease;
+    }
+</style>
+
   @yield('header')
 </head>
 
@@ -54,9 +73,9 @@
                     </a>
                 </div>
 
-                <button type="button" onclick="toggleNavbar('example-collapse-navbar')"
+                <button type="button" onclick="toggleNavbar('example-collapse-navbar')" style="border: none !important"
                     class="text-sm text-gray-600 cursor-pointer leading-none px-3 py-1 border border-solid rounded block lg:hidden outline-none focus:outline-none">
-                    SERVICIOS
+                    <i class="fal fa-bars" style="font-size: 25px"></i>
                 </button>
             </div>
             <div class="lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none hidden"
@@ -198,13 +217,15 @@
 </div> 
 
 
-<div id="modalSearch" class="modal z-50 h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
+<div id="modalSearch" class="modal z-50 fixed left-0 top-0 justify-center items-center bg-black bg-opacity-50 hidden" style="margin-top: 50px">
 <!-- modal -->
-<div class="bg-white rounded shadow-lg w-10/12 md:w-1/3  h-screen w-full">
+<div class="bg-white rounded shadow-lg w-10/12 md:w-1/3 w-full">
   <!-- modal header -->
   <div class="border-b bg-red-900 px-4 py-2 flex justify-between items-center">
     <h3 class="text-white font-semibold text-lg">Busqueda</h3>
-    <button onclick="closModal('modalSearch')" class="text-white font-bold px-2">&cross;</button>
+    <button onclick="closModal('modalSearch')" class="text-white font-bold px-2">
+        <i class="far fa-times"></i>
+    </button>
   </div>
   <!-- modal body -->
   <div class="p-3">
@@ -307,18 +328,17 @@
         </div>
     </div>
     
-    <div class="mt-4"><span class="flex justify-center items-center "> 
-        <button onclick="filter_properties()" class="w-full rounded-md text-xl text-white bg-red-900 p-2">BUSCAR PROPIEDADES</button></span></div>
-
-    <div class="mt-4"><span class="flex justify-left items-left "> 
-        <button onclick="filter_clear()" class="p-2 text-gray-500 rounded-md border border-gray-300">Limpiar Campos</button></span></div>
+    <div class="flex">        
+        <div class="mt-4"><span class="flex justify-left items-left"> 
+            <button onclick="filter_clear()" class="p-2 text-gray-500 rounded-md border border-gray-300">Limpiar Campos</button></span></div>
+        <div class="mt-4"><span class="flex justify-center items-center h-full" style="margin-left: 5px"> 
+            <button onclick="filter_properties()" class="rounded-md text-sm text-white bg-red-900 p-2 h-full">BUSCAR PROPIEDADES</button></span></div>
+    </div>
 
 
 </div>
 </div>
 </div>
-
-
 
 <div id="openLead" class="modal z-50 h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
 <!-- modal -->
@@ -392,13 +412,27 @@
         //     else{rangeSlide("0");document.getElementById('schrange').value = 0;};
         // });
 
+        // window.addEventListener('click', function(e) {
+        //     if (!document.getElementById("modalSearch").contains(e.target)) {
+        //         if(!containsClass("modalSearch")){
+        //             document.getElementById("modalSearch").classList.add('hidden');
+        //         }
+        //     }
+        // })
+
         function toggleNavbar(collapseID) {
             document.getElementById(collapseID).classList.toggle("hidden");
             document.getElementById(collapseID).classList.toggle("block");
         }
+
+        function containsClass(nModal){
+            let modal = document.getElementById(nModal);
+            if(modal.classList.contains('hidden'))return true;
+            else return false;
+        }
         
-        function openModal(nModal) { document.getElementById(nModal).classList.remove('hidden') }
-        function closModal(nModal) { document.getElementById(nModal).classList.add('hidden') }
+        function openModal(nModal) { document.getElementById(nModal).classList.remove('hidden')}
+        function closModal(nModal) { document.getElementById(nModal).classList.add('hidden')}
 
         const sendFormLead = async() =>{
             if( document.getElementById('fname').value.length>2 && document.getElementById('tlf').value.length>6 ){
