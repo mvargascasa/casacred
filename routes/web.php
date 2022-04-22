@@ -26,6 +26,7 @@ Route::get('/servicio/{service:slug}', [WebController::class,'servicio'])->name(
 Route::get('/politicas-de-privacidad', [WebController::class,'politicas'])->name('web.politicas');
 
 Route::post('sendlead', [WebController::class,'sendlead'])->name('web.sendlead');
+Route::post('sendleadaval', [WebController::class, 'sendleadaval'])->name('web.sendleadaval');
 Route::get('indextest', [WebController::class,'indextest'])->name('web.indextest');
 Route::get('mobile', [WebController::class,'mobile'])->name('web.mobile');
 Route::get('/mobiledet/{listing:slug}', [WebController::class,'mobiledet'])->name('web.mobiledet');

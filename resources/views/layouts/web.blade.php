@@ -311,6 +311,24 @@ if(strpos($actual_link, 'localhost') === false){
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="modalAval" tabindex="-1" role="dialog" aria-labelledby="modalContactLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-white" style="background-color: darkred !important;">
+          <span class="modal-title" id="modalContactLabel">Complete el siguiente formulario y en breve será contactado.</span>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" style="color: #FFF !important;">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="" id="formAvaluo">
+                @include('aval-form')
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
   
 
 
@@ -319,7 +337,9 @@ if(strpos($actual_link, 'localhost') === false){
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="modalThankLabel">¡Gracias por Contactarnos!</h5>
-          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">
+            <i class="far fa-times"></i>
+          </button>
         </div>
         <div class="modal-body">
             En breve le atenderemos.
@@ -340,8 +360,9 @@ if(strpos($actual_link, 'localhost') === false){
 
 @yield('script')
 <script>
-    const  myModal = new bootstrap.Modal(document.getElementById('modalContact'))
-    const  moThank = new bootstrap.Modal(document.getElementById('modalThank'))
+    const  myModal = new bootstrap.Modal(document.getElementById('modalContact'));
+    const  moThank = new bootstrap.Modal(document.getElementById('modalThank'));
+    const modalAval = new bootstrap.Modal(document.getElementById('modalAval'));
     const sendFormLead = async() =>{
         
         if( document.getElementById('fname').value.length>2 && document.getElementById('tlf').value.length>6 ){
@@ -357,7 +378,11 @@ if(strpos($actual_link, 'localhost') === false){
         }
     }
     const setInterest = (interest) =>{
+      if (interest == "Avalúo de una propiedad") {
+        document.getElementById('interest_aval').value = interest;
+      } else {
         document.getElementById('interest').value = interest;
+      }
     }
     
     const sendFormDetail = async(codPro) =>{
@@ -369,7 +394,6 @@ if(strpos($actual_link, 'localhost') === false){
                 const response = await fetch("{{route('web.sendlead')}}",
                 { body: dataForm, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}" }  })
                 let mensaje = await response.text();
-                console.log(mensaje);
                 document.getElementById('fname').value = "";
                 document.getElementById('tlf').value = "";
                 document.getElementById('email').value = "";
@@ -377,6 +401,28 @@ if(strpos($actual_link, 'localhost') === false){
         }else{
             alert('Complete los Campos')
         }
+    }
+
+    const sendFormLeadAval = async() =>{
+      if (document.getElementById('name_aval').value == "" || document.getElementById('phone_aval').value == "" || document.getElementById('email_aval').value == "" || document.getElementById('message_aval').value == "" || document.getElementById('type').value == "" || document.getElementById('state').value == "" || document.getElementById('city').value == "") {
+        alert('Complete los campos');
+      } else {
+        modalAval.hide()     
+        moThank.show()
+        var dataForm = new FormData(document.getElementById('formAvaluo'));
+        const response = await fetch("{{route('web.sendleadaval')}}",
+        { body: dataForm, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}" }  })
+        let mensaje = await response.text();
+        console.log(mensaje);
+
+        document.getElementById('name_aval').value = "";
+        document.getElementById('phone_aval').value = "";
+        document.getElementById('email_aval').value = "";
+        document.getElementById('message_aval').value ="";
+        document.getElementById('type').value = "";
+        document.getElementById('state').value = "";
+        document.getElementById('city').value = "";
+      }
     }
 </script>
 </body>

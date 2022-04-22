@@ -156,6 +156,28 @@ class WebController extends Controller
                 break;
         }
     }
+
+    public function sendLeadAval(Request $request){
+
+        $message = "<br><strong>Nuevo Lead</strong>
+                    <br> Nombre: ". strip_tags($request->name_aval)."
+                    <br> Telef: ".  strip_tags($request->phone_aval)."
+                    <br> Email: ".  strip_tags($request->email_aval)."
+                    <br> Interes: ".strip_tags($request->interest_aval)."
+                    <br> Mensaje: ".strip_tags($request->message_aval)."
+                    <br> Tipo de Propiedad: " . strip_tags($request->type) . "
+                    <br> Provincia: " . strip_tags($request->state) . "
+                    <br> Ciudad: " . strip_tags($request->city) . "
+                    <br> Fuente: Website ";
+                
+        $header='';
+        $header .= 'From: <leads@casacredito.com>' . "\r\n";
+        $header .= "Reply-To: ".'info@casacredito.com'."\r\n";
+        $header .= "MIME-Version: 1.0\r\n";
+        $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+        mail('info@casacredito.com,hserrano@casacredito.com','Lead CasaCredito: '.strip_tags($request->fname), $message, $header);
+    }
     
     public function politicas(){
         return view('politicas');

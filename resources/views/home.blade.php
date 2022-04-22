@@ -80,7 +80,7 @@
         padding: 16px 32px;
       }
       #ftop_txt::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-        color: #ffffff;
+        font-size: 14px; 
         opacity: 0.5; /* Firefox */
       }
       #ftop_txt:focus {
@@ -204,6 +204,9 @@
     .visible {
         transition: opacity 1000ms ease;
         opacity: 1;
+    }
+    select{
+      max-width: 170px !important;
     }
     </style>
     @livewireStyles

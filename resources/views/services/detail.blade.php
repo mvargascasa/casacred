@@ -76,48 +76,19 @@
                           <img src="{{ asset('img/ECUADOR-04.webp') }}" width="35px" alt="{{ $service->page_title }} para Ecuatorianos residentes en Estados Unidos">
                           <img src="{{ asset('img/USA-05.webp') }}" width="35px" alt="{{ $service->page_title }} para Ecuatorianos residentes en Estados Unidos">
                         </div>
-                        <p class="text-white" style="font-weight: 500; font-size: 15px">{{ $service->page_title}} para <br> ecuatorianos que residen <br> en Estados Unidos</p>
+                        <p class="text-white" style="font-weight: 500; font-size: 15px">{{ $service->page_title}} <br> para migrantes</p>
                       </div>
                     </div>
                     <div class="position-absolute" onclick="setInterest('{{$service->page_title}}')" data-toggle="modal" data-target="#modalContact" style="bottom: 0; left: 0; width: 100%; background-color: #c30000; height: 60px; cursor: pointer">
                       <div class="position-relative" style="display: flex; justify-content: center; text-align: center">
                         <div class="position-absolute" style="top: 0; margin-top: -20px">
                           <i style="background-color: #c30000; color: #ffffff; padding: 5px; border-radius: 25px" class="fal fa-usd-circle fa-2x"></i>
-                          <p class="text-white" style="font-size: 14px; font-weight: 400">Solicite su crédito <u>AQUÍ</u></p>
+                          <p class="text-white" style="font-size: 15px; font-weight: 400">Solicite su crédito <u style="font-weight: bold">AQUÍ</u></p>
                         </div>
                       </div>
                     </div>
                   </div>
                   @endif
-                  {{-- @if ($service->page_title === "Créditos Hipotecarios" || $service->page_title === "Créditos de Consumo" || $service->page_title === "Créditos de Construcción")
-                  <div class="card">
-                    <div class="card-header text-center text-white" style="background-color: #8b0000">
-                      <h6 class="mt-3">¿Necesita más información?</h6>
-                      <p>¡Nosotros lo llamamos!</p>
-                    </div>
-                    <form action="{{ route('web.lead.contact') }}" method="POST">
-                      @csrf
-                    <div class="card-body">
-                      <input type="hidden" name="interest" class="form-control" value="{{ $service->page_title }}">
-                        <div class="form-group mb-2">
-                          <input style="font-size: 14px" type="text" class="form-control" name="name" placeholder="Nombre y Apellido" required>
-                        </div>
-                        <div class="form-group mb-2">
-                          <input style="font-size: 14px" type="number" class="form-control" name="phone" id="phone" placeholder="Teléfono" required>
-                        </div>
-                        <div class="form-group mb-2">
-                          <input style="font-size: 14px" type="email" class="form-control" name="email" id="email" placeholder="Correo electrónico" required>
-                        </div>
-                        <div class="form-group mb-2">
-                          <textarea style="font-size: 14px" name="message" class="form-control" id="message" rows="3" placeholder="Mensaje">Deseo más información sobre {{ $service->page_title }}</textarea>
-                        </div>
-                        <div class="d-flex justify-content-center mt-3">
-                          <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff">Enviar</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                  @endif --}}
             </div>
         </div>
     </div>

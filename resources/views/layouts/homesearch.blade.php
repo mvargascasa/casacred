@@ -72,7 +72,7 @@
                       <option value="35">Oficinas</option>
                       <option value="36">Suites</option>
                 </select>
-                <input type="text" id="ftop_txt" name="searchtxt" class="form-control" onkeypress="if(event.keyCode==13)top_search()">
+                <input type="text" placeholder="Ingrese una ubicación o característica" id="ftop_txt" name="searchtxt" class="form-control" onkeypress="if(event.keyCode==13)top_search()">
                 <button type="submit" class="btn btn-danger" >BUSCAR</button>
         </div>
       </div>

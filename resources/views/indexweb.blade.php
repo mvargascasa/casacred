@@ -91,7 +91,7 @@
 
     
                 <div class="input-group mb-3">
-                      <select class="form-select" id="ftop_type" style="max-width:200px;">
+                      <select class="form-select" id="ftop_type" style="max-width:170px;">
                             <option value="">Todas</option>	
                             <option value="23" @if($ptype === "23") selected @endif>Casas </option>
                             <option value="24" @if($ptype === "24") selected @endif>Departamentos </option>
@@ -103,7 +103,7 @@
                             <option value="35" @if($ptype === "35") selected @endif>Oficinas</option>
                             <option value="36" @if($ptype === "36") selected @endif>Suites</option>
                       </select>
-                      <input type="text" id="ftop_txt" class="form-control" @if($searchtxt != null) value="{{$searchtxt}}" @endif onkeypress="if(event.keyCode==13)top_search()">
+                      <input type="text" id="ftop_txt" style="font-size: 14px" placeholder="Ingrese una ubicación o característica" class="form-control" @if($searchtxt != null) value="{{$searchtxt}}" @endif onkeypress="if(event.keyCode==13)top_search()">
                       <button type="button" class="btn btn-danger"  onclick="top_search()">BUSCAR</button>
                 </div>       
 
@@ -273,14 +273,14 @@
                             <img src="{{ asset('img/ECUADOR-04.webp') }}" width="35px" alt="Creditos Hipotecarios para Ecuatorianos residentes en Estados Unidos">
                             <img src="{{ asset('img/USA-05.webp') }}" width="35px" alt="Creditos Hipotecarios para Ecuatorianos residentes en Estados Unidos">
                           </div>
-                          <p class="text-white" style="font-weight: 500; font-size: 15px">Créditos Hipotecarios para ecuatorianos que residen en Estados Unidos</p>
+                          <p class="text-white" style="font-weight: 500; font-size: 15px">Créditos Hipotecarios <br> para migrantes</p>
                         </div>
                       </div>
                       <div class="position-absolute" onclick="setInterest('Créditos Hipotecarios')" data-toggle="modal" data-target="#modalContact" style="bottom: 0; left: 0; width: 100%; background-color: #c30000; height: 60px; cursor: pointer">
                         <div class="position-relative" style="display: flex; justify-content: center; text-align: center">
                           <div class="position-absolute" style="top: 0; margin-top: -20px">
                             <i style="background-color: #c30000; color: #ffffff; padding: 5px; border-radius: 25px" class="fal fa-usd-circle fa-2x"></i>
-                            <p class="text-white" style="font-size: 14px; font-weight: 400">Solicite su crédito <u>AQUÍ</u></p>
+                            <p class="text-white" style="font-size: 15px; font-weight: 400">Solicite su crédito <u style="font-weight: bold">AQUÍ</u></p>
                           </div>
                         </div>
                       </div>
@@ -294,14 +294,14 @@
                             <img src="{{ asset('img/ECUADOR-04.webp') }}" width="35px" alt="Creditos de consumo para Ecuatorianos residentes en Estados Unidos">
                             <img src="{{ asset('img/USA-05.webp') }}" width="35px" alt="Creditos de consumo para Ecuatorianos residentes en Estados Unidos">
                           </div>
-                          <p class="text-white" style="font-weight: 500; font-size: 15px">Créditos de Consumo para ecuatorianos que residen en Estados Unidos</p>
+                          <p class="text-white" style="font-weight: 500; font-size: 15px">Créditos de Consumo <br> para migrantes</p>
                         </div>
                       </div>
                       <div class="position-absolute" onclick="setInterest('Créditos de Consumo')" data-toggle="modal" data-target="#modalContact" style="bottom: 0; left: 0; width: 100%; background-color: #c30000; height: 60px; cursor: pointer">
                         <div class="position-relative" style="display: flex; justify-content: center; text-align: center">
                           <div class="position-absolute" style="top: 0; margin-top: -20px">
                             <i style="background-color: #c30000; color: #ffffff; padding: 5px; border-radius: 25px" class="fal fa-usd-circle fa-2x"></i>
-                            <p class="text-white" style="font-size: 14px; font-weight: 400">Solicite su crédito <u>AQUÍ</u></p>
+                            <p class="text-white" style="font-size: 15px; font-weight: 400">Solicite su crédito <u style="font-weight: bold">AQUÍ</u></p>
                           </div>
                         </div>
                       </div>
@@ -315,14 +315,14 @@
                             <img src="{{ asset('img/ECUADOR-04.webp') }}" width="35px" alt="Creditos de Construcción para Ecuatorianos residentes en Estados Unidos">
                             <img src="{{ asset('img/USA-05.webp') }}" width="35px" alt="Creditos de Construcción para Ecuatorianos residentes en Estados Unidos">
                           </div>
-                          <p class="text-white" style="font-weight: 500; font-size: 15px">Créditos de Construcción para ecuatorianos que residen en Estados Unidos</p>
+                          <p class="text-white" style="font-weight: 500; font-size: 15px">Créditos de Construcción <br> para migrantes</p>
                         </div>
                       </div>
                       <div class="position-absolute" onclick="setInterest('Créditos de Construcción')" data-toggle="modal" data-target="#modalContact" style="bottom: 0; left: 0; width: 100%; background-color: #c30000; height: 60px; cursor: pointer">
                         <div class="position-relative" style="display: flex; justify-content: center; text-align: center">
                           <div class="position-absolute" style="top: 0; margin-top: -20px">
                             <i style="background-color: #c30000; color: #ffffff; padding: 5px; border-radius: 25px" class="fal fa-usd-circle fa-2x"></i>
-                            <p class="text-white" style="font-size: 14px; font-weight: 400">Solicite su crédito <u>AQUÍ</u></p>
+                            <p class="text-white" style="font-size: 15px; font-weight: 400">Solicite su crédito <u style="font-weight: bold">AQUÍ</u></p>
                           </div>
                         </div>
                       </div>
@@ -337,6 +337,10 @@
                     <span class="sr-only">Next</span>
                   </button> --}}
                 </div>
+              </div>
+
+              <div class="mt-3">
+                <button onclick="setInterest('Avalúo de una propiedad');" data-toggle="modal" data-target="#modalAval" id="btnavaluo" class="btn btn-block" style="background-color: #c30000; color: #ffffff">AVALÚE SU PROPIEDAD <i class="fas fa-home"></i></button>
               </div>
         </div>   
 
@@ -466,11 +470,14 @@
   const selState  = document.getElementById('bform_province');
   const selCities = document.getElementById('bform_city');
 
+  const selStateAvaluo = document.getElementById('state');
+  const selCityAvaluo = document.getElementById('city');
+
   const modState  = document.getElementById('mform_province');
   const modCities = document.getElementById('mform_city');
 
   const type = document.getElementById('bform_type');
-  const tag = document.getElementById('bform_tags');    
+  const tag = document.getElementById('bform_tags'); 
 
   window.addEventListener('load', (event) => {
         //document.getElementById('prisection').style.backgroundImage = "url('img/imgheader2.jpg')";
@@ -508,6 +515,24 @@
           opt.appendChild( document.createTextNode(city.name) );
           opt.value = city.name;
           selCities.appendChild(opt);
+    });
+  });
+
+  selStateAvaluo.addEventListener("change", async function() {
+    selCityAvaluo.options.length = 0;
+    let id = selStateAvaluo.options[selStateAvaluo.selectedIndex].dataset.id;
+    const response = await fetch("{{url('getcities')}}/"+id );
+    const cities = await response.json();
+    
+    var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode('Elige Ciudad') );
+          opt.value = '';
+          selCityAvaluo.appendChild(opt);
+    cities.forEach(city => {
+          var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode(city.name) );
+          opt.value = city.name;
+          selCityAvaluo.appendChild(opt);
     });
   });
 
