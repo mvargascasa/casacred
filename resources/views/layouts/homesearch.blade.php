@@ -34,7 +34,7 @@
   <div style="text-align: center; color: #ffffff; background-color: rgba(2, 2, 2, 0.5); padding-top: 10%; padding-bottom: 5%; margin: 0px">
     <h3>Su sueño está aquí</h3>
     <div class="d-flex justify-content-center">
-      <button type="button" data-bs-toggle="modal" data-bs-target="#modalFilters" id="btnsearch" class="btn" style="display: none; border-radius: 25px; padding: 6px 10px 6px 10px; background-color: #dc3545; color: #ffffff"><i class="fas fa-search"></i></button>
+      <button type="button" data-bs-toggle="modal" data-bs-target="#modalFilters" id="btnsearch" class="btn" style="display: none; border-radius: 25px; padding: 6px 10px 6px 10px; background-color: #771d1d; color: #ffffff"><i class="fas fa-search"></i></button>
     </div>
   </div>
 </div>

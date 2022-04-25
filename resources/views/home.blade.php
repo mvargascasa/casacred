@@ -741,7 +741,7 @@
                 </select>
               </div>
               <div class="d-flex mt-2">
-                <div class="form-group" style="width: 100%; margin-right: 2px">
+                <div class="form-group" style="width: 100%; margin-right: 5px">
                   <label for="tipobusqueda" style="font-weight: 400; font-size: 12px" class="text-muted">Tipo de búsqueda</label>
                   <select name="type" id="tipobusqueda" class="form-select" style="font-size: 12px; background-color: #e9e9ed">
                     <option value="" selected></option>
