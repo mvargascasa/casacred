@@ -15,14 +15,14 @@
     @if($ii==6)
         <div class="p-2 m-auto">
             <div class="overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out border-b border-red-700">
-                <img class="w-full"  onclick="openModal('openLead')" src="{{asset('img/creditos-para-ecuatorianos-en-eeuu-24-horas.jpg')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
+                <img style="cursor: pointer" class="w-full"  onclick="openModal('openLead')" src="{{asset('img/BANNERS-CASA-CREDITO-VENDE-09.webp')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
             </div>
         </div>
     @endif
     @if($ii==11)
         <div class="p-2 m-auto">
             <div class="overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out border-b border-red-700">
-                <img class="w-full" onclick="openModal('openLead')" src="{{asset('img/vende-tu-propiedad-en-casacredito.jpg')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
+                <img style="cursor: pointer" class="w-full" onclick="openModal('openLead')" src="{{asset('img/vende-tu-propiedad-en-casacredito.jpg')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
             </div>
         </div>
     @endif
@@ -76,7 +76,7 @@
     @if($listings->count()<6)
         <div class="p-2 m-auto">
             <div class="overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out border-b border-red-700">
-                <img class="w-full"  onclick="openModal('openLead')" src="{{asset('img/creditos-para-ecuatorianos-en-eeuu-24-horas.jpg')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
+                <img style="cursor: pointer" class="w-full"  onclick="openModal('openLead')" src="{{asset('img/BANNERS-CASA-CREDITO-VENDE-09.webp')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
             </div>
         </div>
     @endif
@@ -84,7 +84,7 @@
     @if($listings->count()<11)
         <div class="p-2 m-auto">
             <div class="overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out border-b border-red-700">
-                <img class="w-full" onclick="openModal('openLead')" src="{{asset('img/vende-tu-propiedad-en-casacredito.jpg')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
+                <img style="cursor: pointer" class="w-full" onclick="openModal('openLead')" src="{{asset('img/vende-tu-propiedad-en-casacredito.jpg')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
             </div>
         </div>
     @endif
