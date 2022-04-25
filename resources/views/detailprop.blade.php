@@ -65,7 +65,7 @@
       }
 
       .inputs #btnEnviar{
-        background-color: rgb(224, 81, 78);
+        background-color: #dc3545;
         text-decoration: none;
         color: #ffffff;
       }

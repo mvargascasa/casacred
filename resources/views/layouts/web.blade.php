@@ -386,7 +386,7 @@ if(strpos($actual_link, 'localhost') === false){
     }
     
     const sendFormDetail = async(codPro) =>{
-        if(document.getElementById('fname').value.length>3 && document.getElementById('tlf').value.length>7){
+        if(document.getElementById('fname').value.length>3 && document.getElementById('tlf').value.length>7 && document.getElementById('email').value.length>12){
                 //document.getElementById('formMsjLead').classList.toggle('d-none');
                 document.getElementById('thankMsjLead').classList.toggle('d-none');
                 document.getElementById('interestDetail').value = codPro;
