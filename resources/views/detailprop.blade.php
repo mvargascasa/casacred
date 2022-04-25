@@ -468,7 +468,7 @@
                   @isset($listing->land_area)
                       <div class="col-sm-6 d-flex">
                         <i style="font-size: 20px; margin-right: 5px" class="far fa-ruler-combined"></i>
-                        <p>Área Interior: {{ $listing->land_area}} m<sup>2</sup></p>
+                        <p>@if($listingtype->type_title == "Terrenos") Área Total: @else Área Interior: @endif {{ $listing->land_area}} m<sup>2</sup></p>
                       </div>
                   @endisset
                   @if($bathroom > 0)
