@@ -413,7 +413,7 @@
         // });
 
         window.addEventListener('click', function(e) {
-            e.preventDefault();
+            //e.preventDefault();
             if (!document.getElementById("modalSearch").contains(e.target)) {
                 if(!containsClass("modalSearch")){
                     //document.getElementById('modalSearch').classList.add('hidden');
