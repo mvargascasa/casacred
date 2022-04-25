@@ -205,7 +205,7 @@
         transition: opacity 1000ms ease;
         opacity: 1;
     }
-    select{
+    #ftop_ptype{
       max-width: 170px !important;
     }
     </style>
@@ -720,8 +720,8 @@
     <div class="modal fade" id="modalFilters" tabindex="-1" aria-labelledby="modalFiltersLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header" style="background-color: #8b0000; color: #ffffff">
-            <h5 class="modal-title" id="modalFiltersLabel">Filtros de Búsqueda</h5>
+          <div class="modal-header" style="background-color: #771d1d; color: #ffffff">
+            <h5 class="modal-title" id="modalFiltersLabel">Busqueda</h5>
             <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
               <i class="far fa-times"></i>
             </button>
@@ -729,31 +729,44 @@
           <div class="modal-body">
             <form action="{{ route('web.propiedades') }}" id="formodalsearch" method="GET">
               <div class="form-group">
-                <label for="tipobusqueda" style="font-weight: 400">Tipo de búsqueda</label>
-                <select name="type" id="tipobusqueda" class="form-control">
-                  <option value="" selected>Seleccione</option>
-                  <option value="en-venta">Venta</option>
-                  <option value="alquilar">Alquiler</option>
-                  <option value="proyectos">Proyecto</option>
+                <label class="text-muted" style="font-size: 13px" for="searchtxt">Ciudad / Sector / Código</label>
+                <input type="text" name="searchtxt" id="searchtxt" class="form-control" style="font-size: 10px">
+              </div>
+              <div class="form-group mt-2" style="width: 50% !important">
+                <label for="order" class="text-muted" style="font-size: 12px">Ordenar por</label>
+                <select name="order" id="order" class="form-select" style="font-size: 12px; background-color: #e9e9ed">
+                  <option value="">Más Recientes</option>
+                  <option value="maxprice">Precio más alto</option>
+                  <option value="minprice">Precio más bajo</option>
                 </select>
               </div>
-              <div class="form-group mt-2">
-                <label for="tipopropiedad" style="font-weight: 400">Tipo de propiedad</label>
-                <select name="category" id="tipopropiedad" class="form-control">
-                  <option value="" selected>Seleccione</option>
-                  <option value="Casas">Casas</option>
-                  <option value="Departamentos">Departamentos</option>
-                  <option value="Casas Comerciales">Casas Comerciales</option>
-                  <option value="Terrenos">Terrenos</option>
-                  <option value="Quintas">Quintas</option>
-                  <option value="Haciendas">Haciendas</option>
-                  <option value="Locales Comerciales">Locales Comerciales</option>
-                  <option value="Oficinas">Oficinas</option>
-                  <option value="Suites">Suites</option>
-                </select>
+              <div class="d-flex mt-2">
+                <div class="form-group" style="width: 100%; margin-right: 1px">
+                  <label for="tipobusqueda" style="font-weight: 400; font-size: 12px" class="text-muted">Tipo de búsqueda</label>
+                  <select name="type" id="tipobusqueda" class="form-select" style="font-size: 12px; background-color: #e9e9ed">
+                    <option value="" selected></option>
+                    <option value="venta">Comprar</option>
+                    <option value="alquilar">Alquilar</option>
+                  </select>
+                </div>
+                <div class="form-group" style="width: 100%">
+                  <label for="tipopropiedad" style="font-weight: 400; font-size: 12px" class="text-muted">Categoria</label>
+                  <select name="category" id="tipopropiedad" class="form-select" style="font-size: 12px; background-color: #e9e9ed">
+                    <option value="" selected></option>
+                    <option value="Casas">Casas</option>
+                    <option value="Departamentos">Departamentos</option>
+                    <option value="Casas Comerciales">Casas Comerciales</option>
+                    <option value="Terrenos">Terrenos</option>
+                    <option value="Quintas">Quintas</option>
+                    <option value="Haciendas">Haciendas</option>
+                    <option value="Locales Comerciales">Locales Comerciales</option>
+                    <option value="Oficinas">Oficinas</option>
+                    <option value="Suites">Suites</option>
+                  </select>
+                </div>
               </div>
 
-              @php
+              {{-- @php
                   $states = DB::table('info_states')->select('id', 'name')->where('country_id',63)->orderBy('name')->get();
               @endphp
 
@@ -775,18 +788,32 @@
                     </select>
                   </div>
                 </div> 
+              </div> --}}
+              <div class="form-group mt-2">
+                <label for="preciodesde" style="font-weight: 400; font-size: 12px" class="text-muted">Precio</label>
+                <div class="d-flex">
+                  <input type="number" id="preciodesde" name="fromprice" placeholder="Desde" class="form-control mr-1" style="font-size: 12px">
+                  <input type="number" id="preciohasta" name="uptoprice" placeholder="Hasta" class="form-control" style="font-size: 12px">
+                </div>
               </div>
               <div class="form-group mt-2">
-                <label for="preciodesde" style="font-weight: 400">Precio</label>
+                <label for="preciodesde" style="font-weight: 400; font-size: 12px" class="text-muted">Superficie</label>
                 <div class="d-flex">
-                  <input type="number" id="preciodesde" name="fromprice" placeholder="Desde" class="form-control mr-1">
-                  <input type="number" id="preciohasta" name="uptoprice" placeholder="Hasta" class="form-control">
+                  <input type="number" id="superfdesde" name="superf" placeholder="Desde" class="form-control mr-1" style="font-size: 12px">
+                  <input type="number" id="superfhasta" name="supert" placeholder="Hasta" class="form-control" style="font-size: 12px">
                 </div>
               </div>
             </form>
           </div>
-          <div class="modal-footer justify-content-center">
-            <button type="button" onclick="document.getElementById('formodalsearch').submit();" class="btn" style="background-color: #8b0000; color: #ffffff">Buscar</button>
+          <div class="modal-footer justify-content-center" style="border: none">
+            <div class="d-flex" style="width: 100%">
+              <div style="width: 100%; height: 100%; margin-right: 1px;">
+                <button type="button" class="btn btn-block" style="background-color: #ffffff; border: 1px solid #e7eaed; font-size: 13px" onclick="limpiarCampos();">Limpiar Campos</button>
+              </div>
+              <div style="width: 100%; height: 100%">
+                <button type="button" onclick="document.getElementById('formodalsearch').submit();" class="btn btn-block" style="background-color: #8b0000; color: #ffffff; font-size: 13px">BUSCAR</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -815,9 +842,20 @@
     window.addEventListener('load', (event) => {
         document.getElementById('secondsection').style.backgroundImage = "url('img/imgbannermiddle.webp')";
     });
+
+    function limpiarCampos(){
+      document.getElementById('searchtxt').value = "";
+      document.getElementById('order').value = "";
+      document.getElementById('tipobusqueda').value = "";
+      document.getElementById('tipopropiedad').value = "";
+      document.getElementById('preciodesde').value = "";
+      document.getElementById('preciohasta').value = "";
+      document.getElementById('superfdesde').value = "";
+      document.getElementById('superfhasta').value = "";
+    }
     
-    const selProvince = document.getElementById('selProvince');
-    const selCity = document.getElementById('selCity');
+    // const selProvince = document.getElementById('selProvince');
+    // const selCity = document.getElementById('selCity');
 
     const selProvincea = document.getElementById('selProvincea');
     const selCitya = document.getElementById('selCitya');    
@@ -828,23 +866,23 @@
     const selProvincec = document.getElementById('selProvincec');
     const selCityc = document.getElementById('selCityc');
 
-    selProvince.addEventListener("change", async function() {
-      selCity.options.length = 0;
-    let id = selProvince.options[selProvince.selectedIndex].dataset.id;
-    const response = await fetch("{{url('getcities')}}/"+id );
-    const cities = await response.json();
+  //   selProvince.addEventListener("change", async function() {
+  //     selCity.options.length = 0;
+  //   let id = selProvince.options[selProvince.selectedIndex].dataset.id;
+  //   const response = await fetch("{{url('getcities')}}/"+id );
+  //   const cities = await response.json();
     
-    var opt = document.createElement('option');
-          opt.appendChild( document.createTextNode('Elige Ciudad') );
-          opt.value = '';
-          selCity.appendChild(opt);
-    cities.forEach(city => {
-          var opt = document.createElement('option');
-          opt.appendChild( document.createTextNode(city.name) );
-          opt.value = city.name;
-          selCity.appendChild(opt);
-    });
-  });
+  //   var opt = document.createElement('option');
+  //         opt.appendChild( document.createTextNode('Elige Ciudad') );
+  //         opt.value = '';
+  //         selCity.appendChild(opt);
+  //   cities.forEach(city => {
+  //         var opt = document.createElement('option');
+  //         opt.appendChild( document.createTextNode(city.name) );
+  //         opt.value = city.name;
+  //         selCity.appendChild(opt);
+  //   });
+  // });
 
     selProvincea.addEventListener("change", async function() {
       selCitya.options.length = 0;
