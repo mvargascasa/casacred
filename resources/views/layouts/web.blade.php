@@ -242,14 +242,14 @@ if(strpos($actual_link, 'localhost') === false){
                         
                         <p class="text-dark-50">Sábados 9:00 am a 1:00 pm</p>
                         
-                        <p style="margin: 0px;" class="text-dark-50"><b style="font-weight: 500; color: #000000; margin: 0px"><i style="margin-left: -15px" class="fas fa-map-marker-alt text-danger"></i> Oficina Créditos:</b> Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero - Edificio Santa Lucia</p>                        
+                        <p style="margin: 0px;" class="text-dark-50"><b style="font-weight: 500; color: #000000; margin: 0px">Oficina Créditos:</b><a target="_blank" style="color: #000000" href="https://g.page/r/CV7pH0E3AVo_EBA"> Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero - Edificio Santa Lucia</a></p>                        
 
-                        <p class="text-dark-50 mt-2"><b style="font-weight: 500; color: #000000"><i  style="margin-left: -15px" class="fas fa-map-marker-alt text-danger"></i> Oficina Ventas:</b> Av. Fray Vicente Solano y Remigio Tamariz Crespo</p>
+                        <p class="text-dark-50 mt-2"><b style="font-weight: 500; color: #000000">Oficina Ventas:</b> Av. Fray Vicente Solano y Remigio Tamariz Crespo</p>
                         
-                        <p  style="margin-left: -18px"><i style="color: #c30000; font-size: 13px" class="fas fa-phone-alt"></i><a href="tel:+59372810825" class="asindeco" style="color: #000000 !important"> 07-412-6004</a>&nbsp;/ 
+                        <p><a href="tel:+59372810825" class="asindeco" style="color: #000000 !important"> 07-412-6004</a>&nbsp;/ 
                             <a href="tel:+593983849073" class="asindeco" style="color: #000000 !important"> 098-384-9073</a>&nbsp;&nbsp;</p>
                         
-                        <p style="margin-left: -18px"><i style="color: #c30000; font-size: 13px" class="fas fa-envelope"></i> <a href="mailto:info@casacredito.com" class="asindeco" style="color: #000000 !important">info@casacredito.com</a></p>
+                        <p><a href="mailto:info@casacredito.com" class="asindeco" style="color: #000000 !important">info@casacredito.com</a></p>
             </div>
             <div class="col-12 col-md-4 p-4 small">
                     <h5>New York | EE.UU.</h5>
@@ -257,13 +257,15 @@ if(strpos($actual_link, 'localhost') === false){
 
                         <p class="text-dark-50">Sábados y Domingos 9:00 am a 4:00 pm</p>
 
-                        <p class="text-dark-50"><i style="margin-left: -15px" class="fas fa-map-marker-alt text-danger"></i> 67-03 Roosevelt Avenue<br>
-                        Woodside, NY 11377</p>
+                        <p class="text-dark-50"><a target="_blank" style="color: #000000" href="https://g.page/r/Cdf-npU-D1gdEAE">
+                          67-03 Roosevelt Avenue<br>
+                          Woodside, NY 11377
+                        </a></p>
 
-                        <p><i style="color: #c30000; font-size: 13px; margin-left: -16px" class="fas fa-phone-alt"></i> <a style="color: #000000 !important" href="tel:+17186903740" class="asindeco">718-690-3740</a>&nbsp;</p>
+                        <p><a style="color: #000000 !important" href="tel:+17186903740" class="asindeco">718-690-3740</a>&nbsp;</p>
                         {{-- <p><a href="tel:+13478460067" class="asindeco">347-846-0067</a>&nbsp;</p> --}}
 
-                        <p><i style="color: #c30000; font-size: 13px; margin-left: -16px" class="fas fa-envelope"></i> <a style="color: #000000 !important" href="mailto:info@casacredito.com" class="asindeco">info@casacredito.com</a></p>
+                        <p><a style="color: #000000 !important" href="mailto:info@casacredito.com" class="asindeco">info@casacredito.com</a></p>
             </div>
             <div class="col-12 col-md-4 p-4">
                 <h5>Síguenos en:</h5>
@@ -281,7 +283,7 @@ if(strpos($actual_link, 'localhost') === false){
                   
                   <a href="https://twitter.com/casacreditoinmo" class="asindeco px-1" target="_blank">
                     {{-- <img src="{{asset('img/casacredito-messenger.svg')}}" alt="Messenger Notary Public Near Me" width="40" height="40"> --}}
-                    <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 11px; padding-right: 11px; border-radius: 25px" class="fab fa-twitter"></i>
+                    <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 10px; padding-right: 10px; border-radius: 25px" class="fab fa-twitter"></i>
                   </a>
 
                   <a href="https://www.youtube.com/channel/UCts4TtYN76icfwxH7eRaCEw" class="asindeco px-1" target="_blank">
