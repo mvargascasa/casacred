@@ -332,7 +332,7 @@
               </div>
 
               <div class="mt-3 position-relative">
-                <img src="{{ asset('img/AVALUO-01.webp') }}" class="img-fluid" alt="">
+                <img src="{{ asset('img/VENDA-CON-NOSOTROS-01.webp') }}" class="img-fluid" alt="">
                 <div class="position-absolute" style="bottom: 0; left: 0; width: 100%">
                   <button onclick="setInterest('Avalúo de una propiedad');" data-toggle="modal" data-target="#modalAval" id="btnavaluo" class="btn btn-block" style="background-color: #c30000; color: #ffffff; border-radius: 0px">AVALÚE SU PROPIEDAD <i class="fas fa-home"></i></button>
                 </div>
