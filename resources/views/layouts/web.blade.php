@@ -194,7 +194,7 @@ if(strpos($actual_link, 'localhost') === false){
 <div class="bg-white">
 <section class="container justify-content-md-center p-4  ">
     <div class="row">
-                                <h1 class="text-black-50 p-4">Casas en Venta en Cuenca Ecuador</h1>
+                            <h1 class="text-black-50 pt-2 pb-3">Casas en Venta en Cuenca Ecuador</h1>
                             <div class="col-md-3">
                                 <h4>Ecuador</h4>
                                 <ul class="list-group list-group-flush">
