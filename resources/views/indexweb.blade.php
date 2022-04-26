@@ -194,7 +194,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col">
+              {{-- <div class="col">
                 <h5 class="px-2 text-center">Mas Buscados</h5>
                 <div id="carouselExampleControls2" class="carousel slide card-img-top" data-ride="carousel">
                     <div class="carousel-inner  text-center" style="max-height: 500px;cursor: pointer;">
@@ -259,7 +259,7 @@
                       <span class="sr-only">Next</span>
                     </a>
                 </div>
-              </div>
+              </div> --}}
 
               <div class="col mt-3">
                 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" data-interval="3000">
@@ -328,19 +328,14 @@
                       </div>
                     </div>
                   </div>
-                  {{-- <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </button> --}}
                 </div>
               </div>
 
-              <div class="mt-3">
-                <button onclick="setInterest('Avalúo de una propiedad');" data-toggle="modal" data-target="#modalAval" id="btnavaluo" class="btn btn-block" style="background-color: #c30000; color: #ffffff">AVALÚE SU PROPIEDAD <i class="fas fa-home"></i></button>
+              <div class="mt-3 position-relative">
+                <img src="{{ asset('img/AVALUO-01.webp') }}" class="img-fluid" alt="">
+                <div class="position-absolute" style="bottom: 0; left: 0; width: 100%">
+                  <button onclick="setInterest('Avalúo de una propiedad');" data-toggle="modal" data-target="#modalAval" id="btnavaluo" class="btn btn-block" style="background-color: #c30000; color: #ffffff; border-radius: 0px">AVALÚE SU PROPIEDAD <i class="fas fa-home"></i></button>
+                </div>
               </div>
         </div>   
 
