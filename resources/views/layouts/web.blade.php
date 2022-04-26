@@ -81,6 +81,9 @@ if(strpos($actual_link, 'localhost') === false){
             position: fixed;
             width: 100%;
         }
+        #pLastLabel{
+          margin-top: 10px !important;
+        }
     }
     input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;margin: 0;}
       /* FIREFOX */
@@ -262,10 +265,10 @@ if(strpos($actual_link, 'localhost') === false){
 
                         <p><i style="color: #c30000; font-size: 13px; margin-left: -16px" class="fas fa-envelope"></i> <a style="color: #000000 !important" href="mailto:info@casacredito.com" class="asindeco">info@casacredito.com</a></p>
             </div>
-            <div class="col-12 col-md-4 p-4 position-relative">
+            <div class="col-12 col-md-4 p-4">
                 <h5>Síguenos en:</h5>
                 
-                <div class="d-flex">
+                <div class="d-flex mt-3">
                   <a href="https://www.facebook.com/CasaCreditoInmobiliaria" class="asindeco px-1" target="_blank">
                     {{-- <img src="{{asset('img/casacredito-facebook.svg')}}" alt="Facebook Notary Public Near Me" width="40" height="40"> --}}
                     <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 13px; padding-right: 13px; border-radius: 25px" class="fab fa-facebook-f"></i>
@@ -291,7 +294,7 @@ if(strpos($actual_link, 'localhost') === false){
                   </a>
                 </div>
                 
-                <p class="text-dark-50 position-absolute" style="bottom: 50px; left: 0"><i class="text-muted">Ahora con <b style="color: #c30000; font-weight: 500">Casa Credito</b> es fácil ser dueño de su propia casa en Ecuador.</i></p>
+                <p id="pLastLabel" style="margin-top: 120px" class="text-dark-50"><i class="text-muted">Ahora con <b style="color: #c30000; font-weight: 500">Casa Credito</b> es fácil ser dueño de su propia casa en Ecuador.</i></p>
 
                 
             </div>
