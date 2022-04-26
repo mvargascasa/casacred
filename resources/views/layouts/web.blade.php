@@ -228,69 +228,78 @@ if(strpos($actual_link, 'localhost') === false){
         </div>
   </section>
 </div>
-<footer class="text-white" style="background-color: rgb(31, 66, 115);">
+<footer>
+  <div style="background-color: rgb(240, 244, 245)">
     <div class="container">
-        <div class="row ">           
+        <div class="row">           
             <div class="col-12 col-md-4 p-4 small">
                     <h5>Cuenca | Ecuador</h5>
                         
-                        <p class="text-white-50">Lunes a Viernes 9:00 am&nbsp;a 6:00 pm</p>
+                        <p class="text-dark-50">Lunes a Viernes 9:00 am&nbsp;a 6:00 pm</p>
                         
-                        <p class="text-white-50">Sábados 9:00 am a 1:00 pm</p>
+                        <p class="text-dark-50">Sábados 9:00 am a 1:00 pm</p>
                         
-                        <p style="margin: 0px" class="text-white-50"><b style="font-weight: 300; color: #ffffff; margin: 0px">Oficina 1:</b> Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero</p>                        
-                        <p class="text-white-50" >Edificio Santa Lucia</p>
+                        <p style="margin: 0px;" class="text-dark-50"><b style="font-weight: 500; color: #000000; margin: 0px"><i style="margin-left: -15px" class="fas fa-map-marker-alt text-danger"></i> Oficina Créditos:</b> Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero - Edificio Santa Lucia</p>                        
 
-                        <p class="text-white-50"><b style="font-weight: 300; color: #ffffff">Oficina 2:</b> Av. Fray Vicente Solano y Remigio Tamariz Crespo</p>
+                        <p class="text-dark-50 mt-2"><b style="font-weight: 500; color: #000000"><i  style="margin-left: -15px" class="fas fa-map-marker-alt text-danger"></i> Oficina Ventas:</b> Av. Fray Vicente Solano y Remigio Tamariz Crespo</p>
                         
-                        <p><a href="tel:+59372810825"   class="asindeco">07-412-6004</a>&nbsp;/ 
-                            <a href="tel:+593983849073" class="asindeco"> 098-384-9073</a>&nbsp;&nbsp;</p>
+                        <p  style="margin-left: -18px"><i style="color: #c30000; font-size: 13px" class="fas fa-phone-alt"></i><a href="tel:+59372810825" class="asindeco" style="color: #000000 !important"> 07-412-6004</a>&nbsp;/ 
+                            <a href="tel:+593983849073" class="asindeco" style="color: #000000 !important"> 098-384-9073</a>&nbsp;&nbsp;</p>
                         
-                        <p><a href="mailto:info@casacredito.com" class="asindeco">info@casacredito.com</a></p>
+                        <p style="margin-left: -18px"><i style="color: #c30000; font-size: 13px" class="fas fa-envelope"></i> <a href="mailto:info@casacredito.com" class="asindeco" style="color: #000000 !important">info@casacredito.com</a></p>
             </div>
             <div class="col-12 col-md-4 p-4 small">
                     <h5>New York | EE.UU.</h5>
-                        <p class="text-white-50">Lunes a Viernes 9:00 am a 6:00 pm</p>
+                        <p class="text-dark-50">Lunes a Viernes 9:00 am a 6:00 pm</p>
 
-                        <p class="text-white-50">Sábados y Domingos 9:00 am a 4:00 pm</p>
+                        <p class="text-dark-50">Sábados y Domingos 9:00 am a 4:00 pm</p>
 
-                        <p class="text-white-50">67-03 Roosevelt Avenue<br>
+                        <p class="text-dark-50"><i style="margin-left: -15px" class="fas fa-map-marker-alt text-danger"></i> 67-03 Roosevelt Avenue<br>
                         Woodside, NY 11377</p>
 
-                        <p><a href="tel:+17186903740" class="asindeco">718-690-3740</a>&nbsp;</p>
+                        <p><i style="color: #c30000; font-size: 13px; margin-left: -16px" class="fas fa-phone-alt"></i> <a style="color: #000000 !important" href="tel:+17186903740" class="asindeco">718-690-3740</a>&nbsp;</p>
                         {{-- <p><a href="tel:+13478460067" class="asindeco">347-846-0067</a>&nbsp;</p> --}}
 
-                        <p><a href="mailto:info@casacredito.com" class="asindeco">info@casacredito.com</a></p>
+                        <p><i style="color: #c30000; font-size: 13px; margin-left: -16px" class="fas fa-envelope"></i> <a style="color: #000000 !important" href="mailto:info@casacredito.com" class="asindeco">info@casacredito.com</a></p>
             </div>
-            <div class="col-12 col-md-4 p-4">
-                <h5>Sigue con Nosotros</h5>
-                        <p class="text-white-50">Ahora con Casa Credito es fácil ser dueño de su propia casa en Ecuador. </p>
-              
-                        <div class="d-flex">
-                          <a href="https://www.facebook.com/CasaCreditoInmobiliaria" class="asindeco px-1" target="_blank">
-                              <img src="{{asset('img/casacredito-facebook.svg')}}" alt="Facebook Notary Public Near Me" width="40" height="40">
-                            </a>
-      
-                          <a href="https://www.messenger.com/t/inmobiliariacasacredito" class="asindeco px-1" target="_blank">
-                              <img src="{{asset('img/casacredito-messenger.svg')}}" alt="Messenger Notary Public Near Me" width="40" height="40">
-                          </a>
-      
-                          <a href="https://www.instagram.com/inmobiliariacasacredito/" class="asindeco px-1" target="_blank">
-                              <img src="{{asset('img/casacredito-instagram.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40">
-                          </a>
-      
-                          <a href="https://api.whatsapp.com/send?phone=+593983849073  " class="asindeco px-1" target="_blank">
-                              <img src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40">
-                          </a>
-                        </div>
+            <div class="col-12 col-md-4 p-4 position-relative">
+                <h5>Síguenos en:</h5>
+                
+                <div class="d-flex">
+                  <a href="https://www.facebook.com/CasaCreditoInmobiliaria" class="asindeco px-1" target="_blank">
+                    {{-- <img src="{{asset('img/casacredito-facebook.svg')}}" alt="Facebook Notary Public Near Me" width="40" height="40"> --}}
+                    <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 13px; padding-right: 13px; border-radius: 25px" class="fab fa-facebook-f"></i>
+                  </a>
+                  
+                  <a href="https://www.instagram.com/inmobiliariacasacredito/" class="asindeco px-1" target="_blank">
+                    {{-- <img src="{{asset('img/casacredito-instagram.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40"> --}}
+                    <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 11px; padding-right: 11px; border-radius: 25px" class="fab fa-instagram"></i>
+                  </a>
+                  
+                  <a href="https://twitter.com/casacreditoinmo" class="asindeco px-1" target="_blank">
+                    {{-- <img src="{{asset('img/casacredito-messenger.svg')}}" alt="Messenger Notary Public Near Me" width="40" height="40"> --}}
+                    <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 11px; padding-right: 11px; border-radius: 25px" class="fab fa-twitter"></i>
+                  </a>
 
+                  <a href="https://www.youtube.com/channel/UCts4TtYN76icfwxH7eRaCEw" class="asindeco px-1" target="_blank">
+                    <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 10px; padding-right: 10px; border-radius: 25px" class="fab fa-youtube"></i>
+                  </a>
+                  
+                  <a href="https://api.whatsapp.com/send?phone=+593983849073  " class="asindeco px-1" target="_blank">
+                    {{-- <img src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40"> --}}
+                    <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 11px; padding-right: 11px; border-radius: 25px" class="fab fa-whatsapp"></i>
+                  </a>
+                </div>
+                
+                <p class="text-dark-50 position-absolute" style="bottom: 50px; left: 0"><i class="text-muted">Ahora con <b style="color: #c30000; font-weight: 500">Casa Credito</b> es fácil ser dueño de su propia casa en Ecuador.</i></p>
 
                 
             </div>
         </div>
     </div>
-    <div class="text-center navfoot py-3">Copyright ©2018 Casa Crédito . All rights reserved.
-        <br><a href="{{route('web.politicas')}}" class="text-muted"> Políticas de Privacidad</a> <span class="text-muted">-</span>  <a href="{{route('web.seo')}}" class="text-muted">SEO</a>
+  </div>
+    <div style="background-color: #2c3144" class="text-center navfoot py-3 text-white">Copyright ©2018 Casa Crédito . All rights reserved.
+        <br><a href="{{route('web.politicas')}}" style="color: #c30000"> Políticas de Privacidad</a> <span  style="color: #c30000">-</span>  <a  style="color: #c30000" href="{{route('web.seo')}}">SEO</a>
     </div>
 </footer>
  <!-- Modal -->
