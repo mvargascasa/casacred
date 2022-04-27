@@ -21,16 +21,16 @@
         <td style="width: 1px;background-color: @if($pro->status==1) royalblue @else red @endif"></td>            
         <td class="w-16"> <img class="w-16" src="https://casacredito.com/uploads/listing/300/{{$dirImg}}" alt=""> </td>
         <td class="text-center"><span class="font-semibold">{{$pro->product_code}}</span><br><span style="color:darkgray;font-size:11px">{{$pro->created_at->format('dMy')}}</span></td>            
-        <td class="text-center">
-            @if ($pro->status==1) <span class="font-semibold text-blue-800">Act</span>
-            @else <span class="font-semibold text-gray-800">Desc</span>         @endif
+        <td class="text-center w-12">
+            @if ($pro->status==1) <span class="font-semibold text-blue-800">Activa</span>
+            @else <span class="font-semibold text-gray-800">Desactivada</span>         @endif
         </td>
-        <td class="px-2" style="width: 10px;">{{number_format($pro->property_price)}} <br><span style="font-size: 12px;color:darkgray">{{number_format($pro->property_price_min)}}</span> </td>
+        <td class="px-2 w-12 text-center">{{number_format($pro->property_price)}} <br><span style="font-size: 12px;color:darkgray">{{number_format($pro->property_price_min)}}</span> </td>
         <td class="p-2"> 
             @if(Auth::id()==123)<span style="font-size: 10px">{{$pro->slug}}</span> <br>@endif
             <a href="{{route('admin.listings.edit',$pro->id)}}" target="_blank" class="font-semibold text-blue-800">{{$pro->listing_title}}</a><br> {{$pro->address}} </td>
-        <td class="font-semibold">{{$categoria}}</td>
-        <td>{{$pro->listingtypestatus}}</td>
+        <td class="font-semibold w-14 flex justify-start">{{$categoria}}</td>
+        <td class="w-40 text-center">{{$pro->listingtypestatus}}</td>
         <td>{{$pro->user->name??''}}</td>
         </tr>
         @endforeach
