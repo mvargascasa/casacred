@@ -29,7 +29,7 @@
         <td class="p-2"> 
             @if(Auth::id()==123)<span style="font-size: 10px">{{$pro->slug}}</span> <br>@endif
             <a href="{{route('admin.listings.edit',$pro->id)}}" target="_blank" class="font-semibold text-blue-800">{{$pro->listing_title}}</a><br> {{$pro->address}} </td>
-        <td class="font-semibold w-14 flex justify-start">{{$categoria}}</td>
+        <td class="font-semibold w-14 flex justify-center pt-4">{{$categoria}}</td>
         <td class="w-40 text-center">{{$pro->listingtypestatus}}</td>
         <td>{{$pro->user->name??''}}</td>
         </tr>

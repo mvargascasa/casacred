@@ -48,28 +48,28 @@
                                                 User</th>
                                         </tr>    
                                         <tr><th></th><th></th>
-                                            <th class="px-2"> <input class="block w-10 py-2 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-red-500 border-red-800" 
-                                                id="b_code" name="b_code" type="text" placeholder="COD"></th>
+                                            <th class="px-2"> <input class="block w-24 py-2 border rounded-md pl-2" 
+                                                id="b_code" name="b_code" type="text" placeholder="Código..."></th>
                                             <td class="px-2">
-                                                <select class="block w-14 py-2 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-red-500 border-red-800"
+                                                <select class="block w-14 py-2 border rounded-md"
                                                  id="b_status" name="b_status"  class="w-20" style="color: gray">
                                                         <option value="" selected>Seleccione</option>
-                                                        <option value="A">Activo</option>
-                                                        <option value="D">DescAct</option>
+                                                        <option value="A">Activa</option>
+                                                        <option value="D">Desactivada</option>
                                                 </select>
                                             </td>
                                             <th>
-                                                <select class="block w-14 py-2 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-red-500 border-red-800"
+                                                <select class="block w-14 py-2 border rounded-md"
                                                  id="b_price" name="b_price"  class="w-20" style="color: gray">
                                                         <option value="" selected>Seleccione</option>
-                                                        <option value="ASC">ASC</option>
-                                                        <option value="DESC">DESC</option>
+                                                        <option value="ASC">Ascendente</option>
+                                                        <option value="DESC">Descendente</option>
                                                 </select>
                                             </th>
-                                            <th class="px-2" style="width: 40%"><input class="block w-full py-2 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-red-500 border-red-800"
+                                            <th class="px-2" style="width: 40%"><input class="block w-full py-2 border rounded-md pl-2"
                                                 id="b_detalle" name="b_detalle" type="text" placeholder="Ingrese un sector..."></th>
                                             <td class="w-14">  
-                                                <select class="block w-full py-2 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-red-500 border-red-800"
+                                                <select class="block w-full py-2 border rounded-md"
                                                 id="b_categoria" style="color: gray">
                                                         <option value="" selected>Seleccione</option>	
                                                         <option value="23">Casas </option>
@@ -83,8 +83,8 @@
                                                         <option value="36">Suites</option>
                                                 </select>
                                             </td>
-                                            <td class="w-40">  
-                                                <select class="block w-full py-2 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-red-500 border-red-800"
+                                            <td class="w-40 px-2">  
+                                                <select class="block w-full py-2 border rounded-md"
                                                 id="b_tipo" style="max-width:200px; color: gray">
                                                         <option value="" selected>Seleccione</option>
                                                         <option value="en-venta">Venta</option>
