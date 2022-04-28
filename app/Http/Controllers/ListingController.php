@@ -109,9 +109,9 @@ class ListingController extends Controller
     }
     
     public function edit(Listing $listing){
-        if(Auth::user()->role != "administrator" && $listing->user_id!= Auth::id()){
-            return redirect()->route('admin.listings.show',compact('listing'));
-        }
+        // if(Auth::user()->role != "administrator" && $listing->user_id!= Auth::id()){
+        //     return redirect()->route('admin.listings.show',compact('listing'));
+        // }
         $benefits = DB::table('listing_benefits')->get();   
         $services = DB::table('listing_services')->get();
         $types = DB::table('listing_types')->get();  

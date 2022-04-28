@@ -29,7 +29,7 @@ class Proplisttw extends Component
             $properties_filter = Listing::orderBy('product_code','DESC');
         }
 
-        if(Auth::user()->role != 'administrator') $properties_filter->where('user_id', Auth::id());
+        // if(Auth::user()->role != 'administrator') $properties_filter->where('user_id', Auth::id());
 
         if(strlen($this->detalle)>2){           
             $properties_filter->where('address','LIKE',"%$this->detalle%");
