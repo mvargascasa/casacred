@@ -1,4 +1,5 @@
 <div class="bg-white">
+    @if($view == 'grid')
     <div class="grid sm:grid-cols-4 gap-4 mx-4">
         @foreach ($properties as $propertie)
             @php
@@ -43,9 +44,84 @@
                 </a>
             </div>
         @endforeach
+        <input type="hidden" id="pagActual" value="{{$pagActual}}">
+        <input type="hidden" id="firstItem" value="{{$firstItem}}">
+        <input type="hidden" id="totalProperties2" value="{{$totalProperties}}">
+
     </div>
 
-    {{-- <tbody>
+    @elseif($view == 'list')
+
+    <table class="w-full whitespace-nowrap bg-white">
+        <thead>
+            <tr class="sticky top-0">
+                <th class="px-1 py-2 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    </th>
+                <th class="px-2 py-2 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    </th>
+                <th class="w-2 px-2 py-2 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    COD</th>
+                <th class="px-2 py-2 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Status</th>
+                <th class="px-2 py-2 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Precio</th>
+                <th class="px-2 py-2 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Detalle</th>
+                <th class="px-2 py-2 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Categoria</th>
+                <th class="px-2 py-2 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    Tipo</th>
+                <th class="px-2 py-2 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                    User</th>
+            </tr>    
+            {{-- <tr><th></th><th></th>
+                <th class="px-2"> <input class="block w-24 py-2 border rounded-md pl-2" 
+                    id="b_code" name="b_code" type="text" placeholder="Código..."></th>
+                <td class="px-2">
+                    <select class="block w-14 py-2 border rounded-md"
+                     id="b_status" name="b_status"  class="w-20" style="color: gray">
+                            <option value="" selected>Seleccione</option>
+                            <option value="A">Activa</option>
+                            <option value="D">Desactivada</option>
+                    </select>
+                </td>
+                <th>
+                    <select class="block w-14 py-2 border rounded-md"
+                     id="b_price" name="b_price"  class="w-20" style="color: gray">
+                            <option value="" selected>Seleccione</option>
+                            <option value="ASC">Ascendente</option>
+                            <option value="DESC">Descendente</option>
+                    </select>
+                </th>
+                <th class="px-2" style="width: 40%"><input class="block w-full py-2 border rounded-md pl-2"
+                    id="b_detalle" name="b_detalle" type="text" placeholder="Ingrese un sector..."></th>
+                <td class="w-14">  
+                    <select class="block w-full py-2 border rounded-md"
+                    id="b_categoria" style="color: gray">
+                            <option value="" selected>Seleccione</option>	
+                            <option value="23">Casas </option>
+                            <option value="24">Departamentos </option>
+                            <option value="25">Casas Comerciales</option>
+                            <option value="26">Terrenos</option>
+                            <option value="29">Quintas</option>
+                            <option value="30">Haciendas</option>
+                            <option value="32">Locales Comerciales</option>
+                            <option value="35">Oficinas</option>
+                            <option value="36">Suites</option>
+                    </select>
+                </td>
+                <td class="w-40 px-2">  
+                    <select class="block w-full py-2 border rounded-md"
+                    id="b_tipo" style="max-width:200px; color: gray">
+                            <option value="" selected>Seleccione</option>
+                            <option value="en-venta">Venta</option>
+                            <option value="alquilar">Alquiler</option>
+                    </select>
+            </td>
+            <td></td>
+            </tr>   --}}
+        </thead>
+    <tbody>
         @foreach ($properties as $pro)    
     
             @php 
@@ -87,11 +163,9 @@
             <input type="hidden" id="totalProperties2" value="{{$totalProperties}}">
             </td></tr>
     
-        </tbody> --}}
-
-            <input type="hidden" id="pagActual" value="{{$pagActual}}">
-            <input type="hidden" id="firstItem" value="{{$firstItem}}">
-            <input type="hidden" id="totalProperties2" value="{{$totalProperties}}">
+        </tbody>
+    </table>
+    @endif
 </div>
 
 
@@ -118,6 +192,7 @@ function filter_properties(){
     let b_categoria = document.getElementById('b_categoria').value;
     let b_tipo      = document.getElementById('b_tipo').value;
     let b_price     = document.getElementById('b_price').value;
+    let b_view      = document.getElementById('view').value;
 
     @this.set('code', b_code);  
     @this.set('status', b_status);  
@@ -126,6 +201,8 @@ function filter_properties(){
     @this.set('tipo', b_tipo);
     @this.set('price', b_price);
     @this.set('pressButtom', 1);
+
+    @this.set('view', b_view);//para renderizar de nuevo y cambie de vista
 }
 
     

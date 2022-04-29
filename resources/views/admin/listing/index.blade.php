@@ -33,8 +33,8 @@
                                 <div class="pr-2 pb-2">
                                     <select class="block w-32 py-2 border rounded-md"id="b_status" name="b_status"  class="w-20" style="color: gray">
                                         <option value="" selected>Estado</option>
-                                        <option value="A">Activa</option>
-                                        <option value="D">Desactivada</option>
+                                        <option value="A">Disponibles</option>
+                                        <option value="D">No disponibles</option>
                                     </select>
                                 </div>
                     
@@ -72,13 +72,17 @@
                                         <option value="alquilar">Alquiler</option>
                                     </select>
                                 </div>
+                                <div class="w-full">
+                                    <div class="block w-full py-2 rounded-md">
+                                        <input type="hidden" id="view">
+                                        <button onclick="document.getElementById('view').value='grid';filter_properties();" class="float-right pr-1"><img src="{{ asset('img/grid.png') }}" alt=""></button>
+                                        <button onclick="document.getElementById('view').value='list';filter_properties();" class="float-right pr-2"><img src="{{ asset('img/list.png') }}" alt=""></button>
+                                    </div>
+                                </div>
                             </div>
-
                             <div class="w-full overflow-scroll mx-auto" style="height: 80vh;">
-                                {{-- <table class="w-full whitespace-nowrap bg-white"> --}}
-                                    
-
-                                    {{-- <thead>
+                                {{-- <table class="w-full whitespace-nowrap bg-white">
+                                    <thead>
                                         <tr class="sticky top-0">
                                             <th class="px-1 py-2 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                                 </th>
@@ -145,8 +149,8 @@
                                         </td>
                                         <td></td>
                                         </tr>  
-                                    </thead> --}}
-                                        <livewire:proplisttw />
+                                    </thead>      --}}
+                                    <livewire:proplisttw />
                                 {{-- </table> --}}
                             </div>
                         </div>

@@ -13,10 +13,17 @@ class Proplisttw extends Component
     use WithPagination;
 
     public $code,$status,$detalle,$categoria,$tipo,$price,
-    $pressButtom,$totalProperties=0,$pagActual,$firstItem;
+    $pressButtom,$totalProperties=0,$pagActual,$firstItem,
+    $view = 'grid';
 
     public function render()
     {
+        if ($this->view=='grid') {
+            $viewaux = $this->view;
+        } elseif($this->view=='list'){
+            $viewaux = $this->view;
+        }
+
         if($this->pressButtom>0){
             $this->pressButtom=0;
             $this->resetPage();
@@ -54,6 +61,6 @@ class Proplisttw extends Component
 
         $types = DB::table('listing_types')->get(); 
         $categories = DB::table('listing_status')->get(); 
-        return view('livewire.proplisttw',compact('properties','types','categories'));
+        return view('livewire.proplisttw',compact('properties','types','categories', 'viewaux'));
     }
 }
