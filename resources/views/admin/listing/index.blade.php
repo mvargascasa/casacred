@@ -75,8 +75,8 @@
                                 <div class="w-full">
                                     <div class="block w-full py-2 rounded-md">
                                         <input type="hidden" id="view">
-                                        <button onclick="document.getElementById('view').value='grid';filter_properties();" class="float-right pr-1"><img src="{{ asset('img/grid.png') }}" alt=""></button>
-                                        <button onclick="document.getElementById('view').value='list';filter_properties();" class="float-right pr-2"><img src="{{ asset('img/list.png') }}" alt=""></button>
+                                        <div style="cursor: pointer" onclick="document.getElementById('view').value='grid';filter_properties();" class="float-right pr-1"><img src="{{ asset('img/grid.png') }}" alt=""></div>
+                                        <div style="cursor: pointer" onclick="document.getElementById('view').value='list';filter_properties();" class="float-right pr-2"><img src="{{ asset('img/list.png') }}" alt=""></div>
                                     </div>
                                 </div>
                             </div>
