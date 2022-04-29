@@ -24,9 +24,61 @@
     </div> 
                     <div class="flex flex-col pt-4 px-2">
                         <div class="-my-2 py-2 overflow-x-auto">
+
+                            <div class="flex bg-fixed">
+                                <div class="pr-2 pb-2">
+                                    <input class="block w-32 py-2 border rounded-md pl-2" id="b_code" name="b_code" type="text" placeholder="Código">
+                                </div>
+                    
+                                <div class="pr-2 pb-2">
+                                    <select class="block w-32 py-2 border rounded-md"id="b_status" name="b_status"  class="w-20" style="color: gray">
+                                        <option value="" selected>Estado</option>
+                                        <option value="A">Activa</option>
+                                        <option value="D">Desactivada</option>
+                                    </select>
+                                </div>
+                    
+                                <div class="pr-2 pb-2">
+                                    <select class="block w-32 py-2 border rounded-md" id="b_price" name="b_price"  class="w-20" style="color: gray">
+                                        <option value="" selected>Precio</option>
+                                        <option value="ASC">Ascendente</option>
+                                        <option value="DESC">Descendente</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="w-full pr-2">
+                                    <input class="block w-full py-2 border rounded-md pl-2" id="b_detalle" name="b_detalle" type="text" placeholder="Ingrese un sector...">
+                                </div>
+                    
+                                <div class="w-full pr-2">
+                                    <select class="block w-full py-2 border rounded-md" id="b_categoria" style="color: gray">
+                                        <option value="" selected>Tipo de propiedad</option>	
+                                        <option value="23">Casas </option>
+                                        <option value="24">Departamentos </option>
+                                        <option value="25">Casas Comerciales</option>
+                                        <option value="26">Terrenos</option>
+                                        <option value="29">Quintas</option>
+                                        <option value="30">Haciendas</option>
+                                        <option value="32">Locales Comerciales</option>
+                                        <option value="35">Oficinas</option>
+                                        <option value="36">Suites</option>
+                                    </select>
+                                </div>
+                    
+                                <div class="w-full">
+                                    <select class="block w-full py-2 border rounded-md" id="b_tipo" style="max-width:200px; color: gray">
+                                        <option value="" selected>Categoría</option>
+                                        <option value="en-venta">Venta</option>
+                                        <option value="alquilar">Alquiler</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="w-full overflow-scroll mx-auto" style="height: 80vh;">
-                                <table class="w-full whitespace-nowrap bg-white">
-                                    <thead>
+                                {{-- <table class="w-full whitespace-nowrap bg-white"> --}}
+                                    
+
+                                    {{-- <thead>
                                         <tr class="sticky top-0">
                                             <th class="px-1 py-2 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                                 </th>
@@ -93,9 +145,9 @@
                                         </td>
                                         <td></td>
                                         </tr>  
-                                    </thead>
+                                    </thead> --}}
                                         <livewire:proplisttw />
-                                </table>
+                                {{-- </table> --}}
                             </div>
                         </div>
                     </div>
