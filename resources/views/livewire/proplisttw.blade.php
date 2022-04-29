@@ -1,5 +1,5 @@
 <div class="bg-white">
-    <div class="grid sm:grid-cols-3 gap-4 mx-4">
+    <div class="grid sm:grid-cols-4 gap-4 mx-4">
         @foreach ($properties as $propertie)
             @php
                 $firstImg = array_filter(explode("|", $propertie->images)) ;
