@@ -2,6 +2,15 @@
 
 @section('firstscript')
 <title>Propiedades Taildwind</title>
+<style>
+    .hover-trigger .hover-target {
+        display: none;
+    }
+    
+    .hover-trigger:hover .hover-target {
+        display: block;
+    }
+</style>
 @livewireStyles
 @endsection
 
@@ -29,27 +38,13 @@
                                 <div class="pr-2 pb-2">
                                     <input class="block w-32 py-2 border rounded-md pl-2" id="b_code" name="b_code" type="text" placeholder="Código">
                                 </div>
-                    
-                                <div class="pr-2 pb-2">
-                                    <select class="block w-32 py-2 border rounded-md"id="b_status" name="b_status"  class="w-20" style="color: gray">
-                                        <option value="" selected>Estado</option>
-                                        <option value="A">Disponibles</option>
-                                        <option value="D">No disponibles</option>
-                                    </select>
-                                </div>
-                    
-                                <div class="pr-2 pb-2">
-                                    <select class="block w-32 py-2 border rounded-md" id="b_price" name="b_price"  class="w-20" style="color: gray">
-                                        <option value="" selected>Precio</option>
-                                        <option value="ASC">Ascendente</option>
-                                        <option value="DESC">Descendente</option>
-                                    </select>
-                                </div>
-                                
                                 <div class="w-full pr-2">
-                                    <input class="block w-full py-2 border rounded-md pl-2" id="b_detalle" name="b_detalle" type="text" placeholder="Ingrese un sector...">
+                                    <select class="block w-full py-2 border rounded-md" id="b_tipo" style="max-width:200px; color: gray">
+                                        <option value="" selected>Categoría</option>
+                                        <option value="en-venta">Venta</option>
+                                        <option value="alquilar">Alquiler</option>
+                                    </select>
                                 </div>
-                    
                                 <div class="w-full pr-2">
                                     <select class="block w-full py-2 border rounded-md" id="b_categoria" style="color: gray">
                                         <option value="" selected>Tipo de propiedad</option>	
@@ -64,17 +59,26 @@
                                         <option value="36">Suites</option>
                                     </select>
                                 </div>
-                    
-                                <div class="w-full">
-                                    <select class="block w-full py-2 border rounded-md" id="b_tipo" style="max-width:200px; color: gray">
-                                        <option value="" selected>Categoría</option>
-                                        <option value="en-venta">Venta</option>
-                                        <option value="alquilar">Alquiler</option>
+                                <div class="w-full pr-2">
+                                    <input class="block w-full py-2 border rounded-md pl-2" id="b_detalle" name="b_detalle" type="text" placeholder="Sector">
+                                </div>
+                                <div class="pr-2 pb-2">
+                                    <select class="block w-32 py-2 border rounded-md"id="b_status" name="b_status"  class="w-20" style="color: gray">
+                                        <option value="" selected>Estado</option>
+                                        <option value="A">Disponibles</option>
+                                        <option value="D">No disponibles</option>
+                                    </select>
+                                </div>
+                                <div class="pr-2 pb-2">
+                                    <select class="block w-32 py-2 border rounded-md" id="b_price" name="b_price"  class="w-20" style="color: gray">
+                                        <option value="" selected>Precio</option>
+                                        <option value="ASC">Ascendente</option>
+                                        <option value="DESC">Descendente</option>
                                     </select>
                                 </div>
                                 <div class="w-full">
                                     <div class="block w-full py-2 rounded-md">
-                                        <input type="hidden" id="view">
+                                        <input type="hidden" id="view" value="grid">
                                         <div style="cursor: pointer" onclick="document.getElementById('view').value='grid';filter_properties();" class="float-right pr-1"><img src="{{ asset('img/grid.png') }}" alt=""></div>
                                         <div style="cursor: pointer" onclick="document.getElementById('view').value='list';filter_properties();" class="float-right pr-2"><img src="{{ asset('img/list.png') }}" alt=""></div>
                                     </div>
