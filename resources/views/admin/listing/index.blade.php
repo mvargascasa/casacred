@@ -39,7 +39,7 @@
                                     <input class="block w-32 py-2 border rounded-md pl-2" id="b_code" name="b_code" type="text" placeholder="Código">
                                 </div>
                                 <div class="w-full pr-2">
-                                    <select class="block w-full py-2 border rounded-md" id="b_tipo" style="max-width:200px; color: gray">
+                                    <select class="block w-full py-2 border rounded-md" id="b_tipo" style="color: gray">
                                         <option value="" selected>Categoría</option>
                                         <option value="en-venta">Venta</option>
                                         <option value="alquilar">Alquiler</option>
