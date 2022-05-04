@@ -54,7 +54,7 @@
                         @endif
                     </div>
                     <div class="mr-2">
-                        @if ($propertie->listingtagstatus==2)
+                        @if ($propertie->listingtagstatus==2 && $propertie->listingtype != 26)
                             <img src="{{ asset('img/worker.png') }}" alt="Constructora" title="Constructora">
                         @endif
                     </div>
@@ -74,7 +74,7 @@
                         <p class="text-red-500 text-xs font-bold">NO ES DE PAGO</p>
                     </div>
                     @endif
-                    @if ($propertie->listingtagstatus==2)
+                    @if ($propertie->listingtagstatus==2 && $propertie->listingtype != 26)
                         <div class="flex">
                             <img src="{{ asset('img/worker.png') }}" alt="Constructora">
                             <p class="text-red-500 text-xs font-bold">CONSTRUCTORA</p>
