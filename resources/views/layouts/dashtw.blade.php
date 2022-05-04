@@ -46,8 +46,8 @@
                 <a style="text-decoration: none !important" href="{{route('admin.properties')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/properties*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 py-4">Propiedades</span>
                 </a>
-@if(Auth::user()->role=="user")
-                <a style="text-decoration: none !important" href="{{ route('admin.myproperties') }}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/my-properties*  ')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+@if(Auth::user()->role!="administrator")
+                <a style="text-decoration: none !important" href="{{ route('admin.myproperties') }}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/my-properties*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 py-4">Mis Propiedades</span>
                 </a> 
 @endif         
