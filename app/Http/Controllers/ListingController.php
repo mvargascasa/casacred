@@ -229,4 +229,12 @@ class ListingController extends Controller
             $listing->update(['slug' => $slug]);
         }
     }
+
+    public function show_listing($id){
+        $propertie = Listing::where('id', $id)->first();
+        $benefits = DB::table('listing_benefits')->get();
+        $services = DB::table('listing_services')->get();
+        $details = DB::table('listing_characteristics')->get();  
+        return view('admin.listing.show-tw', compact('propertie', 'benefits', 'services', 'details'));
+    }
 }

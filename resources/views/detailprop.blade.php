@@ -485,7 +485,7 @@
                   @endisset
                   @if ($bedroom > 0)
                     <div class="col-sm-6 d-flex">
-                      <i style="font-size: 20px; margin-right: 5px" class="fas fa-bath"></i>
+                      <i style="font-size: 20px; margin-right: 5px" class="fas fa-bed"></i>
                       <p>{{ $bedroom}} @if($bedroom > 1) habitaciones @else habitación @endif</p>
                     </div>
                   @endif
@@ -638,6 +638,11 @@
                 En breve le atenderemos.
               </div>
             </div>
+            {{-- <div class="col-12 mt-3">
+              <button type="button" class="btn btn-block" style="background-color: #dc3545; color: #ffffff" data-toggle="modal" data-target="#exampleModal">
+                Calcular Monto <i class="fal fa-usd-circle"></i>
+              </button>
+            </div> --}}
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-12">
               <div class="mt-3" style="position: relative">
                 <img width="100%" height="100%" style="filter: brightness(50%); border-radius: 12px" class="img-fluid lazyLoad" data-src="{{ asset('img/toscana.webp') }}" alt="">
@@ -727,6 +732,48 @@
           </div>
         @endif --}}
       </div>
+
+      {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center" style="border: none; background-color: #dc3545; color: #ffffff">
+              <h5 class="modal-title text-center" id="exampleModalLabel">Calcular Monto <i class="fal fa-usd-circle"></i></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div>
+                <div class="form-group">
+                  <label for="price">Precio de la propiedad:</label>
+                  <input type="text" name="price" id="price" class="form-control" value="{{ $listing->property_price }}" disabled>
+                </div>
+                <div class="form-group">
+                  <label for="entrada">Entrada mínima:</label>
+                  <input type="text" name="entrada" id="entrada" class="form-control">
+                </div>
+                <div class="d-flex mt-2">
+                  <div class="form-group mr-1">
+                    <label for="anios">Plazo en años:</label>
+                    <input type="number" name="anios" id="anios" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="anios">Interés:</label>
+                    <input type="number" name="anios" id="anios" class="form-control">
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <button class="btn mt-2" style="background-color: #dc3545; color: #ffffff" onclick="calcular();">Calcular</button>
+                </div>
+                <div id="divtotal" class="form-group mt-2 text-center" style="display: none">
+                  <label for="total" style="font-size: 20px">Su total es:</label>
+                  <p id="total" style="font-weight: 500"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> --}}
 @endsection
 
 @section('script')
@@ -741,6 +788,46 @@
     // var selectPhoto = (nro) => {
     //     carousel.to(nro)
     // };
+
+    // const options2 = { style: 'currency', currency: 'USD' };
+    // const numberFormat2 = new Intl.NumberFormat('en-US', options2);
+
+
+    // function getMinEntrada(){
+    //   let precio = parseInt(document.getElementById('price').value);
+    //   let entrada = precio * 0.3;
+
+    //   document.getElementById('entrada').value = entrada;
+    //   return entrada;
+    // }
+
+    // function calcular(){
+    //   let plazo_anios = document.getElementById('anios').value;
+    //   if(plazo_anios != ""){
+    //     let entrada = parseInt(document.getElementById('entrada').value);
+    //     let precio = document.getElementById('price').value;
+  
+    //     if(entrada < getMinEntrada()){
+    //       alert('La entrada no puede ser menor a ' + getMinEntrada())
+    //     } else {
+    //       let valor = precio - entrada;
+    //       let total = valor/plazo_anios;
+
+    //       total = currencyFormat(total);
+  
+    //       document.getElementById('total').innerHTML = total;
+    //       document.getElementById('divtotal').style.display = 'block';
+    //     }
+    //   }else{
+    //     alert("El campo 'Plazo en años' esta vacio");
+    //   }
+    // }
+
+    // function currencyFormat(num) {
+    //   return "$" + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    // }
+
+    // getMinEntrada();
 
     function onScrollEvent(entries, observer) {
         entries.forEach(function(entry) {

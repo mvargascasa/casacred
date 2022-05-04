@@ -6,8 +6,10 @@
                 $firstImg = array_filter(explode("|", $propertie->images)) ;
                 $dirImg = $firstImg[0]??'';
             @endphp
-            <div class="rounded overflow-hidden shadow-lg w-full relative mt-4 mb-2">
-                <a href="{{route('admin.listings.edit',$propertie->id)}}" target="_blank">
+            <div class="rounded overflow-hidden shadow-lg w-full relative mt-4 mb-2 hover-trigger">
+                {{-- web.detail  --}}
+                {{-- {{route('admin.listings.edit',$propertie->id)}} --}}
+                <a href="@if(Route::current()->getName() == "admin.myproperties") {{ route('admin.listings.edit', $propertie->id) }} @else {{ route('admin.show.listing', $propertie->id) }} @endif" target="_blank">
                 @if ($dirImg != null)
                 <img class="w-full" src="https://casacredito.com/uploads/listing/600/{{$dirImg}}" alt="{{ $propertie->listing_title}}">
                 @else
@@ -20,9 +22,16 @@
                 @endif
                 <div class="absolute top-0 left-0">
                     @if($propertie->status == 1)
-                    <div class="text-sm font-semibold" style="margin-top: 10px; margin-left:10px; background-color: #00a032; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">ACTIVA</div>
+                    <div class="text-xs font-semibold" style="margin-top: 5px; margin-left:5px; background-color: #00a032; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">ACTIVA</div>
                     @else
-                    <div class="text-sm font-semibold" style="margin-top: 10px; margin-left:10px; background-color: #b11213; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">DESACTIVADA</div>
+                    <div class="text-xs font-semibold" style="margin-top: 5px; margin-left:5px; background-color: #b11213; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">DESACTIVADA</div>
+                    @endif
+                    @if($propertie->available != null)
+                        @if($propertie->available == 2)
+                        <div class="text-xs font-semibold" style="margin-top: 5px; margin-left:5px; background-color: #b11213; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">NO DISPONIBLE</div>
+                        @else
+                        <div class="text-xs font-semibold" style="margin-top: 5px; margin-left:5px; background-color: #00a032; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">DISPONIBLE</div>
+                        @endif
                     @endif
                 </div>
                 <div class="px-6 py-2">
@@ -36,10 +45,41 @@
                 <span class="inline-block bg-gray-200 rounded-full px-2 text-sm font-semibold text-gray-700">{{ $propertie->listingtypestatus}}</span>
                 <p class="mx-2 text-red-600 font-extrabold text-xl">${{ number_format($propertie->property_price)}}</p class="mx-2 text-red-600 font-bold">
                 </div>
-                <div class="absolute bottom-0 right-0" style="margin-right: 20px; margin-bottom: 20px">
+                <div class="absolute bottom-0 right-0 flex" style="margin-right: 20px; margin-bottom: 20px">
+                    <div class="mr-2">
+                        @if ($propertie->listing_type==2)
+                            <img src="{{ asset('img/pagada.png') }}" alt="Pagada" title="Propiedad pagada">
+                        @elseif($propertie->listing_type==1)
+                            <img src="{{ asset('img/free.png') }}" alt="Gratis" title="Propiedad gratis">
+                        @endif
+                    </div>
+                    <div class="mr-2">
+                        @if ($propertie->listingtagstatus==2)
+                            <img src="{{ asset('img/worker.png') }}" alt="Constructora" title="Constructora">
+                        @endif
+                    </div>
                     <div class="text-xs font-semibold" style="background-color: #017cd3; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">
                         COD: {{ $propertie->product_code }}
                     </div>
+                </div>
+                <div class="absolute bg-white border border-grey-100 px-4 py-2 hover-target top-0 right-0">
+                    @if ($propertie->listing_type==2)
+                    <div class="flex">
+                        <img src="{{ asset('img/pagada.png') }}" alt="Pagada">
+                        <p class="text-red-500 text-xs font-bold">DE PAGO</p>
+                    </div>
+                    @elseif($propertie->listing_type==1)
+                    <div class="flex">
+                        <img src="{{ asset('img/free.png') }}" alt="Gratis">
+                        <p class="text-red-500 text-xs font-bold">NO ES DE PAGO</p>
+                    </div>
+                    @endif
+                    @if ($propertie->listingtagstatus==2)
+                        <div class="flex">
+                            <img src="{{ asset('img/worker.png') }}" alt="Constructora">
+                            <p class="text-red-500 text-xs font-bold">CONSTRUCTORA</p>
+                        </div>
+                    @endif
                 </div>
                 </a>
             </div>
@@ -193,6 +233,8 @@ function filter_properties(){
     let b_tipo      = document.getElementById('b_tipo').value;
     let b_price     = document.getElementById('b_price').value;
     let b_view      = document.getElementById('view').value;
+    let b_available = document.getElementById('b_available').value; //variable para buscar por disponibilidad
+    let b_current_url = document.getElementById('b_current_url').value; //saber la ruta actual
 
     @this.set('code', b_code);  
     @this.set('status', b_status);  
@@ -202,7 +244,9 @@ function filter_properties(){
     @this.set('price', b_price);
     @this.set('pressButtom', 1);
 
-    @this.set('view', b_view);//para renderizar de nuevo y cambie de vista
+    @this.set('view', b_view); //para renderizar de nuevo y cambie de vista
+    @this.set('available', b_available); //buscar por disponibilidad
+    @this.set('current_url', b_current_url); //mandar la actual url -> si es myproperties
 }
 
     

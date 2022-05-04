@@ -35,38 +35,43 @@
                 </a> 
                 @endif
 
-                <a href="{{route('admin.index')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <a style="text-decoration: none !important" href="{{route('admin.index')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 py-4">Dashboard</span>
                 </a>               
     
-                <a href="{{route('admin.listings.create')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/listings/create')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <a style="text-decoration: none !important" href="{{route('admin.listings.create')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/listings/create')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 py-4">Crear Propiedad</span>
                 </a>        
     
-                <a href="{{route('admin.properties')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/properties*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <a style="text-decoration: none !important" href="{{route('admin.properties')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/properties*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 py-4">Propiedades</span>
-                </a>          
+                </a>
+@if(Auth::user()->role=="user")
+                <a style="text-decoration: none !important" href="{{ route('admin.myproperties') }}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/my-properties*  ')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                    <span class="mx-3 py-4">Mis Propiedades</span>
+                </a> 
+@endif         
 @if (Auth::id()==123 || Auth::id()==147 || Auth::id()==15)
         
-                <a href="{{route('admin.contacts')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/contacts*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <a style="text-decoration: none" href="{{route('admin.contacts')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/contacts*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 py-4">Contactos</span>
                 </a>
     
-                <a href="{{route('admin.opports')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/opports*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <a style="text-decoration: none" href="{{route('admin.opports')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/opports*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 py-4">Oportunidades</span>
                 </a>     
     
-                <a href="{{route('admin.services.index')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/service*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <a style="text-decoration: none" href="{{route('admin.services.index')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/service*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 py-4">Servicios</span>
                 </a>        
     
-                <a href="{{route('users.index')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('users/*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <a style="text-decoration: none" href="{{route('users.index')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('users/*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 py-4">Usuarios</span>
                 </a>         
     
 @endif
                 @if (Auth::id()==123)   
-                <a href="{{route('profile.show')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('user/profile')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <a style="text-decoration: none !important" href="{{route('profile.show')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('user/profile')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 py-4">Perfil</span>
                 </a>
                 @endif

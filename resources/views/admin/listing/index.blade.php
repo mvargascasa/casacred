@@ -3,13 +3,8 @@
 @section('firstscript')
 <title>Propiedades Taildwind</title>
 <style>
-    .hover-trigger .hover-target {
-        display: none;
-    }
-    
-    .hover-trigger:hover .hover-target {
-        display: block;
-    }
+    .hover-trigger .hover-target {display: none;} 
+    .hover-trigger:hover .hover-target {display: block;border-radius: 5px;margin-top: 1px;margin-right: 1px;}
 </style>
 @livewireStyles
 @endsection
@@ -65,8 +60,15 @@
                                 <div class="pr-2 pb-2">
                                     <select class="block w-32 py-2 border rounded-md"id="b_status" name="b_status"  class="w-20" style="color: gray">
                                         <option value="" selected>Estado</option>
-                                        <option value="A">Disponibles</option>
-                                        <option value="D">No disponibles</option>
+                                        <option value="A">Activa</option>
+                                        <option value="D">Desactivada</option>
+                                    </select>
+                                </div>
+                                <div class="pr-2 pb-2">
+                                    <select class="block w-32 py-2 border rounded-md"id="b_available" name="b_available"  class="w-20" style="color: gray">
+                                        <option value="" selected>Disponibilidad</option>
+                                        <option value="1">Disponibles</option>
+                                        <option value="2">No disponibles</option>
                                     </select>
                                 </div>
                                 <div class="pr-2 pb-2">
@@ -83,6 +85,7 @@
                                         <div style="cursor: pointer" onclick="document.getElementById('view').value='list';filter_properties();" class="float-right pr-2"><img src="{{ asset('img/list.png') }}" alt=""></div>
                                     </div>
                                 </div>
+                                <input type="hidden" name="b_current_url" id="b_current_url" value="{{ Route::current()->getName() }}">
                             </div>
                             <div class="w-full overflow-scroll mx-auto" style="height: 80vh;">
                                 {{-- <table class="w-full whitespace-nowrap bg-white">
@@ -159,7 +162,8 @@
                             </div>
                         </div>
                     </div>
-            
+
+                    
     </div>
 </main>
 @endsection

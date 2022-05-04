@@ -38,6 +38,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
     Route::resource('listings', ListingController::class, ['as' => 'admin']);    
     Route::get('reslug/{listing}', [ListingController::class,'reslug'])->name('admin.reslug');
     Route::get('seo', [ListingController::class,'seo'])->name('admin.seo');
+    Route::get('/show-listing/{listing}', [ListingController::class, 'show_listing'])->name('admin.show.listing');
 
     Route::resource('services', ServiceController::class, ['as' => 'admin']);
     Route::get('/words', [AdminController::class,'words'])->name('admin.words');    
@@ -45,11 +46,12 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
     Route::get('tw', [TwController::class,'index'])->name('home.tw');
     Route::get('tw/create', [TwController::class,'create'])->name('home.tw.create');
     Route::get('tw/edit/{listing}', [TwController::class,'edit'])->name('home.tw.edit');
-
+    Route::get('tw/show/{id}', [TwController::class, 'show'])->name('home.tw.show');
 
     Route::get('contacts', [TwController::class,'contacts'])->name('admin.contacts');
     Route::get('opports', [TwController::class,'opports'])->name('admin.opports');
     Route::get('properties', [TwController::class,'properties'])->name('admin.properties');
+    Route::get('my-properties', [TwController::class, 'properties'])->name('admin.myproperties');
     Route::get('propertieshow/{listing}', [TwController::class,'propertieshow'])->name('admin.propertieshow');
     Route::get('tw/css', function () { echo filesize($_SERVER["DOCUMENT_ROOT"].'/css/apptw.css'); });
     

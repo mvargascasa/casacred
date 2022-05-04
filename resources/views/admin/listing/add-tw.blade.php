@@ -68,6 +68,14 @@
                 {!! Form::text('owner_name', null, ['class' =>  $inputs]) !!}
                 @endif
             </div>
+            <div>
+                {!! Form::label('available', 'Disponibilidad', ['class' => 'font-semibold']) !!}
+                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {!! Form::select('available', [null => 'SELECCIONE', '1' => 'DISPONIBLE', '2' => 'NO DISPONIBLE'], null, ['class' => $inputs, 'disabled']) !!}
+                @else
+                {!! Form::select('available', [null => 'SELECCIONE', '1' => 'DISPONIBLE', '2' => 'NO DISPONIBLE'], null, ['class' => $inputs]) !!}
+                @endif
+            </div>
         </div>
 
         <div class="gap-4 mt-4 sm:gap-6">
