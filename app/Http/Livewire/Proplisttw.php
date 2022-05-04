@@ -52,7 +52,7 @@ class Proplisttw extends Component
         
 
         if($this->code)                                         $properties_filter->where('product_code','LIKE',"%$this->code%");
-        if($this->status=='A' || $this->status==null)           $properties_filter->where('status',1); //agregarle || $this->variable == null para muestre por defecto las activas y disponibles
+        if($this->status=='A')           $properties_filter->where('status',1); //agregarle || $this->variable == null para muestre por defecto las activas y disponibles
         if($this->status=='D')                                  $properties_filter->where('status',0);        
         if($this->categoria)                                    $properties_filter->where('listingtype',$this->categoria);        
         if($this->tipo)                                         $properties_filter->where('listingtypestatus',$this->tipo);            

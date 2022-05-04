@@ -404,11 +404,11 @@
             </div>
         </div>
         @endif
-        @isset($listing)
-            @if(!($listing->user_id != Auth::user()->id && Auth::user()->role == "user"))
+        {{-- @isset($listing)
+            @if(!($listing->user_id != Auth::user()->id && Auth::user()->role == "user")) --}}
             <button type="button" class="px-4 py-2 mt-4 text-xl leading-5 text-black bg-blue-300 rounded" onclick="addRowTitles()">Agregar Titulo</button>
-            @endif
-        @endisset
+            {{-- @endif
+        @endisset --}}
 
 
        
