@@ -29,7 +29,7 @@
 
 <div class="container overflow-scroll mx-auto mt-3">
   <div class="row d-flex justify-content-center">
-    <div class="col-sm-9">
+    <div class="col-sm-8">
       <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             @php $iiListing=0 @endphp
