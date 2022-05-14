@@ -187,14 +187,21 @@
     #parentBuscador{
       padding-top: 15%;
     }
-    #parentBuscador, #searchmobile{
-      overflow: auto; /* Recommended in case content is larger than the container */
+    /* #parentBuscador, #searchmobile{
+      overflow: auto;
       margin: 0 auto;
-      position: absolute; /* Break it out of the regular flow */
+      top: 0;
+      left: 50px;
+      bottom: 0;
+      right: 0;
+    } */
+    #search_lay{
+      overflow: auto;
+      margin: 0 auto;
       top: 0;
       left: 0;
       bottom: 0;
-      right: 0; /* Set the bounds in which to center it, relative to its parent/container */
+      right: 0;
     }
     .lazyLoad {
         width: 100%;
@@ -208,6 +215,7 @@
     #ftop_ptype{
       max-width: 170px !important;
     }
+    .carousel-item.active{z-index: 0 !important;opacity: 1 !important} */
     </style>
     @livewireStyles
 @endsection
@@ -234,21 +242,28 @@
            }
          }
     @endphp
-
-        <div id="carouselExampleFadeBanner" class="carousel slide carousel-fade"  data-bs-ride="carousel" data-bs-interval="4000">
+  <div class="position-relative">
+    <div>
+      <div id="carouselExampleFadeBanner" class="carousel slide carousel-fade"  data-ride="carousel" data-interval="4000">
           <div class="carousel-inner" style="height: @if($ismobile) 70vw; @else 40vw; @endif">
             @php
               $count = 0;
             @endphp
-            @for ($i = 1; $i < 5; $i++)
-              <div class="carousel-item @if($count === 0) active @endif">
-                <img class="img-fluid lazyLoad" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" data-src="{{ asset('img/banner'. $i .'.webp') }}" alt="">   
-                @php $count++; @endphp
-                @include('layouts.homesearch')
+              @for ($i = 1; $i < 5; $i++)
+                <div class="carousel-item @if($count === 0) active @endif">
+                  <img class="img-fluid lazyLoad" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" data-src="{{ asset('img/banner'. $i .'.webp') }}" alt="">   
+                  {{-- @include('layouts.homesearch') --}}
+                  @php $count++; @endphp
+                </div>
+                @endfor
               </div>
-              @endfor
+            </div> 
           </div>
-        </div> 
+          <div id="search_lay" class="position-absolute" style="top: 0; opacity: 1 !important; z-index: 1;">
+            @include('layouts.homesearch')
+          </div>
+  </div>
+
 
         <div class="container @if($ismobile) pt-4 @else pt-5 @endif">
           <p id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 mb-5">SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A SU ALCANCE</p>
@@ -311,7 +326,6 @@
             </div>
           </div>
       </div>
-
         <div data-aos="zoom-out" class="position-relative d-flex justify-content-center align-items-center mt-4 mb-5">
           <section id="secondsection" style="@if($ismobile) height: 13rem; @else height: 32rem; @endif background-size: cover;background-position: 10% 40%; width: 100%; background-repeat: no-repeat;">
           </section>
