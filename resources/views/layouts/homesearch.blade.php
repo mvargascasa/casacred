@@ -30,7 +30,7 @@
     </div>
 </div> --}}
 @if ($ismobile)
-<div id="searchmobile" style="width: 80vw">
+<div id="searchmobile" style="width: 80vw; position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center">
   <div style="text-align: center; color: #ffffff; background-color: rgba(2, 2, 2, 0.5); padding-top: 10%; padding-bottom: 5%; margin: 0px">
     <h3>Su sueño está aquí</h3>
     <div class="d-flex justify-content-center">

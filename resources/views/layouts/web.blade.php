@@ -232,7 +232,7 @@ if(strpos($actual_link, 'localhost') === false){
   </section>
 </div>
 <footer>
-  <div style="background-color: rgb(240, 244, 245)">
+  <div style="background-color: #2C3144; color: #ffffff">
     <div class="container">
         <div class="row">           
             <div class="col-12 col-md-4 p-4 small">
@@ -242,14 +242,14 @@ if(strpos($actual_link, 'localhost') === false){
                         
                         <p class="text-dark-50">Sábados 9:00 am a 1:00 pm</p>
                         
-                        <p style="margin: 0px;" class="text-dark-50"><b style="font-weight: 500; color: #000000; margin: 0px">Oficina Créditos:</b><a target="_blank" style="color: #000000" href="https://g.page/r/CV7pH0E3AVo_EBA"> Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero - Edificio Santa Lucia</a></p>                        
+                        <p style="margin: 0px;" class="text-dark-50"><b style="font-weight: 500; color: #ffffff; margin: 0px">Oficina Créditos:</b><a target="_blank" style="color: #ffffff" href="https://g.page/r/CV7pH0E3AVo_EBA"> Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero - Edificio Santa Lucia</a></p>                        
 
-                        <p class="text-dark-50 mt-2"><b style="font-weight: 500; color: #000000">Oficina Ventas:</b> Av. Fray Vicente Solano y Remigio Tamariz Crespo</p>
+                        <p class="text-dark-50 mt-2"><b style="font-weight: 500; color: #ffffff">Oficina Ventas:</b> Av. Fray Vicente Solano y Remigio Tamariz Crespo</p>
                         
-                        <p><a href="tel:+59372810825" class="asindeco" style="color: #000000 !important"> 07-412-6004</a>&nbsp;/ 
-                            <a href="tel:+593983849073" class="asindeco" style="color: #000000 !important"> 098-384-9073</a>&nbsp;&nbsp;</p>
+                        <p><a href="tel:+59372810825" class="asindeco" style="color: #ffffff !important"> 07-412-6004</a>&nbsp;/ 
+                            <a href="tel:+593983849073" class="asindeco" style="color: #ffffff !important"> 098-384-9073</a>&nbsp;&nbsp;</p>
                         
-                        <p><a href="mailto:info@casacredito.com" class="asindeco" style="color: #000000 !important">info@casacredito.com</a></p>
+                        <p><a href="mailto:info@casacredito.com" class="asindeco" style="color: #ffffff !important">info@casacredito.com</a></p>
             </div>
             <div class="col-12 col-md-4 p-4 small">
                     <h5>New York | EE.UU.</h5>
@@ -257,15 +257,15 @@ if(strpos($actual_link, 'localhost') === false){
 
                         <p class="text-dark-50">Sábados y Domingos 9:00 am a 4:00 pm</p>
 
-                        <p class="text-dark-50"><a target="_blank" style="color: #000000" href="https://g.page/r/Cdf-npU-D1gdEAE">
+                        <p class="text-dark-50"><a target="_blank" style="color: #ffffff" href="https://g.page/r/Cdf-npU-D1gdEAE">
                           67-03 Roosevelt Avenue<br>
                           Woodside, NY 11377
                         </a></p>
 
-                        <p><a style="color: #000000 !important" href="tel:+17186903740" class="asindeco">718-690-3740</a>&nbsp;</p>
+                        <p><a style="color: #ffffff !important" href="tel:+17186903740" class="asindeco">718-690-3740</a>&nbsp;</p>
                         {{-- <p><a href="tel:+13478460067" class="asindeco">347-846-0067</a>&nbsp;</p> --}}
 
-                        <p><a style="color: #000000 !important" href="mailto:info@casacredito.com" class="asindeco">info@casacredito.com</a></p>
+                        <p><a style="color: #ffffff !important" href="mailto:info@casacredito.com" class="asindeco">info@casacredito.com</a></p>
             </div>
             <div class="col-12 col-md-4 p-4">
                 <h5>Síguenos en:</h5>
@@ -296,7 +296,7 @@ if(strpos($actual_link, 'localhost') === false){
                   </a>
                 </div>
                 
-                <p id="pLastLabel" style="margin-top: 120px" class="text-dark-50"><i class="text-muted">Ahora con <b style="color: #c30000; font-weight: 500">Casa Credito</b> es fácil ser dueño de su propia casa en Ecuador.</i></p>
+                <p id="pLastLabel" style="margin-top: 15px" class="text-dark-50"><i class="text-white">Ahora con <b style="color: #C30000; font-weight: 500">Casa Credito</b> es fácil ser dueño de su propia casa en Ecuador.</i></p>
 
                 
             </div>
