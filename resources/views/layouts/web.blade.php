@@ -43,6 +43,7 @@ if(strpos($actual_link, 'localhost') === false){
 
     gtag('config', 'AW-806267889'); //    Adwords
     gtag('config', 'UA-124437679-1');//  Analytics 
+    console.log('cargando script de analytics...');
   }, 3000);
 </script>
 
@@ -59,6 +60,7 @@ if(strpos($actual_link, 'localhost') === false){
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '3081509562095231');
     fbq('track', 'PageView');
+    console.log('cargando script de facebook...');
   }, 3000);
     </script>
     <noscript><img height="1" width="1" style="display:none"
