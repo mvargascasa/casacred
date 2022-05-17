@@ -11,8 +11,17 @@
     <noscript>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     </noscript>
+
+  <script>
+    var stylesheet = document.createElement('link');
+      stylesheet.href = "https://pro.fontawesome.com/releases/v5.10.0/css/all.css";
+      stylesheet.rel = 'stylesheet';
+      setTimeout(function () {
+          document.getElementsByTagName('head')[0].appendChild(stylesheet);
+      }, 2000);
+  </script>
   
-  <link rel="preload" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" as="style" onload="this.rel='stylesheet'">
+  {{-- <link rel="preload" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" as="style" onload="this.rel='stylesheet'"> --}}
 
   {{-- <link rel="preload" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
