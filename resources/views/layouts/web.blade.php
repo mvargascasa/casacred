@@ -32,18 +32,23 @@ $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 if(strpos($actual_link, 'localhost') === false){
 ?>
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124437679-1"></script>
+<script id="script_analytics" async></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'AW-806267889'); //    Adwords
-  gtag('config', 'UA-124437679-1');//  Analytics 
+  setTimeout(() => {
+    document.getElementById('script_analytics').src = 'https://www.googletagmanager.com/gtag/js?id=UA-124437679-1';
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-806267889'); //    Adwords
+    gtag('config', 'UA-124437679-1');//  Analytics 
+  }, 3000);
 </script>
 
 <!-- Facebook Pixel Code -->
 <script>
+  setTimeout(() => {
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -54,6 +59,7 @@ if(strpos($actual_link, 'localhost') === false){
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '3081509562095231');
     fbq('track', 'PageView');
+  }, 3000);
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=3081509562095231&ev=PageView&noscript=1"
@@ -158,7 +164,7 @@ if(strpos($actual_link, 'localhost') === false){
           <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
               <ul class="navbar-nav ml-auto flex-nowrap px-4">
                 <li class="nav-item pr-2"> <a class="nav-link @if(Route::is('web.propiedades') or Route::is('web.detail')) active @endif" href="{{route('web.propiedades')}}">Compra</a> </li>
-                <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/asesores-bienes-raices')) active @endif" href="{{route('web.servicios','asesores-bienes-raices')}}">Vende</a> </li>
+                <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/asesores-bienes-raices')) active @endif" href="{{route('web.servicio','vende-tu-casa')}}">Vende</a> </li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/creditos-en-ecuador')) active @endif" href="{{route('web.servicios','creditos-en-ecuador')}}">Creditos</a> </li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/construye')) active @endif" href="{{route('web.servicios','construye')}}">Construye</a> </li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Route::is('web.notariausa') ) active @endif" href="{{route('web.notariausa')}}">Notaría USA</a> </li>
