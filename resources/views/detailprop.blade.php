@@ -468,7 +468,8 @@
                   @isset($listing->land_area)
                       <div class="col-sm-6 d-flex">
                         <i style="font-size: 20px; margin-right: 5px" class="far fa-ruler-combined"></i>
-                        <p>@if($listingtype->type_title == "Terrenos") Área Total: @else Área Interior: @endif {{ $listing->land_area}} m<sup>2</sup></p>
+                        <p>Área de Terreno: {{ $listing->land_area }} m<sup>2</sup></p>
+                        {{-- @if($listingtype->type_title == "Terrenos") Área de Terreno: @else Área de Terreno: @endif {{ $listing->land_area}} --}}
                       </div>
                   @endisset
                   @if($bathroom > 0)
@@ -480,7 +481,7 @@
                   @isset($listing->construction_area)
                     <div class="col-sm-6 d-flex">
                       <i style="font-size: 20px; margin-right: 5px" class="fas fa-expand-arrows-alt"></i>
-                      <p>Área Total: {{ $listing->construction_area}} m<sup>2</sup></p>
+                      <p>Área de Construcción: {{ $listing->construction_area}} m<sup>2</sup></p>
                     </div>
                   @endisset
                   @if ($bedroom > 0)
