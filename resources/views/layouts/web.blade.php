@@ -272,7 +272,7 @@ if(strpos($actual_link, 'localhost') === false){
                     <h5>New York | EE.UU.</h5>
                         <p class="text-dark-50">Lunes a Viernes 9:00 am a 6:00 pm</p>
 
-                        <p class="text-dark-50">Sábados y Domingos 9:00 am a 4:00 pm</p>
+                        <p class="text-dark-50">Sábados 9:00 am a 4:00 pm</p>
 
                         <p class="text-dark-50"><a target="_blank" style="color: #ffffff" href="https://g.page/r/Cdf-npU-D1gdEAE">
                           67-03 Roosevelt Avenue<br>
