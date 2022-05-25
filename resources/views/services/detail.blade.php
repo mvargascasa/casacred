@@ -129,6 +129,7 @@
             <div class="form-group mt-2">
                 {!! Form::label('ftype', 'Tipo de propiedad') !!}
                 <select name="ftype" class="form-select" required>
+                  <option value="">Seleccione</option>
                     @foreach ($types as $type)
                         <option value="{{$type->type_title}}">{{$type->type_title}}</option> 
                     @endforeach
