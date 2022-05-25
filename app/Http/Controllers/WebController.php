@@ -128,7 +128,7 @@ class WebController extends Controller
         $header .= "Reply-To: ".'info@casacredito.com'."\r\n";
         $header .= "MIME-Version: 1.0\r\n";
         $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-        mail('mvargas@casacredito.com,info@casacredito.com','Lead CasaCredito: '.strip_tags($request->fname), $message, $header);
+        mail('mvargas@casacredito.com,info@casacredito.com,ventas@casacredito.com','Lead CasaCredito: '.strip_tags($request->fname), $message, $header);
         //mvargas@casacredito.com,info@casacredito.com
     }    
 
@@ -176,7 +176,7 @@ class WebController extends Controller
         $header .= "MIME-Version: 1.0\r\n";
         $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
-        mail('info@casacredito.com,hserrano@casacredito.com','Lead CasaCredito: '.strip_tags($request->fname), $message, $header);
+        mail('info@casacredito.com,hserrano@casacredito.com,ventas@casacredito.com','Lead CasaCredito: '.strip_tags($request->fname), $message, $header);
     }
     
     public function politicas(){
