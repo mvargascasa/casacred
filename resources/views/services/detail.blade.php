@@ -30,7 +30,8 @@
   
         <div class="col-12 text-white text-center">
             <p style="text-align:center"><span style="color:#ffffff"><span style="font-size:40px">{{$service->page_title}}</span></span></p> 
-          <a href="javascript:void(0)" onclick="setInterest('{{$service->page_title}}')" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modalContact">INICIAR TRAMITE</a>
+          <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modalVende">INICIAR TRAMITE</a>
+                                                {{-- {{$service->page_title}} --}}
         </div>
   
       </div>
@@ -94,6 +95,93 @@
     </div>
 <section>
 
+
+<div class="modal fade" id="modalVende" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #8B0000">
+        <h5 class="modal-title text-white" id="exampleModalLongTitle">Complete el siguiente formulario y en breve será contactado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{{route('web.lead.contact')}}" method="POST">
+          @csrf
+          <div class="form-group">
+            <div class="d-flex">
+              <div class="form-group mr-1" style="width: 100%">
+                  {!! Form::label('name', 'Nombre:') !!}
+                  {!! Form::text('fname', null, ['class' => 'form-control', 'required']) !!}
+                  {!! Form::hidden('interest', 'Venta de propiedad', ['id'=>'interest']) !!}
+              </div> 
+              <div class="form-group" style="width: 100%">
+                  {!! Form::label('flastname', 'Apellido:') !!}
+                  {!! Form::text('flastname', null, ['class' => 'form-control', 'required']) !!}
+              </div>
+            </div>
+            
+            <div class="form-group mt-2">
+                {!! Form::label('tlf', 'Teléfono:') !!}
+                {!! Form::number('tlf', null, ['class' => 'form-control', 'required']) !!}
+            </div>
+            
+            <div class="form-group mt-2">
+                {!! Form::label('ftype', 'Tipo de propiedad') !!}
+                <select name="ftype" class="form-select" required>
+                    @foreach ($types as $type)
+                        <option value="{{$type->type_title}}">{{$type->type_title}}</option> 
+                    @endforeach
+                </select>
+            </div>
+            
+            <div class="d-flex mt-2">
+                <div class="form-group mr-1" style="width: 100%">
+                    {!! Form::label('fstate', 'Provincia:') !!}
+                    <select name="fstate" id="selState" class="form-select" required>
+                        <option value="">Elige Provincia</option>
+                        @foreach ($states as $state)
+                            <option value="{{$state->name}}" data-id="{{$state->id}}">{{ $state->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                
+                <div class="form-group" style="width: 100%">
+                    {!! Form::label('fcity', 'Ciudad:') !!}
+                    <select name="fcity" id="selCity" class="form-select" required>
+                        <option value="">Elige Ciudad</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group mt-2">
+                {!! Form::label('fsector', 'Sector: (Ej: Totoracocha, Ricaurte)') !!}
+                {!! Form::text('fsector', null, ['class' => 'form-control', 'required']) !!}
+            </div>
+            
+            <div class="d-flex mt-2">
+                <div class="form-group mr-1" style="width: 100%">
+                    {!! Form::label('fyears', 'Años de construcción:') !!}
+                    {!! Form::text('fyears', null, ['class' => 'form-control', 'required']) !!}
+                </div>
+                
+                <div class="form-group" style="width: 100%">
+                    {!! Form::label('fprice', 'Precio estimado:') !!}
+                    {!! Form::number('fprice', null, ['class' => 'form-control', 'required']) !!}
+                </div>
+            </div>
+            
+            <div class="form-group">
+                {!! Form::submit('Enviar',  ['class' => 'btn btn-lg btn-danger btn-block mt-4','style'=>'background-color:darkred']) !!}
+            </div> 
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   @if (session('emailsend'))
       @php
         echo "
@@ -114,5 +202,26 @@
     window.addEventListener('load', (event) => {
         document.getElementById('prisection').style.backgroundImage = "url('{{url('uploads/services/'.$service->headerimg)}}')";
     });
+
+    const SelState = document.getElementById('selState');
+    const SelCity = document.getElementById('selCity');
+
+    selState.addEventListener("change", async function() {
+    SelCity.options.length = 0;
+    let id = selState.options[selState.selectedIndex].dataset.id;
+    const response = await fetch("{{url('getcities')}}/"+id );
+    const cities = await response.json();
+    
+    var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode('Elige Ciudad') );
+          opt.value = '';
+          SelCity.appendChild(opt);
+    cities.forEach(city => {
+          var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode(city.name) );
+          opt.value = city.name;
+          SelCity.appendChild(opt);
+    });
+  });
   </script>
 @endsection

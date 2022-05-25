@@ -8,7 +8,7 @@ trait SendEmailTrait{
     
     public function sendemail(Request $request){
         
-        $to = "info@casacredito.com,hserrano@casacredito.com,ventas@casacredito.com"; //info@casacredito.com,hserrano@casacredito.com
+        $to = "sebas31051999@gmail.com"; //info@casacredito.com,hserrano@casacredito.com,ventas@casacredito.com
         $subject = "Lead Casa Credito - " . strip_tags($request->name) . " | " . date(now());
         switch ($request->interest) {
             case 'Busca Alquiler':
@@ -39,6 +39,20 @@ trait SendEmailTrait{
                     <br>Tipo de propiedad: " . strip_tags($request->tipopropiedad) . "
                     <br>Provincia: " . strip_tags($request->province) . "
                     <br>Ciudad: " . strip_tags($request->city) . "
+                ";
+                break;
+            case 'Venta de propiedad':
+                $message = "<br><strong><h3>Información</h3></strong>
+                    <br>Interes: " . strip_tags($request->interest) . "
+                    <br>Nombre: " . strip_tags($request->fname). " " . strip_tags($request->flastname). "
+                    <br>Teléfono: " .strip_tags($request->tlf) . "
+                    <br>Tipo de propiedad: " . strip_tags($request->ftype) . "
+                    <br>Provincia: " . strip_tags($request->fstate) . "
+                    <br>Ciudad: " . strip_tags($request->fcity) . "
+                    <br>Sector: " . strip_tags($request->fsector) . "
+                    <br>Años de construcción: " . strip_tags($request->fyears) . "
+                    <br>Precio Estimado: " . strip_tags($request->fprice) . "
+                    <br>Fuente: Website
                 ";
                 break;
             case 'Créditos Hipotecarios':

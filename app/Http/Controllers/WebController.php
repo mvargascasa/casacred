@@ -110,7 +110,9 @@ class WebController extends Controller
     
     public function servicio(Service $service){        
         $otros = Service::where('status',1)->where('parent',$service->parent)->get();
-        return view('services.detail',compact('service','otros'));
+        $types = DB::table('listing_types')->select('type_title')->get();
+        $states = DB::table('info_states')->where('country_id',63)->orderBy('name')->get();  
+        return view('services.detail',compact('service','otros','types','states'));
     }  
     
     public function sendlead(Request $request){
@@ -129,7 +131,7 @@ class WebController extends Controller
         $header .= "MIME-Version: 1.0\r\n";
         $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
         mail('mvargas@casacredito.com,info@casacredito.com,ventas@casacredito.com','Lead CasaCredito: '.strip_tags($request->fname), $message, $header);
-        //mvargas@casacredito.com,info@casacredito.com
+        //mvargas@casacredito.com,info@casacredito.com,ventas@casacredito.com
     }    
 
     public function sendLeadContact(Request $request){
