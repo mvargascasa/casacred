@@ -262,7 +262,7 @@ if(strpos($actual_link, 'localhost') === false){
 
                         <p class="text-dark-50 mt-2"><b style="font-weight: 500; color: #ffffff">Oficina Ventas:</b> Av. Fray Vicente Solano y Remigio Tamariz Crespo</p>
                         
-                        <p><a href="tel:+072889355" class="asindeco" style="color: #ffffff !important">  07-288-9355</a>&nbsp;/ 
+                        <p><a href="tel:+072889395" class="asindeco" style="color: #ffffff !important">  07-288-9395</a>&nbsp;/ 
                             <a href="tel:+593983849073" class="asindeco" style="color: #ffffff !important"> 098-384-9073</a>&nbsp;&nbsp;</p>
                         
                         <p><a href="mailto:info@casacredito.com" class="asindeco" style="color: #ffffff !important">info@casacredito.com</a></p>
