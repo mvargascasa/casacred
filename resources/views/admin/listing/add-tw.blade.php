@@ -34,57 +34,57 @@
         <div class="grid grid-cols-3 gap-4 mt-4 sm:gap-6">
             <div>          
                 {!! Form::label('product_code', 'Codigo',['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('product_code', $newcode, ['class' => $inputs.' font-bold', 'disabled']) !!}
-                @else
+                @else --}}
                 {!! Form::text('product_code', $newcode, ['class' => $inputs.' font-bold']) !!}
-                @endif
+                {{-- @endif --}}
             </div>
             <div>       
                 {!! Form::label('listing_type', 'Plan',['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::select('listing_type',['2'=>'PAGO','1'=>'GRATIS'], null, ['class' => $inputs, 'disabled']) !!}
-                @else
+                @else --}}
                 {!! Form::select('listing_type',['2'=>'PAGO','1'=>'GRATIS'], null, ['class' => $inputs]) !!}
-                @endif
+                {{-- @endif --}}
             </div>
     
             <div>
                 {!! Form::label('status', 'Status',['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::select('status',['0'=>'DESACTIVADO','1'=>'ACTIVO'], null, ['class' => $inputs, 'disabled']) !!}
-                @else
+                @else --}}
                 {!! Form::select('status',['0'=>'DESACTIVADO','1'=>'ACTIVO'], null, ['class' => $inputs]) !!}
-                @endif
+                {{-- @endif --}}
             </div>
         </div>
 
         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>      
                 {!! Form::label('owner_name', 'Nombre de Propietario', ['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('owner_name', null, ['class' =>  $inputs, 'disabled']) !!}
-                @else
+                @else --}}
                 {!! Form::text('owner_name', null, ['class' =>  $inputs]) !!}
-                @endif
+                {{-- @endif --}}
             </div>
             <div>
                 {!! Form::label('available', 'Disponibilidad', ['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::select('available', [null => 'SELECCIONE', '1' => 'DISPONIBLE', '2' => 'NO DISPONIBLE'], null, ['class' => $inputs, 'disabled']) !!}
-                @else
+                @else --}}
                 {!! Form::select('available', [null => 'SELECCIONE', '1' => 'DISPONIBLE', '2' => 'NO DISPONIBLE'], null, ['class' => $inputs]) !!}
-                @endif
+                {{-- @endif --}}
             </div>
         </div>
 
         <div class="gap-4 mt-4 sm:gap-6">
             {!! Form::label('listing_title', 'Titulo de Propiedad', ['class' => 'font-semibold']) !!}
-            @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+            {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
             {!! Form::text('listing_title', null, ['class' => $inputs, 'disabled']) !!}
-            @else
+            @else --}}
             {!! Form::text('listing_title', null, ['class' => $inputs]) !!}
-            @endif
+            {{-- @endif --}}
             @if(isset($listing->id) && Auth::id()==123)
                 <a href="{{route('admin.reslug',$listing->id)}}" target="_blank">{{$listing->slug}}</a>            
             @endif
@@ -92,11 +92,11 @@
 
         <div class="gap-4 mt-4 sm:gap-6">
             {!! Form::label('meta_description', 'Meta Descripcion en Google', ['class' => 'font-semibold']) !!}
-            @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+            {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
             {!! Form::text('meta_description', null, ['class' => $inputs, 'disabled']) !!}
-            @else
+            @else --}}
             {!! Form::text('meta_description', null, ['class' => $inputs]) !!}
-            @endif
+            {{-- @endif --}}
         </div>
         @isset($listing)
         <div class="gap-4 mt-4 sm:gap-6 bg-gray-200 border rounded px-4 py-2">
@@ -108,19 +108,19 @@
         <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6">
             <div>
                 {!! Form::label('property_price', 'Precio Max', ['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('property_price', null, ['class' => $inputs, 'disabled']) !!}
-                @else
+                @else --}}
                 {!! Form::text('property_price', null, ['class' => $inputs]) !!}
-                @endif
+                {{-- @endif --}}
             </div>
             <div>
                 {!! Form::label('property_price_min', 'Precio Min', ['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('property_price_min', null, ['class' => $inputs, 'disabled']) !!}
-                @else
+                @else --}}
                 {!! Form::text('property_price_min', null, ['class' => $inputs]) !!}
-                @endif
+                {{-- @endif --}}
             </div>
         </div>
 
@@ -128,35 +128,35 @@
         <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6 sm:grid-cols-4">
             <div>          
                 {!! Form::label('construction_area', 'Construcción', ['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('construction_area', null, ['class' => $inputs, 'disabled']) !!}
-                @else
+                @else --}}
                 {!! Form::text('construction_area', null, ['class' => $inputs]) !!}
-                @endif
+                {{-- @endif --}}
             </div>
             <div>          
                 {!! Form::label('land_area', 'Superficie', ['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('land_area', null, ['class' => $inputs, 'disabled']) !!}
-                @else
+                @else --}}
                 {!! Form::text('land_area', null, ['class' => $inputs]) !!}
-                @endif
+                {{-- @endif --}}
             </div>
             <div>          
                 {!! Form::label('Front', 'Frente', ['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('Front', null, ['class' => $inputs, 'disabled']) !!}
-                @else
+                @else --}}
                 {!! Form::text('Front', null, ['class' => $inputs]) !!}
-                @endif
+                {{-- @endif --}}
             </div>
             <div>          
                 {!! Form::label('Fund', 'Fondo', ['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('Fund', null, ['class' => $inputs, 'disabled']) !!}
-                @else
+                @else --}}
                 {!! Form::text('Fund', null, ['class' => $inputs]) !!}
-                @endif
+                {{-- @endif --}}
             </div>
         </div>
 
@@ -165,11 +165,11 @@
             <div>
                 {!! Form::label('listyears', 'Años de construcción', ['class' => 'font-semibold']) !!} <br>
                 <span id="rangeValue">Entre 0 a 5 años</span>
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::range('listyears', null,  ['class' => 'form-range', 'min' => '0', 'max' => '4', 'step' => '1', 'onchange' => 'rangeSlide(this.value)', 'onmousemove' => 'rangeSlide(this.value)', 'disabled']) !!}
-                @else
+                @else --}}
                 {!! Form::range('listyears', null,  ['class' => 'form-range', 'min' => '0', 'max' => '4', 'step' => '1', 'onchange' => 'rangeSlide(this.value)', 'onmousemove' => 'rangeSlide(this.value)']) !!}
-                @endif
+                {{-- @endif --}}
             </div>
         </div>
         {{-- termina div --}}
@@ -177,88 +177,88 @@
         <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6">
             <div>          
                 {!! Form::label('state', 'Provincia', ['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::select('state',[''=>'Selecione']+$states->pluck('name','name')->toArray(), null, ['id'=>'state','class' => $inputs, 'disabled' ], $optAttrib ) !!}
-                @else
+                @else --}}
                 {!! Form::select('state',[''=>'Selecione']+$states->pluck('name','name')->toArray(), null, ['id'=>'state','class' => $inputs ], $optAttrib ) !!}
-                @endif
+                {{-- @endif --}}
             </div>
             <div>          
                 {!! Form::label('city', 'Ciudad', ['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::select('city', isset($cities) ? $cities->pluck('name','name')->toArray() : [''=>'Selecione'] , null, ['id'=>'city','class' => $inputs, 'disabled' ]) !!}
-                @else
+                @else --}}
                 {!! Form::select('city', isset($cities) ? $cities->pluck('name','name')->toArray() : [''=>'Selecione'] , null, ['id'=>'city','class' => $inputs ]) !!}
-                @endif
+                {{-- @endif --}}
             </div>
         </div>
         
         <div class="gap-4 mt-4 sm:gap-6">
             {!! Form::label('address', 'Localidad: (Provincia, Canton, Sector) Ej: Azuay, Cuenca, Batan ', ['class' => 'font-semibold']) !!}
-            @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+            {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
             {!! Form::text('address', null, ['class' => $inputs, 'disabled']) !!}
-            @else
+            @else --}}
             {!! Form::text('address', null, ['class' => $inputs]) !!}
-            @endif
+            {{-- @endif --}}
         </div>
 
         <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6">
             <div>          
                 {!! Form::label('lat', 'Latitud', ['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('lat', null, ['class' => $inputs, 'disabled']) !!}
-                @else
+                @else --}}
                 {!! Form::text('lat', null, ['class' => $inputs]) !!}
-                @endif
+                {{-- @endif --}}
             </div>
             <div>          
                 {!! Form::label('lng', 'Longitud', ['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('lng', null, ['class' => $inputs, 'disabled']) !!}
-                @else
+                @else --}}
                 {!! Form::text('lng', null, ['class' => $inputs]) !!}
-                @endif
+                {{-- @endif --}}
             </div>
         </div>
         
         <div class="grid grid-cols-3 gap-4 mt-4 sm:gap-6">
             <div> 
                 {!! Form::label('listingtype', 'Categoría', ['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::select('listingtype',$types->pluck('type_title','id'),    null,    ['class' => $inputs, 'disabled']) !!}
-                @else
+                @else --}}
                 {!! Form::select('listingtype',$types->pluck('type_title','id'),    null,    ['class' => $inputs]) !!}
-                @endif
+                {{-- @endif --}}
             </div>
             <div>     
                 {!! Form::label('listingtypestatus', 'Tipo', ['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::select('listingtypestatus',$categories->pluck('status_title','slug'),    null,    ['class' => $inputs, 'disabled']) !!}
-                @else
+                @else --}}
                 {!! Form::select('listingtypestatus',$categories->pluck('status_title','slug'),    null,    ['class' => $inputs]) !!}
-                @endif
+                {{-- @endif --}}
             </div>
             <div>  
                 {!! Form::label('listingtagstatus', 'Etiqueta', ['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::select('listingtagstatus',$tags->pluck('tags_title','id'),    null,    ['class' => $inputs, 'disabled']) !!}
-                @else
+                @else --}}
                 {!! Form::select('listingtagstatus',$tags->pluck('tags_title','id'),    null,    ['class' => $inputs]) !!}
-                @endif
+                {{-- @endif --}}
             </div>
         </div>
 
         <div class="gap-4 mt-4 sm:gap-6">
             {!! Form::label('listing_description', 'Descripcion de Propiedad', ['class' => 'font-semibold']) !!}
-            @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+            {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
             {!! Form::textarea('listing_description', 
             isset($listing->listing_description) && $listing->listing_description!=null ? $listing->listing_description : '',
             ['class' => $inputs,'rows' => '3', 'disabled']) !!}
-            @else
+            @else --}}
             {!! Form::textarea('listing_description', 
             isset($listing->listing_description) && $listing->listing_description!=null ? $listing->listing_description : '',
             ['class' => $inputs,'rows' => '3', 'required']) !!}
-            @endif
+            {{-- @endif --}}
         </div>
 
         <div class="gap-4 mt-4 sm:gap-6">
@@ -266,17 +266,17 @@
             <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3 border border-gray-300 rounded-md px-4 py-2">
                 @foreach ($benefits as $bene)            
                         <label class="inline-flex items-center mt-3">  
-                            @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                            {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                             {!! Form::checkbox("checkBene[]", $bene->id, 
                             isset($listing->listingcharacteristic) && in_array($bene->id,explode(",", $listing->listingcharacteristic)) ? true : false,
                             ['class' => 'form-checkbox h-5 w-5 text-red-600', 'type'=>'checkbox', 'id'=>"checkBene$bene->id", 'disabled' ]) !!}
                             <span class="ml-2 text-gray-700">{{$bene->charac_titile}}</span>
-                            @else
+                            @else --}}
                             {!! Form::checkbox("checkBene[]", $bene->id, 
                             isset($listing->listingcharacteristic) && in_array($bene->id,explode(",", $listing->listingcharacteristic)) ? true : false,
                             ['class' => 'form-checkbox h-5 w-5 text-red-600', 'type'=>'checkbox', 'id'=>"checkBene$bene->id" ]) !!}
                             <span class="ml-2 text-gray-700">{{$bene->charac_titile}}</span>
-                            @endif
+                            {{-- @endif --}}
                         </label>
                 @endforeach
             </div>    
@@ -287,17 +287,17 @@
             <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3 border border-gray-300 rounded-md px-4 py-2">
                 @foreach ($services as $serv)
                         <label class="inline-flex items-center mt-3">  
-                            @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                            {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                             {!! Form::checkbox("checkServ[]", $serv->id, 
                             isset($listing->listinglistservices) && in_array($serv->id,explode(",", $listing->listinglistservices)) ? true : false,
                             ['class' => 'form-check-input', 'type'=>'checkbox', 'id'=>"checkServ$serv->id", 'disabled']) !!}
                             <span class="ml-2 text-gray-700">{{$serv->charac_titile}}</span>
-                            @else
+                            @else --}}
                             {!! Form::checkbox("checkServ[]", $serv->id, 
                             isset($listing->listinglistservices) && in_array($serv->id,explode(",", $listing->listinglistservices)) ? true : false,
                             ['class' => 'form-check-input', 'type'=>'checkbox', 'id'=>"checkServ$serv->id" ]) !!}
                             <span class="ml-2 text-gray-700">{{$serv->charac_titile}}</span>
-                            @endif
+                            {{-- @endif --}}
                         </label>
                 @endforeach
             </div>    
@@ -308,11 +308,11 @@
         <div class="gap-4 mt-4 sm:gap-6">
             <label class="font-semibold">Galeria de Imagenes</label>
             <div>
-                @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 <input type="file" class="px-4 py-2 border border-gray-300 rounded-md" name="galleryImages[]" id="galleryImages" accept=".jpg, .jpeg, .png" multiple onchange="changetxtgallery(this)" disabled>
-                @else
+                @else --}}
                 <input type="file" class="px-4 py-2 border border-gray-300 rounded-md" name="galleryImages[]" id="galleryImages" accept=".jpg, .jpeg, .png" multiple onchange="changetxtgallery(this)">
-                @endif
+                {{-- @endif --}}
             </div>      
             <ul id="gridImages" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 px-4 py-2 border border-gray-300 rounded-md">
                 @isset($listing)
@@ -320,9 +320,9 @@
                     @foreach(array_filter(explode("|", $listing->images)) as $img)
                         @php $ii++; @endphp
                         <li class="relative"  id="imageUpload{{$ii}}"> 
-                            @if(!($listing->user_id != Auth::user()->id && Auth::user()->role == "user"))
+                            {{-- @if(!($listing->user_id != Auth::user()->id && Auth::user()->role == "user")) --}}
                             <button type="button" onclick="delImageUpload({{$ii}})" class="absolute right-0 px-2 rounded bg-red-800 text-white font-bold">X</button>
-                            @endif
+                            {{-- @endif --}}
                             <img class="rounded" src="{{url('uploads/listing/300',$img)}}">
                             <input type="hidden" value="{{$img}}" name="updatedImages[]">
                         </li>
@@ -359,25 +359,25 @@
                         @if($printControl==0)
                         @php $printControl=1; @endphp                
                             <div class="flex flex-row mt-2 ml-4">
-                                @if($listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                                {{-- @if($listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                                 {!! Form::select('details'.$ii.'[]',$details->pluck('charac_titile','id'), $det   ,    ['class' => 'w-44 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l', 'disabled']) !!}
-                                @else
+                                @else --}}
                                 {!! Form::select('details'.$ii.'[]',$details->pluck('charac_titile','id'), $det   ,    ['class' => 'w-44 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l']) !!}
-                                @endif
+                                {{-- @endif --}}
                         @else                
                         @php $printControl=0; @endphp
-                                @if($listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                                {{-- @if($listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                                 <input  class="w-24 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300" type="number" name="details{{$ii}}[]" pattern="[0-9]+" onkeydown="return false" value="{{!is_numeric($det)?1:$det}}" disabled/>
-                                @else
+                                @else --}}
                                 <input  class="w-24 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300" type="number" name="details{{$ii}}[]" pattern="[0-9]+" onkeydown="return false" value="{{!is_numeric($det)?1:$det}}"/>
                                 <button class="w-12 h-10 py-2 bg-red-700 text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
-                                @endif
+                                {{-- @endif --}}
                             </div>
                         @endif
                     @endforeach
-                    @if(!($listing->user_id != Auth::user()->id && Auth::user()->role == "user"))
+                    {{-- @if(!($listing->user_id != Auth::user()->id && Auth::user()->role == "user")) --}}
                     <button type="button" class="px-4 py-2 ml-4 mt-4 text-xl leading-5 text-black bg-green-300 rounded" onclick="addRowDetail(this,{{$ii}})">Agregar Detalle</button>
-                    @endif
+                    {{-- @endif --}}
                 </div>    
             @endforeach
             </div>
@@ -417,9 +417,9 @@
         <hr class="mt-4">
         <div class="flex justify-center mt-6">
             @isset($listing)
-                @if(!($listing->user_id != Auth::user()->id && Auth::user()->role == "user"))
+                {{-- @if(!($listing->user_id != Auth::user()->id && Auth::user()->role == "user")) --}}
                 <button type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform bg-red-700 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600">GUARDAR</button>
-                @endif
+                {{-- @endif --}}
             @else
                 <button type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform bg-red-700 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600">GUARDAR</button>
             @endisset

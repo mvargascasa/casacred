@@ -6,10 +6,10 @@
                 $firstImg = array_filter(explode("|", $propertie->images)) ;
                 $dirImg = $firstImg[0]??'';
             @endphp
-            <div class="rounded overflow-hidden shadow-lg w-full relative mt-4 mb-2 hover-trigger">
+            <div class="rounded overflow-hidden shadow-lg w-full relative mt-4 mb-2 hover-trigger relative">
                 {{-- web.detail  --}}
                 {{-- {{route('admin.listings.edit',$propertie->id)}} --}}
-                <a href="@if(Route::current()->getName() == "admin.myproperties" || Auth::user()->role == "administrator") {{ route('admin.listings.edit', $propertie->id) }} @else {{ route('admin.show.listing', $propertie->id) }} @endif" target="_blank">
+                {{-- <a href="@if(Route::current()->getName() == "admin.myproperties" || Auth::user()->role == "administrator") {{ route('admin.listings.edit', $propertie->id) }} @else {{ route('admin.show.listing', $propertie->id) }} @endif" target="_blank"> --}}
                 @if ($dirImg != null)
                 <img class="w-full" src="https://casacredito.com/uploads/listing/600/{{$dirImg}}" alt="{{ $propertie->listing_title}}">
                 @else
@@ -62,8 +62,8 @@
                         COD: {{ $propertie->product_code }}
                     </div>
                 </div>
-                <div class="absolute bg-white border border-grey-100 px-4 py-2 hover-target top-0 right-0">
-                    @if ($propertie->listing_type==2)
+                <div class="absolute bg-white border border-grey-100 px-4 py-2 hover-target" style="top: 5px; right: 5px;">
+                    {{-- @if ($propertie->listing_type==2)
                     <div class="flex">
                         <img src="{{ asset('img/pagada.png') }}" alt="Pagada">
                         <p class="text-red-500 text-xs font-bold">DE PAGO</p>
@@ -79,9 +79,21 @@
                             <img src="{{ asset('img/worker.png') }}" alt="Constructora">
                             <p class="text-red-500 text-xs font-bold">CONSTRUCTORA</p>
                         </div>
-                    @endif
+                    @endif --}}
+                    <div class="flex">
+                        {{-- <img src="{{ asset('img/pagada.png') }}" alt="Pagada"> --}}
+                        <a target="_blank" href="{{ route('admin.show.listing', $propertie) }}" style="text-decoration: none">
+                            <p class="text-green-500 text-xs font-bold">Ver propiedad</p>
+                        </a>
+                    </div>
+                    <div class="flex">
+                        {{-- <img src="{{ asset('img/worker.png') }}" alt="Constructora"> --}}
+                        <a target="_blank" href="{{ route('home.tw.edit', $propertie) }}" style="text-decoration: none">
+                            <p class="text-yellow-500 text-xs font-bold">Editar propiedad</p>
+                        </a>
+                    </div>
                 </div>
-                </a>
+                {{-- </a> --}}
             </div>
         @endforeach
         <input type="hidden" id="pagActual" value="{{$pagActual}}">

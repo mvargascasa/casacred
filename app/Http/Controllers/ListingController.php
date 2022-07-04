@@ -131,7 +131,7 @@ class ListingController extends Controller
     } 
 
     public function update(Request $request, Listing $listing){
-        if(Auth::user()->role != "administrator") $this->authorize('update', $listing);
+        //if(Auth::user()->role != "administrator") $this->authorize('update', $listing);
         if(is_array($request->checkBene)) $request->merge(['listingcharacteristic' => implode(",", $request->checkBene)]); 
         else $request->merge(['listingcharacteristic' => '']);
         
