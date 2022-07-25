@@ -4,6 +4,21 @@
     <title>Propiedad</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+      @media (min-width: 576px) {  .ccimgpro{max-height:250px ;}  }
+      /* Medium devices (tablets, 768px and up)*/
+      @media (min-width: 768px) { .ccimgpro{max-height:350px ;}  }
+      /* Large devices (desktops, 992px and up)*/
+      @media (min-width: 992px) { .ccimgpro{max-height:450px ;}  }
+      .carousel-control-prev-icon {background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='darkorange' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;}
+      .carousel-control-next-icon {background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='darkorange' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;}
+      #carousel-thumbs {background: rgba(255,255,255,.3);bottom: 0;left: 0;padding: 0 50px;right: 0;}
+      #carousel-thumbs img {border: 5px solid transparent;cursor: pointer;}
+      #carousel-thumbs img:hover {border-color: rgba(255,255,255,.3);}
+      #carousel-thumbs .selected img {border-color: #fff;}
+      .carousel-control-prev, .carousel-control-next {width: 50px;}
+    </style>
 @endsection
 
 @section('content')
@@ -30,29 +45,121 @@
 <div class="container overflow-scroll mx-auto mt-3">
   <div class="row d-flex justify-content-center">
     <div class="col-sm-8">
-      <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            @php $iiListing=0 @endphp
-            @foreach (array_filter(explode("|", $propertie->images)) as $img)
-              <div class="carousel-item @if($iiListing==0) active @endif" data-bs-slide-number="{{ $iiListing }}">
-                <img class="img-fluid" src="https://casacredito.com/uploads/listing/{{$img}}" data-slide-to="{{ $iiListing }}" class="d-block w-100" alt="{{$propertie->listing_title}}-{{$iiListing++}}">
-              </div>
-            @endforeach
-            {{-- <div class="carousel-item active">
-              <img class="img-fluid" src="https://casacredito.com/uploads/listing/IMG_813-625d9de2332d9.png" class="d-block w-100" alt="...">
+      <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          @php $iiListing=0 @endphp
+          @foreach (array_filter(explode("|", $propertie->images)) as $img)
+            <div class="carousel-item @if($iiListing==0) active @endif" data-slide-number="{{ $iiListing }}">
+              <img style="width: 100%; height: 100%" src="{{url('uploads/listing',$img)}}" class="d-block w-100 ccimgpro" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$propertie->listing_title}}-{{$iiListing++}}">
             </div>
-            <div class="carousel-item">
-              <img class="img-fluid" src="https://casacredito.com/uploads/listing/IMG_813-625dc95c31200.jpg" class="d-block w-100" alt="...">
-            </div> --}}
+          @endforeach
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      
+      @php
+        $arrayImages = [];
+        foreach (array_filter(explode("|", $propertie->images)) as $img){
+          array_push($arrayImages, $img);
+        }
+      @endphp
+
+      <div id="carousel-thumbs" class="carousel slide mt-2" data-bs-ride="carousel" style="margin-left: -20px; margin-right: -20px">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row mx-0 justify-content-center">
+              @php
+                if(count($arrayImages) < 6){
+                  $aux = count($arrayImages);
+                } else {
+                  $aux = 6;
+                }
+              @endphp
+              @for ($i = 0; $i < $aux; $i++)
+                <div id="carousel-selector-{{ $i }}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
+                  @isset($arrayImages[$i])
+                    <img style="width: 100%" src="{{ url('uploads/listing/300/', $arrayImages[$i]) }}" class="img-fluid" alt="{{$propertie->listing_title}}-{{ $i}}">     
+                  @endisset
+                </div>   
+              @endfor
+            </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+
+          @if(count($arrayImages) > 6)
+          <div class="carousel-item">
+            <div class="row mx-0 justify-content-center">
+              @for ($i = 6; $i < 12; $i++)
+                <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
+                  @isset($arrayImages[$i])
+                    <img style="width: 100%" src="{{ url('uploads/listing/300/', $arrayImages[$i]) }}" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
+                    @endisset
+                </div>
+              @endfor
+            </div>
+          </div> 
+          @endif
+
+          @if(count($arrayImages) > 12)
+          <div class="carousel-item">
+            <div class="row mx-0 justify-content-center">
+              @for ($i = 12; $i < 18; $i++)
+                <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
+                  @isset($arrayImages[$i])
+                    <img style="width: 100%" src="{{ url('uploads/listing/300/', $arrayImages[$i]) }}" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
+                  @endisset
+                </div>
+              @endfor
+            </div>
+          </div>
+          @endif
+
+          @if(count($arrayImages) > 18)
+          <div class="carousel-item">
+            <div class="row mx-0 justify-content-center">
+              @for ($i = 18; $i < 24; $i++)
+                <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
+                  @isset($arrayImages[$i])
+                    <img style="width: 100%" src="{{ url('uploads/listing/300/', $arrayImages[$i]) }}" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
+                    @endisset
+                </div>
+              @endfor
+            </div>
+          </div>
+          @endif
+
+          @if(count($arrayImages) > 24)
+          <div class="carousel-item">
+            <div class="row mx-0 justify-content-center">
+              @for ($i = 24; $i < 30; $i++)
+                <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
+                  @isset($arrayImages[$i])
+                    <img style="width: 100%" src="{{ url('uploads/listing/300/', $arrayImages[$i]) }}" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
+                    @endisset
+                </div>
+              @endfor
+            </div>
+          </div>
+          @endif
+
+        </div>
+
+        @if(count($arrayImages) > 6)
+        <a class="carousel-control-prev" href="#carousel-thumbs" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-thumbs" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+        @endif
       </div>
     </div>
   </div>
