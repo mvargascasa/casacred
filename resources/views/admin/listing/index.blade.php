@@ -5,6 +5,7 @@
 <style>
     .hover-trigger .hover-target {display: none;} 
     .hover-trigger:hover .hover-target {display: block;border-radius: 5px;margin-top: 1px;margin-right: 1px;}
+    select > option{background-color: #E5E7EB;}
 </style>
 @livewireStyles
 @endsection
@@ -12,7 +13,10 @@
 @section('content')
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
     <div class="flex justify-between w-full pt-4 px-4">
-        <button class="bg-red-800 text-white rounded-md px-4 py-1 hover:bg-red-500" onclick="filter_properties()">BUSCAR</button>
+        <div>
+            <button class="bg-red-800 text-white rounded-md px-4 py-1 hover:bg-red-500" onclick="filter_properties()">BUSCAR</button>
+            <button class="bg-red-800 text-white rounded-md px-4 py-1 hover:bg-red-500" onclick="location.reload()">LIMPIAR CAMPOS</button>
+        </div>
         <div class="px-5 flex float-right"  >
             <button onclick="prevpage()" class="bg-red-500 text-white rounded-md px-2 py-1 hover:bg-red-600"> 
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -30,19 +34,43 @@
                         <div class="-my-2 py-2 overflow-x-auto">
 
                             <div class="flex">
-                                <div class="pr-2 pb-2">
-                                    <input class="block w-32 py-2 border rounded-md pl-2" id="b_code" name="b_code" type="text" placeholder="Código">
+                                <div class="w-full pr-2">
+                                    {{-- block w-full py-2 border rounded-md --}}
+                                    <select class="block w-auto pl-2 py-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_country">
+                                        <option value="">Pais</option>
+                                        <option value="Argentina" data-id="233">Argentina</option>
+                                        <option value="Colombia" data-id="47">Colombia</option>
+                                        <option value="Ecuador" data-id="63">Ecuador</option>
+                                        <option value="El Salvador" data-id="65">El Salvador</option>
+                                        <option value="Guatemala" data-id="232">Guatemala</option>
+                                    </select>
+                                </div>
+                                <div class="w-full pr-2 pb-2">
+                                    <select class="block w-32 py-2 border rounded-md pl-2 border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_state">
+                                        <option value="">Provincia</option>
+                                    </select>
+                                </div>
+                                <div class="w-full pr-2 pb-2">
+                                    <select class="block w-32 py-2 border rounded-md pl-2 border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_city">
+                                        <option value="">Ciudad</option>
+                                    </select>
                                 </div>
                                 <div class="w-full pr-2">
-                                    <select class="block w-full py-2 border rounded-md" id="b_tipo" style="color: gray">
+                                    <input class="block w-32 py-2 border rounded-md pl-2 border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_detalle" name="b_detalle" type="text" placeholder="Sector">
+                                </div>
+                                <div class="pr-2 pb-2">
+                                    <input class="block w-20 py-2 border rounded-md pl-2 border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_code" name="b_code" type="text" placeholder="Código">
+                                </div>
+                                <div class="w-32 pr-2">
+                                    <select class="block w-24 py-2 border rounded-md border-gray-400 hover:border-gray-500 shadow leading-tight focus:outline-none focus:shadow-outline" id="b_tipo">
                                         <option value="" selected>Categoría</option>
                                         <option value="en-venta">Venta</option>
                                         <option value="alquilar">Alquiler</option>
                                     </select>
                                 </div>
                                 <div class="w-full pr-2">
-                                    <select class="block w-full py-2 border rounded-md" id="b_categoria" style="color: gray">
-                                        <option value="" selected>Tipo de propiedad</option>	
+                                    <select class="block w-auto py-2 border border-gray-400 hover:border-gray-500 rounded-md shadow leading-tight focus:outline-none focus:shadow-outline" id="b_categoria">
+                                        <option value="">Tipo de propiedad</option>	
                                         <option value="23">Casas </option>
                                         <option value="24">Departamentos </option>
                                         <option value="25">Casas Comerciales</option>
@@ -54,25 +82,22 @@
                                         <option value="36">Suites</option>
                                     </select>
                                 </div>
-                                <div class="w-full pr-2">
-                                    <input class="block w-full py-2 border rounded-md pl-2" id="b_detalle" name="b_detalle" type="text" placeholder="Sector">
-                                </div>
-                                <div class="pr-2 pb-2">
-                                    <select class="block w-32 py-2 border rounded-md"id="b_status" name="b_status"  class="w-20" style="color: gray">
+                                <div class="w-full pr-2 pb-2">
+                                    <select class="block w-auto py-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline"id="b_status" name="b_status"  class="w-20">
                                         <option value="" selected>Estado</option>
                                         <option value="A">Activa</option>
                                         <option value="D">Desactivada</option>
                                     </select>
                                 </div>
-                                <div class="pr-2 pb-2">
-                                    <select class="block w-32 py-2 border rounded-md"id="b_available" name="b_available"  class="w-20" style="color: gray">
+                                <div class="w-full pr-2 pb-2">
+                                    <select class="w-auto block w-32 py-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline"id="b_available" name="b_available"  class="w-20">
                                         <option value="" selected>Disponibilidad</option>
                                         <option value="1">Disponibles</option>
                                         <option value="2">No disponibles</option>
                                     </select>
                                 </div>
-                                <div class="pr-2 pb-2">
-                                    <select class="block w-32 py-2 border rounded-md" id="b_price" name="b_price"  class="w-20" style="color: gray">
+                                <div class="w-full pr-2 pb-2">
+                                    <select class="w-auto block w-32 py-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_price" name="b_price"  class="w-20">
                                         <option value="" selected>Precio</option>
                                         <option value="ASC">Ascendente</option>
                                         <option value="DESC">Descendente</option>
@@ -170,5 +195,50 @@
 @section('endscript')
 @livewireScripts
 @stack('scripts')
+<script>
+    const selCountry = document.getElementById('b_country');
+    const selState = document.getElementById('b_state');
+    const selCity = document.getElementById('b_city');
 
+    selCountry.addEventListener("change", async function(){
+        selState.options.length = 0;
+        let id = selCountry.options[selCountry.selectedIndex].dataset.id;
+        const response = await fetch("{{url('getstates')}}/"+id);
+        const states = await response.json();
+
+        var opt = document.createElement('option');
+            opt.appendChild(document.createTextNode('Provincia'));
+            opt.value = '';
+            selState.appendChild(opt);
+        states.forEach(state => {
+            var opt = document.createElement('option');
+            opt.appendChild(document.createTextNode(state.name));
+            opt.value = state.name;
+            opt.setAttribute('data-id', state.id);
+            selState.appendChild(opt);
+        });
+        //para poner el select de city sin options -> cada vez que cambie el select de country
+        selCity.options.length = 0;
+        var optaux = document.createElement('option'); optaux.appendChild(document.createTextNode('Ciudad')); optaux.value = '';
+        selCity.appendChild(optaux);
+    });
+
+    selState.addEventListener("change", async function() {
+      selCity.options.length = 0;
+    let id = selState.options[selState.selectedIndex].dataset.id;
+    const response = await fetch("{{url('getcities')}}/"+id );
+    const cities = await response.json();
+    
+    var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode('Ciudad') );
+          opt.value = '';
+          selCity.appendChild(opt);
+    cities.forEach(city => {
+          var opt = document.createElement('option');
+          opt.appendChild( document.createTextNode(city.name) );
+          opt.value = city.name;
+          selCity.appendChild(opt);
+    });
+  });
+</script>
 @endsection

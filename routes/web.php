@@ -18,6 +18,7 @@ Route::post('/send-lead-contact', [WebController::class, 'sendLeadContact'])->na
 
 Route::get('/propiedad/{listing:slug}', [WebController::class,'detail'])->name('web.detail');
 Route::get('/getcities/{idState}', [WebController::class,'getcities'])->name('web.getcities');
+Route::get('/getstates/{idCountry}', [WebController::class, 'getstates'])->name('web.states');
 Route::get('/nuestros-servicios', [WebController::class,'serviciosall'])->name('web.nuestros-servicios');
 Route::get('/servicios/notaria-queens-new-york', [WebController::class,'notariausa'])->name('web.notariausa');
 Route::get('/servicios/{service:slug}', [WebController::class,'servicios'])->name('web.servicios');

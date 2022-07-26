@@ -81,6 +81,11 @@ class WebController extends Controller
         // else          
         return view('detailprop',compact('listing','details','benefits','services','types','mobile'));
     }
+
+    public function getstates($id){
+        $states = DB::table('info_states')->where('country_id', $id)->get();
+        return response()->json($states);
+    }
     
     public function getcities($id){
             $cities = DB::table('info_cities')->where('state_id',$id)->get(); 

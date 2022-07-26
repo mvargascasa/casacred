@@ -65,7 +65,7 @@
                 {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('owner_name', null, ['class' =>  $inputs, 'disabled']) !!}
                 @else --}}
-                {!! Form::text('owner_name', null, ['class' =>  $inputs]) !!}
+                {!! Form::text('owner_name', null, ['class' =>  $inputs, 'required']) !!}
                 {{-- @endif --}}
             </div>
             <div>
@@ -73,7 +73,7 @@
                 {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::select('available', [null => 'SELECCIONE', '1' => 'DISPONIBLE', '2' => 'NO DISPONIBLE'], null, ['class' => $inputs, 'disabled']) !!}
                 @else --}}
-                {!! Form::select('available', [null => 'SELECCIONE', '1' => 'DISPONIBLE', '2' => 'NO DISPONIBLE'], null, ['class' => $inputs]) !!}
+                {!! Form::select('available', [null => 'SELECCIONE', '1' => 'DISPONIBLE', '2' => 'NO DISPONIBLE'], null, ['class' => $inputs, 'required']) !!}
                 {{-- @endif --}}
             </div>
         </div>
@@ -83,7 +83,7 @@
             {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
             {!! Form::text('listing_title', null, ['class' => $inputs, 'disabled']) !!}
             @else --}}
-            {!! Form::text('listing_title', null, ['class' => $inputs]) !!}
+            {!! Form::text('listing_title', null, ['class' => $inputs, 'required']) !!}
             {{-- @endif --}}
             @if(isset($listing->id) && Auth::id()==123)
                 <a href="{{route('admin.reslug',$listing->id)}}" target="_blank">{{$listing->slug}}</a>            
@@ -97,7 +97,15 @@
             @else --}}
             {!! Form::text('meta_description', null, ['class' => $inputs]) !!}
             {{-- @endif --}}
+
+            {{-- <label>Caracteres Actual: <b id="charcount"></b></label>
+            @if(!isset($listing->meta_description))
+            <div class="bg-yellow-200 p-2 mt-3 rounded">
+                La descripción que se mostrara en Google debe contener entre <b>140</b> y <b>155</b> caracteres.
+            </div>
+            @endif --}}
         </div>
+
         @isset($listing)
         <div class="gap-4 mt-4 sm:gap-6 bg-gray-200 border rounded px-4 py-2">
             <div class="text-gray-700 text-xs">Vista Previa en Buscador Google</div>
@@ -111,7 +119,7 @@
                 {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('property_price', null, ['class' => $inputs, 'disabled']) !!}
                 @else --}}
-                {!! Form::text('property_price', null, ['class' => $inputs]) !!}
+                {!! Form::text('property_price', null, ['class' => $inputs, 'required']) !!}
                 {{-- @endif --}}
             </div>
             <div>
@@ -119,7 +127,7 @@
                 {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('property_price_min', null, ['class' => $inputs, 'disabled']) !!}
                 @else --}}
-                {!! Form::text('property_price_min', null, ['class' => $inputs]) !!}
+                {!! Form::text('property_price_min', null, ['class' => $inputs, 'required']) !!}
                 {{-- @endif --}}
             </div>
         </div>
@@ -131,7 +139,7 @@
                 {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('construction_area', null, ['class' => $inputs, 'disabled']) !!}
                 @else --}}
-                {!! Form::text('construction_area', null, ['class' => $inputs]) !!}
+                {!! Form::text('construction_area', null, ['class' => $inputs, 'required']) !!}
                 {{-- @endif --}}
             </div>
             <div>          
@@ -180,7 +188,7 @@
                 {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::select('state',[''=>'Selecione']+$states->pluck('name','name')->toArray(), null, ['id'=>'state','class' => $inputs, 'disabled' ], $optAttrib ) !!}
                 @else --}}
-                {!! Form::select('state',[''=>'Selecione']+$states->pluck('name','name')->toArray(), null, ['id'=>'state','class' => $inputs ], $optAttrib ) !!}
+                {!! Form::select('state',[''=>'Selecione']+$states->pluck('name','name')->toArray(), null, ['id'=>'state','class' => $inputs, 'required' ], $optAttrib ) !!}
                 {{-- @endif --}}
             </div>
             <div>          
@@ -188,7 +196,7 @@
                 {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::select('city', isset($cities) ? $cities->pluck('name','name')->toArray() : [''=>'Selecione'] , null, ['id'=>'city','class' => $inputs, 'disabled' ]) !!}
                 @else --}}
-                {!! Form::select('city', isset($cities) ? $cities->pluck('name','name')->toArray() : [''=>'Selecione'] , null, ['id'=>'city','class' => $inputs ]) !!}
+                {!! Form::select('city', isset($cities) ? $cities->pluck('name','name')->toArray() : [''=>'Selecione'] , null, ['id'=>'city','class' => $inputs, 'required' ]) !!}
                 {{-- @endif --}}
             </div>
         </div>
@@ -198,7 +206,7 @@
             {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
             {!! Form::text('address', null, ['class' => $inputs, 'disabled']) !!}
             @else --}}
-            {!! Form::text('address', null, ['class' => $inputs]) !!}
+            {!! Form::text('address', null, ['class' => $inputs, 'required']) !!}
             {{-- @endif --}}
         </div>
 
@@ -438,7 +446,12 @@
         window.addEventListener('load', (event) => {
             var range =  document.getElementById('listyears').value;
             rangeSlide(range);
+            //document.getElementById('charcount').innerHTML = document.getElementById('metadescription').value.length;
         });
+
+        // function getLength(input){
+        //     document.getElementById('charcount').innerHTML = input.value.length;
+        // }
 
         const gridImages = document.getElementById('gridImages');
         new Sortable(gridImages, {

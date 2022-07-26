@@ -16,7 +16,8 @@ class Proplisttw extends Component
     public $code,$status,$detalle,$categoria,$tipo,$price,
     $pressButtom,$totalProperties=0,$pagActual,$firstItem,
     $view = 'grid', $available,
-    $current_url;
+    $current_url,
+    $country, $state, $city;
 
     public function render()
     {
@@ -52,12 +53,16 @@ class Proplisttw extends Component
         
 
         if($this->code)                                         $properties_filter->where('product_code','LIKE',"%$this->code%");
-        if($this->status=='A')           $properties_filter->where('status',1); //agregarle || $this->variable == null para muestre por defecto las activas y disponibles
+        if($this->status=='A')                                  $properties_filter->where('status',1); //agregarle || $this->variable == null para muestre por defecto las activas y disponibles
         if($this->status=='D')                                  $properties_filter->where('status',0);        
         if($this->categoria)                                    $properties_filter->where('listingtype',$this->categoria);        
         if($this->tipo)                                         $properties_filter->where('listingtypestatus',$this->tipo);            
         if($this->available=='1')                               $properties_filter->where('available', 1); //agregarle || $this->variable == null para muestre por defecto las activas y disponibles
         if($this->available=='2')                               $properties_filter->where('available', 2);
+
+        if($this->country)              $properties_filter->where('country', $this->country);
+        if($this->state)                $properties_filter->where('state', $this->state);
+        if($this->city)                 $properties_filter->where('city', $this->city);
 
         $properties = $properties_filter->paginate(50);
         $this->pagActual = $properties->currentPage();
