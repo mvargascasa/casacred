@@ -9,7 +9,7 @@
             <div class="rounded overflow-hidden shadow-lg w-full relative mt-4 mb-2 hover-trigger relative">
                 {{-- web.detail  --}}
                 {{-- {{route('admin.listings.edit',$propertie->id)}} --}}
-                @if(Auth::user()->role == "user")
+                @if(Auth::user()->role == "user" || Auth::user()->role == "ASESOR")
                     <a href="@if(Route::current()->getName() == "admin.myproperties" || Auth::user()->role == "administrator") {{ route('admin.listings.edit', $propertie->id) }} @else {{ route('admin.show.listing', $propertie->id) }} @endif" target="_blank">
                 @endif
 
