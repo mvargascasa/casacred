@@ -113,7 +113,7 @@
                                         <input id="minprice" class="block w-32 m-2 shadow appearance-none border rounded py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Mínimo">
                                         <input id="maxprice" class="block w-32 m-2 shadow appearance-none border rounded py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Máximo">
                                         <div class="bg-white flex justify-between p-2" style="background-color: #E5E7EB">
-                                            <input type="radio" id="asc" name="order" value="ASC" checked>
+                                            <input type="radio" id="asc" name="order" value="ASC">
                                             <label for="html" title="Ascendente">ASC.</label><br>
                                             <input type="radio" id="desc" name="order" value="DESC">
                                             <label for="css" title="Descendente">DESC.</label><br>
