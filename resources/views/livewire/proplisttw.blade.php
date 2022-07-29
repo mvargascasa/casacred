@@ -261,8 +261,9 @@ function filter_properties(){
     let b_available = document.getElementById('b_available').value; //variable para buscar por disponibilidad
     let b_current_url = document.getElementById('b_current_url').value; //saber la ruta actual
 
+
     //variables nuevas para buscar por pais, provincia y ciudad
-    let b_country   = document.getElementById('b_country').value;
+    //let b_country   = document.getElementById('b_country').value;
     let b_state     = document.getElementById('b_state').value;
     let b_city      = document.getElementById('b_city').value;
 
@@ -278,7 +279,7 @@ function filter_properties(){
     @this.set('available', b_available); //buscar por disponibilidad
     @this.set('current_url', b_current_url); //mandar la actual url -> si es myproperties
 
-    @this.set('country', b_country);
+    //@this.set('country', b_country);
     @this.set('state', b_state);
     @this.set('city', b_city);
 }

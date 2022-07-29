@@ -93,7 +93,8 @@ class TwController extends Controller
     
        
     public function properties(){
-        return view('admin.listing.index');
+        $states = DB::table('info_states')->where('country_id',63)->orderBy('name')->get();
+        return view('admin.listing.index', compact('states'));
     }
     
     

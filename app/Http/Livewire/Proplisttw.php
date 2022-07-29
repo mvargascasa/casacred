@@ -17,7 +17,8 @@ class Proplisttw extends Component
     $pressButtom,$totalProperties=0,$pagActual,$firstItem,
     $view = 'grid', $available,
     $current_url,
-    $country, $state, $city;
+    //$country, 
+    $state, $city;
 
     public function render()
     {
@@ -60,7 +61,7 @@ class Proplisttw extends Component
         if($this->available=='1')                               $properties_filter->where('available', 1); //agregarle || $this->variable == null para muestre por defecto las activas y disponibles
         if($this->available=='2')                               $properties_filter->where('available', 2);
 
-        if($this->country)              $properties_filter->where('country', $this->country);
+        //if($this->country)              $properties_filter->where('country', $this->country);
         if($this->state)                $properties_filter->where('state', $this->state);
         if($this->city)                 $properties_filter->where('city', $this->city);
 
