@@ -98,13 +98,29 @@
                                         <option value="2">No disponibles</option>
                                     </select>
                                 </div>
-                                <div class="w-full pr-2 pb-2">
+                                {{-- <div class="w-full pr-2 pb-2">
                                     <select class="w-auto block w-32 py-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_price" name="b_price"  class="w-20">
                                         <option value="" selected>Precio</option>
                                         <option value="ASC">Ascendente</option>
                                         <option value="DESC">Descendente</option>
                                     </select>
+                                </div> --}}
+                                <div class="w-full pr-2 pb-2">
+                                    <div onclick="openmaxminprice();" class="block w-32 py-2 pl-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline flex" style="background-color: white">
+                                        <label for="">Precio</label>
+                                    </div>
+                                    <div class="block w-auto" id="pricemaxmin" style="display: none; position:absolute; z-index: 3;border: 1px solid #000000; background-color: #E5E7EB">
+                                        <input id="minprice" class="block w-32 m-2 shadow appearance-none border rounded py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Mínimo">
+                                        <input id="maxprice" class="block w-32 m-2 shadow appearance-none border rounded py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Máximo">
+                                        <div class="bg-white flex justify-between p-2" style="background-color: #E5E7EB">
+                                            <input type="radio" id="asc" name="order" value="ASC" checked>
+                                            <label for="html" title="Ascendente">ASC.</label><br>
+                                            <input type="radio" id="desc" name="order" value="DESC">
+                                            <label for="css" title="Descendente">DESC.</label><br>
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <div class="w-full">
                                     <div class="block w-full py-2 rounded-md">
                                         <input type="hidden" id="view" value="grid">
@@ -198,6 +214,13 @@
 @livewireScripts
 @stack('scripts')
 <script>
+
+    function openmaxminprice(){
+        let divpriceminmax = document.getElementById('pricemaxmin');
+        if(divpriceminmax.style.display == "none") divpriceminmax.style.display = "block";
+        else if(divpriceminmax.style.display == "block") divpriceminmax.style.display = "none";
+    }
+
     //const selCountry = document.getElementById('b_country');
     const selState = document.getElementById('b_state');
     const selCity = document.getElementById('b_city');

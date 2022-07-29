@@ -18,7 +18,8 @@ class Proplisttw extends Component
     $view = 'grid', $available,
     $current_url,
     //$country, 
-    $state, $city;
+    $state, $city,
+    $fromprice, $uptoprice;
 
     public function render()
     {
@@ -64,6 +65,17 @@ class Proplisttw extends Component
         //if($this->country)              $properties_filter->where('country', $this->country);
         if($this->state)                $properties_filter->where('state', $this->state);
         if($this->city)                 $properties_filter->where('city', $this->city);
+
+        //buscando por precio strlen($this->fromprice)>1   strlen($this->uptoprice)>1 
+        if($this->fromprice && filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT)>1){
+            $fromprice_ = filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT);
+            $properties_filter->where('property_price','>',$fromprice_);
+        }
+        
+        if($this->uptoprice && filter_var ( $this->uptoprice, FILTER_SANITIZE_NUMBER_INT)>1){
+            $uptoprice_ = filter_var ( $this->uptoprice, FILTER_SANITIZE_NUMBER_INT);
+            $properties_filter->where('property_price','<',$uptoprice_);
+        } 
 
         $properties = $properties_filter->paginate(50);
         $this->pagActual = $properties->currentPage();

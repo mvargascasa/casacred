@@ -256,7 +256,7 @@ function filter_properties(){
     let b_detalle   = document.getElementById('b_detalle').value;
     let b_categoria = document.getElementById('b_categoria').value;
     let b_tipo      = document.getElementById('b_tipo').value;
-    let b_price     = document.getElementById('b_price').value;
+    //let b_price     = document.getElementById('b_price').value;
     let b_view      = document.getElementById('view').value;
     let b_available = document.getElementById('b_available').value; //variable para buscar por disponibilidad
     let b_current_url = document.getElementById('b_current_url').value; //saber la ruta actual
@@ -267,12 +267,27 @@ function filter_properties(){
     let b_state     = document.getElementById('b_state').value;
     let b_city      = document.getElementById('b_city').value;
 
+    //variables nuevas para buscar por precio y ordenar asc o desc
+    let b_maxprice = document.getElementById('maxprice').value;
+    let b_minprice = document.getElementById('minprice').value;
+
+    let b_order_asc = document.getElementById('asc');
+    let b_order_desc = document.getElementById('desc');
+
+    let order_aux;
+
+    if(b_order_asc.checked){
+        @this.set('price', b_order_asc.value);
+    } else if(b_order_desc.checked){
+        @this.set('price', b_order_desc.value);
+    }
+
     @this.set('code', b_code);  
     @this.set('status', b_status);  
     @this.set('detalle', b_detalle);  
     @this.set('categoria', b_categoria);  
     @this.set('tipo', b_tipo);
-    @this.set('price', b_price);
+    //@this.set('price', b_price);
     @this.set('pressButtom', 1);
 
     @this.set('view', b_view); //para renderizar de nuevo y cambie de vista
@@ -282,6 +297,11 @@ function filter_properties(){
     //@this.set('country', b_country);
     @this.set('state', b_state);
     @this.set('city', b_city);
+
+    @this.set('fromprice', b_minprice);
+    @this.set('uptoprice', b_maxprice);
+
+    document.getElementById('pricemaxmin').style.display = "none";
 }
 
     
