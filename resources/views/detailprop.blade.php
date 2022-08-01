@@ -459,7 +459,7 @@
                 <label style="background-color: #f9a322; color: #ffffff; padding-left: 3px; padding-right: 3px; border-radius: 5px; font-weight: 500; font-size: 13px">{{ $listingtype->type_title}}</label>
                 <label style="background-color: #dc3545; color: #ffffff; padding-left: 3px; padding-right: 3px; border-radius: 5px; font-weight: 500; font-size: 13px">@if($listing->listingtypestatus == "en-venta") Venta @elseif($listing->listingtypestatus == "alquilar") Alquilar @else Proyectos @endif</label>
               </div>
-              <div class="mt-2">
+              <div class="mt-4">
                 <h6 style="font-weight: 500">{{$listing->listing_title}}</h6>
                 <p style="font-weight: 400"><i style="color: #dc3545" class="fas fa-map-marker-alt"></i> Sector: {{$listing->address}}</p>
               </div>
@@ -603,6 +603,14 @@
               </div> --}}
             </div>
           </div>
+          <div class="container">
+            <p class="text-center" style="font-weight: 400; font-size:20px">Compartir</p>
+            <div class="d-flex justify-content-center">
+              <p title="Compartir en Facebook" style="cursor: pointer" id="shareToFacebook"><i class="fab fa-facebook" style="color: #0165E1;font-size:30px"></i></p>
+              {{-- <p title="Compartir en Twitter" id="shareToTwitter" style="cursor: pointer"><i class="fab fa-twitter ml-3" style="color: #1DA1F2;font-size:30px"></i></p> --}}
+              <p title="Compartir por WhatsApp" id="shareToWpp" style="cursor: pointer"><i class="fab fa-whatsapp ml-3" style="color: #25D366;font-size:30px"></i></p>
+            </div>
+          </div>
         </div>
       </div>
       
@@ -655,6 +663,7 @@
                 </div>
               </div>
             </div>
+            
           </div>
           {{-- <div id="carouselProyectos" class="carousel slide mt-3" data-ride="carousel">
             <div class="carousel-inner">
@@ -848,6 +857,12 @@
     targets.forEach(function(entry) {
         observer.observe(entry);
     });
+
+    //compartir propiedad
+    let shareLink = window.location.href;
+    document.getElementById('shareToFacebook').addEventListener('click', () => {window.open('https://www.facebook.com/sharer/sharer.php?u=' + shareLink, 'facebook-share-dialog', 'width=626, height=436');});
+    //document.getElementById('shareToTwitter').addEventListener('click', () => {window.open('https://twitter.com/intent/tweet?url='+shareLink)});
+    document.getElementById('shareToWpp').addEventListener('click', () => {window.open('https://api.whatsapp.com/send?text='+shareLink, '_blank')});
 
 </script>
 @endsection
