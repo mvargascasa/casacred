@@ -6,7 +6,7 @@
 
     <meta property="og:url"                content="{{route('web.index')}}" />
     <meta property="og:type"               content="website" />
-    <meta property="og:title"              content="Casa Crédito Encuentra la casa de tus sueños." />
+    <meta property="og:title"              content="Encuentra la casa de tus sueños - Casa Crédito" />
     <meta property="og:description"        content="Contamos con un amplio directorio de propiedades dentro del territorio ecuatoriano. Venta y Alquiler de Casas, Departamentos y Terrenos. ¡Visítenos! ✅" />
     <meta property="og:image"              content="{{asset('img/meta-image-social-cc.jpg')}}" />
 
