@@ -106,6 +106,13 @@
             @endif --}}
         </div>
 
+        @if(Auth::user()->role == 'administrator')
+            <div class="gap-4 mt-4 sm:gap-6">
+                {!! Form::label('keywords', 'Keywords', ['class' => 'font-semibold']) !!}
+                {!! Form::textarea('keywords', null, ['class' => $inputs, 'rows' => '3']) !!}
+            </div>
+        @endif
+
         @isset($listing)
         <div class="gap-4 mt-4 sm:gap-6 bg-gray-200 border rounded px-4 py-2">
             <div class="text-gray-700 text-xs">Vista Previa en Buscador Google</div>
