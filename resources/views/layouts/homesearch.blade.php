@@ -31,8 +31,9 @@
 </div> --}}
 @if ($ismobile)
 <div id="searchmobile" style="width: 80vw; position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center">
-  <div style="text-align: center; color: #ffffff; background-color: rgba(2, 2, 2, 0.5); padding-top: 10%; padding-bottom: 5%; margin: 0px">
-    <h3>Su sueño está aquí</h3>
+  <div style="text-align: center; color: #ffffff; background-color: rgba(2, 2, 2, 0.5); padding-top: 5%; padding-bottom: 5%; margin: 0px">
+    <p style="font-size: 22px; margin-bottom: 0px; font-weight: 400">Su sueño está aquí</p>
+    <h1 style="font-size: 17px; font-weight: 100">Venta y Alquiler de Propiedades</h1>
     <div class="d-flex justify-content-center">
       <button type="button" data-bs-toggle="modal" data-bs-target="#modalFilters" id="btnsearch" class="btn" style="display: none; border-radius: 25px; padding: 6px 10px 6px 10px; background-color: #dc3545; color: #ffffff"><i class="fas fa-search"></i></button>
     </div>
@@ -44,8 +45,8 @@
   <div class="row align-items-center d-flex justify-content-center" style="margin: 0; min-height: 250px;">
 
       <div class="col-12 text-white text-center p-4" style="width: 600px;background:rgba(2, 2, 2, 0.5)">
-        <h1 class="font-weight-bold heading-title" >Su sueño está aquí</h1>
-        <h6 id="txtcasas">Casas, departamentos, Terrenos, Casas Comerciales, Quintas</h6>
+        <p class="font-weight-bold heading-title" style="font-size: 30px; margin-bottom: 0px">Su sueño está aquí</p>
+        <h1 id="txtcasas" style="font-size: 20px">Venta y Alquiler de todo tipo de Propiedades</h1>
         <form id="formhomesearch" action="{{route('web.propiedades')}}" method="GET">
         <div id="formtopsearch">
           <div class="btn-group pb-2">

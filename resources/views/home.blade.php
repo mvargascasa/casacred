@@ -1,13 +1,13 @@
 @extends('layouts.web')
 @section('header')
     <title>Casas en venta en Cuenca Ecuador</title>
-    <meta name="description" content="Casas en Venta en Cuenca, Departamentos en venta en Cuenca, Lotes en Venta en Cuenca, Terrenos en Venta en Cuenca. Venta de Propiedades y Gestión de Créditos."/>
-    <meta name="keywords" content="Casas en venta en cuenca, Apartamentos en venta en cuenca, terrenos en venta en cuenca, lotes en venta en cuenca, Compra, Casas a crédito, Casas económicas , Casas, Departamento, Terrenos, Locales comerciales, Oficinas, Bodegas, Ecuador, Venta, Arriendo, Oportunidad, Avaluos, Avalous y Catastros, Avaluos de propiedades, Yunguilla, Cuenca, casas bonitas">
+    <meta name="description" content="Contamos con un amplio directorio de propiedades dentro del territorio ecuatoriano. Venta y Alquiler de Casas, Departamentos y Terrenos. ¡Visítenos! ✅"/>
+    <meta name="keywords" content="inmobiliaria en cuenca, inmobiliarias en cuenca, inmobiliaria en cuenca ecuador, casas en venta, venta casas cuenca, casas en venta cuenca, casas en venta en cuenca, casas de venta en cuenca, departamentos en venta, venta departamentos cuenca, departamentos en venta cuenca, departamentos de venta en cuenca, departamentos en venta en cuenca, departamentos en alquiler, departamentos en alquiler cuenca, departamentos de alquiler en cuenca, terrenos en venta, venta terrenos cuenca, venta terrenos cuenca azuay, terrenos en venta en cuenca, terrenos de venta en cuenca, lotes en venta en cuenca, cuenca venta de terrenos, alquiler de propiedades, alquilar casa cuenca, alquiler de casa cuenca, alquilar departamento cuenca, alquiler departamento cuenca, apartamentos en venta cuenca, apartamentos de alquiler en cuenca, casas en venta en cuenca baratas, casas de venta en cuenca nuevas">
 
     <meta property="og:url"                content="{{route('web.index')}}" />
     <meta property="og:type"               content="website" />
     <meta property="og:title"              content="Casa Crédito Encuentra la casa de tus sueños." />
-    <meta property="og:description"        content="Casas en Venta en Cuenca, Departamentos en venta en Cuenca, Lotes en Venta en Cuenca, Terrenos en Venta en Cuenca. Venta de Propiedades y Gestión de Créditos." />
+    <meta property="og:description"        content="Contamos con un amplio directorio de propiedades dentro del territorio ecuatoriano. Venta y Alquiler de Casas, Departamentos y Terrenos. ¡Visítenos! ✅" />
     <meta property="og:image"              content="{{asset('img/meta-image-social-cc.jpg')}}" />
 
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -18,67 +18,25 @@
       html, body {
         max-width: 100% !important;
         overflow-x: hidden !important;
-    }
+      }
       @media screen and (max-width: 850px){
         #txttitlebanner{font-size: 12px !important;text-align: center !important;}
         #infolistingbanner{font-size: 10px !important;bottom: 0px !important;right: 5px !important;}
-        #txtserviciosinmo{
-          font-size: 15px !important;
-        }
-        #inforowconstruye1{
-          font-size: 14px !important;
-        }
-        #inforowconstruye2{
-          font-size: 11px !important;
-        }
+        #txtserviciosinmo{font-size: 15px !important;}
+        #inforowconstruye1{font-size: 14px !important;}
+        #inforowconstruye2{font-size: 11px !important;}
       }
       @media screen and (max-width: 1040px){
-        #formtopsearch{
-          display: none !important;
-        }
-        #btnsearch{
-          display: block !important;
-        }
+        #formtopsearch{display: none !important;}
+        #btnsearch{display: block !important;}
       }
-      .hover-image:hover{
-        -webkit-transform: scale(1.1); transform: scale(1.1);
-        -webkit-transition: 1s;
-      }
-      .img-container {
-        position: relative;
-      }
-
-      .image {
-        opacity: 1;
-        display: block;
-        transition: .5s ease;
-        backface-visibility: hidden;
-      }
-
-      .middle {
-        transition: .5s ease;
-        opacity: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        text-align: center;
-      }
-
-      .img-container:hover .image {
-        opacity: 0.3;
-      }
-
-      .img-container:hover .middle {
-        opacity: 1;
-      }
-      .text {
-        background-color: #04AA6D;
-        color: white;
-        font-size: 16px;
-        padding: 16px 32px;
-      }
+      .hover-image:hover{-webkit-transform: scale(1.1); transform: scale(1.1);-webkit-transition: 1s;}
+      .img-container {position: relative;}
+      .image {opacity: 1;display: block;transition: .5s ease;backface-visibility: hidden;}
+      .middle {transition: .5s ease;opacity: 0;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);text-align: center;}
+      .img-container:hover .image {opacity: 0.3;}
+      .img-container:hover .middle {opacity: 1;}
+      .text {background-color: #04AA6D;color: white;font-size: 16px;padding: 16px 32px;}
       #ftop_txt::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
         font-size: 14px; 
         opacity: 0.5; /* Firefox */
@@ -175,7 +133,7 @@
         padding-top: 26% !important;
       }
       #txtcasas{
-        display: none !important;
+        /* display: none !important; */
       }
       .carousel-inner .row{
         min-height: 600px !important;
