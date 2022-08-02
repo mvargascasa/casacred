@@ -1,4 +1,7 @@
 <div>
+    <div class="text-center">
+        <h1 class="mt-2 mb-1" style="font-weight: 500">Compra, Venta y Alquiler de Propiedades</h1>
+    </div>
     
     @php $ii=0; @endphp
     @foreach ($listings as $pro)
