@@ -213,7 +213,7 @@ if(strpos($actual_link, 'localhost') === false){
     <div class="row">
                             <h2 class="text-black-50 pt-2 pb-3">Casas en Venta en Cuenca Ecuador</h2>
                             <div class="col-md-3">
-                                <h4>Ecuador</h4>
+                                <h3>Ecuador</h3>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"><a class="alinkred" href="{{url('casas-de-venta-en-ecuador')}}">Casas en Venta en Ecuador</a></li>
                                     <li class="list-group-item"><a class="alinkred" href="{{url('departamentos-de-venta-en-ecuador')}}">Departamentos en Venta en Ecuador</a></li>
@@ -221,7 +221,7 @@ if(strpos($actual_link, 'localhost') === false){
                                 </ul>
                             </div>
                             <div class="col-md-3">
-                                <h4>Cuenca</h4>
+                                <h3>Cuenca</h3>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"><a class="alinkred" href="{{url('casas-de-venta-en-cuenca')}}">Casas en Venta en Cuenca</a></li>
                                     <li class="list-group-item"><a class="alinkred" href="{{url('departamentos-de-venta-en-cuenca')}}">Departamentos en Venta en Cuenca</a></li>
@@ -229,7 +229,7 @@ if(strpos($actual_link, 'localhost') === false){
                                 </ul>
                             </div>
                             <div class="col-md-3">
-                                <h4>Quito</h4>
+                                <h3>Quito</h3>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"><a class="alinkred" href="{{url('casas-de-venta-en-quito')}}">Casas en Venta en Quito</a></li>
                                     <li class="list-group-item"><a class="alinkred" href="{{url('departamentos-de-venta-en-quito')}}">Departamentos en Venta en Quito</a></li>
@@ -237,7 +237,7 @@ if(strpos($actual_link, 'localhost') === false){
                                 </ul>
                             </div>
                             <div class="col-md-3">
-                                <h4>Guayaquil</h4>
+                                <h3>Guayaquil</h3>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"><a class="alinkred" href="{{url('casas-de-venta-en-guayaquil')}}">Casas en Venta en Guayaquil</a></li>
                                     <li class="list-group-item"><a class="alinkred" href="{{url('departamentos-de-venta-en-guayaquil')}}">Departamentos en Venta en Guayaquil</a></li>
@@ -252,7 +252,7 @@ if(strpos($actual_link, 'localhost') === false){
     <div class="container">
         <div class="row">           
             <div class="col-12 col-md-4 p-4 small">
-                    <h5>Cuenca | Ecuador</h5>
+                    <p style="font-size: 20px; font-weight: 500">Cuenca | Ecuador</p>
                         
                         <p class="text-dark-50">Lunes a Viernes 9:00 am&nbsp;a 6:00 pm</p>
                         
@@ -268,7 +268,7 @@ if(strpos($actual_link, 'localhost') === false){
                         <p><a href="mailto:info@casacredito.com" class="asindeco" style="color: #ffffff !important">info@casacredito.com</a></p>
             </div>
             <div class="col-12 col-md-4 p-4 small">
-                    <h5>New York | EE.UU.</h5>
+                    <p style="font-size: 20px; font-weight: 500">New York | EE.UU.</p>
                         <p class="text-dark-50">Lunes a Viernes 9:00 am a 6:00 pm</p>
 
                         <p class="text-dark-50">Sábados 9:00 am a 4:00 pm</p>
@@ -284,7 +284,7 @@ if(strpos($actual_link, 'localhost') === false){
                         <p><a style="color: #ffffff !important" href="mailto:info@casacredito.com" class="asindeco">info@casacredito.com</a></p>
             </div>
             <div class="col-12 col-md-4 p-4">
-                <h5>Síguenos en:</h5>
+                <p style="font-size: 20px; font-weight: 500">Síguenos en:</p>
                 
                 <div class="d-flex mt-3">
                   <a href="https://www.facebook.com/CasaCreditoInmobiliaria" class="asindeco px-1" target="_blank">

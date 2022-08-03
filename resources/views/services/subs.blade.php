@@ -43,7 +43,7 @@
             @foreach ($services as $serv)   
             <div class="col-12 col-sm-12 col-md-4 py-2">
                 <div class="serviceBox">
-                    <h5 class="title">{{$serv->title}}</h5>
+                    <h3 class="title">{{$serv->title}}</h3>
                     <a class="" href="{{url('servicio/'.$serv->slug)}}">
                     <div class="service-icon">
                         <img class="service-img pt-3" src="{{url('uploads/services',$serv->image)}}" width="60" alt="">

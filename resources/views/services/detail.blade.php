@@ -29,7 +29,7 @@
       <div class="row p-4 p-md-5 align-items-end" style="min-height: 450px;background:rgba(2, 2, 2, 0.5)">
   
         <div class="col-12 text-white text-center">
-            <p style="text-align:center"><span style="color:#ffffff"><span style="font-size:40px">{{$service->page_title}}</span></span></p> 
+            <h1 style="text-align:center"><span style="color:#ffffff"><span style="font-size:40px">{{$service->page_title}}</span></span></h1> 
           <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modalVende">INICIAR TRAMITE</a>
                                                 {{-- {{$service->page_title}} --}}
         </div>
@@ -46,7 +46,7 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
                 <div class="card my-4">
                     <div class="card-body">
-                      <h6 class="card-title text-danger text-uppercase">{{$service->page_title}}</h6> <hr>
+                      <h2 class="card-title text-danger text-uppercase" style="font-size: 16px">{{$service->page_title}}</h2> <hr>
                       <p class="card-text">{!!$service->description!!}</p>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
                 <div class="card my-4">
                     <div class="card-body">
-                      <h6 class="card-title text-danger text-uppercase">Links</h6> <hr>
+                      <h3 class="card-title text-danger text-uppercase" style="font-size: 16px">Links</h3> <hr>
                       @foreach ($otros as $otro)
                         <ul class="list-group list-group-flush">
                           <li class="list-group-item" style="border-bottom: 1px #eeeeee  solid;">
@@ -100,7 +100,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background-color: #8B0000">
-        <h5 class="modal-title text-white" id="exampleModalLongTitle">Complete el siguiente formulario y en breve será contactado</h5>
+        <h4 class="modal-title text-white" id="exampleModalLongTitle" style="font-size: 17px">Complete el siguiente formulario y en breve será contactado</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
