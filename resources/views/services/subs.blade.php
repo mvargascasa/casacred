@@ -1,6 +1,6 @@
 @extends('layouts.web')
 @section('header')
-<title>Casa Credito - {{$service->page_title}}</title>
+<title>{{$service->page_title}}</title>
 <link rel="stylesheet" href="{{asset('css/style-not.css?4')}}">
 <meta name="description" content="{{$service->page_seocescription}}"/>
 <meta name="keywords"    content="{{$service->page_metatags}}">
