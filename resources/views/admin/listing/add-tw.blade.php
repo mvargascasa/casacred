@@ -2,6 +2,7 @@
 
 @section('firstscript')
 <title> @if(isset($listing->id)) Editar: {{$listing->product_code}} {{$listing->listing_title}} @else Crear @endif Propiedad</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endsection
 
 @section('content')
@@ -20,6 +21,17 @@
     @endif
 
     <hr class="mt-4">
+
+    @if(Auth::user()->role != "administrator")
+        @if(isset($listing->status) && $listing->status == "0")
+            <div class="bg-green-300 rounded mt-2 mb-2 p-2"><i class="fa-solid fa-circle-info"></i> El Administrador activará la propiedad una vez los campos hayan sido completados.</div>
+        @elseif(isset($listing->status) && $listing->status == "1")
+            <div class="bg-green-300 rounded mt-2 mb-2 p-2"><i class="fa-solid fa-circle-info"></i> Si necesita desactivar la propiedad, por favor <a style="color: blue; text-decoration: blue" href="https://crm.notarialatina.com/properties/{{$listing->id}}" target="_blank">comunicarse</a> con el Administrador indicando la razón.</div>
+        @elseif(!isset($listing))
+            <div class="bg-green-300 rounded mt-2 mb-2 p-2"><i class="fa-solid fa-circle-info"></i> Completar todos los campos para que el Administrador active la nueva propiedad.</div>
+        @endif
+    @endif
+
 
         @php  
             // class
@@ -49,14 +61,41 @@
                 {{-- @endif --}}
             </div>
     
-            <div>
-                {!! Form::label('status', 'Status',['class' => 'font-semibold']) !!}
-                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
-                {!! Form::select('status',['0'=>'DESACTIVADO','1'=>'ACTIVO'], null, ['class' => $inputs, 'disabled']) !!}
-                @else --}}
-                {!! Form::select('status',['0'=>'DESACTIVADO','1'=>'ACTIVO'], null, ['class' => $inputs]) !!}
-                {{-- @endif --}}
-            </div>
+            @if(Auth::user()->role == "administrator")
+                <div>
+                    {!! Form::label('status', 'Status',['class' => 'font-semibold']) !!}
+                    {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                    {!! Form::select('status',['0'=>'DESACTIVADO','1'=>'ACTIVO'], null, ['class' => $inputs, 'disabled']) !!}
+                    @else --}}
+                    {!! Form::select('status',['0'=>'DESACTIVADO','1'=>'ACTIVO'], null, ['class' => $inputs]) !!}
+                    {{-- @endif --}}
+                </div>
+            @else
+                @isset($listing)
+                    <div>
+                        {!! Form::label('status', 'Estado', ['class' => 'font-semibold']) !!}
+                            @if($listing->status == "0") 
+                                <div class="flex items-center mt-3 text-gray-500">
+                                    <div class="bg-red-500 mr-2 rounded-md" style="width: 10px; height: 10px"></div> 
+                                    DESACTIVADA
+                                </div>  
+                            @elseif($listing->status == "1") 
+                                <div class="flex items-center mt-3 text-gray-500">
+                                    <div class="bg-green-500 mr-2 rounded-md" style="width: 10px; height: 10px"></div> 
+                                    ACTIVADA
+                                </div> 
+                            @endif
+                    </div>
+                @else
+                    <div>
+                        {!! Form::label('status', 'Estado', ['class' => 'font-semibold']) !!}
+                        <div class="flex items-center mt-3 text-gray-500">
+                            <div class="bg-red-500 mr-2 rounded-md" style="width: 10px; height: 10px"></div> 
+                            DESACTIVADA
+                        </div>
+                    </div>
+                @endisset
+            @endif
         </div>
 
         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
