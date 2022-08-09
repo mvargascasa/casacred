@@ -159,6 +159,7 @@
             <div>{{$listing->meta_description}}</div>
         </div>
         @endisset
+
         <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6">
             <div>
                 {!! Form::label('property_price', 'Precio Max', ['class' => 'font-semibold']) !!}
@@ -176,6 +177,11 @@
                 {!! Form::text('property_price_min', null, ['class' => $inputs, 'required']) !!}
                 {{-- @endif --}}
             </div>
+        </div>
+
+        <div id="divcomment" class="grid grid-cols-1 mt-4" style="display: none">
+            {!! Form::label('comment', 'Comentario', ['class' => 'font-semibold']) !!}
+            {!! Form::textarea('comment', null, ['class' => $inputs, 'rows' => 2, 'placeholder' => 'Ingrese el motivo por el cual cambio el precio']) !!}
         </div>
 
 
@@ -494,6 +500,24 @@
             rangeSlide(range);
             //document.getElementById('charcount').innerHTML = document.getElementById('metadescription').value.length;
         });
+
+        //mostrando input de comentario si el precio cambia de valor
+        let input_price = document.querySelector("[name='property_price']");
+        let price = input_price.value;
+        input_price.addEventListener('change', () => {
+            let divcomment = document.getElementById('divcomment');
+            let newprice = input_price.value;
+            if(price != "" && price != newprice){
+                divcomment.style.display = "block";
+                document.querySelector("[name='comment']").required = true;
+            } else {
+                divcomment.style.display = "none";
+                document.querySelector("[name='comment']").required = false;
+            }
+        });
+
+        //alert(document.querySelector("[name='property_price']").value);
+        //alert(document.querySelector("[name='property_price_min']").value);
 
         // function getLength(input){
         //     document.getElementById('charcount').innerHTML = input.value.length;

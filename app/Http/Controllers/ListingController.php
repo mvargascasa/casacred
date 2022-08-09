@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -131,6 +132,7 @@ class ListingController extends Controller
     } 
 
     public function update(Request $request, Listing $listing){
+
         if(Auth::user()->role != "administrator") $this->authorize('update', $listing);
         if(is_array($request->checkBene)) $request->merge(['listingcharacteristic' => implode(",", $request->checkBene)]); 
         else $request->merge(['listingcharacteristic' => '']);
@@ -145,6 +147,18 @@ class ListingController extends Controller
         foreach($request->all() as $key=>$value){ if("detail" == substr($key,0,6)) $result[] = $value; }
         if(count($result)>0)$request->merge(['heading_details' => json_encode($result)]);
         else $request->merge(['heading_details' => '']);
+
+        if($request->property_price != $listing->property_price){
+            $comment = Comment::create([
+                'listing_id' => $listing->id,
+                'property_code' => $listing->product_code,
+                'comment' => $request->comment,
+                'property_price_prev' => $listing->property_price,
+                'property_price' => $request->property_price,
+                'property_price_min_prev' => $listing->property_price,
+                'property_price_min' => $request->property_price_min,
+            ]);
+        }
 
         $listing->fill($request->all());
         $listing->save();

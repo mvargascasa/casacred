@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TwController;
 use App\Http\Controllers\UserController;
@@ -55,6 +56,11 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
     Route::get('my-properties', [TwController::class, 'properties'])->name('admin.myproperties');
     Route::get('propertieshow/{listing}', [TwController::class,'propertieshow'])->name('admin.propertieshow');
     Route::get('tw/css', function () { echo filesize($_SERVER["DOCUMENT_ROOT"].'/css/apptw.css'); });
+
+    Route::get('notifications', [NotificationController::class, 'index'])->name('admin.notifications');
+    Route::get('count-notifications', [NotificationController::class, 'countnotifications'])->name('admin.count.notifications');
+    Route::get('notification/show/{comment}', [NotificationController::class, 'show'])->name('admin.notification.show');
+    Route::post('setviewed', [NotificationController::class, 'setviewed'])->name('admin.comment.setviewed');
     
     Route::get('/maps', function () { return view('admin.maps'); });     
     Route::get('/test', [TwController::class,'test'] )->name('admin.test');

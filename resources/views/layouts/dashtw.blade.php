@@ -52,6 +52,13 @@
                 </a> 
 @endif         
 @if (Auth::id()==123 || Auth::id()==147 || Auth::id()==15)
+
+                <a style="text-decoration: none" href="{{ route('admin.notifications') }}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/notification*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                    <span class="mx-3 py-4">
+                        Notificaciones
+                    </span>
+                    <div id="divnotification" style="display: none" class="rounded-md bg-red-500 px-1">0</div>
+                </a>
         
                 <a style="text-decoration: none" href="{{route('admin.contacts')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/contacts*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 py-4">Contactos</span>
@@ -182,5 +189,38 @@
     </div>
 </div>
 @yield('endscript')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    window.addEventListener('load', function(){
+        myFunction();
+    });
+
+    function myFunction(){
+        $.ajax({
+            url: "{{route('admin.count.notifications')}}",
+            type: "GET",
+            success: function(data){
+                let divnotification = document.getElementById('divnotification');
+                if(divnotification){
+                    if(data > 0){
+                        divnotification.innerHTML = parseInt(data);
+                        divnotification.style.display = "block";
+                    } else {
+                        divnotification.style.display = "none";
+                        divnotification.innerHTML = "0";
+                    }
+                }
+            },
+            error: function(){
+                alert('Algo salio mal, por favor recargue la página');
+            }
+        });
+    }
+
+    setInterval(() => {
+        myFunction();
+    }, 300000);
+    
+</script>
 </body>
 </html>
