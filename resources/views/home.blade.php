@@ -212,7 +212,7 @@
             @endphp
               @for ($i = 1; $i < 5; $i++)
                 <div class="carousel-item @if($count === 0) active @endif">
-                  <img class="img-fluid lazyLoad" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" data-src="{{ asset('img/banner'. $i .'.webp') }}" alt="">   
+                  <img class="img-fluid lazyLoad" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" data-src="{{ asset('img/banner'. $i .'.webp') }}" alt="Compra, Venta y Alquiler de Casas, Departamentos y Terrenos en Cuenca Ecuador">   
                   {{-- @include('layouts.homesearch') --}}
                   @php $count++; @endphp
                 </div>
@@ -231,7 +231,7 @@
           <div class="row mr-2 ml-2">
               <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
                 <div class="position-relative d-flex justify-content-center">
-                  <img style="border-radius: 5px;"  width="100%" height="100%" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/CAS-IDEAL.webp') }}" alt="">
+                  <img style="border-radius: 5px;"  width="100%" height="100%" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/CAS-IDEAL.webp') }}" alt="Compra y Venta de Casas en Cuenca Ecuador">
                 </div>
                   <div class="text-center mt-5">
                         <a class="btn cta a-btn-services" href="{{ route('web.propiedades') }}">
@@ -245,7 +245,7 @@
               </div>
               <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
                 <div class="position-relative d-flex justify-content-center">
-                  <img style="border-radius: 5px;" width="100%" height="100%" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/VENDA-SU-PROPIEDAD.webp') }}" alt="">
+                  <img style="border-radius: 5px;" width="100%" height="100%" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/VENDA-SU-PROPIEDAD.webp') }}" alt="Venda su propiedad con nosotros">
                 </div>
                   <div class="text-center mt-5">
                       <button class="btn cta a-btn-services" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-whatever="  una propiedad">
@@ -259,7 +259,7 @@
               </div>
               <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
                 <div class="position-relative d-flex justify-content-center">
-                  <img style="border-radius: 5px;" width="100%" height="100%" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/ALQUILE.webp') }}" alt="">
+                  <img style="border-radius: 5px;" width="100%" height="100%" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/ALQUILE.webp') }}" alt="Alquiler de viviendas o departamentos">
                 </div>
                   <div class="text-center mt-5">
                       <button class="btn cta a-btn-services" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
@@ -273,7 +273,7 @@
               </div>
               <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
                 <div class="position-relative d-flex justify-content-center">
-                  <img style="border-radius: 5px;" width="100%" height="100%" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/CREDITOS.webp') }}" alt="">
+                  <img style="border-radius: 5px;" width="100%" height="100%" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/CREDITOS.webp') }}" alt="Creditos para ecuatorianos en el extranjero">
                 </div>
                 <div class="text-center mt-5">
                     <a href="{{ route('web.servicios', 'creditos-en-ecuador') }}" class="btn cta a-btn-services">
@@ -318,7 +318,7 @@
             @foreach ($listings as $listing)
               <div class="carousel-item {{ $loop->first ? 'active' : ' '}}">
                 <div class="position-relative">
-                  <img style="filter: brightness(80%)" width="100%" height="100%" data-src="{{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }}" class="d-block w-100 lazyLoad" alt="...">
+                  <img style="filter: brightness(80%)" width="100%" height="100%" data-src="{{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }}" class="d-block w-100 lazyLoad" alt="{{$listing->slug}}">
                   <div class="position-absolute" style="bottom: 5px; right: 5px;">
                     <a class="btn btn-sm btn-outline-light" href="{{ route('web.detail', $listing->slug) }}">Ver propiedad</a>
                   </div>
@@ -366,7 +366,7 @@
               <a style="color: #000000" href="{{ route('web.detail', $listing->slug) }}">
                 <div class="position-relative">
                   {{-- {{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }} --}}
-                  <img width="100%" src="{{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }}" class="card-img-top" alt="...">
+                  <img width="100%" src="{{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }}" class="card-img-top" alt="{{$listing->slug}}-image">
                   @php
                       $type = DB::table('listing_types')->select('type_title')->where('id', $listing->listingtype)->get();
                   @endphp
@@ -420,7 +420,7 @@
           <div data-aos="zoom-in-right" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-3 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
-                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="{{ asset('/img/adra_50.webp') }}" class="card-img-top" alt="Proyecto Adra - Casa Credito Promotora">
+                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="{{ asset('/img/adra_50.webp') }}" class="card-img-top" alt="Departamentos de Venta en Cuenca Ecuador - Proyecto Adra">
                   <div class="middle">
                     <div class="link">
                       <a href="https://casacreditopromotora.com/proyectos/Adra">Ver proyecto</a>
@@ -440,7 +440,7 @@
           <div data-aos="zoom-in" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-3 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
-                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="{{ asset('/img/futuranarancay_50.webp') }}" class="card-img-top" alt="Proyecto Futura Narancay - Casa Credito Promotora">
+                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="{{ asset('/img/futuranarancay_50.webp') }}" class="card-img-top" alt="Departamentos de Venta en Cuenca Ecuador - Futura Narancay">
                     <div class="middle">
                       <div class="link">
                         <a href="https://casacreditopromotora.com/proyectos/Futura Narancay">Ver proyecto</a>
@@ -460,7 +460,7 @@
           <div data-aos="zoom-in-left" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
-                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="{{ asset('/img/toscana_50.webp') }}" class="card-img-top" alt="Proyecto Toscana - Casa Credito Promotora">
+                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="{{ asset('/img/toscana_50.webp') }}" class="card-img-top" alt="Condominios, Casas nuevas de venta en Cuenca - Proyecto Toscana">
                     <div class="middle">
                       <div class="link">
                         <a href="https://casacreditopromotora.com/proyectos/Toscana">Ver proyecto</a>
