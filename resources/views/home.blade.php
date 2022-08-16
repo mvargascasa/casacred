@@ -1,7 +1,10 @@
 @extends('layouts.web')
 @section('header')
+@php
+    if(isset($_GET['searchtxt'])){ $searchtxt = $_GET['searchtxt'];}
+@endphp
     <title>Casas en venta en Cuenca Ecuador</title>
-    <meta name="description" content="Contamos con un amplio directorio de propiedades dentro del territorio ecuatoriano. Venta y Alquiler de Casas, Departamentos y Terrenos. ¡Visítenos! ✅"/>
+    <meta name="description" content="Contamos con un amplio directorio de propiedades dentro del territorio ecuatoriano. Venta y Alquiler de Casas, Departamentos y Terrenos @isset($searchtxt) en {{ $searchtxt }}. @else ¡Visítenos! @endif ✅"/>
     <meta name="keywords" content="inmobiliaria en cuenca, inmobiliarias en cuenca, inmobiliaria en cuenca ecuador, casas en venta, venta casas cuenca, casas en venta cuenca, casas en venta en cuenca, casas de venta en cuenca, departamentos en venta, venta departamentos cuenca, departamentos en venta cuenca, departamentos de venta en cuenca, departamentos en venta en cuenca, departamentos en alquiler, departamentos en alquiler cuenca, departamentos de alquiler en cuenca, terrenos en venta, venta terrenos cuenca, venta terrenos cuenca azuay, terrenos en venta en cuenca, terrenos de venta en cuenca, lotes en venta en cuenca, cuenca venta de terrenos, alquiler de propiedades, alquilar casa cuenca, alquiler de casa cuenca, alquilar departamento cuenca, alquiler departamento cuenca, apartamentos en venta cuenca, apartamentos de alquiler en cuenca, casas en venta en cuenca baratas, casas de venta en cuenca nuevas">
 
     <meta property="og:url"                content="{{route('web.index')}}" />
