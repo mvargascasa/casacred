@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -201,4 +202,10 @@ class ApiController extends Controller
         }
     }
     
+    public function getnotifications(){
+        $notifications = Comment::select('property_code', 'comment', 'property_price AS new_price', 'property_price_prev AS old_price', 'created_at')
+                        ->orderBy('created_at', 'DESC')
+                        ->get();
+        return $notifications;
+    }
 }
