@@ -121,6 +121,15 @@
                                     </div>
                                 </div>
 
+                                <div class="w-auto pr-2 pb-2">
+                                    <select class="block w-32 py-2 border rounded-md pl-2 border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_asesor">
+                                        <option value="">Asesor</option>
+                                        @foreach ($users as $user)
+                                            <option value="{{$user->id}}">{{$user->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
                                 <div class="w-full">
                                     <div class="block w-full py-2 rounded-md">
                                         <input type="hidden" id="view" value="grid">

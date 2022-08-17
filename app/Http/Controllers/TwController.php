@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contactos;
 use App\Models\Listing;
 use App\Models\Oportunidades;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -94,7 +95,8 @@ class TwController extends Controller
        
     public function properties(){
         $states = DB::table('info_states')->where('country_id',63)->orderBy('name')->get();
-        return view('admin.listing.index', compact('states'));
+        $users = DB::select("select id, name from users where (role = 'ASESOR' and status = 1) or (role = 'administrator' and name = 'JUAN' or name = 'SILVANA')");
+        return view('admin.listing.index', compact('states', 'users'));
     }
     
     

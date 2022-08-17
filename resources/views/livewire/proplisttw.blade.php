@@ -274,6 +274,9 @@ function filter_properties(){
     let b_order_asc = document.getElementById('asc');
     let b_order_desc = document.getElementById('desc');
 
+    //filtrar por asesor
+    let b_asesor = document.getElementById('b_asesor').value;
+
     let order_aux;
 
     if(b_order_asc.checked){
@@ -300,6 +303,8 @@ function filter_properties(){
 
     @this.set('fromprice', b_minprice);
     @this.set('uptoprice', b_maxprice);
+
+    @this.set('asesor', b_asesor);
 
     document.getElementById('pricemaxmin').style.display = "none";
 }
