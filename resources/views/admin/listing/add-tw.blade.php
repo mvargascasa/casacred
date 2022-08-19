@@ -112,7 +112,7 @@
                 {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::select('available', [null => 'SELECCIONE', '1' => 'DISPONIBLE', '2' => 'NO DISPONIBLE'], null, ['class' => $inputs, 'disabled']) !!}
                 @else --}}
-                {!! Form::select('available', [null => 'SELECCIONE', '1' => 'DISPONIBLE', '2' => 'NO DISPONIBLE'], null, ['class' => $inputs, 'required']) !!}
+                {!! Form::select('available', ['1' => 'DISPONIBLE', '2' => 'NO DISPONIBLE'], null, ['class' => $inputs, 'required']) !!}
                 {{-- @endif --}}
             </div>
         </div>
@@ -134,7 +134,7 @@
             {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
             {!! Form::text('meta_description', null, ['class' => $inputs, 'disabled']) !!}
             @else --}}
-            {!! Form::text('meta_description', null, ['class' => $inputs]) !!}
+            {!! Form::text('meta_description', null, ['class' => $inputs, 'required']) !!}
             {{-- @endif --}}
 
             {{-- <label>Caracteres Actual: <b id="charcount"></b></label>
@@ -199,7 +199,7 @@
                 {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('land_area', null, ['class' => $inputs, 'disabled']) !!}
                 @else --}}
-                {!! Form::text('land_area', null, ['class' => $inputs]) !!}
+                {!! Form::text('land_area', null, ['class' => $inputs, 'required']) !!}
                 {{-- @endif --}}
             </div>
             <div>          
@@ -207,7 +207,7 @@
                 {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('Front', null, ['class' => $inputs, 'disabled']) !!}
                 @else --}}
-                {!! Form::text('Front', null, ['class' => $inputs]) !!}
+                {!! Form::text('Front', null, ['class' => $inputs, 'required']) !!}
                 {{-- @endif --}}
             </div>
             <div>          
@@ -215,7 +215,7 @@
                 {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('Fund', null, ['class' => $inputs, 'disabled']) !!}
                 @else --}}
-                {!! Form::text('Fund', null, ['class' => $inputs]) !!}
+                {!! Form::text('Fund', null, ['class' => $inputs, 'required']) !!}
                 {{-- @endif --}}
             </div>
         </div>
@@ -268,7 +268,7 @@
                 {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('lat', null, ['class' => $inputs, 'disabled']) !!}
                 @else --}}
-                {!! Form::text('lat', null, ['class' => $inputs]) !!}
+                {!! Form::text('lat', null, ['class' => $inputs, 'required']) !!}
                 {{-- @endif --}}
             </div>
             <div>          
@@ -276,7 +276,7 @@
                 {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::text('lng', null, ['class' => $inputs, 'disabled']) !!}
                 @else --}}
-                {!! Form::text('lng', null, ['class' => $inputs]) !!}
+                {!! Form::text('lng', null, ['class' => $inputs, 'required']) !!}
                 {{-- @endif --}}
             </div>
         </div>
@@ -287,7 +287,7 @@
                 {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::select('listingtype',$types->pluck('type_title','id'),    null,    ['class' => $inputs, 'disabled']) !!}
                 @else --}}
-                {!! Form::select('listingtype',$types->pluck('type_title','id'),    null,    ['class' => $inputs]) !!}
+                {!! Form::select('listingtype',$types->pluck('type_title','id'),    null,    ['class' => $inputs, 'required']) !!}
                 {{-- @endif --}}
             </div>
             <div>     
@@ -295,7 +295,7 @@
                 {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::select('listingtypestatus',$categories->pluck('status_title','slug'),    null,    ['class' => $inputs, 'disabled']) !!}
                 @else --}}
-                {!! Form::select('listingtypestatus',$categories->pluck('status_title','slug'),    null,    ['class' => $inputs]) !!}
+                {!! Form::select('listingtypestatus',$categories->pluck('status_title','slug'),    null,    ['class' => $inputs, 'required']) !!}
                 {{-- @endif --}}
             </div>
             <div>  
@@ -303,7 +303,7 @@
                 {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                 {!! Form::select('listingtagstatus',$tags->pluck('tags_title','id'),    null,    ['class' => $inputs, 'disabled']) !!}
                 @else --}}
-                {!! Form::select('listingtagstatus',$tags->pluck('tags_title','id'),    null,    ['class' => $inputs]) !!}
+                {!! Form::select('listingtagstatus',$tags->pluck('tags_title','id'),    null,    ['class' => $inputs, 'required']) !!}
                 {{-- @endif --}}
             </div>
         </div>
@@ -334,7 +334,7 @@
                             @else --}}
                             {!! Form::checkbox("checkBene[]", $bene->id, 
                             isset($listing->listingcharacteristic) && in_array($bene->id,explode(",", $listing->listingcharacteristic)) ? true : false,
-                            ['class' => 'form-checkbox h-5 w-5 text-red-600', 'type'=>'checkbox', 'id'=>"checkBene$bene->id" ]) !!}
+                            ['class' => 'form-checkbox h-5 w-5 text-red-600', 'type'=>'checkbox', 'id'=>"checkBene$bene->id"]) !!}
                             <span class="ml-2 text-gray-700">{{$bene->charac_titile}}</span>
                             {{-- @endif --}}
                         </label>
@@ -355,7 +355,7 @@
                             @else --}}
                             {!! Form::checkbox("checkServ[]", $serv->id, 
                             isset($listing->listinglistservices) && in_array($serv->id,explode(",", $listing->listinglistservices)) ? true : false,
-                            ['class' => 'form-check-input', 'type'=>'checkbox', 'id'=>"checkServ$serv->id" ]) !!}
+                            ['class' => 'form-check-input', 'type'=>'checkbox', 'id'=>"checkServ$serv->id"]) !!}
                             <span class="ml-2 text-gray-700">{{$serv->charac_titile}}</span>
                             {{-- @endif --}}
                         </label>
@@ -405,12 +405,12 @@
                 <div class="gap-4 mt-4 sm:gap-6">
                     <label class="font-semibold">Titulo</label>
                     <div class="flex flex-row mt-2">
-                        @if($listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                        {{-- @if($listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                         <input  class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" name="details{{$ii}}[]" type="text" value="{{$dets[0]}}" disabled/>
-                        @else
+                        @else --}}
                         <input  class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" name="details{{$ii}}[]" type="text" value="{{$dets[0]}}"/>
                         <button class="w-12 h-10 py-2 bg-red-700 text-white rounded-r text-sm" type="button" onclick="delrowTitle(this)">X</button>
-                        @endif
+                        {{-- @endif --}}
                     </div>            
                 @php unset($dets[0]); $printControl=0; @endphp
     

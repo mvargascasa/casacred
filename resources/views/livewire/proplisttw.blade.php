@@ -24,7 +24,7 @@
                 </div>
                 @endif
 
-                <div class="absolute left-0" style="top: 30px">
+                {{-- <div class="absolute left-0" style="top: 30px">
                     @if($propertie->available != null)
                         @if($propertie->available == 2)
                             <div class="text-xs font-semibold" style="margin-top: 5px; margin-left:5px; background-color: #b11213; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">NO DISPONIBLE</div>
@@ -32,13 +32,17 @@
                             <div class="text-xs font-semibold" style="margin-top: 5px; margin-left:5px; background-color: #01842a; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">DISPONIBLE</div>
                         @endif
                     @endif
-                </div>
+                </div> --}}
 
                 <div class="absolute left-0 top-0">
                     @if($propertie->status == 1)
-                        <div class="text-xs font-semibold" style="margin-top: 5px; margin-left:5px; background-color: #01842a; color: #ffffff; padding: 3px 5px 3px 5px; border-radius: 10px;">ON</div>
+                        <div class="text-xs font-semibold" style="padding-left: 3px; margin-left:2px; border-radius: 10px;">
+                            <img width="35px" src="{{ asset('img/on.png') }}" alt="ON">
+                        </div>
                     @else
-                        <div class="text-xs font-semibold" style="margin-top: 5px; margin-left:5px; background-color: #b11213; color: #ffffff; padding: 3px 5px 3px 5px; border-radius: 10px">OFF</div>
+                        <div class="text-xs font-semibold" style="padding-left: 3px; margin-left:2px; border-radius: 10px;">
+                            <img width="35px" src="{{ asset('img/off.png') }}" alt="OFF">
+                        </div>
                     @endif
                 </div>
 
@@ -54,6 +58,15 @@
                 <p class="mx-2 text-red-600 font-extrabold text-xl">${{ number_format($propertie->property_price)}}</p class="mx-2 text-red-600 font-bold">
                 </div>
                 <div class="absolute bottom-0 right-0 flex" style="margin-right: 20px; margin-bottom: 20px">
+                    @if($propertie->available != null)
+                    <div class="mr-2">
+                            @if($propertie->available == 2)
+                                <img title="Vendida" width="26px" src="{{asset('img/not-available.png')}}" alt="NOT AVAILABLE">
+                            @else
+                                <img title="Disponible" width="26px" src="{{asset('img/available.png')}}" alt="AVAILABLE">
+                            @endif
+                        </div>
+                    @endif
                     <div class="mr-2">
                         @if ($propertie->listing_type==2)
                             <img src="{{ asset('img/pagada.png') }}" alt="Pagada" title="Propiedad pagada">

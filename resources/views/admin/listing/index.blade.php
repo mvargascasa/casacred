@@ -87,8 +87,8 @@
                                 <div class="w-auto pr-2 pb-2">
                                     <select class="block w-20 py-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline"id="b_status" name="b_status">
                                         <option value="" selected>Estado</option>
-                                        <option value="A">Activa</option>
-                                        <option value="D">Desactivada</option>
+                                        <option value="A">ON</option>
+                                        <option value="D">OFF</option>
                                     </select>
                                 </div>
                                 <div class="w-auto pr-2 pb-2">
