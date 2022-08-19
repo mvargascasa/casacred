@@ -176,7 +176,8 @@
     #ftop_ptype{
       max-width: 170px !important;
     }
-    .carousel-item.active{z-index: 0 !important;opacity: 1 !important} */
+    .carousel-item.active{z-index: 0 !important;opacity: 1 !important}
+    ::placeholder {color: #b9babb !important;font-size: 14px}
     </style>
     @livewireStyles
 @endsection
@@ -496,6 +497,7 @@
           <div class="modal-body">
               @csrf
               <div class="form-group mb-2">
+                <input type="hidden" name="interest" value="Venta o Renta de Propiedad">
                 <label for="nombre" class="mb-2 text-muted">Nombre y Apellido</label>
                 <input style="border-radius: 10px 10px 10px 10px" type="text" name="nombre" id="nombre" class="form-control" required>
               </div>
@@ -509,7 +511,7 @@
               </div>
               <div class="form-group mb-1">
                 <label for="mensaje" class="mb-2 text-muted">Comentario</label>
-                <textarea style="border-radius: 10px 10px 10px 10px" name="mensaje" id="mensaje" rows="3" class="form-control" required></textarea>
+                <textarea style="border-radius: 10px 10px 10px 10px" name="mensaje" id="mensaje" rows="3" class="form-control" placeholder="ej: Me interesa vender y/o rentar una propiedad ubicada en..." required></textarea>
               </div>
           </div>
           <div class="modal-footer justify-content-center">

