@@ -103,7 +103,7 @@
                             <option value="35" @if($ptype === "35") selected @endif>Oficinas</option>
                             <option value="36" @if($ptype === "36") selected @endif>Suites</option>
                       </select>
-                      <input type="text" id="ftop_txt" style="font-size: 14px" placeholder="Ingrese una ubicación o característica" class="form-control" @if($searchtxt != null) value="{{$searchtxt}}" @endif onkeypress="if(event.keyCode==13)top_search()">
+                      <input type="text" id="ftop_txt" style="font-size: 14px" placeholder="INGRESE / UBICACIÓN / CÓDIGO" class="form-control" @if($searchtxt != null) value="{{$searchtxt}}" @endif onkeypress="if(event.keyCode==13)top_search()">
                       <button type="button" class="btn btn-danger"  onclick="top_search()">BUSCAR</button>
                 </div>       
 
