@@ -290,7 +290,7 @@
       {{-- <a target="_blank" href="{{$propertie->ubication_url}}">Ver ubicación en Google Maps</a> --}}
       @if(Auth::user()->role == 'administrator')
       <div class="flex justify-center">
-        <a class="bg-green-200 hover:bg-green-400 hover:text-black text-black p-1 rounded" style="text-decoration: none; font-weight: 500" href="{{ route('home.tw.edit', $propertie) }}">Editar Propiedad</a>
+        <a class="text-black p-1 rounded" style="text-decoration: none; font-weight: 500" href="{{ route('home.tw.edit', $propertie) }}" style="background-color: #c6f6d5">Editar Propiedad</a>
       </div>
       @endif
     </div>
