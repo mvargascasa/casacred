@@ -1,12 +1,12 @@
 <div class="bg-white">
     @if($view == 'grid')
-    <div class="grid sm:grid-cols-4 gap-4 mx-4">
+    <div class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mx-4">
         @foreach ($properties as $propertie)
             @php
                 $firstImg = array_filter(explode("|", $propertie->images)) ;
                 $dirImg = $firstImg[0]??'';
             @endphp
-            <div class="rounded overflow-hidden shadow-lg w-full relative mt-4 mb-2 hover-trigger relative">
+            <div class="rounded overflow-hidden shadow-lg w-full relative mt-4 mb-2 hover-trigger relative pb-2">
                 {{-- web.detail  --}}
                 {{-- {{route('admin.listings.edit',$propertie->id)}} --}}
                 @if(Auth::user()->role == "user" || Auth::user()->role == "ASESOR")
@@ -46,65 +46,51 @@
                     @endif
                 </div>
 
-                <div class="px-6 py-2">
-                <div class="font-bold text-sm">{{ $propertie->listing_title}}</div>
+                <div class="px-2 py-2">
+                <div class="font-bold text-sm">{{ Str::limit($propertie->listing_title, 30, '...')}}</div>
                 <p class="text-gray-700 text-base">
-                    {{ $propertie->address}}
+                    {{ Str::limit($propertie->address, 30, '...')}}
                 </p>
                 <p>@if(Auth::id()==123)<span style="font-size: 10px">{{$propertie->slug}}</span> <br>@endif</p>
                 </div>
-                <div class="px-4 py-2">
-                <span class="inline-block bg-gray-200 rounded-full px-2 text-sm font-semibold text-gray-700">{{ $propertie->listingtypestatus}}</span>
-                <p class="mx-2 text-red-600 font-extrabold text-xl">${{ number_format($propertie->property_price)}}</p class="mx-2 text-red-600 font-bold">
-                </div>
-                <div class="absolute bottom-0 right-0 flex" style="margin-right: 20px; margin-bottom: 20px">
-                    @if($propertie->available != null)
-                    <div class="mr-2">
-                            @if($propertie->available == 2)
-                                <img title="Vendida" width="26px" src="{{asset('img/not-available.png')}}" alt="NOT AVAILABLE">
-                            @else
-                                <img title="Disponible" width="26px" src="{{asset('img/available.png')}}" alt="AVAILABLE">
+                <div class="flex-1 px-2 py-2">
+                    <div class="float-left">
+                        <span class="inline-block bg-gray-200 rounded-full px-2 text-sm font-semibold text-gray-700">{{ $propertie->listingtypestatus}}</span>
+                        <p class="mx-2 text-red-600 font-extrabold text-xl">${{ number_format($propertie->property_price)}}</p class="mx-2 text-red-600 font-bold">
+                    </div>
+                    <div class="float-right">
+                        <div class="bottom-0 right-0 flex">
+                            @if($propertie->available != null)
+                            <div class="mr-2">
+                                    @if($propertie->available == 2)
+                                        <img title="Vendida" width="26px" src="{{asset('img/not-available.png')}}" alt="NOT AVAILABLE">
+                                    @else
+                                        <img title="Disponible" width="26px" src="{{asset('img/available.png')}}" alt="AVAILABLE">
+                                    @endif
+                                </div>
                             @endif
+                            <div class="mr-2">
+                                @if ($propertie->listing_type==2)
+                                    <img src="{{ asset('img/pagada.png') }}" alt="Pagada" title="Propiedad pagada">
+                                @elseif($propertie->listing_type==1)
+                                    <img src="{{ asset('img/free.png') }}" alt="Gratis" title="Propiedad gratis">
+                                @endif
+                            </div>
+                            <div class="mr-2">
+                                @if ($propertie->listingtagstatus==2 && $propertie->listingtype != 26)
+                                    <img src="{{ asset('img/worker.png') }}" alt="Constructora" title="Constructora">
+                                @endif
+                            </div>
+                            <div class="text-xs font-semibold" style="font-size: 12px; background-color: #017cd3; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">
+                                COD: {{ $propertie->product_code }}
+                            </div>
                         </div>
-                    @endif
-                    <div class="mr-2">
-                        @if ($propertie->listing_type==2)
-                            <img src="{{ asset('img/pagada.png') }}" alt="Pagada" title="Propiedad pagada">
-                        @elseif($propertie->listing_type==1)
-                            <img src="{{ asset('img/free.png') }}" alt="Gratis" title="Propiedad gratis">
-                        @endif
-                    </div>
-                    <div class="mr-2">
-                        @if ($propertie->listingtagstatus==2 && $propertie->listingtype != 26)
-                            <img src="{{ asset('img/worker.png') }}" alt="Constructora" title="Constructora">
-                        @endif
-                    </div>
-                    <div class="text-xs font-semibold" style="background-color: #017cd3; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">
-                        COD: {{ $propertie->product_code }}
                     </div>
                 </div>
+                
 
-                @if(Auth::user()->role == "administrator")
+                {{-- @if(Auth::user()->role == "administrator")
                 <div class="absolute bg-white border border-grey-100 px-4 py-2 hover-target" style="top: 5px; right: 5px;">
-                    {{-- @if(Auth::user()->role == "user")
-                        @if ($propertie->listing_type==2)
-                        <div class="flex">
-                            <img src="{{ asset('img/pagada.png') }}" alt="Pagada">
-                            <p class="text-red-500 text-xs font-bold">DE PAGO</p>
-                        </div>
-                        @elseif($propertie->listing_type==1)
-                        <div class="flex">
-                            <img src="{{ asset('img/free.png') }}" alt="Gratis">
-                            <p class="text-red-500 text-xs font-bold">NO ES DE PAGO</p>
-                        </div>
-                        @endif
-                        @if ($propertie->listingtagstatus==2 && $propertie->listingtype != 26)
-                            <div class="flex">
-                                <img src="{{ asset('img/worker.png') }}" alt="Constructora">
-                                <p class="text-red-500 text-xs font-bold">CONSTRUCTORA</p>
-                            </div>
-                        @endif
-                    @elseif(Auth::user()->role == "administrator") --}}
                     <div class="flex">
                         <a target="_blank" href="{{ route('admin.show.listing', $propertie) }}" style="text-decoration: none">
                             <p class="text-green-500 text-xs font-bold">Ver propiedad</p>
@@ -116,11 +102,24 @@
                         </a>
                     </div>
                 </div>
-                @endif
-                @if(Auth::user()->role == "user")
+                @endif --}}
+                @if(Auth::user()->role == "user" || Auth::user()->role == "ASESOR")
                     </a>
                 @endif
+<br><br>
+                @if(Auth::user()->role == 'administrator')
+                <div class="flex justify-center">
+                    <a target="_blank" class="mr-1 bg-green-200 hover:bg-green-300 p-1 rounded" href="{{ route('admin.show.listing', $propertie) }}" style="text-decoration: none;">
+                        <p class="text-black text-xs" style="font-weight: 500">Ver propiedad</p>
+                    </a>
+                    <a target="_blank" class="ml-1 bg-red-200 hover:bg-red-300 text-white p-1 rounded" href="{{ route('home.tw.edit', $propertie) }}" style="text-decoration: none">
+                        <p class="text-black text-xs" style="font-weight: 500">Editar propiedad</p>
+                    </a>
+                </div>
+                @endif
             </div>
+            
+
         @endforeach
         <input type="hidden" id="pagActual" value="{{$pagActual}}">
         <input type="hidden" id="firstItem" value="{{$firstItem}}">
