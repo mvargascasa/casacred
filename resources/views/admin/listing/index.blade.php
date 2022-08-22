@@ -6,6 +6,8 @@
     .hover-trigger .hover-target {display: none;} 
     .hover-trigger:hover .hover-target {display: block;border-radius: 5px;margin-top: 1px;margin-right: 1px;}
     select > option{background-color: #E5E7EB;}
+    .btn-view:hover{background-color: #68d391 !important}
+    .btn-edit:hover{background-color: #fc8181 !important}
 </style>
 @livewireStyles
 @endsection

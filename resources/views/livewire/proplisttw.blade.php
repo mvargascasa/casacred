@@ -109,10 +109,10 @@
 <br><br>
                 @if(Auth::user()->role == 'administrator')
                 <div class="flex justify-center">
-                    <a target="_blank" class="mr-1 bg-green-200 hover:bg-green-300 p-1 rounded" href="{{ route('admin.show.listing', $propertie) }}" style="text-decoration: none;">
+                    <a target="_blank" class="btn-view mr-1 p-1 rounded" style="background-color: #c6f6d5" href="{{ route('admin.show.listing', $propertie) }}" style="text-decoration: none;">
                         <p class="text-black text-xs" style="font-weight: 500">Ver propiedad</p>
                     </a>
-                    <a target="_blank" class="ml-1 bg-red-200 hover:bg-red-300 text-white p-1 rounded" href="{{ route('home.tw.edit', $propertie) }}" style="text-decoration: none">
+                    <a target="_blank" class="btn-edit ml-1 p-1 rounded" style="background-color: #fed7d7" href="{{ route('home.tw.edit', $propertie) }}" style="text-decoration: none">
                         <p class="text-black text-xs" style="font-weight: 500">Editar propiedad</p>
                     </a>
                 </div>
