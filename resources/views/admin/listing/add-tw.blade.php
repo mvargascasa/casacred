@@ -122,8 +122,16 @@
             {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
             {!! Form::text('listing_title', null, ['class' => $inputs, 'disabled']) !!}
             @else --}}
-            {!! Form::text('listing_title', null, ['class' => $inputs, 'required']) !!}
+
+            {{-- 'minlength' => 50, 'maxlength' => 60, --}}
+
+            {!! Form::text('listing_title', null, ['class' => $inputs, 'pattern' => '.{50,60}', 'onkeyup' => 'countCharsTitle(this);', 'required']) !!}
             {{-- @endif --}}
+            <div id="div_info_character" class="flex @if(isset($listing) &&  Str::length($listing->listing_title) >= 50 && Str::length($listing->listing_title) <=60) bg-green-200 @else bg-red-200 @endif p-1 mt-2 rounded">
+                <label style="font-weight: 400">
+                    Actual <b id="label_count_title"></b> caracteres. (Mínimo 50 - Máximo 60 caracteres)
+                </label>
+            </div>
             @if(isset($listing->id) && Auth::id()==123)
                 <a href="{{route('admin.reslug',$listing->id)}}" target="_blank">{{$listing->slug}}</a>            
             @endif
@@ -134,7 +142,7 @@
             {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
             {!! Form::text('meta_description', null, ['class' => $inputs, 'disabled']) !!}
             @else --}}
-            {!! Form::text('meta_description', null, ['class' => $inputs, 'required']) !!}
+            {!! Form::text('meta_description', null, ['class' => $inputs, 'pattern' => '.{150,160}', 'onkeyup' => 'countCharsDesc(this);', 'required']) !!}
             {{-- @endif --}}
 
             {{-- <label>Caracteres Actual: <b id="charcount"></b></label>
@@ -143,6 +151,11 @@
                 La descripción que se mostrara en Google debe contener entre <b>140</b> y <b>155</b> caracteres.
             </div>
             @endif --}}
+            <div id="div_info_character_desc" class="flex @if(isset($listing) &&  Str::length($listing->meta_description) >= 150 && Str::length($listing->meta_description) <= 160) bg-green-200 @else bg-red-200 @endif p-1 mt-2 rounded">
+                <label style="font-weight: 400">
+                    Actual <b id="label_count_desc"></b> caracteres. (Mínimo 150 - Máximo 160 caracteres)
+                </label>
+            </div>
         </div>
 
         @if(Auth::user()->id == 15 || Auth::user()->id == 147)
@@ -265,20 +278,16 @@
         <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6">
             <div>          
                 {!! Form::label('lat', 'Latitud', ['class' => 'font-semibold']) !!}
-                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
-                {!! Form::text('lat', null, ['class' => $inputs, 'disabled']) !!}
-                @else --}}
                 {!! Form::text('lat', null, ['class' => $inputs, 'required']) !!}
-                {{-- @endif --}}
             </div>
             <div>          
                 {!! Form::label('lng', 'Longitud', ['class' => 'font-semibold']) !!}
-                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
-                {!! Form::text('lng', null, ['class' => $inputs, 'disabled']) !!}
-                @else --}}
                 {!! Form::text('lng', null, ['class' => $inputs, 'required']) !!}
-                {{-- @endif --}}
             </div>
+            {{-- <div>
+                {!! Form::label('ubication_url', 'URL de la Ubicaión', ['class' => 'font-semibold']) !!}
+                {!! Form::text('ubication_url', null, ['class' => $inputs, 'required']) !!}
+            </div> --}}
         </div>
         
         <div class="grid grid-cols-3 gap-4 mt-4 sm:gap-6">
@@ -494,12 +503,47 @@
 
 @section('endscript')
     <script src="{{asset('js/sortable.min.js')}}"></script>
-    <script>    
+    <script>
+        // obteniendo el valor del title para mandar a la funcion countChar
+        var div_info_character = document.getElementById('div_info_character');
+        var div_info_character_desc = document.getElementById('div_info_character_desc');
+        var input_listing_title = document.querySelector("input[name='listing_title']");
+        var input_meta_description = document.querySelector("input[name='meta_description']"); 
+        var label_count_title = document.getElementById('label_count_title');
+        var label_count_desc = document.getElementById('label_count_desc');
+
         window.addEventListener('load', (event) => {
             var range =  document.getElementById('listyears').value;
             rangeSlide(range);
             //document.getElementById('charcount').innerHTML = document.getElementById('metadescription').value.length;
+            if(input_listing_title.value.length > 0) label_count_title.innerHTML = input_listing_title.value.length;
+            else label_count_title.innerHTML = "0";
+
+            if(input_meta_description.value.length > 0) label_count_desc.innerHTML = input_meta_description.value.length;
+            else label_count_desc.innerHTML = "0";
         });
+
+        function countCharsTitle(object){
+            if(object.value.length >= 50 && object.value.length <=60){
+                div_info_character.classList.remove('bg-red-200');
+                div_info_character.classList.add('bg-green-200');
+            } else {
+                div_info_character.classList.remove('bg-green-200');
+                div_info_character.classList.add('bg-red-200');
+            }
+            label_count_title.innerHTML = object.value.length;
+        }
+
+        function countCharsDesc(object){
+            if(object.value.length >= 150 && object.value.length <= 160){
+                div_info_character_desc.classList.remove('bg-red-200');
+                div_info_character_desc.classList.add('bg-green-200');
+            } else {
+                div_info_character_desc.classList.remove('bg-green-200');
+                div_info_character_desc.classList.add('bg-red-200');
+            }
+            label_count_desc.innerHTML = object.value.length;
+        }
 
         //mostrando input de comentario si el precio cambia de valor
         let input_price = document.querySelector("[name='property_price']");
