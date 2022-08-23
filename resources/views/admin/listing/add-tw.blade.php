@@ -151,7 +151,7 @@
                 La descripción que se mostrara en Google debe contener entre <b>140</b> y <b>155</b> caracteres.
             </div>
             @endif --}}
-            <div id="div_info_character_desc" class="flex p-1 mt-2 rounded" style="background-color: @if(isset($listing) &&  Str::length($listing->listing_title) >= 50 && Str::length($listing->listing_title) <=60) #9AE6B4 @else #FEB2B2 @endif">
+            <div id="div_info_character_desc" style="background-color: @if(isset($listing) &&  Str::length($listing->meta_description) >= 150 && Str::length($listing->meta_description) <= 160) #9AE6B4 @else #FEB2B2 @endif" class="flex p-1 mt-2 rounded">
                 <label style="font-weight: 400">
                     Actual <b id="label_count_desc"></b> caracteres. (Mínimo 150 - Máximo 160 caracteres)
                 </label>

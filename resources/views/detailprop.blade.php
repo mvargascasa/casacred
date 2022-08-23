@@ -484,6 +484,18 @@
                       <p>Área de Construcción: {{ $listing->construction_area}} m<sup>2</sup></p>
                     </div>
                   @endisset
+                  @if($listing->Front > 0)
+                  <div class="col-sm-6 d-flex">
+                    <i style="font-size: 20px; margin-right: 5px" class="far fa-arrow-to-top"></i>
+                    <p>Frente: {{ $listing->Front }} m<sup>2</sup></p>
+                  </div>
+                  @endif
+                  @if($listing->Fund > 0)
+                  <div class="col-sm-6 d-flex">
+                    <i style="font-size: 20px; margin-right: 5px" class="far fa-arrow-to-bottom"></i>
+                    <p>Fondo: {{ $listing->Fund }} m<sup>2</sup></p>
+                  </div>
+                  @endif
                   @if ($bedroom > 0)
                     <div class="col-sm-6 d-flex">
                       <i style="font-size: 20px; margin-right: 5px" class="fas fa-bed"></i>
