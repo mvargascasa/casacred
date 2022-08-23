@@ -49,7 +49,7 @@
                 <div class="px-2 py-2">
                 <div class="font-bold text-sm">{{ Str::limit($propertie->listing_title, 30, '...')}}</div>
                 <p class="text-gray-700 text-base">
-                    {{ Str::limit($propertie->address, 30, '...')}}
+                    @if(Str::contains($propertie->address, ',')){{ Str::limit($propertie->address, 30, '...')}} @else {{Str::limit($propertie->state . ', ' . $propertie->city . ', ' . $propertie->address, 30, '...') }} @endif
                 </p>
                 <p>@if(Auth::id()==123)<span style="font-size: 10px">{{$propertie->slug}}</span> <br>@endif</p>
                 </div>
@@ -228,7 +228,7 @@
             <td class="px-2 w-12 text-center">{{number_format($pro->property_price)}} <br><span style="font-size: 12px;color:darkgray">{{number_format($pro->property_price_min)}}</span> </td>
             <td class="p-2"> 
                 @if(Auth::id()==123)<span style="font-size: 10px">{{$pro->slug}}</span> <br>@endif
-                <a href="{{route('admin.listings.edit',$pro->id)}}" target="_blank" class="font-semibold text-blue-800">{{$pro->listing_title}}</a><br> {{$pro->address}} </td>
+                <a href="{{route('admin.listings.edit',$pro->id)}}" target="_blank" class="font-semibold text-blue-800">{{$pro->listing_title}}</a><br> @if(Str::contains($pro->address, ',')) {{$pro->address}} @else {{$pro->state}}, {{$pro->city}}, {{$pro->address}} @endif</td>
             <td class="font-semibold w-14 flex justify-center pt-4">{{$categoria}}</td>
             <td class="w-40 text-center">{{$pro->listingtypestatus}}</td>
             <td>{{$pro->user->name??''}}</td>
