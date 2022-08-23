@@ -46,7 +46,7 @@
             </div>
 
             <div class="">
-                <div class="flex text-xs align-bottom flex-col px-2 text-gray-400 uppercase">{{$pro->address}}</div>
+                <div class="flex text-xs align-bottom flex-col px-2 text-gray-400 uppercase">@if(Str::contains($pro->address, ',')){{$pro->address}} @else {{$pro->state}}, {{$pro->city}}, {{$pro->address}}@endif</div>
             </div>
 
             <div class="">

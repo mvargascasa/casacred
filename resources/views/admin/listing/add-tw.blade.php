@@ -247,7 +247,7 @@
         </div>
         {{-- termina div --}}
 
-        <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6">
+        <div class="grid grid-cols-3 gap-4 mt-4 sm:gap-6">
             <div>          
                 {!! Form::label('state', 'Provincia', ['class' => 'font-semibold']) !!}
                 {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
@@ -264,16 +264,20 @@
                 {!! Form::select('city', isset($cities) ? $cities->pluck('name','name')->toArray() : [''=>'Selecione'] , null, ['id'=>'city','class' => $inputs, 'required' ]) !!}
                 {{-- @endif --}}
             </div>
+            <div>
+                {!! Form::label('address', 'Sector (Ej: Ricaurte) ', ['class' => 'font-semibold']) !!}
+                {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                {!! Form::text('address', null, ['class' => $inputs, 'disabled']) !!}
+                @else --}}
+                {!! Form::text('address', null, ['class' => $inputs, 'required']) !!}
+                {{-- @endif --}}
+            </div>
         </div>
         
-        <div class="gap-4 mt-4 sm:gap-6">
+        {{-- <div class="gap-4 mt-4 sm:gap-6">
             {!! Form::label('address', 'Localidad: (Provincia, Canton, Sector) Ej: Azuay, Cuenca, Batan ', ['class' => 'font-semibold']) !!}
-            {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
-            {!! Form::text('address', null, ['class' => $inputs, 'disabled']) !!}
-            @else --}}
             {!! Form::text('address', null, ['class' => $inputs, 'required']) !!}
-            {{-- @endif --}}
-        </div>
+        </div> --}}
 
         <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6">
             <div>          
