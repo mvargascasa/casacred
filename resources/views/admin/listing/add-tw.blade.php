@@ -138,7 +138,12 @@
         </div>
 
         <div class="gap-4 mt-4 sm:gap-6">
-            {!! Form::label('meta_description', 'Meta Descripcion en Google', ['class' => 'font-semibold']) !!}
+            <div class="flex">
+                {!! Form::label('meta_description', 'Meta Descripcion en Google', ['class' => 'font-semibold']) !!} <div onmouseover="openHelpDescription();" onmouseout="openHelpDescription();" class="bg-green-400 pl-1 pr-1 rounded ml-1" style="cursor: pointer">?</div>
+            </div>
+            <div id="div_help_desc" style="display: none;" class="relative">
+                <div class="absolute bg-green-400 p-1 rounded" style="font-size: 14px; font-weight: 400">La metadescription ayuda a que la publicación sea óptima para Google. La primera letra debe ser en mayúscula y las demás en minúsculas. Es recomendable poner al inicio las mismas palabras del titulo. Ej: Departamento de venta en Sector, Ciudad, Provincia...</div>
+            </div>
             {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
             {!! Form::text('meta_description', null, ['class' => $inputs, 'disabled']) !!}
             @else --}}
@@ -655,6 +660,12 @@
             default:break;
         }
         document.getElementById('rangeValue').innerHTML = stringyearsconstruction;
+    }
+
+    const openHelpDescription = () => {
+        const div_help_desc = document.getElementById('div_help_desc');
+        if(div_help_desc.style.display == "none") div_help_desc.style.display = "block";
+        else if(div_help_desc.style.display == "block") div_help_desc.style.display = "none";
     }
     </script>
 @endsection
