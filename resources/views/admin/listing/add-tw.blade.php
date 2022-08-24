@@ -139,7 +139,7 @@
 
         <div class="gap-4 mt-4 sm:gap-6">
             <div class="flex">
-                {!! Form::label('meta_description', 'Meta Descripcion en Google', ['class' => 'font-semibold']) !!} <div onmouseover="openHelpDescription();" onmouseout="openHelpDescription();" class="pl-1 pr-1 rounded ml-1" style="cursor: pointer; background-color: #31C48D"> ?</div>
+                {!! Form::label('meta_description', 'Meta Descripcion en Google', ['class' => 'font-semibold']) !!} <div onmouseover="openHelpDescription();" onmouseout="openHelpDescription();" class="pr-1 rounded ml-1" style="padding-left: 3px; cursor: pointer; background-color: #31C48D">?</div>
             </div>
             <div id="div_help_desc" style="display: none;" class="relative">
                 <div class="absolute p-1 rounded" style="font-size: 14px; font-weight: 400; background-color: #31C48D">La metadescription ayuda a que la publicación sea óptima para Google. La primera letra debe ser en mayúscula y las demás en minúsculas. Es recomendable poner al inicio las mismas palabras del titulo. Ej: Departamento de venta en Sector, Ciudad, Provincia...</div>
