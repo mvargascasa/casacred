@@ -252,6 +252,9 @@
                 @endif
             </div>
         </div>
+        <div class="pl-2 pr-2 pt-1 pb-1 rounded mt-2" style="background-color: #e8eeec; font-size: 13.5px">
+            En el caso de que la propiedad no tenga área de construcción, superficie, frente o fondo por favor completar con un <b>0</b> el campo respectivo.
+        </div>
 
         {{-- nuevo div para guardar los años de construccion --}}
         <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6 sm:grid-cols-4">
