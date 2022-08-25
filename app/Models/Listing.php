@@ -15,10 +15,12 @@ class Listing extends Model
         'listing_description','listing_type','address','state','city','listingtype',
         'listingcharacteristic','listinglistservices','listingtypestatus','listingtagstatus',
         'listyears',//se agrego esta nueva variable
-        'lat', 'lng', //nuevas variables
+        'lat', 'lng', //nuevas variables se quito lat y lng como variables
+        //'ubication_url', //se agrego esto para la ubicacion
         'available',
         'status','user_id',
         'threedegreeview','heading_details','owner_name',
+        'locked',
     ];   
     
     public function user()

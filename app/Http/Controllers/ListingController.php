@@ -56,10 +56,11 @@ class ListingController extends Controller
         if(count($result)>0)$request->merge(['heading_details' => json_encode($result)]);
         else $request->merge(['heading_details' => '']);
 
-
         $listing = Listing::create($request->all());
 
-
+        //bloqueando la propiedad una vez creada
+        $listing->locked = true;
+        $listing->save();
         
         $uploads=[];
 
@@ -160,6 +161,8 @@ class ListingController extends Controller
             ]);
         }
 
+        if(!$listing->locked) $listing->locked = true;
+
         $listing->fill($request->all());
         $listing->save();
 
@@ -250,5 +253,12 @@ class ListingController extends Controller
         $services = DB::table('listing_services')->get();
         $details = DB::table('listing_characteristics')->get();  
         return view('admin.listing.show-tw', compact('propertie', 'benefits', 'services', 'details'));
+    }
+
+    public function unlocked($id){
+        $listing = Listing::where('id', $id)->first();
+        $listing->locked = false;
+        $listing->save();
+        return redirect()->route('admin.listings.edit', $listing)->with('message', 'Propiedad ' . $listing->product_code . ' desbloqueada');
     }
 }
