@@ -21,6 +21,7 @@ class Proplisttw extends Component
     $state, $city,
     $fromprice, $uptoprice,
     $asesor;
+    //$fromdate, $untildate;
 
     public function render()
     {
@@ -60,7 +61,7 @@ class Proplisttw extends Component
         if($this->status=='D')                                  $properties_filter->where('status',0);        
         if($this->categoria)                                    $properties_filter->where('listingtype',$this->categoria);        
         if($this->tipo)                                         $properties_filter->where('listingtypestatus',$this->tipo);            
-        if($this->available=='1')                               $properties_filter->where('available', 1); //agregarle || $this->variable == null para muestre por defecto las activas y disponibles
+        if($this->available=='1' || $this->available==null)                               $properties_filter->where('available', 1); //agregarle || $this->variable == null para muestre por defecto las activas y disponibles
         if($this->available=='2')                               $properties_filter->where('available', 2);
 
         //if($this->country)              $properties_filter->where('country', $this->country);
@@ -69,6 +70,9 @@ class Proplisttw extends Component
 
         //buscando por asesor
         if($this->asesor)               $properties_filter->where('user_id', $this->asesor);
+
+        //buscando por fecha
+        //if($this->fromdate || $this->untildate)         $properties_filter->whereBetween('created_at', [$this->fromdate, $this->untildate]);
 
         //buscando por precio strlen($this->fromprice)>1   strlen($this->uptoprice)>1 
         if($this->fromprice && filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT)>1){
