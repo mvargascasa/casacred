@@ -93,13 +93,13 @@
                                         <option value="D">OFF</option>
                                     </select>
                                 </div>
-                                <div class="w-auto pr-2 pb-2">
+                                {{-- <div class="w-auto pr-2 pb-2">
                                     <select class="w-auto block w-20 py-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline"id="b_available" name="b_available"  class="w-20">
                                         <option value="" selected>Disponibilidad</option>
                                         <option value="1">Disponibles</option>
                                         <option value="2">No disponibles</option>
                                     </select>
-                                </div>
+                                </div> --}}
                                 {{-- <div class="w-full pr-2 pb-2">
                                     <select class="w-auto block w-32 py-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_price" name="b_price"  class="w-20">
                                         <option value="" selected>Precio</option>
@@ -120,6 +120,18 @@
                                             <input type="radio" id="desc" name="order" value="DESC">
                                             <label for="css" title="Descendente">DESC.</label><br>
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="w-full pr-2 pb-2">
+                                    <div onclick="openDateFilter();" class="block w-32 py-2 pl-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline flex" style="background-color: white">
+                                        <label for="">Fecha</label>
+                                    </div>
+                                    <div class="block w-auto" id="datefilter" style="display: none; position:absolute; z-index: 3;border: 1px solid #000000; background-color: #E5E7EB">
+                                        <label class="ml-2" for="fromdate">Desde</label>
+                                        <input type="date" class="block w-32 m-2 shadow appearance-none border rounded py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="fromdate">
+                                        <label class="ml-2" for="untildate">Hasta</label>
+                                        <input type="date" class="block w-32 m-2 shadow appearance-none border rounded py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="untildate">
                                     </div>
                                 </div>
 
@@ -230,6 +242,12 @@
         let divpriceminmax = document.getElementById('pricemaxmin');
         if(divpriceminmax.style.display == "none") divpriceminmax.style.display = "block";
         else if(divpriceminmax.style.display == "block") divpriceminmax.style.display = "none";
+    }
+
+    function openDateFilter(){
+        let divdatefilter = document.getElementById('datefilter');
+        if(divdatefilter.style.display == "none") divdatefilter.style.display = "block";
+        else if(divdatefilter.style.display == "block") divdatefilter.style.display = "none";
     }
 
     //const selCountry = document.getElementById('b_country');

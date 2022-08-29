@@ -55,6 +55,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
     Route::get('opports', [TwController::class,'opports'])->name('admin.opports');
     Route::get('properties', [TwController::class,'properties'])->name('admin.properties');
     Route::get('my-properties', [TwController::class, 'properties'])->name('admin.myproperties');
+    Route::get('sold-out', [TwController::class, 'properties'])->name('admin.soldout');
     Route::get('propertieshow/{listing}', [TwController::class,'propertieshow'])->name('admin.propertieshow');
     Route::get('tw/css', function () { echo filesize($_SERVER["DOCUMENT_ROOT"].'/css/apptw.css'); });
 

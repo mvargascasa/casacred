@@ -129,7 +129,7 @@
                 @if(isset($listing) && $listing->locked)
                     {!! Form::select('available', [null => 'SELECCIONE', '1' => 'DISPONIBLE', '2' => 'NO DISPONIBLE'], null, ['class' => $inputs, 'disabled']) !!}
                 @else
-                    {!! Form::select('available', [null => 'SELECCIONE', '1' => 'DISPONIBLE', '2' => 'NO DISPONIBLE'], null, ['class' => $inputs, 'required']) !!}
+                    {!! Form::select('available', ['1' => 'DISPONIBLE', '2' => 'NO DISPONIBLE'], null, ['class' => $inputs, 'onchange' => 'requiredFalse(this.value);', 'required']) !!}
                 @endif
             </div>
         </div>
@@ -728,5 +728,22 @@
       x.classList.add('hidden');
     })
   );
+
+//   document.querySelector("select[name='available']").addEventListener('change', () => {
+//       console.log('prueba');
+//   });
+
+    function requiredFalse(available_value){
+        if(available_value == 2){
+            let inputs = document.getElementsByTagName('input');
+            for (let i = 0; i < inputs.length; i++) {
+                const element = inputs[i];
+                element.required = false;
+                    if(element.pattern != null){
+                        element.pattern = ".{0,500}";
+                    }
+                }
+            }
+        }
     </script>
 @endsection

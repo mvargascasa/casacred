@@ -270,7 +270,7 @@ function filter_properties(){
     let b_tipo      = document.getElementById('b_tipo').value;
     //let b_price     = document.getElementById('b_price').value;
     let b_view      = document.getElementById('view').value;
-    let b_available = document.getElementById('b_available').value; //variable para buscar por disponibilidad
+    //let b_available = document.getElementById('b_available').value; //variable para buscar por disponibilidad
     let b_current_url = document.getElementById('b_current_url').value; //saber la ruta actual
 
 
@@ -289,6 +289,12 @@ function filter_properties(){
     //filtrar por asesor
     let b_asesor = document.getElementById('b_asesor').value;
 
+    //filter date
+    let b_fromdate = document.getElementById('fromdate').value;
+    let b_untildate = document.getElementById('untildate').value;
+
+    if(b_untildate < b_fromdate) alert('Formato no valido');
+
     let order_aux;
 
     if(b_order_asc.checked){
@@ -306,7 +312,7 @@ function filter_properties(){
     @this.set('pressButtom', 1);
 
     @this.set('view', b_view); //para renderizar de nuevo y cambie de vista
-    @this.set('available', b_available); //buscar por disponibilidad
+    //@this.set('available', b_available); //buscar por disponibilidad
     @this.set('current_url', b_current_url); //mandar la actual url -> si es myproperties
 
     //@this.set('country', b_country);
@@ -318,7 +324,11 @@ function filter_properties(){
 
     @this.set('asesor', b_asesor);
 
+    @this.set('fromdate', b_fromdate);
+    @this.set('untildate', b_untildate);
+
     document.getElementById('pricemaxmin').style.display = "none";
+    document.getElementById('datefilter').style.display = "none";
 }
 
     

@@ -20,8 +20,8 @@ class Proplisttw extends Component
     //$country, 
     $state, $city,
     $fromprice, $uptoprice,
-    $asesor;
-    //$fromdate, $untildate;
+    $asesor,
+    $fromdate, $untildate;
 
     public function render()
     {
@@ -44,9 +44,14 @@ class Proplisttw extends Component
             $properties_filter = Listing::orderBy('product_code','DESC');
         }
 
+        //mostrar las propiedades de un asesor
         if($this->current_url == "admin.myproperties" || Route::current()->getName() == "admin.myproperties"){
             if(Auth::user()->role != 'administrator') $properties_filter->where('user_id', Auth::id());
         }
+
+        //mostrar las propiedades vendidas
+        if($this->current_url == "admin.soldout" || Route::current()->getName() == "admin.soldout") $properties_filter->where('available', 2)->orWhere('available', null);
+        else $properties_filter->where('available', 1);
 
         if(strlen($this->detalle)>2){           
             $properties_filter->where('address','LIKE',"%$this->detalle%");
@@ -61,8 +66,8 @@ class Proplisttw extends Component
         if($this->status=='D')                                  $properties_filter->where('status',0);        
         if($this->categoria)                                    $properties_filter->where('listingtype',$this->categoria);        
         if($this->tipo)                                         $properties_filter->where('listingtypestatus',$this->tipo);            
-        if($this->available=='1')                               $properties_filter->where('available', 1); //agregarle || $this->variable == null para muestre por defecto las activas y disponibles
-        if($this->available=='2')                               $properties_filter->where('available', 2);
+        //if($this->available=='1' || $this->available == null)                               $properties_filter->where('available', 1); //agregarle || $this->variable == null para muestre por defecto las activas y disponibles
+        //if($this->available=='2')                               $properties_filter->where('available', 2);
 
         //if($this->country)              $properties_filter->where('country', $this->country);
         if($this->state)                $properties_filter->where('state', $this->state);
@@ -72,7 +77,7 @@ class Proplisttw extends Component
         if($this->asesor)               $properties_filter->where('user_id', $this->asesor);
 
         //buscando por fecha
-        //if($this->fromdate || $this->untildate)         $properties_filter->whereBetween('created_at', [$this->fromdate, $this->untildate]);
+        if($this->fromdate || $this->untildate)         $properties_filter->whereBetween('created_at', [$this->fromdate, $this->untildate]);
 
         //buscando por precio strlen($this->fromprice)>1   strlen($this->uptoprice)>1 
         if($this->fromprice && filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT)>1){
