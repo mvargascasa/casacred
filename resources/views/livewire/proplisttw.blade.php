@@ -10,7 +10,8 @@
                 {{-- web.detail  --}}
                 {{-- {{route('admin.listings.edit',$propertie->id)}} --}}
                 @if(Auth::user()->role == "user" || Auth::user()->role == "ASESOR")
-                    <a href="@if(Route::current()->getName() == "admin.myproperties" || Auth::user()->role == "administrator") {{ route('admin.listings.edit', $propertie->id) }} @else {{ route('admin.show.listing', $propertie->id) }} @endif" target="_blank">
+                    <a href="@if($url_current == "admin.myproperties" || Route::current()->getName() == "admin.myproperties"){{ route('admin.listings.edit', $propertie->id) }} @else {{route('admin.show.listing', $propertie->id)}}@endif" target="_blank">
+                        {{-- @if(Route::current()->getName() == "admin.myproperties" || Auth::user()->role == "administrator") {{ route('admin.listings.edit', $propertie->id) }} @else {{ route('admin.show.listing', $propertie->id) }} @endif --}}
                 @endif
 
                 @if ($dirImg != null)

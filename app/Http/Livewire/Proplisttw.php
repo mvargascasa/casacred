@@ -53,6 +53,8 @@ class Proplisttw extends Component
         if($this->current_url == "admin.soldout" || Route::current()->getName() == "admin.soldout") $properties_filter->where('available', 2)->orWhere('available', null);
         else $properties_filter->where('available', 1);
 
+        $url_current = $this->current_url;
+
         if(strlen($this->detalle)>2){           
             $properties_filter->where('address','LIKE',"%$this->detalle%");
             if($properties_filter->count()<1){                
@@ -95,8 +97,15 @@ class Proplisttw extends Component
         $this->firstItem = $properties->firstItem();
         $this->totalProperties = $properties->total();
 
+        // if(count($properties) > 1){
+        //     foreach ($properties as $propertie) {
+        //         printf($propertie->listing_title);
+        //     }
+        // } else {
+        //     printf($properties->listing_title);
+        // }
         $types = DB::table('listing_types')->get(); 
         $categories = DB::table('listing_status')->get(); 
-        return view('livewire.proplisttw',compact('properties','types','categories', 'viewaux'));
+        return view('livewire.proplisttw',compact('properties','types','categories', 'viewaux', 'url_current'));
     }
 }
