@@ -81,7 +81,7 @@
             @if(Auth::user()->role == "administrator")
                 <div>
                     {!! Form::label('status', 'Status',['class' => 'font-semibold']) !!}
-                    @if(isset($listing) && Auth::user()->role == "user" || Auth::user()->role == "ASESOR")
+                    @if(isset($listing) && $listing->locked)
                         {!! Form::select('status',['0'=>'DESACTIVADO','1'=>'ACTIVO'], null, ['class' => $inputs, 'disabled']) !!}
                     @else
                         {!! Form::select('status',['0'=>'DESACTIVADO','1'=>'ACTIVO'], null, ['class' => $inputs]) !!}
