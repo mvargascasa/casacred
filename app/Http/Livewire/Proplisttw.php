@@ -50,8 +50,11 @@ class Proplisttw extends Component
         }
 
         //mostrar las propiedades vendidas
-        if($this->current_url == "admin.soldout" || Route::current()->getName() == "admin.soldout") $properties_filter->where('available', 2)->orWhere('available', null);
-        else $properties_filter->where('available', 1);
+        if($this->current_url == "admin.soldout" || Route::current()->getName() == "admin.soldout") {
+            $properties_filter->where('available', 2);
+        }
+        // else $properties_filter->where('available', 1);
+        if($this->current_url == "admin.properties" || Route::current()->getName() == "admin.properties") $properties_filter->where('available', 1);
 
         $url_current = $this->current_url;
 
@@ -104,6 +107,7 @@ class Proplisttw extends Component
         // } else {
         //     printf($properties->listing_title);
         // }
+        
         $types = DB::table('listing_types')->get(); 
         $categories = DB::table('listing_status')->get(); 
         return view('livewire.proplisttw',compact('properties','types','categories', 'viewaux', 'url_current'));

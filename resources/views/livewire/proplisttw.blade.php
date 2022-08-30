@@ -298,6 +298,23 @@ function filter_properties(){
 
     let order_aux;
 
+    // console.log("Codigo " + b_code);
+    // console.log("Status " + b_status);
+    // console.log("Detalle " + b_detalle);
+    // console.log("Categoria " + b_categoria);
+    // console.log("Tipo " + b_tipo);
+    // console.log("View " + b_view);
+    // console.log("Current URL " + b_current_url);
+    // console.log("Estado " + b_state);
+    // console.log("Ciudad " + b_city);
+    // console.log("Precio maximo " + b_maxprice);
+    // console.log("Precio minimo " + b_minprice);
+    // console.log("Order 1 "+b_order_asc);
+    // console.log("Order 2" + b_order_desc);
+    // console.log("Asesor " + b_asesor);
+    // console.log("From date " + b_fromdate);
+    // console.log("Until date " + b_untildate);
+
     if(b_order_asc.checked){
         @this.set('price', b_order_asc.value);
     } else if(b_order_desc.checked){
