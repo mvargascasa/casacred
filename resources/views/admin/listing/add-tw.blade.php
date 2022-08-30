@@ -181,7 +181,11 @@
         @if(Auth::user()->id == 15 || Auth::user()->id == 147)
             <div class="gap-4 mt-4 sm:gap-6">
                 {!! Form::label('keywords', 'Keywords', ['class' => 'font-semibold']) !!}
+                @if(isset($listing) && $listing->locked)
+                {!! Form::textarea('keywords', null, ['class' => $inputs, 'rows' => '3', 'disabled']) !!}
+                @else
                 {!! Form::textarea('keywords', null, ['class' => $inputs, 'rows' => '3']) !!}
+                @endif
             </div>
         @endif
 
