@@ -41,12 +41,12 @@
 
                 <div class="absolute left-0 top-0">
                     @if($propertie->status == 1)
-                        <div class="text-xs font-semibold" style="padding-left: 3px; margin-left:2px; border-radius: 10px;">
-                            <img width="35px" src="{{ asset('img/on.png') }}" alt="ON">
+                        <div class="text-xs font-semibold" style="margin-top: 5px; margin-left:5px; border-radius: 10px; width: 10px; height: 10px; background-color: #01842a; border-radius: 25px">
+                            {{-- <img width="35px" src="{{ asset('img/on.png') }}" alt="ON"> --}}
                         </div>
                     @else
-                        <div class="text-xs font-semibold" style="padding-left: 3px; margin-left:2px; border-radius: 10px;">
-                            <img width="35px" src="{{ asset('img/off.png') }}" alt="OFF">
+                        <div class="text-xs font-semibold" style="margin-top: 5px; margin-left:5px; border-radius: 10px; width: 10px; height: 10px; background-color: #b11213; border-radius: 25px">
+                            {{-- <img width="35px" src="{{ asset('img/off.png') }}" alt="OFF"> --}}
                         </div>
                     @endif
                 </div>
