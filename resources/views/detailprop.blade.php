@@ -731,7 +731,10 @@
         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 mb-2 d-flex justify-content-center text-center">
           <a style="text-decoration: none; color: #000000" href="{{ route('web.detail', $listing_s->slug) }}">
             <div data-aos="zoom-in" class="card cardsimilarlisting" style="width: 18rem;">
-              <img class="card-img-top lazyLoad" width="100%" height="100%" data-src="{{ asset('uploads/listing/600/'. strtok($listing_s->images, '|')) }}" alt="{{ $listing_s->listing_title}}">
+              @php
+                  $imageVerification = asset('uploads/listing/thumb/600'. strtok($listing_s->images, '|'));
+              @endphp
+              <img class="card-img-top lazyLoad" width="100%" height="100%" data-src="@if(@getimagesize($imageVerification)) {{asset('uploads/listing/thumb/600/'. strtok($listing_s->images, '|')) }} @else {{ asset('uploads/listing/600/'. strtok($listing_s->images, '|')) }} @endif" alt="{{ $listing_s->listing_title}}">
               <div class="card-body">
                 <h5 style="margin: 0px" class="card-title">${{ number_format($listing_s->property_price) }}</h5>
                 @php
