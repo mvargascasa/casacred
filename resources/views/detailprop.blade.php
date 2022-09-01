@@ -231,8 +231,25 @@
                         <div class="carousel-inner">
                           @php $iiListing=0 @endphp
                           @foreach (array_filter(explode("|", $listing->images)) as $img)
+                          @php
+                              $imageVerification = asset('uploads/listing/thumb/600/'.$img);
+                          @endphp
                             <div class="carousel-item @if($iiListing==0) active @endif" data-slide-number="{{ $iiListing }}">
-                              <img style="width: 100%; height: 100%" src="@if($mobile) {{url('uploads/listing/600',$img)}} @else {{url('uploads/listing',$img)}} @endif" class="d-block w-100 ccimgpro" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$listing->listing_title}}-{{$iiListing++}}">
+                              <img style="width: 100%; height: 100%" src="
+                              @if($mobile)
+                                @if(@getimagesize($imageVerification))
+                                  {{url('uploads/listing/thumb/600',$img)}} 
+                                @else 
+                                  {{url('uploads/listing/600',$img)}} 
+                                @endif
+                              @else
+                                @if(@getimagesize($imageVerification))
+                                  {{url('uploads/listing/thumb', $img)}}
+                                @else
+                                  {{url('uploads/listing', $img)}}
+                                @endif
+                              @endif
+                                " class="d-block w-100 ccimgpro" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$listing->listing_title}}-{{$iiListing++}}">
                             </div>
                           @endforeach
                         </div>
