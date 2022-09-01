@@ -15,7 +15,11 @@
                 @endif
 
                 @if ($dirImg != null)
-                <img class="w-full" src="https://casacredito.com/uploads/listing/600/{{$dirImg}}" alt="{{ $propertie->listing_title}}">
+                @php
+                    $imageVerification = asset('uploads/listing/thumb/600/'.$dirImg);    
+                @endphp
+                <img class="w-full" src="@if(@getimagesize($imageVerification)) {{ url('/uploads/listing/thumb/600/', $dirImg) }} @else {{url('uploads/listing/600', $dirImg)}} @endif" alt="{{ $propertie->listing_title}}">
+                {{--  --}}
                 @else
                 <div class="relative">
                     <img class="w-full" src="{{ asset('img/sin-imagenes.jpg') }}" alt="Sunset in the mountains">
