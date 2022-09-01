@@ -426,14 +426,14 @@
                 @isset($listing)
                     @php $ii=0; @endphp
                     @foreach(array_filter(explode("|", $listing->images)) as $img)
-                        @php $ii++; @endphp
+                        @php $ii++; $imageVerification = asset('uploads/listing/thumb/300/'.$img); @endphp
                         <li class="relative"  id="imageUpload{{$ii}}"> 
                             @if(isset($listing) && $listing->locked)
                             <button type="button" onclick="delImageUpload({{$ii}})" class="absolute right-0 px-2 rounded bg-red-800 text-white font-bold" disabled>X</button>
                             @else
                             <button type="button" onclick="delImageUpload({{$ii}})" class="absolute right-0 px-2 rounded bg-red-800 text-white font-bold">X</button>
                             @endif
-                            <img class="rounded" src="{{url('uploads/listing/300',$img)}}">
+                            <img class="rounded" src="@if(@getimagesize($imageVerification)){{url('uploads/listing/thumb/300', $img)}} @else {{url('uploads/listing/300',$img)}} @endif">
                             <input type="hidden" value="{{$img}}" name="updatedImages[]">
                         </li>
                     @endforeach
@@ -442,7 +442,7 @@
         </div>  
         
         <hr class="mt-4">
-        <h5 class="font-semibold mt-4">DETALLES DE PROPIEDAD </h5>
+        <h5 class="font-semibold mt-4">DETALLES DE PROPIEDAD</h5>
 
         
         <div id="rowsTitles">

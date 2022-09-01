@@ -89,6 +89,36 @@ class ListingController extends Controller
                             $folder3 = 'uploads/listing/300/';                                 
                             $img3->fit(300,200 , function ($constraint) { $constraint->upsize(); $constraint->aspectRatio(); });
                             $img3->save($folder3.$nameFile, 40);
+
+                            //agregando marca de agua
+                            $folder_1 = 'uploads/listing/thumb/';
+                            //$namefile = "THUMB_IMG_$listing->id-".uniqid().$ext;
+                            $watermark = Image::make(public_path('img/watermark-logo.png'));
+                            $imageWidth = $img->width();
+
+                            $watermarkSize = round(20 * $imageWidth / 50);
+                            $watermark->resize($watermarkSize, null, function($constraint){$constraint->aspectRatio();});
+
+                            $img->insert($watermark, 'center', 0, 0);
+                            $img->save($folder_1.$nameFile);
+
+                            $folder_2 = 'uploads/listing/thumb/600/';
+                            $img2->fit(600,400 , function ($constraint) { $constraint->upsize(); $constraint->aspectRatio(); });
+                            $imageWidth2 = $img2->width();
+                            $watermarkSize = round(20 * $imageWidth2 / 50);
+                            $watermark->resize($watermarkSize, null, function($constraint){$constraint->aspectRatio();});
+
+                            $img2->insert($watermark, 'center', 0, 0);
+                            $img2->save($folder_2.$nameFile, 40);
+
+                            $folder_3 = 'uploads/listing/thumb/300/';
+                            $img3->fit(300,200 , function ($constraint) { $constraint->upsize(); $constraint->aspectRatio(); });
+                            $imageWidth3 = $img3->width();
+                            $watermarkSize = round(20 * $imageWidth3 / 50);
+                            $watermark->resize($watermarkSize, null, function($constraint){$constraint->aspectRatio();});
+
+                            $img3->insert($watermark, 'center', 0, 0);
+                            $img3->save($folder_3.$nameFile, 40);
                         }
                     }
                 }
@@ -194,6 +224,36 @@ class ListingController extends Controller
                             $folder3 = 'uploads/listing/300/';                                 
                             $img3->fit(300,200 , function ($constraint) { $constraint->upsize(); $constraint->aspectRatio(); });
                             $img3->save($folder3.$nameFile, 40);
+
+                            //agregando marca de agua
+                            $folder_1 = 'uploads/listing/thumb/';
+                            //$namefile = "THUMB_IMG_$listing->id-".uniqid().$ext;
+                            $watermark = Image::make(public_path('img/watermark-logo.png'));
+                            $imageWidth = $img->width();
+
+                            $watermarkSize = round(20 * $imageWidth / 50);
+                            $watermark->resize($watermarkSize, null, function($constraint){$constraint->aspectRatio();});
+
+                            $img->insert($watermark, 'center', 0, 0);
+                            $img->save($folder_1.$nameFile);
+
+                            $folder_2 = 'uploads/listing/thumb/600/';
+                            $img2->fit(600,400 , function ($constraint) { $constraint->upsize(); $constraint->aspectRatio(); });
+                            $imageWidth2 = $img2->width();
+                            $watermarkSize = round(20 * $imageWidth2 / 50);
+                            $watermark->resize($watermarkSize, null, function($constraint){$constraint->aspectRatio();});
+
+                            $img2->insert($watermark, 'center', 0, 0);
+                            $img2->save($folder_2.$nameFile, 40);
+
+                            $folder_3 = 'uploads/listing/thumb/300/';
+                            $img3->fit(300,200 , function ($constraint) { $constraint->upsize(); $constraint->aspectRatio(); });
+                            $imageWidth3 = $img3->width();
+                            $watermarkSize = round(20 * $imageWidth3 / 50);
+                            $watermark->resize($watermarkSize, null, function($constraint){$constraint->aspectRatio();});
+
+                            $img3->insert($watermark, 'center', 0, 0);
+                            $img3->save($folder_3.$nameFile, 40);
                         }
                     }
                 }
