@@ -47,7 +47,7 @@
                                     </select>
                                 </div> --}}
                                 <div class="w-auto pr-2 pb-2">
-                                    <select class="block w-32 py-2 border rounded-md pl-2 border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_state">
+                                    <select class="block w-32 py-2 pl-2 border-gray-300 hover:border-gray-400 focus:outline-none shadow-md" id="b_state">
                                         <option value="">Provincia</option>
                                         @foreach ($states as $state)
                                         <option value="{{$state->name}}" data-id="{{$state->id}}">{{$state->name}}</option>
@@ -55,25 +55,25 @@
                                     </select>
                                 </div>
                                 <div class="w-auto pr-2 pb-2">
-                                    <select class="block w-32 py-2 border rounded-md pl-2 border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_city">
+                                    <select class="block w-32 py-2 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_city">
                                         <option value="">Ciudad</option>
                                     </select>
                                 </div>
                                 <div class="w-auto pr-2">
-                                    <input class="block w-32 py-2 border rounded-md pl-2 border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_detalle" name="b_detalle" type="text" placeholder="Sector">
+                                    <input class="block w-32 py-2 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_detalle" name="b_detalle" type="text" placeholder="Sector">
                                 </div>
                                 <div class="w-auto pr-2 pb-2">
-                                    <input class="block w-20 py-2 border rounded-md pl-2 border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_code" name="b_code" type="text" placeholder="Código">
+                                    <input class="block w-20 py-2 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_code" name="b_code" type="text" placeholder="Código">
                                 </div>
                                 <div class="w-auto pr-2">
-                                    <select class="block w-24 py-2 border rounded-md border-gray-400 hover:border-gray-500 shadow leading-tight focus:outline-none focus:shadow-outline" id="b_tipo">
+                                    <select class="block w-24 py-2 border-gray-300 hover:border-gray-400 shadow-md leading-tight focus:outline-none" id="b_tipo">
                                         <option value="" selected>Categoría</option>
                                         <option value="en-venta">Venta</option>
                                         <option value="alquilar">Alquiler</option>
                                     </select>
                                 </div>
                                 <div class="w-auto pr-2">
-                                    <select class="block w-auto py-2 border border-gray-400 hover:border-gray-500 rounded-md shadow leading-tight focus:outline-none focus:shadow-outline" id="b_categoria">
+                                    <select class="block w-auto py-2 border-gray-300 hover:border-gray-400 shadow-md leading-tight focus:outline-none" id="b_categoria">
                                         <option value="">Tipo de propiedad</option>	
                                         <option value="23">Casas </option>
                                         <option value="24">Departamentos </option>
@@ -87,7 +87,7 @@
                                     </select>
                                 </div>
                                 <div class="w-auto pr-2 pb-2">
-                                    <select class="block w-20 py-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline"id="b_status" name="b_status">
+                                    <select class="block w-20 py-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none"id="b_status" name="b_status">
                                         <option value="" selected>Estado</option>
                                         <option value="A">ON</option>
                                         <option value="D">OFF</option>
@@ -107,8 +107,8 @@
                                         <option value="DESC">Descendente</option>
                                     </select>
                                 </div> --}}
-                                <div class="w-full pr-2 pb-2">
-                                    <div onclick="openmaxminprice();" class="block w-32 py-2 pl-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline flex" style="background-color: white">
+                                <div class="w-auto pr-2 pb-2">
+                                    <div onclick="openmaxminprice();" class="block w-32 py-2 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                         <label for="">Precio</label>
                                     </div>
                                     <div class="block w-auto" id="pricemaxmin" style="display: none; position:absolute; z-index: 3;border: 1px solid #000000; background-color: #E5E7EB">
@@ -123,8 +123,8 @@
                                     </div>
                                 </div>
 
-                                <div class="w-full pr-2 pb-2">
-                                    <div onclick="openDateFilter();" class="block w-32 py-2 pl-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline flex" style="background-color: white">
+                                <div class="w-auto pr-2 pb-2">
+                                    <div onclick="openDateFilter();" class="block w-32 py-2 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                         <label for="">Fecha</label>
                                     </div>
                                     <div class="block w-auto" id="datefilter" style="display: none; position:absolute; z-index: 3;border: 1px solid #000000; background-color: #E5E7EB">
@@ -136,7 +136,7 @@
                                 </div>
 
                                 <div class="w-auto pr-2 pb-2">
-                                    <select class="block w-32 py-2 border rounded-md pl-2 border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_asesor">
+                                    <select class="block w-32 py-2 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_asesor">
                                         <option value="">Asesor</option>
                                         @foreach ($users as $user)
                                             <option value="{{$user->id}}">{{$user->name}}</option>
