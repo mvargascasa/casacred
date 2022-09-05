@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Traits\SendEmailTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 
 class WebController extends Controller
@@ -141,8 +142,18 @@ class WebController extends Controller
 
     public function sendLeadContact(Request $request){
 
+        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret' => '6Le1UsshAAAAAInuqh1QQ_C3jCx6YQAn_tDBNnOO',
+            'response' => $request->input('g-recaptcha-response')
+        ])->object();
+
+        if($response->success && $response->score >= 0.7){
+            $this->sendemail($request);
+        } else {
+            return "La validación de Recaptcha ha fallado. Por favor inténtelo de nuevo...";
+        }
+
         $ismobile = $this->isMobile();
-        $this->sendemail($request);
 
         $request->session()->flash('emailsend', 'Se ha enviado el correo');
 

@@ -7,8 +7,8 @@ use Illuminate\Support\Str;
 trait SendEmailTrait{
     
     public function sendemail(Request $request){
-        
-        $to = "info@casacredito.com,hserrano@casacredito.com,ventas@casacredito.com"; //info@casacredito.com,hserrano@casacredito.com,ventas@casacredito.com
+
+        $to = "sebas31051999@gmail.com"; //info@casacredito.com,hserrano@casacredito.com,ventas@casacredito.com
         $subject = "Lead Casa Credito - " . strip_tags($request->name) . " | " . date(now());
         switch ($request->interest) {
             case 'Busca Alquiler':

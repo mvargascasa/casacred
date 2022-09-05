@@ -20,6 +20,31 @@
           document.getElementsByTagName('head')[0].appendChild(stylesheet);
       }, 2000);
   </script>
+
+  {{-- SCRIPT DE RECAPTCHA V3 --}}
+  <script src="https://www.google.com/recaptcha/api.js?render=6Le1UsshAAAAAL93VxqsJYCa67mrcNIP1q3C99v5"></script>
+
+  <script>
+    document.addEventListener('submit', function(e){
+      e.preventDefault();
+      grecaptcha.ready(function() {
+          grecaptcha.execute('6Le1UsshAAAAAL93VxqsJYCa67mrcNIP1q3C99v5', {action: 'submit'}).then(function(token) {
+            
+            let form = e.target;
+
+            let input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'g-recaptcha-response';
+            input.value = token;
+
+            form.appendChild(input);
+
+            form.submit();
+
+          });
+        });
+    });
+  </script>
   
   {{-- <link rel="preload" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" as="style" onload="this.rel='stylesheet'"> --}}
 
