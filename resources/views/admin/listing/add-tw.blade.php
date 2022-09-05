@@ -162,7 +162,7 @@
             @if(isset($listing) && $listing->locked)
             {!! Form::text('meta_description', null, ['class' => $inputs, 'disabled']) !!}
             @else
-            {!! Form::text('meta_description', null, ['class' => $inputs, 'pattern' => '.{150,160}', 'onkeyup' => 'countCharsDesc(this);', 'required']) !!}
+            {!! Form::text('meta_description', null, ['class' => $inputs, 'pattern' => '.{130,160}', 'onkeyup' => 'countCharsDesc(this);', 'required']) !!}
             @endif
 
             {{-- <label>Caracteres Actual: <b id="charcount"></b></label>
@@ -173,7 +173,7 @@
             @endif --}}
             <div id="div_info_character_desc" style="background-color: @if(isset($listing) &&  Str::length($listing->meta_description) >= 150 && Str::length($listing->meta_description) <= 160) #9AE6B4 @else #FEB2B2 @endif" class="flex p-1 mt-2 rounded">
                 <label style="font-weight: 400">
-                    Actual <b id="label_count_desc"></b> caracteres. (Mínimo 150 - Máximo 160 caracteres)
+                    Actual <b id="label_count_desc"></b> caracteres. (Mínimo 130 - Máximo 160 caracteres)
                 </label>
             </div>
         </div>
@@ -579,7 +579,7 @@
         }
 
         function countCharsDesc(object){
-            if(object.value.length >= 150 && object.value.length <= 160){
+            if(object.value.length >= 130 && object.value.length <= 160){
                 // div_info_character_desc.classList.remove('bg-red-500');
                 // div_info_character_desc.classList.add('bg-green-500');
                 div_info_character_desc.style.backgroundColor = "#9AE6B4";
