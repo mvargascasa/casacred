@@ -52,7 +52,7 @@
                 </a> 
 @endif         
                 <a style="text-decoration: none !important" href="{{route('admin.soldout')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/sold-out*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
-                    <span class="mx-3 py-4">Vendidas</span>
+                    <span class="mx-3 py-4">Archivadas</span>
                 </a>
 @if (Auth::id()==123 || Auth::id()==147 || Auth::id()==15)
 
