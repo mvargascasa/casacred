@@ -22,9 +22,14 @@
   </script>
 
   {{-- SCRIPT DE RECAPTCHA V3 --}}
-  <script src="https://www.google.com/recaptcha/api.js?render=6Le1UsshAAAAAL93VxqsJYCa67mrcNIP1q3C99v5"></script>
+  <script id="recaptcha"></script>
 
   <script>
+    setTimeout(() => {
+      let scriptrecaptcha = document.getElementById('recaptcha');
+      scriptrecaptcha.src = "https://www.google.com/recaptcha/api.js?render=6Le1UsshAAAAAL93VxqsJYCa67mrcNIP1q3C99v5";
+    }, 3000);
+
     document.addEventListener('submit', function(e){
       e.preventDefault();
       grecaptcha.ready(function() {
