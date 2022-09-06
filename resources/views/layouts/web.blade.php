@@ -32,22 +32,27 @@
 
     document.addEventListener('submit', function(e){
       e.preventDefault();
-      grecaptcha.ready(function() {
-          grecaptcha.execute('6Le1UsshAAAAAL93VxqsJYCa67mrcNIP1q3C99v5', {action: 'submit'}).then(function(token) {
-            
-            let form = e.target;
 
-            let input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'g-recaptcha-response';
-            input.value = token;
+      if(e.target.id != "formhomesearch"){
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6Le1UsshAAAAAL93VxqsJYCa67mrcNIP1q3C99v5', {action: 'submit'}).then(function(token) {
+              
+              let form = e.target;
 
-            form.appendChild(input);
+              let input = document.createElement('input');
+              input.type = 'hidden';
+              input.name = 'g-recaptcha-response';
+              input.value = token;
 
-            form.submit();
+              form.appendChild(input);
 
+              form.submit();
+
+            });
           });
-        });
+      } else {
+        form.submit();
+      }
     });
   </script>
   

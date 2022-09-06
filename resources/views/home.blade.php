@@ -536,7 +536,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form action="{{ route('web.lead.contact') }}" method="POST">
+          <form id="demo-form" action="{{ route('web.lead.contact') }}" method="POST">
             @csrf
           <div class="modal-body">
             <input type="hidden" name="interest" value="Vender una propiedad">
@@ -583,7 +583,7 @@
             </div>
           </div>
           <div class="modal-footer justify-content-center">
-            <button type="submit" class="btn" style="background: #8b0000; color: #ffffff">Enviar</button>
+            <button class="btn" type="submit" style="background: #8b0000; color: #ffffff">Enviar</button>
           </div>
         </form>
         </div>
@@ -812,6 +812,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
 <script>
   AOS.init();
 </script>
@@ -819,6 +820,10 @@
     window.addEventListener('load', (event) => {
         document.getElementById('secondsection').style.backgroundImage = "url('img/imgbannermiddle.webp')";
     });
+
+    function onSubmit(token) {
+      document.getElementById("demo-form").submit();
+    }
 
     function limpiarCampos(){
       document.getElementById('searchtxt').value = "";
