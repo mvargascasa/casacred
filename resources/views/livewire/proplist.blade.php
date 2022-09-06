@@ -45,7 +45,7 @@
                             $imageVerification = asset('uploads/listing/thumb/600/'.$firstImg[0]); 
                           @endphp
                           <div class="carousel-item @if($iiListing==0) active @endif">
-                            <img loading="lazy" src="@if(@getimagesize($imageVerification)) {{url('uploads/listing/thumb/600',$firstImg[0]??'')}} @else {{url('uploads/listing/600',$firstImg[0]??'')}} @endif" class="d-block w-100" alt="{{$listing->listing_title}}-{{$iiListing++}}">
+                            <img loading="lazy" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.$firstImg[0])) {{url('uploads/listing/thumb/600',$firstImg[0]??'')}} @else {{url('uploads/listing/600',$firstImg[0]??'')}} @endif" class="d-block w-100" alt="{{$listing->listing_title}}-{{$iiListing++}}">
                             {{-- @if(@getimagesize($imageVerification)) {{url('uploads/listing/thumb/600',$firstImg[0]??'')}} @else {{url('uploads/listing/600',$firstImg[0]??'')}} @endif --}}
                             {{-- @if(@getimagesize($imageVerification)) {{url('uploads/listing/thumb/600',$firstImg[0]??'')}} @else https://casacredito.com/uploads/listing/600/{{$firstImg}} @endif --}}
                           </div>
@@ -53,20 +53,10 @@
                         @php
                             $imageVerification = asset('uploads/listing/thumb/600/'. strtok($listing->images, '|'));
                         @endphp
-                          @foreach(array_filter(explode("|", $listing->images)) as $img)
-                          {{-- @if(file_exists($imageVerification))
-                          <p>true</p>
-                          @else
-                          <p>false {{ $imageVerification }}</p>
-                          @endif --}}
-                          
+                          @foreach(array_filter(explode("|", $listing->images)) as $img)              
                             <div class="carousel-item @if($iiListing==0) active @endif">
-                              {{-- @php
-                                  $imageVerification = asset('uploads/listing/thumb/600/'.$img);
-                              @endphp --}}
-                              <img loading="lazy" src="@if(File::exists($imageVerification))) {{url('uploads/listing/thumb/600',$img)}} @else {{url('uploads/listing/600',$img)}} @endif" class="d-block w-100" alt="{{$listing->listing_title}}-{{$iiListing++}}">
+                              <img loading="lazy" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.$img)) {{url('uploads/listing/thumb/600',$img)}} @else {{url('uploads/listing/600',$img)}} @endif" class="d-block w-100" alt="{{$listing->listing_title}}-{{$iiListing++}}">
                               {{-- @if(@getimagesize($imageVerification)) {{url('uploads/listing/thumb/600',$img)}} @else {{url('uploads/listing/600',$img)}} @endif --}}
-                              {{-- @if(@getimagesize($imageVerification)) {{url('uploads/listing/thumb/600',$img)}} @else https://casacredito.com/uploads/listing/600/{{$img}} @endif --}}
                             </div>
                           @endforeach
                       @endif
