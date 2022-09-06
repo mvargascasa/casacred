@@ -12,6 +12,8 @@
             $imgpri = explode("|", $pro->images);    
             if(isset($imgpri[0])) $imgpri = $imgcover.$imgpri[0];
             else $imgpri = $imgcover.$pro->cover_image;
+
+            $imageVerification = public_path().'/uploads/listing/thumb/600/'.strtok($pro->images, '|');
         @endphp
 
 
@@ -34,7 +36,7 @@
         <div class="overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out border-b border-red-700"    >
         
             <div class="relative">
-                <a href="{{route('web.detail',$pro->slug)}}"> <img style="height: 10rem;" src="{{$imgpri}}" alt="IMG" class="imgdir rounded object-cover h-40 w-full" /> </a>
+                <a href="{{route('web.detail',$pro->slug)}}"> <img style="height: 10rem;" src="@if(file_exists($imageVerification)) {{url('uploads/listing/thumb/600/',strtok($pro->images, '|'))}} @else {{$imgpri}} @endif" alt="IMG" class="imgdir rounded object-cover h-40 w-full" /> </a>
                 <div class="absolute bottom-0 left-0 bg-yellow-400 rounded px-2 text-white text-xs">{{$pro->category}}</div>
                 <div class="absolute bottom-0 right-0 bg-yellow-400 rounded px-2 text-white text-xs">{{$pro->type}}</div>
             </div>
