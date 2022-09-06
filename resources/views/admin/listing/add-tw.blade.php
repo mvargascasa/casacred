@@ -171,7 +171,7 @@
                 La descripción que se mostrara en Google debe contener entre <b>140</b> y <b>155</b> caracteres.
             </div>
             @endif --}}
-            <div id="div_info_character_desc" style="background-color: @if(isset($listing) &&  Str::length($listing->meta_description) >= 150 && Str::length($listing->meta_description) <= 160) #9AE6B4 @else #FEB2B2 @endif" class="flex p-1 mt-2 rounded">
+            <div id="div_info_character_desc" style="background-color: @if(isset($listing) &&  Str::length($listing->meta_description) >= 130 && Str::length($listing->meta_description) <= 160) #9AE6B4 @else #FEB2B2 @endif" class="flex p-1 mt-2 rounded">
                 <label style="font-weight: 400">
                     Actual <b id="label_count_desc"></b> caracteres. (Mínimo 130 - Máximo 160 caracteres)
                 </label>
@@ -242,22 +242,20 @@
             <div>          
                 {!! Form::label('Front', 'Frente', ['class' => 'font-semibold']) !!}
                 @if(isset($listing) && $listing->locked)
-                {!! Form::text('Front', null, ['class' => $inputs, 'disabled']) !!}
+                {!! Form::number('Front', null, ['class' => $inputs, 'disabled']) !!}
                 @else
-                {!! Form::text('Front', null, ['class' => $inputs, 'required']) !!}
+                {{-- {!! Form::text('Front', null, ['class' => $inputs, 'min' => 1, 'max' => 5, 'title' => 'Por favor, ingrese una cantidad mayor a 0',  'required']) !!} --}}
+                {!! Form::number('Front', null, ['class' => $inputs, 'min' => '1', 'oninvalid' => "this.setCustomValidity('Por favor, ingrese un valor mayor a 0')", 'oninput' => "this.setCustomValidity('')", 'required']) !!}
                 @endif
             </div>
             <div>          
                 {!! Form::label('Fund', 'Fondo', ['class' => 'font-semibold']) !!}
                 @if(isset($listing) && $listing->locked)
-                {!! Form::text('Fund', null, ['class' => $inputs, 'disabled']) !!}
+                {!! Form::number('Fund', null, ['class' => $inputs, 'disabled']) !!}
                 @else
-                {!! Form::text('Fund', null, ['class' => $inputs, 'required']) !!}
+                {!! Form::number('Fund', null, ['class' => $inputs, 'min' => '1', 'oninvalid' => "this.setCustomValidity('Por favor, ingrese un valor mayor a 0')", 'oninput' => "this.setCustomValidity('')", 'required']) !!}
                 @endif
             </div>
-        </div>
-        <div class="pl-2 pr-2 pt-1 pb-1 rounded mt-2" style="background-color: #e8eeec; font-size: 13.5px">
-            En el caso de que la propiedad no tenga área de construcción, superficie, frente o fondo por favor completar con un <b>0</b> el campo respectivo.
         </div>
 
         {{-- nuevo div para guardar los años de construccion --}}
