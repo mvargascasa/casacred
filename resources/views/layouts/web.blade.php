@@ -51,6 +51,7 @@
             });
           });
       } else {
+        let form = e.target;
         form.submit();
       }
     });
