@@ -18,8 +18,8 @@
                 @php
                     $imageVerification = asset('uploads/listing/thumb/600/'.$dirImg);    
                 @endphp
-                <img class="w-full" src="@if(@getimagesize($imageVerification)) {{ url('/uploads/listing/thumb/600/', $dirImg) }} @else {{url('uploads/listing/600', $dirImg)}} @endif" alt="{{ $propertie->listing_title}}">
-                {{--  --}}
+                <img class="w-full" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.$dirImg)) {{ url('/uploads/listing/thumb/600/', $dirImg) }} @else {{url('uploads/listing/600', $dirImg)}} @endif" alt="{{ $propertie->listing_title}}">
+                {{-- @if(@getimagesize($imageVerification)) {{ url('/uploads/listing/thumb/600/', $dirImg) }} @else {{url('uploads/listing/600', $dirImg)}} @endif --}}
                 @else
                 <div class="relative">
                     <img class="w-full" src="{{ asset('img/sin-imagenes.jpg') }}" alt="Sunset in the mountains">
