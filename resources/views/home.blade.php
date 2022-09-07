@@ -247,7 +247,7 @@
               </div>
               <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
                 <div class="position-relative d-flex justify-content-center">
-                  <img style="border-radius: 5px;" width="100%" height="100%" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/VENDA-SU-PROPIEDAD.webp') }}" alt="Venda su propiedad con nosotros">
+                  <img style="border-radius: 5px;" width="100rem" height="100rem" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/VENDA-SU-PROPIEDAD.webp') }}" alt="Venda su propiedad con nosotros">
                 </div>
                   <div class="text-center mt-5">
                       <button class="btn cta a-btn-services" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-whatever="  una propiedad">
@@ -261,7 +261,7 @@
               </div>
               <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
                 <div class="position-relative d-flex justify-content-center">
-                  <img style="border-radius: 5px;" width="100%" height="100%" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/ALQUILE.webp') }}" alt="Alquiler de viviendas o departamentos">
+                  <img style="border-radius: 5px;" width="100rem" height="100rem" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/ALQUILE.webp') }}" alt="Alquiler de viviendas o departamentos">
                 </div>
                   <div class="text-center mt-5">
                       <button class="btn cta a-btn-services" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
@@ -275,7 +275,7 @@
               </div>
               <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
                 <div class="position-relative d-flex justify-content-center">
-                  <img style="border-radius: 5px;" width="100%" height="100%" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/CREDITOS.webp') }}" alt="Creditos para ecuatorianos en el extranjero">
+                  <img style="border-radius: 5px;" width="100rem" height="100rem" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/CREDITOS.webp') }}" alt="Creditos para ecuatorianos en el extranjero">
                 </div>
                 <div class="text-center mt-5">
                     <a href="{{ route('web.servicios', 'creditos-en-ecuador') }}" class="btn cta a-btn-services">
