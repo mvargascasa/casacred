@@ -18,7 +18,7 @@
       stylesheet.rel = 'stylesheet';
       setTimeout(function () {
           document.getElementsByTagName('head')[0].appendChild(stylesheet);
-      }, 2000);
+      }, 3000);
   </script>
 
   {{-- SCRIPT DE RECAPTCHA V3 --}}
