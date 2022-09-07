@@ -213,7 +213,8 @@
             @endphp
               @for ($i = 1; $i < 5; $i++)
                 <div class="carousel-item @if($count === 0) active @endif">
-                  <img class="img-fluid lazyLoad" style="filter: brightness(50%); width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif" data-src="{{ asset('img/banner'. $i .'.webp') }}" alt="Compra, Venta y Alquiler de Casas, Departamentos y Terrenos en Cuenca Ecuador">   
+                  <img class="img-fluid lazyLoad" style="filter: brightness(50%); width: 100%; @if($ismobile) height: 20rem; @else height: 40vw; @endif" data-src="{{ asset('img/banner'. $i .'.webp') }}" alt="Compra, Venta y Alquiler de Casas, Departamentos y Terrenos en Cuenca Ecuador">   
+                  {{-- width: 100vw; @if($ismobile) height: 70vw; @else height: 40vw; @endif --}}
                   {{-- @include('layouts.homesearch') --}}
                   @php $count++; @endphp
                 </div>
@@ -227,10 +228,10 @@
   </div>
 
 
-        <div class="container @if($ismobile) pt-4 @else pt-5 @endif">
+        <div class="@if($ismobile) pt-4 @else container pt-5 @endif">
           <p id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 mb-5">SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A SU ALCANCE</p>
           <div class="row mr-2 ml-2">
-              <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
+              <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
                 <div class="position-relative d-flex justify-content-center">
                   <img style="border-radius: 5px;"  width="100%" height="100%" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/CAS-IDEAL.webp') }}" alt="Compra y Venta de Casas en Cuenca Ecuador">
                 </div>
@@ -244,7 +245,7 @@
                         </a>
                   </div>
               </div>
-              <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
+              <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
                 <div class="position-relative d-flex justify-content-center">
                   <img style="border-radius: 5px;" width="100%" height="100%" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/VENDA-SU-PROPIEDAD.webp') }}" alt="Venda su propiedad con nosotros">
                 </div>
@@ -258,7 +259,7 @@
                       </button>
                   </div>
               </div>
-              <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
+              <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
                 <div class="position-relative d-flex justify-content-center">
                   <img style="border-radius: 5px;" width="100%" height="100%" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/ALQUILE.webp') }}" alt="Alquiler de viviendas o departamentos">
                 </div>
@@ -272,7 +273,7 @@
                       </button>
                   </div>
               </div>
-              <div data-aos="fade-up" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
+              <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
                 <div class="position-relative d-flex justify-content-center">
                   <img style="border-radius: 5px;" width="100%" height="100%" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/CREDITOS.webp') }}" alt="Creditos para ecuatorianos en el extranjero">
                 </div>
