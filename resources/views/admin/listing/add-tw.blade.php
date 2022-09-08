@@ -6,7 +6,7 @@
 
 {{-- link para el loading button --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">  
 <style>
     input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none; margin: 0;}
     .modal {
@@ -557,7 +557,7 @@
         </div>
     </form>
 
-    {{-- @if(isset($listing) && $listing->product_code == 1712)
+    @if(isset($listing) && $listing->product_code == 1712)
     <button class="modal-open">Open Modal</button>
     @endif
 
@@ -565,7 +565,7 @@
     <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
         <div class="absolute w-full h-full bg-gray-900 opacity-50"></div>
         
-        <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+        <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50">
     
           <div class="modal-content py-4 text-left px-6">
             <div class="flex justify-between items-center pb-3">
@@ -579,7 +579,8 @@
           </div>
         </div>
       </div>
-      @endisset --}}
+      @endisset
+
 </section>
 
 </main>
@@ -589,6 +590,7 @@
 @section('endscript')
     <script src="{{asset('js/sortable.min.js')}}"></script>
     <script>
+
         // obteniendo el valor del title para mandar a la funcion countChar
         var div_info_character = document.getElementById('div_info_character');
         var div_info_character_desc = document.getElementById('div_info_character_desc');
@@ -820,13 +822,13 @@
             }
         }
 
-    // let openmodal = document.querySelectorAll('.modal-open')
-    // for (let i = 0; i < openmodal.length; i++) {
-    //   openmodal[i].addEventListener('click', function(event){
-    // 	event.preventDefault()
-    // 	toggleModal()
-    //   })
-    // }
+    let openmodal = document.querySelectorAll('.modal-open')
+    for (let i = 0; i < openmodal.length; i++) {
+      openmodal[i].addEventListener('click', function(event){
+    	event.preventDefault()
+    	toggleModal()
+      })
+    }
     
     // const overlay = document.querySelector('.modal-overlay')
     // overlay.addEventListener('click', toggleModal)
@@ -850,12 +852,12 @@
     // };
     
     
-    // function toggleModal () {
-    //   const body = document.querySelector('body')
-    //   const modal = document.querySelector('.modal')
-    //   modal.classList.toggle('opacity-0')
-    //   modal.classList.toggle('pointer-events-none')
-    //   body.classList.toggle('modal-active')
-    // }
+    function toggleModal () {
+      const body = document.querySelector('body')
+      const modal = document.querySelector('.modal')
+      modal.classList.toggle('opacity-0')
+      //modal.classList.toggle('pointer-events-none')
+      body.classList.toggle('modal-active')
+    }
     </script>
 @endsection
