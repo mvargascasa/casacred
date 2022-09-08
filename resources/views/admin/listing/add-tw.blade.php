@@ -9,7 +9,7 @@
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">  
 <style>
     input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none; margin: 0;}
-    .modal {
+    .modal, .modalSuccess {
       transition: opacity 0.25s ease;
     }
     body.modal-active {
@@ -557,10 +557,6 @@
         </div>
     </form>
 
-    @if(isset($listing) && $listing->product_code == 1712)
-    <button class="modal-open">Open Modal</button>
-    @endif
-
     @isset($listing)
     <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
         <div class="absolute w-full h-full bg-gray-900 opacity-50"></div>
@@ -580,6 +576,25 @@
         </div>
       </div>
       @endisset
+
+      {{-- modal success --}}
+      <div class="modalSuccess opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+        <div class="absolute w-full h-full bg-gray-900 opacity-50"></div>
+        
+        <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50">
+    
+          <div class="modal-content py-4 text-left px-6">
+            <div class="flex justify-between items-center pb-3">
+              <p class="text-2xl font-bold">El comentario se ha enviado</p>
+            </div>
+                <p>Ahora puede guardar los cambios realizados para que la propiedad se actualice</p>
+                <div class="flex justify-center pt-2 mt-2">
+                  <button class="modal-close px-4 bg-green-300 p-3 rounded-lg text-black-500 hover:bg-green-100 hover:text-black-300 mr-2">Entendido</button>
+                </div>
+            
+          </div>
+        </div>
+      </div>
 
 </section>
 
@@ -604,7 +619,7 @@
         let valueStatus;
 
         if(window.location.toString().includes("edit")) {
-            //selstatus.addEventListener('change', showDivStatusComment);
+            selstatus.addEventListener('change', showDivStatusComment);
             valueStatus = document.querySelector("select[name='status']").value;
         }
 
@@ -635,9 +650,9 @@
                     dataType: "json",
                     success: function(response){
                     if(response){
-                        toggleModal();
                         icon.classList.remove('fa', 'fa-spinner', 'fa-spin');
-                        alert('Se guardo el comentario. Ahora puede actualizar la propiedad y guardarla');
+                        toggleModal();
+                        toggleModalSuccess();
                     } else {
                         alert('Algo salio mal guardando el comentario, por favor recargue la pagina');
                     }
@@ -822,21 +837,21 @@
             }
         }
 
-    let openmodal = document.querySelectorAll('.modal-open')
-    for (let i = 0; i < openmodal.length; i++) {
-      openmodal[i].addEventListener('click', function(event){
-    	event.preventDefault()
-    	toggleModal()
-      })
-    }
+    // let openmodal = document.querySelectorAll('.modal-open')
+    // for (let i = 0; i < openmodal.length; i++) {
+    //   openmodal[i].addEventListener('click', function(event){
+    // 	event.preventDefault()
+    // 	toggleModal()
+    //   })
+    // }
     
     // const overlay = document.querySelector('.modal-overlay')
     // overlay.addEventListener('click', toggleModal)
     
-    // let closemodal = document.querySelectorAll('.modal-close')
-    // for (let i = 0; i < closemodal.length; i++) {
-    //   closemodal[i].addEventListener('click', toggleModal)
-    // }
+    let closemodal = document.querySelectorAll('.modal-close')
+    for (let i = 0; i < closemodal.length; i++) {
+      closemodal[i].addEventListener('click', toggleModalSuccess)
+    }
     
     // document.onkeydown = function(evt) {
     //   evt = evt || window.event
@@ -858,6 +873,14 @@
       modal.classList.toggle('opacity-0')
       modal.classList.toggle('pointer-events-none')
       body.classList.toggle('modal-active')
+    }
+
+    function toggleModalSuccess(){
+        const body = document.querySelector('body')
+        const modal = document.querySelector('.modalSuccess')
+        modal.classList.toggle('opacity-0')
+        modal.classList.toggle('pointer-events-none')
+        body.classList.toggle('modal-active')
     }
     </script>
 @endsection
