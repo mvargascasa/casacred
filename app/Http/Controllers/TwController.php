@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Contactos;
 use App\Models\Listing;
 use App\Models\Oportunidades;
@@ -118,5 +119,17 @@ class TwController extends Controller
         return view('admin.listing.show',compact('listing','benefits','services','types','categories',
                     'tags','details','states','optAttrib','cities'));
 
+    }
+
+    public function setcomment(Request $request){
+
+        $newcomment = Comment::create([
+            'listing_id' => $request->listing_id,
+            'type' => $request->type,
+            'comment' => $request->comment
+        ]);
+
+        if($newcomment){return true;} 
+        else {return false;}
     }
 }

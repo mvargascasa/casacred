@@ -183,6 +183,7 @@ class ListingController extends Controller
             $comment = Comment::create([
                 'listing_id' => $listing->id,
                 'property_code' => $listing->product_code,
+                'type' => 'price',
                 'comment' => $request->comment,
                 'property_price_prev' => $listing->property_price,
                 'property_price' => $request->property_price,

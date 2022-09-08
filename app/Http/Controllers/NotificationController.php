@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 class NotificationController extends Controller
 {
     public function index(){
-        $comments = Comment::orderBy('created_at', 'DESC')->paginate(5);
+        $comments = Comment::where('type', 'price')->orderBy('created_at', 'DESC')->paginate(5);
         return view('admin.notifications.index', compact('comments'));
     }
 
     public function countnotifications(){
-        $comments = Comment::where('viewed', false)->count();
+        $comments = Comment::where('viewed', false)->where('type', 'price')->count();
         return $comments;
     }
 

@@ -4,6 +4,9 @@
 <title> @if(isset($listing->id)) Editar: {{$listing->product_code}} {{$listing->listing_title}} @else Crear @endif Propiedad</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+{{-- link para el loading button --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
     input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none; margin: 0;}
 </style>
@@ -119,6 +122,13 @@
                 @endisset
             @endif
         </div>
+
+        {{-- <div id="comment_plan" class="grid grid-cols-1 gap-4 mt-4 sm:gap-6" style="display: none">
+            <div>
+                {!! Form::label('comment_plan', 'Ingrese una razón por la que el plan es GRATIS', ['class' => 'font-semibold']) !!}
+                {!! Form::text('comment_plan', null, ['class' => $inputs]) !!}
+            </div>
+        </div> --}}
 
         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>      
@@ -539,8 +549,48 @@
                 {{-- <button type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform bg-red-700 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600">GUARDAR</button> --}}
         </div>
     </form>
-</section>
 
+    @if(isset($listing) && $listing->product_code == 1330)
+    <button class="modal-open">Open Modal</button>
+    @endif
+
+    @isset($listing)
+    <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+        <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+        
+        <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+          
+          {{-- <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+            <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+              <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+            </svg>
+            <span class="text-sm">(Esc)</span>
+          </div> --}}
+    
+          <!-- Add margin if you want to see some of the overlay behind the modal-->
+          <div class="modal-content py-4 text-left px-6">
+            <!--Title-->
+            <div class="flex justify-between items-center pb-3">
+              <p class="text-2xl font-bold">¿Cuál es la razón por la que se desactiva la propiedad?</p>
+              {{-- <div class="modal-close cursor-pointer z-50">
+                <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                  <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                </svg>
+              </div> --}}
+            </div>
+                <input type="text" class="border p-5 rounded-md w-full" name="comment_desact" id="comment_desact" required/>
+        
+                <!--Footer-->
+                <div class="flex justify-center pt-2 mt-2">
+                  <button onclick="setcomment({{$listing->id}}, this)" class="px-4 bg-green-300 p-3 rounded-lg text-black-500 hover:bg-green-100 hover:text-black-300 mr-2">Enviar comentario</button>
+                  {{-- <button class="modal-close px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Close</button> --}}
+                </div>
+            
+          </div>
+        </div>
+      </div>
+      @endisset
+</section>
 
 </main>
 @endsection
@@ -556,6 +606,58 @@
         var input_meta_description = document.querySelector("input[name='meta_description']"); 
         var label_count_title = document.getElementById('label_count_title');
         var label_count_desc = document.getElementById('label_count_desc');
+        
+        let selstatus = document.querySelector("select[name='status']");
+        
+        let valueStatus;
+
+        if(window.location.toString().includes("edit")) {
+            //selstatus.addEventListener('change', showDivStatusComment);
+            valueStatus = document.querySelector("select[name='status']").value;
+        }
+
+        function showDivStatusComment(){
+            if(selstatus.value == 0 && valueStatus == 1){
+                toggleModal();
+            }    
+        } 
+
+        function setcomment(listing_id, button){
+            let comment = document.getElementById("comment_desact");
+            if(comment.value.length > 4){
+
+                let icon = document.createElement('i');
+                icon.classList.add('fa', 'fa-spinner', 'fa-spin', 'ml-2');
+                button.classList.add('buttonload');
+                button.appendChild(icon);
+
+                $.ajax({
+                    url: "{{route('home.tw.setcomment')}}",
+                    type: "POST",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "listing_id": listing_id,
+                        "type": "status",
+                        "comment" : comment.value
+                    },
+                    dataType: "json",
+                    success: function(response){
+                    if(response){
+                        toggleModal();
+                        icon.classList.remove('fa', 'fa-spinner', 'fa-spin');
+                        alert('Se guardo el comentario. Ahora puede actualizar la propiedad y guardarla');
+                    } else {
+                        alert('Algo salio mal guardando el comentario, por favor recargue la pagina');
+                    }
+                },
+                    error: function(error){
+                        console.log('Hubo un error con el servidor, por favor recargue la pagina');
+                    }
+                });
+            } else {
+                alert('Por favor complete el campo');
+            }
+        }
 
         window.addEventListener('load', (event) => {
             var range =  document.getElementById('listyears').value;
@@ -570,12 +672,8 @@
 
         function countCharsTitle(object){
             if(object.value.length >= 50 && object.value.length <=60){
-                // div_info_character.classList.remove('bg-red-500');
-                // div_info_character.classList.add('bg-green-500');
                 div_info_character.style.backgroundColor = "#9AE6B4";
             } else {
-                // div_info_character.classList.remove('bg-green-500');
-                // div_info_character.classList.add('bg-red-500');
                 div_info_character.style.backgroundColor = "#FEB2B2";
             }
             label_count_title.innerHTML = object.value.length;
@@ -583,12 +681,8 @@
 
         function countCharsDesc(object){
             if(object.value.length >= 130 && object.value.length <= 160){
-                // div_info_character_desc.classList.remove('bg-red-500');
-                // div_info_character_desc.classList.add('bg-green-500');
                 div_info_character_desc.style.backgroundColor = "#9AE6B4";
             } else {
-                // div_info_character_desc.classList.remove('bg-green-500');
-                // div_info_character_desc.classList.add('bg-red-500');
                 div_info_character_desc.style.backgroundColor = "#FEB2B2";
             }
             label_count_desc.innerHTML = object.value.length;
@@ -710,23 +804,6 @@
         let text = "¿Esta seguro de guardar los cambios?";
         if(confirm(text) == true){return true}
         else {event.preventDefault();}
-
-        //event.preventDefault();
-        // const inpName = document.querySelector("input[name='owner_name']").value;
-        // const inpTitle = document.querySelector("input[name='listing_title']").value;
-        // const inpMetaDesc = document.querySelector("input[name='meta_description']").value;
-        // const inpPrice = document.querySelector("input[name='property_price']").value;
-        // const inpPriceMin = document.querySelector("input[name='property_price_min']").value;
-        // const inpConstArea = document.querySelector("input[name='construction_area']").value;
-        // const inpLandArea = document.querySelector("input[name='land_area']").value;
-        // const inpFront = document.querySelector("input[name='Front']").value;
-        // const inpFund = document.querySelector("input[name='Fund']").value;
-        // const selState = document.querySelector("select[name='state']").value;
-        // const inpAddress = document.querySelector("select[name='address']").value;
-        // const inpLat = document.querySelector("input[name='lat']").value;
-        // const inpLong = document.querySelector("input[name='lng']").value;
-        // const txtDescript = document.querySelector("input[name='listing_description']").value;
-        // if(inpName==""||inpTitle==""||inpMetaDesc==""||) 
     });
 
     var alert_del = document.querySelectorAll('.alert-del');
@@ -752,5 +829,44 @@
                 }
             }
         }
+
+    ///////////////////////////////
+    let openmodal = document.querySelectorAll('.modal-open')
+    for (let i = 0; i < openmodal.length; i++) {
+      openmodal[i].addEventListener('click', function(event){
+    	event.preventDefault()
+    	toggleModal()
+      })
+    }
+    
+    // const overlay = document.querySelector('.modal-overlay')
+    // overlay.addEventListener('click', toggleModal)
+    
+    // let closemodal = document.querySelectorAll('.modal-close')
+    // for (let i = 0; i < closemodal.length; i++) {
+    //   closemodal[i].addEventListener('click', toggleModal)
+    // }
+    
+    // document.onkeydown = function(evt) {
+    //   evt = evt || window.event
+    //   let isEscape = false
+    //   if ("key" in evt) {
+    // 	isEscape = (evt.key === "Escape" || evt.key === "Esc")
+    //   } else {
+    // 	isEscape = (evt.keyCode === 27)
+    //   }
+    //   if (isEscape && document.body.classList.contains('modal-active')) {
+    // 	toggleModal()
+    //   }
+    // };
+    
+    
+    function toggleModal () {
+      const body = document.querySelector('body')
+      const modal = document.querySelector('.modal')
+      modal.classList.toggle('opacity-0')
+      modal.classList.toggle('pointer-events-none')
+      body.classList.toggle('modal-active')
+    }
     </script>
 @endsection

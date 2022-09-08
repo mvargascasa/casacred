@@ -55,7 +55,6 @@
 @section('endscript')
 <script>
     function setviewed(id, listingid){
-        console.log(id);
         $.ajax({
         url: "{{route('admin.comment.setviewed')}}",
         type: "POST",

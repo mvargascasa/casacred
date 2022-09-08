@@ -12,7 +12,7 @@ class Comment extends Model
     protected $primaryKey = 'comment_id';
 
     protected $fillable = [
-        'comment_id', 'listing_id', 'property_code', 'comment',
+        'comment_id', 'listing_id', 'property_code', 'type', 'comment',
         'property_price_prev', 'property_price', 'property_price_min_prev', 'property_price_min',
         'viewed', 'created_at', 'updated_at'
     ];
