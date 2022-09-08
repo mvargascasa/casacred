@@ -9,6 +9,13 @@
 
 <style>
     input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none; margin: 0;}
+    .modal {
+      transition: opacity 0.25s ease;
+    }
+    body.modal-active {
+      overflow-x: hidden;
+      overflow-y: visible !important;
+    }
 </style>
 
 @endsection
@@ -555,7 +562,7 @@
     @endif
 
     @isset($listing)
-    <div class="modal opacity-0 pointer-events-auto fixed w-full h-full top-0 left-0 flex items-center justify-center">
+    <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
         <div class="absolute w-full h-full bg-gray-900 opacity-50"></div>
         
         <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
@@ -564,7 +571,7 @@
             <div class="flex justify-between items-center pb-3">
               <p class="text-2xl font-bold">¿Cuál es la razón por la que se desactiva la propiedad?</p>
             </div>
-                <input type="text" class="border p-5 rounded-md w-full" name="comment_desact" id="comment_desact" required/>
+                <input type="text" class="border p-5 rounded-md w-full" name="comment_desact" id="comment_desact"/>
                 <div class="flex justify-center pt-2 mt-2">
                   <button onclick="setcomment({{$listing->id}}, this)" class="px-4 bg-green-300 p-3 rounded-lg text-black-500 hover:bg-green-100 hover:text-black-300 mr-2">Enviar comentario</button>
                 </div>
