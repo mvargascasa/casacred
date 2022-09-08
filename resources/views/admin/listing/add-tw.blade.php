@@ -550,7 +550,7 @@
         </div>
     </form>
 
-    @if(isset($listing) && $listing->product_code == 1330)
+    @if(isset($listing) && $listing->product_code == 1778)
     <button class="modal-open">Open Modal</button>
     @endif
 
