@@ -103,10 +103,10 @@
                                     </select>
                                 </div> --}}
                                 <div class="w-auto pr-2 pb-2 relative">
-                                    <div onclick="openmaxminprice();" class="block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                    <div id="div1" class="pattern block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                         <label for="">Precio</label>
                                     </div>
-                                    <div class="block w-full rounded-md mt-1 p-1" id="pricemaxmin" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
+                                    <div class="block w-full rounded-md mt-1 p-1" id="child1" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
                                         <label class="text-xs m-2 mb-0">Precio</label>
                                         <input id="minprice" class="block w-28 m-2 shadow appearance-none border rounded py-1 px-1 text-sm text-gray-700 leading-tight focus:outline-none" type="text" placeholder="Desde">
                                         <input id="maxprice" class="block w-28 m-2 shadow appearance-none border rounded py-1 px-1 text-sm text-gray-700 leading-tight focus:outline-none" type="text" placeholder="Hasta">
@@ -120,10 +120,11 @@
                                 </div>
 
                                 <div class="w-auto pr-2 pb-2 relative">
-                                    <div onclick="openDateFilter();" class="block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                    <div id="div2" class="pattern block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                                {{-- onclick="openDateFilter();" --}}
                                         <label for="">Fecha</label>
                                     </div>
-                                    <div class="block w-full rounded-md mt-1 p-1" id="datefilter" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
+                                    <div class="block w-full rounded-md mt-1 p-1" id="child2" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
                                         <label class="ml-2 text-xs" for="fromdate">Desde</label>
                                         <input type="date" class="block w-28 m-2 shadow appearance-none border rounded py-1 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="fromdate">
                                         <label class="ml-2 text-xs" for="untildate">Hasta</label>
@@ -246,23 +247,52 @@
         }
     });
 
-    // window.addEventListener('click', function(e){   
-    //     if (!document.getElementById('pricemaxmin').contains(e.target)){
-    //         openmaxminprice();   
-    //     }
+    //const divpriceinputs = document.getElementById("pricemaxmin");
+    const divlabelprecio = document.getElementById("selprecio");
+
+    // for (let i = 1; i < 2; i++) {
+    //     let element = document.getElementById('pattern1');
+    //     element.addEventListener('click', eventsClick());
+    // }
+
+    document.querySelectorAll('.pattern').forEach(item => {
+        item.addEventListener('click', event => {
+            eventsClick(item.id);
+        });
+    });
+
+    function eventsClick(iditem){
+        openmaxminprice(iditem);
+        const divpriceinputs = document.getElementById('child'+iditem.substring(3));
+        const divlabelprecio = document.getElementById(iditem);
+        document.addEventListener("click", (event) => {
+        const isClickDivPriceInputs = divpriceinputs.contains(event.target);
+        const isClickDivLabelPrecio = divlabelprecio.contains(event.target);
+            if (!isClickDivPriceInputs && !isClickDivLabelPrecio) {
+                if(divpriceinputs.style.display === "block") divpriceinputs.style.display = "none";
+            }
+        });
+    }
+
+    // divlabelprecio.addEventListener('click', function(){
+        
     // });
 
-    function openmaxminprice(){
-        let divpriceminmax = document.getElementById('pricemaxmin');
+    // const divdateinputs = document.getElementById('datefilter');
+    // const divlabelprecio = document.getElementById('seldate');
+
+
+    function openmaxminprice(iditem){
+        let divpriceminmax = document.getElementById('child'+iditem.substring(3));
         if(divpriceminmax.style.display == "none") divpriceminmax.style.display = "block";
         else if(divpriceminmax.style.display == "block") divpriceminmax.style.display = "none";
     }
 
-    function openDateFilter(){
-        let divdatefilter = document.getElementById('datefilter');
-        if(divdatefilter.style.display == "none") divdatefilter.style.display = "block";
-        else if(divdatefilter.style.display == "block") divdatefilter.style.display = "none";
-    }
+    // function openDateFilter(){
+    //     let divdatefilter = document.getElementById('datefilter');
+    //     if(divdatefilter.style.display == "none") divdatefilter.style.display = "block";
+    //     else if(divdatefilter.style.display == "block") divdatefilter.style.display = "none";
+    // }
 
     //const selCountry = document.getElementById('b_country');
     const selState = document.getElementById('b_state');
