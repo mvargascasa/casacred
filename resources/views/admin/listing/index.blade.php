@@ -2,6 +2,7 @@
 
 @section('firstscript')
 <title>Propiedades Taildwind</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">  
 <style>
     .hover-trigger .hover-target {display: none;} 
     .hover-trigger:hover .hover-target {display: block;border-radius: 5px;margin-top: 1px;margin-right: 1px;}
