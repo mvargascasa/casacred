@@ -7,8 +7,7 @@
     .hover-trigger .hover-target {display: none;} 
     .hover-trigger:hover .hover-target {display: block;border-radius: 5px;margin-top: 1px;margin-right: 1px;}
     select > option{background-color: #E5E7EB;}
-    .btn-view:hover{background-color: #68d391 !important}
-    .btn-edit:hover{background-color: #fc8181 !important}
+    .btn-edit:hover{background-color: #79dfa0 !important}
 </style>
 @livewireStyles
 @endsection
@@ -31,7 +30,6 @@
     </div> 
                     <div class="flex flex-col pt-4 px-2">
                         <div class="-my-2 py-2 overflow-x-auto">
-
                             <div id="filtersdiv" class="flex justify-center mt-4">
                                 {{-- <div class="w-full pr-2">
                                     <select class="block w-auto pl-2 py-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_country">
@@ -104,31 +102,32 @@
                                         <option value="DESC">Descendente</option>
                                     </select>
                                 </div> --}}
-                                <div class="w-auto pr-2 pb-2">
+                                <div class="w-auto pr-2 pb-2 relative">
                                     <div onclick="openmaxminprice();" class="block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                         <label for="">Precio</label>
                                     </div>
-                                    <div class="block w-auto" id="pricemaxmin" style="display: none; position:absolute; z-index: 3;border: 1px solid #000000; background-color: #E5E7EB">
-                                        <input id="minprice" class="block w-32 m-2 shadow appearance-none border rounded py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Mínimo">
-                                        <input id="maxprice" class="block w-32 m-2 shadow appearance-none border rounded py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Máximo">
-                                        <div class="bg-white flex justify-between p-2" style="background-color: #E5E7EB">
+                                    <div class="block w-full rounded-md mt-1 p-1" id="pricemaxmin" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
+                                        <label class="text-xs m-2 mb-0">Precio</label>
+                                        <input id="minprice" class="block w-28 m-2 shadow appearance-none border rounded py-1 px-1 text-sm text-gray-700 leading-tight focus:outline-none" type="text" placeholder="Desde">
+                                        <input id="maxprice" class="block w-28 m-2 shadow appearance-none border rounded py-1 px-1 text-sm text-gray-700 leading-tight focus:outline-none" type="text" placeholder="Hasta">
+                                        <div class="bg-white flex justify-between items-center p-2" style="background-color: #ffffff">
                                             <input type="radio" id="asc" name="order" value="ASC">
-                                            <label for="html" title="Ascendente">ASC.</label><br>
+                                            <label for="html" class="text-xs" title="Ascendente">ASC</label><br>
                                             <input type="radio" id="desc" name="order" value="DESC">
-                                            <label for="css" title="Descendente">DESC.</label><br>
+                                            <label for="css" class="text-xs" title="Descendente">DESC</label><br>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="w-auto pr-2 pb-2">
+                                <div class="w-auto pr-2 pb-2 relative">
                                     <div onclick="openDateFilter();" class="block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                         <label for="">Fecha</label>
                                     </div>
-                                    <div class="block w-auto" id="datefilter" style="display: none; position:absolute; z-index: 3;border: 1px solid #000000; background-color: #E5E7EB">
-                                        <label class="ml-2" for="fromdate">Desde</label>
-                                        <input type="date" class="block w-32 m-2 shadow appearance-none border rounded py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="fromdate">
-                                        <label class="ml-2" for="untildate">Hasta</label>
-                                        <input type="date" class="block w-32 m-2 shadow appearance-none border rounded py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="untildate">
+                                    <div class="block w-full rounded-md mt-1 p-1" id="datefilter" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
+                                        <label class="ml-2 text-xs" for="fromdate">Desde</label>
+                                        <input type="date" class="block w-28 m-2 shadow appearance-none border rounded py-1 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="fromdate">
+                                        <label class="ml-2 text-xs" for="untildate">Hasta</label>
+                                        <input type="date" class="block w-28 m-2 shadow appearance-none border rounded py-1 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="untildate">
                                     </div>
                                 </div>
 
@@ -246,6 +245,12 @@
             filter_properties();
         }
     });
+
+    // window.addEventListener('click', function(e){   
+    //     if (!document.getElementById('pricemaxmin').contains(e.target)){
+    //         openmaxminprice();   
+    //     }
+    // });
 
     function openmaxminprice(){
         let divpriceminmax = document.getElementById('pricemaxmin');
