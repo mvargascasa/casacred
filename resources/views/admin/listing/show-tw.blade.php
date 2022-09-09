@@ -5,6 +5,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">  
+  
     <style>
       @media (min-width: 576px) {  .ccimgpro{max-height:250px ;}  }
       /* Medium devices (tablets, 768px and up)*/
@@ -18,6 +20,13 @@
       #carousel-thumbs img:hover {border-color: rgba(255,255,255,.3);}
       #carousel-thumbs .selected img {border-color: #fff;}
       .carousel-control-prev, .carousel-control-next {width: 50px;}
+      .modal {
+        transition: opacity 0.25s ease;
+      }
+      body.modal-active {
+        overflow-x: hidden;
+        overflow-y: visible !important;
+      }
     </style>
 @endsection
 
@@ -192,35 +201,35 @@
           <img style="width: 25px; height: 25px" src="{{ asset('img/ubicacion.png') }}" alt="">
           <p style="font-weight: 400">Sector: @if(Str::contains($propertie->address, ',')) {{$propertie->address}} @else {{ $propertie->state }}, {{$propertie->city}}, {{$propertie->address}} @endif</p>
         </div>
-        <div>
-          <h5>Características:</h5>
-          <div class="row mt-3">
-            @isset($listing->land_area)
-                <div class="col-sm-6 d-flex">
-                  <i style="font-size: 20px; margin-right: 5px" class="far fa-ruler-combined"></i>
-                  <p>@if($listingtype->type_title == "Terrenos") Área Total: @else Área Interior: @endif {{ $listing->land_area}} m<sup>2</sup></p>
+        <div class="mt-4">
+          <h5 style="font-weight: 500">Características:</h5>
+          <div class="row mt-2">
+              @if($propertie->land_area > 0)
+                <div class="col-sm-6 d-flex mt-3 mb-3">
+                  <i style="font-size: 20px; margin-right: 5px" class="fas fa-compress-arrows-alt"></i>
+                  <p> Área Interior: {{ $propertie->land_area}} m<sup>2</sup></p>
                 </div>
-            @endisset
+              @endif
             @if($bathroom > 0)
-              <div class="col-sm-6 d-flex">
+              <div class="col-sm-6 d-flex mt-3 mb-3">
                 <i style="font-size: 20px; margin-right: 5px" class="fas fa-bath"></i>
                 <p>{{ $bathroom}} @if($bathroom > 1) baños @else baño @endif</p>
               </div>
             @endif
-            @isset($listing->construction_area)
-              <div class="col-sm-6 d-flex">
+            @if($propertie->construction_area > 0)
+              <div class="col-sm-6 d-flex mt-3 mb-3">
                 <i style="font-size: 20px; margin-right: 5px" class="fas fa-expand-arrows-alt"></i>
-                <p>Área Total: {{ $listing->construction_area}} m<sup>2</sup></p>
+                <p>Área Total: {{ $propertie->construction_area}} m<sup>2</sup></p>
               </div>
-            @endisset
+            @endif
             @if ($bedroom > 0)
-              <div class="col-sm-6 d-flex">
+              <div class="col-sm-6 d-flex mt-3 mb-3">
                 <i style="font-size: 20px; margin-right: 5px" class="fas fa-bed"></i>
-                <p>{{ $bedroom}} @if($bedroom > 1) habitaciones @else habitación @endif</p>
+                <p>{{ $bedroom }} @if($bedroom > 1) habitaciones @else habitación @endif</p>
               </div>
             @endif
             @if ($garage > 0)
-              <div class="col-sm-6 d-flex">
+              <div class="col-sm-6 d-flex mt-3 mb-3">
                 <i style="font-size: 20px; margin-right: 5px" class="fas fa-car"></i>
                 <p>{{ $garage }} @if($garage > 1) parqueaderos @else parqueadero @endif</p>
               </div>
@@ -291,20 +300,91 @@
         </div>
       @endif
       {{-- <a target="_blank" href="{{$propertie->ubication_url}}">Ver ubicación en Google Maps</a> --}}
-      @if(Auth::user()->role == 'administrator')
-      <div class="flex justify-center">
-        <a class="text-black p-1 rounded" style="text-decoration: none; font-weight: 500; background-color: #c6f6d5" href="{{ route('home.tw.edit', $propertie) }}">Editar Propiedad</a>
-      </div>
-      @endif
     </div>
+  </div>
+  <div class="flex justify-center">
+    @if(Auth::user()->role == 'administrator')
+    <a class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" style="text-decoration: none;" href="{{ route('home.tw.edit', $propertie) }}">Editar Propiedad</a>
+    @endif
+    <button type="button" class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver Historial</button>
   </div>
 </div>
 
-
-    
+<!-- Modal -->
+<div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg modal-dialog-scrollable relative w-auto pointer-events-none">
+<div
+class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+<div
+  class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+  <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">Historial de Propiedad {{$propertie->product_code}}</h5>
+  <button type="button"
+    class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+    data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body relative p-4">
+  @if(count($comments)>0)
+        <ul>
+          @foreach ($comments as $comment)
+            <li class="flex text-sm">
+              <div style="width: 15px; height: 15px; border-left: 1px solid #dc3545; border-bottom: 1px solid #dc3545"></div>
+              <label class="ml-1 mr-1" style="font-weight: 500">{{date_format(date_create($comment->created_at), 'Y/m/d')}}:</label>{{$comment->comment}}</li>
+          @endforeach
+        </ul>
+        @else
+        <p>No hemos encontrado información</p>
+        @endif
+</div>
+<div
+  class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-center p-4 border-t border-gray-200 rounded-b-md">
+  <button type="button" class="px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">Cerrar</button>
+</div>
+</div>
+</div>
+</div>
     
 @endsection
 
 @section('endscript')
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script>
+  var openmodal = document.querySelectorAll('.modal-open')
+    for (var i = 0; i < openmodal.length; i++) {
+      openmodal[i].addEventListener('click', function(event){
+    	event.preventDefault()
+    	toggleModal()
+      })
+    }
+    
+    const overlay = document.querySelector('.modal-overlay')
+    overlay.addEventListener('click', toggleModal)
+    
+    var closemodal = document.querySelectorAll('.modal-close')
+    for (var i = 0; i < closemodal.length; i++) {
+      closemodal[i].addEventListener('click', toggleModal)
+    }
+    
+    document.onkeydown = function(evt) {
+      evt = evt || window.event
+      var isEscape = false
+      if ("key" in evt) {
+    	isEscape = (evt.key === "Escape" || evt.key === "Esc")
+      } else {
+    	isEscape = (evt.keyCode === 27)
+      }
+      if (isEscape && document.body.classList.contains('modal-active')) {
+    	toggleModal()
+      }
+    };
+    
+    
+    function toggleModal () {
+      const body = document.querySelector('body')
+      const modal = document.querySelector('.modal')
+      modal.classList.toggle('opacity-0')
+      modal.classList.toggle('pointer-events-none')
+      body.classList.toggle('modal-active')
+    }
+</script>
 @endsection
