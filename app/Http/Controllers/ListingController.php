@@ -310,10 +310,11 @@ class ListingController extends Controller
 
     public function show_listing($id){
         $propertie = Listing::where('id', $id)->first();
+        $comments = DB::table('comments')->where('listing_id', $id)->where('type', 'status')->get();
         $benefits = DB::table('listing_benefits')->get();
         $services = DB::table('listing_services')->get();
         $details = DB::table('listing_characteristics')->get();  
-        return view('admin.listing.show-tw', compact('propertie', 'benefits', 'services', 'details'));
+        return view('admin.listing.show-tw', compact('propertie', 'benefits', 'services', 'details', 'comments'));
     }
 
     public function unlocked($id){
