@@ -14,11 +14,7 @@
 
 @section('content')
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-    <div class="flex justify-between w-full pt-4 px-4">
-        <div>
-            <button class="bg-red-800 text-white rounded-md px-4 py-1 hover:bg-red-500" onclick="filter_properties()">BUSCAR</button>
-            <button class="bg-red-800 text-white rounded-md px-4 py-1 hover:bg-red-500" onclick="location.reload()">LIMPIAR CAMPOS</button>
-        </div>
+    <div class="flex grid justify-items-end w-full pt-4 px-4">
         <div class="px-5 flex float-right"  >
             <button onclick="prevpage()" class="bg-red-500 text-white rounded-md px-2 py-1 hover:bg-red-600"> 
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -35,7 +31,7 @@
                     <div class="flex flex-col pt-4 px-2">
                         <div class="-my-2 py-2 overflow-x-auto">
 
-                            <div class="flex">
+                            <div id="filtersdiv" class="flex justify-center mt-4">
                                 {{-- <div class="w-full pr-2">
                                     <select class="block w-auto pl-2 py-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_country">
                                         <option value="">Pais</option>
@@ -144,7 +140,7 @@
                                     </select>
                                 </div>
 
-                                <div class="w-full">
+                                <div class="w-auto">
                                     <div class="block w-full py-2 rounded-md">
                                         <input type="hidden" id="view" value="grid">
                                         <div style="cursor: pointer" onclick="document.getElementById('view').value='grid';filter_properties();" class="float-right pr-1"><img src="{{ asset('img/grid.png') }}" alt=""></div>
@@ -153,6 +149,12 @@
                                 </div>
                                 <input type="hidden" name="b_current_url" id="b_current_url" value="{{ Route::current()->getName() }}">
                             </div>
+
+                            <div class="flex justify-center m-5">
+                                <button class="bg-red-800 text-white rounded-md px-4 py-1 hover:bg-red-500 mr-1" onclick="filter_properties()">BUSCAR</button>
+                                <button class="bg-red-800 text-white rounded-md px-4 py-1 hover:bg-red-500 ml-1" onclick="location.reload()">LIMPIAR CAMPOS</button>
+                            </div>
+
                             <div class="w-full overflow-scroll mx-auto" style="height: 80vh;">
                                 {{-- <table class="w-full whitespace-nowrap bg-white">
                                     <thead>
@@ -237,6 +239,12 @@
 @livewireScripts
 @stack('scripts')
 <script>
+
+    document.addEventListener('keypress', function(event){
+        if(event.key === "Enter"){
+            filter_properties();
+        }
+    });
 
     function openmaxminprice(){
         let divpriceminmax = document.getElementById('pricemaxmin');
