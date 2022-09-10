@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">  
 <style>
-    input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none; margin: 0;}
+    /* input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none; margin: 0;} */
     .modal, .modalSuccess {
       transition: opacity 0.25s ease;
     }
@@ -619,8 +619,10 @@
         let valueStatus;
 
         if(window.location.toString().includes("edit")) {
-            selstatus.addEventListener('change', showDivStatusComment);
-            valueStatus = document.querySelector("select[name='status']").value;
+            if(selstatus){
+                selstatus.addEventListener('change', showDivStatusComment);
+                valueStatus = document.querySelector("select[name='status']").value;
+            }
         }
 
         function showDivStatusComment(){
