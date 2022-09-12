@@ -126,6 +126,7 @@ class TwController extends Controller
         $newcomment = Comment::create([
             'listing_id' => $request->listing_id,
             'type' => $request->type,
+            'value' => $request->value,
             'comment' => $request->comment
         ]);
 

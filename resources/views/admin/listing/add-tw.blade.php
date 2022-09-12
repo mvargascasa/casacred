@@ -551,7 +551,7 @@
             @if(isset($listing) && $listing->locked)
                 <button type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform bg-red-700 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600" disabled>GUARDAR</button>
             @else
-                <button type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform bg-red-700 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600">GUARDAR</button>
+                <button id="btnSave" type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform bg-red-700 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600">GUARDAR</button>
             @endif
                 {{-- <button type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform bg-red-700 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600">GUARDAR</button> --}}
         </div>
@@ -565,7 +565,12 @@
     
           <div class="modal-content py-4 text-left px-6">
             <div class="flex justify-between items-center pb-3">
-              <p class="text-2xl font-bold">¿Cuál es la razón por la que se desactiva la propiedad?</p>
+              <p class="text-2xl font-bold" id="txttitlemodal">¿Cuál es la razón por la que se desactiva la propiedad?</p>
+              <div class="modal-close cursor-pointer z-50">
+                <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                  <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                </svg>
+              </div>
             </div>
                 <input type="text" class="border p-5 rounded-md w-full" name="comment_desact" id="comment_desact"/>
                 <div class="flex justify-center pt-2 mt-2">
@@ -615,24 +620,52 @@
         var label_count_desc = document.getElementById('label_count_desc');
         
         let selstatus = document.querySelector("select[name='status']");
-        
-        let valueStatus;
+        if(selstatus) selstatus = selstatus.value; 
+        //let valueStatus;
 
-        if(window.location.toString().includes("edit")) {
-            if(selstatus){
-                selstatus.addEventListener('change', showDivStatusComment);
-                valueStatus = document.querySelector("select[name='status']").value;
-            }
+        // if(window.location.toString().includes("edit")) {
+        //     if(selstatus){
+        //         selstatus.addEventListener('change', showDivStatusComment);
+        //         valueStatus = document.querySelector("select[name='status']").value;
+        //     }
+        // }
+
+        //funcion para abrir el modal si el valor del status al inicio es activado y cambia de estado a desactivado
+        // function showDivStatusComment(){
+        //     if(selstatus.value == 0 && valueStatus == 1){
+        //         toggleModal();
+        //     }
+        // }
+
+        let ischangestatus = false;
+        let ischangeplan = false;
+
+        let btnSave = document.getElementById('btnSave');
+        if(btnSave){
+            btnSave.addEventListener("click", function(event){
+                let valueStatus = document.querySelector("select[name='status']");
+                let valuePlan = document.querySelector("select[name='listing_type']").value;
+                if(valueStatus) {
+                    valueStatus = valueStatus.value;
+                    if(selstatus == 1 && valueStatus == 0){
+                        ischangestatus = true;
+                        event.preventDefault();
+                        toggleModal("status");
+                    } else if(valuePlan == 1 && selstatus == 0 && valueStatus == 1){
+                        ischangeplan = true;
+                        event.preventDefault();
+                        toggleModal('plan');
+                    }
+                }
+            });
         }
-
-        function showDivStatusComment(){
-            if(selstatus.value == 0 && valueStatus == 1){
-                toggleModal();
-            }    
-        } 
 
         function setcomment(listing_id, button){
             let comment = document.getElementById("comment_desact");
+            let form = document.getElementById('formsave');
+            let value = ""; let type = "";
+            if(ischangestatus){value = document.querySelector("select[name='status']").value;type="status";}
+            if(ischangeplan){value = document.querySelector("select[name='listing_type']").value;type="plan";}
             if(comment.value.length > 4){
 
                 let icon = document.createElement('i');
@@ -646,7 +679,8 @@
                     data: {
                         "_token": "{{ csrf_token() }}",
                         "listing_id": listing_id,
-                        "type": "status",
+                        "type": type,
+                        "value": value,
                         "comment" : comment.value
                     },
                     dataType: "json",
@@ -654,7 +688,8 @@
                     if(response){
                         icon.classList.remove('fa', 'fa-spinner', 'fa-spin');
                         toggleModal();
-                        toggleModalSuccess();
+                        form.submit();
+                        //toggleModalSuccess();
                     } else {
                         alert('Algo salio mal guardando el comentario, por favor recargue la pagina');
                     }
@@ -852,7 +887,7 @@
     
     let closemodal = document.querySelectorAll('.modal-close')
     for (let i = 0; i < closemodal.length; i++) {
-      closemodal[i].addEventListener('click', toggleModalSuccess)
+      closemodal[i].addEventListener('click', toggleModal)
     }
     
     // document.onkeydown = function(evt) {
@@ -869,7 +904,14 @@
     // };
     
     
-    function toggleModal () {
+    function toggleModal (selectchange) {
+        let txttitlemodal = document.getElementById('txttitlemodal');
+        switch (selectchange) {
+            case "status": txttitlemodal.innerHTML = "Por favor, indique la razón por la cual se desactiva la propiedad"; break;
+            case "plan"  : txttitlemodal.innerHTML = "Por favor, indique la razón por la cual se activa la propiedad gratis"; break;
+            default:
+                break;
+        }
       const body = document.querySelector('body')
       const modal = document.querySelector('.modal')
       modal.classList.toggle('opacity-0')

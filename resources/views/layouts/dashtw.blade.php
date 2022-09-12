@@ -46,15 +46,15 @@
                 <a style="text-decoration: none !important" href="{{route('admin.properties')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/properties*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 py-4">Propiedades</span>
                 </a>
-@if(Auth::user()->role!="administrator")
+            @if(Auth::user()->role!="administrator")
                 <a style="text-decoration: none !important" href="{{ route('admin.myproperties') }}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/my-properties*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 py-4">Mis Propiedades</span>
                 </a> 
-@endif         
+            @endif         
                 <a style="text-decoration: none !important" href="{{route('admin.soldout')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/sold-out*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 py-4">Archivadas</span>
                 </a>
-@if (Auth::id()==123 || Auth::id()==147 || Auth::id()==15)
+            @if (Auth::id()==123 || Auth::id()==147 || Auth::id()==15)
 
                 <a style="text-decoration: none" href="{{ route('admin.notifications') }}" class="flex items-center px-4 text-sm text-white @if(Request::is('admin/notification*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 py-4">
@@ -79,7 +79,7 @@
                     <span class="mx-3 py-4">Usuarios</span>
                 </a>         
     
-@endif
+            @endif
                 @if (Auth::id()==123)   
                 <a style="text-decoration: none !important" href="{{route('profile.show')}}" class="flex items-center px-4 text-sm text-white @if(Request::is('user/profile')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 py-4">Perfil</span>
@@ -203,6 +203,7 @@
             url: "{{route('admin.count.notifications')}}",
             type: "GET",
             success: function(data){
+                // alert(data);
                 let divnotification = document.getElementById('divnotification');
                 if(divnotification){
                     if(data > 0){
@@ -214,7 +215,8 @@
                     }
                 }
             },
-            error: function(){
+            error: function(error){
+                //alert(error);
                 alert('Algo salio mal, por favor recargue la página');
             }
         });

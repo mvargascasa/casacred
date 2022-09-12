@@ -305,8 +305,8 @@
   <div class="flex justify-center">
     @if(Auth::user()->role == 'administrator')
     <a class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" style="text-decoration: none;" href="{{ route('home.tw.edit', $propertie) }}">Editar Propiedad</a>
-    @endif
     <button type="button" class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver Historial</button>
+    @endif
   </div>
 </div>
 
@@ -325,16 +325,45 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
 </div>
 <div class="modal-body relative p-4">
   @if(count($comments)>0)
-        <ul>
-          @foreach ($comments as $comment)
-            <li class="flex text-sm">
-              <div style="width: 15px; height: 15px; border-left: 1px solid #dc3545; border-bottom: 1px solid #dc3545"></div>
-              <label class="ml-1 mr-1" style="font-weight: 500">{{date_format(date_create($comment->created_at), 'Y/m/d')}}:</label>{{$comment->comment}}</li>
-          @endforeach
-        </ul>
-        @else
-        <p>No hemos encontrado información</p>
-        @endif
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+            <th scope="col" class="py-3 px-6">
+                Fecha
+            </th>
+            <th scope="col" class="py-3 px-6">
+                Tipo de Cambio
+            </th>
+            <th scope="col" class="py-3 px-6">
+                Cambio Efectuado
+            </th>
+            <th scope="col" class="py-3 px-6">
+                Comentario
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+      @foreach ($comments as $comment)
+        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+            <th scope="row" class="py-2 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              {{date_format(date_create($comment->created_at), 'Y/m/d')}}
+            </th>
+            <td class="py-2 px-6">
+              @if($comment->type == "status") Estado @elseif($comment->type == "plan") Plan @endif
+            </td>
+            <td class="py-2 px-6">
+              @if($comment->type == "status" && $comment->type == 0) Se desactivo la propiedad @elseif($comment->type == "plan" && $comment->value == 1) Se activo la propiedad Gratis @endif
+            </td>
+            <td class="py-2 px-6">
+              {{$comment->comment}}
+            </td>
+        </tr>
+      @endforeach
+    </tbody>
+</table>
+    @else
+      <p>No hemos encontrado comentarios de esta propiedad</p>
+    @endif
 </div>
 <div
   class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-center p-4 border-t border-gray-200 rounded-b-md">

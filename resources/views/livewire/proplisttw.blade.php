@@ -16,17 +16,17 @@
 
                 @if ($dirImg != null)
                 @php
-                    $imageVerification = asset('uploads/listing/thumb/600/'.$dirImg);    
+                    $imageVerification = asset('uploads/listing/thumb/600/'.$dirImg);
                 @endphp
-                <img class="w-full" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.$dirImg)) {{ url('/uploads/listing/thumb/600/', $dirImg) }} @else {{url('uploads/listing/600', $dirImg)}} @endif" alt="{{ $propertie->listing_title}}">
+                <a target="_blank" href="@if($url_current == "admin.myproperties" || Route::current()->getName() == "admin.myproperties"){{ route('admin.listings.edit', $propertie->id) }} @else {{ route('admin.show.listing', $propertie) }} @endif"><img class="w-full" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.$dirImg)) {{ url('/uploads/listing/thumb/600/', $dirImg) }} @else {{url('uploads/listing/600', $dirImg)}} @endif" alt="{{ $propertie->listing_title}}"></a>
                 {{-- @if(@getimagesize($imageVerification)) {{ url('/uploads/listing/thumb/600/', $dirImg) }} @else {{url('uploads/listing/600', $dirImg)}} @endif --}}
                 @else
-                <div class="relative">
-                    <img class="w-full" src="{{ asset('img/sin-imagenes.jpg') }}" alt="Sunset in the mountains">
-                    <div class="absolute top-0 left-0 w-full h-full" style="display: flex; justify-content: center; align-items: center">
-                        <p style="color: #ffffff" class="flex">Sin imágenes</p>
+                    <div class="relative">
+                        <a target="_blank" href="{{ route('admin.show.listing', $propertie) }}"><img class="w-full" src="{{ asset('img/sin-imagenes.jpg') }}" alt="Sunset in the mountains"></a>
+                        <div class="absolute top-0 left-0 w-full h-full" style="display: flex; justify-content: center; align-items: center">
+                            <p style="color: #ffffff" class="flex">Sin imágenes</p>
+                        </div>
                     </div>
-                </div>
                 @endif
 
                 {{-- <div class="absolute left-0" style="top: 30px">
@@ -114,11 +114,11 @@
 <br><br>
                 @if(Auth::user()->role == 'administrator')
                 <div class="flex justify-center">
-                    <a target="_blank" class="btn-view mr-1 p-1 rounded" style="background-color: #c6f6d5" href="{{ route('admin.show.listing', $propertie) }}" style="text-decoration: none;">
+                    {{-- <a target="_blank" class="btn-view mr-1 p-1 rounded" style="background-color: #c6f6d5" href="{{ route('admin.show.listing', $propertie) }}" style="text-decoration: none;">
                         <p class="text-black text-xs" style="font-weight: 500">Ver propiedad</p>
-                    </a>
-                    <a target="_blank" class="btn-edit ml-1 p-1 rounded" style="background-color: #fed7d7" href="{{ route('home.tw.edit', $propertie) }}" style="text-decoration: none">
-                        <p class="text-black text-xs" style="font-weight: 500">Editar propiedad</p>
+                    </a> --}}
+                    <a target="_blank" class="btn-edit ml-1 p-1 rounded" style="background-color: #c6f6d5" href="{{ route('home.tw.edit', $propertie) }}" style="text-decoration: none">
+                        <p class="text-black text-sm" style="font-weight: 500">Editar propiedad</p>
                     </a>
                 </div>
                 @endif
