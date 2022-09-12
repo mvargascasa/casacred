@@ -574,7 +574,7 @@
             </div>
                 <input type="text" class="border p-5 rounded-md w-full" name="comment_desact" id="comment_desact"/>
                 <div class="flex justify-center pt-2 mt-2">
-                  <button onclick="setcomment({{$listing->id}}, this)" class="px-4 bg-green-300 p-3 rounded-lg text-black-500 hover:bg-green-100 hover:text-black-300 mr-2">Enviar comentario</button>
+                  <button onclick="setcomment({{$listing->id}}, this)" class="px-4 bg-green-300 p-3 rounded-lg text-black-500 hover:bg-green-100 hover:text-black-300 mr-2">Guardar</button>
                 </div>
             
           </div>
