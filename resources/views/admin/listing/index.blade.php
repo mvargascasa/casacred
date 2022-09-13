@@ -29,8 +29,8 @@
         </div> 
     </div> 
                     <div class="flex flex-col pt-4 px-2">
-                        <div class="-my-2 py-2 overflow-x-auto">
-                            <div id="filtersdiv" class="flex justify-center mt-4">
+                        <div class="py-2 overflow-x-auto">
+                            <div id="filtersdiv" class="flex flex-wrap justify-center mt-4">
                                 {{-- <div class="w-full pr-2">
                                     <select class="block w-auto pl-2 py-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_country">
                                         <option value="">Pais</option>
@@ -41,6 +41,7 @@
                                         <option value="Guatemala" data-id="232">Guatemala</option>
                                     </select>
                                 </div> --}}
+                                {{--  --}}
                                 <div class="w-auto pr-2 pb-2">
                                     <select class="block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 focus:outline-none shadow-md" id="b_state">
                                         <option value="">Provincia</option>
@@ -141,20 +142,22 @@
                                     </select>
                                 </div>
 
-                                <div class="w-auto">
-                                    <div class="block w-full py-3 rounded-md">
-                                        <input type="hidden" id="view" value="grid">
-                                        <div style="cursor: pointer" onclick="document.getElementById('view').value='grid';filter_properties();" class="float-right pr-1"><img src="{{ asset('img/grid.png') }}" alt=""></div>
-                                        <div style="cursor: pointer" onclick="document.getElementById('view').value='list';filter_properties();" class="float-right pr-2"><img src="{{ asset('img/list.png') }}" alt=""></div>
-                                    </div>
-                                </div>
+                                
                                 <input type="hidden" name="b_current_url" id="b_current_url" value="{{ Route::current()->getName() }}">
                             </div>
 
-                            <div class="flex justify-center mt-3 mb-5">
+                            <div class="flex justify-center mt-3">
                                 <button class="bg-red-800 text-white rounded-md px-4 py-2 hover:bg-red-500 mr-1" onclick="filter_properties()">BUSCAR</button>
                                 <button class="bg-red-800 text-white rounded-md px-4 py-2 hover:bg-red-500 ml-1" onclick="location.reload()">LIMPIAR CAMPOS</button>
                             </div>
+                            <div class="w-auto flex justify-end">
+                                <div class="block w-full pb-3 rounded-md">
+                                    <input type="hidden" id="view" value="grid">
+                                    <div style="cursor: pointer" onclick="document.getElementById('view').value='grid';filter_properties();" class="float-right pr-1"><img src="{{ asset('img/grid.png') }}" alt=""></div>
+                                    <div style="cursor: pointer" onclick="document.getElementById('view').value='list';filter_properties();" class="float-right pr-2"><img src="{{ asset('img/list.png') }}" alt=""></div>
+                                </div>
+                            </div>
+
 
                             <div class="w-full overflow-scroll mx-auto" style="height: 80vh;">
                                 {{-- <table class="w-full whitespace-nowrap bg-white">
