@@ -310,7 +310,7 @@ class ListingController extends Controller
 
     public function show_listing($id){
         $propertie = Listing::where('id', $id)->first();
-        $comments = DB::table('comments')->where('type', '!=', 'price')->where('listing_id', $id)->get();
+        $comments = DB::table('comments')->where('type', '!=', 'price')->where('listing_id', $id)->orderBy('created_at', 'desc')->get();
         $benefits = DB::table('listing_benefits')->get();
         $services = DB::table('listing_services')->get();
         $details = DB::table('listing_characteristics')->get();  

@@ -565,7 +565,7 @@
     
           <div class="modal-content py-4 text-left px-6">
             <div class="flex justify-between items-center pb-3">
-              <p class="text-2xl font-bold" id="txttitlemodal">¿Cuál es la razón por la que se desactiva la propiedad?</p>
+              <p class="text-md font-bold" id="txttitlemodal">¿Cuál es la razón por la que se desactiva la propiedad?</p>
               <div class="modal-close cursor-pointer z-50">
                 <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
                   <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
@@ -621,6 +621,8 @@
         
         let selstatus = document.querySelector("select[name='status']");
         if(selstatus) selstatus = selstatus.value; 
+        let selavailable = document.querySelector("select[name='available']");
+        if(selavailable) selavailable = selavailable.value;
         //let valueStatus;
 
         // if(window.location.toString().includes("edit")) {
@@ -639,12 +641,14 @@
 
         let ischangestatus = false;
         let ischangeplan = false;
+        let ischangeavailable = false;
 
         let btnSave = document.getElementById('btnSave');
         if(btnSave){
             btnSave.addEventListener("click", function(event){
                 let valueStatus = document.querySelector("select[name='status']");
                 let valuePlan = document.querySelector("select[name='listing_type']").value;
+                let valueAvailable = document.querySelector("select[name='available']").value;
                 if(valueStatus) {
                     valueStatus = valueStatus.value;
                     if(selstatus == 1 && valueStatus == 0){
@@ -655,6 +659,10 @@
                         ischangeplan = true;
                         event.preventDefault();
                         toggleModal('plan');
+                    } else if(valueAvailable == 2 && selavailable == 1) {
+                        ischangeavailable = true;
+                        event.preventDefault();
+                        toggleModal('available');
                     }
                 }
             });
@@ -666,12 +674,18 @@
             let value = ""; let type = "";
             if(ischangestatus){value = document.querySelector("select[name='status']").value;type="status";}
             if(ischangeplan){value = document.querySelector("select[name='listing_type']").value;type="plan";}
+            if(ischangeavailable){value = document.querySelector("select[name='available']").value;type="available"}
             if(comment.value.length > 4){
 
                 let icon = document.createElement('i');
                 icon.classList.add('fa', 'fa-spinner', 'fa-spin', 'ml-2');
                 button.classList.add('buttonload');
                 button.appendChild(icon);
+                
+                if(ischangeavailable && value == 2 && selstatus == 1){
+                    alert('La propiedad pasará a estar DESACTIVADA debido a que ya NO ESTA DISPONIBLE');
+                    document.querySelector("select[name='status']").value = 0;
+                }
 
                 $.ajax({
                     url: "{{route('home.tw.setcomment')}}",
@@ -909,14 +923,15 @@
         switch (selectchange) {
             case "status": txttitlemodal.innerHTML = "Por favor, indique la razón por la cual se desactiva la propiedad"; break;
             case "plan"  : txttitlemodal.innerHTML = "Por favor, indique la razón por la cual se activa la propiedad gratis"; break;
+            case "available": txttitlemodal.innerHTML = "Por favor, ingrese la razón por la cual la propiedad ya no está disponible"; break;
             default:
                 break;
         }
-      const body = document.querySelector('body')
-      const modal = document.querySelector('.modal')
-      modal.classList.toggle('opacity-0')
-      modal.classList.toggle('pointer-events-none')
-      body.classList.toggle('modal-active')
+        const body = document.querySelector('body')
+        const modal = document.querySelector('.modal')
+        modal.classList.toggle('opacity-0')
+        modal.classList.toggle('pointer-events-none')
+        body.classList.toggle('modal-active')
     }
 
     function toggleModalSuccess(){
