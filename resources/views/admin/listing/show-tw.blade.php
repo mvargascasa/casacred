@@ -12,7 +12,7 @@
       /* Medium devices (tablets, 768px and up)*/
       @media (min-width: 768px) { .ccimgpro{max-height:350px ;}  }
       /* Large devices (desktops, 992px and up)*/
-      @media (min-width: 992px) { .ccimgpro{max-height:450px ;}  }
+      @media (min-width: 992px) { .ccimgpro{max-height:550px ;}  }
       .carousel-control-prev-icon {background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='darkorange' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;}
       .carousel-control-next-icon {background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='darkorange' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;}
       #carousel-thumbs {background: rgba(255,255,255,.3);bottom: 0;left: 0;padding: 0 50px;right: 0;}
