@@ -13,12 +13,12 @@
     </noscript>
 
   <script>
-    var stylesheet = document.createElement('link');
+    let stylesheet = document.createElement('link');
       stylesheet.href = "https://pro.fontawesome.com/releases/v5.10.0/css/all.css";
       stylesheet.rel = 'stylesheet';
       setTimeout(function () {
           document.getElementsByTagName('head')[0].appendChild(stylesheet);
-      }, 3000);
+      }, 3500);
   </script>
 
   {{-- SCRIPT DE RECAPTCHA V3 --}}
@@ -421,7 +421,7 @@ if(strpos($actual_link, 'localhost') === false){
         <img src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Notary Public Near Me" width="50" height="50">
     </a>
   </div>
-<script src="{{asset('js/popper.min.js')}}"></script>
+<script src="{{asset('js/5.0.0/popper.min.js')}}"></script>
 <script src="{{asset('js/5.0.0/bootstrap.min.js')}}"></script>
 
 @yield('script')
