@@ -286,7 +286,7 @@
                               @for ($i = 0; $i < $aux; $i++)
                                 <div id="carousel-selector-{{ $i }}" class="thumb col-2 col-sm-2 px-0 selected" data-slide-to="{{$i}}" data-target="#myCarousel">
                                   @isset($arrayImages[$i])
-                                    <img style="width: 100vw" height="100vh" src="@if($filexists){{url('uploads/listing/thumb/300/'.$arrayImages[$i])}} @else {{ url('uploads/listing/300/', $arrayImages[$i]) }} @endif" class="img-fluid" alt="{{$listing->listing_title}}-{{ $i}}">     
+                                    <img style="width: 115px" height="80px" src="@if($filexists){{url('uploads/listing/thumb/300/'.$arrayImages[$i])}} @else {{ url('uploads/listing/300/', $arrayImages[$i]) }} @endif" class="img-fluid" alt="{{$listing->listing_title}}-{{ $i}}">     
                                   @endisset
                                 </div>   
                               @endfor
