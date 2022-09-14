@@ -286,7 +286,7 @@
                               @for ($i = 0; $i < $aux; $i++)
                                 <div id="carousel-selector-{{ $i }}" class="thumb col-2 col-sm-2 px-0 selected" data-slide-to="{{$i}}" data-target="#myCarousel">
                                   @isset($arrayImages[$i])
-                                    <img style="width: 115px; height: 80px" src="@if($filexists){{url('uploads/listing/thumb/300/'.$arrayImages[$i])}} @else {{ url('uploads/listing/300/', $arrayImages[$i]) }} @endif" class="img-fluid" alt="{{$listing->listing_title}}-{{ $i}}">     
+                                    <img style="width: 100%; height: 100%" src="@if($filexists){{url('uploads/listing/thumb/300/'.$arrayImages[$i])}} @else {{ url('uploads/listing/300/', $arrayImages[$i]) }} @endif" class="img-fluid" alt="{{$listing->listing_title}}-{{ $i}}">     
                                   @endisset
                                 </div>   
                               @endfor
@@ -299,7 +299,7 @@
                               @for ($i = 6; $i < 12; $i++)
                                 <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-slide-to="{{$i}}" data-target="#myCarousel">
                                   @isset($arrayImages[$i])
-                                    <img style="width: 100%" src="@if($filexists){{url('uploads/listing/thumb/300/',$arrayImages[$i])}} @else {{ url('uploads/listing/300/', $arrayImages[$i]) }} @endif" class="img-fluid" alt="{{$listing->listing_title}}-{{$i}}">  
+                                    <img style="width: 100%; height: 100%" src="@if($filexists){{url('uploads/listing/thumb/300/',$arrayImages[$i])}} @else {{ url('uploads/listing/300/', $arrayImages[$i]) }} @endif" class="img-fluid" alt="{{$listing->listing_title}}-{{$i}}">  
                                   @endisset
                                 </div>
                               @endfor
@@ -313,7 +313,7 @@
                               @for ($i = 12; $i < 18; $i++)
                                 <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-slide-to="{{$i}}" data-target="#myCarousel">
                                   @isset($arrayImages[$i])
-                                    <img style="width: 100%" src="@if($filexists){{url('uploads/listing/thumb/300/',$arrayImages[$i])}} @else {{ url('uploads/listing/300/', $arrayImages[$i]) }} @endif" class="img-fluid" alt="{{$listing->listing_title}}-{{$i}}">  
+                                    <img style="width: 100%; height: 100%" src="@if($filexists){{url('uploads/listing/thumb/300/',$arrayImages[$i])}} @else {{ url('uploads/listing/300/', $arrayImages[$i]) }} @endif" class="img-fluid" alt="{{$listing->listing_title}}-{{$i}}">  
                                   @endisset
                                 </div>
                               @endfor
@@ -327,7 +327,7 @@
                               @for ($i = 18; $i < 24; $i++)
                                 <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-slide-to="{{$i}}" data-target="#myCarousel">
                                   @isset($arrayImages[$i])
-                                    <img style="width: 100%" src="@if($filexists){{url('uploads/listing/thumb/300/',$arrayImages[$i])}} @else {{ url('uploads/listing/300/', $arrayImages[$i]) }} @endif" class="img-fluid" alt="{{$listing->listing_title}}-{{$i}}">  
+                                    <img style="width: 100%; height: 100%" src="@if($filexists){{url('uploads/listing/thumb/300/',$arrayImages[$i])}} @else {{ url('uploads/listing/300/', $arrayImages[$i]) }} @endif" class="img-fluid" alt="{{$listing->listing_title}}-{{$i}}">  
                                   @endisset
                                 </div>
                               @endfor
@@ -341,7 +341,7 @@
                               @for ($i = 24; $i < 30; $i++)
                                 <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-slide-to="{{$i}}" data-target="#myCarousel">
                                   @isset($arrayImages[$i])
-                                    <img style="width: 100%" src="@if($filexists){{url('uploads/listing/thumb/300/',$arrayImages[$i])}} @else {{ url('uploads/listing/300/', $arrayImages[$i]) }} @endif" class="img-fluid" alt="{{$listing->listing_title}}-{{$i}}">  
+                                    <img style="width: 100%; height: 100%" src="@if($filexists){{url('uploads/listing/thumb/300/',$arrayImages[$i])}} @else {{ url('uploads/listing/300/', $arrayImages[$i]) }} @endif" class="img-fluid" alt="{{$listing->listing_title}}-{{$i}}">  
                                   @endisset
                                 </div>
                               @endfor
