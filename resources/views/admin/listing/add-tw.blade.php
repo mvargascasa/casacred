@@ -248,17 +248,17 @@
             <div>          
                 {!! Form::label('construction_area', 'Construcción', ['class' => 'font-semibold']) !!}
                 @if(isset($listing) && $listing->locked)
-                    {!! Form::text('construction_area', null, ['class' => $inputs, 'disabled']) !!}
+                    {!! Form::number('construction_area', null, ['class' => $inputs, 'disabled']) !!}
                 @else
-                    {!! Form::text('construction_area', null, ['class' => $inputs, 'required']) !!}
+                    {!! Form::number('construction_area', null, ['class' => $inputs, 'min' => '1', 'oninvalid' => "this.setCustomValidity('Por favor, ingrese un valor mayor a 0')", 'oninput' => "this.setCustomValidity('')", 'required']) !!}
                 @endif
             </div>
             <div>          
                 {!! Form::label('land_area', 'Superficie', ['class' => 'font-semibold']) !!}
                 @if(isset($listing) && $listing->locked)
-                    {!! Form::text('land_area', null, ['class' => $inputs, 'disabled']) !!}
+                    {!! Form::number('land_area', null, ['class' => $inputs, 'disabled']) !!}
                 @else
-                    {!! Form::text('land_area', null, ['class' => $inputs, 'required']) !!}
+                    {!! Form::number('land_area', null, ['class' => $inputs, 'min' => '1', 'oninvalid' => "this.setCustomValidity('Por favor, ingrese un valor mayor a 0')", 'oninput' => "this.setCustomValidity('')", 'required']) !!}
                 @endif
             </div>
             <div>          

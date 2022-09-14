@@ -482,25 +482,25 @@
               </div>
               <div>
                 <div class="row">
-                  @isset($listing->land_area)
+                    @if($listing->land_area > 0)
                       <div class="col-sm-6 d-flex">
                         <i style="font-size: 20px; margin-right: 5px" class="far fa-ruler-combined"></i>
                         <p>Área de Terreno: {{ $listing->land_area }} m<sup>2</sup></p>
                         {{-- @if($listingtype->type_title == "Terrenos") Área de Terreno: @else Área de Terreno: @endif {{ $listing->land_area}} --}}
                       </div>
-                  @endisset
+                    @endif
                   @if($bathroom > 0)
                     <div class="col-sm-6 d-flex">
                       <i style="font-size: 20px; margin-right: 5px" class="fas fa-bath"></i>
                       <p>{{ $bathroom}} @if($bathroom > 1) baños @else baño @endif</p>
                     </div>
                   @endif
-                  @isset($listing->construction_area)
+                  @if($listing->construction_area > 0)
                     <div class="col-sm-6 d-flex">
                       <i style="font-size: 20px; margin-right: 5px" class="fas fa-expand-arrows-alt"></i>
                       <p>Área de Construcción: {{ $listing->construction_area}} m<sup>2</sup></p>
                     </div>
-                  @endisset
+                  @endif
                   @if($listing->Front > 0)
                   <div class="col-sm-6 d-flex">
                     <i style="font-size: 20px; margin-right: 5px" class="far fa-arrow-to-top"></i>
