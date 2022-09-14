@@ -734,7 +734,7 @@
               @php
                   $imageVerification = asset('uploads/listing/thumb/600'. strtok($listing_s->images, '|'));
               @endphp
-              <img class="card-img-top lazyLoad" width="100%" height="100%" data-src="@if(@getimagesize($imageVerification)) {{asset('uploads/listing/thumb/600/'. strtok($listing_s->images, '|')) }} @else {{ asset('uploads/listing/600/'. strtok($listing_s->images, '|')) }} @endif" alt="{{ $listing_s->listing_title}}">
+              <img class="card-img-top lazyLoad" width="100%" height="100%" data-src="@if(file_exists($imageVerification)) {{asset('uploads/listing/thumb/600/'. strtok($listing_s->images, '|')) }} @else {{ asset('uploads/listing/600/'. strtok($listing_s->images, '|')) }} @endif" alt="{{ $listing_s->listing_title}}">
               <div class="card-body">
                 <h5 style="margin: 0px" class="card-title">${{ number_format($listing_s->property_price) }}</h5>
                 @php
