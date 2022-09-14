@@ -20,13 +20,8 @@
       #carousel-thumbs img:hover {border-color: rgba(255,255,255,.3);}
       #carousel-thumbs .selected img {border-color: #fff;}
       .carousel-control-prev, .carousel-control-next {width: 50px;}
-      .modal {
-        transition: opacity 0.25s ease;
-      }
-      body.modal-active {
-        overflow-x: hidden;
-        overflow-y: visible !important;
-      }
+      .modal {transition: opacity 0.25s ease;}
+      body.modal-active {overflow-x: hidden;overflow-y: visible !important;}
     </style>
 @endsection
 
@@ -386,8 +381,8 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
       })
     }
     
-    const overlay = document.querySelector('.modal-overlay')
-    overlay.addEventListener('click', toggleModal)
+    // const overlay = document.querySelector('.modal-overlay')
+    // overlay.addEventListener('click', toggleModal)
     
     var closemodal = document.querySelectorAll('.modal-close')
     for (var i = 0; i < closemodal.length; i++) {
