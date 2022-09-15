@@ -249,6 +249,8 @@
                 {!! Form::label('construction_area', 'Construcción', ['class' => 'font-semibold']) !!}
                 @if(isset($listing) && $listing->locked)
                     {!! Form::number('construction_area', null, ['class' => $inputs, 'disabled']) !!}
+                @elseif(Auth::user()->email == "developer2@casacredito.com")
+                    {!! Form::number('construction_area', null, ['class' => $inputs]) !!}
                 @else
                     {!! Form::number('construction_area', null, ['class' => $inputs, 'min' => '1', 'oninvalid' => "this.setCustomValidity('Por favor, ingrese un valor mayor a 0')", 'oninput' => "this.setCustomValidity('')", 'required']) !!}
                 @endif
@@ -257,6 +259,8 @@
                 {!! Form::label('land_area', 'Superficie', ['class' => 'font-semibold']) !!}
                 @if(isset($listing) && $listing->locked)
                     {!! Form::number('land_area', null, ['class' => $inputs, 'disabled']) !!}
+                @elseif(Auth::user()->email == "developer2@casacredito.com")
+                    {!! Form::number('land_area', null, ['class' => $inputs]) !!}
                 @else
                     {!! Form::number('land_area', null, ['class' => $inputs, 'min' => '1', 'oninvalid' => "this.setCustomValidity('Por favor, ingrese un valor mayor a 0')", 'oninput' => "this.setCustomValidity('')", 'required']) !!}
                 @endif
@@ -265,15 +269,20 @@
                 {!! Form::label('Front', 'Frente', ['class' => 'font-semibold']) !!}
                 @if(isset($listing) && $listing->locked)
                 {!! Form::number('Front', null, ['class' => $inputs, 'disabled']) !!}
-                @else
+                @elseif(Auth::user()->email == "developer2@casacredito.com")
                 {{-- {!! Form::text('Front', null, ['class' => $inputs, 'min' => 1, 'max' => 5, 'title' => 'Por favor, ingrese una cantidad mayor a 0',  'required']) !!} --}}
+                {!! Form::number('Front', null, ['class' => $inputs]) !!}
+                @else
                 {!! Form::number('Front', null, ['class' => $inputs, 'min' => '1', 'oninvalid' => "this.setCustomValidity('Por favor, ingrese un valor mayor a 0')", 'oninput' => "this.setCustomValidity('')", 'required']) !!}
                 @endif
             </div>
+
             <div>          
                 {!! Form::label('Fund', 'Fondo', ['class' => 'font-semibold']) !!}
                 @if(isset($listing) && $listing->locked)
                 {!! Form::number('Fund', null, ['class' => $inputs, 'disabled']) !!}
+                @elseif(Auth::user()->email == "developer2@casacredito.com")
+                {!! Form::number('Fund', null, ['class' => $inputs]) !!}
                 @else
                 {!! Form::number('Fund', null, ['class' => $inputs, 'min' => '1', 'oninvalid' => "this.setCustomValidity('Por favor, ingrese un valor mayor a 0')", 'oninput' => "this.setCustomValidity('')", 'required']) !!}
                 @endif
@@ -331,6 +340,8 @@
                 {!! Form::label('lat', 'Latitud', ['class' => 'font-semibold']) !!}
                 @if(isset($listing) && $listing->locked)
                 {!! Form::text('lat', null, ['class' => $inputs, 'disabled']) !!}
+                @elseif(Auth::user()->email == "developer2@casacredito.com")
+                {!! Form::text('lat', null, ['class' => $inputs]) !!}
                 @else
                 {!! Form::text('lat', null, ['class' => $inputs, 'required']) !!}
                 @endif
@@ -339,6 +350,8 @@
                 {!! Form::label('lng', 'Longitud', ['class' => 'font-semibold']) !!}
                 @if(isset($listing) && $listing->locked)
                 {!! Form::text('lng', null, ['class' => $inputs, 'disabled']) !!}
+                @elseif(Auth::user()->email == "developer2@casacredito.com")
+                {!! Form::text('lng', null, ['class' => $inputs]) !!}
                 @else
                 {!! Form::text('lng', null, ['class' => $inputs, 'required']) !!}
                 @endif

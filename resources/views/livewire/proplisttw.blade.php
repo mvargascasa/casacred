@@ -14,19 +14,18 @@
                         {{-- @if(Route::current()->getName() == "admin.myproperties" || Auth::user()->role == "administrator") {{ route('admin.listings.edit', $propertie->id) }} @else {{ route('admin.show.listing', $propertie->id) }} @endif --}}
                 @endif
 
-                @if ($dirImg != null)
+                @if($dirImg != null || $dirImg != "")
                 @php
                     $imageVerification = asset('uploads/listing/thumb/600/'.$dirImg);
                 @endphp
                 <a target="_blank" href="@if($url_current == "admin.myproperties" || Route::current()->getName() == "admin.myproperties"){{ route('admin.listings.edit', $propertie->id) }} @else {{ route('admin.show.listing', $propertie) }} @endif"><img class="w-full" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.$dirImg)) {{ url('/uploads/listing/thumb/600/', $dirImg) }} @else {{url('uploads/listing/600', $dirImg)}} @endif" alt="{{ $propertie->listing_title}}"></a>
                 {{-- @if(@getimagesize($imageVerification)) {{ url('/uploads/listing/thumb/600/', $dirImg) }} @else {{url('uploads/listing/600', $dirImg)}} @endif --}}
                 @else
-                    <div class="relative">
-                        <a target="_blank" href="{{ route('admin.show.listing', $propertie) }}"><img class="w-full" src="{{ asset('img/sin-imagenes.jpg') }}" alt="Sunset in the mountains"></a>
-                        <div class="absolute top-0 left-0 w-full h-full" style="display: flex; justify-content: center; align-items: center">
-                            <p style="color: #ffffff" class="flex">Sin imágenes</p>
-                        </div>
-                    </div>
+                    <a target="_blank" href="@if($url_current == "admin.myproperties" || Route::current()->getName() =="admin.myproperties"){{route('admin.listings.edit', $propertie->id) }} @else {{ route('admin.show.listing', $propertie) }} @endif"><img class="w-full" src="{{ asset('img/sin-imagenes.jpg') }}" alt="Sunset in the mountains"></a>
+                    {{-- <div class="absolute top-0 left-0 w-full h-full" style="display: flex; justify-content: center; align-items: center">
+                        <p style="color: #ffffff" class="flex">Sin imágenes</p>
+                    </div> --}}
+                
                 @endif
 
                 {{-- <div class="absolute left-0" style="top: 30px">
