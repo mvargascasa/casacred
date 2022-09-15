@@ -1,6 +1,6 @@
 @extends('layouts.web')
 @section('header')
-<title>{{$listing->product_code}} {{$listing->listing_title}} - CasaCredito</title>
+<title>{{$listing->product_code}} {{$listing->listing_title}}</title>
 @php
     $type = DB::table('listing_types')->select('type_title')->where('id', $listing->listingtype)->first();
     $status;
