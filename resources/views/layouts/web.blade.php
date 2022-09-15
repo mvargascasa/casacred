@@ -294,14 +294,14 @@ if(strpos($actual_link, 'localhost') === false){
                         
                         <p class="text-dark-50">Sábados 9:00 am a 1:00 pm</p>
                         
-                        <p style="margin: 0px;" class="text-dark-50"><b style="font-weight: 500; color: #ffffff; margin: 0px">Oficina Créditos:</b><a target="_blank" style="color: #ffffff" href="https://g.page/r/CV7pH0E3AVo_EBA"> Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero - Edificio Santa Lucia</a></p>                        
+                        <p style="margin: 0px;" class="text-dark-50"><b style="font-weight: 500; color: #ffffff; margin: 0px"><i class="fas fa-map-marker-alt"></i> Oficina Créditos:</b><a target="_blank" style="color: #ffffff" href="https://g.page/r/CV7pH0E3AVo_EBA"> Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero - Edificio Santa Lucia</a></p>                        
 
-                        <p class="text-dark-50 mt-2"><b style="font-weight: 500; color: #ffffff">Oficina Ventas:</b> Av. Fray Vicente Solano y Remigio Tamariz Crespo</p>
+                        <p class="text-dark-50 mt-2"><b style="font-weight: 500; color: #ffffff"><i class="fas fa-map-marker-alt"></i> Oficina Ventas:</b> Av. Fray Vicente Solano y Remigio Tamariz Crespo</p>
                         
-                        <p><a href="tel:+072889395" class="asindeco" style="color: #ffffff !important">  07-288-9395</a>&nbsp;/ 
+                        <p><a href="tel:+072889395" class="asindeco" style="color: #ffffff !important"><i class="fas fa-phone"></i>  07-288-9395</a>&nbsp;/ 
                             <a href="tel:+593983849073" class="asindeco" style="color: #ffffff !important"> 098-384-9073</a>&nbsp;&nbsp;</p>
                         
-                        <p><a href="mailto:info@casacredito.com" class="asindeco" style="color: #ffffff !important">info@casacredito.com</a></p>
+                        <p><a href="mailto:info@casacredito.com" class="asindeco" style="color: #ffffff !important"><i class="fas fa-envelope"></i> info@casacredito.com</a></p>
             </div>
             <div class="col-12 col-md-4 p-4 small">
                     <p style="font-size: 20px; font-weight: 500">New York | EE.UU.</p>
@@ -310,14 +310,19 @@ if(strpos($actual_link, 'localhost') === false){
                         <p class="text-dark-50">Sábados 9:00 am a 4:00 pm</p>
 
                         <p class="text-dark-50"><a target="_blank" style="color: #ffffff" href="https://g.page/r/Cdf-npU-D1gdEAE">
-                          67-03 Roosevelt Avenue<br>
+                          <i class="fas fa-map-marker-alt"></i> 67-03 Roosevelt Avenue<br>
                           Woodside, NY 11377
                         </a></p>
 
-                        <p><a style="color: #ffffff !important" href="tel:+17186903740" class="asindeco">718-690-3740</a>&nbsp;</p>
+                        <p><a style="color: #ffffff !important" href="tel:+17186903740" class="asindeco"><i class="fas fa-phone"></i> 718-690-3740</a>&nbsp;</p>
                         {{-- <p><a href="tel:+13478460067" class="asindeco">347-846-0067</a>&nbsp;</p> --}}
 
-                        <p><a style="color: #ffffff !important" href="mailto:info@casacredito.com" class="asindeco">info@casacredito.com</a></p>
+                        <p class="text-dark-50"><a target="_blank" style="color: #ffffff" href="https://g.page/r/CVNRV-zNuJiZEAE">
+                          <i class="fas fa-map-marker-alt"></i> 1146 East Jersey St Elizabeth, NJ 07201
+                        </a></p>
+                        <p><a style="color: #ffffff !important" href="tel:+19083810090" class="asindeco"><i class="fas fa-phone"></i> 908-381-0090</a></p>
+
+                        <p><a style="color: #ffffff !important" href="mailto:info@casacredito.com" class="asindeco"><i class="fas fa-envelope"></i> info@casacredito.com</a></p>
             </div>
             <div class="col-12 col-md-4 p-4">
                 <p style="font-size: 20px; font-weight: 500">Síguenos en:</p>
