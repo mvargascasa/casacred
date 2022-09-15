@@ -349,8 +349,8 @@ function filter_properties(){
     @this.set('fromdate', b_fromdate);
     @this.set('untildate', b_untildate);
 
-    document.getElementById('pricemaxmin').style.display = "none";
-    document.getElementById('datefilter').style.display = "none";
+    //document.getElementById('pricemaxmin').style.display = "none";
+    //document.getElementById('datefilter').style.display = "none";
 }
 
     

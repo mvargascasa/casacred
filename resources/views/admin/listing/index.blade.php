@@ -8,6 +8,7 @@
     .hover-trigger:hover .hover-target {display: block;border-radius: 5px;margin-top: 1px;margin-right: 1px;}
     select > option{background-color: #ffffff; font-size: 14px !important;}
     .btn-edit:hover{background-color: #79dfa0 !important}
+    .div-selects > input:hover{background-color: #ef4444; color: #ffffff; cursor: pointer}
 </style>
 @livewireStyles
 @endsection
@@ -42,34 +43,92 @@
                                     </select>
                                 </div> --}}
                                 {{--  --}}
-                                <div class="w-auto pr-2 pb-2">
+                                <div class="w-auto pr-2 pb-2 relative">
+                                    <div id="div1" class="pattern block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                        <input type="hidden" id="b_state">
+                                        <label id="labeldiv1" for="state">Provincia</label>
+                                    </div>
+                                    <div class="overflow-y-scroll w-40 h-64 rounded-md mt-1 p-1 div-selects" id="child1" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
+                                        <div class="flex items-center">
+                                            <div style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> 
+                                            <label class="text-xs ml-1 text-gray-500">Provincia</label>
+                                        </div>
+                                        @foreach ($states as $state)
+                                            <input id="selState" onclick="setValue(this, 'labeldiv1')" type="text" class="w-full m-0 rounded pl-1" data-id="{{$state->id}}" value="{{$state->name}}" readonly>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                {{-- <div class="w-auto pr-2 pb-2">
                                     <select class="block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 focus:outline-none shadow-md" id="b_state">
                                         <option value="">Provincia</option>
                                         @foreach ($states as $state)
                                         <option value="{{$state->name}}" data-id="{{$state->id}}">{{$state->name}}</option>
                                         @endforeach
                                     </select>
+                                </div> --}}
+                                <div class="w-auto pr-2 pb-2 relative">
+                                    <div id="div2" class="pattern block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                        <input type="hidden" id="b_city">
+                                        <label id="labeldiv2" for="state">Ciudad</label>
+                                    </div>
+                                    <div class="w-40 h-auto rounded-md mt-1 p-1 div-selects" id="child2" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
+                                        <div class="flex items-center">
+                                            <div style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> 
+                                            <label class="text-xs ml-1 text-gray-500">Ciudad</label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="w-auto pr-2 pb-2">
+                                {{-- <div class="w-auto pr-2 pb-2">
                                     <select class="block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_city">
                                         <option value="">Ciudad</option>
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="w-auto pr-2">
                                     <input class="block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_detalle" name="b_detalle" type="text" placeholder="Sector">
                                 </div>
                                 <div class="w-auto pr-2 pb-2">
                                     <input class="block w-20 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_code" name="b_code" type="text" placeholder="Código">
                                 </div>
-                                <div class="w-auto pr-2">
-                                    <select class="block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md leading-tight focus:outline-none" id="b_tipo">
+                                <div class="w-auto pr-2 relative">
+                                    <div id="div3" class="pattern block w-24 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                        <input type="hidden" id="b_tipo">
+                                        <label id="labeldiv3">Categoría</label>
+                                    </div>
+                                    <div class="w-24 h-auto rounded-md mt-1 p-1 div-selects" id="child3" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
+                                        <div class="flex items-center">
+                                            <div style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> 
+                                            <label class="text-xs ml-1 text-gray-500">Categoría</label>
+                                        </div>
+                                        <input onclick="setValue(this, 'labeldiv3')" type="text" class="w-full m-0 rounded pl-1" value="Venta" readonly>
+                                        <input onclick="setValue(this, 'labeldiv3')" type="text" class="w-full m-0 rounded pl-1" value="Alquiler" readonly>
+                                    </div>
+                                    {{-- <select class="block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md leading-tight focus:outline-none" id="b_tipo">
                                         <option value="" selected>Categoría</option>
                                         <option value="en-venta">Venta</option>
                                         <option value="alquilar">Alquiler</option>
-                                    </select>
+                                    </select> --}}
                                 </div>
-                                <div class="w-auto pr-2">
-                                    <select class="block w-auto py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md leading-tight focus:outline-none" id="b_categoria">
+                                <div class="w-auto pr-2 relative">
+                                    <div id="div4" class="pattern block w-40 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                        <input type="hidden" id="b_categoria">
+                                        <label id="labeldiv4">Tipo de Propiedad</label>
+                                    </div>
+                                    <div class="w-40 h-auto rounded-md mt-1 p-1 div-selects" id="child4" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
+                                        <div class="flex items-center">
+                                            <div style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> 
+                                            <label class="text-xs ml-1 text-gray-500">Tipo de propiedad</label>
+                                        </div>
+                                        <input onclick="setValue(this, 'labeldiv4')" type="text" class="w-full m-0 rounded pl-1" value="Casas" readonly>
+                                        <input onclick="setValue(this, 'labeldiv4')" type="text" class="w-full m-0 rounded pl-1" value="Departamentos" readonly>
+                                        <input onclick="setValue(this, 'labeldiv4')" type="text" class="w-full m-0 rounded pl-1" value="Casas Comerciales" readonly>
+                                        <input onclick="setValue(this, 'labeldiv4')" type="text" class="w-full m-0 rounded pl-1" value="Terrenos" readonly>
+                                        <input onclick="setValue(this, 'labeldiv4')" type="text" class="w-full m-0 rounded pl-1" value="Quintas" readonly>
+                                        <input onclick="setValue(this, 'labeldiv4')" type="text" class="w-full m-0 rounded pl-1" value="Haciendas" readonly>
+                                        <input onclick="setValue(this, 'labeldiv4')" type="text" class="w-full m-0 rounded pl-1" value="Locales Comerciales" readonly>
+                                        <input onclick="setValue(this, 'labeldiv4')" type="text" class="w-full m-0 rounded pl-1" value="Oficinas" readonly>
+                                        <input onclick="setValue(this, 'labeldiv4')" type="text" class="w-full m-0 rounded pl-1" value="Suites" readonly>
+                                    </div>
+                                    {{-- <select class="block w-auto py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md leading-tight focus:outline-none" id="b_categoria">
                                         <option value="">Tipo de propiedad</option>	
                                         <option value="23">Casas </option>
                                         <option value="24">Departamentos </option>
@@ -80,14 +139,26 @@
                                         <option value="32">Locales Comerciales</option>
                                         <option value="35">Oficinas</option>
                                         <option value="36">Suites</option>
-                                    </select>
+                                    </select> --}}
                                 </div>
-                                <div class="w-auto pr-2 pb-2">
-                                    <select class="block w-24 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none"id="b_status" name="b_status">
+                                <div class="w-auto pr-2 pb-2 relative">
+                                    <div id="div5" class="pattern block w-24 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                        <input type="hidden" id="b_status">
+                                        <label id="labeldiv5">Estado</label>
+                                    </div>
+                                    <div class="w-24 h-auto rounded-md mt-1 p-1 div-selects" id="child5" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
+                                        <div class="flex items-center">
+                                            <div style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> 
+                                            <label class="text-xs ml-1 text-gray-500">Estado</label>
+                                        </div>
+                                        <input onclick="setValue(this, 'labeldiv5')" type="text" class="w-full m-0 rounded pl-1" value="ON" readonly>
+                                        <input onclick="setValue(this, 'labeldiv5')" type="text" class="w-full m-0 rounded pl-1" value="OFF" readonly>
+                                    </div>
+                                    {{-- <select class="block w-24 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none"id="b_status" name="b_status">
                                         <option value="" selected>Estado</option>
                                         <option value="A">ON</option>
                                         <option value="D">OFF</option>
-                                    </select>
+                                    </select> --}}
                                 </div>
                                 {{-- <div class="w-auto pr-2 pb-2">
                                     <select class="w-auto block w-20 py-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline"id="b_available" name="b_available"  class="w-20">
@@ -104,11 +175,14 @@
                                     </select>
                                 </div> --}}
                                 <div class="w-auto pr-2 pb-2 relative">
-                                    <div id="div1" class="pattern block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                    <div id="div6" class="pattern block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                         <label for="">Precio</label>
                                     </div>
-                                    <div class="block w-full rounded-md mt-1 p-1" id="child1" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
-                                        <label class="text-xs m-2 mb-0">Precio</label>
+                                    <div class="block w-full rounded-md mt-1 p-1" id="child6" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
+                                        <div class="flex items-center">
+                                            <div style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> 
+                                            <label class="text-xs ml-1 text-gray-500">Precio</label>
+                                        </div>
                                         <input id="minprice" class="block w-28 m-2 shadow appearance-none border rounded py-1 px-1 text-sm text-gray-700 leading-tight focus:outline-none" type="text" placeholder="Desde">
                                         <input id="maxprice" class="block w-28 m-2 shadow appearance-none border rounded py-1 px-1 text-sm text-gray-700 leading-tight focus:outline-none" type="text" placeholder="Hasta">
                                         <div class="bg-white flex justify-between items-center p-2" style="background-color: #ffffff">
@@ -121,11 +195,11 @@
                                 </div>
 
                                 <div class="w-auto pr-2 pb-2 relative">
-                                    <div id="div2" class="pattern block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                    <div id="div7" class="pattern block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                                 {{-- onclick="openDateFilter();" --}}
                                         <label for="">Fecha</label>
                                     </div>
-                                    <div class="block w-full rounded-md mt-1 p-1" id="child2" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
+                                    <div class="block w-full rounded-md mt-1 p-1" id="child7" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
                                         <label class="ml-2 text-xs" for="fromdate">Desde</label>
                                         <input type="date" class="block w-28 m-2 shadow appearance-none border rounded py-1 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="fromdate">
                                         <label class="ml-2 text-xs" for="untildate">Hasta</label>
@@ -133,13 +207,26 @@
                                     </div>
                                 </div>
 
-                                <div class="w-auto pr-2 pb-2">
-                                    <select class="block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_asesor">
+                                <div class="w-auto pr-2 pb-2 relative">
+                                    <div id="div8" class="pattern block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                        <input type="hidden" id="b_asesor">
+                                        <label id="labeldiv8" for="state">Asesor</label>
+                                    </div>
+                                    <div class="w-32 h-auto rounded-md mt-1 p-1 div-selects" id="child8" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
+                                        <div class="flex items-center">
+                                            <div style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> 
+                                            <label class="text-xs ml-1 text-gray-500">Asesor</label>
+                                        </div>
+                                        @foreach ($users as $user)
+                                            <input onclick="setValue(this, 'labeldiv8')" type="text" class="w-full m-0 rounded pl-1" data-id="{{$user->id}}" value="{{$user->name}}" readonly>
+                                        @endforeach
+                                    </div>
+                                    {{-- <select class="block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_asesor">
                                         <option value="">Asesor</option>
                                         @foreach ($users as $user)
                                             <option value="{{$user->id}}">{{$user->name}}</option>
                                         @endforeach
-                                    </select>
+                                    </select> --}}
                                 </div>
 
                                 
@@ -250,6 +337,41 @@
         }
     });
 
+    function setValue(object, label){
+        
+        document.getElementById(label).innerHTML = object.value;
+        document.getElementById('child'+label.substring(8)).style.display = "none";
+
+        let divpattern = document.getElementById(label.substring(5));
+        let inputhidden = divpattern.firstElementChild;
+        
+        if(label === "labeldiv8"){
+            inputhidden.value = object.dataset.id;
+        } else {
+            switch (object.value) {
+                case "Venta": inputhidden.value = "en-venta";break;
+                case "Alquiler": inputhidden.value = "alquilar"; break;
+                case "Casas": inputhidden.value = 23; break;
+                case "Departamentos": inputhidden.value = 24; break;
+                case "Casas Comerciales": inputhidden.value = 25; break;
+                case "Terrenos": inputhidden.value = 26; break;
+                case "Quintas": inputhidden.value = 29; break;
+                case "Haciendas": inputhidden.value = 30; break;
+                case "Locales Comerciales": inputhidden.value = 32; break;
+                case "Oficinas": inputhidden.value = 35; break;
+                case "Suites": inputhidden.value = 36; break;
+                case "ON": inputhidden.value = "A"; break;
+                case "OFF": inputhidden.value = "D"; break;
+                default: inputhidden.value = object.value; break;
+            }
+        }
+
+        // if(object.value === "Venta") inputhidden.value = "en-venta";
+        // else if(object.value === "Alquiler") inputhidden.value = "alquilar";
+        // else inputhidden.value = object.value;
+        if(label === "labeldiv1") getCities(object.dataset.id);
+    }
+
     //const divpriceinputs = document.getElementById("pricemaxmin");
     const divlabelprecio = document.getElementById("selprecio");
 
@@ -298,8 +420,11 @@
     // }
 
     //const selCountry = document.getElementById('b_country');
-    const selState = document.getElementById('b_state');
-    const selCity = document.getElementById('b_city');
+    // const selState = document.getElementById('b_state');
+    // const selCity = document.getElementById('b_city');
+
+    const selState = document.getElementById('selState');
+    const selCity = document.getElementById('child2');
 
     // selCountry.addEventListener("change", async function(){
     //     selState.options.length = 0;
@@ -324,22 +449,45 @@
     //     selCity.appendChild(optaux);
     // });
 
-    selState.addEventListener("change", async function() {
-      selCity.options.length = 0;
-    let id = selState.options[selState.selectedIndex].dataset.id;
-    const response = await fetch("{{url('getcities')}}/"+id );
-    const cities = await response.json();
+    async function getCities(id){
+        let labeldiv2 = document.getElementById('labeldiv2');
+        labeldiv2.innerHTML = "Ciudad";
+        //selCity.options.length = 0;
+        selCity.innerHTML = "";
+        const response = await fetch("{{url('getcities')}}/"+id );
+        const cities = await response.json();
     
-    var opt = document.createElement('option');
-          opt.appendChild( document.createTextNode('Ciudad') );
-          opt.value = '';
-          selCity.appendChild(opt);
-    cities.forEach(city => {
-          var opt = document.createElement('option');
+        var opt = document.createElement('input');
+        //   opt.appendChild( document.createTextNode('Ciudad') );
+        //   opt.value = 'Ciudad';
+        //   selCity.appendChild(opt);
+        cities.forEach(city => {
+          var opt = document.createElement('input');
           opt.appendChild( document.createTextNode(city.name) );
           opt.value = city.name;
+          opt.readOnly = true;
+          opt.addEventListener("click", () => setValue(opt, 'labeldiv2'));
+          opt.classList.add('w-full', 'm-0', 'rounded', 'pl-1');
           selCity.appendChild(opt);
     });
-  });
+    }
+
+//     selState.addEventListener("click", async function() {
+//       selCity.options.length = 0;
+//     let id = selState.options[selState.selectedIndex].dataset.id;
+//     const response = await fetch("{{url('getcities')}}/"+id );
+//     const cities = await response.json();
+    
+//     var opt = document.createElement('option');
+//           opt.appendChild( document.createTextNode('Ciudad') );
+//           opt.value = '';
+//           selCity.appendChild(opt);
+//     cities.forEach(city => {
+//           var opt = document.createElement('option');
+//           opt.appendChild( document.createTextNode(city.name) );
+//           opt.value = city.name;
+//           selCity.appendChild(opt);
+//     });
+//   });
 </script>
 @endsection
