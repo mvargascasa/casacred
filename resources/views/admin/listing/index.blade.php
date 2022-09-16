@@ -44,7 +44,7 @@
                                 </div> --}}
                                 {{--  --}}
                                 <div class="w-auto pr-2 pb-2 relative">
-                                    <div id="div1" class="pattern block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                    <div id="div1" class="pattern block w-32 py-1 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                         <input type="hidden" id="b_state">
                                         <label id="labeldiv1" for="state">Provincia</label>
                                     </div>
@@ -67,7 +67,7 @@
                                     </select>
                                 </div> --}}
                                 <div class="w-auto pr-2 pb-2 relative">
-                                    <div id="div2" class="pattern block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                    <div id="div2" class="pattern block w-32 py-1 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                         <input type="hidden" id="b_city">
                                         <label id="labeldiv2" for="state">Ciudad</label>
                                     </div>
@@ -84,13 +84,13 @@
                                     </select>
                                 </div> --}}
                                 <div class="w-auto pr-2">
-                                    <input class="block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_detalle" name="b_detalle" type="text" placeholder="Sector">
+                                    <input class="block w-32 py-1 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_detalle" name="b_detalle" type="text" placeholder="Sector">
                                 </div>
                                 <div class="w-auto pr-2 pb-2">
-                                    <input class="block w-20 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_code" name="b_code" type="text" placeholder="Código">
+                                    <input class="block w-20 py-1 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_code" name="b_code" type="text" placeholder="Código">
                                 </div>
                                 <div class="w-auto pr-2 relative">
-                                    <div id="div3" class="pattern block w-24 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                    <div id="div3" class="pattern block w-24 py-1 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                         <input type="hidden" id="b_tipo">
                                         <label id="labeldiv3">Categoría</label>
                                     </div>
@@ -109,7 +109,7 @@
                                     </select> --}}
                                 </div>
                                 <div class="w-auto pr-2 relative">
-                                    <div id="div4" class="pattern block w-40 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                    <div id="div4" class="pattern block w-40 py-1 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                         <input type="hidden" id="b_categoria">
                                         <label id="labeldiv4">Tipo de Propiedad</label>
                                     </div>
@@ -142,7 +142,7 @@
                                     </select> --}}
                                 </div>
                                 <div class="w-auto pr-2 pb-2 relative">
-                                    <div id="div5" class="pattern block w-24 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                    <div id="div5" class="pattern block w-24 py-1 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                         <input type="hidden" id="b_status">
                                         <label id="labeldiv5">Estado</label>
                                     </div>
@@ -175,7 +175,7 @@
                                     </select>
                                 </div> --}}
                                 <div class="w-auto pr-2 pb-2 relative">
-                                    <div id="div6" class="pattern block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                    <div id="div6" class="pattern block w-32 py-1 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                         <label for="">Precio</label>
                                     </div>
                                     <div class="block w-full rounded-md mt-1 p-1" id="child6" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
@@ -195,7 +195,7 @@
                                 </div>
 
                                 <div class="w-auto pr-2 pb-2 relative">
-                                    <div id="div7" class="pattern block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                    <div id="div7" class="pattern block w-32 py-1 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                                 {{-- onclick="openDateFilter();" --}}
                                         <label for="">Fecha</label>
                                     </div>
@@ -208,7 +208,7 @@
                                 </div>
 
                                 <div class="w-auto pr-2 pb-2 relative">
-                                    <div id="div8" class="pattern block w-32 py-3 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                    <div id="div8" class="pattern block w-32 py-1 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                         <input type="hidden" id="b_asesor">
                                         <label id="labeldiv8" for="state">Asesor</label>
                                     </div>
@@ -234,8 +234,8 @@
                             </div>
 
                             <div class="flex justify-center mt-3">
-                                <button class="bg-red-800 text-white rounded-md px-4 py-2 hover:bg-red-500 mr-1" onclick="filter_properties()">BUSCAR</button>
-                                <button class="bg-red-800 text-white rounded-md px-4 py-2 hover:bg-red-500 ml-1" onclick="location.reload()">LIMPIAR CAMPOS</button>
+                                <button class="bg-red-800 text-white rounded-md px-4 py-1 hover:bg-red-500 mr-1" onclick="filter_properties()">BUSCAR</button>
+                                <button class="bg-red-800 text-white rounded-md px-4 py-1 hover:bg-red-500 ml-1" onclick="location.reload()">LIMPIAR CAMPOS</button>
                             </div>
                             <div class="w-auto flex justify-end">
                                 <div class="block w-full pb-3 rounded-md">
