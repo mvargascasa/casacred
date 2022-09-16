@@ -49,27 +49,33 @@
 <div class="container overflow-scroll mx-auto mt-3 pb-3">
   <div class="row d-flex justify-content-center">
     <div class="col-sm-8">
-      <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          @php $iiListing=0 @endphp
-          @foreach (array_filter(explode("|", $propertie->images)) as $img)
-            @php
-              $imageVerification = asset('uploads/listing/thumb/600/'.$img);    
-            @endphp
-            <div class="carousel-item @if($iiListing==0) active @endif" data-slide-number="{{ $iiListing }}">
-              <img style="width: 100%; height: 100%" src="@if(@getimagesize($imageVerification)){{url('uploads/listing/thumb',$img)}} @else {{url('uploads/listing', $img)}} @endif" class="d-block w-100 ccimgpro" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$propertie->listing_title}}-{{$iiListing++}}">
-            </div>
-          @endforeach
+      @if ($propertie->images != null)
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            @php $iiListing=0 @endphp
+              @foreach (array_filter(explode("|", $propertie->images)) as $img)
+                @php
+                  $imageVerification = asset('uploads/listing/thumb/600/'.$img);    
+                @endphp
+                <div class="carousel-item @if($iiListing==0) active @endif" data-slide-number="{{ $iiListing }}">
+                  <img style="width: 100%; height: 100%" src="@if(@getimagesize($imageVerification)){{url('uploads/listing/thumb',$img)}} @else {{url('uploads/listing', $img)}} @endif" class="d-block w-100 ccimgpro" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$propertie->listing_title}}-{{$iiListing++}}">
+                </div>
+              @endforeach
+          </div>
+          <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
-        <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
+      @else
+        <div class="flex items-center content-center justify-center p-3">
+          <p class="text-red-600 text-lg font-semibold">No hemos encontrado imágenes para esta propiedad</p>
+        </div>
+      @endif
       
       @php
         $arrayImages = [];
