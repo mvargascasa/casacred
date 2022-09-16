@@ -451,8 +451,10 @@
             <div>
                 @if(isset($listing) && $listing->locked)
                 <input type="file" class="px-4 py-2 border border-gray-300 rounded-md" name="galleryImages[]" id="galleryImages" accept=".jpg, .jpeg, .png" multiple onchange="changetxtgallery(this)" disabled>
-                @else
+                @elseif(isset($listing))
                 <input type="file" class="px-4 py-2 border border-gray-300 rounded-md" name="galleryImages[]" id="galleryImages" accept=".jpg, .jpeg, .png" multiple onchange="changetxtgallery(this)">
+                @else
+                <input type="file" class="px-4 py-2 border border-gray-300 rounded-md" name="galleryImages[]" id="galleryImages" accept=".jpg, .jpeg, .png" multiple onchange="changetxtgallery(this)" required>
                 @endif
             </div>      
             <ul id="gridImages" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 px-4 py-2 border border-gray-300 rounded-md">
@@ -490,9 +492,11 @@
                     <div class="flex flex-row mt-2">
                         @if(isset($listing) && $listing->locked)
                         <input  class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" name="details{{$ii}}[]" type="text" value="{{$dets[0]}}" disabled/>
-                        @else
+                        @elseif(isset($listing))
                         <input  class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" name="details{{$ii}}[]" type="text" value="{{$dets[0]}}"/>
                         <button class="w-12 h-10 py-2 bg-red-700 text-white rounded-r text-sm" type="button" onclick="delrowTitle(this)">X</button>
+                        @else
+                        <input  class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" name="details{{$ii}}[]" type="text" value="{{$dets[0]}}" required/>
                         @endif
                     </div>            
                 @php unset($dets[0]); $printControl=0; @endphp
@@ -532,7 +536,7 @@
             <div class="gap-4 mt-4 sm:gap-6">
                 <label class="font-semibold">Titulo</label>
                 <div class="flex flex-row mt-2">
-                    <input  class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" name="details0[]" type="text"/>
+                    <input  class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" name="details0[]" type="text" required/>
                     <button class="w-12 h-10 py-2 bg-red-700 text-white rounded-r text-sm" type="button" onclick="delrowTitle(this)">X</button>
                 </div>
                 <div class="font-semibold ml-4 mt-4">Detalles</div>
@@ -813,7 +817,7 @@
             <div class="gap-4 mt-4 sm:gap-6">
                 <label class="font-semibold">Titulo</label>
                 <div class="flex flex-row mt-2">
-                    <input  class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" type="text" name="details${idUniq}[]"/>
+                    <input  class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" type="text" name="details${idUniq}[]" required/>
                     <button class="w-12 h-10 py-2 bg-red-700 text-white rounded-r text-sm" type="button" onclick="delrowTitle(this)">X</button>
                 </div>
                 <div class="font-semibold ml-4 mt-4">Detalles</div>
