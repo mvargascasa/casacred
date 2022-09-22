@@ -248,45 +248,51 @@
             <div>          
                 {!! Form::label('construction_area', 'Construcción', ['class' => 'font-semibold']) !!}
                 @if(isset($listing) && $listing->locked)
-                    {!! Form::number('construction_area', null, ['class' => $inputs, 'disabled']) !!}
+                    {!! Form::text('construction_area', null, ['class' => $inputs, 'disabled']) !!}
                 @elseif(Auth::user()->email == "developer2@casacredito.com")
-                    {!! Form::number('construction_area', null, ['class' => $inputs]) !!}
+                    {!! Form::text('construction_area', null, ['class' => $inputs]) !!}
                 @else
-                    {!! Form::number('construction_area', null, ['class' => $inputs, 'min' => '1', 'oninvalid' => "this.setCustomValidity('Por favor, ingrese un valor mayor a 0')", 'oninput' => "this.setCustomValidity('')", 'required']) !!}
+                    {!! Form::text('construction_area', null, ['class' => $inputs, 'required']) !!}
                 @endif
             </div>
             <div>          
                 {!! Form::label('land_area', 'Superficie', ['class' => 'font-semibold']) !!}
                 @if(isset($listing) && $listing->locked)
-                    {!! Form::number('land_area', null, ['class' => $inputs, 'disabled']) !!}
+                    {!! Form::text('land_area', null, ['class' => $inputs, 'disabled']) !!}
                 @elseif(Auth::user()->email == "developer2@casacredito.com")
-                    {!! Form::number('land_area', null, ['class' => $inputs]) !!}
+                    {!! Form::text('land_area', null, ['class' => $inputs]) !!}
                 @else
-                    {!! Form::number('land_area', null, ['class' => $inputs, 'min' => '1', 'oninvalid' => "this.setCustomValidity('Por favor, ingrese un valor mayor a 0')", 'oninput' => "this.setCustomValidity('')", 'required']) !!}
+                    {!! Form::text('land_area', null, ['class' => $inputs, 'required']) !!}
                 @endif
             </div>
             <div>          
                 {!! Form::label('Front', 'Frente', ['class' => 'font-semibold']) !!}
                 @if(isset($listing) && $listing->locked)
-                {!! Form::number('Front', null, ['class' => $inputs, 'disabled']) !!}
+                {!! Form::text('Front', null, ['class' => $inputs, 'disabled']) !!}
                 @elseif(Auth::user()->email == "developer2@casacredito.com")
                 {{-- {!! Form::text('Front', null, ['class' => $inputs, 'min' => 1, 'max' => 5, 'title' => 'Por favor, ingrese una cantidad mayor a 0',  'required']) !!} --}}
-                {!! Form::number('Front', null, ['class' => $inputs]) !!}
+                {!! Form::text('Front', null, ['class' => $inputs]) !!}
                 @else
-                {!! Form::number('Front', null, ['class' => $inputs, 'min' => '1', 'oninvalid' => "this.setCustomValidity('Por favor, ingrese un valor mayor a 0')", 'oninput' => "this.setCustomValidity('')", 'required']) !!}
+                {!! Form::text('Front', null, ['class' => $inputs, 'required']) !!}
                 @endif
             </div>
 
             <div>          
                 {!! Form::label('Fund', 'Fondo', ['class' => 'font-semibold']) !!}
                 @if(isset($listing) && $listing->locked)
-                {!! Form::number('Fund', null, ['class' => $inputs, 'disabled']) !!}
+                {!! Form::text('Fund', null, ['class' => $inputs, 'disabled']) !!}
                 @elseif(Auth::user()->email == "developer2@casacredito.com")
-                {!! Form::number('Fund', null, ['class' => $inputs]) !!}
+                {!! Form::text('Fund', null, ['class' => $inputs]) !!}
                 @else
-                {!! Form::number('Fund', null, ['class' => $inputs, 'min' => '1', 'oninvalid' => "this.setCustomValidity('Por favor, ingrese un valor mayor a 0')", 'oninput' => "this.setCustomValidity('')", 'required']) !!}
+                {!! Form::text('Fund', null, ['class' => $inputs, 'required']) !!}
                 @endif
             </div>
+        </div>
+
+        <div class="grid grid-cols-1 bg-gray-200 mt-3 p-3 rounded text-sm">
+            <p>
+                En caso que el tipo de propiedad no cuente con metros de construcción, superficie, frente o fondo, completar el campo con un <b>0</b>
+            </p>
         </div>
 
         {{-- nuevo div para guardar los años de construccion --}}

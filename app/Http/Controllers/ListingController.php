@@ -130,13 +130,8 @@ class ListingController extends Controller
                 $listing->update(['images'  =>  $request->images.'|'.$save_uploads   ]);
             }else{
                 $listing->update(['images'  => $save_uploads   ]);
-            }
-            
-            
+            }   
         }
-
-
-
         return redirect()->route('admin.listings.edit',compact('listing'))->with('status','Propiedad Creada');
     }
     
