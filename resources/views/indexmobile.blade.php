@@ -32,8 +32,23 @@
     </div>
 </div>
 
+@php
+    $state=""; $type="";
+    if(request()->segment(1) == 'casas-de-venta-en-ecuador'){ $state = ""; $type = "Casas";}
+    if(request()->segment(1) == 'departamentos-de-venta-en-ecuador'){$state="";$type="Departamentos";}
+    if(request()->segment(1) == 'terrenos-de-venta-en-ecuador'){$state="";$type="Terrenos";}
+    if(request()->segment(1) == 'casas-de-venta-en-cuenca'){$state="Cuenca";$type="Casas";}
+    if(request()->segment(1) == 'departamentos-de-venta-en-cuenca'){$state="Cuenca";$type="Departamentos";}
+    if(request()->segment(1) == 'terrenos-de-venta-en-cuenca'){$state="Cuenca";$type="Terrenos";}
+    if(request()->segment(1) == 'casas-de-venta-en-quito'){$state="Quito";$type="Casas";}
+    if(request()->segment(1) == 'departamentos-de-venta-en-quito'){$state="Quito";$type="Departamentos";}
+    if(request()->segment(1) == 'terrenos-de-venta-en-quito'){$state="Quito";$type="Terrenos";}
+    if(request()->segment(1) == 'casas-de-venta-en-guayaquil'){$state="Guayaquil";$type="Casas";}
+    if(request()->segment(1) == 'departamentos-de-venta-en-guayaquil'){$state="Guayaquil";$type="Departamentos";}
+    if(request()->segment(1) == 'terrenos-de-venta-en-guayaquil'){$state="Guayaquil";$type="Terrenos";}
+@endphp
 
-          @livewire('propmobile-tw')
+          @livewire('propmobile-tw', ['searchtxt' => $state, 'category' => $type])
           
     
 
