@@ -140,7 +140,8 @@
             <h5 class="text-white text-lg p-1">Cuenca | Ecuador</h5>                
                 <p class="text-gray-400 text-xs p-1">Lunes a Viernes 9:00 am&nbsp;a 6:00 pm</p>                
                 <p class="text-gray-400 text-xs p-1">Sábados 9:00 am a 1:00 pm</p>                
-                <p class="text-gray-400 text-xs p-1">Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero</p>                
+                <p class="text-gray-400 text-xs p-1"> <b class="font-semibold">Oficina Créditos:</b>  Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero</p>
+                <p class="text-gray-400 text-xs p-1"> <b class="font-semibold">Oficina Ventas:</b>  Av. Fray Vicente Solano 3-54 y Remigio Tamariz Crespo</p>                
                 <p class="text-gray-400 text-xs p-1">Edificio Santa Lucia</p>                
                 <p class="py-2"><a href="tel:+59372810825" class="text-blue-400 text-sm">07-412-6004 </a>
                     <span class="text-blue-400 text-sm" >&nbsp; / &nbsp;</span>
@@ -345,42 +346,54 @@
 <div class="bg-white rounded shadow-lg w-10/12 md:w-1/3">
   <!-- modal header -->
   <div class="border-b bg-red-900 rounded px-4 py-2 flex justify-between items-center">
-    <h3 class="text-white font-semibold text-lg">Contáctanos</h3>
-    <button onclick="closModal('openLead')" class="text-white font-bold px-2">&cross;</button>
+    <h3 class="text-white font-semibold text-lg">Información</h3>
+    <button onclick="closModal('openLead')" class="text-white font-bold px-2">X</button>
   </div>
   <!-- modal body -->
-  <div class="p-3">
-<p class="text-sm font-semibold pb-2 text-gray-700">Complete el siguiente formulario y en breve será contactado. </p>   
-<form id="mainFormLead">
-    <input class="form-control" type="hidden" name="interest" id="interest" value="Propiedades">
-    <div><label for="fname" class="block text-xs leading-5 text-gray-500">Nombre y Apellido</label>
-        <div class="mt-1 rounded-md shadow-sm"><input type="text" id="fname" name="fname" maxlength="100"
-                class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out ">
-            </div>
+    <div id="mapoffice" class="block">
+        <p class="p-3">
+            Visítenos en nuestras oficinas ubicadas en la <b class="font-semibold">Av. Fray Vicente Solano 3-54 y Remigio Tamariz Crespo</b>
+        </p>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.6802974022044!2d-79.0138164852959!3d-2.908075697881869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91cd1933cc40a85d%3A0x3f5a0137411fe95e!2sCasa%20Cr%C3%A9dito%20Inmobiliaria!5e0!3m2!1ses-419!2sec!4v1664219646164!5m2!1ses-419!2sec" width="100%" height="300" style="border:0;" class="p-3" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="flex justify-center p-4">
+            <button onclick="changeStatusModal()" class="bg-red-900 bg-red-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">Deseo agendar una cita</button>
+        </div>
     </div>
-    <div class="mt-2">
-        <label for="tlf" class="block text-xs leading-5 text-gray-500">Teléfono</label>
-        <div class="mt-1 rounded-md shadow-sm"><input  type="tel" id="tlf" name="tlf" maxlength="30"
-                class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out ">
-            </div>
-    </div>
-    <div class="mt-2">
-        <label for="email" class="block text-xs leading-5 text-gray-500">Email</label>
-        <div class="mt-1 rounded-md shadow-sm"><input  type="email" id="email" name="email"
-                class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out ">
-            </div>
-    </div>
-    <div class="mt-2">
-        <label for="message" class="block text-xs leading-5 text-gray-500">Comentario</label>
-        <div class="mt-1 rounded-md shadow-sm"><input  type="text" id="message" name="message" maxlength="150"
-                class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out">
-            </div>
-    </div>
-    <div class="mt-4"><span class="flex justify-center items-center ">
-        <button type="button" onclick="sendFormLead()" class="w-full font-bold rounded-md text-xl text-white bg-red-900 p-2">ENVIAR</button></span></div>
-</form>
 
-</div>
+    <div class="p-3 hidden bg-white" id="forminfo">
+        <p class="text-sm font-semibold pb-2 text-gray-700">Complete el siguiente formulario y en breve será contactado. </p>   
+        <form id="mainFormLead">
+            <input class="form-control" type="hidden" name="interest" id="interest" value="Propiedades">
+            <div><label for="fname" class="block text-xs leading-5 text-gray-500">Nombre y Apellido</label>
+                <div class="mt-1 rounded-md shadow-sm"><input type="text" id="fname" name="fname" maxlength="100"
+                        class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out ">
+                    </div>
+            </div>
+            <div class="mt-2">
+                <label for="tlf" class="block text-xs leading-5 text-gray-500">Teléfono</label>
+                <div class="mt-1 rounded-md shadow-sm"><input  type="tel" id="tlf" name="tlf" maxlength="30"
+                        class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out ">
+                    </div>
+            </div>
+            <div class="mt-2">
+                <label for="email" class="block text-xs leading-5 text-gray-500">Email</label>
+                <div class="mt-1 rounded-md shadow-sm"><input  type="email" id="email" name="email"
+                        class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out ">
+                    </div>
+            </div>
+            <div class="mt-2">
+                <label for="message" class="block text-xs leading-5 text-gray-500">Comentario</label>
+                <div class="mt-1 rounded-md shadow-sm"><input  type="text" id="message" name="message" maxlength="150"
+                        class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out">
+                    </div>
+            </div>
+            <div class="mt-4"><span class="flex justify-center items-center ">
+                <button onclick="changeStatusModal()" type="button" class="w-full font-bold rounded-md text-base p-2">Volver al mapa</button>
+                <button type="button" onclick="sendFormLead()" class="w-full font-bold rounded-md text-base text-white bg-red-900 p-2">ENVIAR</button></span>
+            </div>
+        </form>
+        
+        </div>
 </div>
 </div>
 
@@ -460,6 +473,23 @@
                 tag.value = "";
             }
         });
+
+        function changeStatusModal(){
+            let divmap = document.getElementById('mapoffice');
+            let divform = document.getElementById('forminfo');
+
+            if(divmap.classList.contains('block')){
+                divmap.classList.remove('block');
+                divmap.classList.add('hidden');
+                divform.classList.remove('hidden');
+                divform.classList.add('block');
+            } else if(divform.classList.contains('block')){
+                divmap.classList.remove('hidden');
+                divmap.classList.add('block');
+                divform.classList.remove('block');
+                divform.classList.add('hidden');
+            }
+        }
 
     //     const rangeSlide = (value) => {
     //     let stringyearsconstruction;
