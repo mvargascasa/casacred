@@ -19,7 +19,7 @@ class Listing extends Model
         //'ubication_url', //se agrego esto para la ubicacion
         'available',
         'status','user_id',
-        'threedegreeview','heading_details','owner_name',
+        'threedegreeview','heading_details','owner_name', 'owner_email',
         'locked',
     ];   
     

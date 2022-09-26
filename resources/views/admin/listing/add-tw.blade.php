@@ -137,13 +137,21 @@
             </div>
         </div> --}}
 
-        <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+        <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-3">
             <div>      
                 {!! Form::label('owner_name', 'Nombre de Propietario', ['class' => 'font-semibold']) !!}
                 @if(isset($listing) && $listing->locked)
                     {!! Form::text('owner_name', null, ['class' =>  $inputs, 'disabled']) !!}
                 @else
                     {!! Form::text('owner_name', null, ['class' =>  $inputs, 'required']) !!}
+                @endif
+            </div>
+            <div>
+                {!! Form::label('owner_email', 'Email del Propietario', ['class' => 'font-semibold']) !!}
+                @if(isset($listing) && $listing->locked)
+                {!! Form::email('owner_email', null, ['class' => $inputs, 'disabled']) !!}
+                @else
+                {!! Form::email('owner_email', null, ['class' => $inputs, 'required']) !!}
                 @endif
             </div>
             <div>
