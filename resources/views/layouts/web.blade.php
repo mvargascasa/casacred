@@ -125,8 +125,9 @@ if(strpos($actual_link, 'localhost') === false){
         overflow-x: hidden !important;
     }
     .wsapp{
+        z-index: 3;
         position: fixed;
-        bottom: 80px;
+        bottom: 20px;
         right: 20px;
     }
     @media only screen and (max-width: 600px) {
@@ -179,6 +180,9 @@ if(strpos($actual_link, 'localhost') === false){
       .item-nav-link:hover{
         background-color: #3b4255 !important;
         color: #ffffff !important;
+      }
+      .grecaptcha-badge{
+        visibility: hidden !important;
       }
 </style>
 </head>
@@ -423,7 +427,7 @@ if(strpos($actual_link, 'localhost') === false){
   </div>
   <div class="wsapp">
     <a href="https://api.whatsapp.com/send?phone=+593983849073" class="asindeco" target="_blank">
-        <img src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Notary Public Near Me" width="50" height="50">
+        <img src="{{asset('img/wpp_logo.png')}}" alt="Whatsapp Notary Public Near Me" width="50" height="50">
     </a>
   </div>
 <script src="{{asset('js/5.0.0/popper.min.js')}}"></script>
