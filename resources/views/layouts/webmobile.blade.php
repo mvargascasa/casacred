@@ -57,6 +57,7 @@
     #modalSearch{
         animation: fade-in-move-down 0.5s ease;
     }
+    .icons{color: #8B0000}
 </style>
 
   @yield('header')
@@ -198,7 +199,7 @@
     <svg class="h-5 w-5" fill="white" viewBox="-23 -21 682 682.66669" xmlns="http://www.w3.org/2000/svg"><path d="m544.386719 93.007812c-59.875-59.945312-139.503907-92.9726558-224.335938-93.007812-174.804687 0-317.070312 142.261719-317.140625 317.113281-.023437 55.894531 14.578125 110.457031 42.332032 158.550781l-44.992188 164.335938 168.121094-44.101562c46.324218 25.269531 98.476562 38.585937 151.550781 38.601562h.132813c174.785156 0 317.066406-142.273438 317.132812-317.132812.035156-84.742188-32.921875-164.417969-92.800781-224.359376zm-224.335938 487.933594h-.109375c-47.296875-.019531-93.683594-12.730468-134.160156-36.742187l-9.621094-5.714844-99.765625 26.171875 26.628907-97.269531-6.269532-9.972657c-26.386718-41.96875-40.320312-90.476562-40.296875-140.28125.054688-145.332031 118.304688-263.570312 263.699219-263.570312 70.40625.023438 136.589844 27.476562 186.355469 77.300781s77.15625 116.050781 77.132812 186.484375c-.0625 145.34375-118.304687 263.59375-263.59375 263.59375zm144.585938-197.417968c-7.921875-3.96875-46.882813-23.132813-54.148438-25.78125-7.257812-2.644532-12.546875-3.960938-17.824219 3.96875-5.285156 7.929687-20.46875 25.78125-25.09375 31.066406-4.625 5.289062-9.242187 5.953125-17.167968 1.984375-7.925782-3.964844-33.457032-12.335938-63.726563-39.332031-23.554687-21.011719-39.457031-46.960938-44.082031-54.890626-4.617188-7.9375-.039062-11.8125 3.476562-16.171874 8.578126-10.652344 17.167969-21.820313 19.808594-27.105469 2.644532-5.289063 1.320313-9.917969-.664062-13.882813-1.976563-3.964844-17.824219-42.96875-24.425782-58.839844-6.4375-15.445312-12.964843-13.359374-17.832031-13.601562-4.617187-.230469-9.902343-.277344-15.1875-.277344-5.28125 0-13.867187 1.980469-21.132812 9.917969-7.261719 7.933594-27.730469 27.101563-27.730469 66.105469s28.394531 76.683594 32.355469 81.972656c3.960937 5.289062 55.878906 85.328125 135.367187 119.648438 18.90625 8.171874 33.664063 13.042968 45.175782 16.695312 18.984374 6.03125 36.253906 5.179688 49.910156 3.140625 15.226562-2.277344 46.878906-19.171875 53.488281-37.679687 6.601563-18.511719 6.601563-34.375 4.617187-37.683594-1.976562-3.304688-7.261718-5.285156-15.183593-9.253906zm0 0" fill-rule="evenodd"/></svg>
 </div> 
 
-<div onclick="openModal('openLead')" style="width: 30%" class="flex px-4 py-4 bg-red-700 text-white text-sm"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<div onclick="openModal('modalinfomainFormLead')" style="width: 30%" class="flex px-4 py-4 bg-red-700 text-white text-sm"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 </svg><span class="ml-1">INFO</span>
 </div>
@@ -341,13 +342,13 @@
 </div>
 </div>
 
-<div id="openLead" class="modal z-50 h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
+<div id="modalinfomainFormLead" class="modal z-50 h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
 <!-- modal -->
 <div class="bg-white rounded shadow-lg w-10/12 md:w-1/3">
   <!-- modal header -->
   <div class="border-b bg-red-900 rounded px-4 py-2 flex justify-between items-center">
     <h3 class="text-white font-semibold text-lg">Información</h3>
-    <button onclick="closModal('openLead')" class="text-white font-bold px-2">X</button>
+    <button onclick="closModal('modalinfomainFormLead')" class="text-white font-bold px-2">X</button>
   </div>
   <!-- modal body -->
     <div id="mapoffice" class="block">
@@ -362,22 +363,22 @@
 
     <div class="p-3 hidden bg-white" id="forminfo">
         <p class="text-sm font-semibold pb-2 text-gray-700">Complete el siguiente formulario y en breve será contactado. </p>   
-        <form id="mainFormLead">
+        <form id="infomainFormLead">
             <input class="form-control" type="hidden" name="interest" id="interest" value="Propiedades">
-            <div><label for="fname" class="block text-xs leading-5 text-gray-500">Nombre y Apellido</label>
-                <div class="mt-1 rounded-md shadow-sm"><input type="text" id="fname" name="fname" maxlength="100"
+            <div><label for="infofname" class="block text-xs leading-5 text-gray-500">Nombre y Apellido</label>
+                <div class="mt-1 rounded-md shadow-sm"><input type="text" id="infofname" name="fname" maxlength="100"
                         class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out ">
                     </div>
             </div>
             <div class="mt-2">
                 <label for="tlf" class="block text-xs leading-5 text-gray-500">Teléfono</label>
-                <div class="mt-1 rounded-md shadow-sm"><input  type="tel" id="tlf" name="tlf" maxlength="30"
+                <div class="mt-1 rounded-md shadow-sm"><input  type="tel" id="infotlf" name="tlf" maxlength="30"
                         class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out ">
                     </div>
             </div>
             <div class="mt-2">
                 <label for="email" class="block text-xs leading-5 text-gray-500">Email</label>
-                <div class="mt-1 rounded-md shadow-sm"><input  type="email" id="email" name="email"
+                <div class="mt-1 rounded-md shadow-sm"><input  type="email" id="infoemail" name="email"
                         class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out ">
                     </div>
             </div>
@@ -388,8 +389,8 @@
                     </div>
             </div>
             <div class="mt-4"><span class="flex justify-center items-center ">
-                <button onclick="changeStatusModal()" type="button" class="w-full font-bold rounded-md text-base p-2">Volver al mapa</button>
-                <button type="button" onclick="sendFormLead()" class="w-full font-bold rounded-md text-base text-white bg-red-900 p-2">ENVIAR</button></span>
+                <button onclick="changeStatusModal()" type="button" class="w-full font-bold rounded-md text-base p-2">Ver el mapa</button>
+                <button type="button" onclick="sendFormLead('infomainFormLead')" class="w-full font-bold rounded-md text-base text-white bg-red-900 p-2">ENVIAR</button></span>
             </div>
         </form>
         
@@ -418,6 +419,183 @@
     </div>
 </div>
 </div>
+
+<div id="modalcredmainFormLead" class="modal z-50 h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
+    <!-- modal -->
+    <div class="bg-white rounded shadow-lg w-10/12 md:w-1/3">
+      <!-- modal header -->
+      <div class="border-b bg-red-900 rounded px-4 py-2 flex justify-between items-center">
+        <h3 class="text-white font-semibold text-lg">Solicite su Crédito</h3>
+        <button onclick="closModal('modalcredmainFormLead')" class="text-white font-bold px-2">X</button>
+      </div>
+      <!-- modal body -->    
+        <div class="p-3 bg-white">
+            <p class="text-sm font-semibold pb-2 text-gray-700">Complete el siguiente formulario con su información y nos contactaremos lo antes posible para asesorarle en el trámite</p>   
+            <form id="credmainFormLead">
+                <input class="form-control" type="hidden" name="interest" id="interest" value="Crédito">
+                <div><label for="credfname" class="block text-xs leading-5 text-gray-500">Nombre y Apellido</label>
+                    <div class="mt-1 rounded-md shadow-sm"><input type="text" id="credfname" name="fname" maxlength="100"
+                            class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out ">
+                        </div>
+                </div>
+                <div class="grid grid-cols-2">
+                    <div class="mt-2 mr-1">
+                        <label for="credtlf" class="block text-xs leading-5 text-gray-500">Teléfono</label>
+                        <div class="mt-1 rounded-md shadow-sm"><input  type="tel" id="credtlf" name="tlf" maxlength="30"
+                                class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out ">
+                            </div>
+                    </div>
+                    <div class="mt-2 ml-1">
+                        <label for="mount" class="block text-xs leading-5 text-gray-500">Monto a solicitar</label>
+                        <div class="mt-1 rounded-md shadow-sm">
+                            <input type="number" id="credmount" name="mount" class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <label for="email" class="block text-xs leading-5 text-gray-500">Email</label>
+                    <div class="mt-1 rounded-md shadow-sm"><input  type="email" id="credemail" name="email"
+                            class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out ">
+                        </div>
+                </div>
+
+                <div class="mt-2">
+                    <label for="message" class="block text-xs leading-5 text-gray-500">Comentario</label>
+                    <div class="mt-1 rounded-md shadow-sm"><input  type="text" id="message" name="message" maxlength="150"
+                            class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out">
+                        </div>
+                </div>
+                <div class="mt-4"><span class="flex justify-center items-center ">
+                    <button type="button" onclick="sendFormLead('credmainFormLead')" class="w-full font-bold rounded-md text-base text-white bg-red-900 p-2">ENVIAR</button></span>
+                </div>
+            </form>
+            
+            </div>
+    </div>
+    </div>
+
+    <div id="modalvendmainFormLead" class="modal z-50 h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 hidden">
+        <!-- modal -->
+        <div class="bg-white rounded shadow-lg w-10/12 md:w-1/3">
+          <!-- modal header -->
+          <div class="border-b bg-red-900 rounded px-4 py-2 flex justify-between items-center">
+            <h3 class="text-white font-semibold text-md">Venda su Propiedad con Nosotros</h3>
+            <button onclick="closModal('modalvendmainFormLead')" class="text-white font-bold px-2">X</button>
+          </div>
+          <!-- modal body -->
+          <div id="vend1" class="block p-3">
+            <div class="pb-2">
+                <img src="{{asset('img/oficinasnuevas.jpg')}}" class="w-full rounded" alt="Oficinas Casa Credito">
+            </div>
+            <p class="text-sm pb-2 text-gray-700">
+                En Casa Crédito contamos con un servicio exclusivo para la venta de su propiedad.
+            </p>
+            <p class="text-sm pb-2 text-gray-700">Le ofrecemos:</p>
+            <ul class="text-sm text-gray-700 pb-3">
+                <li><i class="fas fa-home icons"></i> Avalúo Referencial</li>
+                <li><i class="fas fa-sack-dollar icons"></i> Gestión de Crédito</li>
+                <li><i class="fas fa-camera-alt icons"></i> Fotografías y diseño de anuncios</li>
+            </ul>
+            <div class="flex justify-center">
+                <button class="rounded-md text-white bg-red-900 p-1" onclick="changeDivModalVend('vend1','vend2')">Siguiente <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <div id="vend2" class="hidden p-3">
+            {{-- <div class="pb-2">
+                <img src="{{asset('img/oficinasnuevas.jpg')}}" class="w-full rounded" alt="Oficinas Casa Credito">
+            </div> --}}
+            <p class="text-sm pb-2 text-gray-700">
+                Beneficios de Vender con Casa Crédito
+            </p>
+            <ol class="text-sm pb-2 text-gray-700">
+                <li><i class="fas fa-check icons"></i> Mantenemos total confidencialidad de su información personal</li>
+                <li><i class="fas fa-check icons"></i> Realizamos estrategias publicitarias en Ecuador y Estados Unidos </li>
+                <li><i class="fas fa-check icons"></i> Contamos con plataformas digitales propias para distribución</li>
+            </ol>
+            <div class="flex justify-center">
+                <button class="rounded-md p-1 mr-1" onclick="changeDivModalVend('vend2', 'vend1')"><i class="fas fa-arrow-left"></i> Regresar</button>
+                <button class="rounded-md text-white bg-red-900 p-1 ml-1" onclick="changeDivModalVend('vend2', 'vend3')">Siguiente <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+            <div id="vend3" class="p-3 bg-white hidden">
+                <p class="text-sm font-semibold pb-2 text-gray-700">Complete el siguiente formulario con la información respectiva y nos encargaremos de asesorarlo en la venta de su propiedad</p>   
+                <form id="vendmainFormLead">
+                    <input class="form-control" type="hidden" name="interest" id="interest" value="Vender una propiedad">
+                    <div><label for="vendfname" class="block text-xs leading-5 text-gray-500">Nombre y Apellido</label>
+                        <div class="mt-1 rounded-md shadow-sm"><input type="text" id="vendfname" name="fname" maxlength="100"
+                                class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out ">
+                            </div>
+                    </div>
+                    <div class="grid grid-cols-2">
+                        <div class="mt-1 mr-1">
+                            <label for="vendtlf" class="block text-xs leading-5 text-gray-500">Teléfono</label>
+                            <div class="mt-1 rounded-md shadow-sm"><input  type="tel" id="vendtlf" name="tlf" maxlength="30"
+                                    class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out ">
+                                </div>
+                        </div>
+                        <div class="mt-1">
+                            <label for="email" class="block text-xs leading-5 text-gray-500">Email</label>
+                            <div class="mt-1 rounded-md shadow-sm"><input  type="email" id="vendemail" name="email"
+                                    class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out ">
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-1 mr-2">
+                        <label for="types" class="block text-xs leading-5 text-gray-500">¿Qué propiedad necesita vender?</label>
+                        <select name="type" id="vendtype" class="bg-white appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out">
+                            <option value="">Seleccione</option>
+                            @foreach ($types as $type)
+                            <option value="{{$type->id}}">{{$type->type_title}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-2">
+                        <div class="mt-1 mr-2">
+                            <label for="selState" class="block text-xs leading-5 text-gray-500">Provincia</label>
+                            <select name="state" id="vendstate" class="bg-white appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out">
+                                <option value="">Seleccione</option>
+                                @foreach ($states as $state)
+                                <option value="{{$state->name}}" data-id="{{$state->id}}">{{$state->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mt-1 mr-2">
+                            <label for="selCity" class="block text-xs leading-5 text-gray-500">Ciudad</label>
+                            <select name="city" id="vendcity" class="bg-white appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out">
+                                <option value="">Seleccione</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mt-1">
+                        <label for="message" class="block text-xs leading-5 text-gray-500">Comentario</label>
+                        <div class="mt-1 rounded-md shadow-sm"><input  type="text" id="message" name="message" maxlength="150"
+                                class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out">
+                            </div>
+                    </div>
+    
+                    {{-- <div class="mt-2">
+                        <label for="message" class="block text-xs leading-5 text-gray-500">Comentario</label>
+                        <div class="mt-1 rounded-md shadow-sm"><input  type="text" id="message" name="message" maxlength="150"
+                                class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out">
+                            </div>
+                    </div> --}}
+                    <div class="mt-4"><span class="flex justify-center items-center ">
+                        <button class="font-bold rounded-md p-1 mr-1" onclick="changeDivModalVend('vend3', 'vend2')"><i class="fas fa-arrow-left"></i> Regresar</button>
+                        <button type="button" onclick="sendFormLead('vendmainFormLead')" class="rounded-md text-white bg-red-900 p-2">Enviar <i class="fas fa-arrow-right"></i></button></span>
+                    </div>
+                </form>
+                
+                </div>
+                
+        </div>
+        </div>
+
 <script>
         // window.addEventListener('load', (event) => {
         //     var range = new URLSearchParams(window.location.search).get('range');
@@ -443,15 +621,37 @@
             if(modal.classList.contains('hidden'))return true;
             else return false;
         }
+
+        function validateForms(form_id){
+            let first_letters = form_id.substring(0,4);
+            let verification = true;
+            switch (form_id) {
+                case "infomainFormLead":
+                    if(document.getElementById(first_letters+"fname").value < 2 || document.getElementById(first_letters+"tlf").value < 7 || document.getElementById(first_letters+"email").value < 10) verification = false;
+                    break;
+                case "credmainFormLead":
+                    if(document.getElementById(first_letters+"fname").value < 2 || document.getElementById(first_letters+"tlf").value < 7 || document.getElementById(first_letters+"mount").value < 5 || document.getElementById(first_letters+"email") < 10) verification = false;
+                    break;
+                case "vendmainFormLead":
+                if(document.getElementById(first_letters+"fname").value < 2 || document.getElementById(first_letters+"tlf").value < 7 || document.getElementById(first_letters+"email") < 10 || document.getElementById(first_letters+"type").value  == "" || document.getElementById(first_letters+"state").value == "" || document.getElementById(first_letters+"city").value == "") verification = false;
+                    break;
+                default:
+                    break;
+            }
+            return verification;
+        }
         
         function openModal(nModal) { document.getElementById(nModal).classList.remove('hidden');}
         function closModal(nModal) { document.getElementById(nModal).classList.add('hidden')}
 
-        const sendFormLead = async() =>{
-            if( document.getElementById('fname').value.length>2 && document.getElementById('tlf').value.length>6 ){
-                    closModal('openLead')
+        const sendFormLead = async(idform) =>{
+            //if( document.getElementById(idform.substring(0, 4) + 'fname').value.length>2 && document.getElementById(idform.substring(0, 4) + 'tlf').value.length>6 ){
+            let validation = validateForms(idform);
+            console.log(validation);
+            if(validation){        
+                    closModal("modal"+idform)
                     openModal('openThank')
-                    var dataForm = new FormData(document.getElementById('mainFormLead'));
+                    var dataForm = new FormData(document.getElementById(idform));
                     const response = await fetch("{{route('web.sendlead')}}",
                     { body: dataForm, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}" }  })
                     let mensaje = await response.text();
@@ -490,6 +690,59 @@
                 divform.classList.add('hidden');
             }
         }
+
+        function changeDivModalVend(from, to){
+            let divvend1 = document.getElementById('vend1');
+            let divvend2 = document.getElementById('vend2');
+            let divvend3 = document.getElementById('vend3');
+            
+            if(from == "vend1" && to == "vend2"){
+                divvend1.classList.remove('block');
+                divvend1.classList.add('hidden');
+                divvend2.classList.remove('hidden');
+                divvend2.classList.add('block');
+            }
+            if(from == "vend2" && to == "vend1"){
+                divvend1.classList.remove('hidden');
+                divvend1.classList.add('block');
+                divvend2.classList.remove('block');
+                divvend2.classList.add('hidden');
+            }
+            if(from == "vend2" && to == "vend3"){
+                divvend2.classList.remove('block');
+                divvend2.classList.add('hidden');
+                divvend3.classList.remove('hidden');
+                divvend3.classList.add('block');
+            }
+            if(from == "vend3" && to == "vend2"){
+                divvend2.classList.remove('hidden');
+                divvend2.classList.add('block');
+                divvend3.classList.remove('block');
+                divvend3.classList.add('hidden');
+            }
+        }
+
+        let selProvincea = document.querySelector("select[name='state']");
+        let selCitya = document.querySelector("select[name='city']");
+
+        selProvincea.addEventListener("change", async function() {
+        selCitya.options.length = 0;
+        let id = selProvincea.options[selProvincea.selectedIndex].dataset.id;
+        const response = await fetch("{{url('getcities')}}/"+id );
+        const cities = await response.json();
+        
+        var opt = document.createElement('option');
+            opt.appendChild( document.createTextNode('Seleccione') );
+            opt.value = '';
+            selCitya.appendChild(opt);
+        cities.forEach(city => {
+            var opt = document.createElement('option');
+            opt.appendChild( document.createTextNode(city.name) );
+            opt.value = city.name;
+            selCitya.appendChild(opt);
+        });
+    });
+
 
     //     const rangeSlide = (value) => {
     //     let stringyearsconstruction;
