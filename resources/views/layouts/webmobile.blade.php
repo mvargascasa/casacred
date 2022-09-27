@@ -535,7 +535,7 @@
                                     class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out ">
                                 </div>
                         </div>
-                        <div class="mt-1">
+                        <div class="mt-1 ml-1">
                             <label for="email" class="block text-xs leading-5 text-gray-500">Email</label>
                             <div class="mt-1 rounded-md shadow-sm"><input  type="email" id="vendemail" name="email"
                                     class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out ">
