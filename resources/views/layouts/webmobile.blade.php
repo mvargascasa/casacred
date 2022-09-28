@@ -30,16 +30,18 @@
 
     <!-- Facebook Pixel Code -->
     <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '3081509562095231');
-        fbq('track', 'PageView');
+        setTimeout(() => {
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '3081509562095231');
+            fbq('track', 'PageView');
+        }, 3000);
     </script>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3081509562095231&ev=PageView&noscript=1"/></noscript>
     <!-- End Facebook Pixel Code -->   
@@ -48,19 +50,10 @@
 
 <style>
     @keyframes fade-in-move-down {
-      0% {
-        opacity: 0;
-        transform: translateY(-3rem);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-        margin-top: 100px;
-      }
+      0% {opacity: 0;transform: translateY(-3rem);}
+      100% {opacity: 1;transform: translateY(0);margin-top: 100px;}
     }
-    #modalSearch{
-        animation: fade-in-move-down 0.5s ease;
-    }
+    #modalSearch{animation: fade-in-move-down 0.5s ease;}
     .icons{color: #8B0000}
 </style>
 

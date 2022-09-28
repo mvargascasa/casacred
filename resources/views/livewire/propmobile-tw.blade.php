@@ -20,7 +20,7 @@
     @if($ii==6)
         <div class="p-2 m-auto">
             <div class="overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out border-b border-red-700">
-                <img style="cursor: pointer" class="imgdir rounded object-cover" width="100%" height="500rem"  onclick="openModal('modalcredmainFormLead')" src="{{asset('img/BANNERS-CASA-CREDITO-VENDE-09.webp')}}" alt="Creditos para Migrantes" /> 
+                <img style="cursor: pointer;" class="w-full imgdir rounded object-cover" onclick="openModal('modalcredmainFormLead')" src="{{asset('img/BANNERS-CASA-CREDITO-VENDE-09.webp')}}" alt="Creditos para Migrantes" /> 
             </div>
         </div>
     @endif
@@ -81,7 +81,7 @@
     @if($listings->count()<6)
         <div class="p-2 m-auto">
             <div class="overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out border-b border-red-700">
-                <img style="cursor: pointer" class="w-full"  onclick="openModal('modalcredmainFormLead')" src="{{asset('img/BANNERS-CASA-CREDITO-VENDE-09.webp')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
+                <img style="cursor: pointer" onclick="openModal('modalcredmainFormLead')" src="{{asset('img/BANNERS-CASA-CREDITO-VENDE-09.webp')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover w-full" /> 
             </div>
         </div>
     @endif
@@ -89,7 +89,7 @@
     @if($listings->count()<11)
         <div class="p-2 m-auto">
             <div class="overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out border-b border-red-700">
-                <img style="cursor: pointer" class="w-full" onclick="openModal('modalvendmainFormLead')" src="{{asset('img/vende-tu-propiedad-en-casacredito.jpg')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
+                <img style="cursor: pointer" onclick="openModal('modalvendmainFormLead')" src="{{asset('img/vende-tu-propiedad-en-casacredito.jpg')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
             </div>
         </div>
     @endif
