@@ -30,7 +30,6 @@
 
     <!-- Facebook Pixel Code -->
     <script>
-        setTimeout(() => {
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -41,7 +40,6 @@
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '3081509562095231');
             fbq('track', 'PageView');
-        }, 3000);
     </script>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3081509562095231&ev=PageView&noscript=1"/></noscript>
     <!-- End Facebook Pixel Code -->   
