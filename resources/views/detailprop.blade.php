@@ -14,6 +14,7 @@
 @endphp
 <meta name="description" content="@isset($listing->meta_description){{$listing->meta_description}} @else {{mb_substr(trim(strip_tags($listing->listing_description)),0,180)}}... @endif"/>
 <meta name="keywords" content="@isset($listing->keywords) {{$listing->keywords}} @else Casas en venta en cuenca ecuador, Apartamentos en venta en cuenca ecuador, terrenos en venta en cuenca ecuador, lotes en venta en cuenca ecuador, {{ Str::lower($type->type_title) }} en {{ $status }} en {{ strtolower($listing->city . " " . $listing->state) }} @endisset">
+<meta name="robots" content="@if($listing->status) index @else noindex @endif">
 
 <meta property="og:url"                content="{{route('web.detail',$listing->slug)}}" />
 <meta property="og:type"               content="website" />
@@ -634,6 +635,7 @@
               </div> --}}
             </div>
           </div>
+          @if($listing->status)
           <div class="container">
             <p class="text-center" style="font-weight: 400; font-size:20px">Compartir</p>
             <div class="d-flex justify-content-center">
@@ -642,6 +644,7 @@
               <p title="Compartir por WhatsApp" id="shareToWpp" style="cursor: pointer"><i class="fab fa-whatsapp ml-3" style="color: #25D366;font-size:30px"></i></p>
             </div>
           </div>
+          @endif
         </div>
       </div>
       
