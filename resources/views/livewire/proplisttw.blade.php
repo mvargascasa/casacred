@@ -67,25 +67,25 @@
                             @if($propertie->available != null)
                             <div class="mr-2">
                                     @if($propertie->available == 2)
-                                        <img title="Vendida" width="26px" src="{{asset('img/not-available.png')}}" alt="NOT AVAILABLE">
+                                        <img title="Vendida" width="40px" src="{{asset('img/not-available.png')}}" alt="NOT AVAILABLE">
                                     @else
-                                        <img title="Disponible" width="26px" src="{{asset('img/available.png')}}" alt="AVAILABLE">
+                                        <img title="Disponible" width="40px" src="{{asset('img/available.png')}}" alt="AVAILABLE">
                                     @endif
                                 </div>
                             @endif
                             <div class="mr-2">
                                 @if ($propertie->listing_type==2)
-                                    <img src="{{ asset('img/pagada.png') }}" alt="Pagada" title="Propiedad pagada">
+                                    <img width="32px" src="{{ asset('img/pagada.png') }}" alt="Pagada" title="Propiedad pagada">
                                 @elseif($propertie->listing_type==1)
-                                    <img src="{{ asset('img/free.png') }}" alt="Gratis" title="Propiedad gratis">
+                                    <img width="32px" src="{{ asset('img/free.png') }}" alt="Gratis" title="Propiedad gratis">
                                 @endif
                             </div>
                             <div class="mr-2">
                                 @if ($propertie->listingtagstatus==2 && $propertie->listingtype != 26)
-                                    <img src="{{ asset('img/worker.png') }}" alt="Constructora" title="Constructora">
+                                    <img width="33px" src="{{ asset('img/worker.png') }}" alt="Constructora" title="Constructora">
                                 @endif
                             </div>
-                            <div class="text-xs font-semibold" style="font-size: 12px; background-color: #017cd3; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">
+                            <div class="text-xs font-semibold" style=" height: 27px; font-size: 12px; background-color: #017cd3; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">
                                 COD: {{ $propertie->product_code }}
                             </div>
                         </div>

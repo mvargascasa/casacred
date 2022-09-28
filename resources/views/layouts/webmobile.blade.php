@@ -14,14 +14,18 @@
     if(strpos($actual_link, 'localhost') === false){
 ?>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124437679-1"></script>
+    <script id="scriptanalytics" async></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+        let scriptanalytics = document.getElementById('scriptanalytics');
+        setTimeout(() => {
+            scriptanalytics.src = "https://www.googletagmanager.com/gtag/js?id=UA-124437679-1";
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-        gtag('config', 'AW-806267889'); //    Adwords
-        gtag('config', 'UA-124437679-1');//  Analytics 
+            gtag('config', 'AW-806267889'); //    Adwords
+            gtag('config', 'UA-124437679-1');//  Analytics 
+        }, 3000);
     </script>
 
     <!-- Facebook Pixel Code -->

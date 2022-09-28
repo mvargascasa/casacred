@@ -30,7 +30,7 @@
         </div> 
     </div> 
                     <div class="flex flex-col pt-4 px-2">
-                        <div class="py-2 overflow-x-auto">
+                        <div class="overflow-x-auto rounded-md bg-gray-500 pt-2">
                             <div id="filtersdiv" class="flex flex-wrap justify-center mt-4">
                                 {{-- <div class="w-full pr-2">
                                     <select class="block w-auto pl-2 py-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_country">
@@ -234,11 +234,11 @@
                             </div>
 
                             <div class="flex justify-center mt-3">
-                                <button class="bg-red-800 text-white rounded-md px-4 py-1 hover:bg-red-500 mr-1" onclick="filter_properties()">BUSCAR</button>
-                                <button class="bg-red-800 text-white rounded-md px-4 py-1 hover:bg-red-500 ml-1" onclick="location.reload()">LIMPIAR CAMPOS</button>
+                                <button class="bg-red-700 text-white rounded-md px-4 py-1 hover:bg-red-500 mr-1" onclick="filter_properties()">BUSCAR</button>
+                                <button class="bg-red-700 text-white rounded-md px-4 py-1 hover:bg-red-500 ml-1" onclick="location.reload()">LIMPIAR CAMPOS</button>
                             </div>
-                            <div class="w-auto flex justify-end">
-                                <div class="block w-full pb-3 rounded-md">
+                            <div class="w-auto flex justify-end pb-2">
+                                <div class="block w-full rounded-md mr-1">
                                     <input type="hidden" id="view" value="grid">
                                     <div style="cursor: pointer" onclick="document.getElementById('view').value='grid';filter_properties();" class="float-right pr-1"><img src="{{ asset('img/grid.png') }}" alt=""></div>
                                     <div style="cursor: pointer" onclick="document.getElementById('view').value='list';filter_properties();" class="float-right pr-2"><img src="{{ asset('img/list.png') }}" alt=""></div>
