@@ -174,7 +174,7 @@ class WebController extends Controller
         $header .= "Reply-To: ".'info@casacredito.com'."\r\n";
         $header .= "MIME-Version: 1.0\r\n";
         $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-        //mail('mvargas@casacredito.com,info@casacredito.com,ventas@casacredito.com','Lead CasaCredito: '.strip_tags($request->fname), $message, $header);
+        mail('mvargas@casacredito.com,info@casacredito.com,ventas@casacredito.com,ventas1@casacredito.com,ventas2@casacredito.com','Lead CasaCredito: '.strip_tags($request->fname), $message, $header);
         mail('sebas31051999@gmail.com', 'Lead CasaCredito: '.strip_tags($request->fname), $message, $header);
         //mvargas@casacredito.com,info@casacredito.com,ventas@casacredito.com
     }    
