@@ -62,7 +62,7 @@
                         <span class="inline-block bg-gray-200 rounded-full px-2 text-sm font-semibold text-gray-700">{{ $propertie->listingtypestatus}}</span>
                         <p class="mx-2 text-red-600 font-extrabold text-xl">${{ number_format($propertie->property_price)}}</p class="mx-2 text-red-600 font-bold">
                     </div>
-                    <div style="margin-left: -25px">
+                    <div style="@if($propertie->listingtagstatus==2 && $propertie->listingtype != 26) margin-left: -20px @else margin-left: 0px @endif">
                         <div class="bottom-0 right-0 flex">
                             @if($propertie->available != null)
                             <div class="mr-1">
@@ -85,7 +85,7 @@
                                     <img width="28px" src="{{ asset('img/worker.png') }}" alt="Constructora" title="CONSTRUCTORA">
                                 @endif
                             </div>
-                            <div style="width:80px; height: 25px; font-size: 12px; background-color: #017cd3; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">
+                            <div style="width:80px; height: auto; background-color: #017cd3; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">
                                 <p class="text-xs font-semibold">
                                     COD: {{ $propertie->product_code }}
                                 </p>
