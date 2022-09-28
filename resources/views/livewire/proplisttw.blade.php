@@ -1,6 +1,6 @@
 <div class="bg-white">
     @if($view == 'grid')
-    <div class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 mx-4">
+    <div class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mx-4">
         @foreach ($properties as $propertie)
             @php
                 $firstImg = array_filter(explode("|", $propertie->images)) ;
@@ -57,36 +57,38 @@
                 </p>
                 <p>@if(Auth::id()==123)<span style="font-size: 10px">{{$propertie->slug}}</span> <br>@endif</p>
                 </div>
-                <div class="flex-1 px-2 py-2">
-                    <div class="float-left">
+                <div class="grid grid-cols-2 px-2 py-2 w-full">
+                    <div>
                         <span class="inline-block bg-gray-200 rounded-full px-2 text-sm font-semibold text-gray-700">{{ $propertie->listingtypestatus}}</span>
                         <p class="mx-2 text-red-600 font-extrabold text-xl">${{ number_format($propertie->property_price)}}</p class="mx-2 text-red-600 font-bold">
                     </div>
-                    <div class="float-right">
+                    <div style="margin-left: -30px">
                         <div class="bottom-0 right-0 flex">
                             @if($propertie->available != null)
                             <div class="mr-2">
                                     @if($propertie->available == 2)
-                                        <img title="Vendida" width="25px" src="{{asset('img/not-available.png')}}" alt="NOT AVAILABLE">
+                                        <img title="NO DISPONIBLE" width="30px" src="{{asset('img/not-available.png')}}" alt="NOT AVAILABLE">
                                     @else
-                                        <img title="Disponible" width="25px" src="{{asset('img/available.png')}}" alt="AVAILABLE">
+                                        <img title="DISPONIBLE" width="30px" src="{{asset('img/available.png')}}" alt="AVAILABLE">
                                     @endif
                                 </div>
                             @endif
                             <div class="mr-2">
                                 @if ($propertie->listing_type==2)
-                                    <img width="25px" src="{{ asset('img/pagada.png') }}" alt="Pagada" title="Propiedad pagada">
+                                    <img width="30px" src="{{ asset('img/pagada.png') }}" alt="Pagada" title="PROPIEDAD PAGADA">
                                 @elseif($propertie->listing_type==1)
-                                    <img width="25px" src="{{ asset('img/free.png') }}" alt="Gratis" title="Propiedad gratis">
+                                    <img width="30px" src="{{ asset('img/free.png') }}" alt="Gratis" title="PROPIEDAD GRATIS">
                                 @endif
                             </div>
                             <div class="mr-2">
                                 @if ($propertie->listingtagstatus==2 && $propertie->listingtype != 26)
-                                    <img width="25px" src="{{ asset('img/worker.png') }}" alt="Constructora" title="Constructora">
+                                    <img width="30px" src="{{ asset('img/worker.png') }}" alt="Constructora" title="CONSTRUCTORA">
                                 @endif
                             </div>
-                            <div class="text-xs font-semibold" style=" height: 27px; font-size: 12px; background-color: #017cd3; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">
-                                COD: {{ $propertie->product_code }}
+                            <div style="width:80px; height: 25px; font-size: 12px; background-color: #017cd3; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">
+                                <p class="text-xs font-semibold">
+                                    COD: {{ $propertie->product_code }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -110,7 +112,7 @@
                 @if(Auth::user()->role == "user" || Auth::user()->role == "ASESOR")
                     </a>
                 @endif
-<br><br>
+
                 @if(Auth::user()->role == 'administrator')
                 <div class="flex justify-center">
                     {{-- <a target="_blank" class="btn-view mr-1 p-1 rounded" style="background-color: #c6f6d5" href="{{ route('admin.show.listing', $propertie) }}" style="text-decoration: none;">
