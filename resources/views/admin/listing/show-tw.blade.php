@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">  
-  
+
     <style>
       @media (min-width: 576px) {  .ccimgpro{max-height:250px ;}  }
       /* Medium devices (tablets, 768px and up)*/
@@ -307,6 +307,7 @@
     @if(Auth::user()->role == 'administrator')
     <a class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" style="text-decoration: none;" href="{{ route('home.tw.edit', $propertie) }}">Editar Propiedad</a>
     <button type="button" class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver Historial</button>
+    <button type="button" class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" data-bs-toggle="modal" data-bs-target="#modalSendEmail">Compartir</button>
     @endif
   </div>
 </div>
@@ -373,12 +374,99 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
 </div>
 </div>
 </div>
-    
+
+<div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg modal-dialog-scrollable relative w-auto pointer-events-none">
+<div
+class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+<div
+  class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+  <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">Historial de Propiedad {{$propertie->product_code}}</h5>
+  <button type="button"
+    class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+    data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body relative p-4">
+  @if(count($comments)>0)
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+            <th scope="col" class="py-3 px-6">
+                Fecha
+            </th>
+            <th scope="col" class="py-3 px-6">
+                Tipo de Cambio
+            </th>
+            <th scope="col" class="py-3 px-6">
+                Cambio Efectuado
+            </th>
+            <th scope="col" class="py-3 px-6">
+                Comentario
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+      @foreach ($comments as $comment)
+        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+            <th scope="row" class="py-2 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              {{date_format(date_create($comment->created_at), 'Y/m/d')}}
+            </th>
+            <td class="py-2 px-6">
+              @if($comment->type == "status") Estado @elseif($comment->type == "plan") Plan @elseif($comment->type == "available") Disponibilidad @endif
+            </td>
+            <td class="py-2 px-6">
+              @if($comment->type == "status" && $comment->type == 0) Se desactivo la propiedad @elseif($comment->type == "plan" && $comment->value == 1) Se activo la propiedad Gratis @elseif($comment->type == "available" && $comment->value == 2) La propiedad ya no está disponible @endif
+            </td>
+            <td class="py-2 px-6">
+              {{$comment->comment}}
+            </td>
+        </tr>
+      @endforeach
+    </tbody>
+</table>
+    @else
+      <p>No hemos encontrado comentarios de esta propiedad</p>
+    @endif
+</div>
+<div
+  class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-center p-4 border-t border-gray-200 rounded-b-md">
+  <button type="button" class="px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">Cerrar</button>
+</div>
+</div>
+</div>
+</div>
+
+{{-- modal envio de correo --}}
+<div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+id="modalSendEmail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg modal-dialog-scrollable relative w-auto pointer-events-none">
+<div
+class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+<div
+  class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+  <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">Compartir</h5>
+  <button type="button"
+    class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+    data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body relative p-4">
+  <a href="https://api.whatsapp.com/send?text={{route('web.detail', $propertie->slug)}}">Share To Wpp</a>
+</div>
+<div
+  class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-center p-4 border-t border-gray-200 rounded-b-md">
+  <button type="button" class="px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">Cerrar</button>
+</div>
+</div>
+</div>
+</div>    
+
 @endsection
 
 @section('endscript')
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script>
+
   var openmodal = document.querySelectorAll('.modal-open')
     for (var i = 0; i < openmodal.length; i++) {
       openmodal[i].addEventListener('click', function(event){
