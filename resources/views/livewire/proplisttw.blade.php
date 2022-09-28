@@ -62,27 +62,27 @@
                         <span class="inline-block bg-gray-200 rounded-full px-2 text-sm font-semibold text-gray-700">{{ $propertie->listingtypestatus}}</span>
                         <p class="mx-2 text-red-600 font-extrabold text-xl">${{ number_format($propertie->property_price)}}</p class="mx-2 text-red-600 font-bold">
                     </div>
-                    <div style="margin-left: -30px">
+                    <div style="margin-left: -25px">
                         <div class="bottom-0 right-0 flex">
                             @if($propertie->available != null)
-                            <div class="mr-2">
+                            <div class="mr-1">
                                     @if($propertie->available == 2)
-                                        <img title="NO DISPONIBLE" width="30px" src="{{asset('img/not-available.png')}}" alt="NOT AVAILABLE">
+                                        <img title="NO DISPONIBLE" width="28px" src="{{asset('img/not-available.png')}}" alt="NOT AVAILABLE">
                                     @else
-                                        <img title="DISPONIBLE" width="30px" src="{{asset('img/available.png')}}" alt="AVAILABLE">
+                                        <img title="DISPONIBLE" width="28px" src="{{asset('img/available.png')}}" alt="AVAILABLE">
                                     @endif
                                 </div>
                             @endif
-                            <div class="mr-2">
+                            <div class="mr-1">
                                 @if ($propertie->listing_type==2)
-                                    <img width="30px" src="{{ asset('img/pagada.png') }}" alt="Pagada" title="PROPIEDAD PAGADA">
+                                    <img width="28px" src="{{ asset('img/pagada.png') }}" alt="Pagada" title="PROPIEDAD PAGADA">
                                 @elseif($propertie->listing_type==1)
-                                    <img width="30px" src="{{ asset('img/free.png') }}" alt="Gratis" title="PROPIEDAD GRATIS">
+                                    <img width="28px" src="{{ asset('img/free.png') }}" alt="Gratis" title="PROPIEDAD GRATIS">
                                 @endif
                             </div>
-                            <div class="mr-2">
+                            <div class="mr-1">
                                 @if ($propertie->listingtagstatus==2 && $propertie->listingtype != 26)
-                                    <img width="30px" src="{{ asset('img/worker.png') }}" alt="Constructora" title="CONSTRUCTORA">
+                                    <img width="28px" src="{{ asset('img/worker.png') }}" alt="Constructora" title="CONSTRUCTORA">
                                 @endif
                             </div>
                             <div style="width:80px; height: 25px; font-size: 12px; background-color: #017cd3; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">
