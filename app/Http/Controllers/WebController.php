@@ -355,6 +355,7 @@ class WebController extends Controller
             </div>
             <p style='color: blue; margin-top: 2%; font-size: 12px'>https://casacredito.com/propiedad/$propertie->slug</p>
             <p style='font-size: 17px; font-weight: 500'>$propertie->listing_title</p>
+            <p style='font-size: 16px'>$propertie->listing_description</p>
             <i>Casa Crédito, ¡Haciendo sus sueños realidad! <img style='width:30px;height:15px' src='https://casacredito.com/img/logo_actualizado2.png'/></i>
             </div>
             </div>
