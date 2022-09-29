@@ -56,7 +56,7 @@
       .cta {
         position: relative;
         margin: auto;
-        padding: 15px 15px;
+        padding: 20px 20px;
         transition: all 0.2s ease;
       }
       .cta:before {
@@ -73,7 +73,7 @@
       }
       .cta span {
         position: relative;
-        font-size: 16px;
+        font-size: 15px;
         line-height: 18px;
         font-weight: 900;
         letter-spacing: 0.25em;
@@ -178,6 +178,10 @@
     }
     .carousel-item.active{z-index: 0 !important;opacity: 1 !important}
     ::placeholder {color: #b9babb !important;font-size: 14px}
+    .shadow{box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;}
+    .buttons-services{bottom: 0px !important; background-color: #FEBB19; color: #ffffff;cursor: pointer; box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;}
+    .shadow:hover{box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px !important;}
+    .cursor{cursor: pointer !important;}
     </style>
     @livewireStyles
 @endsection
@@ -228,64 +232,102 @@
   </div>
 
 
-        <div class="@if($ismobile) pt-4 @else container pt-5 @endif">
-          <p id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 mb-5">SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A SU ALCANCE</p>
+        <div class="@if($ismobile) pt-2 @else container pt-5 @endif">
+          <p id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 @if($ismobile) mb-3 @else mb-5 @endif">SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A SU ALCANCE</p>
           <div class="row mr-2 ml-2">
-              <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
-                <div class="position-relative d-flex justify-content-center">
-                  <img style="border-radius: 5px;"  width="100rem" height="100rem" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/CAS-IDEAL.webp') }}" alt="Compra y Venta de Casas en Cuenca Ecuador">
-                </div>
-                  <div class="text-center mt-5">
-                        <a class="btn cta a-btn-services" href="{{ route('web.propiedades') }}">
-                          <span>Comprar</span>
+              <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
+                <a href="{{route('web.propiedades')}}">
+                  <div class="position-relative d-flex justify-content-center shadow rounded cursor">
+                    <img style="border-radius: 5px;"  width="100rem" height="100rem" class="img-fluid lazyLoad" data-src="{{ asset('img/CAS-IDEAL.webp') }}" alt="Compra y Venta de Casas en Cuenca Ecuador">
+                    @if(!$ismobile)
+                      <div class="text-center position-absolute p-1 rounded mb-2 fw-bold buttons-services">
+                        Comprar una propiedad <i class="fas fa-arrow-circle-right"></i>
+                            {{-- <a class="btn cta a-btn-services" href="{{ route('web.propiedades') }}">
+                              <span>Comprar</span>
+                              <svg width="12px" height="10px" viewBox="0 0 13 10">
+                                <path d="M1,5 L11,5"></path>
+                                <polyline points="8 1 12 5 8 9"></polyline>
+                              </svg>
+                            </a> --}}
+                      </div>
+                      @endif
+                  </div>
+                  @if($ismobile)
+                  <div class="text-center p-1 rounded mb-2 fw-bold buttons-services mt-3" style="font-size: 12px">
+                    Comprar una propiedad <i class="fas fa-arrow-circle-right"></i>
+                  </div>
+                  @endif
+                </a>
+              </div>
+              <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
+                <div class="position-relative d-flex justify-content-center shadow rounded cursor" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                  <img style="border-radius: 5px;" width="100rem" height="100rem" class="img-fluid lazyLoad" data-src="{{ asset('img/VENDA-SU-PROPIEDAD.webp') }}" alt="Venda su propiedad con nosotros">
+                  @if(!$ismobile)
+                    <div class="text-center position-absolute p-1 rounded mb-2 fw-bold buttons-services">
+                        Vender una propiedad <i class="fas fa-arrow-circle-right"></i>
+                      {{-- <button data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-whatever="  una propiedad">
+                          <span>Vender</span>
                           <svg width="13px" height="10px" viewBox="0 0 13 10">
                             <path d="M1,5 L11,5"></path>
                             <polyline points="8 1 12 5 8 9"></polyline>
                           </svg>
-                        </a>
-                  </div>
+                        </button> --}}
+                    </div>
+                  @endif
+                </div>
+                @if($ismobile)
+                <div class="text-center mt-3 p-1 rounded mb-2 fw-bold buttons-services" style="font-size: 12px" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                  Vender una propiedad <i class="fas fa-arrow-circle-right"></i>
+                </div>
+                @endif
               </div>
-              <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
-                <div class="position-relative d-flex justify-content-center">
-                  <img style="border-radius: 5px;" width="100rem" height="100rem" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/VENDA-SU-PROPIEDAD.webp') }}" alt="Venda su propiedad con nosotros">
+              <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
+                <div class="position-relative d-flex justify-content-center shadow rounded cursor" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
+                  <img style="border-radius: 5px;" width="100rem" height="100rem" class="img-fluid lazyLoad" data-src="{{ asset('img/ALQUILE.webp') }}" alt="Alquiler de viviendas o departamentos">
+                  @if(!$ismobile)
+                    <div class="text-center mt-5 position-absolute p-1 rounded mb-2 fw-bold buttons-services">
+                        Alquilar una propiedad <i class="fas fa-arrow-circle-right"></i> 
+                      {{-- <button class="btn cta a-btn-services" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
+                          <span>Alquilar</span>
+                          <svg width="13px" height="10px" viewBox="0 0 13 10">
+                            <path d="M1,5 L11,5"></path>
+                            <polyline points="8 1 12 5 8 9"></polyline>
+                          </svg>
+                        </button> --}}
+                    </div>
+                  @endif
                 </div>
-                  <div class="text-center mt-5">
-                      <button class="btn cta a-btn-services" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-whatever="  una propiedad">
-                        <span>Vender</span>
-                        <svg width="13px" height="10px" viewBox="0 0 13 10">
-                          <path d="M1,5 L11,5"></path>
-                          <polyline points="8 1 12 5 8 9"></polyline>
-                        </svg>
-                      </button>
+                @if($ismobile)
+                <a href="{{route('web.servicios', 'creditos-en-ecuador')}}">
+                  <div class="text-center mt-3 p-1 rounded mb-2 fw-bold buttons-services" style="font-size: 12px" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
+                    Alquilar una propiedad <i class="fas fa-arrow-circle-right"></i> 
                   </div>
+                </a>
+                @endif
               </div>
-              <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
-                <div class="position-relative d-flex justify-content-center">
-                  <img style="border-radius: 5px;" width="100rem" height="100rem" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/ALQUILE.webp') }}" alt="Alquiler de viviendas o departamentos">
-                </div>
-                  <div class="text-center mt-5">
-                      <button class="btn cta a-btn-services" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
-                        <span>Alquilar</span>
-                        <svg width="13px" height="10px" viewBox="0 0 13 10">
-                          <path d="M1,5 L11,5"></path>
-                          <polyline points="8 1 12 5 8 9"></polyline>
-                        </svg>
-                      </button>
+              <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
+                <a href="{{route('web.servicios', 'creditos-en-ecuador')}}">
+                  <div class="position-relative d-flex justify-content-center shadow rounded cursor">
+                    <img style="border-radius: 5px;" width="100rem" height="100rem" class="img-fluid lazyLoad" data-src="{{ asset('img/CREDITOS.webp') }}" alt="Creditos para ecuatorianos en el extranjero">
+                    @if(!$ismobile)
+                      <div class="text-center mt-5 position-absolute p-1 rounded mb-2 fw-bold buttons-services">
+                          Solicitar un crédito <i class="fas fa-arrow-circle-right"></i>
+                        {{-- <a href="{{ route('web.servicios', 'creditos-en-ecuador') }}" class="btn cta a-btn-services">
+                            <span>Solicitar</span>
+                            <svg width="13px" height="10px" viewBox="0 0 13 10">
+                              <path d="M1,5 L11,5"></path>
+                              <polyline points="8 1 12 5 8 9"></polyline>
+                            </svg>
+                          </a> --}}
+                      </div>
+                    @endif
                   </div>
-              </div>
-              <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 mb-5">
-                <div class="position-relative d-flex justify-content-center">
-                  <img style="border-radius: 5px;" width="100rem" height="100rem" class="img-fluid hover-image lazyLoad" data-src="{{ asset('img/CREDITOS.webp') }}" alt="Creditos para ecuatorianos en el extranjero">
-                </div>
-                <div class="text-center mt-5">
-                    <a href="{{ route('web.servicios', 'creditos-en-ecuador') }}" class="btn cta a-btn-services">
-                      <span>Solicitar</span>
-                      <svg width="13px" height="10px" viewBox="0 0 13 10">
-                        <path d="M1,5 L11,5"></path>
-                        <polyline points="8 1 12 5 8 9"></polyline>
-                      </svg>
-                    </a>
-                </div>
+                </a>
+                @if($ismobile)
+                  <div class="text-center mt-3 p-1 rounded mb-2 fw-bold buttons-services" style="font-size: 12px">
+                    Solicitar un crédito <i class="fas fa-arrow-circle-right"></i>
+                  </div>
+                @endif
             </div>
           </div>
       </div>
@@ -403,7 +445,7 @@
         </div>
       @endif
       <div class="d-flex justify-content-center mt-3">
-        <a style="background-color: #2c3144; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 18px" class="btn" href="{{ route('web.propiedades') }}">Ver todas <i style="color: #fcc62e" class="fas fa-long-arrow-alt-right"></i></a>
+        <a style="background-color: #2c3144; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 18px" class="btn" href="{{ route('web.propiedades') }}">Ver todas las propiedades <i style="color: #fcc62e" class="fas fa-long-arrow-alt-right"></i></a>
       </div>
     </div>
 
