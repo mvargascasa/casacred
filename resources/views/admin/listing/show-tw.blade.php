@@ -465,7 +465,7 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
 <div class="modal-body relative pr-4 pl-4">
   <div id="linksshare" class="flex justify-center">
     <div class="mx-2">
-      <a href="https://api.whatsapp.com/send?text={{route('web.detail', $propertie->slug)}}"><i class="fab fa-whatsapp fa-2x"></i></a>
+      <a href="https://api.whatsapp.com/send?text=Reciba un cordial saludo de Casa Crédito 👋🏻🏠 Le hacemos llegar la propiedad en la que se encuentra interesado.%0A{{route('web.detail', $propertie->slug)}}%0A_*Haciendo sus sueños realidad*_"><i class="fab fa-whatsapp fa-2x"></i></a>
     </div>
     <div class="mx-2" style="cursor: pointer">
       <i class="fas fa-envelope fa-2x hover:text-blue-600" onclick="document.getElementById('sharetomail').classList.remove('hidden');document.getElementById('linksshare').classList.add('hidden');"></i>
