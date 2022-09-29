@@ -348,7 +348,7 @@ class WebController extends Controller
             Estimado/a " . $request->interestname . " reciba un cordial saludo de Casa Crédito. Le hacemos llegar el enlace de la propiedad en la que se encuentra interesado
             </p>
             <div style='margin-top:2%'>
-            <img style='width: 100%; height: 60%' src='https://casacredito.com/uploads/listing/thumb/$firstimage' alt='No se puedo cargar la imagen'>
+            <img style='width: 100%; height: 60%' src='https://casacredito.com/uploads/listing/thumb/$firstimage' alt='No se pudo cargar la imagen'>
             <p style='color: blue; margin-top: 2%'>https://casacredito.com/propiedad/$propertie->slug</p>
             <p style='font-size: 16px; font-weight: 500'>$propertie->listing_title</p>
             </div>
