@@ -342,15 +342,18 @@ class WebController extends Controller
     public function sendemailinterested(Request $request){
         $propertie = Listing::where('product_code', $request->propertie)->first();
         $firstimage = strtok($propertie->images, '|');
-        $message = "<br><strong>Propiedad " . $request->propertie . " - Casa Crédito</strong>
-            <div style='border: 0.5px solid #000000; font-size: 12px; padding:3%; border-radius: 25px; margin-top: 2%'>
+        $message = "<br><strong>Propiedad " . $request->propertie . " - Casa Crédito 🏠</strong>
+            <div style='border: 0.5px solid #000000; font-size: 15px; padding:3%; border-radius: 25px; margin-top: 2%'>
             <p>
-            Estimado/a " . $request->interestname . " reciba un cordial saludo de Casa Crédito. Le hacemos llegar el enlace de la propiedad en la que se encuentra interesado
+            Estimado/a <b>" . $request->interestname . "</b> reciba un cordial saludo de Casa Crédito. Le hacemos llegar el enlace de la propiedad en la que se encuentra interesado
             </p>
             <div style='margin-top:2%'>
-            <img style='width: 100%; height: 60%' src='https://casacredito.com/uploads/listing/thumb/600/$firstimage' alt='No se pudo cargar la imagen'>
+            <div style='display:flex; justify-content:center'>
+                <img style='width: 80%; height: 60%' src='https://casacredito.com/uploads/listing/thumb/$firstimage' alt='No se pudo cargar la imagen'>
+            </div>
             <p style='color: blue; margin-top: 2%'>https://casacredito.com/propiedad/$propertie->slug</p>
-            <p style='font-size: 16px; font-weight: 500'>$propertie->listing_title</p>
+            <p style='font-size: 17px; font-weight: 500'>$propertie->listing_title</p>
+            <i>Casa Crédito, ¡Haciendo tus sueños realidad! <img style='width:100px;height:60px' src='https://casacredito.com/img/logo_actualizado2.png'/></i>
             </div>
             </div>
         ";
