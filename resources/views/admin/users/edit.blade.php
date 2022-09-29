@@ -12,7 +12,7 @@
         {!! Form::text('name', null, ['class' => 'my-2']) !!} <br>
         {!! Form::text('email', null, ['class' => 'my-2']) !!} <br>
         {!! Form::select('status',['0'=>'DESACTIVADO','1'=>'ACTIVO'], null,['class' => 'my-2']) !!} <br>
-        {!! Form::select('role',['administrator'=>'ADMIN','user'=>'USER'], null,['class' => 'my-2']) !!} <br>
+        {!! Form::select('role',['administrator'=>'ADMIN','user'=>'USER', 'ASESOR' => 'ASESOR'], null,['class' => 'my-2']) !!} <br>
         <br>{!! Form::submit('Enviar',['class' => 'py-2 px-4']) !!}
         {!! Form::close() !!}
         <br><br><br>
