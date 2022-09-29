@@ -341,6 +341,7 @@ class WebController extends Controller
  
     public function sendemailinterested(Request $request){
         $propertie = Listing::where('product_code', $request->propertie)->first();
+        $firstimage = strtok($propertie->images, '|');
         $message = "<br><strong>Propiedad " . $request->propertie . " - Casa Crédito</strong>
             <div style='border: 0.5px solid #000000; font-size: 12px; padding:3%; border-radius: 25px; margin-top: 2%'>
             <p>
@@ -348,7 +349,7 @@ class WebController extends Controller
             </p>
             <div style='margin-top:2%'>
             <img style='width: 100%; height: 60%' src='https://casacredito.com/uploads/listing/thumb/'. " . strtok($propertie->images, '|') ."' alt='cargando imagen...'>
-            <p>https://casacredito.com/uploads/listing/thumb/'. " . strtok($propertie->images, '|') ."'</p>
+            <p>https://casacredito.com/uploads/listing/thumb/$firstimage</p>
             <p style='color: blue; margin-top: 2%'>https://casacredito.com/propiedad/$propertie->slug</p>
             <p style='font-size: 16px; font-weight: 500'>$propertie->listing_title</p>
             </div>
