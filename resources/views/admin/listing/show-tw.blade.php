@@ -490,7 +490,6 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
           Estimado/a <b id="tagb_nameinterest"></b> reciba un cordial saludo de Casa Crédito. Le hacemos llegar el enlace de la propiedad en la que se encuentra interesado
         </p>
         <div class="mt-2">
-          <h1>http://casacredito.test/uploads/listing/thumb/{{strtok($propertie->images, '|')}}</h1>
           <img class="w-full h-60" src="{{asset('/uploads/listing/thumb/600/'. strtok($propertie->images, '|'))}}" alt="cargando imagen...">
           <p class="text-blue-700 mt-2">https://casacredito.com/propiedad/{{$propertie->slug}}</p>
           <p class="text-sm font-semibold">{{$propertie->listing_title}}</p>
