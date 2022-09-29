@@ -360,9 +360,9 @@ class WebController extends Controller
         $header .= "MIME-Version: 1.0\r\n";
         $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
-        mail($request->interestemail,'Propiedad '. $request->propertie . ' - Casa Crédito', $message, $header);
+        $enviado = mail($request->interestemail,'Propiedad '. $request->propertie . ' - Casa Crédito', $message, $header);
 
-        return redirect()->back();
+        return redirect()->back()->with('status', $enviado);
     }
 
 }

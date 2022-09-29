@@ -46,7 +46,19 @@
   }
 @endphp
 
-<div class="container overflow-scroll mx-auto mt-3 pb-3">
+<div class="container overflow-scroll mx-auto mt-3 pb-3 relative">
+
+  @if(session('status'))
+  <div id="alert" class="absolute top-0 right-0 z-10">
+    <div class="@if(session('status') == true) bg-green-400 @else bg-red-400 @endif rounded p-2 mb-3 font-semibold inline-flex">
+      <p>
+        @if(session('status')==true)<i class="fas fa-check"></i> Se ha enviado el correo @else <i class="fas fa-exclamation-circle"></i> Hubo un error al enviar el correo @endif
+      </p>
+      <i style="cursor: pointer" onclick="document.getElementById('alert').classList.add('hidden')" class="far fa-times-circle ml-2"></i>
+    </div>
+  </div>
+  @endif
+
   <div class="row d-flex justify-content-center">
     <div class="col-sm-8">
       @if ($propertie->images != null)
