@@ -1,4 +1,5 @@
 <div class="bg-white">
+    @if(count($properties)>0)
     @if($view == 'grid')
     <div class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mx-4">
         @foreach ($properties as $propertie)
@@ -248,6 +249,13 @@
     
         </tbody>
     </table>
+    @endif
+    @else
+    <div class="flex justify-center p-5 font-semibold">
+        <p>
+            No hemos encontrado propiedades
+        </p>
+    </div>
     @endif
 </div>
 
