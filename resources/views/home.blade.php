@@ -180,6 +180,7 @@
     ::placeholder {color: #b9babb !important;font-size: 14px}
     .shadow{box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;}
     .buttons-services{bottom: 0px !important; background-color: #FEBB19; color: #ffffff;cursor: pointer; box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;}
+    .buttons-services-mobile{bottom: 0px !important; background-color: #DC3545; color: #ffffff;cursor: pointer; box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;}
     .shadow:hover{box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px !important;}
     .cursor{cursor: pointer !important;}
     </style>
@@ -253,7 +254,7 @@
                       @endif
                   </div>
                   @if($ismobile)
-                  <div class="text-center p-1 rounded mb-2 fw-bold buttons-services mt-3" style="font-size: 12px">
+                  <div class="text-center p-1 rounded mb-2 fw-bold buttons-services-mobile mt-3" style="font-size: 12px">
                     Comprar una propiedad <i class="fas fa-arrow-circle-right"></i>
                   </div>
                   @endif
@@ -276,7 +277,7 @@
                   @endif
                 </div>
                 @if($ismobile)
-                <div class="text-center mt-3 p-1 rounded mb-2 fw-bold buttons-services" style="font-size: 12px" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                <div class="text-center mt-3 p-1 rounded mb-2 fw-bold buttons-services-mobile" style="font-size: 12px" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                   Vender una propiedad <i class="fas fa-arrow-circle-right"></i>
                 </div>
                 @endif
@@ -299,7 +300,7 @@
                 </div>
                 @if($ismobile)
                 <a href="{{route('web.servicios', 'creditos-en-ecuador')}}">
-                  <div class="text-center mt-3 p-1 rounded mb-2 fw-bold buttons-services" style="font-size: 12px" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
+                  <div class="text-center mt-3 p-1 rounded mb-2 fw-bold buttons-services-mobile" style="font-size: 12px" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
                     Alquilar una propiedad <i class="fas fa-arrow-circle-right"></i> 
                   </div>
                 </a>
@@ -324,7 +325,7 @@
                   </div>
                 </a>
                 @if($ismobile)
-                  <div class="text-center mt-3 p-1 rounded mb-2 fw-bold buttons-services" style="font-size: 12px">
+                  <div class="text-center mt-3 p-1 rounded mb-2 fw-bold buttons-services-mobile" style="font-size: 12px">
                     Solicitar un crédito <i class="fas fa-arrow-circle-right"></i>
                   </div>
                 @endif
