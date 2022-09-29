@@ -339,6 +339,30 @@ class WebController extends Controller
         return $mobile;
     }
  
+    public function sendemailinterested(Request $request){
+        $propertie = Listing::where('product_code', $request->propertie)->first();
+        $message = "<br><strong>Propiedad " . $request->propertie . " - Casa Crédito</strong>
+            <div style='border: 0.5px solid #000000; font-size: 12px; padding:3%; border-radius: 25px; margin-top: 2%'>
+            <p>
+            Estimado/a " . $request->interestname . " reciba un cordial saludo de Casa Crédito. Le hacemos llegar el enlace de la propiedad en la que se encuentra interesado
+            </p>
+            <div style='margin-top:2%'>
+            <img style='width: 100%; height: 60%' src='https://casacredito.com/uploads/listing/thumb/'. " . strtok($propertie->images, '|') ." alt='cargando imagen...'>
+            <p style='color: blue; margin-top: 2%'>https://casacredito.com/propiedad/$propertie->slug</p>
+            <p style='font-size: 16px; font-weight: 500'>$propertie->listing_title</p>
+            </div>
+            </div>
+        ";
+                
+        $header='';
+        $header .= 'From: <propiedades@casacredito.com>' . "\r\n";
+        $header .= "Reply-To: ".'info@casacredito.com'."\r\n";
+        $header .= "MIME-Version: 1.0\r\n";
+        $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
+        mail($request->interestemail,'Propiedad '. $request->propertie . ' - Casa Crédito', $message, $header);
+
+        return redirect()->back();
+    }
 
 }
