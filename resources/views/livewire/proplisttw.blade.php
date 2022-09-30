@@ -115,6 +115,13 @@
                 @endif
 
                 @if(Auth::user()->role == 'administrator')
+                @if(Auth::user()->email == "developer2@casacredito.com")
+                    <div class="flex ml-3">
+                        <p>h-{{$propertie->bedroom}}</p>
+                        <p>b-{{$propertie->bathroom}}</p>
+                        <p>g-{{$propertie->garage}}</p>
+                    </div>
+                @endif
                 <div class="flex justify-center">
                     {{-- <a target="_blank" class="btn-view mr-1 p-1 rounded" style="background-color: #c6f6d5" href="{{ route('admin.show.listing', $propertie) }}" style="text-decoration: none;">
                         <p class="text-black text-xs" style="font-weight: 500">Ver propiedad</p>
