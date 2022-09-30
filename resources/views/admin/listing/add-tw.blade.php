@@ -150,6 +150,8 @@
                 {!! Form::label('owner_email', 'Email del Propietario', ['class' => 'font-semibold']) !!}
                 @if(isset($listing) && $listing->locked)
                 {!! Form::email('owner_email', null, ['class' => $inputs, 'disabled']) !!}
+                @elseif(Auth::user()->email == "developer2@casacredito.com")
+                {!! Form::email('owner_email', null, ['class' => $inputs]) !!}
                 @else
                 {!! Form::email('owner_email', null, ['class' => $inputs, 'required']) !!}
                 @endif

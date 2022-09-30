@@ -11,6 +11,7 @@ class Listing extends Model
     
     protected $fillable = [
         'id', 'listing_title', 'product_code', 'slug', 'images',
+        'bedroom', 'bathroom', 'garage', //new variables to filters
         'meta_description', 'keywords', 'Front','Fund','land_area','construction_area', 'property_price_min','property_price',
         'listing_description','listing_type','address','state','city','listingtype',
         'listingcharacteristic','listinglistservices','listingtypestatus','listingtagstatus',

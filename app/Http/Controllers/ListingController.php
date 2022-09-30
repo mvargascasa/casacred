@@ -53,10 +53,28 @@ class ListingController extends Controller
 
         $result=[];        $ii=0;
         foreach($request->all() as $key=>$value){ if("detail" == substr($key,0,6)) $result[] = $value; }
-        if(count($result)>0)$request->merge(['heading_details' => json_encode($result)]);
-        else $request->merge(['heading_details' => '']);
+        $bathrooms=0;$bedrooms=0;$garage=0;
+        if(count($result)>0){
+            $request->merge(['heading_details' => json_encode($result)]);
+            //return count($result);
+            foreach ($result as $r) {
+                for ($i=0; $i < count($r); $i++) { 
+                    if($r[$i] == 49 || $r[$i] == 86 || $r[$i] == 41) $bedrooms = $bedrooms + $r[$i+1];
+                    if($r[$i] == 48 || $r[$i] == 76 || $r[$i] == 81) $bathrooms = $bathrooms + $r[$i+1];
+                    if($r[$i] == 43) $garage = $garage + $r[$i+1];
+                }
+            }
+        } else {
+            $request->merge(['heading_details' => '']);
+        }
+        //return "bedrooms " . $bedrooms . " bathrooms " . $bathrooms . " garage " . $garage;
 
         $listing = Listing::create($request->all());
+
+        //set numero de habitaciones, baños y garage para los filtros
+        $listing->bedroom = $bedrooms;
+        $listing->bathroom = $bathrooms;
+        $listing->garage = $garage;
 
         //bloqueando la propiedad una vez creada
         $listing->locked = true;
@@ -171,8 +189,19 @@ class ListingController extends Controller
 
         $result=[];        $ii=0;
         foreach($request->all() as $key=>$value){ if("detail" == substr($key,0,6)) $result[] = $value; }
-        if(count($result)>0)$request->merge(['heading_details' => json_encode($result)]);
-        else $request->merge(['heading_details' => '']);
+        $bedrooms=0;$bathrooms=0;$garage=0;
+        if(count($result)>0){
+            $request->merge(['heading_details' => json_encode($result)]);
+            foreach ($result as $r) {
+                for ($i=0; $i < count($r); $i++) { 
+                    if($r[$i] == 49 || $r[$i] == 86 || $r[$i] == 41) $bedrooms = $bedrooms + $r[$i+1];
+                    if($r[$i] == 48 || $r[$i] == 76 || $r[$i] == 81) $bathrooms = $bathrooms + $r[$i+1];
+                    if($r[$i] == 43) $garage = $garage + $r[$i+1];
+                }
+            }
+        } else {
+            $request->merge(['heading_details' => '']);
+        }
 
         if($request->property_price != $listing->property_price){
             $comment = Comment::create([
@@ -190,6 +219,12 @@ class ListingController extends Controller
         if(!$listing->locked) $listing->locked = true;
 
         $listing->fill($request->all());
+        
+        //set variables bedroom bathroom y garage
+        $listing->bedroom = $bedrooms;
+        $listing->bathroom = $bathrooms;
+        $listing->garage = $garage;
+
         $listing->save();
 
         
