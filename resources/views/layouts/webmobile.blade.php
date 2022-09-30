@@ -228,7 +228,7 @@
   <div class="p-3">
 
     <div><label for="schtext" class="block text-xs leading-5 text-gray-500">Ciudad / Sector / Codigo</label>
-        <div class="mt-1 rounded-md shadow-sm"><input type="text" id="schtext" name="schtext"
+        <div class="mt-1 rounded-md shadow-sm"><input type="text" id="schtext" name="schtext" @if(request()->query('psearchtxt')) value="{{request()->query('psearchtxt')}}" @endif
                 class="appearance-none block w-full px-3 text-sm  py-1 border border-gray-300 rounded-md focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out "
                 autocomplete="name" autocapitalize="words" maxlength="70"></div>
     </div>

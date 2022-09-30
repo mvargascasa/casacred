@@ -13,13 +13,15 @@ class PropmobileTw extends Component
 {
     use WithPagination;
     
-    public $searchtxt,$category,$state,$city,$type,$fromprice,$uptoprice,
+    public $searchtxt,$psearchtxt,$category,$pcategory,$state,$city,$type,$fromprice,$uptoprice,
             $order,$superf,$supert,$tags,//$range, //se agrego estas nuevas variables tags y range para filtrar por estado (nueva, etc) o anios de construccion
             $pressButtom,$totalProperties=0,$pagActual,$firstItem;
 
     protected $queryString = [  'searchtxt'=> ['except' => ''],
+                                'psearchtxt' => ['except' => ''],
                                 'order'=> ['except' => ''],
                                 'category'=> ['except' => ''],
+                                'pcategory' => ['except' => ''],
                                 'type'=> ['except' => ''],
                                 'state'=> ['except' => ''],
                                 'city'=> ['except' => ''],
@@ -45,12 +47,31 @@ class PropmobileTw extends Component
             $txt = filter_var ( $this->searchtxt, FILTER_SANITIZE_NUMBER_INT);
             if($txt>999){
                 $listings_filter->where('product_code',$txt);
+                $this->psearchtxt = null;
             }else{
                 $listings_filter->where('address','LIKE',"%$this->searchtxt%");
+                $this->psearchtxt = null;
             }   
-            if($listings_filter->count()<1){                
+            if($listings_filter->count()<1){
                 $listings_filter = Listing::where('status',1);
                 $listings_filter->where('listing_title','LIKE',"%$this->searchtxt%");
+                $this->psearchtxt = null;
+            }
+        }
+
+        if(strlen($this->psearchtxt)>2){
+            $txt = filter_var ( $this->psearchtxt, FILTER_SANITIZE_NUMBER_INT);
+            if($txt>999){
+                $listings_filter->where('product_code',$txt);
+                $this->searchtxt = null;
+            }else{
+                $listings_filter->where('address','LIKE',"%$this->psearchtxt%");
+                $this->searchtxt = null;
+            }   
+            if($listings_filter->count()<1){
+                $listings_filter = Listing::where('status',1);
+                $listings_filter->where('listing_title','LIKE',"%$this->psearchtxt%");
+                $this->searchtxt = null;
             }
         }
         
@@ -67,9 +88,22 @@ class PropmobileTw extends Component
         if(strlen($this->category)>0){
             if (is_numeric($this->category)){
                 $listings_filter->where('listingtype',$this->category);
+                $this->pcategory = null;
             }else{
                 $findCat = DB::table('listing_types')->where('type_title',$this->category)->first();
                 if( isset($findCat->id) ) $listings_filter->where('listingtype',$findCat->id);
+                $this->pcategory = null;
+            }
+        }
+
+        if(strlen($this->pcategory)>0){
+            if (is_numeric($this->category)){
+                $listings_filter->where('listingtype',$this->pcategory);
+                $this->category = null;
+            }else{
+                $findCat = DB::table('listing_types')->where('type_title',$this->pcategory)->first();
+                if( isset($findCat->id) ) $listings_filter->where('listingtype',$findCat->id);
+                $this->category = null;
             }
         }
         

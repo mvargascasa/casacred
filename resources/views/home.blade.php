@@ -455,7 +455,7 @@
         <div class="col-sm-12 text-center text-white mt-4 mb-4">
             <h5>¿Quiere vender o rentar su <b style="color: #fcc62e">Propiedad</b>?</h5>
             <p>Escríbanos y lo asesoramos en el proceso</p>
-            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn" style="background-color: #fcc62e">INICIAR</button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" class="btn" style="background-color: #fcc62e">INICIAR</button>
         </div>
     </div>
 
@@ -575,7 +575,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header" style="background-color: #8b0000; color: #ffffff">
-            <h5 class="modal-title" id="exampleModalLongTitle">Vender una propiedad</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Lo ayudamos a vender su propiedad</h5>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -596,8 +596,8 @@
               <label for="email">Correo electrónico</label>
               <input type="email" id="email" name="email" class="form-control" required>
             </div>
-            <div class="form-group mt-2">
-              <label for="tipopropiedad">Tipo de propiedad</label>
+            <div class="form-group mt-3">
+              <label for="tipopropiedad">¿Qué tipo de propiedad necesita vender?</label>
               @php
                 $types = DB::table('listing_types')->get();
               @endphp
@@ -608,7 +608,7 @@
                 @endforeach
               </select>
             </div>
-            <div class="form-group mt-2 d-flex">
+            <div class="form-group mt-3 d-flex">
               <div class="mr-1" style="width: 100%">
                 <label for="province">Provincia</label>
                 <select name="province" class="form-select" id="selProvincea">
@@ -751,7 +751,7 @@
             <form action="{{ route('web.propiedades') }}" id="formodalsearch" method="GET">
               <div class="form-group">
                 <label class="text-muted" style="font-size: 13px" for="searchtxt">Ciudad / Sector / Código</label>
-                <input type="text" name="searchtxt" id="searchtxt" class="form-control" style="font-size: 10px">
+                <input type="text" name="psearchtxt" id="searchtxt" class="form-control" style="font-size: 10px">
               </div>
               <div class="form-group mt-2" style="width: 50% !important">
                 <label for="order" class="text-muted" style="font-size: 12px">Ordenar por</label>
@@ -772,7 +772,7 @@
                 </div>
                 <div class="form-group" style="width: 100%">
                   <label for="tipopropiedad" style="font-weight: 400; font-size: 12px" class="text-muted">Categoria</label>
-                  <select name="category" id="tipopropiedad" class="form-select" style="font-size: 12px; background-color: #e9e9ed">
+                  <select name="pcategory" id="tipopropiedad" class="form-select" style="font-size: 12px; background-color: #e9e9ed">
                     <option value="" selected></option>
                     <option value="Casas">Casas</option>
                     <option value="Departamentos">Departamentos</option>
