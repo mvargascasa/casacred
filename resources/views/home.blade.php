@@ -299,11 +299,9 @@
                   @endif
                 </div>
                 @if($ismobile)
-                <a href="{{route('web.servicios', 'creditos-en-ecuador')}}">
                   <div class="text-center mt-3 p-1 rounded mb-2 fw-bold buttons-services-mobile" style="font-size: 12px" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
                     Alquilar una propiedad <i class="fas fa-arrow-circle-right"></i> 
                   </div>
-                </a>
                 @endif
               </div>
               <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
