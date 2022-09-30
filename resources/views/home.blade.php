@@ -323,9 +323,11 @@
                   </div>
                 </a>
                 @if($ismobile)
+                <a href="{{route('web.servicios', 'creditos-en-ecuador')}}">
                   <div class="text-center mt-3 p-1 rounded mb-2 fw-bold buttons-services-mobile" style="font-size: 12px">
                     Solicitar un crédito <i class="fas fa-arrow-circle-right"></i>
                   </div>
+                </a>
                 @endif
             </div>
           </div>
