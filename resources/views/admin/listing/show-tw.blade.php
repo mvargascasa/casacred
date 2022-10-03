@@ -189,10 +189,16 @@
     </div>
   </div>
 
+  @php
+      $user = \App\Models\User::where('id', $propertie->user_id)->first();
+  @endphp
+
   <div class="row d-flex justify-content-center mt-3">
     <div class="col-sm-9">
-      <div>
-        <h6 class="text-muted mb-1">Creado: {{$propertie->created_at->format('d-M-y')}}</h6>
+      <div class="border rounded p-1">
+        <h6 class="text-muted mb-1"><i class="fas fa-info-circle"></i> Subido por <b>{{$user->name}}</b> el <b>{{$propertie->created_at->format('d-M-y')}}</b></h6>
+      </div>
+      <div class="mt-3">
         <h3 style="font-weight: 500" class="mt-2 mb-2">{{ $propertie->listing_title }}</h3>
         @php
           $listingtype = DB::table('listing_types')->where('id', $propertie->listingtype)->first();
