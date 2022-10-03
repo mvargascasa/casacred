@@ -193,7 +193,7 @@
     <div class="col-sm-9">
       <div>
         <h6 class="text-muted mb-1">Creado: {{$propertie->created_at->format('d-M-y')}}</h6>
-        <h4>{{ $propertie->listing_title }}</h4>
+        <h3 style="font-weight: 500" class="mt-2 mb-2">{{ $propertie->listing_title }}</h3>
         @php
           $listingtype = DB::table('listing_types')->where('id', $propertie->listingtype)->first();
         @endphp
