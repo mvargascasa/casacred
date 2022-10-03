@@ -118,7 +118,7 @@ class Proplisttw extends Component
             $similarProperties->where('state', $propertie_to_similar->state);
             $similarProperties->where('city', $propertie_to_similar->city);
             $similarProperties->where('listingtype', $propertie_to_similar->listingtype);
-            $similar_properties = $similarProperties->paginate(4);
+            $similar_properties = $similarProperties->latest()->take(4)->get();
         }
 
 
