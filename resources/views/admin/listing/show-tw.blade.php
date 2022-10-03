@@ -224,22 +224,34 @@
                   <p> Área Interior: {{ $propertie->land_area}} m<sup>2</sup></p>
                 </div>
               @endif
-            @if($bathroom > 0)
-              <div class="col-sm-6 d-flex mt-3 mb-3">
-                <i style="font-size: 20px; margin-right: 5px" class="fas fa-bath"></i>
-                <p>{{ $bathroom}} @if($bathroom > 1) baños @else baño @endif</p>
-              </div>
-            @endif
             @if($propertie->construction_area > 0)
               <div class="col-sm-6 d-flex mt-3 mb-3">
                 <i style="font-size: 20px; margin-right: 5px" class="fas fa-expand-arrows-alt"></i>
                 <p>Área Total: {{ $propertie->construction_area}} m<sup>2</sup></p>
               </div>
             @endif
+            @if($propertie->Front > 0)
+              <div class="col-sm-6 d-flex mt-3 mb-3">
+                <i style="font-size: 20px; margin-right: 5px" class="fas fa-expand-alt"></i>
+                <p> Frente: {{ $propertie->Front}} m<sup>2</sup></p>
+              </div>
+            @endif
+            @if($propertie->Fund > 0)
+              <div class="col-sm-6 d-flex mt-3 mb-3">
+                <i style="font-size: 20px; margin-right: 5px" class="fas fa-expand-alt"></i>
+                <p> Fondo: {{ $propertie->Fund}} m<sup>2</sup></p>
+              </div>
+            @endif
             @if ($bedroom > 0)
               <div class="col-sm-6 d-flex mt-3 mb-3">
                 <i style="font-size: 20px; margin-right: 5px" class="fas fa-bed"></i>
                 <p>{{ $bedroom }} @if($bedroom > 1) habitaciones @else habitación @endif</p>
+              </div>
+            @endif
+            @if($bathroom > 0)
+              <div class="col-sm-6 d-flex mt-3 mb-3">
+                <i style="font-size: 20px; margin-right: 5px" class="fas fa-bath"></i>
+                <p>{{ $bathroom}} @if($bathroom > 1) baños @else baño @endif</p>
               </div>
             @endif
             @if ($garage > 0)
