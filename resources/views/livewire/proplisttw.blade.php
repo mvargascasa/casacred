@@ -133,14 +133,116 @@
                 </div>
                 @endif
             </div>
-            
-
         @endforeach
         <input type="hidden" id="pagActual" value="{{$pagActual}}">
         <input type="hidden" id="firstItem" value="{{$firstItem}}">
         <input type="hidden" id="totalProperties2" value="{{$totalProperties}}">
 
     </div>
+
+    {{-- DIV PARA SIMILAR PROPERTIES --}}
+    @if(count($similar_properties)>0)
+    <hr class="mt-3">
+    <h3 class="mx-4 text-md mt-3 font-semibold">Propiedades Similares a la Búsqueda</h3>
+    <div class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mx-4">
+        @foreach ($similar_properties as $s_propertie)
+            @php
+                $firstImg = array_filter(explode("|", $s_propertie->images)) ;
+                $dirImg = $firstImg[0]??'';
+            @endphp
+            <div class="rounded overflow-hidden shadow-lg w-full relative mt-4 mb-2 hover-trigger relative pb-2">
+                @if(Auth::user()->role == "user" || Auth::user()->role == "ASESOR")
+                    <a href="@if($url_current == "admin.myproperties" || Route::current()->getName() == "admin.myproperties"){{ route('admin.listings.edit', $s_propertie->id) }} @else {{route('admin.show.listing', $s_propertie->id)}}@endif" target="_blank">
+                @endif
+
+                @if($dirImg != null || $dirImg != "")
+                @php
+                    $imageVerification = asset('uploads/listing/thumb/600/'.$dirImg);
+                @endphp
+                <a target="_blank" href="@if($url_current == "admin.myproperties" || Route::current()->getName() == "admin.myproperties"){{ route('admin.listings.edit', $s_propertie->id) }} @else {{ route('admin.show.listing', $s_propertie) }} @endif"><img class="w-full" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.$dirImg)) {{ url('/uploads/listing/thumb/600/', $dirImg) }} @else {{url('uploads/listing/600', $dirImg)}} @endif" alt="{{ $propertie->listing_title}}"></a>
+                @else
+                    <a target="_blank" href="@if($url_current == "admin.myproperties" || Route::current()->getName() =="admin.myproperties"){{route('admin.listings.edit', $s_propertie->id) }} @else {{ route('admin.show.listing', $s_propertie) }} @endif"><img class="w-full" src="{{ asset('img/sin-imagenes.jpg') }}" alt="Sunset in the mountains"></a>
+                @endif
+                <div class="absolute left-0 top-0">
+                    @if($s_propertie->status == 1)
+                        <div class="text-xs font-semibold" style="margin-top: 5px; margin-left:5px; border-radius: 10px; width: 10px; height: 10px; background-color: #01842a; border-radius: 25px">
+                            {{-- <img width="35px" src="{{ asset('img/on.png') }}" alt="ON"> --}}
+                        </div>
+                    @else
+                        <div class="text-xs font-semibold" style="margin-top: 5px; margin-left:5px; border-radius: 10px; width: 10px; height: 10px; background-color: #b11213; border-radius: 25px">
+                            {{-- <img width="35px" src="{{ asset('img/off.png') }}" alt="OFF"> --}}
+                        </div>
+                    @endif
+                </div>
+
+                <div class="px-2 py-2">
+                <div class="text-xs text-gray-500">{{$s_propertie->created_at->format('d-M-y')}}</div>
+                <div class="font-bold text-sm">{{ Str::limit($s_propertie->listing_title, 30, '...')}}</div>
+                <p class="text-gray-700 text-base">
+                    @if(Str::contains($s_propertie->address, ',')){{ Str::limit($s_propertie->address, 30, '...')}} @else {{Str::limit($s_propertie->state . ', ' . $s_propertie->city . ', ' . $s_propertie->address, 30, '...') }} @endif
+                </p>
+                <p>@if(Auth::id()==123)<span style="font-size: 10px">{{$s_propertie->slug}}</span> <br>@endif</p>
+                </div>
+                <div class="grid grid-cols-2 px-2 py-2 w-full">
+                    <div>
+                        <span class="inline-block bg-gray-200 rounded-full px-2 text-sm font-semibold text-gray-700">{{ $s_propertie->listingtypestatus}}</span>
+                        <p class="mx-2 text-red-600 font-extrabold text-xl">${{ number_format($s_propertie->property_price)}}</p class="mx-2 text-red-600 font-bold">
+                    </div>
+                    <div style="@if($s_propertie->listingtagstatus==2 && $s_propertie->listingtype != 26) margin-left: -20px @else margin-left: 0px @endif">
+                        <div class="bottom-0 right-0 flex">
+                            @if($s_propertie->available != null)
+                            <div class="mr-1">
+                                    @if($s_propertie->available == 2)
+                                        <img title="NO DISPONIBLE" width="28px" src="{{asset('img/not-available.png')}}" alt="NOT AVAILABLE">
+                                    @else
+                                        <img title="DISPONIBLE" width="28px" src="{{asset('img/available.png')}}" alt="AVAILABLE">
+                                    @endif
+                                </div>
+                            @endif
+                            <div class="mr-1">
+                                @if ($s_propertie->listing_type==2)
+                                    <img width="28px" src="{{ asset('img/pagada.png') }}" alt="Pagada" title="PROPIEDAD PAGADA">
+                                @elseif($s_propertie->listing_type==1)
+                                    <img width="28px" src="{{ asset('img/free.png') }}" alt="Gratis" title="PROPIEDAD GRATIS">
+                                @endif
+                            </div>
+                            <div class="mr-1">
+                                @if ($s_propertie->listingtagstatus==2 && $s_propertie->listingtype != 26)
+                                    <img width="28px" src="{{ asset('img/worker.png') }}" alt="Constructora" title="CONSTRUCTORA">
+                                @endif
+                            </div>
+                            <div style="width:80px; height: auto; background-color: #017cd3; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">
+                                <p class="text-xs font-semibold">
+                                    COD: {{ $s_propertie->product_code }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if(Auth::user()->role == "user" || Auth::user()->role == "ASESOR")
+                    </a>
+                @endif
+
+                @if(Auth::user()->role == 'administrator')
+                @if(Auth::user()->email == "developer2@casacredito.com")
+                    <div class="flex ml-3">
+                        <p>h-{{$s_propertie->bedroom}}</p>
+                        <p>b-{{$s_propertie->bathroom}}</p>
+                        <p>g-{{$s_propertie->garage}}</p>
+                    </div>
+                @endif
+                <div class="flex justify-center">
+                    <a target="_blank" class="btn-edit ml-1 p-1 rounded" style="background-color: #c6f6d5" href="{{ route('home.tw.edit', $s_propertie) }}" style="text-decoration: none">
+                        <p class="text-black text-sm" style="font-weight: 500">Editar propiedad</p>
+                    </a>
+                </div>
+                @endif
+            </div>
+        @endforeach
+    </div>
+    @endif
+
+    {{-- TERMINA DIV DE SIMILAR PROPERTIES --}}
 
     @elseif($view == 'list')
 

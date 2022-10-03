@@ -66,7 +66,9 @@ class Proplisttw extends Component
         }
         
 
-        if($this->code)                                         $properties_filter->where('product_code','LIKE',"%$this->code%");
+        if($this->code){
+            $properties_filter->where('product_code','LIKE',"%$this->code%");
+        }
         if($this->status=='A')                                  $properties_filter->where('status',1); //agregarle || $this->variable == null para muestre por defecto las activas y disponibles
         if($this->status=='D')                                  $properties_filter->where('status',0);        
         if($this->categoria)                                    $properties_filter->where('listingtype',$this->categoria);        
@@ -93,7 +95,7 @@ class Proplisttw extends Component
         if($this->uptoprice && filter_var ( $this->uptoprice, FILTER_SANITIZE_NUMBER_INT)>1){
             $uptoprice_ = filter_var ( $this->uptoprice, FILTER_SANITIZE_NUMBER_INT);
             $properties_filter->where('property_price','<',$uptoprice_);
-        } 
+        }
 
         $properties = $properties_filter->paginate(50);
         $this->pagActual = $properties->currentPage();
@@ -107,9 +109,22 @@ class Proplisttw extends Component
         // } else {
         //     printf($properties->listing_title);
         // }
+
+        $similarProperties = Listing::where('available', 1);
+
+        $similar_properties = [];
+        if($this->code){
+            $propertie_to_similar = Listing::where('product_code', 'LIKE', "%$this->code%")->first();
+            $similarProperties->where('state', $propertie_to_similar->state);
+            $similarProperties->where('city', $propertie_to_similar->city);
+            $similarProperties->where('listingtypestatus', $propertie_to_similar->listingtypestatus);
+            $similar_properties = $similarProperties->paginate(4);
+        }
+
+
         
         $types = DB::table('listing_types')->get(); 
         $categories = DB::table('listing_status')->get(); 
-        return view('livewire.proplisttw',compact('properties','types','categories', 'viewaux', 'url_current'));
+        return view('livewire.proplisttw',compact('properties','types','categories', 'viewaux', 'url_current', 'similar_properties'));
     }
 }
