@@ -52,6 +52,7 @@
                 </div>
 
                 <div class="px-2 py-2">
+                <div class="text-xs text-gray-500">{{$propertie->created_at->format('d-M-y')}}</div>
                 <div class="font-bold text-sm">{{ Str::limit($propertie->listing_title, 30, '...')}}</div>
                 <p class="text-gray-700 text-base">
                     @if(Str::contains($propertie->address, ',')){{ Str::limit($propertie->address, 30, '...')}} @else {{Str::limit($propertie->state . ', ' . $propertie->city . ', ' . $propertie->address, 30, '...') }} @endif
