@@ -117,7 +117,7 @@ class Proplisttw extends Component
             $propertie_to_similar = Listing::where('product_code', 'LIKE', "%$this->code%")->first();
             $similarProperties->where('state', $propertie_to_similar->state);
             $similarProperties->where('city', $propertie_to_similar->city);
-            $similarProperties->where('listingtypestatus', $propertie_to_similar->listingtypestatus);
+            $similarProperties->where('listingtype', $propertie_to_similar->listing_type);
             $similar_properties = $similarProperties->paginate(4);
         }
 
