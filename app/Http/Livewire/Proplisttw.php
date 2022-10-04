@@ -6,8 +6,10 @@ use App\Models\Listing;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Str;
 
 class Proplisttw extends Component
 {
@@ -25,7 +27,6 @@ class Proplisttw extends Component
 
     public function render()
     {
-
         if ($this->view=='grid') {
             $viewaux = $this->view;
         } elseif($this->view=='list'){
@@ -48,24 +49,26 @@ class Proplisttw extends Component
         if($this->current_url == "admin.myproperties" || Route::current()->getName() == "admin.myproperties"){
             if(Auth::user()->role != 'administrator') $properties_filter->where('user_id', Auth::id());
         }
+        if(Str::contains(URL::previous(), 'admin/my-properties') && $this->pagActual > 0) $properties_filter->where('user_id', Auth::id());
 
         //mostrar las propiedades vendidas
-        if($this->current_url == "admin.soldout" || Route::current()->getName() == "admin.soldout") {
-            $properties_filter->where('available', 2);
-        }
+        if(Route::current()->getName() == "admin.soldout") $properties_filter->where('available', 2);
+        if(Str::contains(URL::previous(), 'admin/sold-out') && $this->pagActual > 0) $properties_filter->where('available', 2);
+        //if($this->pagActual > 0) dd($this->current_url);//$properties_filter->where('available', 2);
+
         // else $properties_filter->where('available', 1);
-        if($this->current_url == "admin.properties" || Route::current()->getName() == "admin.properties") $properties_filter->where('available', 1);
+        if(Route::current()->getName() == "admin.properties") $properties_filter->where('available', 1);
+        if(Str::contains(URL::previous(), 'admin/properties') && $this->pagActual > 0) $properties_filter->where('available', 1);
 
         $url_current = $this->current_url;
 
-        if(strlen($this->detalle)>2){           
+        if(strlen($this->detalle)>2){        
             $properties_filter->where('address','LIKE',"%$this->detalle%");
-            if($properties_filter->count()<1){                
+            if($properties_filter->count()<1){
                 $properties_filter->where('listing_title','LIKE',"%$this->detalle%");
             }
         }
         
-
         if($this->code){
             $properties_filter->where('product_code','LIKE',"%$this->code%");
         }
@@ -121,8 +124,6 @@ class Proplisttw extends Component
             $similar_properties = $similarProperties->where('product_code', '!=', $this->code)->latest()->take(4)->get();
         }
 
-
-        
         $types = DB::table('listing_types')->get(); 
         $categories = DB::table('listing_status')->get(); 
         return view('livewire.proplisttw',compact('properties','types','categories', 'viewaux', 'url_current', 'similar_properties'));
