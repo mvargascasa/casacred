@@ -61,4 +61,8 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function scopeName($query, $name){
+        return $query->where('name', 'LIKE', "%$name%");
+    }
 }

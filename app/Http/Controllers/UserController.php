@@ -17,7 +17,7 @@ class UserController extends Controller
                
     }   
        
-    public function index(){ 
+    public function index(Request $request){ 
         $users = User::where('status',1)->orderBy('email','asc')->get();
         return view('admin.users.index',compact('users'));
     }
@@ -35,4 +35,10 @@ class UserController extends Controller
         $user->update(['password'=> Hash::make($request->password)]);
         return redirect()->back()->with('message','Contraseña actualizada');        
     }
+
+    public function searchuser(Request $request){
+        $users = User::name($request->name)->get();
+        return view('admin.users.index',compact('users'));
+    }
+
 }
