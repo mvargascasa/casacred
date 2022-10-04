@@ -70,6 +70,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
     Route::get('/maps', function () { return view('admin.maps'); });     
     Route::get('/test', [TwController::class,'test'] )->name('admin.test');
     
+    Route::get('users/search', [UserController::class, 'searchuser'])->name('users.search');
     Route::resource('users', UserController::class);
     Route::put('users/changepass/{user}', [UserController::class,'changepass'])->name('users.changepass');
     
