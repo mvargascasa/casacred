@@ -227,7 +227,7 @@ class ListingController extends Controller
 
         $listing->save();
 
-        
+
         $uploads=[];
 
         if ($request->hasFile('galleryImages')) {
@@ -340,11 +340,17 @@ class ListingController extends Controller
 
     public function show_listing($id){
         $propertie = Listing::where('id', $id)->first();
+        //$similarProperties = Listing::where('available', 1);
+
+        $similarProperties = [];
+        if($propertie){
+            $similarProperties = Listing::where('state', 'LIKE', "%$propertie->state%")->where('city', 'LIKE', "%$propertie->city%")->where('listingtype', 'LIKE', "%$propertie->listingtype%")->where('available', 1)->where("product_code", "!=", $propertie->product_code)->latest()->take(10)->get();
+        }
         $comments = DB::table('comments')->where('type', '!=', 'price')->where('listing_id', $id)->orderBy('created_at', 'desc')->get();
         $benefits = DB::table('listing_benefits')->get();
         $services = DB::table('listing_services')->get();
         $details = DB::table('listing_characteristics')->get();  
-        return view('admin.listing.show-tw', compact('propertie', 'benefits', 'services', 'details', 'comments'));
+        return view('admin.listing.show-tw', compact('propertie', 'benefits', 'services', 'details', 'comments', 'similarProperties'));
     }
 
     public function unlocked($id){
