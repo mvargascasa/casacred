@@ -116,13 +116,15 @@ class Proplisttw extends Component
         $similarProperties = Listing::where('available', 1);
 
         $similar_properties = [];
-        // if($this->code){
-        //     $propertie_to_similar = Listing::where('product_code', 'LIKE', "%$this->code%")->first();
-        //     $similarProperties->where('state', $propertie_to_similar->state);
-        //     $similarProperties->where('city', $propertie_to_similar->city);
-        //     $similarProperties->where('listingtype', $propertie_to_similar->listingtype);
-        //     $similar_properties = $similarProperties->where('product_code', '!=', $this->code)->latest()->take(4)->get();
-        // }
+        if($this->code){
+            $propertie_to_similar = Listing::where('product_code', 'LIKE', "%$this->code%")->first();
+            if($propertie_to_similar){
+                $similarProperties->where('state', $propertie_to_similar->state);
+                $similarProperties->where('city', $propertie_to_similar->city);
+                $similarProperties->where('listingtype', $propertie_to_similar->listingtype);
+                $similar_properties = $similarProperties->where('product_code', '!=', $this->code)->latest()->take(4)->get();
+            }
+        }
 
         $types = DB::table('listing_types')->get(); 
         $categories = DB::table('listing_status')->get(); 
