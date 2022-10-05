@@ -33,7 +33,7 @@
                     <div class="flex flex-col pt-4 px-2">
                         <div class="overflow-x-auto rounded-md">
                             {{-- background: rgba(8, 8, 8, 0.319); --}}
-                        <section id="bgimage" class="h-64" style="background: rgba(110, 110, 110, 0.319); background-size: cover;background-position: left center; width: 100%; background-repeat: no-repeat; background-blend-mode: darken;">
+                        <section id="bgimage" class="h-64" style="background-size: cover;background-position: left center; width: 100%; background-repeat: no-repeat;">
                             <div class="text-center h-64">
                                 <div class="flex justify-center pt-8 sticky top-0">
                                     <input type="hidden" id="b_tipo">
