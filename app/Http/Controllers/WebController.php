@@ -378,7 +378,7 @@ class WebController extends Controller
                 <div style='border: 0.5px solid #000000; font-size:13px;padding:2%;border-radius: 25px;margin-top:2%; display:flex'>
                     <div>
                         <a href='https://casacredito.com/propiedad/$s->slug' target='_blank'>
-                            <img style='width: 50%; height: 30%' src='https://casacredito.com/uploads/listing/300/$_firstimage' alt='No se pudo cargar la imagen'>
+                            <img style='width: 100%; height: 100%' src='https://casacredito.com/uploads/listing/300/$_firstimage' alt='No se pudo cargar la imagen'>
                         </a>
                     </div>
                     <div>
