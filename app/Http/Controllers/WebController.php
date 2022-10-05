@@ -376,9 +376,11 @@ class WebController extends Controller
                 $message .= "
                 <h3>Propiedades Similares</h3>
                 <div style='border: 0.5px solid #000000; font-size:13px;padding:2%;border-radius: 25px;margin-top:2%; display:flex'>
-                    <a href='https://casacredito.com/propiedad/$s->slug' target='_blank'>
-                        <img style='width: 30%; height: 15%' src='https://casacredito.com/uploads/listing/300/$_firstimage' alt='No se pudo cargar la imagen'>
-                    </a>
+                    <div>
+                        <a href='https://casacredito.com/propiedad/$s->slug' target='_blank'>
+                            <img style='width: 50%; height: 30%' src='https://casacredito.com/uploads/listing/300/$_firstimage' alt='No se pudo cargar la imagen'>
+                        </a>
+                    </div>
                     <div>
                         <p style='color: blue; margin-top: 2%; font-size: 12px'>https://casacredito.com/propiedad/$s->slug</p>
                         <p style='font-size: 17px; font-weight: 500'>$s->listing_title</p>
