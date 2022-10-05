@@ -352,7 +352,7 @@ class WebController extends Controller
         $propertie = Listing::where('product_code', $request->propertie)->first();
         $firstimage = strtok($propertie->images, '|');
         $message = "<br><strong>Propiedad " . $request->propertie . " - Casa Crédito 🏠</strong>
-            <div style='border: 0.5px solid #000000; font-size: 15px; padding:3%; border-radius: 25px; margin-top: 2%'>
+            <div style='border: 0.5px solid #DC2626; font-size: 15px; padding:3%; border-radius: 25px; margin-top: 2%'>
             <p>
             Estimado/a <b>" . $request->interestname . "</b> reciba un cordial saludo de Casa Crédito. Le hacemos llegar el enlace de la propiedad en la que se encuentra interesado
             </p>
@@ -375,7 +375,7 @@ class WebController extends Controller
             foreach($similar_properties as $s){
                 $_firstimage = strtok($s->images, '|');
                 $message .= "
-                <div style='border: 0.5px solid #000000; font-size:13px;padding:2%;border-radius: 25px;margin-top:2%; display:flex'>
+                <div style='border: 0.5px solid #DC2626; font-size:13px;padding:2%;border-radius: 25px;margin-top:2%; display:flex'>
                     <div style='border-radius: 25px'>
                         <a href='https://casacredito.com/propiedad/$s->slug' target='_blank'>
                             <img style='width: 100%; height: 100%; border-radius:25px' src='https://casacredito.com/uploads/listing/300/$_firstimage' alt='No se pudo cargar la imagen'>
