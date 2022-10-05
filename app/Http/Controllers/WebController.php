@@ -371,10 +371,10 @@ class WebController extends Controller
         ";
 
         if(count($similar_properties)>0){
+            $message .= "<h3>Propiedades Similares</h3>";
             foreach($similar_properties as $s){
                 $_firstimage = strtok($s->images, '|');
                 $message .= "
-                <h3>Propiedades Similares</h3>
                 <div style='border: 0.5px solid #000000; font-size:13px;padding:2%;border-radius: 25px;margin-top:2%; display:flex'>
                     <div style='border-radius: 25px'>
                         <a href='https://casacredito.com/propiedad/$s->slug' target='_blank'>
@@ -384,7 +384,7 @@ class WebController extends Controller
                     <div style='padding-left: 20px'>
                         <p style='color: blue; margin-top: 2%; font-size: 12px'>https://casacredito.com/propiedad/$s->slug</p>
                         <p style='font-size: 17px; font-weight: 500'>$s->listing_title</p>
-                        <p style='font-size: 16px'>$s->listing_description</p>
+                        <p style='font-size: 16px'>$s->meta_description</p>
                     </div>
                 </div>
                 ";
