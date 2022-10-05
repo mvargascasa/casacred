@@ -340,6 +340,15 @@ class WebController extends Controller
     }
  
     public function sendemailinterested(Request $request){
+        //return $request['interestname'];
+        $similar_properties = array();
+        for ($i=0; $i <= 10 ; $i++) {
+            if($request['similar'.$i]){
+                $propertie = Listing::where('product_code', $request['similar'.$i])->first();
+                array_push($similar_properties, $propertie);
+            }
+        }
+
         $propertie = Listing::where('product_code', $request->propertie)->first();
         $firstimage = strtok($propertie->images, '|');
         $message = "<br><strong>Propiedad " . $request->propertie . " - Casa Crédito 🏠</strong>
@@ -360,6 +369,23 @@ class WebController extends Controller
             </div>
             </div>
         ";
+
+        if(count($similar_properties)>0){
+            foreach($similar_properties as $s){
+                $_firstimage = strtok($s->images, '|');
+                $message .= "
+                <h3>Propiedades Similares</h3>
+                <div style='border: 0.5px solid #000000; font-size:13px;padding:2%;border-radius: 25px;margin-top:2%'>
+                    <a href='https://casacredito.com/propiedad/$s->slug' target='_blank'>
+                        <img style='width: 50%; height: 30%' src='https://casacredito.com/uploads/listing/300/$_firstimage' alt='No se pudo cargar la imagen'>
+                    </a>
+                    <p style='color: blue; margin-top: 2%; font-size: 12px'>https://casacredito.com/propiedad/$s->slug</p>
+                    <p style='font-size: 17px; font-weight: 500'>$s->listing_title</p>
+                    <p style='font-size: 16px'>$s->listing_description</p>
+                </div>
+                ";
+            }
+        }
                 
         $header='';
         $header .= 'From: <propiedades@casacredito.com>' . "\r\n";

@@ -509,10 +509,27 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
           Estimado/a <b id="tagb_nameinterest"></b> reciba un cordial saludo de Casa Crédito. Le hacemos llegar el enlace de la propiedad en la que se encuentra interesado
         </p>
         <div class="mt-2">
-          <img class="w-full h-60" src="{{asset('/uploads/listing/thumb/600/'. strtok($propertie->images, '|'))}}" alt="cargando imagen...">
+          <img class="w-full h-60" src="{{asset('/uploads/listing/600/'. strtok($propertie->images, '|'))}}" alt="cargando imagen...">
           <p class="text-blue-700 mt-2">https://casacredito.com/propiedad/{{$propertie->slug}}</p>
           <p class="text-sm font-semibold">{{$propertie->listing_title}}</p>
         </div>
+      </div>
+      <div class="mt-3">
+        <h6 class="text-gray-500 text-xs">Propiedades similares</h6>
+        @php $i=0; @endphp
+        @foreach ($similarProperties as $similar_propertie)
+          <div class="border mb-2 flex">
+            <img width="100px" height="70px" src="{{asset('/uploads/listing/300/'.strtok($similar_propertie->images, '|'))}}" alt="No se puedo cargar la imagen">
+            <div class="text-xs mx-1">
+              <p>{{$similar_propertie->listing_title}} - {{$similar_propertie->product_code}}</p>
+              <p>@if(Str::contains($similar_propertie->address, ',')){{ Str::limit($similar_propertie->address, 30, '...')}} @else {{Str::limit($similar_propertie->state . ', ' . $similar_propertie->city . ', ' . $similar_propertie->address, 30, '...') }} @endif</p>
+              <p class="text-red-600">${{number_format($similar_propertie->property_price)}}</p>
+            </div>
+            <div class="mx-1">
+              <input type="checkbox" name="similar{{$i++}}" value="{{$similar_propertie->product_code}}">
+            </div>
+          </div>
+        @endforeach
       </div>
     </div>
     <div class="flex justify-center mt-4">
