@@ -64,14 +64,16 @@ class Proplisttw extends Component
 
         if(strlen($this->detalle)>2){        
             $properties_filter->where('address','LIKE',"%$this->detalle%");
-            if($properties_filter->count()<1){
-                $properties_filter->where('listing_title','LIKE',"%$this->detalle%");
-            }
+            $properties_filter->where('listing_title','LIKE',"%$this->detalle%");
+            // if($properties_filter->count()==0){
+            //     $properties_filter->where('listing_title','LIKE',"%$this->detalle%");
+            // }
         }
         
         if($this->code){
             $properties_filter->where('product_code','LIKE',"%$this->code%");
         }
+        
         if($this->status=='A')                                  $properties_filter->where('status',1); //agregarle || $this->variable == null para muestre por defecto las activas y disponibles
         if($this->status=='D')                                  $properties_filter->where('status',0);        
         if($this->categoria)                                    $properties_filter->where('listingtype',$this->categoria);        
