@@ -22,7 +22,81 @@
       .carousel-control-prev, .carousel-control-next {width: 50px;}
       .modal {transition: opacity 0.25s ease;}
       body.modal-active {overflow-x: hidden;overflow-y: visible !important;}
+      #map{width: 100%; height: 100%}
     </style>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA9HaUDMtwi6jqW1M8avBHmOpspAUFto4"></script>
+    <script>
+    function initMap() {
+      var map;
+      var bounds = new google.maps.LatLngBounds();
+      var mapOptions = {
+          mapTypeId: 'roadmap'
+      };
+                      
+      // Display a map on the web page
+      map = new google.maps.Map(document.getElementById("map"), mapOptions);
+      map.setTilt(50);
+          
+      // Multiple markers location, latitude, and longitude
+
+      var markers = [
+          ['{{$propertie->listing_title}}, EC', '{{$propertie->lat}}', '{{$propertie->lng}}']
+          //['Brooklyn Public Library, NY', 40.672587, -73.968146],
+          //['Prospect Park Zoo, NY', 40.665588, -73.965336]
+      ];
+                          
+      // Info window content
+      var infoWindowContent = [
+          ['<div class="info_content">' +
+          '<h3>{{$propertie->listing_title}}</h3>' +
+          '<p>{{$propertie->listing_description}}</p>' + '</div>'],
+          // ['<div class="info_content">' +
+          // '<h3>Brooklyn Public Library</h3>' +
+          // '<p>The Brooklyn Public Library (BPL) is the public library system of the borough of Brooklyn, in New York City.</p>' +
+          // '</div>'],
+          // ['<div class="info_content">' +
+          // '<h3>Prospect Park Zoo</h3>' +
+          // '<p>The Prospect Park Zoo is a 12-acre (4.9 ha) zoo located off Flatbush Avenue on the eastern side of Prospect Park, Brooklyn, New York City.</p>' +
+          // '</div>']
+      ];
+          
+      // Add multiple markers to map
+      var infoWindow = new google.maps.InfoWindow(), marker, i;
+      
+      // Place each marker on the map  
+      for( i = 0; i < markers.length; i++ ) {
+          var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+          bounds.extend(position);
+          marker = new google.maps.Marker({
+              position: position,
+              map: map,
+              title: markers[i][0]
+          });
+          
+          // Add info window to marker    
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+              return function() {
+                  infoWindow.setContent(infoWindowContent[i][0]);
+                  infoWindow.open(map, marker);
+              }
+          })(marker, i));
+
+          // Center the map to fit all markers on the screen
+          map.fitBounds(bounds);
+      }
+
+      // Set zoom level
+      var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+          this.setZoom(16);
+          google.maps.event.removeListener(boundsListener);
+      });
+      
+  }
+  if("{{$propertie->lat}}".includes('-') && "{{$propertie->lng}}".includes('-')){
+    google.maps.event.addDomListener(window, 'load', initMap);
+  }
+    </script>
 @endsection
 
 @section('content')
@@ -334,12 +408,14 @@
       {{-- <a target="_blank" href="{{$propertie->ubication_url}}">Ver ubicación en Google Maps</a> --}}
     </div>
   </div>
+  {{-- <div class="mx-5" id="map"></div> --}}
   <div class="flex justify-center">
     @if(Auth::user()->role == 'administrator')
     <a class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" style="text-decoration: none;" href="{{ route('home.tw.edit', $propertie) }}">Editar Propiedad</a>
     <button type="button" class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver Historial</button>
     @endif
     <button type="button" class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" data-bs-toggle="modal" data-bs-target="#modalSendEmail">Compartir</button>
+    <button type="button" class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" data-bs-toggle="modal" data-bs-target="#modalMap">Ver Mapa</button>
   </div>
 </div>
 
@@ -543,6 +619,32 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
 </div>
 </div>    
 
+<div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+id="modalMap" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg modal-dialog-scrollable relative w-auto pointer-events-none">
+<div
+class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+<div
+  class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+  <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel">Ubicación de Propiedad {{$propertie->product_code}}</h5>
+  <button type="button"
+    class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+    data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div id="map" class="flex text-center justify-center items-center modal-body relative p-4" style="height: 400px">
+  @if(!Str::contains($propertie->listing, '-'))
+    <div>
+      <p class="text-gray-600">No se pudo cargar el mapa</p>
+    </div>
+  @endif
+</div>
+<div
+  class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-center p-4 border-t border-gray-200 rounded-b-md">
+  <button type="button" class="px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">Cerrar</button>
+</div>
+</div>
+</div>
+</div>
 @endsection
 
 @section('endscript')
