@@ -106,11 +106,11 @@
                                 </div>
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 pl-1 pr-1 text-justify">
                                     <label class="text-xs text-gray-400">Sector</label>
-                                    <input class="block w-32 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_detalle" name="b_detalle" type="text" placeholder="Ej: Ricaurte">
+                                    <input class="block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_detalle" name="b_detalle" type="text" placeholder="Ej: Ricaurte">
                                 </div>
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 pr-1 pl-1 text-justify">
                                     <label class="text-xs text-gray-400">Código</label>
-                                    <input class="block w-20 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_code" name="b_code" type="text" placeholder="Ej: 1733">
+                                    <input class="block w-20 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_code" name="b_code" type="text" placeholder="Ej: 1733">
                                 </div>
                                 {{-- <div class="w-auto bg-gray-100 py-8 pr-1 pl-1 relative">
                                     <div id="div3" class="pattern block w-24 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
@@ -156,7 +156,7 @@
                                 </div> --}}
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 pl-2 text-justify">
                                     <label class="text-xs text-gray-400">Tipo de propiedad</label>
-                                    <select class="block w-auto pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md leading-tight focus:outline-none" id="b_categoria">
+                                    <select class="block w-auto pl-2 border-gray-300 hover:border-gray-400 shadow-md leading-tight focus:outline-none" id="b_categoria">
                                         <option value="">Todas</option>	
                                         <option value="23">Casas </option>
                                         <option value="24">Departamentos </option>
@@ -185,7 +185,7 @@
                                 </div> --}}
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 pl-2 text-justify">
                                     <label class="text-xs text-gray-400">Estado</label>
-                                    <select class="block w-24 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none"id="b_status" name="b_status">
+                                    <select class="block w-24 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none"id="b_status" name="b_status">
                                         <option value="" selected>Todos</option>
                                         <option value="A">ON</option>
                                         <option value="D">OFF</option>
@@ -207,10 +207,10 @@
                                 </div> --}}
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 relative pr-1 pl-2 text-justify">
                                     <label class="text-xs text-gray-400">Precio</label>
-                                    <div id="div6" class="pattern block w-32 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                    <div id="div6" class="pattern block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                         <label for="">Precio</label>
                                     </div>
-                                    <div class="block w-full rounded-md mt-1 p-1" id="child6" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
+                                    <div class="block w-full p-1" id="child6" style="display: none; position:absolute; z-index: 3;border: 1px solid #000000; background-color: #ffffff">
                                         <div class="flex items-center">
                                             <div style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> 
                                             <label class="text-xs ml-1 text-gray-500">Precio</label>
@@ -228,11 +228,11 @@
 
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 relative pr-1 pl-1 text-justify">
                                     <label class="text-xs text-gray-400">Fecha</label>
-                                    <div id="div7" class="pattern block w-32 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                    <div id="div7" class="pattern block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                                 {{-- onclick="openDateFilter();" --}}
                                         <label for="">Seleccione</label>
                                     </div>
-                                    <div class="block w-full rounded-md mt-1 p-1 text-justify" id="child7" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
+                                    <div class="block w-full p-1 text-justify" id="child7" style="display: none; position:absolute; z-index: 3;border: 1px solid #000000; background-color: #ffffff">
                                         <label class="ml-2 text-xs" for="fromdate">Desde</label>
                                         <input type="date" class="block w-28 m-2 shadow appearance-none border rounded py-1 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="fromdate">
                                         <label class="ml-2 text-xs" for="untildate">Hasta</label>
@@ -257,7 +257,7 @@
                                 </div> --}}
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 relative pr-1 pl-2 text-justify">
                                     <label class="text-xs text-gray-400">Asesor</label>
-                                    <select class="block w-32 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_asesor">
+                                    <select class="block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_asesor">
                                         <option value="">Asesor</option>
                                         @foreach ($users as $user)
                                             <option value="{{$user->id}}">{{$user->name}}</option>
