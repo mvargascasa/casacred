@@ -342,15 +342,30 @@ class ListingController extends Controller
         $propertie = Listing::where('id', $id)->first();
         //$similarProperties = Listing::where('available', 1);
 
-        $similarProperties = [];
-        if($propertie){
+        $similarProperties = []; $nearbyproperties = []; $nearbyproperties_aux = [];
+;        if($propertie){
             $similarProperties = Listing::where('state', 'LIKE', "%$propertie->state%")->where('city', 'LIKE', "%$propertie->city%")->where('listingtype', 'LIKE', "%$propertie->listingtype%")->where('available', 1)->where("product_code", "!=", $propertie->product_code)->latest()->take(10)->get();
+            $nearbyproperties = Listing::select('product_code', 'lat', 'lng', 'listing_title', 'id', 'address')
+                                        ->where('address', 'LIKE', "%$propertie->address%")
+                                        ->where('listingtype', 'LIKE', "%$propertie->listingtype%")
+                                        ->where('available', 1)->where('product_code', '!=', $propertie->product_code)
+                                        ->where(DB::raw('LENGTH(lat)'), '>', 5)
+                                        ->where(DB::raw('LENGTH(lng)'), '>', 5)
+                                        ->latest()->take(10)->get();
         }
+
+        foreach ($nearbyproperties as $nb) {
+            if(Str::startsWith($nb->lat, '-') && Str::startsWith($nb->lng, '-') && Str::contains($nb->lat, '.') && Str::contains($nb->lng, '.')){
+                array_push($nearbyproperties_aux, $nb);
+            }
+        }
+        //dd($nearbyproperties_aux);
+        
         $comments = DB::table('comments')->where('type', '!=', 'price')->where('listing_id', $id)->orderBy('created_at', 'desc')->get();
         $benefits = DB::table('listing_benefits')->get();
         $services = DB::table('listing_services')->get();
         $details = DB::table('listing_characteristics')->get();  
-        return view('admin.listing.show-tw', compact('propertie', 'benefits', 'services', 'details', 'comments', 'similarProperties'));
+        return view('admin.listing.show-tw', compact('propertie', 'benefits', 'services', 'details', 'comments', 'similarProperties', 'nearbyproperties_aux'));
     }
 
     public function unlocked($id){

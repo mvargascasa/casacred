@@ -27,6 +27,7 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA9HaUDMtwi6jqW1M8avBHmOpspAUFto4"></script>
     <script>
+    var newarray = [];
     function initMap() {
       var map;
       var bounds = new google.maps.LatLngBounds();
@@ -40,11 +41,33 @@
           
       // Multiple markers location, latitude, and longitude
 
+      newarray = @json($nearbyproperties_aux);
+      var markers_aux = [];
+      var infoWindowContent_aux = [];
+      for(let i = 0; i < newarray.length; i++){
+        //if(newarray[i]['lat'].includes('-') && newarray[i]['lng'].includes('-')){
+          markers_aux[i] = new Array(newarray[i]['listing_title'] + ", EC", newarray[i]['lat'], newarray[i]['lng']);
+          infoWindowContent_aux[i] = new Array("<div>Código "+newarray[i]['product_code']+"<p><a href='https://casacredito.com/admin/show-listing/"+newarray[i]['id']+"'>"+newarray[i]['listing_title']+"</a></p></div>");
+        //}
+      }
+
+    var propertyCoordIsValid = false;
+    if("{{$propertie->lat}}".includes('-') && "{{$propertie->lat}}".includes('.') && "{{$propertie->lng}}".includes('-') && "{{$propertie->lng}}".includes('.')){
+      markers_aux.unshift(new Array("{{$propertie->listing_title}}, EC", "{{$propertie->lat}}", "{{$propertie->lng}}"));
+      infoWindowContent_aux.unshift(new Array("<div>Código {{$propertie->product_code}}<p><a href='https://casacredito.com/admin/show-listing/{{$propertie->id}}'>{{$propertie->listing_title}}</a></p></div>"));
+      propertyCoordIsValid = true;
+    }
+
+      //console.log("---------markers aux --------------------");
+      //console.log(markers_aux);
+
       var markers = [
           ['{{$propertie->listing_title}}, EC', '{{$propertie->lat}}', '{{$propertie->lng}}']
           //['Brooklyn Public Library, NY', 40.672587, -73.968146],
           //['Prospect Park Zoo, NY', 40.665588, -73.965336]
       ];
+      //console.log("-------------MARKERS--------------");
+      //console.log(markers);
                           
       // Info window content
       var infoWindowContent = [
@@ -60,24 +83,40 @@
           // '<p>The Prospect Park Zoo is a 12-acre (4.9 ha) zoo located off Flatbush Avenue on the eastern side of Prospect Park, Brooklyn, New York City.</p>' +
           // '</div>']
       ];
+
+      //console.log("-----------------infoWindowContent-------------------");
+      //console.log(infoWindowContent);
+
+
+      //console.log("---------------infoWindowContentAux-------------------")
+      //console.log(infoWindowContent_aux);
           
       // Add multiple markers to map
       var infoWindow = new google.maps.InfoWindow(), marker, i;
       
+      var icon = {
+          url: "https://cdn1.iconfinder.com/data/icons/real-estate-building-flat-vol-3/104/house__location__home__map__Pin-512.png", // url
+          scaledSize: new google.maps.Size(40, 40), // scaled size
+          origin: new google.maps.Point(0,0), // origin
+          anchor: new google.maps.Point(0, 0) // anchor
+      };
       // Place each marker on the map  
-      for( i = 0; i < markers.length; i++ ) {
-          var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+      for( i = 0; i < markers_aux.length; i++ ) {
+          if(i == 0 && propertyCoordIsValid){icon.scaledSize = new google.maps.Size(60, 60);}
+          else {icon.scaledSize = new google.maps.Size(40, 40);}
+          var position = new google.maps.LatLng(markers_aux[i][1], markers_aux[i][2]);
           bounds.extend(position);
           marker = new google.maps.Marker({
               position: position,
               map: map,
-              title: markers[i][0]
+              icon: icon,
+              title: markers_aux[i][0]
           });
           
           // Add info window to marker    
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
               return function() {
-                  infoWindow.setContent(infoWindowContent[i][0]);
+                  infoWindow.setContent(infoWindowContent_aux[i][0]);
                   infoWindow.open(map, marker);
               }
           })(marker, i));
@@ -93,9 +132,10 @@
       });
       
   }
-  if("{{$propertie->lat}}".includes('-') && "{{$propertie->lng}}".includes('-')){
+  //if(){
     google.maps.event.addDomListener(window, 'load', initMap);
-  }
+  //}
+  
     </script>
 @endsection
 
@@ -135,6 +175,7 @@
 
   <div class="row d-flex justify-content-center">
     <div class="col-sm-8">
+      
       @if ($propertie->images != null)
         <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
@@ -631,13 +672,12 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
     class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
     data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
-<div id="map" class="flex text-center justify-center items-center modal-body relative p-4" style="height: 400px">
-  @if(!Str::contains($propertie->listing, '-'))
-    <div>
-      <p class="text-gray-600">No se pudo cargar el mapa</p>
-    </div>
-  @endif
+@if(!Str::contains($propertie->lat, '-') || !Str::contains($propertie->lat, '.') || !Str::contains($propertie->lng, '-') || !Str::contains($propertie->lng, '.'))
+<div class="m-3">
+  <p class="text-red-600">La propiedad <b>{{$propertie->product_code}}</b> no tiene una ubicación válida.</p>
 </div>
+@endif
+<div id="map" class="flex text-center justify-center items-center modal-body relative p-4" style="height: 400px"></div>
 <div
   class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-center p-4 border-t border-gray-200 rounded-b-md">
   <button type="button" class="px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">Cerrar</button>
