@@ -47,14 +47,14 @@
       for(let i = 0; i < newarray.length; i++){
         //if(newarray[i]['lat'].includes('-') && newarray[i]['lng'].includes('-')){
           markers_aux[i] = new Array(newarray[i]['listing_title'] + ", EC", newarray[i]['lat'], newarray[i]['lng']);
-          infoWindowContent_aux[i] = new Array("<div>Código "+newarray[i]['product_code']+"<p><a href='https://casacredito.com/admin/show-listing/"+newarray[i]['id']+"'>"+newarray[i]['listing_title']+"</a></p></div>");
+          infoWindowContent_aux[i] = new Array("<div>Código "+newarray[i]['product_code']+"<p><a target='_blank' href='https://casacredito.com/admin/show-listing/"+newarray[i]['id']+"'>"+newarray[i]['listing_title']+"</a></p><p><a target='_blank' href='https://api.whatsapp.com/send?text=https://maps.google.com/?q="+newarray[i]['lat']+","+newarray[i]['lng']+"'>Enviar Ubicación</a></p></div>");
         //}
       }
 
     var propertyCoordIsValid = false;
     if("{{$propertie->lat}}".includes('-') && "{{$propertie->lat}}".includes('.') && "{{$propertie->lng}}".includes('-') && "{{$propertie->lng}}".includes('.')){
       markers_aux.unshift(new Array("{{$propertie->listing_title}}, EC", "{{$propertie->lat}}", "{{$propertie->lng}}"));
-      infoWindowContent_aux.unshift(new Array("<div>Código {{$propertie->product_code}}<p><a href='https://casacredito.com/admin/show-listing/{{$propertie->id}}'>{{$propertie->listing_title}}</a></p></div>"));
+      infoWindowContent_aux.unshift(new Array("<div>Código {{$propertie->product_code}}<p><a href='https://casacredito.com/admin/show-listing/{{$propertie->id}}'>{{$propertie->listing_title}}</a></p><p><a target='_blank' href='https://api.whatsapp.com/send?text=https://maps.google.com/?q={{$propertie->lat}},{{$propertie->lng}}'>Enviar Ubicación</a></p></div>"));
       propertyCoordIsValid = true;
     }
 
