@@ -600,11 +600,39 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
 </div>
 <div class="modal-body relative pr-4 pl-4">
   <div id="linksshare" class="flex justify-center">
-    <div class="mx-2">
-      <a href="https://api.whatsapp.com/send?text=Reciba un cordial saludo de Casa Crédito 👋🏻🏠 Le hacemos llegar la propiedad en la que se encuentra interesado.%0A{{route('web.detail', $propertie->slug)}}%0A_*Haciendo sus sueños realidad*_"><i class="fab fa-whatsapp fa-2x"></i></a>
+    <div class="mx-2" style="cursor: pointer">
+      <i class="fab fa-whatsapp fa-2x hover:text-blue-600" onclick="document.getElementById('sharetowpp').classList.remove('hidden');document.getElementById('linksshare').classList.add('hidden');"></i>
     </div>
     <div class="mx-2" style="cursor: pointer">
       <i class="fas fa-envelope fa-2x hover:text-blue-600" onclick="document.getElementById('sharetomail').classList.remove('hidden');document.getElementById('linksshare').classList.add('hidden');"></i>
+    </div>
+  </div>
+  <div id="sharetowpp" class="hidden">
+    <div class="mt-2">
+      <img class="w-full h-60" src="{{asset('/uploads/listing/600/'. strtok($propertie->images, '|'))}}" alt="cargando imagen...">
+      <p class="text-blue-700 mt-2">https://casacredito.com/propiedad/{{$propertie->slug}}</p>
+      <p class="text-sm font-semibold">{{$propertie->listing_title}}</p>
+    </div>
+    <div class="mt-3">
+      <h6 class="text-gray-500 text-xs">Propiedades similares</h6>
+      @php $i=0; @endphp
+      @foreach ($similarProperties as $similar_propertie)
+        <div class="border mb-2 flex">
+          <img width="100px" height="70px" src="{{asset('/uploads/listing/300/'.strtok($similar_propertie->images, '|'))}}" alt="No se puedo cargar la imagen">
+          <div class="text-xs mx-1">
+            <p>{{$similar_propertie->listing_title}} - {{$similar_propertie->product_code}}</p>
+            <p>@if(Str::contains($similar_propertie->address, ',')){{ Str::limit($similar_propertie->address, 30, '...')}} @else {{Str::limit($similar_propertie->state . ', ' . $similar_propertie->city . ', ' . $similar_propertie->address, 30, '...') }} @endif</p>
+            <p class="text-red-600">${{number_format($similar_propertie->property_price)}}</p>
+          </div>
+          <div class="mx-1">
+            <input type="checkbox" name="similarwpp{{$i++}}" value="{{$similar_propertie->slug}}|{{$similar_propertie->listing_title}}">
+          </div>
+        </div>
+      @endforeach
+    </div>
+    <div class="flex justify-center mt-4">
+      <button type="button" onclick="document.getElementById('sharetowpp').classList.remove('block');document.getElementById('sharetowpp').classList.add('hidden');document.getElementById('linksshare').classList.remove('hidden');document.getElementById('linksshare').classList.add('block');" class="bg-white font-bold rounded px-2 py-1"><i class="fas fa-arrow-left"></i> Regresar</button>
+      <button id="btnsharewpp" onclick="setLinkToShare()" class="bg-red-500 hover:bg-red-700 text-white font-bold rounded px-2 py-1">Compartir <i class="fas fa-arrow-right"></i></button>
     </div>
   </div>
   <div id="sharetomail" class="hidden">
@@ -697,6 +725,25 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
     	event.preventDefault()
     	toggleModal()
       })
+    }
+
+    function setLinkToShare(){
+      var link = "https://api.whatsapp.com/send?text=";
+      var message = "Reciba un cordial saludo de Casa Crédito 👋🏻🏠 Le hacemos llegar la propiedad en la que se encuentra interesado.%0Ahttps://casacredito.com/propiedad/{{$propertie->slug}}%0A_*Haciendo sus sueños realidad*_";
+      var firstparagraph = false;
+      for (let i = 0; i < 10; i++) {if(document.querySelector("input[name='similarwpp"+i+"']").checked) firstparagraph = true;}
+      
+      for (let i = 0; i < 10; i++) {
+        if(document.querySelector("input[name='similarwpp"+i+"']").checked){
+          if(firstparagraph == true && i == 0)message += "%0ATambién adjuntamos enlaces a propiedades similares a la búsqueda:";
+          let value = document.querySelector("input[name='similarwpp"+i+"']").value;
+          let index = value.indexOf("|");
+          let linklisting = value.substring(0, index);
+          let title = value.substring(index+1);
+          message += "%0A"+title+"%0Ahttps://casacredito.com/propiedad/"+linklisting+"%0A";
+        }
+      }
+      window.open(link+message, '_blank');
     }
     
     // const overlay = document.querySelector('.modal-overlay')
