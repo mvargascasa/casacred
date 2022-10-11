@@ -161,7 +161,7 @@
         <p class="text-xs mx-4 pb-2">*Puede hacer clic sobre la ubicación de cada propiedad para más información</p>
         <div id="map" class="mx-4 rounded" style="height: 400px"></div>
     </div>
-    <div class="overflow-auto mt-5" style="height: 400px">
+    <div class="mt-5" style="height: 400px; overflow: auto">
         <p class=" bg-white font-semibold text-center sticky top-0">Ultimas propiedades subidas</p>
         <div class="flex justify-center mx-2">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
