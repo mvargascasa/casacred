@@ -729,7 +729,7 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
 
     function setLinkToShare(){
       var link = "https://api.whatsapp.com/send?text=";
-      var message = "Reciba un cordial saludo de Casa Crédito 👋🏻🏠 Le hacemos llegar la propiedad en la que se encuentra interesado.%0Ahttps://casacredito.com/propiedad/{{$propertie->slug}}%0A_*Haciendo sus sueños realidad*_";
+      var message = "Reciba un cordial saludo de Casa Crédito 👋🏻🏠 Le hacemos llegar la propiedad en la que se encuentra interesado.%0A*https://casacredito.com/propiedad/{{$propertie->slug}}*%0A";
       var firstparagraph = false;
       for (let i = 0; i < 10; i++) {if(document.querySelector("input[name='similarwpp"+i+"']").checked) firstparagraph = true;}
       
@@ -740,9 +740,10 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
           let index = value.indexOf("|");
           let linklisting = value.substring(0, index);
           let title = value.substring(index+1);
-          message += "%0A"+title+"%0Ahttps://casacredito.com/propiedad/"+linklisting+"%0A";
+          message += "%0A✅"+title+"%0Ahttps://casacredito.com/propiedad/"+linklisting+"%0A";
         }
       }
+      message += "%0A_*Casa Crédito, Haciendo sus sueños realidad*_%0A"
       window.open(link+message, '_blank');
     }
     
