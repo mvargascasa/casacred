@@ -154,37 +154,55 @@
             </div>
         </div>
     </div>
-</main>
-<div class="grid grid-cols-2 mx-4 my-2 w-auto border rounded py-4">
-    <div>
-        <p class="font-semibold mx-4 pb-1">UBICACIÓN DE PROPIEDADES</p>
-        <p class="text-xs mx-4 pb-2">*Puede hacer clic sobre la ubicación de cada propiedad para más información</p>
-        <div id="map" class="mx-4 rounded" style="height: 400px"></div>
-    </div>
-    <div class="mt-5" style="height: 400px; overflow: auto">
-        <p class=" bg-white font-semibold text-center sticky top-0">Ultimas propiedades subidas</p>
-        <div class="flex justify-center mx-2">
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
-                    <tr>
-                        <th class="px-4 py-2">Código</th>
-                        <th class="px-4 py-2">Detalle</th>
-                        <th class="px-4 py-2">Sector</th>
-                        <th class="px-4 py-2">Fecha</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($properties_aux as $prop)
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-xs">
-                        <td class="px-4 py-4">{{$prop->product_code}}</td>
-                        <td class="px-4 py-4">{{$prop->listing_title}}</td>
-                        <td class="px-4 py-4">{{$prop->address}}</td>
-                        <td class="px-4 py-4">{{$prop->created_at->format('d-M-y')}}</td>
-                    </tr>    
-                    @endforeach
-                </tbody>
-            </table>
+    <div class="grid grid-cols-2 mx-4 my-2 w-auto border rounded py-4">
+        <div>
+            <p class="font-semibold mx-4 pb-1">UBICACIÓN DE PROPIEDADES</p>
+            <p class="text-xs mx-4 pb-2">*Puede hacer clic sobre la ubicación de cada propiedad para más información</p>
+            <div id="map" class="mx-4 rounded" style="height: 400px"></div>
+        </div>
+        <div class="mt-5" style="height: 400px; overflow: auto">
+            <p class=" bg-white font-semibold text-center sticky top-0">Ultimas propiedades subidas</p>
+            <div class="flex justify-center mx-2">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
+                        <tr>
+                            <th class="px-4 py-2">Código</th>
+                            <th class="px-4 py-2">Detalle</th>
+                            <th class="px-4 py-2">Sector</th>
+                            <th class="px-4 py-2">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($properties_aux as $prop)
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-xs">
+                            <td class="px-4 py-4">{{$prop->product_code}}</td>
+                            <td class="px-4 py-4">{{$prop->listing_title}}</td>
+                            <td class="px-4 py-4">{{$prop->address}}</td>
+                            <td class="px-4 py-4">{{$prop->created_at->format('d-M-y')}}</td>
+                        </tr>    
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+    <div class="mx-4 my-3 w-auto border rounded py-4">
+        <p class="font-semibold mx-4">MI USUARIO</p>
+        <div class="mx-4">
+            @if (count($properties_at_week)>0)
+            <p>Propiedades subidas por <b class="text-gray-600">{{Auth::user()->name}}</b> durante esta semana desde el <b class="text-gray-600">{{$now->startOfWeek()->format('d-M-y')}} </b> hasta el <b class="text-gray-600">{{$now->endOfWeek()->format('d-M-y')}}</b></p>
+            <div class="grid grid-cols-3 my-2">
+                @foreach ($properties_at_week as $prop_at_week)
+                    <div class="border mx-1 p-1 rounded">
+                        <label class="text-xs text-gray-500">{{$prop_at_week->created_at->format('d-M-y')}}</label>
+                        <p>{{$prop_at_week->product_code}} - {{$prop_at_week->listing_title}}</p>
+                    </div>
+                @endforeach
+            </div>
+            @else
+                <p class="text-red-600"><i class="fa-sharp fa-solid fa-circle-exclamation"></i> No hemos encontrado captaciones esta semana</p>
+            @endif
+        </div>
+    </div>
+</main>
 @endsection
