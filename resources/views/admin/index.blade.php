@@ -200,7 +200,7 @@
                 @endforeach
             </div>
             @else
-                <p class="text-red-600"><i class="fa-sharp fa-solid fa-circle-exclamation"></i> No hemos encontrado captaciones esta semana</p>
+                <p class="text-red-600"><i class="fa-sharp fa-solid fa-circle-exclamation"></i> No hemos encontrado captaciones esta semana del usuario {{Auth::user()->name}}</p>
             @endif
         </div>
     </div>
