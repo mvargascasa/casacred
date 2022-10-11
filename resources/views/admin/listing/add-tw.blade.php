@@ -147,6 +147,30 @@
                 @endif
             </div>
             <div>
+                {!! Form::label('identification', 'Cédula de Identidad', ['class' => 'font-semibold']) !!}
+                @if(isset($listing) && $listing->locked)
+                {!! Form::text('identification', null, ['class' => $inputs, 'disabled']) !!}
+                @elseif(Auth::user()->email == "developer2@casacredito.com")
+                {!! Form::text('identification', null, ['class' => $inputs, 'minlength' => 10, 'maxlength' => 10, 'pattern' => '[0-9]+']) !!}
+                @else
+                {!! Form::text('identification', null, ['class' => $inputs, 'minlength' => 10, 'maxlength' => 10, 'pattern' => '[0-9]+', 'required']) !!}
+                @endif
+            </div>
+            <div>
+                {!! Form::label('phone_number', 'Teléfono/Celular', ['class' => 'font-semibold']) !!}
+                @if(isset($listing) && $listing->locked)
+                {!! Form::text('phone_number', null, ['class' => $inputs, 'disabled']) !!}
+                @elseif(Auth::user()->email == "developer2@casacredito.com")
+                {!! Form::text('phone_number', null, ['class' => $inputs, 'minlength' => 7, 'maxlength' => 10, 'pattern' => '[0-9]+']) !!}
+                @else
+                {!! Form::text('phone_number', null, ['class' => $inputs, 'minlength' => 7, 'maxlength' => 10, 'pattern' => '[0-9]+', 'required']) !!}
+                @endif
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6 mt-4">
+
+            <div>
                 {!! Form::label('owner_email', 'Email del Propietario', ['class' => 'font-semibold']) !!}
                 @if(isset($listing) && $listing->locked)
                 {!! Form::email('owner_email', null, ['class' => $inputs, 'disabled']) !!}
@@ -156,6 +180,7 @@
                 {!! Form::email('owner_email', null, ['class' => $inputs, 'required']) !!}
                 @endif
             </div>
+
             <div>
                 {!! Form::label('available', 'Disponibilidad', ['class' => 'font-semibold']) !!}
                 @if(isset($listing) && $listing->locked)

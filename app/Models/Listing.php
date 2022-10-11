@@ -21,6 +21,7 @@ class Listing extends Model
         'available',
         'status','user_id',
         'threedegreeview','heading_details','owner_name', 'owner_email',
+        'identification', 'phone_number', // new variables to save cedula and numero telefonico
         'locked',
     ];   
     
