@@ -26,7 +26,7 @@ class SeoController extends Controller
 
     public function store(Request $request){
         $seopage = SeoPage::create($request->all());
-        return $seopage;
+        return redirect()->back()->with('status', true);
     }
 
     public function edit(SeoPage $seopage){
