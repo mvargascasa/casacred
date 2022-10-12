@@ -82,6 +82,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
     Route::post('seo/savepage', [SeoController::class, 'store'])->name('admin.seo.store');
     Route::get('seo/edit/{seopage}', [SeoController::class, 'edit'])->name('admin.seo.edit');
     Route::put('seo/update/{seopage}', [SeoController::class, 'update'])->name('admin.seo.update');
+    Route::post('seo/delete/{id}', [SeoController::class, 'delete'])->name('admin.seo.delete');
 
     
     //Route::get('listings', [ListingController::class,'listings'])->name('admin.listings');

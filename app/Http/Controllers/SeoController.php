@@ -26,7 +26,7 @@ class SeoController extends Controller
 
     public function store(Request $request){
         $seopage = SeoPage::create($request->all());
-        return redirect()->back()->with('status', true);
+        return redirect()->route('admin.seo.edit', $seopage)->with('status', true);
     }
 
     public function edit(SeoPage $seopage){
@@ -59,5 +59,12 @@ class SeoController extends Controller
         $seopage->save();
         if($seopage) return redirect()->back()->with('status', true);
         else return redirect()->back()->with('status', false);
+    }
+
+    public function delete($id){
+        $seopage = SeoPage::find($id);
+        $seopage->delete();
+        //return $isDeleted;
+        return redirect()->route('admin.seo.index')->with('isdeleted', 'Se elimino el elemento');
     }
 }   
