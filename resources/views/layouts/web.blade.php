@@ -251,7 +251,7 @@ if(strpos($actual_link, 'localhost') === false){
 <div class="bg-white">
 <section class="container justify-content-md-center p-4  ">
     <div class="row">
-                            <h2 class="text-black-50 pt-2 pb-3">Casas en Venta en Cuenca Ecuador</h2>
+                            <h2 class="text-black-50 pt-2 pb-3">También te puede interesar</h2>
                             <div class="col-md-3">
                                 <h3>Ecuador</h3>
                                 <ul class="list-group list-group-flush">
@@ -351,7 +351,7 @@ if(strpos($actual_link, 'localhost') === false){
                     <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 10px; padding-right: 10px; border-radius: 25px" class="fab fa-youtube"></i>
                   </a>
                   
-                  <a href="https://api.whatsapp.com/send?phone=+593983849073  " class="asindeco px-1" target="_blank">
+                  <a href="https://api.whatsapp.com/send?phone=+593983849073" class="asindeco px-1" target="_blank">
                     {{-- <img src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40"> --}}
                     <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 11px; padding-right: 11px; border-radius: 25px" class="fab fa-whatsapp"></i>
                   </a>
