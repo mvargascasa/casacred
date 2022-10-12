@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\SeoController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TwController;
 use App\Http\Controllers\UserController;
@@ -11,7 +12,7 @@ use App\Models\Listing;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WebController::class,'home'])->name('web.index');
-Route::get('/propiedades', [WebController::class,'index'])->name('web.propiedades');
+Route::get('/propiedades/{slug?}', [WebController::class,'index'])->name('web.propiedades');
 //NUEVAS RUTAS
 Route::get('/home', [WebController::class, 'home'])->name('web.home');
 Route::get('/creditos', [WebController::class, 'creditos'])->name('web.creditos');
@@ -75,6 +76,12 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
     Route::put('users/changepass/{user}', [UserController::class,'changepass'])->name('users.changepass');
     
     Route::get('getallimg/{listing}', [AdminController::class,'getallimg'])->name('admin.getallimg');
+
+    Route::get('seo', [SeoController::class, 'index'])->name('admin.seo.index');
+    Route::get('seo/create', [SeoController::class, 'create'])->name('admin.seo.create');
+    Route::post('seo/savepage', [SeoController::class, 'store'])->name('admin.seo.store');
+    Route::get('seo/edit/{seopage}', [SeoController::class, 'edit'])->name('admin.seo.edit');
+    Route::put('seo/update/{seopage}', [SeoController::class, 'update'])->name('admin.seo.update');
 
     
     //Route::get('listings', [ListingController::class,'listings'])->name('admin.listings');

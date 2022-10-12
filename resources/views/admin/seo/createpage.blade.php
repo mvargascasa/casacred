@@ -1,0 +1,152 @@
+@extends('layouts.dashtw')
+
+@section('firstscript')
+<title>Crear Página SEO</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">  
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+      selector: '#mytextarea',
+      plugins: [
+        'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+        'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
+        'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
+      ],
+      toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+        'alignleft aligncenter alignright alignjustify | ' +
+        'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+    });
+    tinymce.init({
+      selector: '#txtareafooter',
+      plugins: [
+        'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+        'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
+        'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
+      ],
+      toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+        'alignleft aligncenter alignright alignjustify | ' +
+        'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+    });
+  </script>
+@endsection
+
+@php
+    $inputs = "block w-full px-4 py-2 mt-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-md focus:border-red-500 focus:outline-none focus:ring";
+@endphp
+
+@section('content')
+    <main class="overflow-x-hidden overflow-y-auto">
+        <div class="mx-5 my-5">
+            @if(session('status'))
+                <div class="alert-del @if(session('status') == true) bg-green-100 border border-green-400 text-green-700 @else bg-red-100 border border-red-400 text-red-700 @endif px-4 py-3 mb-2 rounded relative" role="alert">
+                    @if(session('status') == true) Se actualizaron los datos @else No se pudo actualizar los datos @endif
+                    {{-- <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                    <svg class="fill-current h-6 w-6 @if(session('status') == true) text-green-500 @else text-red-500 @endif" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                    </span> --}}
+                </div>
+            @endif
+            @if(isset($seopage->id)) 
+            <p class="font-semibold text-center">Editar página</p> 
+            {!! Form::model($seopage, ['route' => ['admin.seo.update',$seopage->id],'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
+            @else 
+            <p class="font-semibold text-center">Crear página</p> 
+            {!! Form::open(['route' => 'admin.seo.store', 'enctype' => 'multipart/form-data']) !!}
+            @endif
+
+            @csrf
+            <div class="grid grid-cols-2 my-1">
+                <div>
+                    {!! Form::label('title', 'Titulo en la página - H1', ['class' => 'font-semibold']) !!}
+                    {!! Form::text('title', null, ['class' => $inputs.' mr-1', 'onkeyup' => 'crearURL(this.value)']) !!}
+                </div>
+                <div>
+                    {!! Form::label('title_google', 'Titulo de Google', ['class' => 'font-semibold']) !!}
+                    {!! Form::text('title_google', null, ['class' => $inputs.' ml-1']) !!}
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 my-1">
+                {!! Form::label('slug', 'Slug', ['class' => 'font-semibold']) !!}
+                {!! Form::text('slug', null, ['class' => $inputs]) !!}
+            </div>
+
+            <div class="grid grid-cols-1 my-1">
+                {!! Form::label('meta_description', 'Meta Description', ['class' => 'font-semibold my-1']) !!}
+                {!! Form::textarea('meta_description', null, ['class' => $inputs, 'rows' => 4]) !!}
+            </div>
+
+            <div class="grid grid-cols-1 my-1">
+                {!! Form::label('keywords', 'Keywords', ['class' => 'font-semibold my-1']) !!}
+                {!! Form::textarea('keywords', null, ['class' => $inputs, 'rows' => 4]) !!}
+            </div>
+
+            <div class="grid grid-cols-1 my-1">
+                {!! Form::label('header', 'Información del Header', ['class' => 'font-semibold my-1']) !!}
+                {!! Form::textarea('info_header', null, ['class' => $inputs, 'id' => 'mytextarea']) !!}
+            </div>
+            
+            <p class="font-semibold my-2">Escoja la ubicación y el tipo de propiedad que se van a mostrar en esta página</p>
+            <div class="grid grid-cols-3 my-1">
+                <div class="mr-1">
+                    {!! Form::select('state', [''=>'Selecione']+$states->pluck('name','name')->toArray(), null, ['id' => 'state', 'class' => $inputs], $optAttrib) !!}
+                </div>
+                <div class="ml-1">
+                    {!! Form::select('city', isset($cities) ? $cities->pluck('name','name')->toArray() : [''=>'Selecione'] , null, ['id'=>'city','class' => $inputs]) !!}
+                </div>
+                <div class="ml-1">
+                    {!! Form::select('type', [''=>'Seleccione']+$types->pluck('type_title','id')->toArray(), null, ['id'=>'city','class' => $inputs]) !!}
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 my-1">
+                {!! Form::label('footer', 'Información del Footer', ['class' => 'font-semibold my-1']) !!}
+                {!! Form::textarea('info_footer', null, ['class' => $inputs, 'id' => 'txtareafooter']) !!}
+            </div>
+
+            <div class="my-3 flex justify-center">
+                <button type="submit" class="bg-blue-400 text-white px-4 text-md py-2">Guardar</button>
+            </div>
+
+            {!! Form::close() !!}
+            {{-- <form method="post">
+                <textarea id="mytextarea">Hello, World!</textarea>
+              </form> --}}
+        </div>
+    </main>
+@endsection
+
+@section('endscript')
+    <script>
+        function crearURL(slug) {
+ 
+            // Reemplaza los carácteres especiales | simbolos con un espacio 
+            slug = slug.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
+
+            // Corta los espacios al inicio y al final del sluging 
+            slug = slug.replace(/^\s+|\s+$/gm, '');
+
+            // Reemplaza el espacio con guión  
+            slug = slug.replace(/\s+/g, '-');
+
+            // Creo la URL en el elemento span 'texto-url' 
+            document.querySelector("input[name='slug']").value = slug;
+        }
+
+        const selState = document.getElementById('state');
+        const selCities= document.getElementById('city');
+        
+        selState.addEventListener("change", async function() {
+            selCities.options.length = 0;
+            let id = selState.options[selState.selectedIndex].dataset.id;
+            const response = await fetch("{{url('getcities')}}/"+id );
+            const cities = await response.json(); 
+
+            cities.forEach(city => {
+                var opt = document.createElement('option');
+                opt.appendChild( document.createTextNode(city.name) );
+                opt.value = city.name;
+                selCities.appendChild(opt);
+            });
+        });
+    </script>
+@endsection
