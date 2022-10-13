@@ -53,11 +53,19 @@ class WebController extends Controller
         if($slug){
             $seopage = SeoPage::where('slug', $slug)->first();
             if($seopage){
-                $listings = Listing::where('state', $seopage->state)->where('city', $seopage->city)->where('listingtype', $seopage->type)->where('status', 1)->paginate(10);
+                if($seopage->category == 0){
+                    $listings = Listing::where('listingtype', $seopage->type)->where('status', 1)->where('available', 1)->inRandomOrder()->limit(6)->get();
+                } else {
+                    $listings = Listing::where('state', $seopage->state)->where('city', $seopage->city)->where('listingtype', $seopage->type)->where('status', 1)->paginate(10);
+                }
                 return view('webseopage', compact('seopage', 'listings', 'ismobile', 'types'));
             } else {
                 $seopage = SeoPage::where('old_slug', $slug)->first();
-                $listings = Listing::where('state', $seopage->state)->where('city', $seopage->city)->where('listingtype', $seopage->type)->where('status', 1)->paginate(10);
+                if($seopage->category == 0){
+                    $listings = Listing::where('listingtype', $seopage->type)->where('status', 1)->where('available', 1)->inRandomOrder()->limit(6)->get();
+                } else {
+                    $listings = Listing::where('state', $seopage->state)->where('city', $seopage->city)->where('listingtype', $seopage->type)->where('status', 1)->paginate(10);
+                }
                 return view('webseopage', compact('seopage', 'listings', 'ismobile', 'types'));
             }
         }

@@ -8,7 +8,7 @@
     <section id="bg-header" style="background: rgba(8, 8, 8, 0.449); background-size: cover;background-position: center; width: 100%; background-repeat: no-repeat; background-blend-mode: darken;">
       <div class="row pt-5 mb-5" style="height: 250px; width: 100%">
           <h1 class="text-center text-white">{{$seopage->title}}</h1>
-          <p class="text-center">{{$seopage->description}}</p>
+          <p class="text-center text-white">{{$seopage->description}}</p>
           <div class="text-center text-white mb-2">
               {!!$seopage->info_header!!}
           </div>
@@ -136,10 +136,12 @@
             </div>
         </div>
         @endforeach
+
+        @if(!$seopage->category == 0)
         <div class="d-flex justify-content-center">
             {{$listings->links()}}
         </div>
-
+        @endif
         {{-- section footer --}}
         <div class="row">
             <div>
