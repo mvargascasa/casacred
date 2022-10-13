@@ -3,30 +3,31 @@
 @section('firstscript')
 <title>Crear Página SEO</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">  
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+{{-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> --}}
+<script src="//cdn.ckeditor.com/4.20.0/full/ckeditor.js"></script>
 <script>
-    tinymce.init({
-      selector: '#mytextarea',
-      plugins: [
-        'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
-        'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
-        'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
-      ],
-      toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
-        'alignleft aligncenter alignright alignjustify | ' +
-        'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
-    });
-    tinymce.init({
-      selector: '#txtareafooter',
-      plugins: [
-        'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
-        'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
-        'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
-      ],
-      toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
-        'alignleft aligncenter alignright alignjustify | ' +
-        'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
-    });
+    // tinymce.init({
+    //   selector: '#mytextarea',
+    //   plugins: [
+    //     'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+    //     'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
+    //     'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
+    //   ],
+    //   toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+    //     'alignleft aligncenter alignright alignjustify | ' +
+    //     'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+    // });
+    // tinymce.init({
+    //   selector: '#txtareafooter',
+    //   plugins: [
+    //     'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+    //     'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
+    //     'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
+    //   ],
+    //   toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+    //     'alignleft aligncenter alignright alignjustify | ' +
+    //     'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+    // });
   </script>
 @endsection
 
@@ -163,6 +164,8 @@
 
 @section('endscript')
     <script>
+        CKEDITOR.replace( 'mytextarea' );
+        CKEDITOR.replace( 'txtareafooter' );
 
         function addInputLink(){
             let pattern = document.querySelector('.parent');
