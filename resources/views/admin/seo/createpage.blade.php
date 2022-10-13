@@ -108,6 +108,47 @@
                 {!! Form::textarea('info_footer', null, ['class' => $inputs, 'id' => 'txtareafooter']) !!}
             </div>
 
+            <div class="parent">
+                @if(isset($seopage->similarlinks) && count(json_decode($seopage->similarlinks))>0)
+                    @php
+                        $array = json_decode($seopage->similarlinks);
+                    @endphp
+                    @foreach ($array as $similarlink)
+                    @php
+                        $position = strpos($similarlink, '|');
+                    @endphp
+                        <div class="grid grid-cols-3 my-3">
+                            <div class="mx-1">
+                                {!! Form::label('anchor_text', 'Anchor Text', ['class' => 'font-semibold']) !!}
+                                {!! Form::text('anchor_text[]', substr($similarlink, 0, $position), ['class' => $inputs]) !!}
+                            </div>
+                            <div class="mx-1">
+                                {!! Form::label('link', 'Link', ['class' => 'font-semibold']) !!}
+                                {!! Form::text('link[]', substr($similarlink, $position+1), ['class' => $inputs]) !!}
+                            </div>
+                            <div class="flex items-center mx-5">
+                                <div style="cursor: pointer" onclick="addInputLink()">+</div>
+                                <div style="cursor: pointer" onclick="deleterow(this.parentElement)">-</div>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="grid grid-cols-3 my-3">
+                        <div class="mx-1">
+                            {!! Form::label('anchor_text', 'Anchor Text', ['class' => 'font-semibold']) !!}
+                            {!! Form::text('anchor_text[]', null, ['class' => $inputs]) !!}
+                        </div>
+                        <div class="mx-1">
+                            {!! Form::label('link', 'Link', ['class' => 'font-semibold']) !!}
+                            {!! Form::text('link[]', null, ['class' => $inputs]) !!}
+                        </div>
+                        <div class="flex items-center mx-5">
+                            <div style="cursor: pointer" onclick="addInputLink()">+</div>
+                        </div>
+                    </div>
+                @endif
+            </div>
+
             <div class="my-3 flex justify-center">
                 <button type="submit" class="bg-blue-400 text-white px-4 text-md py-2">Guardar</button>
             </div>
@@ -122,6 +163,31 @@
 
 @section('endscript')
     <script>
+
+        function addInputLink(){
+            let pattern = document.querySelector('.parent');
+            let rowTemplate = `<div class="grid grid-cols-3 my-3">
+                    <div class="mx-1">
+                        {!! Form::label('anchor_text', 'Anchor Text x', ['class' => 'font-semibold']) !!}
+                        {!! Form::text('anchor_text[]', null, ['class' => $inputs]) !!}
+                    </div>
+                    <div class="mx-1">
+                        {!! Form::label('link', 'Link', ['class' => 'font-semibold']) !!}
+                        {!! Form::text('link[]', null, ['class' => $inputs]) !!}
+                    </div>
+                    <div class="flex items-center mx-5">
+                        <div style="cursor: pointer" onclick="addInputLink()">+</div>
+                        <div style="cursor: pointer" onclick="deleterow(this.parentElement)">-</div>
+                    </div>
+                </div>`;
+            pattern.insertAdjacentHTML('beforeend', rowTemplate);
+        }
+
+        function deleterow(row){
+            //let pattern = document.querySelector('.parent');
+            row.parentElement.remove();
+        }
+
         function crearURL(slug) {
  
             // Reemplaza los carácteres especiales | simbolos con un espacio 
