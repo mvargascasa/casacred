@@ -51,7 +51,7 @@
             {!! Form::model($seopage, ['route' => ['admin.seo.update',$seopage->id],'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
             @else 
             <p class="font-semibold text-center">Crear página</p> 
-            {!! Form::open(['route' => 'admin.seo.store', 'enctype' => 'multipart/form-data']) !!}
+            {!! Form::open(['route' => 'admin.seo.store', 'enctype' => 'multipart/form-data', 'method' => 'POST', 'files' => 'true']) !!}
             @endif
 
             @csrf
@@ -91,6 +91,22 @@
             <div class="grid grid-cols-1 my-1">
                 {!! Form::label('keywords', 'Keywords', ['class' => 'font-semibold my-1']) !!}
                 {!! Form::textarea('keywords', null, ['class' => $inputs, 'rows' => 4]) !!}
+            </div>
+
+            <div class="grid grid-cols-2 my-1 mt-4">
+                <div>
+                    {!! Form::label('bgimageheader', 'Imagen de Cabecera', ['class' => 'font-semibold']) !!}
+                    {!! Form::file('bgimageheader', ['class' => $inputs]) !!}
+                </div>
+                @if(isset($seopage->url_image))
+                <div class="flex justify-center">
+                    <img width="150px" src="{{asset($seopage->url_image)}}" alt="">
+                </div>
+                @else
+                <div class="flex justify-center items-center">
+                    <p class="text-red-500 font-semibold">No se encontraron imágenes</p>
+                </div>
+                @endif
             </div>
 
             <div class="grid grid-cols-1 my-1">

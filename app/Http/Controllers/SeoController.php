@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LinksSeoPage;
 use App\Models\SeoPage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PhpParser\Node\Expr\Cast\Array_;
+use Intervention\Image\Facades\Image;
 
 class SeoController extends Controller
 {
@@ -27,7 +26,16 @@ class SeoController extends Controller
     }
 
     public function store(Request $request){
+        //return $request;
         $seopage = SeoPage::create($request->all());
+        if($request->bgimageheader){
+            $folder = 'uploads/seopages/';
+            $img = Image::make($request->bgimageheader);
+            $img->fit(1200, 1000, function($constraint){$constraint->upsize(); $constraint->aspectRatio();});
+            $img->save($folder.$seopage->slug."_".$seopage->id);
+            $seopage->url_image = $folder.$seopage->slug."_".$seopage->id;
+            $seopage->save();
+        }
         return redirect()->route('admin.seo.edit', $seopage)->with('status', true);
     }
 
@@ -51,6 +59,19 @@ class SeoController extends Controller
             for ($i=0; $i < count($request->anchor_text); $i++) { 
                 $arraylinks[$i] = $request->anchor_text[$i].'|'.$request->link[$i];
             }
+        }
+        if($request->bgimageheader){
+            $folder = 'uploads/seopages/';
+            $img = Image::make($request->bgimageheader);
+            $mime = $img->mime();
+            if ($mime == 'image/jpeg') $ext = '.webp';
+            elseif ($mime == 'image/png') $ext = '.webp';
+            elseif ($mime == 'image/webp') $ext = '.webp';
+            else $ext = '';
+            $namefile = "img_".$seopage->slug."_".$seopage->id.$ext;
+            $img->fit(1300, 900, function($constraint){$constraint->upsize(); $constraint->aspectRatio();});
+            $img->save($folder.$namefile);
+            $seopage->url_image = $folder.$namefile;
         }
         $seopage->title = $request->title;
         $seopage->description = $request->description;

@@ -4,16 +4,20 @@
 @endsection
 
 @section('content')
+
+    <section id="bg-header" style="background: rgba(8, 8, 8, 0.449); background-size: cover;background-position: center; width: 100%; background-repeat: no-repeat; background-blend-mode: darken;">
+      <div class="row pt-5 mb-5" style="height: 250px; width: 100%">
+          <h1 class="text-center text-white">{{$seopage->title}}</h1>
+          <p class="text-center">{{$seopage->description}}</p>
+          <div class="text-center text-white mb-2">
+              {!!$seopage->info_header!!}
+          </div>
+      </div>
+    </section>
+
     <div class="container">
 
         {{-- header --}}
-        <div class="row mt-5">
-            <h1 class="text-center">{{$seopage->title}}</h1>
-            <p class="text-center">{{$seopage->description}}</p>
-            <div>
-                {!!$seopage->info_header!!}
-            </div>
-        </div>
 
         {{-- listando propiedades --}}
         @foreach ($listings as $listing)
@@ -165,5 +169,12 @@
 @endsection
 
 @section('script')
-    
+    <script>
+      window.addEventListener('load', () => {
+        let url = "https://www.escafandra.news/wp-content/uploads/2020/11/Catedral-Cuenca-Ecuador-1050x500-1.jpg";
+        if("url({{asset($seopage->url_image)}})".includes('img')) url = "{{asset($seopage->url_image)}}";
+        document.getElementById('bg-header').style.backgroundImage = "url("+url+")";
+        console.log(url);
+      });
+    </script>
 @endsection
