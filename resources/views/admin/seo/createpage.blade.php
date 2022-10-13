@@ -71,6 +71,11 @@
             </div>
 
             <div class="grid grid-cols-1 my-1">
+                {!! Form::label('description', 'Descripción de la página', ['class' => 'font-semibold my-1']) !!}
+                {!! Form::textarea('description', null, ['class' => $inputs, 'rows' => 4]) !!}
+            </div>
+
+            <div class="grid grid-cols-1 my-1">
                 {!! Form::label('meta_description', 'Meta Description', ['class' => 'font-semibold my-1']) !!}
                 {!! Form::textarea('meta_description', null, ['class' => $inputs, 'rows' => 4]) !!}
             </div>

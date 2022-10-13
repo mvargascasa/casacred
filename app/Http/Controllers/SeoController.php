@@ -44,6 +44,7 @@ class SeoController extends Controller
 
     public function update(Request $request, SeoPage $seopage){
         $seopage->title = $request->title;
+        $seopage->description = $request->description;
         $seopage->info_header = $request->info_header;
         $seopage->state = $request->state;
         $seopage->city = $request->city;

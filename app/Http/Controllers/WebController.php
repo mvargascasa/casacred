@@ -53,15 +53,17 @@ class WebController extends Controller
         if($slug){
             $seopage = SeoPage::where('slug', $slug)->first();
             if($seopage){
-                return view('webseopage', compact('seopage'));
+                $listings = Listing::where('state', $seopage->state)->where('city', $seopage->city)->where('listingtype', $seopage->type)->where('status', 1)->paginate(10);
+                return view('webseopage', compact('seopage', 'listings', 'ismobile', 'types'));
             } else {
                 $seopage = SeoPage::where('old_slug', $slug)->first();
-                return view('webseopage', compact('seopage'));
+                $listings = Listing::where('state', $seopage->state)->where('city', $seopage->city)->where('listingtype', $seopage->type)->where('status', 1)->paginate(10);
+                return view('webseopage', compact('seopage', 'listings', 'ismobile', 'types'));
             }
-        } else {
-            if($ismobile) return view('indexmobile',compact('states', 'keywords', 'types'));
-            else          return view('indexweb',compact('states', 'keywords'));
         }
+
+        if($ismobile) return view('indexmobile',compact('states', 'keywords', 'types'));
+        else          return view('indexweb',compact('states', 'keywords'));
     }
 
     public function home(){

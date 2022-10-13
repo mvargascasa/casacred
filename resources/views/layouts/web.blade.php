@@ -248,6 +248,7 @@ if(strpos($actual_link, 'localhost') === false){
 
 @yield('content')
 
+@if(!Request::is('propiedades/*'))
 <div class="bg-white">
 <section class="container justify-content-md-center p-4  ">
     <div class="row">
@@ -287,6 +288,7 @@ if(strpos($actual_link, 'localhost') === false){
         </div>
   </section>
 </div>
+@endif
 <footer>
   <div style="background-color: #2C3144; color: #ffffff">
     <div class="container">
