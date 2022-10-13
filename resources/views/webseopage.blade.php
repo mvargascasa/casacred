@@ -143,9 +143,23 @@
             </div>
 
             {{-- links --}}
-            <div>
-
-            </div>
+            @if(isset($seopage->similarlinks) && count(json_decode($seopage->similarlinks))>0)
+            <hr>
+              <p class="display-6">También te puede interesar</p>
+              <div class="row mt-2 mb-4">
+                @php
+                  $array = json_decode($seopage->similarlinks);
+                @endphp
+                @foreach ($array as $similarlink)
+                  @php
+                    $position = strpos($similarlink, '|');
+                  @endphp
+                  <div class="col-sm-4 my-2">
+                    <a href="{{substr($similarlink, $position+1)}}">{{substr($similarlink, 0, $position)}}</a>  
+                  </div>  
+                @endforeach
+              </div>
+            @endif
         </div>
     </div>
 @endsection
