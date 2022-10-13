@@ -56,25 +56,32 @@
 
             @csrf
             <div class="grid grid-cols-2 my-1">
-                <div>
+                <div class="mr-1">
                     {!! Form::label('title', 'Titulo en la página - H1', ['class' => 'font-semibold']) !!}
-                    {!! Form::text('title', null, ['class' => $inputs.' mr-1', 'onkeyup' => 'crearURL(this.value)']) !!}
+                    {!! Form::text('title', null, ['class' => $inputs, 'onkeyup' => 'crearURL(this.value)']) !!}
                 </div>
-                <div>
+                <div class="ml-1">
                     {!! Form::label('title_google', 'Titulo de Google', ['class' => 'font-semibold']) !!}
-                    {!! Form::text('title_google', null, ['class' => $inputs.' ml-1']) !!}
+                    {!! Form::text('title_google', null, ['class' => $inputs]) !!}
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 my-1">
-                {!! Form::label('slug', 'Slug', ['class' => 'font-semibold']) !!}
-                {!! Form::text('slug', null, ['class' => $inputs]) !!}
+            <div class="grid grid-cols-2 my-1">
+                <div class="mr-1">
+                    {!! Form::label('slug', 'Slug', ['class' => 'font-semibold']) !!}
+                    {!! Form::text('slug', null, ['class' => $inputs]) !!}
+                </div>
+                <div class="ml-1">
+                    {!! Form::label('category', 'Categoria de la Página', ['class' => 'font-semibold']) !!}
+                    {!! Form::select('category', [null => "Seleccione", 0 => "General", 1 => "Especifico"], null, ['class' => $inputs]) !!}
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 my-1">
+
+            {{-- <div class="grid grid-cols-1 my-1">
                 {!! Form::label('description', 'Descripción de la página', ['class' => 'font-semibold my-1']) !!}
                 {!! Form::textarea('description', null, ['class' => $inputs, 'rows' => 4]) !!}
-            </div>
+            </div> --}}
 
             <div class="grid grid-cols-1 my-1">
                 {!! Form::label('meta_description', 'Meta Description', ['class' => 'font-semibold my-1']) !!}
@@ -93,10 +100,10 @@
             
             <p class="font-semibold my-2">Escoja la ubicación y el tipo de propiedad que se van a mostrar en esta página</p>
             <div class="grid grid-cols-3 my-1">
-                <div class="mr-1">
+                <div class="mr-1 @if(isset($seopage->category) && $seopage->category == 0) hidden @else block @endif">
                     {!! Form::select('state', [''=>'Selecione']+$states->pluck('name','name')->toArray(), null, ['id' => 'state', 'class' => $inputs], $optAttrib) !!}
                 </div>
-                <div class="ml-1">
+                <div class="ml-1 @if(isset($seopage->category) && $seopage->category == 0) hidden @else block @endif">
                     {!! Form::select('city', isset($cities) ? $cities->pluck('name','name')->toArray() : [''=>'Selecione'] , null, ['id'=>'city','class' => $inputs]) !!}
                 </div>
                 <div class="ml-1">
@@ -167,6 +174,25 @@
         CKEDITOR.replace( 'mytextarea' );
         CKEDITOR.replace( 'txtareafooter' );
 
+        const selState = document.getElementById('state');
+        const selCities= document.getElementById('city');
+
+        let selCategory = document.querySelector("select[name='category']");
+        selCategory.addEventListener('change', () => {
+            switch (selCategory.value) {
+                case "0":
+                    selState.parentElement.classList.add('hidden');
+                    selCities.parentElement.classList.add('hidden');
+                    break;
+                case "1":
+                    selState.parentElement.classList.remove('hidden');
+                    selCities.parentElement.classList.remove('hidden');
+                    break;
+                default:
+                    break;
+            }
+        });
+
         function addInputLink(){
             let pattern = document.querySelector('.parent');
             let rowTemplate = `<div class="grid grid-cols-3 my-3">
@@ -205,10 +231,7 @@
             // Creo la URL en el elemento span 'texto-url' 
             document.querySelector("input[name='slug']").value = slug;
         }
-
-        const selState = document.getElementById('state');
-        const selCities= document.getElementById('city');
-        
+    
         selState.addEventListener("change", async function() {
             selCities.options.length = 0;
             let id = selState.options[selState.selectedIndex].dataset.id;

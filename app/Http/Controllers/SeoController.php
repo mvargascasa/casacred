@@ -54,9 +54,15 @@ class SeoController extends Controller
         }
         $seopage->title = $request->title;
         $seopage->description = $request->description;
+        if($request->category == 0){
+            $seopage->state = null;
+            $seopage->city = null;
+        } else {
+            $seopage->state = $request->state;
+            $seopage->city = $request->city;
+        }
+        $seopage->category = $request->category;
         $seopage->info_header = $request->info_header;
-        $seopage->state = $request->state;
-        $seopage->city = $request->city;
         $seopage->type = $request->type;
         $seopage->info_footer = $request->info_footer;
         $seopage->similarlinks = $arraylinks;

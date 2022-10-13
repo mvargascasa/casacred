@@ -56,7 +56,7 @@
                                 {{Str::limit($page->meta_description, 40, '...')}}
                             </td>
                             <td class="py-4 px-6">
-                                {{$page->state}}, {{$page->city}}
+                                @if(isset($page->category) && $page->category == 0) Ecuador - General @else {{$page->state}}, {{$page->city}} @endif
                             </td>
                             <td class="py-4 px-6">
                                 {{$page->created_at->format('Y-m-d')}}
