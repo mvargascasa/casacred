@@ -127,9 +127,9 @@
                                 {!! Form::label('link', 'Link', ['class' => 'font-semibold']) !!}
                                 {!! Form::text('link[]', substr($similarlink, $position+1), ['class' => $inputs]) !!}
                             </div>
-                            <div class="flex items-center mx-5">
-                                <div style="cursor: pointer" onclick="addInputLink()">+</div>
-                                <div style="cursor: pointer" onclick="deleterow(this.parentElement)">-</div>
+                            <div class="flex items-center mx-5 mt-5">
+                                <div class="bg-blue-500 hover:bg-blue-600 rounded px-2 text-white mx-1" style="cursor: pointer" onclick="addInputLink()">+</div>
+                                <div class="bg-red-500 hover:bg-red-600 rounded px-2 text-white mx-1" style="cursor: pointer" onclick="deleterow(this.parentElement)">-</div>
                             </div>
                         </div>
                     @endforeach
