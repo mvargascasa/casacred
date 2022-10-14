@@ -144,7 +144,7 @@
         @else
         <div>
           @if(isset($seopage->similarlinks_g) && count(json_decode($seopage->similarlinks_g))>0)
-              <p>{{$seopage->subtitle_if_general}}</p>
+              <h2>{{$seopage->subtitle_if_general}}</h2>
               <div class="row mt-2 mb-4">
                 @php
                   $array = json_decode($seopage->similarlinks_g);
