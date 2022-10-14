@@ -142,7 +142,7 @@
             {{$listings->links()}}
         </div>
         @else
-        <div>
+        <div class="mx-5">
           @if(isset($seopage->similarlinks_g) && count(json_decode($seopage->similarlinks_g))>0)
               <h2>{{$seopage->subtitle_if_general}}</h2>
               <div class="row mt-2 mb-4">
@@ -154,7 +154,7 @@
                     $position = strpos($similarlink_g, '|');
                   @endphp
                   <div class="col-sm-4 my-2">
-                    <a href="{{substr($similarlink_g, $position+1)}}">{{substr($similarlink_g, 0, $position)}}</a>  
+                    <a style="color: #C30000; font-weight: 500" href="{{substr($similarlink_g, $position+1)}}">{{substr($similarlink_g, 0, $position)}}</a>  
                   </div>  
                 @endforeach
               </div>
@@ -180,7 +180,7 @@
                     $position = strpos($similarlink, '|');
                   @endphp
                   <div class="col-sm-4 my-2">
-                    <a href="{{substr($similarlink, $position+1)}}">{{substr($similarlink, 0, $position)}}</a>  
+                    <a style="color: #C30000; font-weight: 500" href="{{substr($similarlink, $position+1)}}">{{substr($similarlink, 0, $position)}}</a>  
                   </div>  
                 @endforeach
               </div>
