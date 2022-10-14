@@ -54,17 +54,17 @@ class WebController extends Controller
             $seopage = SeoPage::where('slug', $slug)->first();
             if($seopage){
                 if($seopage->category == 0){
-                    $listings = Listing::where('listingtype', $seopage->type)->where('status', 1)->where('available', 1)->inRandomOrder()->limit(6)->get();
+                    $listings = Listing::where('listingtype', $seopage->type)->where('status', 1)->where('available', 1)->where('listingtypestatus', 'LIKE', "%$seopage->typestatus%")->inRandomOrder()->limit(6)->get();
                 } else {
-                    $listings = Listing::where('state', $seopage->state)->where('city', $seopage->city)->where('listingtype', $seopage->type)->where('status', 1)->paginate(10);
+                    $listings = Listing::where('state', $seopage->state)->where('city', $seopage->city)->where('listingtype', $seopage->type)->where('status', 1)->where('listingtypestatus', 'LIKE', "%$seopage->typestatus%")->paginate(10);
                 }
                 return view('webseopage', compact('seopage', 'listings', 'ismobile', 'types'));
             } else {
                 $seopage = SeoPage::where('old_slug', $slug)->first();
                 if($seopage->category == 0){
-                    $listings = Listing::where('listingtype', $seopage->type)->where('status', 1)->where('available', 1)->inRandomOrder()->limit(6)->get();
+                    $listings = Listing::where('listingtype', $seopage->type)->where('status', 1)->where('available', 1)->where('listingtypestatus', 'LIKE', "%$seopage->typestatus%")->inRandomOrder()->limit(6)->get();
                 } else {
-                    $listings = Listing::where('state', $seopage->state)->where('city', $seopage->city)->where('listingtype', $seopage->type)->where('status', 1)->paginate(10);
+                    $listings = Listing::where('state', $seopage->state)->where('city', $seopage->city)->where('listingtype', $seopage->type)->where('status', 1)->where('listingtypestatus', 'LIKE', "%$seopage->typestatus%")->paginate(10);
                 }
                 return view('webseopage', compact('seopage', 'listings', 'ismobile', 'types'));
             }

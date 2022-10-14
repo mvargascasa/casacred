@@ -141,6 +141,25 @@
         <div class="d-flex justify-content-center">
             {{$listings->links()}}
         </div>
+        @else
+        <div>
+          @if(isset($seopage->similarlinks_g) && count(json_decode($seopage->similarlinks_g))>0)
+              <p>{{$seopage->subtitle_if_general}}</p>
+              <div class="row mt-2 mb-4">
+                @php
+                  $array = json_decode($seopage->similarlinks_g);
+                @endphp
+                @foreach ($array as $similarlink_g)
+                  @php
+                    $position = strpos($similarlink_g, '|');
+                  @endphp
+                  <div class="col-sm-4 my-2">
+                    <a href="{{substr($similarlink_g, $position+1)}}">{{substr($similarlink_g, 0, $position)}}</a>  
+                  </div>  
+                @endforeach
+              </div>
+            @endif
+        </div>
         @endif
         {{-- section footer --}}
         <div class="row">
