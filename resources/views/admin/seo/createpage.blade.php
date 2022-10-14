@@ -73,7 +73,7 @@
                 </div>
                 <div class="ml-1">
                     {!! Form::label('category', 'Categoria de la Página', ['class' => 'font-semibold']) !!}
-                    {!! Form::select('category', [null => "Seleccione", 0 => "General", 1 => "Especifico"], null, ['class' => $inputs]) !!}
+                    {!! Form::select('category', [null => "Seleccione", 0 => "General", 1 => "Especifico"], null, ['class' => $inputs, 'required']) !!}
                 </div>
             </div>
 
@@ -115,7 +115,7 @@
             </div>
             
             <p class="font-semibold my-2">Escoja la ubicación y el tipo de propiedad que se van a mostrar en esta página</p>
-            <div class="grid grid-cols-3 my-1">
+            <div class="grid grid-cols-4 my-1">
                 <div class="mr-1 @if(isset($seopage->category) && $seopage->category == 0) hidden @else block @endif">
                     {!! Form::select('state', [''=>'Selecione']+$states->pluck('name','name')->toArray(), null, ['id' => 'state', 'class' => $inputs], $optAttrib) !!}
                 </div>
@@ -123,11 +123,59 @@
                     {!! Form::select('city', isset($cities) ? $cities->pluck('name','name')->toArray() : [''=>'Selecione'] , null, ['id'=>'city','class' => $inputs]) !!}
                 </div>
                 <div class="ml-1">
-                    {!! Form::select('type', [''=>'Seleccione']+$types->pluck('type_title','id')->toArray(), null, ['id'=>'city','class' => $inputs]) !!}
+                    {!! Form::select('type', [''=>'Tipo de Propiedad']+$types->pluck('type_title','id')->toArray(), null, ['id'=>'city','class' => $inputs]) !!}
+                </div>
+                <div class="ml-1">
+                    {!! Form::select('typestatus', [''=>'Categoría', 'en-venta' => 'Venta', 'alquilar' => 'Alquilar', 'proyectos' => 'Proyectos'], null, ['class' => $inputs]) !!}
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 my-1">
+            <div class="my-1 parentg @if(isset($seopage) && $seopage->category == 0) block @else hidden @endif">
+                <div>
+                    {!! Form::label('subtitle_if_general', 'Texto en Links Similares (General)', ['class' => 'font-semibold']) !!}
+                    {!! Form::text('subtitle_if_general', null, ['class' => $inputs]) !!}      
+                </div>
+                @if(isset($seopage->similarlinks_g) && count(json_decode($seopage->similarlinks_g))>0)
+                    @php
+                        $array = json_decode($seopage->similarlinks_g);
+                    @endphp
+                    @foreach ($array as $similarlink_g)
+                    @php
+                        $position = strpos($similarlink_g, '|');
+                    @endphp
+                        <div class="grid grid-cols-3 my-3">
+                            <div class="mx-1">
+                                {!! Form::label('anchor_text_g', 'Anchor Text', ['class' => 'font-semibold']) !!}
+                                {!! Form::text('anchor_text_g[]', substr($similarlink_g, 0, $position), ['class' => $inputs]) !!}
+                            </div>
+                            <div class="mx-1">
+                                {!! Form::label('link_g', 'Link', ['class' => 'font-semibold']) !!}
+                                {!! Form::text('link_g[]', substr($similarlink_g, $position+1), ['class' => $inputs]) !!}
+                            </div>
+                            <div class="flex items-center mx-5 mt-5">
+                                <div class="bg-blue-500 hover:bg-blue-600 rounded px-2 text-white mx-1" style="cursor: pointer" onclick="addInputLinkGeneral()">+</div>
+                                <div class="bg-red-500 hover:bg-red-600 rounded px-2 text-white mx-1" style="cursor: pointer" onclick="deleterow(this.parentElement)">-</div>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="grid grid-cols-3 my-3">
+                        <div class="mx-1">
+                            {!! Form::label('anchor_text_g', 'Anchor Text', ['class' => 'font-semibold']) !!}
+                            {!! Form::text('anchor_text_g[]', null, ['class' => $inputs]) !!}
+                        </div>
+                        <div class="mx-1">
+                            {!! Form::label('link_g', 'Link', ['class' => 'font-semibold']) !!}
+                            {!! Form::text('link_g[]', null, ['class' => $inputs]) !!}
+                        </div>
+                        <div class="flex items-center mx-5">
+                            <div class="bg-blue-500 hover:bg-blue-600 rounded px-2 text-white mx-1" style="cursor: pointer" onclick="addInputLinkGeneral()">+</div>
+                        </div>
+                    </div>
+                @endif
+            </div>
+
+            <div class="grid grid-cols-1 my-3">
                 {!! Form::label('footer', 'Información del Footer', ['class' => 'font-semibold my-1']) !!}
                 {!! Form::textarea('info_footer', null, ['class' => $inputs, 'id' => 'txtareafooter']) !!}
             </div>
@@ -167,7 +215,7 @@
                             {!! Form::text('link[]', null, ['class' => $inputs]) !!}
                         </div>
                         <div class="flex items-center mx-5">
-                            <div style="cursor: pointer" onclick="addInputLink()">+</div>
+                            <div class="bg-blue-500 hover:bg-blue-600 rounded px-2 text-white mx-1" style="cursor: pointer" onclick="addInputLink()">+</div>
                         </div>
                     </div>
                 @endif
@@ -199,10 +247,14 @@
                 case "0":
                     selState.parentElement.classList.add('hidden');
                     selCities.parentElement.classList.add('hidden');
+                    document.querySelector('.parentg').classList.remove('hidden');
+                    document.querySelector('.parentg').classList.add('block');
                     break;
                 case "1":
                     selState.parentElement.classList.remove('hidden');
                     selCities.parentElement.classList.remove('hidden');
+                    document.querySelector('.parentg').classList.add('hidden');
+                    document.querySelector('.parentg').classList.remove('block');
                     break;
                 default:
                     break;
@@ -221,8 +273,27 @@
                         {!! Form::text('link[]', null, ['class' => $inputs]) !!}
                     </div>
                     <div class="flex items-center mx-5">
-                        <div style="cursor: pointer" onclick="addInputLink()">+</div>
-                        <div style="cursor: pointer" onclick="deleterow(this.parentElement)">-</div>
+                        <div class="bg-blue-500 hover:bg-blue-600 rounded px-2 text-white mx-1" style="cursor: pointer" onclick="addInputLink()">+</div>
+                        <div class="bg-red-500 hover:bg-red-600 rounded px-2 text-white mx-1" style="cursor: pointer" onclick="deleterow(this.parentElement)">-</div>
+                    </div>
+                </div>`;
+            pattern.insertAdjacentHTML('beforeend', rowTemplate);
+        }
+
+        function addInputLinkGeneral(){
+            let pattern = document.querySelector('.parentg');
+            let rowTemplate = `<div class="grid grid-cols-3 my-3">
+                    <div class="mx-1">
+                        {!! Form::label('anchor_text', 'Anchor Text x', ['class' => 'font-semibold']) !!}
+                        {!! Form::text('anchor_text_g[]', null, ['class' => $inputs]) !!}
+                    </div>
+                    <div class="mx-1">
+                        {!! Form::label('link', 'Link', ['class' => 'font-semibold']) !!}
+                        {!! Form::text('link_g[]', null, ['class' => $inputs]) !!}
+                    </div>
+                    <div class="flex items-center mx-5">
+                        <div class="bg-blue-500 hover:bg-blue-600 rounded px-2 text-white mx-1" style="cursor: pointer" onclick="addInputLinkGeneral()">+</div>
+                        <div class="bg-red-500 hover:bg-red-600 rounded px-2 text-white mx-1" style="cursor: pointer" onclick="deleterow(this.parentElement)">-</div>
                     </div>
                 </div>`;
             pattern.insertAdjacentHTML('beforeend', rowTemplate);

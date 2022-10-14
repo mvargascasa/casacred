@@ -34,8 +34,27 @@ class SeoController extends Controller
             $img->fit(1200, 1000, function($constraint){$constraint->upsize(); $constraint->aspectRatio();});
             $img->save($folder.$seopage->slug."_".$seopage->id);
             $seopage->url_image = $folder.$seopage->slug."_".$seopage->id;
-            $seopage->save();
         }
+
+        $arraylinks = [];
+        if(isset($request->anchor_text) || isset($request->link)){
+            for ($i=0; $i < count($request->anchor_text); $i++) { 
+                $arraylinks[$i] = $request->anchor_text[$i].'|'.$request->link[$i];
+            }
+        }
+
+        $arraylinks_g = [];
+        if(isset($request->anchor_text_g) || isset($request->link_g)){
+            for ($i=0; $i < count($request->anchor_text_g); $i++) { 
+                $arraylinks_g[$i] = $request->anchor_text_g[$i].'|'.$request->link_g[$i];
+            }
+        }
+
+        $seopage->similarlinks = $arraylinks;
+        $seopage->similarlinks_g = $arraylinks_g;
+
+        $seopage->save();
+
         return redirect()->route('admin.seo.edit', $seopage)->with('status', true);
     }
 
@@ -60,6 +79,14 @@ class SeoController extends Controller
                 $arraylinks[$i] = $request->anchor_text[$i].'|'.$request->link[$i];
             }
         }
+
+        $arraylinks_g = [];
+        if(isset($request->anchor_text_g) || isset($request->link_g)){
+            for ($i=0; $i < count($request->anchor_text_g); $i++) { 
+                $arraylinks_g[$i] = $request->anchor_text_g[$i].'|'.$request->link_g[$i];
+            }
+        }
+
         if($request->bgimageheader){
             $folder = 'uploads/seopages/';
             $img = Image::make($request->bgimageheader);
@@ -85,8 +112,12 @@ class SeoController extends Controller
         $seopage->category = $request->category;
         $seopage->info_header = $request->info_header;
         $seopage->type = $request->type;
+        $seopage->typestatus = $request->typestatus;
         $seopage->info_footer = $request->info_footer;
         $seopage->similarlinks = $arraylinks;
+        if($request->category == 0) $seopage->subtitle_if_general = $request->subtitle_if_general;
+        else $seopage->subtitle_if_general = null;
+        $seopage->similarlinks_g = $arraylinks_g;
         $seopage->meta_description = $request->meta_description;
         $seopage->keywords = $request->keywords;
         $seopage->title_google = $request->title_google;

@@ -12,6 +12,6 @@ class SeoPage extends Model
     protected $table = "seo_pages";
 
     protected $fillable = [
-        'id', 'title', 'description', 'category', 'url_image', 'slug', 'old_slug', 'info_header', 'state', 'city', 'type', 'info_footer', 'similarlinks', 'meta_description', 'keywords', 'title_google'
+        'id', 'title', 'description', 'category', 'url_image', 'slug', 'old_slug', 'info_header', 'state', 'city', 'type', 'typestatus', 'info_footer', 'similarlinks', 'subtitle_if_general', 'similarlinks_g', 'meta_description', 'keywords', 'title_google'
     ];
 }
