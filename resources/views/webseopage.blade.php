@@ -9,7 +9,7 @@
       <div class="row pt-5 mb-5" style="height: 250px; width: 100%">
           <h1 class="text-center text-white">{{$seopage->title}}</h1>
           <p class="text-center text-white">{{$seopage->description}}</p>
-          <div class="text-center text-white mb-2">
+          <div class="text-center text-white mb-2" style="color: #ffffff !important">
               {!!$seopage->info_header!!}
           </div>
       </div>
