@@ -78,11 +78,17 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
     Route::get('getallimg/{listing}', [AdminController::class,'getallimg'])->name('admin.getallimg');
 
     Route::get('seo', [SeoController::class, 'index'])->name('admin.seo.index');
-    Route::get('seo/create', [SeoController::class, 'create'])->name('admin.seo.create');
-    Route::post('seo/savepage', [SeoController::class, 'store'])->name('admin.seo.store');
-    Route::get('seo/edit/{seopage}', [SeoController::class, 'edit'])->name('admin.seo.edit');
-    Route::put('seo/update/{seopage}', [SeoController::class, 'update'])->name('admin.seo.update');
-    Route::post('seo/delete/{id}', [SeoController::class, 'delete'])->name('admin.seo.delete');
+    Route::get('seo/pages', [SeoController::class, 'indexpages'])->name('admin.seo.pages.index');
+    Route::get('seo/pages/create', [SeoController::class, 'create'])->name('admin.seo.create');
+    Route::post('seo/pages/savepage', [SeoController::class, 'store'])->name('admin.seo.store');
+    Route::get('seo/pages/edit/{seopage}', [SeoController::class, 'edit'])->name('admin.seo.edit');
+    Route::put('seo/pages/update/{seopage}', [SeoController::class, 'update'])->name('admin.seo.update');
+    Route::post('seo/pages/delete/{id}', [SeoController::class, 'delete'])->name('admin.seo.delete');
+    Route::get('seo/navbar', [SeoController::class, 'indexnavbar'])->name('admin.seo.navbar.index');
+    Route::get('seo/navbar/create', [SeoController::class, 'createnavbar'])->name('admin.seo.navbar.create');
+    Route::post('seo/navbar/store', [SeoController::class, 'storenavbar'])->name('admin.seo.navbar.store');
+    Route::get('seo/navbar/edit/{id}', [SeoController::class, 'editnavbar'])->name('admin.seo.navbar.edit');
+    Route::put('seo/navbar/update/{id}', [SeoController::class, 'updatenavbar'])->name('admin.seo.navbar.update');
 
     
     //Route::get('listings', [ListingController::class,'listings'])->name('admin.listings');

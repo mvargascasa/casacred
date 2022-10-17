@@ -47,7 +47,7 @@
                 </div>
             @endif
             @if(isset($seopage->id)) 
-            <p class="font-semibold text-center">Editar página</p> 
+            <p class="font-semibold text-center">Editar página</p>
             {!! Form::model($seopage, ['route' => ['admin.seo.update',$seopage->id],'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
             @else 
             <p class="font-semibold text-center">Crear página</p> 
@@ -88,12 +88,12 @@
                 {!! Form::textarea('meta_description', null, ['class' => $inputs, 'rows' => 4]) !!}
             </div>
 
-            <div class="grid grid-cols-1 my-1">
+            {{-- <div class="grid grid-cols-1 my-1">
                 {!! Form::label('keywords', 'Keywords', ['class' => 'font-semibold my-1']) !!}
                 {!! Form::textarea('keywords', null, ['class' => $inputs, 'rows' => 4]) !!}
-            </div>
+            </div> --}}
 
-            <div class="grid grid-cols-2 my-1 mt-4">
+            {{-- <div class="grid grid-cols-2 my-1 mt-4">
                 <div>
                     {!! Form::label('bgimageheader', 'Imagen de Cabecera', ['class' => 'font-semibold']) !!}
                     {!! Form::file('bgimageheader', ['class' => $inputs]) !!}
@@ -107,7 +107,7 @@
                     <p class="text-red-500 font-semibold">No se encontraron imágenes</p>
                 </div>
                 @endif
-            </div>
+            </div> --}}
 
             <div class="grid grid-cols-1 my-1">
                 {!! Form::label('header', 'Información del Header', ['class' => 'font-semibold my-1']) !!}

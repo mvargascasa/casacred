@@ -187,6 +187,17 @@ if(strpos($actual_link, 'localhost') === false){
 </style>
 </head>
 <body>
+  @php
+      $array = [];
+      //$categories_navbar = \App\Models\NavbarItems::select('name')->distinct()->get();
+      // $categories_navbar = json_decode($categories_navbar);
+      $navbar_items = \App\Models\NavbarItems::select('name', 'category_name', 'items')->get();
+      foreach ($navbar_items as $navbar_item) {
+        if(array_key_exists($navbar_item->name, $array)) array_push($array[$navbar_item->name], );
+        else $array[$navbar_item->name] = array($navbar_item->category_name => $navbar_item->items); 
+      }
+      //dd($array);
+  @endphp
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-light navbar-cc bg-white fixed-search" style="z-index: 100;">
@@ -214,6 +225,27 @@ if(strpos($actual_link, 'localhost') === false){
 
           <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
               <ul class="navbar-nav ml-auto flex-nowrap px-4">
+                {{-- @if(isset($navbar_items))
+                  @foreach ($navbar_items as $navbar_item)
+                  <div class="position-relative">
+                    <li class="nav-item pr-2"> <a class="nav-link">{{$navbar_item->name}}</a> </li>
+                    <div class="position-absolute w-auto rounded" style="z-index: 999">
+                      <div class="position-relative d-flex">
+                        <div class="mr-1 bg-white p-1 rounded h-100 border">
+                          <li class="nav-item">{{$navbar_item->category_name}}</li>
+                        </div>
+                        <div class="bg-white rounded p-1 border" style="width: 250px">
+                          @php $array = json_decode($navbar_item->items) @endphp
+                          @for ($i = 0; $i < count($array); $i++)
+                          @php $position = strpos($array[$i], '|') @endphp
+                            <li class="nav-item"><a href="{{substr($array[$i], $position+1)}}">{{substr($array[$i], 0, $position)}}</a></li>  
+                          @endfor
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  @endforeach
+                @endif --}}
                 <li class="nav-item pr-2"> <a class="nav-link @if(Route::is('web.propiedades') or Route::is('web.detail')) active @endif" href="{{route('web.propiedades')}}">Compra</a> </li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/asesores-bienes-raices')) active @endif" href="{{route('web.servicio','vende-tu-casa')}}">Vende</a> </li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/creditos-en-ecuador')) active @endif" href="{{route('web.servicios','creditos-en-ecuador')}}">Creditos</a> </li>
@@ -245,10 +277,16 @@ if(strpos($actual_link, 'localhost') === false){
           </div>
       </nav>
       </header>
-
 @yield('content')
+{{-- <div>
+  {{$navbar_items}}
+</div>
+<div>
+  {{$categories_navbar}}
+</div> --}}
+{{-- !Request::is('propiedades/*') --}}
 
-@if(!Request::is('propiedades/*'))
+@if(!Request::is('/') && !Request::is('propiedades/*'))
 <div class="bg-white">
 <section class="container justify-content-md-center p-4  ">
     <div class="row">
