@@ -184,6 +184,27 @@ if(strpos($actual_link, 'localhost') === false){
       .grecaptcha-badge{
         visibility: hidden !important;
       }
+      @media all and (min-width: 992px) {
+	.dropdown-menu li{ position: relative; 	}
+	.nav-item .submenu{ 
+		display: none;
+		position: absolute;
+		left:100%; top:-7px;
+	}
+	.nav-item .submenu-left{ 
+		right:100%; left:auto;
+	}
+	.dropdown-menu > li:hover{ background-color: #f1f1f1 }
+	.dropdown-menu > li:hover > .submenu{ display: block; }
+}	
+/* ============ desktop view .end// ============ */
+
+/* ============ small devices ============ */
+@media (max-width: 991px) {
+  .dropdown-menu .dropdown-menu{
+      margin-left:0.7rem; margin-right:0.7rem; margin-bottom: .5rem;
+  }
+}
 </style>
 </head>
 <body>
@@ -206,7 +227,7 @@ if(strpos($actual_link, 'localhost') === false){
                 <span class="w-100 d-lg-none d-block pl-4">
                     <a class="navbar-brand" href="{{route('web.index')}}">
                         <img src="{{asset('img/logo_actualizado2.png')}}" width="65" height="35" alt="">
-                        </a>
+                    </a>
                 </span>
 
                 <a class="navbar-brand d-none d-lg-inline-block px-4" href="{{route('web.index')}}">
@@ -226,27 +247,88 @@ if(strpos($actual_link, 'localhost') === false){
           <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
               <ul class="navbar-nav ml-auto flex-nowrap px-4">
                 {{-- @if(isset($navbar_items))
-                  @foreach ($navbar_items as $navbar_item)
-                  <div class="position-relative">
-                    <li class="nav-item pr-2"> <a class="nav-link">{{$navbar_item->name}}</a> </li>
-                    <div class="position-absolute w-auto rounded" style="z-index: 999">
-                      <div class="position-relative d-flex">
-                        <div class="mr-1 bg-white p-1 rounded h-100 border">
-                          <li class="nav-item">{{$navbar_item->category_name}}</li>
-                        </div>
-                        <div class="bg-white rounded p-1 border" style="width: 250px">
-                          @php $array = json_decode($navbar_item->items) @endphp
-                          @for ($i = 0; $i < count($array); $i++)
-                          @php $position = strpos($array[$i], '|') @endphp
-                            <li class="nav-item"><a href="{{substr($array[$i], $position+1)}}">{{substr($array[$i], 0, $position)}}</a></li>  
-                          @endfor
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  @endforeach
+                  @foreach ($navbar_items as $navbar_item) --}}
+                  
+                  {{-- @endforeach
                 @endif --}}
-                <li class="nav-item pr-2"> <a class="nav-link @if(Route::is('web.propiedades') or Route::is('web.detail')) active @endif" href="{{route('web.propiedades')}}">Compra</a> </li>
+                {{-- <li class="nav-item dropdown" id="myDropdown">
+                  <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Alquilar </a>
+                  <ul class="dropdown-menu rounded-0">
+                    <li> <a class="dropdown-item" href="#"> Casas</a>
+                      <ul class="submenu dropdown-menu rounded-0">
+                        <li><a class="dropdown-item" href="#">Casas en alquiler en Cuenca</a></li>
+                        <li><a class="dropdown-item" href="#">Casas en alquiler en Azogues</a></li>
+                        <li><a class="dropdown-item" href="#">Casas en alquiler en </a></li>
+                        <li><a class="dropdown-item" href="#">Casas en alquiler en </a></li>
+                      </ul>
+                    </li>
+                    <li> <a class="dropdown-item" href="#"> Departamentos </a>
+                      <ul class="submenu dropdown-menu rounded-0">
+                        <li><a class="dropdown-item" href="#">Departamentos en alquiler en </a></li>
+                        <li><a class="dropdown-item" href="#">Departamentos en alquiler en </a></li>
+                        <li><a class="dropdown-item" href="#">Departamentos en alquiler en</a></li>
+                        <li><a class="dropdown-item" href="#">Departamentos en alquiler en</a></li>
+                      </ul>
+                    </li>
+                    <li><a class="dropdown-item" href="#"> Casas Comerciales </a>
+                      <ul class="submenu dropdown-menu rounded-0">
+                        <li><a class="dropdown-item" href="#"></a></li>
+                        <li><a class="dropdown-item" href="#">Submenu item 2</a></li>
+                        <li><a class="dropdown-item" href="#">Submenu item 4</a></li>
+                        <li><a class="dropdown-item" href="#">Submenu item 5</a></li>
+                      </ul>
+                    </li>
+                    <li><a class="dropdown-item" href="#"> Dropdown item 4 </a>
+                      <ul class="submenu dropdown-menu rounded-0">
+                        <li><a class="dropdown-item" href="#"></a></li>
+                        <li><a class="dropdown-item" href="#">Submenu item 2</a></li>
+                        <li><a class="dropdown-item" href="#">Submenu item 4</a></li>
+                        <li><a class="dropdown-item" href="#">Submenu item 5</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li> --}}
+                {{-- <li class="nav-item pr-2"> <a class="nav-link @if(Route::is('web.propiedades') or Route::is('web.detail')) active @endif" href="{{route('web.propiedades')}}">Compra</a> </li> --}}
+                <li class="nav-item dropdown" id="myDropdown">
+                  <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Compra </a>
+                  <ul class="dropdown-menu rounded-0">
+                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'casas-en-venta-en-ecuador')}}"> Casas en Venta</a>
+                      <ul class="submenu dropdown-menu rounded-0">
+                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'casas-en-venta-en-cuenca')}}">Casas en venta en Cuenca</a></li>
+                      </ul>
+                    </li>
+                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'apartamentos-en-venta-en-ecuador')}}"> Apartamentos en Venta </a>
+                      <ul class="submenu dropdown-menu rounded-0">
+                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'apartamentos-en-venta-en-cuenca')}}">Apartamentos en venta en Cuenca</a></li>
+                      </ul>
+                    </li>
+                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'terrenos-en-venta-en-ecuador')}}"> Terrenos en Venta </a>
+                      <ul class="submenu dropdown-menu rounded-0">
+                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'terrenos-en-venta-en-cuenca')}}">Terrenos en venta en Cuenca</a></li>
+                      </ul>
+                    </li>
+                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'locales-comerciales-en-venta-en-ecuador')}}"> Locales Comerciales en Venta </a>
+                      <ul class="submenu dropdown-menu rounded-0">
+                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'locales-comerciales-en-venta-en-cuenca')}}">Locales Comerciales en venta en Cuenca</a></li>
+                      </ul>
+                    </li>
+                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'quintas-en-venta-en-ecuador')}}"> Quintas en Venta </a>
+                      <ul class="submenu dropdown-menu rounded-0">
+                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'quintas-en-venta-en-cuenca')}}">Quintas en venta en Cuenca</a></li>
+                      </ul>
+                    </li>
+                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'haciendas-en-venta-en-ecuador')}}"> Haciendas en Venta </a>
+                      <ul class="submenu dropdown-menu rounded-0">
+                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'haciendas-en-venta-en-cuenca')}}">Haciendas en venta en Cuenca</a></li>
+                      </ul>
+                    </li>
+                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'casas-comerciales-en-venta-en-ecuador')}}"> Casas Comerciales en Venta </a>
+                      <ul class="submenu dropdown-menu rounded-0">
+                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'casas-comerciales-en-venta-en-cuenca')}}">Casas Comerciales en venta en Cuenca</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/asesores-bienes-raices')) active @endif" href="{{route('web.servicio','vende-tu-casa')}}">Vende</a> </li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/creditos-en-ecuador')) active @endif" href="{{route('web.servicios','creditos-en-ecuador')}}">Creditos</a> </li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/construye')) active @endif" href="{{route('web.servicios','construye')}}">Construye</a> </li>
@@ -470,8 +552,10 @@ if(strpos($actual_link, 'localhost') === false){
         <img src="{{asset('img/wpp_logo.png')}}" alt="Whatsapp Notary Public Near Me" width="50" height="50">
     </a>
   </div>
-<script src="{{asset('js/5.0.0/popper.min.js')}}"></script>
+{{-- <script src="{{asset('js/popper.min.js')}}"></script> --}}
 <script src="{{asset('js/5.0.0/bootstrap.min.js')}}"></script>
+<script  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
 @yield('script')
 <script>
@@ -539,6 +623,53 @@ if(strpos($actual_link, 'localhost') === false){
         document.getElementById('city').value = "";
       }
     }
+
+    // function openItems(div){
+    //   let divsubitems = document.getElementById('sub'+div);
+    //   if(divsubitems.style.display == "none") divsubitems.style.display = "block";
+    //   else divsubitems.style.display = "none";
+    //   openSubItems('subdiv'+div);
+    // }
+
+    // function openSubItems(div){
+    //   let divsubitems = document.getElementById(div);
+    //   if(divsubitems.style.display == "none") divsubitems.style.display = "block";
+    //   else divsubitems.style.display = "none";
+    // }
+
+    document.addEventListener("DOMContentLoaded", function(){
+// make it as accordion for smaller screens
+if (window.innerWidth < 992) {
+
+  // close all inner dropdowns when parent is closed
+  document.querySelectorAll('.navbar .dropdown').forEach(function(everydropdown){
+    everydropdown.addEventListener('hidden.bs.dropdown', function () {
+      // after dropdown is hidden, then find all submenus
+        this.querySelectorAll('.submenu').forEach(function(everysubmenu){
+          // hide every submenu as well
+          everysubmenu.style.display = 'none';
+        });
+    })
+  });
+
+  document.querySelectorAll('.dropdown-menu a').forEach(function(element){
+    element.addEventListener('click', function (e) {
+        let nextEl = this.nextElementSibling;
+        if(nextEl && nextEl.classList.contains('submenu')) {	
+          // prevent opening link if link needs to open dropdown
+          e.preventDefault();
+          if(nextEl.style.display == 'block'){
+            nextEl.style.display = 'none';
+          } else {
+            nextEl.style.display = 'block';
+          }
+
+        }
+    });
+  })
+}
+// end if innerWidth
+}); 
 </script>
 </body>
 </html>
