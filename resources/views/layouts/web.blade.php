@@ -292,37 +292,37 @@ if(strpos($actual_link, 'localhost') === false){
                 <li class="nav-item dropdown" id="myDropdown">
                   <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Compra </a>
                   <ul class="dropdown-menu rounded-0">
-                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'casas-en-venta-en-ecuador')}}"> Casas en Venta</a>
+                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'casas-en-venta-en-ecuador')}}"> Casas en Venta &raquo;</a>
                       <ul class="submenu dropdown-menu rounded-0">
                         <li><a class="dropdown-item" href="{{route('web.propiedades', 'casas-en-venta-en-cuenca')}}">Casas en venta en Cuenca</a></li>
                       </ul>
                     </li>
-                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'apartamentos-en-venta-en-ecuador')}}"> Apartamentos en Venta </a>
+                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'apartamentos-en-venta-en-ecuador')}}"> Apartamentos en Venta &raquo;</a>
                       <ul class="submenu dropdown-menu rounded-0">
                         <li><a class="dropdown-item" href="{{route('web.propiedades', 'apartamentos-en-venta-en-cuenca')}}">Apartamentos en venta en Cuenca</a></li>
                       </ul>
                     </li>
-                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'terrenos-en-venta-en-ecuador')}}"> Terrenos en Venta </a>
+                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'terrenos-en-venta-en-ecuador')}}"> Terrenos en Venta &raquo;</a>
                       <ul class="submenu dropdown-menu rounded-0">
                         <li><a class="dropdown-item" href="{{route('web.propiedades', 'terrenos-en-venta-en-cuenca')}}">Terrenos en venta en Cuenca</a></li>
                       </ul>
                     </li>
-                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'locales-comerciales-en-venta-en-ecuador')}}"> Locales Comerciales en Venta </a>
+                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'locales-comerciales-en-venta-en-ecuador')}}"> Locales Comerciales en Venta &raquo;</a>
                       <ul class="submenu dropdown-menu rounded-0">
                         <li><a class="dropdown-item" href="{{route('web.propiedades', 'locales-comerciales-en-venta-en-cuenca')}}">Locales Comerciales en venta en Cuenca</a></li>
                       </ul>
                     </li>
-                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'quintas-en-venta-en-ecuador')}}"> Quintas en Venta </a>
+                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'quintas-en-venta-en-ecuador')}}"> Quintas en Venta &raquo;</a>
                       <ul class="submenu dropdown-menu rounded-0">
                         <li><a class="dropdown-item" href="{{route('web.propiedades', 'quintas-en-venta-en-cuenca')}}">Quintas en venta en Cuenca</a></li>
                       </ul>
                     </li>
-                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'haciendas-en-venta-en-ecuador')}}"> Haciendas en Venta </a>
+                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'haciendas-en-venta-en-ecuador')}}"> Haciendas en Venta &raquo;</a>
                       <ul class="submenu dropdown-menu rounded-0">
                         <li><a class="dropdown-item" href="{{route('web.propiedades', 'haciendas-en-venta-en-cuenca')}}">Haciendas en venta en Cuenca</a></li>
                       </ul>
                     </li>
-                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'casas-comerciales-en-venta-en-ecuador')}}"> Casas Comerciales en Venta </a>
+                    <li> <a class="dropdown-item" href="{{route('web.propiedades', 'casas-comerciales-en-venta-en-ecuador')}}"> Casas Comerciales en Venta &raquo;</a>
                       <ul class="submenu dropdown-menu rounded-0">
                         <li><a class="dropdown-item" href="{{route('web.propiedades', 'casas-comerciales-en-venta-en-cuenca')}}">Casas Comerciales en venta en Cuenca</a></li>
                       </ul>
