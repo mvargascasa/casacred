@@ -58,20 +58,68 @@ class WebController extends Controller
                 } else {
                     $listings = Listing::where('state', $seopage->state)->where('city', $seopage->city)->where('listingtype', $seopage->type)->where('status', 1)->where('listingtypestatus', 'LIKE', "%$seopage->typestatus%")->paginate(10);
                 }
-                return view('webseopage', compact('seopage', 'listings', 'ismobile', 'types'));
+                $similarwords = $this->getSimilarWords($seopage->info_header);
+                $similarwordsfooter = $this->getSimilarWords($seopage->info_footer);
+                for ($i=0; $i < count($similarwords); $i++) {
+                    $wordbysearch = $similarwords[$i][0];
+                    $synonim = $similarwords[$i][1][rand(0, count($similarwords[$i][1])-1)];
+                    $seopage->info_header = str_replace("{".$wordbysearch."}", $synonim, $seopage->info_header);
+                }
+                for ($i=0; $i < count($similarwordsfooter); $i++) {
+                    $wordbysearch = $similarwordsfooter[$i][0];
+                    $synonim = $similarwordsfooter[$i][1][rand(0, count($similarwordsfooter[$i][1])-1)];
+                    $seopage->info_footer = str_replace("{".$wordbysearch."}", $synonim, $seopage->info_footer);
+                }
+                if(str_contains($seopage->info_header, "{ciudad}")) $seopage->info_header = str_replace("{ciudad}", $seopage->city, $seopage->info_header);
+                if(str_contains($seopage->info_footer, "{ciudad}")) $seopage->info_footer = str_replace("{ciudad}", $seopage->city, $seopage->info_footer);
+                return view('webseopage', compact('seopage', 'listings', 'ismobile', 'types', 'similarwords'));
             } else {
                 $seopage = SeoPage::where('old_slug', $slug)->first();
-                if($seopage->category == 0){
-                    $listings = Listing::where('listingtype', $seopage->type)->where('status', 1)->where('available', 1)->where('listingtypestatus', 'LIKE', "%$seopage->typestatus%")->inRandomOrder()->limit(6)->get();
-                } else {
-                    $listings = Listing::where('state', $seopage->state)->where('city', $seopage->city)->where('listingtype', $seopage->type)->where('status', 1)->where('listingtypestatus', 'LIKE', "%$seopage->typestatus%")->paginate(10);
-                }
-                return view('webseopage', compact('seopage', 'listings', 'ismobile', 'types'));
+                return redirect()->route('web.propiedades', $seopage->slug);
+                // if($seopage->category == 0){
+                //     $listings = Listing::where('listingtype', $seopage->type)->where('status', 1)->where('available', 1)->where('listingtypestatus', 'LIKE', "%$seopage->typestatus%")->inRandomOrder()->limit(6)->get();
+                // } else {
+                //     $listings = Listing::where('state', $seopage->state)->where('city', $seopage->city)->where('listingtype', $seopage->type)->where('status', 1)->where('listingtypestatus', 'LIKE', "%$seopage->typestatus%")->paginate(10);
+                // }
+                // $similarwords = $this->getSimilarWords($seopage->info_header);
+                // $similarwordsfooter = $this->getSimilarWords($seopage->info_footer);
+                // for ($i=0; $i < count($similarwords); $i++) {
+                //     $wordbysearch = $similarwords[$i][0];
+                //     $synonim = $similarwords[$i][1][rand(0, count($similarwords[$i][1])-1)];
+                //     $seopage->info_header = str_replace("{".$wordbysearch."}", $synonim, $seopage->info_header);
+                // }
+                // for ($i=0; $i < count($similarwordsfooter); $i++) {
+                //     $wordbysearch = $similarwordsfooter[$i][0];
+                //     $synonim = $similarwordsfooter[$i][1][rand(0, count($similarwordsfooter[$i][1])-1)];
+                //     $seopage->info_footer = str_replace("{".$wordbysearch."}", $synonim, $seopage->info_footer);
+                // }
+                // if(str_contains($seopage->info_header, "{ciudad}")) $seopage->info_header = str_replace("{ciudad}", $seopage->city, $seopage->info_header);
+                // if(str_contains($seopage->info_footer, "{ciudad}")) $seopage->info_footer = str_replace("{ciudad}", $seopage->city, $seopage->info_footer);
+                return view('webseopage', compact('seopage', 'listings', 'ismobile', 'types', 'similarwords'));
             }
         }
 
         if($ismobile) return view('indexmobile',compact('states', 'keywords', 'types'));
         else          return view('indexweb',compact('states', 'keywords'));
+    }
+
+    protected $array_positions = [];
+    public function getSimilarWords($cadena){
+        $count = substr_count($cadena, '{');
+        for ($i=0; $i < $count; $i++) {
+            $start = strpos($cadena, '{');
+            $position_aux = 0;
+            if(!array_key_exists($start, $this->array_positions)){
+                $start += strlen('{');
+                $size = strpos($cadena, '}', $start) - $start;
+                $similarwords = substr($cadena, $start, $size);
+                if(str_contains($similarwords, "|")) $this->array_positions[$i] = array($similarwords, explode("|", $similarwords)); //str_replace("|", ",", $similarwords)
+                $position_aux = strpos($cadena, $similarwords);
+            }
+            $cadena_aux = substr($cadena, $position_aux);
+            $this->getSimilarWords($cadena_aux);
+        }
+        return $this->array_positions;
     }
 
     public function home(){
