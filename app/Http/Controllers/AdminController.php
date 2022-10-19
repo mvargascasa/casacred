@@ -14,6 +14,10 @@ class AdminController extends Controller
 {     
     public function index(){
 
+        $now = Carbon::now();
+
+        $properties_today = Listing::whereDate('created_at', '=', Carbon::today()->toDateString())->get();
+
         $totalcasas = Listing::where('listingtype', 23)->where('available', 1)->count();
         $totaldepartamentos = Listing::where('listingtype', 24)->where('available', 1)->count();
         $totalcasascomer = Listing::where('listingtype', 25)->where('available', 1)->count();
@@ -42,10 +46,9 @@ class AdminController extends Controller
             }
         }
 
-        $now = Carbon::now();
         $properties_at_week = Listing::where('user_id', Auth::user()->id)->whereBetween('created_at', [$now->startOfWeek()->format('Y-m-d'), $now->endOfWeek()->format('Y-m-d')])->get();
 
-        return view('admin.index', compact('totalproperties', 'totalactivatedproperties', 'totalavailableproperties', 'properties_aux', 'totalcasas', 'totaldepartamentos', 'totalcasascomer', 'totalterrenos', 'totalquintas', 'totalhaciendas', 'totallocalcomer', 'totaloficinas', 'totalsuites', 'properties_at_week', 'now'));
+        return view('admin.index', compact('totalproperties', 'totalactivatedproperties', 'totalavailableproperties', 'properties_aux', 'totalcasas', 'totaldepartamentos', 'totalcasascomer', 'totalterrenos', 'totalquintas', 'totalhaciendas', 'totallocalcomer', 'totaloficinas', 'totalsuites', 'properties_at_week', 'properties_today', 'now'));
     }     
     public function test(){
         return view('admin.test');

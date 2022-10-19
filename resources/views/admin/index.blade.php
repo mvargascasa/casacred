@@ -204,5 +204,38 @@
             @endif
         </div>
     </div>
+    <div class="mx-4 my-3 w-auto border rounded py-4">
+        <p class="font-semibold mx-4">PROPIEDADES SUBIDAS EL DÍA DE HOY</p>
+        <div class="mx-4">
+            @if (count($properties_today)>0)
+            <div class="grid grid-cols-1 my-2">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
+                        <tr>
+                            <th class="px-4 py-2">Código</th>
+                            <th class="px-4 py-2">Detalle</th>
+                            <th class="px-4 py-2">Plan</th>
+                            <th class="px-4 py-2">Sector</th>
+                            <th class="px-4 py-2">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($properties_today as $prop_today)
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-xs">
+                            <td class="px-4 py-4">{{$prop_today->product_code}}</td>
+                            <td class="px-4 py-4 text-blue-400"><a href="{{route('home.tw.edit', $prop_today)}}">{{$prop_today->listing_title}}</a></td>
+                            <td class="px-4 py-4">@if($prop_today->listing_type == 2) PAGO @elseif($prop_today->listing_type == 1) GRATIS @endif</td>
+                            <td class="px-4 py-4">{{$prop_today->address}}</td>
+                            <td class="px-4 py-4">{{$prop_today->created_at->format('d-M-y')}}</td>
+                        </tr>    
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            @else
+                <p class="text-red-600"><i class="fa-sharp fa-solid fa-circle-exclamation"></i> No hemos encontrado propiedades subidas el día de hoy {{$now}}</p>
+            @endif
+        </div>
+    </div>
 </main>
 @endsection
