@@ -234,7 +234,7 @@
                 </table>
             </div>
             @else
-                <p class="text-red-600"><i class="fa-sharp fa-solid fa-circle-exclamation"></i> No hemos encontrado propiedades subidas el día de hoy {{$now}}</p>
+                <p class="text-red-600"><i class="fa-sharp fa-solid fa-circle-exclamation"></i> No hemos encontrado propiedades subidas el día de hoy</p>
             @endif
         </div>
     </div>
