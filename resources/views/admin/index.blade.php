@@ -204,6 +204,7 @@
             @endif
         </div>
     </div>
+    @if(Auth::user()->role == "administrator")
     <div class="mx-4 my-3 w-auto border rounded py-4">
         <p class="font-semibold mx-4">PROPIEDADES SUBIDAS EL DÍA DE HOY</p>
         <div class="mx-4">
@@ -237,5 +238,6 @@
             @endif
         </div>
     </div>
+    @endif
 </main>
 @endsection
