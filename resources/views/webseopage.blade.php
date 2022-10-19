@@ -1,6 +1,7 @@
 @extends('layouts.web')
 @section('header')
 <title>{{$seopage->title_google}}</title>
+<meta name="description" content="{{$seopage->meta_description}}">
 @endsection
 
 @section('content')
