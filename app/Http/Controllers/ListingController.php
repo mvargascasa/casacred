@@ -36,11 +36,13 @@ class ListingController extends Controller
     }   
     public function store(Request $request){
         
-        $slug = Str::of($request->listing_title) ->trim()->slug()->limit(70,'').'-'.rand(10000, 99999);
-        $request->merge(['slug' => $slug]);
-        $request->merge(['user_id' => Auth::id()]);
+        $listing = Listing::where('product_code', $request->product_code)->first();
 
-        
+        if(isset($request->listing_title)){
+            $slug = Str::of($request->listing_title) ->trim()->slug()->limit(70,'').'-'.rand(10000, 99999);
+            $request->merge(['slug' => $slug]);
+            $request->merge(['user_id' => Auth::id()]);
+        }
         
         if(is_array($request->checkBene)) $request->merge(['listingcharacteristic' => implode(",", $request->checkBene)]); 
         else $request->merge(['listingcharacteristic' => '']);
@@ -68,17 +70,6 @@ class ListingController extends Controller
             $request->merge(['heading_details' => '']);
         }
         //return "bedrooms " . $bedrooms . " bathrooms " . $bathrooms . " garage " . $garage;
-
-        $listing = Listing::create($request->all());
-
-        //set numero de habitaciones, baños y garage para los filtros
-        $listing->bedroom = $bedrooms;
-        $listing->bathroom = $bathrooms;
-        $listing->garage = $garage;
-
-        //bloqueando la propiedad una vez creada
-        $listing->locked = true;
-        $listing->save();
         
         $uploads=[];
 
@@ -150,6 +141,59 @@ class ListingController extends Controller
                 $listing->update(['images'  => $save_uploads   ]);
             }   
         }
+
+        if(!$listing){
+            $listing = Listing::create($request->all());
+        } else {
+            //set numero de habitaciones, baños y garage para los filtros
+            $listing->listing_title = $request->listing_title;
+            if(!isset($listing->slug)) $listing->slug = $request->slug;
+
+            $listing->bedroom = $bedrooms;
+            $listing->bathroom = $bathrooms;
+            $listing->garage = $garage;
+
+            $listing->meta_description = $request->meta_description;
+            $listing->keywords = $request->keywords;
+            $listing->Front = $request->Front;
+            $listing->Fund = $request->Fund;
+            $listing->land_area = $request->land_area;
+            $listing->construction_area = $request->construction_area;
+            $listing->property_price = $request->property_price;
+            $listing->property_price_min = $request->property_price_min;
+
+            $listing->listing_description = $request->listing_description;
+            $listing->listing_type = $request->listing_type;
+            $listing->address = $request->address;
+            $listing->state = $request->state;
+            $listing->city = $request->city;
+            $listing->listingtype = $request->listingtype;
+
+            $listing->listingcharacteristic = $request->listingcharacteristic;
+            $listing->listinglistservices = $request->listinglistservices;
+            $listing->listingtypestatus = $request->listingtypestatus;
+            $listing->listingtagstatus = $request->listingtagstatus;
+
+            $listing->listyears = $request->listyears;
+            $listing->lat = $request->lat;
+            $listing->lng = $request->lng;
+
+            $listing->available = $request->available;
+            
+            $listing->user_id = $request->user_id;
+
+            $listing->heading_details = $request->heading_details;
+            $listing->owner_name = $request->owner_name;
+            $listing->owner_email = $request->owner_email;
+
+            $listing->identification = $request->identification;
+            $listing->phone_number = $request->phone_number;
+    
+            //bloqueando la propiedad una vez creada
+            $listing->locked = true;
+            $listing->save();
+        }
+
         return redirect()->route('admin.listings.edit',compact('listing'))->with('status','Propiedad Creada');
     }
     
@@ -157,6 +201,9 @@ class ListingController extends Controller
         // if(Auth::user()->role != "administrator" && $listing->user_id!= Auth::id()){
         //     return redirect()->route('admin.listings.show',compact('listing'));
         // }
+
+        $isvalid = $this->iscomplete($listing);
+
         $benefits = DB::table('listing_benefits')->get();   
         $services = DB::table('listing_services')->get();
         $types = DB::table('listing_types')->get();  
@@ -172,7 +219,7 @@ class ListingController extends Controller
         }
         $cities = DB::table('info_cities')->where('state_id',$getCities)->get(); 
         return view('admin.listing.add-tw',compact('listing','benefits','services','types','categories',
-                    'tags','details','states','optAttrib','cities'));
+                    'tags','details','states','optAttrib','cities', 'isvalid'));
     } 
 
     public function update(Request $request, Listing $listing){
@@ -203,7 +250,7 @@ class ListingController extends Controller
             $request->merge(['heading_details' => '']);
         }
 
-        if($request->property_price != $listing->property_price){
+        if($request->property_price != $listing->property_price && $listing->property_price > 0){
             $comment = Comment::create([
                 'listing_id' => $listing->id,
                 'property_code' => $listing->product_code,
@@ -226,7 +273,6 @@ class ListingController extends Controller
         $listing->garage = $garage;
 
         $listing->save();
-
 
         $uploads=[];
 
@@ -373,5 +419,16 @@ class ListingController extends Controller
         $listing->locked = false;
         $listing->save();
         return redirect()->route('admin.listings.edit', $listing)->with('message', 'Propiedad ' . $listing->product_code . ' desbloqueada');
+    }
+
+    public function iscomplete(Listing $listing){
+        
+        $isvalid = true;
+
+        if(!isset($listing->listing_title) || $listing->listing_title == "" || !isset($listing->images) || $listing->images == "" || !isset($listing->meta_description) || $listing->meta_description == "" || !isset($listing->Front) || $listing->Front == "" || !isset($listing->Fund) || $listing->Fund == "" || !isset($listing->land_area) || $listing->land_area == "" || !isset($listing->construction_area) || $listing->construction_area == "" || !isset($listing->property_price) || $listing->property_price == "" || !isset($listing->property_price_min) || $listing->property_price_min == "" || !isset($listing->listing_description) || $listing->listing_description == "" || !isset($listing->listing_type) || $listing->listing_type == "" || !isset($listing->address) || $listing->address == "" || !isset($listing->state) || $listing->state == "" || !isset($listing->city) || $listing->city == "" || !isset($listing->listingtype) || $listing->listingtype == "" || !isset($listing->listingcharacteristic) || $listing->listingcharacteristic == "" || !isset($listing->listinglistservices) || $listing->listinglistservices == "" || !isset($listing->listingtypestatus) || $listing->listingtypestatus == "" || !isset($listing->listingtagstatus) || $listing->listingtagstatus == "" || !isset($listing->listyears) || $listing->listyears == "" || !isset($listing->lat) || $listing->lat == "" || !isset($listing->lng) || $listing->lng == "" || !isset($listing->available)  || $listing->available == "" || !isset($listing->heading_details) || $listing->heading_details == "" || !isset($listing->owner_name) || $listing->owner_name == "" || !isset($listing->owner_email) || $listing->owner_email == "" || !isset($listing->identification) || $listing->identification == "" || !isset($listing->phone_number) || $listing->phone_number == ""){
+            $isvalid = false;
+        }
+
+        return $isvalid;
     }
 }
