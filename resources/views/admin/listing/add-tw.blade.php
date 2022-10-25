@@ -744,7 +744,6 @@
 
             formElements.forEach(element => {
                 if(element.name != "_token"){
-                    console.log(element.name);
                     element.addEventListener("focus", () => {
                         savelisting();
                     });
@@ -762,7 +761,6 @@
             const response = await fetch("{{route('admin.listings.store')}}",
             { body: dataform, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}"}});
             let mensaje = await response.text();
-            console.log("guardando");
         }
 
         function setcomment(listing_id, button){
