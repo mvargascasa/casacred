@@ -41,8 +41,8 @@ class ListingController extends Controller
         if(isset($request->listing_title)){
             $slug = Str::of($request->listing_title) ->trim()->slug()->limit(70,'').'-'.rand(10000, 99999);
             $request->merge(['slug' => $slug]);
-            $request->merge(['user_id' => Auth::id()]);
         }
+        $request->merge(['user_id' => Auth::id()]);
         
         if(is_array($request->checkBene)) $request->merge(['listingcharacteristic' => implode(",", $request->checkBene)]); 
         else $request->merge(['listingcharacteristic' => '']);
