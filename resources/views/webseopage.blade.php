@@ -5,10 +5,17 @@
 <style>
   .inputs-on-hover:hover{background-color: #EF4444; color: #ffffff; cursor: pointer}
   #labeldiv1, #labeldiv2, #labeldiv3, #labeldiv4, #labeldiv5, #labeldiv6, #labeldiv7, #labeldiv8{cursor: pointer !important;}
-  /* @media screen and(max-width: 700px){.searchdesktop{display: none !important;}.searchmobile{display: block !important}} */
+  .font-size-12{font-size: 14px}
 </style>
 @livewireStyles
 @endsection
+
+@php
+    if(isset($_SERVER['HTTP_USER_AGENT'])){
+      $useragent= $_SERVER['HTTP_USER_AGENT'];
+      $ismobile=preg_match('/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|zh-cn|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i',$useragent)||preg_match('/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i',substr($useragent,0,4));
+    }else{ $ismobile = false; }
+@endphp
 
 @section('content')
 
@@ -22,11 +29,13 @@
             </div>
           </div>
           {{-- <form id="newsearch" action="{{route('web.propiedades')}}" method="GET" class="sticky-top"> --}}
-            {{-- <div class="d-flex justify-content-center searchmobile">
+            @if($ismobile)
+            <div class="d-flex justify-content-center searchmobile">
               <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 FILTROS
               </button>
-            </div> --}}
+            </div>
+            @else
             <div class="sticky-top searchdesktop">
               <div class="d-flex justify-content-center pt-3 px-5 w-100" style="background-color: #ffffff;">
                 <div class="mx-1">
@@ -170,6 +179,7 @@
                 </div>
               </div>
             </div>
+            @endif
           {{-- </form> --}}
       </div>
     {{-- </section> --}}
@@ -460,23 +470,170 @@
     </div>
     
     <!-- Modal -->
+    @if($ismobile)
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="modal-header bg-danger text-white text-center">
+            <h5 class="modal-title" id="exampleModalLabel">Busca la propiedad de tus sueños</h5>
+            {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
           </div>
           <div class="modal-body">
-            ...
+            <div class="row my-2">
+              <label class="text-secondary font-size-12">¿En donde está buscando su propiedad?</label>
+              <div class="col-sm-6 col-6 mt-1">
+                <div>
+                  <div id="div1" class="pattern bg-white rounded p-1 border" style="cursor: pointer !important">
+                    <input type="hidden" id="bform_province" name="state">
+                    <label for="states" class="d-flex"><div id="labeldiv1back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius:25px"></div> <div id="labeldiv1">Provincia</div></label>
+                  </div>
+                  <div id="child1" class="overflow-auto position-absolute bg-white rounded p-1 border mt-1" style="display: none; position: absolute; z-index: 3;">
+                    @foreach ($states as $state)
+                    {{-- <div class="row"> --}}
+                      <div>
+                        <input class="border-0 inputs-on-hover" type="text" onclick="setValue(this, 'labeldiv1')" value="{{$state->name}}" data-id="{{$state->id}}" readonly>  
+                      </div>
+                    {{-- </div> --}}
+                    @endforeach
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-6 mt-1">
+                <div>
+                  <div id="div2" class="pattern bg-white rounded p-1 border">
+                    <input type="hidden" id="bform_city" name="city">
+                    <label for="states" class="d-flex"><div id="labeldiv2back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius:25px"></div> <div id="labeldiv2">Ciudad</div></label>
+                  </div>
+                  <div id="child2" class="h-auto bg-white rounded p-1 border mt-1" style="display: none; position: absolute; z-index: 3;">
+                    <div class="d-flex align-items-center">
+                      <div>
+                        {{-- <div style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div>  --}}
+                        <label class="ml-1">Ciudad</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row my-2">
+              <label class="text-secondary font-size-12">Categoría</label>
+              <div class="col-sm-12 col-12 mt-1">
+                <div>
+                  <div id="div3" class="pattern bg-white rounded p-1 border">
+                    <input type="hidden" id="bform_category">
+                    <label for="category" class="d-flex"><div id="labeldiv3back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv3">Tipo de Búsqueda</div></label>
+                  </div>
+                  <div id="child3" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
+                    <div><input onclick="setValue(this, 'labeldiv3');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Venta" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv3');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Alquiler" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv3');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Proyectos" class="border-0 inputs-on-hover" readonly></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label class="text-secondary font-size-12">¿Qué tipo de propiedad está buscando?</label>
+              <div class="col-sm-12 col-12 mt-1">
+                <div class="mx-1">
+                  <div id="div8" class="pattern bg-white rounded p-1 border">
+                    <input type="hidden" id="bform_type">
+                    <label for="category" class="d-flex"><div id="labeldiv8back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv8">Tipo de Propiedad</div></label>
+                  </div>
+                  <div id="child8" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
+                    <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Casas" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Departamentos" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Casas Comerciales" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Terrenos" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Quintas" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Haciendas" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Locales Comerciales" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Oficinas" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Suites" class="border-0 inputs-on-hover" readonly></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row my-2">
+              <label class="text-secondary font-size-12">Presupuesto que se adapte a sus necesidades</label>
+              <div class="col-sm-12 col-12 mt-1">
+                <div>
+                  <div id="div4" class="pattern bg-white rounded p-1 border">
+                    <label for="bathrooms" class="d-flex"><div id="labeldiv4back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv4">Precio</div></label>
+                  </div>
+                  <div id="child4" class="bg-white rounded border p-1 mt-1" style="display: none; position: absolute; z-index: 3; ">
+                    <div>
+                      <label for="">Desde</label>
+                      <div class="input-group input-group-sm">
+                        <input type="number" class="form-control" id="bform_fromprice" placeholder="Ej: 90000">
+                      </div>
+                    </div>
+                    <div>
+                      <label for="">Hasta</label>
+                      <div class="input-group input-group-sm">
+                        <input type="number" class="form-control" id="bform_uptoprice" placeholder="Ej: 100000">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <label class="text-secondary font-size-12">Detalles de la propiedad</label>
+              <div class="col-sm-6 col-6 mt-1">
+                <div>
+                  <div id="div5" class="pattern bg-white rounded p-1 border">
+                    <input type="hidden" id="bform_bedrooms">
+                    <label for="bedrooms" class="d-flex"><div id="labeldiv5back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv5">Habitaciones</div></label>
+                  </div>
+                  <div id="child5" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
+                    <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="2 habitaciones" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="3 habitaciones" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="4 habitaciones" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="5 habitaciones" class="border-0 inputs-on-hover" readonly></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-6 mt-1">
+                <div>
+                  <div id="div6" class="pattern bg-white rounded p-1 border">
+                    <input type="hidden" id="bform_bathrooms">
+                    <label for="bathrooms" class="d-flex"><div id="labeldiv6back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv6">Baños</div></label>
+                  </div>
+                  <div id="child6" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
+                    <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="2 baños" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="3 baños" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="4 baños" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="5 baños" class="border-0 inputs-on-hover" readonly></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row my-2">
+              <div class="col-sm-6 col-6 mt-1">
+                <div>
+                  <div id="div7" class="pattern bg-white rounded p-1 border">
+                    <input type="hidden" id="bform_garage">
+                    <label for="bathrooms" class="d-flex"><div id="labeldiv7back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv7">Garage</div></label>
+                  </div>
+                  <div id="child7" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
+                    <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="2 garages" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="3 garages" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="4 garages" class="border-0 inputs-on-hover" readonly></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+          <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" onclick="filter_search_aux()" data-bs-dismiss="modal">Buscar <i class="fas fa-search"></i></button>
           </div>
         </div>
       </div>
     </div>
+    @endif
 @endsection
 
 @section('script')

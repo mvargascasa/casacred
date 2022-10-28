@@ -253,6 +253,7 @@ class ListingController extends Controller
         if($request->property_price != $listing->property_price && $listing->property_price > 0){
             $comment = Comment::create([
                 'listing_id' => $listing->id,
+                'user_id' => Auth::user()->id,
                 'property_code' => $listing->product_code,
                 'type' => 'price',
                 'comment' => $request->comment,
