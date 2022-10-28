@@ -5,6 +5,7 @@
 <style>
   .inputs-on-hover:hover{background-color: #EF4444; color: #ffffff; cursor: pointer}
   #labeldiv1, #labeldiv2, #labeldiv3, #labeldiv4, #labeldiv5, #labeldiv6, #labeldiv7, #labeldiv8{cursor: pointer !important;}
+  /* @media screen and(max-width: 700px){.searchdesktop{display: none !important;}.searchmobile{display: block !important}} */
 </style>
 @livewireStyles
 @endsection
@@ -21,8 +22,13 @@
             </div>
           </div>
           {{-- <form id="newsearch" action="{{route('web.propiedades')}}" method="GET" class="sticky-top"> --}}
-            <div class="sticky-top">
-              <div class="d-inline-flex pt-3 px-5 w-100 justify-content-center" style="background-color: #ffffff;">
+            {{-- <div class="d-flex justify-content-center searchmobile">
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                FILTROS
+              </button>
+            </div> --}}
+            <div class="sticky-top searchdesktop">
+              <div class="d-flex justify-content-center pt-3 px-5 w-100" style="background-color: #ffffff;">
                 <div class="mx-1">
                   <div id="div1" class="pattern bg-white rounded p-1 border" style="cursor: pointer !important">
                     <input type="hidden" id="bform_province" name="state">
@@ -312,11 +318,11 @@
           </div>
           @endforeach --}}
 
-        @if(!$seopage->category == 0)
+        {{-- @if(!$seopage->category == 0)
         <div class="d-flex justify-content-center">
             {{$listings->links()}}
         </div>
-        @else
+        @else --}}
         <div class="mx-5">
           @if(isset($seopage->similarlinks_g) && count(json_decode($seopage->similarlinks_g))>0)
               <h2>{{$seopage->subtitle_if_general}}</h2>
@@ -335,7 +341,7 @@
               </div>
             @endif
         </div>
-        @endif
+        {{-- @endif --}}
         {{-- section footer --}}
         <div class="row">
             <div>
@@ -448,6 +454,25 @@
                 </div>
                 
     
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
