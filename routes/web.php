@@ -8,11 +8,10 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TwController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
-use App\Models\Listing;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WebController::class,'home'])->name('web.index');
-Route::get('/propiedades/{slug?}', [WebController::class,'index'])->name('web.propiedades');
+Route::get('/propiedades/{code?}/{slug?}/{ubication?}/{bedrooms?}/{bathrooms?}/{garage?}/{price?}', [WebController::class,'index'])->name('web.propiedades');
 //NUEVAS RUTAS
 Route::get('/home', [WebController::class, 'home'])->name('web.home');
 Route::get('/creditos', [WebController::class, 'creditos'])->name('web.creditos');
@@ -20,6 +19,7 @@ Route::post('/send-lead-contact', [WebController::class, 'sendLeadContact'])->na
 
 Route::get('/propiedad/{listing:slug}', [WebController::class,'detail'])->name('web.detail');
 Route::get('/getcities/{idState}', [WebController::class,'getcities'])->name('web.getcities');
+Route::get('/getstate/{city}', [WebController::class, 'getstatebycity'])->name('web.getstate');
 Route::get('/getstates/{idCountry}', [WebController::class, 'getstates'])->name('web.states');
 Route::get('/nuestros-servicios', [WebController::class,'serviciosall'])->name('web.nuestros-servicios');
 Route::get('/servicios/notaria-queens-new-york', [WebController::class,'notariausa'])->name('web.notariausa');
@@ -89,6 +89,8 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
     Route::post('seo/navbar/store', [SeoController::class, 'storenavbar'])->name('admin.seo.navbar.store');
     Route::get('seo/navbar/edit/{id}', [SeoController::class, 'editnavbar'])->name('admin.seo.navbar.edit');
     Route::put('seo/navbar/update/{id}', [SeoController::class, 'updatenavbar'])->name('admin.seo.navbar.update');
+    
+    //Route::get('seo/templates', [SeoController::class, 'indextemplates'])->name('admin.seo.templates.index');
 
     
     //Route::get('listings', [ListingController::class,'listings'])->name('admin.listings');

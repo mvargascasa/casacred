@@ -231,8 +231,6 @@
             @include('layouts.homesearch')
           </div>
   </div>
-
-
         <div class="@if($ismobile) pt-2 @else container pt-5 @endif">
           <p id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 @if($ismobile) mb-3 @else mb-5 @endif">SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A SU ALCANCE</p>
           <div class="row mr-2 ml-2">
@@ -343,9 +341,6 @@
             <a href="{{ route('web.servicios', 'construye') }}" class="btn btn-outline-light" style="border-radius: 25px; width: 40%">Leer más</a>
           </div>
         </div>
-
-
-        
       @php
         $listings = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1661)->orWhere('product_code', 1658)->orWhere('product_code', 1650)->orWhere('product_code', 1621)->get();
       @endphp
@@ -1002,6 +997,62 @@
     //Enviar formulario cuando de click en uno de los radio button
     const btnradio_search = () => {
       document.getElementById('formhomesearch').submit();
+    }
+
+    function search(){
+      //filter_properties();
+      let check1 = document.getElementById('ftop_category_0');
+      let check2 = document.getElementById('ftop_category_1');
+      let check3 = document.getElementById('ftop_category_2');
+      let category;
+      let selType = document.getElementById('ftop_ptype').value;
+      let inpSearchTxt = document.getElementById('ftop_txt').value;
+      let url; let slug;
+      selType = getTypePropertieById(selType);
+      selType = selType.replace(/\s/g, "-").toLowerCase();
+      //alert(selType);
+      if(check1.checked) category = "en-venta";
+      if(check2.checked) category = "en-alquiler";
+      if(check3.checked) category = "en-proyectos";
+      slug = selType + "-" + category + "-en-ecuador";
+      if(inpSearchTxt){
+        if(isNaN(inpSearchTxt)){
+          url = "{{route('web.propiedades', [':slug', ':ubication'])}}";
+          url = url.replace(':slug', slug);
+          url = url.replace(':ubication', inpSearchTxt);
+        } else {
+          url = "{{route('web.propiedades', ':code')}}";
+          url = url.replace(':code', inpSearchTxt);
+          // url = url.replace(':ubication', inpSearchTxt);
+        }
+      } else {
+        url = "{{route('web.propiedades', ':slug')}}";
+        url = url.replace(':slug', slug);
+      }
+      // if(!inpSearchTxt){
+      //   alert('campo vacio');
+      // } else {
+      //   if(isNaN(inpSearchTxt)) alert("its a string");
+      //   else alert("its a number");
+      // }
+      window.location.href = url;
+    }
+
+    function getTypePropertieById(categoryid){
+      let category = "";
+      switch (categoryid) {
+          case "23": category = "casas"; break;
+          case "24": category = "departamentos"; break;
+          case "25": category = "casas Comerciales"; break;
+          case "26": category = "terrenos"; break;
+          case "29": category = "quintas"; break;
+          case "30": category = "haciendas"; break;
+          case "32": category = "locales Comerciales"; break;
+          case "35": category = "oficinas"; break;
+          case "36": category = "suites"; break;
+          default: break;
+        }
+        return category;
     }
     
 </script>

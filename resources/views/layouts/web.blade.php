@@ -32,8 +32,7 @@
 
     document.addEventListener('submit', function(e){
       e.preventDefault();
-
-      if(e.target.id != "formhomesearch"){
+      if(e.target.id != "formhomesearch" && e.target.id != "newsearch"){
         grecaptcha.ready(function() {
             grecaptcha.execute('6Le1UsshAAAAAL93VxqsJYCa67mrcNIP1q3C99v5', {action: 'submit'}).then(function(token) {
               
@@ -368,8 +367,8 @@ if(strpos($actual_link, 'localhost') === false){
 </div> --}}
 {{-- !Request::is('propiedades/*') --}}
 
-@if(!Request::is('/') && !Request::is('propiedades/*'))
-<div class="bg-white">
+{{-- @if(!Request::is('/') && !Request::is('propiedades/*')) --}}
+{{-- <div class="bg-white">
 <section class="container justify-content-md-center p-4  ">
     <div class="row">
                             <h2 class="text-black-50 pt-2 pb-3">También te puede interesar</h2>
@@ -407,8 +406,8 @@ if(strpos($actual_link, 'localhost') === false){
                             </div>
         </div>
   </section>
-</div>
-@endif
+</div> --}}
+{{-- @endif --}}
 <footer>
   <div style="background-color: #2C3144; color: #ffffff">
     <div class="container">

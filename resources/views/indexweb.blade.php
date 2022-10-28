@@ -57,6 +57,9 @@
     background: #ff0000;
     cursor: pointer;
   }
+  .card-listing:hover{box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;}
+  .inputs-on-hover:hover{background-color: #EF4444; color: #ffffff; cursor: pointer}
+  #labeldiv1, #labeldiv2, #labeldiv3, #labeldiv4, #labeldiv5, #labeldiv6, #labeldiv7, #labeldiv8{cursor: pointer !important;}
 </style>
 @livewireStyles
 @endsection
@@ -69,7 +72,7 @@
       if(Request()->get('searchtxt') != null){$searchtxt = Request()->get('searchtxt');}
     @endphp
 
-    <section id="prisection" style="background-size: cover;background-position: 0rem 23%; width: 100%; background-repeat: no-repeat;">
+    <section id="prisection" style="background-size: cover;background-position: 0rem 23%; width: 100%; background-repeat: no-repeat;display: none">
       <div>
         
           <div class="row align-items-center d-flex justify-content-center" style="margin: 0; min-height: 450px;">
@@ -79,13 +82,13 @@
                 <h1 style="font-size: 20px">Compra, Venta y Alquiler de Propiedades</h1>
 
                 <div class="btn-group pb-2">
-                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_0" autocomplete="off" value="en-venta" @if($category === "en-venta") checked @endif onclick="btnradio_search(this)">
+                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_0" autocomplete="off" value="en-venta" @if($category === "en-venta") checked @endif onclick="btnradio_search(this);setCategoryOnLoadIfRequestQueryHas(this.value)">
                   <label class="btn btn-outline-danger" for="ftop_category_0" style="width:100px;font-size: 14px">COMPRAR</label>
                   
-                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_1" autocomplete="off" value="alquilar" @if($category === "alquilar") checked @endif onclick="btnradio_search(this)">
+                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_1" autocomplete="off" value="alquilar" @if($category === "alquilar") checked @endif onclick="btnradio_search(this);setCategoryOnLoadIfRequestQueryHas(this.value)">
                   <label class="btn btn-outline-danger" for="ftop_category_1" style="width:100px;font-size: 14px">ALQUILAR</label>
                   
-                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_2" autocomplete="off" value="proyectos" @if($category === "proyectos") checked @endif onclick="btnradio_search(this)">
+                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_2" autocomplete="off" value="proyectos" @if($category === "proyectos") checked @endif onclick="btnradio_search(this);setCategoryOnLoadIfRequestQueryHas(this.value)">
                   <label class="btn btn-outline-danger" for="ftop_category_2" style="width:100px;font-size: 14px">PROYECTOS</label>
                 </div>
 
@@ -112,9 +115,159 @@
         </div>
       </div>
     </section>
+    {{-- new filters --}}
+    {{-- <div class="sticky-top px-5" style="background-color: #bdbdbd"> --}}
+      {{-- <form id="newsearch" action="{{route('web.search', ['category', 'en-venta', 'cuenca'])}}" method="GET" class="sticky-top"> --}}
+      <div class="d-inline-flex pt-3 px-5 w-100 justify-content-center" style="background-color: #ffffff; position: sticky; top: 0; z-index: 1">
+        <div class="mx-1">
+          <div id="div1" class="pattern bg-white rounded p-1 border" style="cursor: pointer !important">
+            <input type="hidden" id="bform_province" name="state">
+            <label for="states" class="d-flex"><div id="labeldiv1back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius:25px"></div> <div id="labeldiv1">Provincia</div></label>
+          </div>
+          <div id="child1" class="overflow-auto position-absolute bg-white rounded p-1 border mt-1" style="display: none; position: absolute; z-index: 3;">
+            @foreach ($states as $state)
+            {{-- <div class="row"> --}}
+              <div>
+                <input class="border-0 inputs-on-hover" type="text" onclick="setValue(this, 'labeldiv1')" value="{{$state->name}}" data-id="{{$state->id}}" readonly>  
+              </div>
+            {{-- </div> --}}
+            @endforeach
+          </div>
+        </div>
+
+        <div class="mx-1">
+          <div id="div2" class="pattern bg-white rounded p-1 border">
+            <input type="hidden" id="bform_city" name="city">
+            <label for="states" class="d-flex"><div id="labeldiv2back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius:25px"></div> <div id="labeldiv2">Ciudad</div></label>
+          </div>
+          <div id="child2" class="h-auto bg-white rounded p-1 border mt-1" style="display: none; position: absolute; z-index: 3;">
+            <div class="d-flex align-items-center">
+              <div>
+                {{-- <div style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div>  --}}
+                <label class="ml-1">Ciudad</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mx-1">
+          <div id="div3" class="pattern bg-white rounded p-1 border">
+            <input type="hidden" id="bform_category">
+            <label for="category" class="d-flex"><div id="labeldiv3back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv3">Tipo de Búsqueda</div></label>
+          </div>
+          <div id="child3" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
+            <div><input onclick="setValue(this, 'labeldiv3');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Venta" class="border-0 inputs-on-hover" readonly></div>
+            <div><input onclick="setValue(this, 'labeldiv3');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Alquiler" class="border-0 inputs-on-hover" readonly></div>
+            <div><input onclick="setValue(this, 'labeldiv3');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Proyectos" class="border-0 inputs-on-hover" readonly></div>
+          </div>
+        </div>
+
+        <div class="mx-1">
+          <div id="div8" class="pattern bg-white rounded p-1 border">
+            <input type="hidden" id="bform_type">
+            <label for="category" class="d-flex"><div id="labeldiv8back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv8">Tipo de Propiedad</div></label>
+          </div>
+          <div id="child8" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
+            <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Casas" class="border-0 inputs-on-hover" readonly></div>
+            <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Departamentos" class="border-0 inputs-on-hover" readonly></div>
+            <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Casas Comerciales" class="border-0 inputs-on-hover" readonly></div>
+            <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Terrenos" class="border-0 inputs-on-hover" readonly></div>
+            <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Quintas" class="border-0 inputs-on-hover" readonly></div>
+            <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Haciendas" class="border-0 inputs-on-hover" readonly></div>
+            <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Locales Comerciales" class="border-0 inputs-on-hover" readonly></div>
+            <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Oficinas" class="border-0 inputs-on-hover" readonly></div>
+            <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Suites" class="border-0 inputs-on-hover" readonly></div>
+          </div>
+        </div>
+
+        <div class="mx-1">
+          <div id="div4" class="pattern bg-white rounded p-1 border">
+            <label for="bathrooms" class="d-flex"><div id="labeldiv4back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv4">Precio</div></label>
+          </div>
+          <div id="child4" class="bg-white rounded border p-1 mt-1" style="display: none; position: absolute; z-index: 3; ">
+            <div>
+              <label for="">Desde</label>
+              <div class="input-group input-group-sm">
+                <input type="number" class="form-control" id="bform_fromprice" placeholder="Ej: 90000">
+              </div>
+            </div>
+            <div>
+              <label for="">Hasta</label>
+              <div class="input-group input-group-sm">
+                <input type="number" class="form-control" id="bform_uptoprice" placeholder="Ej: 100000">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {{-- <div>
+          <select class="form-select form-select-sm" name="" id="bform_province">
+            <option value="">Provincia</option>
+            @foreach ($states as $state)
+              <option value="{{$state->id}}">{{$state->name}}</option>  
+            @endforeach
+          </select>
+        </div>
+
+        <div class="ml-1">
+          <select class="form-select form-select-sm" name="" id="bform_city">
+            <option value="">Ciudad</option>
+          </select>
+        </div> --}}
+
+        <div class="mx-1">
+          <div id="div5" class="pattern bg-white rounded p-1 border">
+            <input type="hidden" id="bform_bedrooms">
+            <label for="bedrooms" class="d-flex"><div id="labeldiv5back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv5">Habitaciones</div></label>
+          </div>
+          <div id="child5" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
+            <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="2 habitaciones" class="border-0 inputs-on-hover" readonly></div>
+            <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="3 habitaciones" class="border-0 inputs-on-hover" readonly></div>
+            <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="4 habitaciones" class="border-0 inputs-on-hover" readonly></div>
+            <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="5 habitaciones" class="border-0 inputs-on-hover" readonly></div>
+          </div>
+        </div>
+
+        <div class="mx-1">
+          <div id="div6" class="pattern bg-white rounded p-1 border">
+            <input type="hidden" id="bform_bathrooms">
+            <label for="bathrooms" class="d-flex"><div id="labeldiv6back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv6">Baños</div></label>
+          </div>
+          <div id="child6" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
+            <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="2 baños" class="border-0 inputs-on-hover" readonly></div>
+            <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="3 baños" class="border-0 inputs-on-hover" readonly></div>
+            <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="4 baños" class="border-0 inputs-on-hover" readonly></div>
+            <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="5 baños" class="border-0 inputs-on-hover" readonly></div>
+          </div>
+        </div>
+
+        <div class="mx-1">
+          <div id="div7" class="pattern bg-white rounded p-1 border">
+            <input type="hidden" id="bform_garage">
+            <label for="bathrooms" class="d-flex"><div id="labeldiv7back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv7">Garage</div></label>
+          </div>
+          <div id="child7" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
+            <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="2 garages" class="border-0 inputs-on-hover" readonly></div>
+            <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="3 garages" class="border-0 inputs-on-hover" readonly></div>
+            <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="4 garages" class="border-0 inputs-on-hover" readonly></div>
+          </div>
+        </div>
+        
+        <div class="mb-3 ml-1">
+          {{-- <label class="btn btn-danger px-2 btn-sm rounded-circle" onclick="filter_search()"><i class="fas fa-search"></i></label> --}}
+          {{-- <button class="btn btn-danger px-2 btn-sm rounded-circle" type="submit"><i class="fas fa-search"></i></button> --}}
+          <label onclick="filter_search_aux();" class="btn btn-danger px-2 btn-sm rounded-circle"><i class="fas fa-search"></i></label>
+          {{-- <label class="btn btn-danger px-2 btn-sm rounded-circle" onclick="clear_search()"><i class="fas fa-trash-alt"></i></label> --}}
+        </div>
+      </div>
+    {{-- </form> --}}
+    {{-- </div> --}}
+    {{-- end new filters --}}
+
     <section class="container">
-        <div class="row">
-            <div class="col-3 d-none d-sm-block">
+        <div class="row justify-content-center">
+            <div class="col-3 d-none">
+              {{-- d-sm-block  --}}
               <div class="card my-4">
                 <div class="card-body">
                   <div class="mb-3">
@@ -174,7 +327,9 @@
                           <option value="{{$state->name}}" data-id="{{$state->id}}">{{$state->name}}</option>
                       @endforeach
                     </select>
-                    <select class="form-select form-select-sm mb-3" id="bform_city">
+                    {{-- id="bform_city" --}}
+                    <select class="form-select form-select-sm mb-3">
+                      {{-- cambie el id del select de provincia y ciudad para ocupar los id originales en los nuevos select de los nuevos filtros --}}
                       <option value="" selected>Elige Ciudad</option>
                     </select>
                   </div>
@@ -363,8 +518,207 @@
 
 @endphp
 
-          @livewire('proplist', ['state' => $state,'type' => $type])
+@php
+    $category = ""; $type = ""; $searchtxt = ""; $city = ""; $state = ""; $segments = [];
+    $segment2 = request()->segment(2);
+    $segment3 = request()->segment(3);
+    if($segment2){
+      if(!is_numeric($segment2)){
+        $segments = explode("-", $segment2);
+        $city = end($segments);
+        if(($segments[0] == "casas" && $segments[1] == "comerciales") || ($segments[0] == "locales" && $segments[1] == "comerciales")){
+          $type = $segments[0] . " " . $segments[1];
+          $category = $segments[3];
+        } else {
+          $type = $segments[0];
+          $category = $segments[2];
+        }
+      } else {
+        $searchtxt = $segment2;
+      }
+    }
+    if($segment3) $searchtxt = $segment3;
+    if($city != "ecuador"){
+      $city_aux = DB::table('info_cities')->where('name', 'LIKE', "%$city%")->first();
+      $state = DB::table('info_states')->select('name')->where('id', $city_aux->state_id)->first();
+      $state = $state->name;
+    }
+@endphp
+          {{-- @livewire('proplist', ['state' => $state,'type' => $type]) --}}
+          @livewire('proplist', ['category' => $category, 'type' => $type, 'searchtxt' => $searchtxt, 'state' => $state, 'city' => $city])
+
+          {{-- inicia div proplist --}}
+          {{-- <div class="col-12 col-sm-10">
+            <div class="row pt-4">
+              <div class="col">
+                <div class="float-right small px-2"></div>
+              </div>
+            </div>
+            <div class="row">{{$tester}}</div>
+              <!-- Inicia Propiedad -->   
+              @php $ii=0; @endphp 
+          
+              @foreach($listings as $listing)
+                  @php $ii++; @endphp 
+          
+                  @if($ii==9)
+                  <div class="card row mb-3" style="border-top:1px #FA7B34 solid">
+                    <div class="row">            
+                      <a data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('ANUNCIO VENDE CON NOSOTROS')">
+                          <img style="cursor: pointer" class="img-fluid p-0"  src="{{asset('img/vende-tu-propiedad-en-casacredito-web.jpg')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
+                      </a>
+                     </div>
+                  </div>
+                  @endif
+                  @if($ii==14)
+                  <div class="card row mb-3" style="border-top:1px #FA7B34 solid">
+                    <div class="row">
+                      <a data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('ANUNCIO CREDITOS EN ECUADOR')">
+                          <img style="cursor: pointer" class="img-fluid p-0" src="{{asset('img/BANNERS-CASA-CREDITO-VENDE-08.webp')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
+                      </a>
+                     </div>
+                  </div>
+                  @endif
+          
+          
+              <div class="card row mb-3 shadow-sm card-listing" style="border-top:1px #FA7B34 solid">
+                <div class="row pr-0">
+                    <div class="col-sm-6 col-md-6 col-lg-4 p-0">
+                      <div class="col p-0">
+                          <div class="card" style="border:none">
+                            
+                            <div id="carouselControls{{$listing->id}}" class="carousel slide card-img-top" data-ride="carousel"  data-interval="false">
+                              <div class="carousel-inner" style="max-height: 150px;">
+                                @php $iiListing=0 @endphp
+                                  @php
+                                      $imageVerification = asset('uploads/listing/thumb/600/'. strtok($listing->images, '|'));
+                                  @endphp
+                                    @foreach(array_filter(explode("|", $listing->images)) as $img)              
+                                      <div class="carousel-item @if($iiListing==0) active @endif">
+                                        <img loading="lazy" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.$img)) {{url('uploads/listing/thumb/600',$img)}} @else {{url('uploads/listing/600',$img)}} @endif" class="d-block w-100" alt="{{$listing->listing_title}}-{{$iiListing++}}">
+                                      </div>
+                                    @endforeach
+                              </div>
+                              <a class="carousel-control-prev" href="#carouselControls{{$listing->id}}" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                              </a>
+                              <a class="carousel-control-next" href="#carouselControls{{$listing->id}}" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                              </a>
+                            </div>
+             
+                            <div class="card-body">
+                              <div class="d-flex justify-content-center text-danger">Precio: $ <span class=" font-weight-bold"> {{number_format($listing->property_price, 0, ',', '.')}}</span></div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>   
+                  <div class="col-sm-6 col-md-6 col-lg-8"> 
+                      <div onclick="window.location.href('{{route('web.detail',$listing->slug)}}');return false;" style="cursor:pointer;">
+                        
+                        <div class="text-muted font-weight-bold float-left pb-1">COD:<span class="font-weight-bold text-danger">{{$listing->product_code}}</span> </div>
+                        <div class="float-right px-3 py-0" style="color:white;font-size: 13px;background-color: #FA7B34">
+                            @foreach ($types as $type) @if ($type->id==$listing->listingtype) {{$type->type_title}} @endif @endforeach
+                          </div>                
+                          <div class="float-right small px-2" style="color:#FA7B34;font-weight: 500">
+                            @foreach ($categories as $cat) @if ($cat->slug==$listing->listingtypestatus) {{$cat->status_title}} @endif @endforeach
+                          </div>
+                          <br>
+                          <div class="w-100  font-weight-bold text-truncate"><a class="link-dark link-sindeco" href="{{route('web.detail',$listing->slug)}}">{{$listing->listing_title}}</a></div>
+                        <div class="p-0 small font-weight-bold text-muted">@if(Str::contains($listing->address, ',')){{$listing->address}} @else {{$listing->state}}, {{$listing->city}}, {{$listing->address}}@endif</div>
+                        <div class="small lh-sm" style="max-height:50px; overflow: hidden;">{{mb_substr(strip_tags($listing->listing_description),0,200)}}...</div>
+                          @php
+                              $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
+                                $bathroom=0;$garage=0;$squarefit=0;
+                                if(!empty($listing->heading_details)){
+                                  $allheadingdeatils=json_decode($listing->heading_details); 
+                                  foreach($allheadingdeatils as $singleedetails) {
+                                    unset($singleedetails[0]);
+                                    for($i=1;$i<=count($singleedetails);$i++) { 
+                                      if($i%2==0) {  
+                                        if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49)
+                                        { 
+                                            if(empty($singleedetails[$i])){ $bedroom+=0; }else{
+                                            $bedroom+=$singleedetails[$i]; }
+                                        }
+                                        if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81)
+                                        {
+                                            if(empty($singleedetails[$i])){ $bathroom+=0; }else{
+                                            $bathroom+=$singleedetails[$i]; }
+                                        }
+                                        if($singleedetails[$i-1]==43)
+                                        {
+                                            if(empty($singleedetails[$i])){ $garage+=0; }else{
+                                            $garage+=intval($singleedetails[$i]); }
+                                        }
+                                      }
+                                    }
+                                    $i++;
+                                  }
+                                }
+          
+                                
+                          @endphp
+                          <div class="py-2">
+                            @if($listing->construction_area>0)<img src="{{asset('img/house.png')}}" width="15"><span class="text-danger font-weight-bold small pr-2"> {{$listing->construction_area}} m<sup>2</sup> </span> @endif
+                            @if($listing->land_area>0)<img src="{{asset('img/floor.png')}}" width="15"><span class="text-danger font-weight-bold small pr-2"> {{$listing->land_area}} m<sup>2</sup> </span> @endif
+                            @if($bedroom>0)<img src="{{asset('img/bed-black.png')}}" width="15"><span class="text-danger font-weight-bold small pr-2"> {{$bedroom}} </span> @endif
+                            @if($bathroom>0)<img src="{{asset('img/bathroom-black.png')}}" width="15"><span class="text-danger font-weight-bold small pr-2"> {{$bathroom}} </span> @endif
+                            @if($garage>0)<img src="{{asset('img/garage-black.png')}}" width="15"><span class="text-danger font-weight-bold small pr-2"> {{$garage}} </span> @endif
+                          </div>
+                    </div>
+                    <div class="py-2">
+                      <button class="btn btn-outline-secondary btn-sm px-1 d-none d-sm-inline-block" 
+                    data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('COD {{$listing->product_code}}')"><i class="fas fa-comment"></i> Solicitar Informacion</button>
+                     
+                    <button class="btn btn-danger btn-sm px-1 d-block d-sm-none" 
+                    data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('COD {{$listing->product_code}}')"><i class="fas fa-comment"></i> Solicitar Informacion</button>
+                    <div class="d-block d-sm-none py-1"></div>
+                    <a href="tel:+593983849073  " class="btn btn-outline-secondary btn-sm px-1" style="font-size:13px;"><i class="fas fa-phone"></i> LLamar Ecuador</a>
+                      <a href="tel:+17186903740" class="btn btn-outline-secondary btn-sm px-1" style="font-size:13px;"><i class="fas fa-phone"></i> Estados Unidos</a>
+                    </div>
+                  </div>   
+                </div>
+              </div>        
+              @endforeach
+           <!-- Fin Propiedad -->   
+           
+           @if($listings->count()<6)
+           <div class="card row mb-3" style="border-top:1px #FA7B34 solid">
+             <div class="row">
+               <a data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('ANUNCIO CREDITOS EN ECUADOR')">
+                   <img style="cursor: pointer" class="img-fluid p-0"  src="{{asset('img/BANNERS-CASA-CREDITO-VENDE-08.webp')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
+               </a>
+              </div>
+           </div>
+          @endif
+          @if($listings->count()<11)
+          <div class="card row mb-3" style="border-top:1px #FA7B34 solid">
+           <div class="row">            
+             <a data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('ANUNCIO VENDE CON NOSOTROS')">
+                 <img style="cursor: pointer" class="img-fluid p-0"  src="{{asset('img/vende-tu-propiedad-en-casacredito-web.jpg')}}" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
+             </a>
+            </div>
+          </div>
+          @endif
+
+          
+          @if(count($listings)>1)
+           <div class="row pt-4">
+            <div class="col">
+              <div class="float-right small px-2" onclick="upscroll()">{{$listings->onEachSide(0)->links()}}</div>
+              <div class="float-right small px-2">{{$listings->links()}}</div>
+            </div>
+          </div>
+          @endif
+          
+          </div> --}}
+
+          {{-- termina div proplist --}}
     </div>
+
     </section>
 
     
@@ -379,8 +733,6 @@
         </button>
       </div>
       <div class="modal-body">
-
-            
         <div class="col mb-3">
           <label for="mform_searchtxt" class="form-label text-danger font-weight-bold">PALABRA CLAVE</label>
           <input type="text" value="" id="mform_searchtxt" class="form-control form-control-sm" placeholder="">
@@ -462,6 +814,192 @@
 
 @section('script')
 <script>
+function setCategoryOnLoadIfRequestQueryHas(object_value){
+  //const queryString = window.location.search;
+  //const urlParams = new URLSearchParams(queryString);
+  if(object_value){
+    switch (object_value) {
+      case "en-venta":document.getElementById('labeldiv3').innerHTML="Venta";document.getElementById('labeldiv3back').style.backgroundColor="#5EBA7D";document.getElementById('bform_category').value = object_value;break;
+      case "alquilar":document.getElementById('labeldiv3').innerHTML="Alquiler";document.getElementById('labeldiv3back').style.backgroundColor="#5EBA7D";document.getElementById('bform_category').value = object_value;break;
+      case "proyectos": document.getElementById('labeldiv3').innerHTML="Proyectos";document.getElementById('labeldiv3back').style.backgroundColor="#5EBA7D";document.getElementById('bform_category').value = object_value;break;
+      default:
+        break;
+    }
+  }
+}
+
+function getTypePropertieById(categoryid){
+  let category = "";
+  switch (categoryid) {
+      case "23": category = "casas"; break;
+      case "24": category = "departamentos"; break;
+      case "25": category = "casas Comerciales"; break;
+      case "26": category = "terrenos"; break;
+      case "29": category = "quintas"; break;
+      case "30": category = "haciendas"; break;
+      case "32": category = "locales Comerciales"; break;
+      case "35": category = "oficinas"; break;
+      case "36": category = "suites"; break;
+      default: break;
+    }
+    return category;
+}
+
+function search(){
+  //filter_properties();
+  // let state = document.getElementById('bform_province').value;
+  // state = state.toLowerCase();
+  // let city = document.getElementById('bform_city').value;
+  // city = city.toLowerCase();//if(city) city = "-en-"+city.toLowerCase();
+  // let category = document.getElementById('bform_type').value;
+  // if(category){
+  //   switch (category) {
+  //     case "23": category = "casas"; break;
+  //     case "24": category = "departamentos"; break;
+  //     case "25": category = "casas Comerciales"; break;
+  //     case "26": category = "terrenos"; break;
+  //     case "29": category = "quintas"; break;
+  //     case "30": category = "haciendas"; break;
+  //     case "32": category = "locales Comerciales"; break;
+  //     case "35": category = "oficinas"; break;
+  //     case "36": category = "suites"; break;
+  //     default: break;
+  //   }
+  // }
+  // let type = document.getElementById('bform_category').value;
+  // let url = `{{route('web.propiedades', ['$seopage->slug', '8', '8', '1'])}}`;
+  // url = url.replace(':category', category);
+  // url = url.replace(':type', type);
+  // url = url.replace(':state', state);
+  // url = url.replace(':city', city);
+  //alert(category + " " + type + " " +city);
+  // alert(url);
+  //window.location.href = url;
+}
+  
+  function setValue(object, label){  
+        document.getElementById(label).innerHTML = object.value;
+        document.getElementById(label+"back").style.backgroundColor = "#5EBA7D";
+        document.getElementById('child'+label.substring(8)).style.display = "none";
+
+        let divpattern = document.getElementById(label.substring(5));
+        let inputhidden = divpattern.firstElementChild;
+        
+        // if(label === "labeldiv8"){
+        //     inputhidden.value = object.dataset.id;
+        // } else {
+            switch (object.value) {
+                case "Venta": inputhidden.value = "venta";break;
+                case "Alquiler": inputhidden.value = "alquiler"; break;
+                case "Casas": inputhidden.value = 23; break;
+                case "Departamentos": inputhidden.value = 24; break;
+                case "Casas Comerciales": inputhidden.value = 25; break;
+                case "Terrenos": inputhidden.value = 26; break;
+                case "Quintas": inputhidden.value = 29; break;
+                case "Haciendas": inputhidden.value = 30; break;
+                case "Locales Comerciales": inputhidden.value = 32; break;
+                case "Oficinas": inputhidden.value = 35; break;
+                case "Suites": inputhidden.value = 36; break;
+                case "ON": inputhidden.value = "A"; break;
+                case "OFF": inputhidden.value = "D"; break;
+                default: inputhidden.value = object.value; break;
+            }
+        //}
+
+        // if(object.value === "Venta") inputhidden.value = "en-venta";
+        // else if(object.value === "Alquiler") inputhidden.value = "alquilar";
+        // else inputhidden.value = object.value;
+        if(label === "labeldiv1") getCities(object.dataset.id);
+    }
+
+    let inp_uptoprice = document.getElementById('bform_uptoprice');
+    let inp_fromprice = document.getElementById('bform_fromprice');
+    inp_fromprice.addEventListener('keydown', () => {setBgColorDivBack4(inp_fromprice);});
+    inp_uptoprice.addEventListener('keydown', () => {setBgColorDivBack4(inp_uptoprice);});
+
+    function setBgColorDivBack4(input){
+      if(input.value.length > 1){
+        document.getElementById("labeldiv4back").style.backgroundColor = "#5EBA7D";
+      } else {
+        document.getElementById("labeldiv4back").style.backgroundColor = "#EF4444";
+      }
+    }
+
+    const selCity = document.getElementById('child2');
+
+    async function getCities(id){
+        let labeldiv2 = document.getElementById('labeldiv2');
+        document.getElementById('labeldiv2back').style.backgroundColor = "#EF4444";
+        labeldiv2.innerHTML = "Ciudad";
+        //selCity.options.length = 0;
+        selCity.innerHTML = "";
+        const response = await fetch("{{url('getcities')}}/"+id );
+        const cities = await response.json();
+    
+        var opt = document.createElement('input');
+        //   opt.appendChild( document.createTextNode('Ciudad') );
+        //   opt.value = 'Ciudad';
+        //   selCity.appendChild(opt);
+        cities.forEach(city => {
+          var opt = document.createElement('input');
+          var saltolinea = document.createElement('br');
+          opt.appendChild( document.createTextNode(city.name) );
+          opt.value = city.name;
+          opt.readOnly = true;
+          opt.addEventListener("click", function(){
+            setValue(opt, 'labeldiv2');
+            changeLocationWithSlug(city.name);
+          });
+          opt.classList.add('w-auto', 'm-0', 'rounded', 'pl-1', 'border-0', 'inputs-on-hover');
+          selCity.appendChild(opt);
+          selCity.appendChild(saltolinea);
+      });
+    }
+
+    function changeLocationWithSlug(city){
+      let category = document.getElementById('bform_category').value;
+      if(!category) category = "venta";
+      let type = document.getElementById('bform_type').value;
+      if(!type) type = "casas";
+      if(isNaN(type)) {
+        type = type.toLowerCase();
+        type = type.replace(/\s/g, "-");
+      }
+      else {
+        type = getTypePropertieById(type);
+        type = type.replace(/\s/g, "-");
+      }
+      let slug = type.toLowerCase() + "-en-" + category.toLowerCase() + "-en-" + city.toLowerCase();
+      let url = "{{route('web.propiedades', ':slug')}}";
+      url = url.replace(":slug", slug);
+      window.location.href = url;
+    }
+
+    document.querySelectorAll('.pattern').forEach(item => {
+        item.addEventListener('click', event => {
+            eventsClick(item.id);
+        });
+    });
+
+    function eventsClick(iditem){
+        openmaxminprice(iditem);
+        const divpriceinputs = document.getElementById('child'+iditem.substring(3));
+        const divlabelprecio = document.getElementById(iditem);
+        document.addEventListener("click", (event) => {
+        const isClickDivPriceInputs = divpriceinputs.contains(event.target);
+        const isClickDivLabelPrecio = divlabelprecio.contains(event.target);
+            if (!isClickDivPriceInputs && !isClickDivLabelPrecio) {
+                if(divpriceinputs.style.display === "block") divpriceinputs.style.display = "none";
+            }
+        });
+    }
+
+    function openmaxminprice(iditem){
+        let divpriceminmax = document.getElementById('child'+iditem.substring(3));
+        if(divpriceminmax.style.display == "none") {divpriceminmax.style.display = "block";}
+        else if(divpriceminmax.style.display == "block") {divpriceminmax.style.display = "none"};
+    }
+
   const selState  = document.getElementById('bform_province');
   const selCities = document.getElementById('bform_city');
 
@@ -475,12 +1013,76 @@
   const tag = document.getElementById('bform_tags'); 
 
   window.addEventListener('load', (event) => {
+        //alert("{{URL::previous()}}");
+        //if("{{URL::previous()}}" == "http://localhost/acasaweb-master/public/"){
+
+          let slug = "{{request()->segment(2)}}";
+          if(isNaN(slug)){
+            let arrayslug = slug.split("-");
+            if((arrayslug[0] == "casas" && arrayslug[1] == "comerciales") || (arrayslug[0] == "locales" && arrayslug[1] == "comerciales")){
+              document.getElementById("bform_category").value = arrayslug[3];
+              document.getElementById("labeldiv3").innerHTML = arrayslug[3].charAt(0).toUpperCase() + arrayslug[3].slice(1).toLowerCase();
+              document.getElementById('labeldiv3back').style.backgroundColor="#5EBA7D";
+              document.getElementById("bform_type").value = arrayslug[0] + " " + arrayslug[1];
+              document.getElementById("labeldiv8").innerHTML = arrayslug[0].charAt(0).toUpperCase() + arrayslug[0].slice(1).toLowerCase() + " " + arrayslug[1];
+              document.getElementById('labeldiv8back').style.backgroundColor="#5EBA7D";
+              if(arrayslug[5]){
+                if(arrayslug[5] != "ecuador"){
+                  document.getElementById('bform_city').value = arrayslug[5];
+                  document.getElementById('labeldiv2').innerHTML = arrayslug[5].charAt(0).toUpperCase() + arrayslug[5].slice(1).toLowerCase();
+                  document.getElementById('labeldiv2back').style.backgroundColor="#5EBA7D";
+                  getState(arrayslug[5]);
+                }
+              }
+            } else {
+              document.getElementById("bform_category").value = arrayslug[2].charAt(0).toUpperCase() + arrayslug[2].slice(1).toLowerCase();
+              document.getElementById("labeldiv3").innerHTML = arrayslug[2].charAt(0).toUpperCase() + arrayslug[2].slice(1).toLowerCase();
+              document.getElementById('labeldiv3back').style.backgroundColor="#5EBA7D";
+              document.getElementById("bform_type").value = arrayslug[0].charAt(0).toUpperCase() + arrayslug[0].slice(1).toLowerCase();
+              document.getElementById("labeldiv8").innerHTML = arrayslug[0].charAt(0).toUpperCase() + arrayslug[0].slice(1).toLowerCase();
+              document.getElementById('labeldiv8back').style.backgroundColor="#5EBA7D";
+              if(arrayslug[4]){
+                if(arrayslug[4] != "ecuador"){
+                  document.getElementById('bform_city').value = arrayslug[4];
+                  document.getElementById('labeldiv2').innerHTML = arrayslug[4].charAt(0).toUpperCase() + arrayslug[4].slice(1).toLowerCase();
+                  document.getElementById('labeldiv2back').style.backgroundColor="#5EBA7D";
+                  getState(arrayslug[4]);
+                }
+              }
+            }
+          }
+        //}
         //document.getElementById('prisection').style.backgroundImage = "url('img/imgheader2.jpg')";
         let category = new URLSearchParams(window.location.search).get('category');
         changeImageBanner(category);
         var range = new URLSearchParams(window.location.search).get('range');
         if(range) rangeSlide(range);
         else {rangeSlide("0");document.getElementById('bform_range').value = 0};
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        if(urlParams.has('category')) setCategoryOnLoadIfRequestQueryHas(urlParams.get('category'));
+        else setCategoryOnLoadIfRequestQueryHas('undefined');
+
+        if(document.getElementById('ftop_type').value){
+          let text;
+          switch (document.getElementById('ftop_type').value) {
+            case "23": text = "Casas"; break;
+            case "24": text = "Departamentos"; break;
+            case "25": text = "Casas Comerciales"; break;
+            case "26": text = "Terrenos"; break;
+            case "29": text = "Quintas"; break;
+            case "30": text = "Haciendas"; break;
+            case "32": text = "Locales Comerciales"; break;
+            case "35": text = "Oficinas"; break;
+            case "36": text = "Suites"; break;
+            default:
+              break;
+          }
+          //bform_category
+          //bform_type
+          document.getElementById('bform_type').value = document.getElementById('ftop_type').value;
+          document.getElementById('labeldiv8').innerHTML=text;document.getElementById('labeldiv8back').style.backgroundColor="#5EBA7D";
+        }
     });
 
     const changeImageBanner = (category = "en-venta") => {
@@ -502,7 +1104,7 @@
     const cities = await response.json();
     
     var opt = document.createElement('option');
-          opt.appendChild( document.createTextNode('Elige Ciudad') );
+          opt.appendChild( document.createTextNode('Ciudad') );
           opt.value = '';
           selCities.appendChild(opt);
     cities.forEach(city => {
@@ -540,6 +1142,23 @@
       tag.value = "";
     }
   });
+
+  async function getState(city){
+    const response = await fetch("{{url('getstate')}}/"+city);
+    const state = await response.json();
+    //console.log(state);
+    if(state){
+      //console.log(state.name);
+      document.getElementById('bform_province').value = state.name.toLowerCase();
+      document.getElementById('labeldiv1').innerHTML = state.name;
+      document.getElementById('labeldiv1back').style.backgroundColor="#5EBA7D";
+    } 
+    else {
+      document.getElementById('bform_province').value = "";
+      document.getElementById('labeldiv1').innerHTML = "Provincia";
+    }
+
+  }
 
   modState.addEventListener("change", async function() {
     modCities.options.length = 0;

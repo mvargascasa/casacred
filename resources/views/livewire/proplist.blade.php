@@ -1,4 +1,4 @@
-<div class="col-12 col-sm-9">
+<div class="col-12 col-sm-10">
   <div class="row pt-4">
     <div class="col">
       <div class="float-right small px-2"></div>
@@ -7,6 +7,7 @@
     <!-- Inicia Propiedad -->   
     @php $ii=0; @endphp 
 
+    @if(count($listings)>0)
     @foreach($listings as $listing)
         @php $ii++; @endphp 
 
@@ -30,7 +31,7 @@
         @endif
 
 
-    <div class="card row mb-3" style="border-top:1px #FA7B34 solid">
+    <div class="card row mb-3 shadow-sm card-listing" style="border-top:1px #FA7B34 solid">
       <div class="row pr-0">
           <div class="col-sm-6 col-md-6 col-lg-4 p-0">
             <div class="col p-0">
@@ -94,11 +95,9 @@
                 @php
                     $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
                       $bathroom=0;$garage=0;$squarefit=0;
-
-
-											if(!empty($listing->heading_details)){
+                      if(!empty($listing->heading_details)){
                         $allheadingdeatils=json_decode($listing->heading_details); 
-                        foreach($allheadingdeatils as $singleedetails) { 
+                        foreach($allheadingdeatils as $singleedetails) {
                           unset($singleedetails[0]);
                           for($i=1;$i<=count($singleedetails);$i++) { 
                             if($i%2==0) {  
@@ -147,6 +146,11 @@
       </div>
     </div>        
     @endforeach
+    @else
+    <div class="text-center p-5 bg-white">
+      <p style="font-size: 20px">No hemos encontrado propiedades para la búsqueda</p>
+    </div>
+    @endif
  <!-- Fin Propiedad -->   
  
  @if($listings->count()<6)
@@ -183,17 +187,54 @@
 const upscroll = () => {
         window.scrollTo(0,0)
 }
-  const modSearch = new bootstrap.Modal(document.getElementById('modalSearch')) 
+
+  let modSearch = document.getElementById('modalSearch');
+  if(modSearch) modSearch = new bootstrap.Modal(modSearch); 
   
     var bform_range;
-    document.getElementById('bform_range').addEventListener('change', function(){ //si hay algun cambio en el range de anios de construccion, se manda en la variable para filtrarla
-      bform_range = document.getElementById('bform_range').value; //Nueva variable para filtrar por años de construccion
-    });
+    let rangebform_range = document.getElementById('bform_range');
+    if(rangebform_range){
+      rangebform_range.addEventListener('change', function(){ //si hay algun cambio en el range de anios de construccion, se manda en la variable para filtrarla
+        bform_range = document.getElementById('bform_range').value; //Nueva variable para filtrar por años de construccion
+      });
+    }
 
     //funcion que envia el valor del input radio button al hacerlo click
     function btnradio_search(btnradio){
       @this.set('category', btnradio.value);
       changeImageBanner(btnradio.value);
+    }
+
+    function filter_search_aux(){
+        let bform_category  = document.getElementById('bform_category').value;
+        let bform_type      = document.getElementById('bform_type').value;
+        let bform_province  = document.getElementById('bform_province').value;
+        let bform_city      = document.getElementById('bform_city').value;
+        let bform_fromprice = document.getElementById('bform_fromprice').value;
+        let bform_uptoprice = document.getElementById('bform_uptoprice').value;
+        let bform_bedrooms  = document.getElementById('bform_bedrooms').value;
+        let bform_bathrooms = document.getElementById('bform_bathrooms').value;
+        let bform_garage    = document.getElementById('bform_garage').value;
+
+        console.log(bform_category);
+        console.log(bform_type);
+        console.log(bform_province);
+        console.log(bform_city);
+        console.log(bform_uptoprice);
+        console.log(bform_fromprice);
+        console.log(bform_bedrooms);
+        console.log(bform_bathrooms);
+        console.log(bform_garage);
+
+        @this.set('category', bform_category);
+        @this.set('type', bform_type);
+        @this.set('state', bform_province);
+        @this.set('city', bform_city);
+        @this.set('fromprice', bform_fromprice);
+        @this.set('uptoprice', bform_uptoprice);
+        @this.set('bedrooms', bform_bedrooms);
+        @this.set('bathrooms', bform_bathrooms);
+        @this.set('garage', bform_garage);
     }
 
     function filter_search(){
@@ -205,6 +246,8 @@ const upscroll = () => {
         let bform_fromprice = document.getElementById('bform_fromprice').value;
         let bform_uptoprice = document.getElementById('bform_uptoprice').value;
         let bform_tags      = document.getElementById('bform_tags').value; //Nueva variable para filtrar por estado 
+        let bform_bedrooms  = document.getElementById('bform_bedrooms').value;
+        let bform_bathrooms = document.getElementById('bform_bathrooms').value;
 
         @this.set('category', bform_category);
         @this.set('type', bform_type);
@@ -216,7 +259,9 @@ const upscroll = () => {
         @this.set('pressButtom', 1);
 
         @this.set('tags', bform_tags); //envio la variable para conectarla con la creada en la clase
-        
+        @this.set('bedrooms', bform_bedrooms);
+        @this.set('bathrooms', bform_bathrooms);
+
         if (this.bform_range) {
           @this.set('range', this.bform_range); //envio la variable para conectarla con la creada en la clase
         }
@@ -232,12 +277,12 @@ const upscroll = () => {
       let tform_txt  = document.getElementById('ftop_txt').value;  
       let tform_category = '';
       
-      let bandera_tform_ptype = document.body.contains(document.getElementById('ftop_ptype'));
+      // let bandera_tform_ptype = document.body.contains(document.getElementById('ftop_ptype'));
 
-      if(bandera_tform_ptype){
-        let tform_ptype = document.getElementById('ftop_ptype').value//new variable
-        @this.set('ptype', tform_ptype);
-      }
+      // if(bandera_tform_ptype){
+      //   let tform_ptype = document.getElementById('ftop_ptype').value//new variable
+      //   @this.set('ptype', tform_ptype);
+      // }
 
       let bandera_tform_pstate = document.body.contains(document.getElementById('selProvinceb'));
 
@@ -310,7 +355,8 @@ const upscroll = () => {
       document.getElementById('bform_fromprice').value = '';
       document.getElementById('bform_uptoprice').value = '';
 
-      window.location.replace('https://casacredito.com/propiedades?');
+      //window.location.replace('https://casacredito.com/propiedades?');
+      window.location.replace('http://casacredito.test/propiedades?');
     }
 
 </script>

@@ -29,4 +29,22 @@ class Listing extends Model
     {
         return $this->belongsTo(User::class,'user_id');
     }
+
+    public function scopeFilterByState($query, $state){
+        if($state){
+            return $query->where('state', 'LIKE', $state);
+        }
+    }
+
+    public function scopeFilterByCity($query, $city){
+        if($city){
+            return $query->where('city', 'LIKE', "%$city%");
+        }
+    }
+
+    public function scopeFilterByListingTitle($query, $ubication){
+        if($ubication){
+            return $query->where('listing_title', 'LIKE', "%$ubication%");
+        }
+    }
 }
