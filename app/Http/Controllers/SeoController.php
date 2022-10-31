@@ -81,8 +81,22 @@ class SeoController extends Controller
         //return $request;
         if($request->category == 1){
             $cities = Listing::select('city')->where('city', '!=', null)->distinct()->get();
-            //return $cities;
+            $propertie_type = DB::table('listing_types')->select('type_title')->where('id', $request->type)->first();
+            $adj1="";$adj3="";
+            switch ($request->type) {
+                case '24': case '26': case '32': $adj1 = "los"; $adj3 = "el"; break;
+                case '23': case '25': case '29': case '30': case '35': case '36': $adj1 = "las"; $adj3 = "la"; break;
+                default: break;
+            }
+            $similarwords = $this->getSimilarWords($request->info_header);
+            $newtext = $this->setSimilarWords($similarwords, $request->info_header);
+            $similarwordsfooter = $this->getSimilarWords($request->info_footer);
+            $newtextfooter = $this->setSimilarWords($similarwordsfooter, $request->info_footer);
             foreach ($cities as $city) {
+                $similarwords = $this->getSimilarWords($request->info_header);
+                $newtext = $this->setSimilarWords($similarwords, $request->info_header);
+                $similarwordsfooter = $this->getSimilarWords($request->info_footer);
+                $newtextfooter = $this->setSimilarWords($similarwordsfooter, $request->info_footer);
                 $state_id = DB::table('info_cities')->select('state_id')->where('name', "LIKE",  "%$city->city%")->first();
                 $state = DB::table('info_states')->select('name')->where('id', $state_id->state_id)->first();
                 $page = SeoPage::where('city', 'LIKE', $city->city)->where('type', $request->type)->where('typestatus', $request->typestatus)->first();
@@ -97,9 +111,9 @@ class SeoController extends Controller
                         "city" => $city->city,
                         "type" => $request->type,
                         "typestatus" => $request->typestatus,
-                        "meta_description" => "Encuentra las mejores ". $title ." , descubre una gran variedad de casas para que consigas la que se adapte con tus gustos y necesidades.",
-                        "info_header" => str_replace('{ciudad}', $city->city, $request->info_header),
-                        "info_footer" => str_replace('{ciudad}', $city->city, $request->info_footer)
+                        "meta_description" => "Encuentra ".$adj1." mejores ". str_replace("{ciudad}", $city->city, $request->title) .", descubre una gran variedad de ".Str::lower($propertie_type->type_title)." para que consigas ".$adj3." que se adapte con tus gustos y necesidades.",
+                        "info_header" => str_replace('{ciudad}', $city->city, $newtext),
+                        "info_footer" => str_replace('{ciudad}', $city->city, $newtextfooter)
                     ]);
                     //return $seopage;
                 }
@@ -137,6 +151,34 @@ class SeoController extends Controller
             $seopage->save();
             return redirect()->route('admin.seo.edit', $seopage)->with('status', true);
         }
+    }
+
+    protected $array_positions = [];
+    public function getSimilarWords($cadena){
+        $count = substr_count($cadena, '{');
+        for ($i=0; $i < $count; $i++) {
+            $start = strpos($cadena, '{');
+            $position_aux = 0;
+            if(!array_key_exists($start, $this->array_positions)){
+                $start += strlen('{');
+                $size = strpos($cadena, '}', $start) - $start;
+                $similarwords = substr($cadena, $start, $size);
+                if(str_contains($similarwords, "|")) $this->array_positions[$i] = array($similarwords, explode("|", $similarwords)); //str_replace("|", ",", $similarwords)
+                $position_aux = strpos($cadena, $similarwords);
+            }
+            $cadena_aux = substr($cadena, $position_aux);
+            $this->getSimilarWords($cadena_aux);
+        }
+        return $this->array_positions;
+    }
+
+    public function setSimilarWords(Array $array, $texttoreplace){
+        for ($i=0; $i < count($array); $i++) {
+            $wordbysearch = $array[$i][0];
+            $synonim = $array[$i][1][rand(0, count($array[$i][1])-1)]; 
+            $texttoreplace = str_replace("{".$wordbysearch."}", $synonim, $texttoreplace);
+        }
+        return $texttoreplace;
     }
 
     public function edit(SeoPage $seopage){
@@ -227,7 +269,10 @@ class SeoController extends Controller
     public function delete($id){
         $seopage = SeoPage::find($id);
         $seopage->delete();
-        //return $isDeleted;
         return redirect()->route('admin.seo.pages.index')->with('isdeleted', 'Se elimino el elemento');
+    }
+
+    public function indextemplates(){
+        //return view();
     }
 }   
