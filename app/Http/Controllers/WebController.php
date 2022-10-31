@@ -92,7 +92,7 @@ class WebController extends Controller
                     $seopage->info_footer = str_replace("{".$wordbysearch."}", $synonim, $seopage->info_footer);
                 }
                 if(str_contains($seopage->info_header, "{ciudad}")) $seopage->info_header = str_replace("{ciudad}", $seopage->city, $seopage->info_header);
-                if(str_contains($seopage->info_footer, "{ciudad}")) $seopage->info_footer = str_replace("{ciudad}", $seopage->city, $seopage->info_footer);
+                if(isset($seopage->info_footer)) if(str_contains($seopage->info_footer, "{ciudad}")) $seopage->info_footer = str_replace("{ciudad}", $seopage->city, $seopage->info_footer);
                 return view('webseopage', compact('seopage', 'listings', 'ismobile', 'types', 'similarwords', 'states'));
             } else {
                 $seopage = SeoPage::where('old_slug', $slug)->first();
