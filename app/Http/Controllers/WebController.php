@@ -96,8 +96,8 @@ class WebController extends Controller
                 return view('webseopage', compact('seopage', 'listings', 'ismobile', 'types', 'similarwords', 'states'));
             } else {
                 $seopage = SeoPage::where('old_slug', $slug)->first();
-                //return redirect()->route('web.propiedades', $seopage->slug);
                 if($seopage){
+                    return redirect()->route('web.propiedades', $seopage->slug);
                     if($seopage->category == 0){
                         $listings = Listing::where('listingtype', $seopage->type)->where('status', 1)->where('available', 1)->where('listingtypestatus', 'LIKE', "%$seopage->typestatus%")->inRandomOrder()->limit(6)->get();
                     } else {
