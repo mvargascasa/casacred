@@ -6,6 +6,7 @@
   .inputs-on-hover:hover{background-color: #EF4444; color: #ffffff; cursor: pointer}
   #labeldiv1, #labeldiv2, #labeldiv3, #labeldiv4, #labeldiv5, #labeldiv6, #labeldiv7, #labeldiv8{cursor: pointer !important;}
   .font-size-12{font-size: 14px}
+  .card-listing:hover{box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;}
 </style>
 @livewireStyles
 @endsection
@@ -20,7 +21,8 @@
 @section('content')
 
     {{-- <section id="bg-header" style="background: rgba(8, 8, 8, 0.449); background-size: cover;background-position: center; width: 100%; background-repeat: no-repeat; background-blend-mode: darken;"> --}}
-      <div class="row pt-5 mb-5" style="height: 250px; width: 100%">
+      <div class="row justify-content-center pt-5">
+        <div class="pt-4">
           <h1 class="text-center">{{$seopage->title}}</h1>
           <p class="text-center">{{$seopage->description}}</p>
           <div class="container">
@@ -28,161 +30,168 @@
                 {!!$seopage->info_header!!}
             </div>
           </div>
-          {{-- <form id="newsearch" action="{{route('web.propiedades')}}" method="GET" class="sticky-top"> --}}
-            @if($ismobile)
-            <div class="d-flex justify-content-center searchmobile">
-              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                FILTROS
-              </button>
+        </div>
+      </div>
+
+      @if($ismobile)
+      {{-- <div class="d-flex justify-content-center"> --}}
+        <section id="bgimage" class="d-flex align-items-center justify-content-center py-3" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: 0;">
+          <div class="d-flex justify-content-center searchmobile">
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              FILTROS
+            </button>
+          </div>
+        </section>
+      {{-- </div> --}}
+      @endif
+    {{-- </section> --}}
+    @if(!$ismobile)
+    <section id="bgimage" class="d-flex align-items-center justify-content-center" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: 0; z-index: 1">
+      <div class="searchdesktop">
+        <div class="d-flex justify-content-center pt-3 px-5 w-100">
+          <div class="mx-1">
+            <div id="div1" class="pattern bg-white rounded p-1 border" style="cursor: pointer !important">
+              <input type="hidden" id="bform_province" name="state">
+              <label for="states" class="d-flex"><div id="labeldiv1back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius:25px"></div> <div id="labeldiv1" class="font-weight-bolder">Provincia</div></label>
             </div>
-            @else
-            <div class="sticky-top searchdesktop">
-              <div class="d-flex justify-content-center pt-3 px-5 w-100" style="background-color: #ffffff;">
-                <div class="mx-1">
-                  <div id="div1" class="pattern bg-white rounded p-1 border" style="cursor: pointer !important">
-                    <input type="hidden" id="bform_province" name="state">
-                    <label for="states" class="d-flex"><div id="labeldiv1back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius:25px"></div> <div id="labeldiv1">Provincia</div></label>
-                  </div>
-                  <div id="child1" class="overflow-auto position-absolute bg-white rounded p-1 border mt-1" style="display: none; position: absolute; z-index: 3;">
-                    @foreach ($states as $state)
-                    {{-- <div class="row"> --}}
-                      <div>
-                        <input class="border-0 inputs-on-hover" type="text" onclick="setValue(this, 'labeldiv1')" value="{{$state->name}}" data-id="{{$state->id}}" readonly>  
-                      </div>
-                    {{-- </div> --}}
-                    @endforeach
-                  </div>
+            <div id="child1" class="overflow-auto position-absolute bg-white rounded p-1 border mt-1" style="display: none; position: absolute; z-index: 3;">
+              @foreach ($states as $state)
+              {{-- <div class="row"> --}}
+                <div>
+                  <input class="border-0 inputs-on-hover" type="text" onclick="setValue(this, 'labeldiv1')" value="{{$state->name}}" data-id="{{$state->id}}" readonly>  
                 </div>
-        
-                <div class="mx-1">
-                  <div id="div2" class="pattern bg-white rounded p-1 border">
-                    <input type="hidden" id="bform_city" name="city">
-                    <label for="states" class="d-flex"><div id="labeldiv2back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius:25px"></div> <div id="labeldiv2">Ciudad</div></label>
-                  </div>
-                  <div id="child2" class="h-auto bg-white rounded p-1 border mt-1" style="display: none; position: absolute; z-index: 3;">
-                    <div class="d-flex align-items-center">
-                      <div>
-                        {{-- <div style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div>  --}}
-                        <label class="ml-1">Ciudad</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-        
-                <div class="mx-1">
-                  <div id="div3" class="pattern bg-white rounded p-1 border">
-                    <input type="hidden" id="bform_category">
-                    <label for="category" class="d-flex"><div id="labeldiv3back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv3">Tipo de Búsqueda</div></label>
-                  </div>
-                  <div id="child3" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
-                    <div><input onclick="setValue(this, 'labeldiv3');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Venta" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv3');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Alquiler" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv3');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Proyectos" class="border-0 inputs-on-hover" readonly></div>
-                  </div>
-                </div>
-        
-                <div class="mx-1">
-                  <div id="div8" class="pattern bg-white rounded p-1 border">
-                    <input type="hidden" id="bform_type">
-                    <label for="category" class="d-flex"><div id="labeldiv8back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv8">Tipo de Propiedad</div></label>
-                  </div>
-                  <div id="child8" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
-                    <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Casas" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Departamentos" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Casas Comerciales" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Terrenos" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Quintas" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Haciendas" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Locales Comerciales" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Oficinas" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Suites" class="border-0 inputs-on-hover" readonly></div>
-                  </div>
-                </div>
-        
-                <div class="mx-1">
-                  <div id="div4" class="pattern bg-white rounded p-1 border">
-                    <label for="bathrooms" class="d-flex"><div id="labeldiv4back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv4">Precio</div></label>
-                  </div>
-                  <div id="child4" class="bg-white rounded border p-1 mt-1" style="display: none; position: absolute; z-index: 3; ">
-                    <div>
-                      <label for="">Desde</label>
-                      <div class="input-group input-group-sm">
-                        <input type="number" class="form-control" id="bform_fromprice" placeholder="Ej: 90000">
-                      </div>
-                    </div>
-                    <div>
-                      <label for="">Hasta</label>
-                      <div class="input-group input-group-sm">
-                        <input type="number" class="form-control" id="bform_uptoprice" placeholder="Ej: 100000">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-        
-                {{-- <div>
-                  <select class="form-select form-select-sm" name="" id="bform_province">
-                    <option value="">Provincia</option>
-                    @foreach ($states as $state)
-                      <option value="{{$state->id}}">{{$state->name}}</option>  
-                    @endforeach
-                  </select>
-                </div>
-        
-                <div class="ml-1">
-                  <select class="form-select form-select-sm" name="" id="bform_city">
-                    <option value="">Ciudad</option>
-                  </select>
-                </div> --}}
-        
-                <div class="mx-1">
-                  <div id="div5" class="pattern bg-white rounded p-1 border">
-                    <input type="hidden" id="bform_bedrooms">
-                    <label for="bedrooms" class="d-flex"><div id="labeldiv5back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv5">Habitaciones</div></label>
-                  </div>
-                  <div id="child5" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
-                    <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="2 habitaciones" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="3 habitaciones" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="4 habitaciones" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="5 habitaciones" class="border-0 inputs-on-hover" readonly></div>
-                  </div>
-                </div>
-        
-                <div class="mx-1">
-                  <div id="div6" class="pattern bg-white rounded p-1 border">
-                    <input type="hidden" id="bform_bathrooms">
-                    <label for="bathrooms" class="d-flex"><div id="labeldiv6back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv6">Baños</div></label>
-                  </div>
-                  <div id="child6" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
-                    <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="2 baños" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="3 baños" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="4 baños" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="5 baños" class="border-0 inputs-on-hover" readonly></div>
-                  </div>
-                </div>
-        
-                <div class="mx-1">
-                  <div id="div7" class="pattern bg-white rounded p-1 border">
-                    <input type="hidden" id="bform_garage">
-                    <label for="bathrooms" class="d-flex"><div id="labeldiv7back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv7">Garage</div></label>
-                  </div>
-                  <div id="child7" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
-                    <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="2 garages" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="3 garages" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="4 garages" class="border-0 inputs-on-hover" readonly></div>
-                  </div>
-                </div>
-                
-                <div class="mb-3 ml-1">
-                  {{-- <label class="btn btn-danger px-2 btn-sm rounded-circle" onclick="filter_search()"><i class="fas fa-search"></i></label> --}}
-                  <label class="btn btn-danger px-2 btn-sm rounded-circle" onclick="filter_search_aux()"><i class="fas fa-search"></i></label>
-                  {{-- <label class="btn btn-danger px-2 btn-sm rounded-circle" onclick="clear_search()"><i class="fas fa-trash-alt"></i></label> --}}
+              {{-- </div> --}}
+              @endforeach
+            </div>
+          </div>
+  
+          <div class="mx-1">
+            <div id="div2" class="pattern bg-white rounded p-1 border">
+              <input type="hidden" id="bform_city" name="city">
+              <label for="states" class="d-flex"><div id="labeldiv2back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius:25px"></div> <div id="labeldiv2" class="font-weight-bolder">Ciudad</div></label>
+            </div>
+            <div id="child2" class="h-auto bg-white rounded p-1 border mt-1" style="display: none; position: absolute; z-index: 3;">
+              <div class="d-flex align-items-center">
+                <div>
+                  {{-- <div style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div>  --}}
+                  <label class="ml-1">Ciudad</label>
                 </div>
               </div>
             </div>
-            @endif
-          {{-- </form> --}}
+          </div>
+  
+          <div class="mx-1">
+            <div id="div3" class="pattern bg-white rounded p-1 border">
+              <input type="hidden" id="bform_category">
+              <label for="category" class="d-flex"><div id="labeldiv3back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv3" class="font-weight-bolder">Tipo de Búsqueda</div></label>
+            </div>
+            <div id="child3" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
+              <div><input onclick="setValue(this, 'labeldiv3');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Venta" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv3');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Alquiler" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv3');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Proyectos" class="border-0 inputs-on-hover" readonly></div>
+            </div>
+          </div>
+  
+          <div class="mx-1">
+            <div id="div8" class="pattern bg-white rounded p-1 border">
+              <input type="hidden" id="bform_type">
+              <label for="category" class="d-flex"><div id="labeldiv8back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv8" class="font-weight-bolder">Tipo de Propiedad</div></label>
+            </div>
+            <div id="child8" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
+              <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Casas" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Departamentos" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Casas Comerciales" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Terrenos" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Quintas" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Haciendas" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Locales Comerciales" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Oficinas" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Suites" class="border-0 inputs-on-hover" readonly></div>
+            </div>
+          </div>
+  
+          <div class="mx-1">
+            <div id="div4" class="pattern bg-white rounded p-1 border">
+              <label for="bathrooms" class="d-flex"><div id="labeldiv4back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv4" class="font-weight-bolder">Precio</div></label>
+            </div>
+            <div id="child4" class="bg-white rounded border p-1 mt-1" style="display: none; position: absolute; z-index: 3; ">
+              <div>
+                <label for="">Desde</label>
+                <div class="input-group input-group-sm">
+                  <input type="number" class="form-control" id="bform_fromprice" placeholder="Ej: 90000">
+                </div>
+              </div>
+              <div>
+                <label for="">Hasta</label>
+                <div class="input-group input-group-sm">
+                  <input type="number" class="form-control" id="bform_uptoprice" placeholder="Ej: 100000">
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          {{-- <div>
+            <select class="form-select form-select-sm" name="" id="bform_province">
+              <option value="">Provincia</option>
+              @foreach ($states as $state)
+                <option value="{{$state->id}}">{{$state->name}}</option>  
+              @endforeach
+            </select>
+          </div>
+  
+          <div class="ml-1">
+            <select class="form-select form-select-sm" name="" id="bform_city">
+              <option value="">Ciudad</option>
+            </select>
+          </div> --}}
+  
+          <div class="mx-1">
+            <div id="div5" class="pattern bg-white rounded p-1 border">
+              <input type="hidden" id="bform_bedrooms">
+              <label for="bedrooms" class="d-flex"><div id="labeldiv5back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv5" class="font-weight-bolder">Habitaciones</div></label>
+            </div>
+            <div id="child5" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
+              <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="2 habitaciones" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="3 habitaciones" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="4 habitaciones" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="5 habitaciones" class="border-0 inputs-on-hover" readonly></div>
+            </div>
+          </div>
+  
+          <div class="mx-1">
+            <div id="div6" class="pattern bg-white rounded p-1 border">
+              <input type="hidden" id="bform_bathrooms">
+              <label for="bathrooms" class="d-flex"><div id="labeldiv6back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv6" class="font-weight-bolder">Baños</div></label>
+            </div>
+            <div id="child6" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
+              <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="2 baños" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="3 baños" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="4 baños" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="5 baños" class="border-0 inputs-on-hover" readonly></div>
+            </div>
+          </div>
+  
+          <div class="mx-1">
+            <div id="div7" class="pattern bg-white rounded p-1 border">
+              <input type="hidden" id="bform_garage">
+              <label for="bathrooms" class="d-flex"><div id="labeldiv7back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv7" class="font-weight-bolder">Garage</div></label>
+            </div>
+            <div id="child7" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
+              <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="2 garages" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="3 garages" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="4 garages" class="border-0 inputs-on-hover" readonly></div>
+            </div>
+          </div>
+          
+          <div class="mb-3 ml-1">
+            {{-- <label class="btn btn-danger px-2 btn-sm rounded-circle" onclick="filter_search()"><i class="fas fa-search"></i></label> --}}
+            <label class="btn btn-danger px-2 btn-sm rounded-circle" onclick="filter_search_aux()"><i class="fas fa-search"></i></label>
+            {{-- <label class="btn btn-danger px-2 btn-sm rounded-circle" onclick="clear_search()"><i class="fas fa-trash-alt"></i></label> --}}
+          </div>
+        </div>
       </div>
-    {{-- </section> --}}
+    </section>
+    @endif
 
     <div class="container">
 
@@ -639,6 +648,8 @@
 @section('script')
     <script>
       window.addEventListener('load', (event) => {
+        //set image background in search div
+        document.getElementById('bgimage').style.backgroundImage = "url({{asset('img/backimagesearch.jpg')}})";
         let slug = "{{request()->segment(2)}}";
           if(isNaN(slug)){
             let arrayslug = slug.split("-");
