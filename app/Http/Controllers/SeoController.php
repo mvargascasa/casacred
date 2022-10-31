@@ -78,6 +78,7 @@ class SeoController extends Controller
     }
 
     public function store(Request $request){
+        set_time_limit(420);
         //return $request;
         if($request->category == 1){
             $cities = Listing::select('city')->where('city', '!=', null)->distinct()->get();
