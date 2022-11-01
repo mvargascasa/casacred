@@ -121,7 +121,7 @@ if(strpos($actual_link, 'localhost') === false){
 <style>
    html, body {
         max-width: 100% !important;
-        /* overflow-x: hidden !important; */
+        overflow-x: clip !important;
     }
     .wsapp{
         z-index: 3;
