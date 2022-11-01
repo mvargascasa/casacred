@@ -120,12 +120,12 @@
     {{-- new filters --}}
     {{-- <div class="sticky-top px-5" style="background-color: #bdbdbd"> --}}
       {{-- <form id="newsearch" action="{{route('web.search', ['category', 'en-venta', 'cuenca'])}}" method="GET" class="sticky-top"> --}}
-      <div class="d-flex justify-content-center align-items-center pt-5 text-center">
+      <div class="d-flex justify-content-center align-items-center pt-5 pb-4 text-center">
         <h1 class="text-secondary @if($ismobile) pt-4 @endif">{{ucwords(str_replace("-", " ", request()->segment(2)))}}</h1>
       </div>
 
       @if($ismobile)
-        <section id="bgimage" class="d-flex align-items-center justify-content-center py-3" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: 0;">
+        <section id="bgimage" class="d-flex align-items-center justify-content-center py-3" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: 50px; z-index: 2">
           <div class="d-flex justify-content-center searchmobile">
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
               FILTROS <i class="fas fa-search"></i>
@@ -135,7 +135,7 @@
       @endif
 
       @if(!$ismobile)
-      <section id="bgimage" class="d-flex align-items-center justify-content-center" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: 0; z-index: 1">
+      <section id="bgimage" class="d-flex align-items-center justify-content-center mt-1 mb-3" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: 0; z-index: 1">
         <div class="d-inline-flex pt-3 px-5 w-100 justify-content-center">
           <div class="mx-1">
             <div id="div1" class="pattern bg-white rounded p-1 border" style="cursor: pointer !important">
