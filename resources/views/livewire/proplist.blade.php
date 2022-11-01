@@ -139,21 +139,23 @@
           <hr>
           <div class="pb-3 float-right">
             @if(!$ismobile)
-            <button class="btn btn-danger btn-sm px-1 d-none d-sm-inline-block" 
-            data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('COD {{$listing->product_code}}')"><i class="fas fa-comment"></i> Solicitar Informacion</button>
            
           <button class="btn btn-danger btn-sm px-1 d-block d-sm-none" 
           data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('COD {{$listing->product_code}}')"><i class="fas fa-comment"></i> Solicitar Informacion</button>
           <div class="d-block d-sm-none py-1"></div>
-          <a href="tel:+593983849073  " class="btn btn-info btn-sm px-1" style="font-size:13px;"><i class="fas fa-phone"></i> Ecuador</a>
-            <a href="tel:+17186903740" class="btn btn-info btn-sm px-1" style="font-size:13px;"><i class="fas fa-phone"></i> Estados Unidos</a>
-            <a target="_blank" href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *{{strtoupper($listing->listing_title)}}*. Código: *{{$listing->product_code}}*" class="btn btn-success btn-sm"><i class="fab fa-whatsapp"></i> Contactar por WhatsApp</a>
+            <a href="tel:+593983849073" class="btn btn-outline-danger btn-sm px-2 rounded-pill btncall border" style="font-size:13px;"><img width="20px" height="15px" src="{{asset('img/ECUADOR-04.webp')}}" alt=""> Llamar</a>
+            <a href="tel:+17186903740" class="btn btn-outline-danger btn-sm px-2 rounded-pill btncall border" style="font-size:13px;"><img width="20px" height="15px" src="{{asset('img/USA-05.webp')}}" alt=""> Llamar</a>
+            {{-- background-color:#F1C255;color: #ffffff --}}
+            <button class="btn btn-danger btn-sm px-2 d-none d-sm-inline-block rounded-circle" 
+            data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('COD {{$listing->product_code}}')" title="Solicitar Información"><i class="fas fa-info-circle"></i></button>
+            {{-- <button class="btn btn-danger btn-sm rounded-circle" title="Agendar una Cita"><i class="fas fa-calendar"></i></button> --}}
+            <a target="_blank" href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *{{strtoupper($listing->listing_title)}}*. Código: *{{$listing->product_code}}*" class="btn btn-success btn-sm rounded-circle" title="Contactar por Whatsapp"><i class="fab fa-whatsapp"></i></a>
             @else
             <a href="tel:+593983849073  " class="btn btn-info btn-sm px-1 rounded-pill" style="font-size:13px;"><i class="fas fa-phone"></i> Ecuador</a>
             <a href="tel:+17186903740" class="btn btn-info btn-sm px-1 rounded-pill" style="font-size:13px;"><i class="fas fa-phone"></i> Estados Unidos</a>
             <button class="btn btn-danger btn-sm px-2 d-sm-inline-block rounded-circle" 
             data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('COD {{$listing->product_code}}')"><i class="fas fa-envelope"></i></button>
-            <a target="_blank" href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *{{strtoupper($listing->listing_title)}}*. Código: *{{$listing->product_code}}*" class="btn btn-success btn-sm rounded-circle px-2"><i class="fab fa-whatsapp"></i></a>
+            <a target="_blank" href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *{{strtoupper($listing->listing_title)}}*. Código: *{{$listing->product_code}}*" class="btn btn-success btn-sm rounded-circle px-2" title="Contactar por Whatsapp"><i class="fab fa-whatsapp"></i></a>
             @endif
           </div>
         </div>   

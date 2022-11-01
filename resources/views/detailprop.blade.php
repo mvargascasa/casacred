@@ -58,9 +58,9 @@
   position: sticky !important;
   top: 10px !important;
 }
-.formEmail{
-  background-color: rgb(244, 247, 248);
-}
+.formEmail{background-color: rgb(244, 247, 248);box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;}
+.formEmail:hover{box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;background-color: rgb(32, 36, 64);color: #ffffff}
+.imgprojects{box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
 .inputs input, .inputs textarea{
         font-size: 13px;
       }
@@ -653,7 +653,7 @@
         <div class="divEmail d-flex justify-content-center" style="margin-top: @if($mobile) 0%; @else 22%; @endif">
           <div class="row">
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-12">
-              <div class=" formEmail rounded">
+              <div class="formEmail rounded">
                 <div style="padding-top: 20px; padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
                   <p style="font-weight: 500">Quiero más información de esta propiedad</p>
                   <form id="formDetailProp" class="inputs">
@@ -688,7 +688,7 @@
             </div> --}}
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-12">
               <div class="mt-3" style="position: relative">
-                <img width="100%" height="100%" style="filter: brightness(50%); border-radius: 12px" class="img-fluid lazyLoad" data-src="{{ asset('img/toscana.webp') }}" alt="">
+                <img width="100%" height="100%" style="filter: brightness(50%); border-radius: 12px" class="img-fluid lazyLoad imgprojects" data-src="{{ asset('img/toscana.webp') }}" alt="">
                 <div class="text-center" style="position: absolute; top: 0; left: 0; color: #ffffff; margin: 12px">
                   <p style="font-weight: 600">Conozca los proyectos de vivienda en Cuenca</p>
                 </div>

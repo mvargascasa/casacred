@@ -62,6 +62,7 @@
   .card-listing:hover{box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;}
   .inputs-on-hover:hover{background-color: #EF4444; color: #ffffff; cursor: pointer}
   #labeldiv1, #labeldiv2, #labeldiv3, #labeldiv4, #labeldiv5, #labeldiv6, #labeldiv7, #labeldiv8{cursor: pointer !important;}
+  .btncall{color: #000000;border: 0.5px solid #000000}.btncall:hover{color: #ffffff}
 </style>
 @livewireStyles
 @endsection
@@ -135,7 +136,7 @@
       @endif
 
       @if(!$ismobile)
-      <section id="bgimage" class="d-flex align-items-center justify-content-center mt-1 mb-3" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: 0; z-index: 1">
+      <section id="bgimage" class="d-flex align-items-center justify-content-center mt-1 mb-3" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: 0; z-index: 2">
         <div class="d-inline-flex pt-3 px-5 w-100 justify-content-center">
           <div class="mx-1">
             <div id="div1" class="pattern bg-white rounded p-1 border" style="cursor: pointer !important">
