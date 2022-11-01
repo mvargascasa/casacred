@@ -62,7 +62,7 @@
   .card-listing:hover{box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;}
   .inputs-on-hover:hover{background-color: #EF4444; color: #ffffff; cursor: pointer}
   #labeldiv1, #labeldiv2, #labeldiv3, #labeldiv4, #labeldiv5, #labeldiv6, #labeldiv7, #labeldiv8{cursor: pointer !important;}
-  .btncall{color: #000000;border: 0.5px solid #000000}.btncall:hover{color: #ffffff}
+  .btncall{color: #000000 !important;}.btncall:hover{color: #ffffff !important}
 </style>
 @livewireStyles
 @endsection
