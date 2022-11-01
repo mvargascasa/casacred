@@ -63,11 +63,11 @@ class Proplisttw extends Component
         $url_current = $this->current_url;
 
         if(strlen($this->detalle)>2){        
-            $properties_filter->where('address','LIKE',"%$this->detalle%")->orWhere('listing_title', 'LIKE', "%$this->detalle%");
-            //$properties_filter->where('listing_title','LIKE',"%$this->detalle%");
-            // if($properties_filter->count()<1){
-            //     $properties_filter->where('listing_title','LIKE',"%$this->detalle%");
-            // }
+            //$properties_filter->where('address','LIKE',"%$this->detalle%")->orWhere('listing_title', 'LIKE', "%$this->detalle%");
+            $properties_filter->where('listing_title','LIKE',"%$this->detalle%");
+            if($properties_filter->count()<1){
+                $properties_filter->where('listing_title','LIKE',"%$this->detalle%");
+            }
         }
         
         if($this->code){
