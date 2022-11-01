@@ -235,7 +235,7 @@
           <p id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 @if($ismobile) mb-3 @else mb-5 @endif">SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A SU ALCANCE</p>
           <div class="row mr-2 ml-2">
               <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
-                <a href="{{route('web.propiedades')}}">
+                <a href="{{route('web.propiedades', 'casas-en-venta-en-cuenca')}}">
                   <div class="position-relative d-flex justify-content-center shadow rounded cursor">
                     <img style="border-radius: 5px;"  width="100rem" height="100rem" class="img-fluid lazyLoad" data-src="{{ asset('img/CAS-IDEAL.webp') }}" alt="Compra y Venta de Casas en Cuenca Ecuador">
                     @if(!$ismobile)
