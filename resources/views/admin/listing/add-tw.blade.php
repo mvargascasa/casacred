@@ -44,12 +44,12 @@
     @if(isset($listing->id))
     <div class="flex">
         <h2 class="text-lg font-semibold text-red-700">EDITAR PROPIEDAD<span style="color:darkgray"> Creado: {{$listing->created_at->format('d M y')}} ({{$listing->user->name??'User'}})</span></h2>
-        {{-- @if(Auth::user()->role == "administrator" && $listing->locked)
+        @if(Auth::user()->role == "administrator" && $listing->locked)
             <form action="{{route('admin.listings.unlocked', $listing->id)}}" method="POST">
                 @csrf
                 <button type="submit" class="bg-gray-300 pl-1 pr-1 rounded">Desbloquear</button>
             </form>
-        @endif --}}
+        @endif
     </div>
 
     {!! Form::model($listing, ['route' => ['admin.listings.update',$listing->id],'method' => 'PUT', 'enctype' => 'multipart/form-data', 'id' => 'formsave']) !!}
