@@ -48,7 +48,7 @@
         <p><strong>Le ofrecemos:</strong></p><ul><li>Aval&uacute;o Referencial.</li><li>Gesti&oacute;n de Cr&eacute;dito.</li><li>Fotograf&iacute;as y dise&ntilde;o de anuncios.</li></ul>
       </div>
       <div class="col-sm-6 d-flex justify-content-center">
-        <div class="modal-content text-dark @if($ismobile) my-5 @else w-75 my-5 @endif">
+        <div class="modal-content text-dark @if($ismobile) my-1 @else w-75 my-5 @endif">
           <div class="modal-body">
             <form action="{{route('web.lead.contact')}}" method="POST">
               @csrf
