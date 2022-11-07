@@ -429,7 +429,7 @@ if(strpos($actual_link, 'localhost') === false){
                     <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 13px; padding-right: 13px; border-radius: 25px" class="fab fa-facebook-f"></i>
                   </a>
                   
-                  <a href="https://www.instagram.com/inmobiliariacasacredito/" class="asindeco px-1" target="_blank">
+                  <a href="https://www.instagram.com/casacreditoinmobiliaria/" class="asindeco px-1" target="_blank">
                     {{-- <img src="{{asset('img/casacredito-instagram.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40"> --}}
                     <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 11px; padding-right: 11px; border-radius: 25px" class="fab fa-instagram"></i>
                   </a>

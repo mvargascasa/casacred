@@ -263,11 +263,12 @@ class WebController extends Controller
         return view('services.subs',compact('services','service', 'ismobile'));
     }     
     
-    public function servicio(Service $service){        
+    public function servicio(Service $service){       
+        $ismobile = $this->isMobile(); 
         $otros = Service::where('status',1)->where('parent',$service->parent)->get();
         $types = DB::table('listing_types')->select('type_title')->get();
         $states = DB::table('info_states')->where('country_id',63)->orderBy('name')->get();  
-        return view('services.detail',compact('service','otros','types','states'));
+        return view('services.detail',compact('service','otros','types','states','ismobile'));
     }  
     
     public function sendlead(Request $request){
