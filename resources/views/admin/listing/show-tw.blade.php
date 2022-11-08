@@ -492,6 +492,9 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
             <th scope="col" class="py-3 px-6">
                 Comentario
             </th>
+            <th scope="col" class="py-3 px-6">
+                Usuario
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -508,6 +511,14 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
             </td>
             <td class="py-2 px-6">
               {{$comment->comment}}
+            </td>
+            <td class="flex justify-center">
+              @if($comment->user_id != null) 
+              @php
+                  $user = \App\Models\User::find($comment->user_id);
+              @endphp
+              {{$user->name}}
+              @else - @endif
             </td>
         </tr>
       @endforeach

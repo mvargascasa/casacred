@@ -123,8 +123,12 @@ class TwController extends Controller
 
     public function setcomment(Request $request){
 
+        $listing = Listing::select('product_code')->where('id', $request->listing_id)->first();
+
         $newcomment = Comment::create([
             'listing_id' => $request->listing_id,
+            'user_id' => Auth::user()->id,
+            'property_code' => $listing->product_code,
             'type' => $request->type,
             'value' => $request->value,
             'comment' => $request->comment
