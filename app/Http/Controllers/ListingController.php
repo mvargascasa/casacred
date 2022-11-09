@@ -266,6 +266,17 @@ class ListingController extends Controller
 
         if(!$listing->locked) $listing->locked = true;
 
+        if(Auth::user()->role == "administrator" && $listing->status == null && $request->status == 1){
+            $comment = Comment::create([
+                'listing_id' => $listing->id,
+                'user_id' => Auth::user()->id,
+                'property_code' => $listing->product_code,
+                'type' => 'status',
+                'comment' => 'Se publico la propiedad en la página web',
+                'value' => 1
+            ]);
+        }
+
         $listing->fill($request->all());
         
         //set variables bedroom bathroom y garage
