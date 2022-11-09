@@ -507,7 +507,7 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
               @if($comment->type == "status") Estado @elseif($comment->type == "plan") Plan @elseif($comment->type == "available") Disponibilidad @endif
             </td>
             <td class="py-2 px-6">
-              @if($comment->type == "status" && $comment->type == 0) Se desactivo la propiedad @elseif($comment->type == "plan" && $comment->value == 1) Se activo la propiedad Gratis @elseif($comment->type == "available" && $comment->value == 2) La propiedad ya no está disponible @endif
+              @if($comment->type == "status" && $comment->value == 0)  Se desactivo la propiedad @elseif($comment->type == "status" && $comment->value == 1) Se activo la propiedad @elseif($comment->type == "plan" && $comment->value == 1) Se activo la propiedad Gratis @elseif($comment->type == "available" && $comment->value == 2) La propiedad ya no está disponible @endif
             </td>
             <td class="py-2 px-6">
               {{$comment->comment}}
