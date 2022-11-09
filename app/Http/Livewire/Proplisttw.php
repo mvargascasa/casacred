@@ -123,7 +123,8 @@ class Proplisttw extends Component
             if($propertie_to_similar){
                 $address = $propertie_to_similar->address;
                 if(str_contains($address, ",")){
-                    $address = end(explode(",", $address));                    
+                    $separate_address = explode(",", $address);
+                    $address = end($separate_address);
                 }
                 $similarProperties->where('address', 'LIKE', $address);
                 $similarProperties->where('state', $propertie_to_similar->state);
