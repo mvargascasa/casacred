@@ -121,12 +121,23 @@ class Proplisttw extends Component
         if($this->code){
             $propertie_to_similar = Listing::where('product_code', 'LIKE', "%$this->code%")->first();
             if($propertie_to_similar){
+                if(str_contains($propertie_to_similar->address, ",")){
+                    $separate_address = explode(",", $propertie_to_similar->address);
+                    $address = end($separate_address);
+                    $address = str_replace(" ", "", $address);
+                    $similarProperties->where('address', 'LIKE', $address);
+                    if($similarProperties->count()<1) $similarProperties->where('listing_title', 'LIKE', $address);
+                } else {
+                    $similarProperties->where('address', 'LIKE', $propertie_to_similar->address);
+                }
                 $similarProperties->where('state', $propertie_to_similar->state);
                 $similarProperties->where('city', $propertie_to_similar->city);
                 $similarProperties->where('listingtype', $propertie_to_similar->listingtype);
                 $similar_properties = $similarProperties->where('product_code', '!=', $this->code)->latest()->take(4)->get();
             }
         }
+
+        //dd($similarProperties);
 
         $types = DB::table('listing_types')->get(); 
         $categories = DB::table('listing_status')->get(); 
