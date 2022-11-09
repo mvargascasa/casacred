@@ -64,7 +64,7 @@ class Proplisttw extends Component
 
         if(strlen($this->detalle)>2){        
             //$properties_filter->where('address','LIKE',"%$this->detalle%")->orWhere('listing_title', 'LIKE', "%$this->detalle%");
-            $properties_filter->where('listing_title','LIKE',"%$this->detalle%");
+            $properties_filter->where('address','LIKE',"%$this->detalle%");
             if($properties_filter->count()<1){
                 $properties_filter->where('listing_title','LIKE',"%$this->detalle%");
             }
@@ -121,15 +121,11 @@ class Proplisttw extends Component
         if($this->code){
             $propertie_to_similar = Listing::where('product_code', 'LIKE', "%$this->code%")->first();
             if($propertie_to_similar){
-                if(str_contains($propertie_to_similar->address, ",")){
-                    $separate_address = explode(",", $propertie_to_similar->address);
-                    $address = end($separate_address);
-                    $address = str_replace(" ", "", $address);
-                    $similarProperties->where('address', 'LIKE', $address);
-                    if($similarProperties->count()<1) $similarProperties->where('listing_title', 'LIKE', $address);
-                } else {
-                    $similarProperties->where('address', 'LIKE', $propertie_to_similar->address);
+                $address = $propertie_to_similar->address;
+                if(str_contains($address, ",")){
+                    $address = end(explode(",", $address));                    
                 }
+                $similarProperties->where('address', 'LIKE', $address);
                 $similarProperties->where('state', $propertie_to_similar->state);
                 $similarProperties->where('city', $propertie_to_similar->city);
                 $similarProperties->where('listingtype', $propertie_to_similar->listingtype);
