@@ -125,12 +125,13 @@ class Proplisttw extends Component
                 if(str_contains($address, ",")){
                     $separate_address = explode(",", $address);
                     $address = end($separate_address);
+                    $address = str_replace(" ", "", $address);
                 }
-                $similarProperties->where('address', 'LIKE', $address);
+                $similarProperties->where('address', 'LIKE', "%$address%");
                 $similarProperties->where('state', $propertie_to_similar->state);
                 $similarProperties->where('city', $propertie_to_similar->city);
                 $similarProperties->where('listingtype', $propertie_to_similar->listingtype);
-                $similar_properties = $similarProperties->where('product_code', '!=', $this->code)->latest()->take(4)->get();
+                $similar_properties = $similarProperties->where('product_code', '!=', $this->code)->latest()->take(8)->get();
             }
         }
 
