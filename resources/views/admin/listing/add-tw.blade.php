@@ -95,7 +95,7 @@
                 {{-- @if(isset($listing) && $listing->locked)
                     {!! Form::select('listing_type',['2'=>'PAGO','1'=>'GRATIS'], null, ['class' => $inputs, 'disabled']) !!}
                 @else --}}
-                    {!! Form::select('listing_type',['2'=>'PAGO','1'=>'GRATIS'], null, ['class' => $inputs]) !!}
+                    {!! Form::select('listing_type',['' => 'Seleccione', '2'=>'PAGO','1'=>'GRATIS'], null, ['class' => $inputs, 'required']) !!}
                 {{-- @endif --}}
             </div>
     
