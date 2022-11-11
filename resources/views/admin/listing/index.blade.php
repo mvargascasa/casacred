@@ -1,7 +1,7 @@
 @extends('layouts.dashtw')
 
 @section('firstscript')
-<title>Propiedades Taildwind</title>
+<title>Propiedades</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">  
 <style>
     .hover-trigger .hover-target {display: none;} 
