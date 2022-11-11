@@ -66,7 +66,6 @@ class WebController extends Controller
         } else {
             $listings = Listing::where('product_code', $code)->first();
             //dd($listings);
-
             //dd($listings);
             return view('indexweb',compact('states', 'keywords', 'listings', 'types', 'categories', 'ismobile'));
         }
@@ -126,14 +125,25 @@ class WebController extends Controller
                             $segments = explode("-", $segment2);
                             $lastelement = end($segments);
                             $city = $lastelement;
+                            // $state = $segments[count($segments)-1];
+                            // $city = $segments[count($segments)-2];
                         }
                     }
                     
+                    // $city = DB::table('info_cities')->where('name', $city)->get();
+
+                    // //return $city;
+
+                    // $state = DB::table('info_states')->where('id', $city);
+                    
+                    //$listings = Listing::filterByState($state)->filterByCity($city)->paginate(20);
                     $listings = Listing::where('city', 'LIKE', "%$city%")->paginate(20);
                     return view('indexweb',compact('states', 'keywords', 'listings', 'types', 'categories', 'ismobile'));
                 }
             }
         }
+
+        // return "entra aqui";
 
         $listings = Listing::filterByState($request->state)->filterByCity($request->city)->paginate(20);
         //$types = DB::table('listing_types')->get();
@@ -527,8 +537,17 @@ class WebController extends Controller
     }
 
     public function getstatebycity($city){
-        $city = DB::table('info_cities')->where('name', 'LIKE', "%$city%")->first();
-        $state = DB::table('info_states')->select('name')->where('id', $city->state_id)->first();
+        if(is_numeric($city)){
+            $state = DB::table('info_states')->select('name')->where('id', $city)->first();
+        } else {
+            $city = DB::table('info_cities')->where('name', 'LIKE', "%$city%")->get();
+            $id_state = 0;
+            //dd($city_aux);
+            if(count($city)>0){
+                foreach ($city as $c) {if(($c->state_id >= 1022 && $c->state_id <= 1043) || ($c->state_id == 3979 || $c->state_id == 3980)) $id_state = $c->state_id;}
+            }
+            $state = DB::table('info_states')->select('name')->where('id', $id_state)->first();
+        }
         //$state = DB::select('select name from info_states where id = ? and country_id = 63', [$city->state_id]);
         return response()->json($state);
     }
