@@ -78,50 +78,58 @@ class SeoController extends Controller
     }
 
     public function store(Request $request){
-        set_time_limit(420);
         //return $request;
-        if($request->category == 1){
-            $cities = Listing::select('city')->where('city', '!=', null)->distinct()->get();
-            $propertie_type = DB::table('listing_types')->select('type_title')->where('id', $request->type)->first();
+        // if($request->category == 1){
+        //     $cities = Listing::select('city')->where('city', '!=', null)->distinct()->get();
+        //     $propertie_type = DB::table('listing_types')->select('type_title')->where('id', $request->type)->first();
+        //     $adj1="";$adj3="";
+        //     switch ($request->type) {
+        //         case '24': case '26': case '32': $adj1 = "los"; $adj3 = "el"; break;
+        //         case '23': case '25': case '29': case '30': case '35': case '36': $adj1 = "las"; $adj3 = "la"; break;
+        //         default: break;
+        //     }
+        //     $similarwords = $this->getSimilarWords($request->info_header);
+        //     $newtext = $this->setSimilarWords($similarwords, $request->info_header);
+        //     $similarwordsfooter = $this->getSimilarWords($request->info_footer);
+        //     $newtextfooter = $this->setSimilarWords($similarwordsfooter, $request->info_footer);
+        //     foreach ($cities as $city) {
+        //         $similarwords = $this->getSimilarWords($request->info_header);
+        //         $newtext = $this->setSimilarWords($similarwords, $request->info_header);
+        //         $similarwordsfooter = $this->getSimilarWords($request->info_footer);
+        //         $newtextfooter = $this->setSimilarWords($similarwordsfooter, $request->info_footer);
+        //         $state_id = DB::table('info_cities')->select('state_id')->where('name', "LIKE",  "%$city->city%")->first();
+        //         $state = DB::table('info_states')->select('name')->where('id', $state_id->state_id)->first();
+        //         $page = SeoPage::where('city', 'LIKE', $city->city)->where('type', $request->type)->where('typestatus', $request->typestatus)->first();
+        //         $title = str_replace('{ciudad}', $city->city, $request->title);
+        //         if(!isset($page)){
+        //             SeoPage::create([
+        //                 "title" => $title,
+        //                 "category" => $request->category,
+        //                 "slug" => Str::lower(str_replace('ciudad', $city->city, $request->slug)),
+        //                 "title_google" => str_replace('{ciudad}', $city->city, $request->title_google),
+        //                 "state" => $state->name,
+        //                 "city" => $city->city,
+        //                 "type" => $request->type,
+        //                 "typestatus" => $request->typestatus,
+        //                 "meta_description" => "Encuentra ".$adj1." mejores ". str_replace("{ciudad}", $city->city, $request->title) .", descubre una gran variedad de ".Str::lower($propertie_type->type_title)." para que consigas ".$adj3." que se adapte con tus gustos y necesidades.",
+        //                 "info_header" => str_replace('{ciudad}', $city->city, $newtext),
+        //                 "info_footer" => str_replace('{ciudad}', $city->city, $newtextfooter)
+        //             ]);
+        //         }
+        //     }
+        //     return redirect()->route('admin.seo.pages.index')->with('status', true);
+
+        // } else if($request->category == 0){
+
             $adj1="";$adj3="";
             switch ($request->type) {
                 case '24': case '26': case '32': $adj1 = "los"; $adj3 = "el"; break;
                 case '23': case '25': case '29': case '30': case '35': case '36': $adj1 = "las"; $adj3 = "la"; break;
                 default: break;
             }
-            $similarwords = $this->getSimilarWords($request->info_header);
-            $newtext = $this->setSimilarWords($similarwords, $request->info_header);
-            $similarwordsfooter = $this->getSimilarWords($request->info_footer);
-            $newtextfooter = $this->setSimilarWords($similarwordsfooter, $request->info_footer);
-            foreach ($cities as $city) {
-                $similarwords = $this->getSimilarWords($request->info_header);
-                $newtext = $this->setSimilarWords($similarwords, $request->info_header);
-                $similarwordsfooter = $this->getSimilarWords($request->info_footer);
-                $newtextfooter = $this->setSimilarWords($similarwordsfooter, $request->info_footer);
-                $state_id = DB::table('info_cities')->select('state_id')->where('name', "LIKE",  "%$city->city%")->first();
-                $state = DB::table('info_states')->select('name')->where('id', $state_id->state_id)->first();
-                $page = SeoPage::where('city', 'LIKE', $city->city)->where('type', $request->type)->where('typestatus', $request->typestatus)->first();
-                $title = str_replace('{ciudad}', $city->city, $request->title);
-                if(!isset($page)){
-                    SeoPage::create([
-                        "title" => $title,
-                        "category" => $request->category,
-                        "slug" => Str::lower(str_replace('ciudad', $city->city, $request->slug)),
-                        "title_google" => str_replace('{ciudad}', $city->city, $request->title_google),
-                        "state" => $state->name,
-                        "city" => $city->city,
-                        "type" => $request->type,
-                        "typestatus" => $request->typestatus,
-                        "meta_description" => "Encuentra ".$adj1." mejores ". str_replace("{ciudad}", $city->city, $request->title) .", descubre una gran variedad de ".Str::lower($propertie_type->type_title)." para que consigas ".$adj3." que se adapte con tus gustos y necesidades.",
-                        "info_header" => str_replace('{ciudad}', $city->city, $newtext),
-                        "info_footer" => str_replace('{ciudad}', $city->city, $newtextfooter)
-                    ]);
-                    //return $seopage;
-                }
-            }
-            return redirect()->route('admin.seo.pages.index')->with('status', true);
 
-        } else if($request->category == 0){
+            $type_listing = DB::table('listing_types')->select('type_title')->where('id', $request->type)->first();
+
             $seopage = SeoPage::create($request->all());
             // if($request->bgimageheader){
             //     $folder = 'uploads/seopages/';
@@ -145,13 +153,13 @@ class SeoController extends Controller
                 }
             }
     
-            $seopage->meta_description = "Encuentra las mejores " . $seopage->title . " , descubre una gran variedad de casas para que consigas la que se adapte con tus gustos y necesidades.";
+            $seopage->meta_description = "Encuentre ".$adj1." mejores " . $seopage->title . " , descubra una gran variedad de ".$type_listing->type_title." para que consiga ".$adj3." que se adapte con sus gustos y necesidades.";
             $seopage->similarlinks = $arraylinks;
             $seopage->similarlinks_g = $arraylinks_g;
     
             $seopage->save();
             return redirect()->route('admin.seo.edit', $seopage)->with('status', true);
-        }
+        //}
     }
 
     protected $array_positions = [];
