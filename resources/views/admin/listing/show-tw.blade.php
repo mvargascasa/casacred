@@ -626,6 +626,7 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
       <p class="text-blue-700 mt-2">https://casacredito.com/propiedad/{{$propertie->slug}}</p>
       <p class="text-sm font-semibold">{{$propertie->listing_title}}</p>
     </div>
+    @if (count($similarProperties)>0)
     <div class="mt-3">
       <h6 class="text-gray-500 text-xs">Propiedades similares</h6>
       @php $i=0; @endphp
@@ -643,6 +644,11 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
         </div>
       @endforeach
     </div>
+    @else
+    <div class="mt-3 text-xs text-gray-600">
+      No hemos encontrado propiedades similares
+    </div>
+    @endif
     <div class="flex justify-center mt-4">
       <button type="button" onclick="document.getElementById('sharetowpp').classList.remove('block');document.getElementById('sharetowpp').classList.add('hidden');document.getElementById('linksshare').classList.remove('hidden');document.getElementById('linksshare').classList.add('block');" class="bg-white font-bold rounded px-2 py-1"><i class="fas fa-arrow-left"></i> Regresar</button>
       <button id="btnsharewpp" onclick="setLinkToShare()" class="bg-red-500 hover:bg-red-700 text-white font-bold rounded px-2 py-1">Compartir <i class="fas fa-arrow-right"></i></button>
@@ -672,6 +678,7 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
           <p class="text-sm font-semibold">{{$propertie->listing_title}}</p>
         </div>
       </div>
+      @if(count($similarProperties)>0)
       <div class="mt-3">
         <h6 class="text-gray-500 text-xs">Propiedades similares</h6>
         @php $i=0; @endphp
@@ -689,6 +696,11 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
           </div>
         @endforeach
       </div>
+      @else
+      <div class="mt-3 text-xs text-gray-600">
+        No hemos encontrado propiedades similares
+      </div>
+      @endif
     </div>
     <div class="flex justify-center mt-4">
       <button type="button" onclick="document.getElementById('sharetomail').classList.remove('block');document.getElementById('sharetomail').classList.add('hidden');document.getElementById('linksshare').classList.remove('hidden');document.getElementById('linksshare').classList.add('block');" class="bg-white font-bold rounded px-2 py-1"><i class="fas fa-arrow-left"></i> Regresar</button>
