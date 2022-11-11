@@ -82,7 +82,7 @@
     
               <div class="col-12 text-white text-center p-4" style="width: 600px;background:rgba(2, 2, 2, 0.5)">
                 <p class="font-weight-bold heading-title" style="font-size: 30px; margin: 0px">Su sueño está aquí</p>
-                <h1 style="font-size: 20px">Compra, Venta y Alquiler de Propiedades</h1>
+                {{-- <h1 style="font-size: 20px">Compra, Venta y Alquiler de Propiedades</h1> --}}
 
                 <div class="btn-group pb-2">
                   <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_0" autocomplete="off" value="en-venta" @if($category === "en-venta") checked @endif onclick="btnradio_search(this);setCategoryOnLoadIfRequestQueryHas(this.value)">
@@ -560,8 +560,15 @@
     }
     if($segment3) $searchtxt = $segment3;
     if($city != "ecuador"){
-      $city_aux = DB::table('info_cities')->where('name', 'LIKE', "%$city%")->first();
-      $state = DB::table('info_states')->select('name')->where('id', $city_aux->state_id)->first();
+      $city_aux = DB::table('info_cities')->where('name', 'LIKE', "%$city%")->get();
+      $id_state;
+      //dd($city_aux);
+      if(count($city_aux)>0){
+        foreach ($city_aux as $c) {if(($c->state_id >= 1022 && $c->state_id <= 1043) || ($c->state_id == 3979 || $c->state_id == 3980)) $id_state = $c->state_id;}
+      }
+      //dd($id_state);
+      $state = DB::table('info_states')->select('name')->where('id', $id_state)->where('country_id', '63')->first();
+      //dd($state);
       $state = $state->name;
     }
 @endphp

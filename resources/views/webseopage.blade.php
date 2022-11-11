@@ -216,8 +216,12 @@
               }
             }
             if($city != "ecuador"){
-              $city_aux = DB::table('info_cities')->where('name', 'LIKE', "%$city%")->first();
-              $state = DB::table('info_states')->select('name')->where('id', $city_aux->state_id)->first();
+              $city_aux = DB::table('info_cities')->where('name', 'LIKE', "%$city%")->get();
+              $id_state;
+              if(count($city_aux)>0){
+                foreach ($city_aux as $c) {if(($c->state_id >= 1022 && $c->state_id <= 1043) || ($c->state_id == 3979 || $c->state_id == 3980)) $id_state = $c->state_id;}
+              }
+              $state = DB::table('info_states')->select('name')->where('id', $id_state)->where('country_id', '63')->first();
               $state = $state->name;
             }
         @endphp
