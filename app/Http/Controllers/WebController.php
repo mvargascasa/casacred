@@ -143,8 +143,6 @@ class WebController extends Controller
             }
         }
 
-        // return "entra aqui";
-
         $listings = Listing::filterByState($request->state)->filterByCity($request->city)->paginate(20);
         //$types = DB::table('listing_types')->get();
         if($ismobile) return view('indexmobile',compact('states', 'keywords', 'types'));

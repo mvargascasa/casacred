@@ -136,6 +136,10 @@ class Proplist extends Component
             $listings_filter->where('state',$this->pstate);
             $this->state = null;
         }
+
+        if(strlen($this->city)>2 || $this->city != "ecuador"){
+            $listings_filter->where('city', $this->city);
+        }
         
         if(strlen($this->fromprice)>1 && filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT)>1){
             $fromprice_ = filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT);
