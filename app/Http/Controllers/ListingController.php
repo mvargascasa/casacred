@@ -190,7 +190,8 @@ class ListingController extends Controller
             $listing->phone_number = $request->phone_number;
     
             //bloqueando la propiedad una vez creada
-            $listing->locked = true;
+            //$listing->locked = true;
+            if(!$listing->locked && ($listing->owner_name != null || $request->owner_name != null) && ($listing->identification != null || $request->identification != null) && ($listing->phone_number != null || $request->phone_number != null) && ($listing->owner_email != null || $request->owner_email != null)) $listing->locked = true;
             $listing->save();
         }
 
@@ -264,7 +265,7 @@ class ListingController extends Controller
             ]);
         }
 
-        if(!$listing->locked) $listing->locked = true;
+        if(!$listing->locked && ($listing->owner_name != null || $request->owner_name != null) && ($listing->identification != null || $request->identification != null) && ($listing->phone_number != null || $request->phone_number != null) && ($listing->owner_email != null || $request->owner_email != null)) $listing->locked = true;
 
         if(Auth::user()->role == "administrator" && $listing->status == null && $request->status == 1){
             $comment = Comment::create([
@@ -402,7 +403,7 @@ class ListingController extends Controller
 
         $similarProperties = []; $nearbyproperties = []; $nearbyproperties_aux = [];
 ;        if($propertie){
-            $similarProperties = Listing::where('state', 'LIKE', "%$propertie->state%")->where('city', 'LIKE', "%$propertie->city%")->where('listingtype', 'LIKE', "%$propertie->listingtype%")->where('available', 1)->where("product_code", "!=", $propertie->product_code)->latest()->take(10)->get();
+            $similarProperties = Listing::where('state', 'LIKE', "%$propertie->state%")->where('city', 'LIKE', "%$propertie->city%")->where('address', 'LIKE', "%$propertie->address%")->where('listingtype', 'LIKE', "%$propertie->listingtype%")->where('available', 1)->where("product_code", "!=", $propertie->product_code)->latest()->take(10)->get();
             $nearbyproperties = Listing::select('product_code', 'lat', 'lng', 'listing_title', 'id', 'address')
                                         ->where('address', 'LIKE', "%$propertie->address%")
                                         ->where('listingtype', 'LIKE', "%$propertie->listingtype%")
