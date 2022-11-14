@@ -523,10 +523,10 @@ if(strpos($actual_link, 'localhost') === false){
     </a>
   </div>
 {{-- <script src="{{asset('js/popper.min.js')}}"></script> --}}
-<script src="{{asset('js/5.0.0/bootstrap.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+{{-- <script  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> --}}
+<script src="{{asset('js/5.0.0/bootstrap.min.js')}}"></script>
 
 @yield('script')
 <script>
@@ -536,8 +536,8 @@ if(strpos($actual_link, 'localhost') === false){
     const sendFormLead = async() =>{
         
         if( document.getElementById('fname').value.length>2 && document.getElementById('tlf').value.length>6 ){
-                myModal.hide()     
-                moThank.show()
+                myModal.hide();
+                moThank.show();
                 var dataForm = new FormData(document.getElementById('mainFormLead'));
                 const response = await fetch("{{route('web.sendlead')}}",
                 { body: dataForm, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}" }  })
@@ -547,6 +547,7 @@ if(strpos($actual_link, 'localhost') === false){
             alert('Complete el formulario para enviar información...')
         }
     }
+
     const setInterest = (interest) =>{
       if (interest == "Avalúo de una propiedad") {
         document.getElementById('interest_aval').value = interest;
