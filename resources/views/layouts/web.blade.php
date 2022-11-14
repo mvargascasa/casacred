@@ -462,7 +462,7 @@ if(strpos($actual_link, 'localhost') === false){
 </footer>
  <!-- Modal -->
  <div class="modal fade" id="modalContact" tabindex="-1" role="dialog" aria-labelledby="modalContactLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header text-white" style="background-color: darkred !important;">
           <span class="modal-title" id="modalContactLabel">Complete el siguiente formulario y en breve será contactado.</span>
