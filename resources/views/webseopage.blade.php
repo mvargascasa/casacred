@@ -806,6 +806,7 @@
     // });
 
     function changeLocationWithSlug(city){
+      if(!city) city = "ecuador";
       let category = document.getElementById('bform_category').value;
       if(!category) category = "venta";
       let type = document.getElementById('bform_type').value;
