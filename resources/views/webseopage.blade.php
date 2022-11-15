@@ -648,6 +648,14 @@
       </div>
     </div>
     @endif
+
+    @if(session('citesend'))
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <script>
+        swal("Información enviada con éxito", "En breve un asesor se contactará con usted", "success");
+      </script>
+    @endif
+    
 @endsection
 
 @section('script')
