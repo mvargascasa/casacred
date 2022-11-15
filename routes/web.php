@@ -29,6 +29,7 @@ Route::get('/servicio/{service:slug}', [WebController::class,'servicio'])->name(
 Route::get('/politicas-de-privacidad', [WebController::class,'politicas'])->name('web.politicas');
 
 Route::post('sendlead', [WebController::class,'sendlead'])->name('web.sendlead');
+Route::post('sendcite', [WebController::class, 'sendcite'])->name('web.sendcite');
 Route::post('sendleadaval', [WebController::class, 'sendleadaval'])->name('web.sendleadaval');
 Route::post('sendemailinterested', [WebController::class, 'sendemailinterested'])->name('web.send.email.interested');
 Route::get('indextest', [WebController::class,'indextest'])->name('web.indextest');
@@ -90,7 +91,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
     Route::get('seo/navbar/edit/{id}', [SeoController::class, 'editnavbar'])->name('admin.seo.navbar.edit');
     Route::put('seo/navbar/update/{id}', [SeoController::class, 'updatenavbar'])->name('admin.seo.navbar.update');
     
-    //Route::get('seo/templates', [SeoController::class, 'indextemplates'])->name('admin.seo.templates.index');
+    Route::get('seo/templates', [SeoController::class, 'indextemplates'])->name('admin.seo.templates.index');
 
     
     //Route::get('listings', [ListingController::class,'listings'])->name('admin.listings');

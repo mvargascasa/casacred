@@ -496,6 +496,22 @@ if(strpos($actual_link, 'localhost') === false){
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="modalcite" tabindex="-1" role="dialog" aria-labelledby="modalcitelabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-white" style="background-color: darkred !important;">
+          <span class="modal-title font-weight-bolder" id="modalcitelabel"><i class="fas fa-calendar-check"></i> Agende una cita en línea</span>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" style="color: #FFF !important;">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            @include('cite-form')
+        </div>
+      </div>
+    </div>
+  </div>
   
 
 
@@ -530,8 +546,8 @@ if(strpos($actual_link, 'localhost') === false){
 
 @yield('script')
 <script>
-    const  myModal = new bootstrap.Modal(document.getElementById('modalContact'));
-    const  moThank = new bootstrap.Modal(document.getElementById('modalThank'));
+    const myModal = new bootstrap.Modal(document.getElementById('modalContact'));
+    const moThank = new bootstrap.Modal(document.getElementById('modalThank'));
     const modalAval = new bootstrap.Modal(document.getElementById('modalAval'));
     const sendFormLead = async() =>{
         
@@ -543,8 +559,8 @@ if(strpos($actual_link, 'localhost') === false){
                 { body: dataForm, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}" }  })
                 let mensaje = await response.text();
                 console.log(mensaje);
-        }else{            
-            alert('Complete el formulario para enviar información...')
+        }else{
+          alert('Complete el formulario para enviar información...')
         }
     }
 
@@ -554,6 +570,10 @@ if(strpos($actual_link, 'localhost') === false){
       } else {
         document.getElementById('interest').value = interest;
       }
+    }
+
+    const setInteresCite = (interest) => {
+      document.getElementById('interestcite').value = interest;
     }
     
     const sendFormDetail = async(codPro) =>{
