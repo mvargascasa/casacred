@@ -498,7 +498,7 @@ if(strpos($actual_link, 'localhost') === false){
   </div>
 
   <div class="modal fade" id="modalcite" tabindex="-1" role="dialog" aria-labelledby="modalcitelabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header text-white" style="background-color: darkred !important;">
           <span class="modal-title font-weight-bolder" id="modalcitelabel"><i class="fas fa-calendar-check"></i> Agende una cita en línea</span>
