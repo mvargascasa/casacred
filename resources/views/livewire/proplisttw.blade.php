@@ -386,6 +386,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+function clear_filters(){
+    let b_code      = document.getElementById('b_code').value = "";
+    let b_status    = document.getElementById('b_status').value = "";
+    let b_detalle   = document.getElementById('b_detalle').value = "";
+    let b_categoria = document.getElementById('b_categoria').value = "";
+    let b_tipo      = document.getElementById('b_tipo').value = "";
+    // let b_view      = document.getElementById('view').value = "";
+    let b_current_url = document.getElementById('b_current_url').value = "";
+
+    let b_state     = document.getElementById('b_state').value = "";
+    let b_city      = document.getElementById('b_city').value = "";
+
+    let b_maxprice = document.getElementById('maxprice').value = "";
+    let b_minprice = document.getElementById('minprice').value = "";
+
+    let b_order_asc = document.getElementById('asc');
+    let b_order_desc = document.getElementById('desc');
+
+    let b_asesor = document.getElementById('b_asesor').value = "";
+
+    let b_fromdate = document.getElementById('fromdate').value = "";
+    let b_untildate = document.getElementById('untildate').value = "";
+    filter_properties(); toggleModal();
+}
+
 function filter_properties(){
     let b_code      = document.getElementById('b_code').value;
     let b_status    = document.getElementById('b_status').value;
