@@ -388,7 +388,11 @@
                 @elseif(Auth::user()->email == "developer2@casacredito.com")
                 {!! Form::text('lat', null, ['class' => $inputs]) !!}
                 @else --}}
-                {!! Form::text('lat', null, ['class' => $inputs, 'required']) !!}
+                @if(Auth::user()->email == "developer2@casacredito.com")
+                    {!! Form::text('lat', null, ['class' => $inputs]) !!}
+                @else
+                    {!! Form::text('lat', null, ['class' => $inputs, 'required']) !!}
+                @endif
                 {{-- @endif --}}
             </div>
             <div>          
@@ -398,7 +402,11 @@
                 @elseif(Auth::user()->email == "developer2@casacredito.com")
                 {!! Form::text('lng', null, ['class' => $inputs]) !!}
                 @else --}}
-                {!! Form::text('lng', null, ['class' => $inputs, 'required']) !!}
+                @if(Auth::user()->email == "developer2@casacredito.com")
+                    {!! Form::text('lng', null, ['class' => $inputs]) !!}
+                @else
+                    {!! Form::text('lng', null, ['class' => $inputs, 'required']) !!}
+                @endif
                 {{-- @endif --}}
             </div>
             {{-- <div>
