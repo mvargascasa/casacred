@@ -658,8 +658,11 @@
                   <p style="font-weight: 500">Quiero más información de esta propiedad</p>
                   <form id="formDetailProp" class="inputs">
                   <div class="mb-3 d-flex">
-                    <input style="font-size: 12px" type="text" class="form-control mr-1" id="fname" name="fname" placeholder="Nombre y Apellido">
+                    <input style="font-size: 12px" type="text" class="form-control mr-1" id="fname" name="fname" placeholder="Nombre">
+                    <input style="font-size: 12px" type="text" class="form-control mr-1" id="flastname" name="flastname" placeholder="Apellido">
                     <input type="hidden" id="interestDetail" name="interest">
+                  </div>
+                  <div class="mb-3">
                     <input style="font-size: 12px" type="text" class="form-control" id="tlf" name="tlf" placeholder="Teléfono">
                   </div>
                   <div class="mb-3">
@@ -669,14 +672,14 @@
                     <textarea class="form-control" name="message" id="message" rows="4">Hola, me interesa este inmueble y quiero que me contacten. Gracias</textarea>
                   </div>
                   <div class="d-grid gap-2">
-                    <button id="btnEnviar" type="button" class="btn btn-block mb-1"  onclick="sendFormDetail({{$listing->product_code}})">Enviar</button>
+                    <button id="btnEnviar" type="button" class="btn btn-block mb-1"  onclick="sendFormDetail({{$listing->product_code}}, this)">Enviar</button>
                     <a id="btnWhatsapp" target="_blank" class="btn btn-block" href="https://wa.me/+593983849073/?text=Me interesa esta propiedad con código: {{ $listing->product_code}}">Contactar por Whatsapp <i id="iconwpp" class="fab fa-whatsapp"></i></a>
                   </div>
                 </form>
                   <p id="textoCondicionesEmail">Al enviar está aceptando los términos de Uso y la Política de privacidad</p>
                 </div>
               </div>
-              <div id="thankMsjLead" class="card-body d-none">
+              <div id="thankMsjLead" class="card-body d-none my-2">
                 <h6 class="card-title text-danger">¡Gracias por Contactarnos!</h6> <hr>
                 En breve le atenderemos.
               </div>

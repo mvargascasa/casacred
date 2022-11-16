@@ -543,6 +543,7 @@ if(strpos($actual_link, 'localhost') === false){
 <script  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src="{{asset('js/5.0.0/bootstrap.min.js')}}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 @yield('script')
 <script>
@@ -576,19 +577,29 @@ if(strpos($actual_link, 'localhost') === false){
       document.getElementById('interestcite').value = interest;
     }
     
-    const sendFormDetail = async(codPro) =>{
-        if(document.getElementById('fname').value.length>3 && document.getElementById('tlf').value.length>7 && document.getElementById('email').value.length>12){
+    const sendFormDetail = async(codPro, element) =>{
+        if(document.getElementById('fname').value.length>3 && document.getElementById('flastname').value.length>2 && document.getElementById('tlf').value.length>7 && document.getElementById('email').value.length>12){
                 //document.getElementById('formMsjLead').classList.toggle('d-none');
-                document.getElementById('thankMsjLead').classList.toggle('d-none');
+                //document.getElementById('thankMsjLead').classList.toggle('d-none');
                 document.getElementById('interestDetail').value = codPro;
                 var dataForm = new FormData(document.getElementById('formDetailProp'));
+                let icon = document.createElement('i');
+                icon.classList.add('fa', 'fa-spinner', 'fa-spin', 'ml-2');
+                element.appendChild(icon);
                 const response = await fetch("{{route('web.sendlead')}}",
                 { body: dataForm, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}" }  })
-                let mensaje = await response.text();
-                document.getElementById('fname').value = "";
-                document.getElementById('tlf').value = "";
-                document.getElementById('email').value = "";
-                document.getElementById('message').value = "Hola, me interesa este inmueble y quiero que me contacten. Gracias";
+                let status = await response.status;
+                if(status == 200){
+                  swal("Información Enviada!", "Un asesor lo contáctara en breve", "success");
+                  element.removeChild(icon);
+                  document.getElementById('fname').value = "";
+                  document.getElementById('flastname').value = "";
+                  document.getElementById('tlf').value = "";
+                  document.getElementById('email').value = "";
+                  document.getElementById('message').value = "Hola, me interesa este inmueble y quiero que me contacten. Gracias";
+                } else {
+                  swal("Algo salio mal!", "Por favor, recargue la página e intentelo de nuevo", "error");
+                }
         }else{
             alert('Complete los Campos')
         }
