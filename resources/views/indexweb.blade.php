@@ -73,6 +73,11 @@
       if(Request()->get('category') != null){$category = Request()->get('category');}
       if(Request()->get('ptype') != null){$ptype = Request()->get('ptype');}
       if(Request()->get('searchtxt') != null){$searchtxt = Request()->get('searchtxt');}
+
+      if(is_numeric(request()->segment(2))) {
+        $listing = \App\Models\Listing::select('listing_title')->where('product_code', request()->segment(2))->first();
+        $h1 = $listing->listing_title;
+      } else {$h1 = ucwords(str_replace("-", " ", request()->segment(2)));}
     @endphp
 
     <section id="prisection" style="background-size: cover;background-position: 0rem 23%; width: 100%; background-repeat: no-repeat;display: none">
@@ -122,7 +127,7 @@
     {{-- <div class="sticky-top px-5" style="background-color: #bdbdbd"> --}}
       {{-- <form id="newsearch" action="{{route('web.search', ['category', 'en-venta', 'cuenca'])}}" method="GET" class="sticky-top"> --}}
       <div class="d-flex justify-content-center align-items-center pt-5 pb-4 text-center">
-        <h1 class="text-secondary @if($ismobile) pt-4 @endif">{{ucwords(str_replace("-", " ", request()->segment(2)))}}</h1>
+        <h1 class="text-secondary @if($ismobile) pt-4 @endif">{{$h1}}</h1>
       </div>
 
       @if($ismobile)
