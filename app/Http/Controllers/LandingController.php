@@ -30,6 +30,8 @@ class LandingController extends Controller
         $header .= "MIME-Version: 1.0\r\n";
         $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
-        return mail($to, "Nuevo Lead Créditos: ".strip_tags($request->name), $message, $header);
+        $status = mail($to, "Nuevo Lead Créditos: ".strip_tags($request->name), $message, $header);
+
+        return redirect()->back()->with('status', $status);
     }
 }

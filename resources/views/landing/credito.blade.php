@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Solicite su Crédito en Azuay y Cañar</title>
+    <title>Solicite su Crédito</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -82,7 +83,28 @@
             </div>
         </div>
     </div>
-
+    @if(session('status'))
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            swal({
+                title: "Su información se envió con éxito",
+                text: "Un asesor se contactará con usted lo más pronto posible",
+                icon: "success",
+                buttons: ["Regresar al Formulario", "Ir a Página Principal"],
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    location.replace("https://casacredito.com");
+                }
+            });
+        </script>
+    @endif
+    @if(session('status'))
+        <div class="fixed bottom-2 right-0">
+            <a class="bg-red-600 rounded-tl-lg text-sm p-2 text-white" href="https://casacredito.com">Ir a la Página Principal <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+    @endif
 <script>
     const selState = document.getElementById('state');
     const selCities= document.getElementById('city');
