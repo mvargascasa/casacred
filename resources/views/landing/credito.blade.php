@@ -79,7 +79,7 @@
                     <button type="submit" class="bg-red-600 text-white hover:bg-red-700 w-40 p-2 rounded-lg">ENVIAR SOLICITUD</button>
                 </div>
                 </form>
-                <div class="sm:px-10 md:mx-40 mt-10 sm:text-justify md:text-center font-semibold text-xs md:text-base">
+                <div class="sm:px-10 mt-10 sm:text-justify md:text-center font-semibold text-xs md:text-base">
                     <p>Autorizo a Casa Crédito para que obtenga de cualquier fuente de información, incluida la central de riesgos, mi referencia e información personal sobre mi comportamiento crediticio, manejo de mis cuentas, tarjetas de crédito, etc.</p>
                 </div>
             </div>
