@@ -30,21 +30,21 @@
                 <div class="grid sm:grid-cols-1 md:grid-cols-3">
                     <div class="mx-5 mb-2">
                         <label for="name" class="font-semibold text-xs md:text-base">Nombres:</label><br>
-                        <input type="text" name="name" class="px-3 w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded" required>
+                        <input type="text" name="name" class="px-3 w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded" required>
                     </div>
                     <div class="mx-5 mb-2">
                         <label for="lastname" class="font-semibold text-xs md:text-base">Apellidos:</label>
-                        <input type="text" name="lastname" class="px-3 w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded" required>
+                        <input type="text" name="lastname" class="px-3 w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded" required>
                     </div>
                     <div class="mx-5 mb-2">
                         <label for="identification" class="font-semibold text-xs md:text-base">Cédula o Pasaporte:</label>
-                        <input type="number" name="identification" class="px-3 w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded" required>
+                        <input type="number" name="identification" class="px-3 w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded" required>
                     </div>
                 </div>
                 <div class="grid sm:grid-cols-2 md:grid-cols-3 sm:mt-0 md:mt-10">
                     <div class="mx-5 mb-2">
                         <label for="state" class="font-semibold text-xs md:text-base">Provincia:</label>
-                        <select id="state" name="state" class="w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded" required>
+                        <select id="state" name="state" class="w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded" required>
                             <option value="">Seleccione</option>
                             @foreach ($states as $state)
                                 <option value="{{$state->name}}" data-id="{{$state->id}}">{{$state->name}}</option>
@@ -53,23 +53,23 @@
                     </div>
                     <div class="mx-5 mb-2">
                         <label for="city" class="font-semibold text-xs md:text-base">Ciudad:</label>
-                        <select id="city" name="city" class="w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded" required>
+                        <select id="city" name="city" class="w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded" required>
                             <option value="">Seleccione</option>
                         </select>
                     </div>
                     <div class="mx-5 mb-2">
                         <label for="phone" class="font-semibold text-xs md:text-base">Teléfono:</label>
-                        <input type="number" name="phone" class="px-3 w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded" required>
+                        <input type="number" name="phone" class="px-3 w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded" required>
                     </div>
                 </div>
                 <div class="grid sm:grid-cols-1 md:grid-cols-3 sm:mt-0 md:mt-10">
                     <div class="mx-5 mb-2">
                         <label for="email" class="font-semibold text-xs md:text-base">Email:</label>
-                        <input type="email" name="email" class="px-3 w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded" required>
+                        <input type="email" name="email" class="px-3 w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded" required>
                     </div>
                     <div class="mx-5 mb-2">
                         <label for="monthly_income" class="font-semibold text-xs md:text-base">Ingresos mensuales:</label>
-                        <select name="monthly_income" class="w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded" required>
+                        <select name="monthly_income" class="w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded" required>
                             <option value="">Seleccione</option>
                             <option value="500-1.000">De $500 a $1.000</option>
                             <option value="1000-2.000">De $1.000 a $2.000</option>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="mx-5 mb-2">
                         <label for="amount" class="font-semibold text-xs md:text-base">Monto a solicitar:</label>
-                        <input type="number" name="amount" class="px-3 w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded" placeholder="Ej:70.000" required>
+                        <input type="number" name="amount" class="px-3 w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded" placeholder="Ej:70.000" required>
                     </div>
                 </div>
                 <div class="grid justify-center mt-10">
