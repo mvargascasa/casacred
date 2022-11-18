@@ -65,9 +65,9 @@
                         <label for="monthly_income" class="font-semibold text-xs md:text-base">Ingresos mensuales:</label>
                         <select name="monthly_income" class="w-full h-8 bg-gray-50 border border-gray-400 text-gray-900 text-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded" required>
                             <option value="">Seleccione</option>
-                            <option value="500-1.000">De 500 a 1.000</option>
-                            <option value="1000-2.000">De 1.000 a 2.000</option>
-                            <option value="2000-3.000">De 2.000 a 3.000</option>
+                            <option value="500-1.000">De $500 a $1.000</option>
+                            <option value="1000-2.000">De $1.000 a $2.000</option>
+                            <option value="2000-3.000">De $2.000 a $3.000</option>
                         </select>
                     </div>
                     <div class="mx-5 mb-2">
