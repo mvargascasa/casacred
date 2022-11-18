@@ -753,9 +753,10 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
     }
 
     function setLinkToShare(){
-      var link = "https://api.whatsapp.com/send?text=";
-      var message = "Reciba un cordial saludo de Casa Crédito 👋🏻🏠 Le hacemos llegar la propiedad en la que se encuentra interesado.%0Ahttps://casacredito.com/propiedad/{{$propertie->slug}}%0A";
-      var firstparagraph = false;
+      let link = "https://api.whatsapp.com/send?text=";
+      let message = "https://casacredito.com/propiedad/{{$propertie->slug}}";
+      message += "%0AReciba un cordial saludo de Casa Crédito 👋🏻🏠 Le hacemos llegar la propiedad en la que se encuentra interesado.%0A"
+      let firstparagraph = false;
       for (let i = 0; i < {{count($similarProperties)}}; i++) {
         if(document.querySelector("input[name='similarwpp"+i+"']").checked) firstparagraph = true;
       }
