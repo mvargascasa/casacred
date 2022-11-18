@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SeoController;
@@ -129,6 +130,10 @@ Route::get('/departamentos-de-venta-en-guayaquil', [WebController::class,'index'
 Route::get('/quito', [WebController::class, 'index'])->name('web.quito');
 Route::get('/cuenca', [WebController::class, 'index'])->name('web.cuenca');
 Route::get('/guayaquil', [WebController::class, 'index'])->name('web.guayaquil');
+
+//landings
+Route::post('/landing/leadcredito', [LandingController::class, 'sendleadcredito'])->name('web.lead.credito');
+Route::get('/landing/solicite-su-credito', [LandingController::class, 'credito'])->name('web.landing.credito');
 
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //    return view('dashboard');
