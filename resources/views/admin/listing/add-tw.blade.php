@@ -335,15 +335,19 @@
         </div>
 
         {{-- nuevo div para guardar los años de construccion --}}
-        <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6 sm:grid-cols-4">
+        <div class="grid grid-cols-2 gap-4 mt-4">
             <div>
                 {!! Form::label('listyears', 'Años de construcción', ['class' => 'font-semibold']) !!} <br>
-                <span id="rangeValue">Entre 0 a 5 años</span>
+                <span id="rangeValue">Entre 0 a 5 años</span><br>
                 {{-- @if(isset($listing) && $listing->locked)
                 {!! Form::range('listyears', null,  ['class' => 'form-range', 'min' => '0', 'max' => '4', 'step' => '1', 'onchange' => 'rangeSlide(this.value)', 'onmousemove' => 'rangeSlide(this.value)', 'disabled']) !!}
                 @else --}}
                 {!! Form::range('listyears', null,  ['class' => 'form-range', 'min' => '0', 'max' => '4', 'step' => '1', 'onchange' => 'rangeSlide(this.value)', 'onmousemove' => 'rangeSlide(this.value)']) !!}
                 {{-- @endif --}}
+            </div>
+            <div>
+                {!! Form::label('aval', 'Avaluo de la propiedad', ['class' => 'font-semibold']) !!}
+                {!! Form::number('aval', null, ['class' => $inputs, 'placeholder' => 'Ej: 100000']) !!}
             </div>
         </div>
         {{-- termina div --}}

@@ -146,8 +146,8 @@
             <a href="tel:+593983849073" class="btn btn-outline-danger btn-sm px-2 rounded-pill btncall border" style="font-size:13px;"><img width="20px" height="15px" src="{{asset('img/ECUADOR-04.webp')}}" alt=""> Llamar</a>
             <a href="tel:+17186903740" class="btn btn-outline-danger btn-sm px-2 rounded-pill btncall border" style="font-size:13px;"><img width="20px" height="15px" src="{{asset('img/USA-05.webp')}}" alt=""> Llamar</a>
             {{-- background-color:#F1C255;color: #ffffff --}}
-            <button class="btn btn-danger btn-sm px-2 d-sm-inline-block rounded-circle" 
-            data-toggle="modal" data-target="#modalcite" style="font-size:13px;" onclick="setInteresCite('COD {{$listing->product_code}}')" title="Agendar Cita"><i class="fas fa-calendar-alt"></i></button>
+            {{-- <button class="btn btn-danger btn-sm px-2 d-sm-inline-block rounded-circle" 
+            data-toggle="modal" data-target="#modalcite" style="font-size:13px;" onclick="setInteresCite('COD {{$listing->product_code}}')" title="Agendar Cita"><i class="fas fa-calendar-alt"></i></button> --}}
             <button class="btn btn-danger btn-sm px-2 d-sm-inline-block rounded-circle" 
             data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('COD {{$listing->product_code}}')" title="Solicitar Información"><i class="fas fa-info-circle"></i></button>
             {{-- <button class="btn btn-danger btn-sm rounded-circle" title="Agendar una Cita"><i class="fas fa-calendar"></i></button> --}}

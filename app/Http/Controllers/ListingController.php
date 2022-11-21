@@ -162,6 +162,8 @@ class ListingController extends Controller
             $listing->property_price = $request->property_price;
             $listing->property_price_min = $request->property_price_min;
 
+            $listing->aval = $request->aval;
+
             $listing->listing_description = $request->listing_description;
             $listing->listing_type = $request->listing_type;
             $listing->address = $request->address;
