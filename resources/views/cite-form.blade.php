@@ -6,7 +6,7 @@
         <div class="form-group">
             {!! Form::label('fname', 'Nombre:', ['class' => 'mb-1 font-weight-bolder']) !!}
             {!! Form::text('fname', null, ['class' => 'form-control', 'required']) !!}
-            {!! Form::hidden('interest', 'General',['id'=>'interestcite']) !!}
+            {!! Form::hidden('interest', '',['id'=>'interestcite']) !!}
         </div>
     </div>
     <div class="col-sm-6 col-6">
@@ -44,7 +44,7 @@
 
 <div class="form-group my-2">
     {!! Form::label('message', 'Comentario:', ['class' => 'mb-1 font-weight-bolder']) !!}
-    {!! Form::textarea('message', null, ['class' => 'form-control', 'rows' => 3, 'placeholder' => 'Ej: Me interesa esta propiedad y deseo que me contacten']) !!}
+    {!! Form::textarea('message', null, ['class' => 'form-control', 'rows' => 3, 'placeholder' => 'Ej: Me interesa esta propiedad y deseo conocerla']) !!}
 </div>
 
 

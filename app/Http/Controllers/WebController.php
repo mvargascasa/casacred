@@ -313,23 +313,26 @@ class WebController extends Controller
 
     public function sendcite(Request $request){
 
-        $message = "<br><strong>Nueva Cita de Lead</strong>
-                    <br><b>Nombre:</b> ". strip_tags($request->fname) . " " . strip_tags($request->flastname) . "
-                    <br><b>Telef:</b> ".  strip_tags($request->tlf)."
-                    <br><b>Email:</b> ".  strip_tags($request->email)."
-                    <br><b>Interes:</b> Propiedad " . strip_tags($request->interest) . "
-                    <br><b>Fecha de la cita:</b> El " . strip_tags($request->date)." a las " . strip_tags($request->hour) . " 
-                    <br><b>Comentario:</b> " . strip_tags($request->message) . "
-                    ";
+        if(is_numeric($request->tlf) || $request->interest != "General"){
+            $message = "<br><strong>Nueva Cita de Lead</strong>
+                        <br><b>Nombre:</b> ". strip_tags($request->fname) . " " . strip_tags($request->flastname) . "
+                        <br><b>Telef:</b> ".  strip_tags($request->tlf)."
+                        <br><b>Email:</b> ".  strip_tags($request->email)."
+                        <br><b>Interes:</b> Propiedad " . strip_tags($request->interest) . "
+                        <br><b>Fecha de la cita:</b> El " . strip_tags($request->date)." a las " . strip_tags($request->hour) . " 
+                        <br><b>Comentario:</b> " . strip_tags($request->message) . "
+                        ";
+    
+            $header='';
+            $header .= 'From: <leads@casacredito.com>' . "\r\n";
+            $header .= "Reply-To: ".'info@casacredito.com'."\r\n";
+            $header .= "MIME-Version: 1.0\r\n";
+            $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+    
+            //mail('mvargas@casacredito.com,info@casacredito.com','Lead CasaCredito: '.strip_tags($request->fname), $message, $header);
+            mail('sebas31051999@gmail.com', 'Lead CasaCredito: ' . strip_tags($request->fname), $message, $header);
+        }
 
-        $header='';
-        $header .= 'From: <leads@casacredito.com>' . "\r\n";
-        $header .= "Reply-To: ".'info@casacredito.com'."\r\n";
-        $header .= "MIME-Version: 1.0\r\n";
-        $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
-        //mail('mvargas@casacredito.com,info@casacredito.com','Lead CasaCredito: '.strip_tags($request->fname), $message, $header);
-        mail('sebas31051999@gmail.com', 'Lead CasaCredito: ' . strip_tags($request->fname), $message, $header);
 
         return redirect()->back()->with('citesend', true);
     }
