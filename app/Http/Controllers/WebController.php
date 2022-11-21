@@ -313,7 +313,7 @@ class WebController extends Controller
 
     public function sendcite(Request $request){
 
-        if(is_numeric($request->tlf) || $request->interest != "General"){
+        if(is_numeric($request->tlf) && $request->interest != "General"){
             $message = "<br><strong>Nueva Cita de Lead</strong>
                         <br><b>Nombre:</b> ". strip_tags($request->fname) . " " . strip_tags($request->flastname) . "
                         <br><b>Telef:</b> ".  strip_tags($request->tlf)."
