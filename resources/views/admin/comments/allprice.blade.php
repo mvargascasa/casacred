@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="overflow-y-auto pb-5">
+    <div class="overflow-y-auto pb-5 mx-10">
         <h3 class="p-10 text-center font-semibold">Propiedades que cambiaron de precio</h3>
         <div class="mx-10">
             @if(count($properties_change_price)> 0)
