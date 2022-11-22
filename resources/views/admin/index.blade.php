@@ -265,13 +265,13 @@
                             <td class="px-4 py-4">@if($pd->comment == null || $pd->comment == "") <b>Sin información</b> @else {{$pd->comment}}@endif</td>
                             <td class="px-4 py-4">${{number_format($pd->property_price_prev)}}</td>
                             <td class="px-4 py-4">${{number_format($pd->property_price)}}</td>
-                            <td class="px-4 py-4">{{$pd->created_at->format('d-M-y')}}</td>
+                            <td class="px-4 py-4">{{$pd->created_at}}</td>
                         </tr>    
                         @endforeach
                     </tbody>
                 </table>
                 <div class="flex float-right mt-3 text-blue-600">
-                    <a href="{{route('admin.properties.change.price')}}">Ver más</a>
+                    <a href="{{route('admin.properties.change.price')}}">Ver todas</a>
                 </div>
             </div>
             @else
