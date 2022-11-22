@@ -28,7 +28,7 @@
 
 <div class="form-group my-2">
     {!! Form::label('message', 'Comentario:', ['class' => 'mb-1 font-weight-bolder']) !!}
-    {!! Form::textarea('message', null, ['class' => 'form-control', 'rows' => 3, 'placeholder' => 'Ej: Me interesa esta propiedad y deseo que me contacten']) !!}
+    {!! Form::textarea('message', null, ['class' => 'form-control', 'rows' => 3]) !!}
 </div>
 
 <div class="form-group my-2">
