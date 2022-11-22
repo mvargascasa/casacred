@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Listing;
 use App\Models\Word;
 use Illuminate\Http\Request;
@@ -46,9 +47,11 @@ class AdminController extends Controller
             }
         }
 
+        $properties_dropped = Comment::select('listing_id', 'property_code', 'comment', 'property_price_prev', 'property_price', 'created_at')->where('type', 'LIKE', "%price%")->latest()->take(5)->get();
+
         $properties_at_week = Listing::where('user_id', Auth::user()->id)->whereBetween('created_at', [$now->startOfWeek()->format('Y-m-d'), $now->endOfWeek()->format('Y-m-d')])->get();
 
-        return view('admin.index', compact('totalproperties', 'totalactivatedproperties', 'totalavailableproperties', 'properties_aux', 'totalcasas', 'totaldepartamentos', 'totalcasascomer', 'totalterrenos', 'totalquintas', 'totalhaciendas', 'totallocalcomer', 'totaloficinas', 'totalsuites', 'properties_at_week', 'properties_today', 'now'));
+        return view('admin.index', compact('totalproperties', 'totalactivatedproperties', 'totalavailableproperties', 'properties_aux', 'totalcasas', 'totaldepartamentos', 'totalcasascomer', 'totalterrenos', 'totalquintas', 'totalhaciendas', 'totallocalcomer', 'totaloficinas', 'totalsuites', 'properties_at_week', 'properties_today', 'properties_dropped', 'now'));
     }     
     public function test(){
         return view('admin.test');
@@ -63,4 +66,9 @@ class AdminController extends Controller
         $words = Word::orderBy('id','desc')->get();
         return view('admin.words.index',compact('words'));
     }   
+
+    public function propertieschangeprice(){
+        $properties_change_price = Comment::where('type', 'LIKE', "%price%")->orderBy('created_at', 'DESC')->paginate(10);
+        return view('admin.comments.allprice', compact('properties_change_price'));
+    }
 }

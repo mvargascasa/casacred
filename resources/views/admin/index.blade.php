@@ -239,5 +239,45 @@
         </div>
     </div>
     @endif
+
+    <div class="mx-4 my-3 w-auto border rounded py-4">
+        <p class="font-semibold mx-4">PROPIEDADES QUE BAJARON DE PRECIO</p>
+        <div class="mx-4">
+            @if (count($properties_dropped)>0)
+            <div class="grid grid-cols-1 my-2">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
+                        <tr>
+                            <th class="px-4 py-2">Código</th>
+                            <th class="px-4 py-2">Comentario</th>
+                            <th class="px-4 py-2">Precio Anterior</th>
+                            <th class="px-4 py-2">Nuevo Precio</th>
+                            <th class="px-4 py-2">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($properties_dropped as $pd)
+                        @php
+                            $listing = \App\Models\Listing::find($pd->listing_id);
+                        @endphp
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-xs">
+                            <td class="px-4 py-4"><a href="{{route('home.tw.edit', $listing)}}">{{$pd->property_code}}</a></td>
+                            <td class="px-4 py-4">@if($pd->comment == null || $pd->comment == "") <b>Sin información</b> @else {{$pd->comment}}@endif</td>
+                            <td class="px-4 py-4">${{number_format($pd->property_price_prev)}}</td>
+                            <td class="px-4 py-4">${{number_format($pd->property_price)}}</td>
+                            <td class="px-4 py-4">{{$pd->created_at->format('d-M-y')}}</td>
+                        </tr>    
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="flex float-right mt-3 text-blue-600">
+                    <a href="{{route('admin.properties.change.price')}}">Ver más</a>
+                </div>
+            </div>
+            @else
+                <p class="text-red-600"><i class="fa-sharp fa-solid fa-circle-exclamation"></i> No hemos encontrado propiedades subidas el día de hoy</p>
+            @endif
+        </div>
+    </div>
 </main>
 @endsection
