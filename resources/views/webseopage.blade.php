@@ -22,12 +22,12 @@
 @section('content')
 
     {{-- <section id="bg-header" style="background: rgba(8, 8, 8, 0.449); background-size: cover;background-position: center; width: 100%; background-repeat: no-repeat; background-blend-mode: darken;"> --}}
-      <div class="row justify-content-center pt-5">
-        <div class="pt-4">
+      <div class="row justify-content-center pt-5 pb-3">
+        <div @if($ismobile) class="pt-5" @endif>
           <h1 class="text-center">{{$seopage->title}}</h1>
           <p class="text-center">{{$seopage->description}}</p>
           <div class="container">
-            <div class="mx-5 text-center">
+            <div class="@if($ismobile) mx-0 @else mx-5 @endif text-center">
                 {!!$seopage->info_header!!}
             </div>
           </div>
@@ -152,10 +152,11 @@
               <label for="bedrooms" class="d-flex"><div id="labeldiv5back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv5" class="font-weight-bolder">Habitaciones</div></label>
             </div>
             <div id="child5" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
-              <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="2 habitaciones" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="3 habitaciones" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="4 habitaciones" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="5 habitaciones" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="1 habitacion(es)" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="2 habitacion(es)" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="3 habitacion(es)" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="4 habitacion(es)" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="5 habitacion(es)" class="border-0 inputs-on-hover" readonly></div>
             </div>
           </div>
   
@@ -165,10 +166,11 @@
               <label for="bathrooms" class="d-flex"><div id="labeldiv6back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv6" class="font-weight-bolder">Baños</div></label>
             </div>
             <div id="child6" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
-              <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="2 baños" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="3 baños" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="4 baños" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="5 baños" class="border-0 inputs-on-hover" readonly></div>
+              <div><i class="fa-light fa-bath"></i><input onclick="setValue(this, 'labeldiv6')" type="text" value="1 baño(s)" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="2 baño(s)" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="3 baño(s)" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="4 baño(s)" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="5 baño(s)" class="border-0 inputs-on-hover" readonly></div>
             </div>
           </div>
   
@@ -178,9 +180,10 @@
               <label for="bathrooms" class="d-flex"><div id="labeldiv7back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv7" class="font-weight-bolder">Garage</div></label>
             </div>
             <div id="child7" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
-              <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="2 garages" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="3 garages" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="4 garages" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="1 garage" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="2 garage" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="3 garage" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="4 garage" class="border-0 inputs-on-hover" readonly></div>
             </div>
           </div>
           
@@ -601,10 +604,11 @@
                     <label for="bedrooms" class="d-flex"><div id="labeldiv5back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv5">Habitaciones</div></label>
                   </div>
                   <div id="child5" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
-                    <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="2 habitaciones" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="3 habitaciones" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="4 habitaciones" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="5 habitaciones" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="1 habitacion(es)" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="2 habitacion(es)" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="3 habitacion(es)" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="4 habitacion(es)" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="5 habitacion(es)" class="border-0 inputs-on-hover" readonly></div>
                   </div>
                 </div>
               </div>
@@ -615,10 +619,11 @@
                     <label for="bathrooms" class="d-flex"><div id="labeldiv6back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv6">Baños</div></label>
                   </div>
                   <div id="child6" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
-                    <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="2 baños" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="3 baños" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="4 baños" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="5 baños" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="1 baño(s)" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="2 baño(s)" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="3 baño(s)" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="4 baño(s)" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="5 baño(s)" class="border-0 inputs-on-hover" readonly></div>
                   </div>
                 </div>
               </div>
@@ -632,9 +637,10 @@
                     <label for="bathrooms" class="d-flex"><div id="labeldiv7back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv7">Garage</div></label>
                   </div>
                   <div id="child7" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
-                    <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="2 garages" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="3 garages" class="border-0 inputs-on-hover" readonly></div>
-                    <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="4 garages" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="1 garage" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="2 garage" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="3 garage" class="border-0 inputs-on-hover" readonly></div>
+                    <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="4 garage" class="border-0 inputs-on-hover" readonly></div>
                   </div>
                 </div>
               </div>
