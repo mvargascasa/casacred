@@ -166,7 +166,7 @@
               <label for="bathrooms" class="d-flex"><div id="labeldiv6back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv6" class="font-weight-bolder">Baños</div></label>
             </div>
             <div id="child6" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
-              <div><i class="fa-light fa-bath"></i><input onclick="setValue(this, 'labeldiv6')" type="text" value="1 baño(s)" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="1 baño(s)" class="border-0 inputs-on-hover" readonly></div>
               <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="2 baño(s)" class="border-0 inputs-on-hover" readonly></div>
               <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="3 baño(s)" class="border-0 inputs-on-hover" readonly></div>
               <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="4 baño(s)" class="border-0 inputs-on-hover" readonly></div>
