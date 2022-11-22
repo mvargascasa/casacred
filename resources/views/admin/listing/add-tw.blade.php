@@ -348,6 +348,9 @@
             <div>
                 {!! Form::label('aval', 'Avaluo de la propiedad', ['class' => 'font-semibold']) !!}
                 {!! Form::number('aval', null, ['class' => $inputs, 'placeholder' => 'Ej: 100000']) !!}
+                <div class="text-xs bg-gray-100 mt-2 p-1 rounded">
+                    <i class="fa-solid fa-circle-info"></i> Si necesita obtener el avaluo de la propiedad, puede ingresar al <a target="_blank" class="text-blue-500" href="https://enlinea.cuenca.gob.ec/#/informe-predial">siguiente enlace</a> y consultar por el número de cédula.
+                </div>
             </div>
         </div>
         {{-- termina div --}}
