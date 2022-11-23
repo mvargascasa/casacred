@@ -23,7 +23,7 @@
 {{-- @endif --}}
 
 {{-- <title>@isset($meta_seo){{ ucfirst(str_replace('-', ' ', $meta_seo)) }} - Casa Crédito 🏠 @else Compra, Venta y Alquiler de Propiedades en Ecuador 🏠 @endisset</title> --}}
-<title>{{ucwords(str_replace("-", " ", request()->segment(2)))}} - Casa Crédito 🏠</title>
+<title>@if(request()->segment(2)){{ucwords(str_replace("-", " ", request()->segment(2)))}} - Casa Crédito 🏠 @else Encuentre las mejores Propiedades en Venta o Alquiler 🏠 @endif</title>
 {{-- <meta name="description" content="@isset($meta_seo)En Casa Crédito contamos con {{ucfirst(str_replace('-', ' ', $meta_seo)) }}. Acceda a nuestro Sitio Web y encuentre la casa de sus sueños. Precios Atractivos, Lugares Ideales 😉 @else Encuentre la casa de sus sueños, donde los sueños se hacen realidad 😉 Contamos con una gran variedad de propiedades disponibles ¡Contáctenos! @endisset"/> --}}
 <meta name="description" content="@if(request()->segment(2) != null) En Casa Crédito contamos con {{ucwords(str_replace("-", " ", request()->segment(2)))}}. Acceda a nuestro Sitio Web y encuentre la casa de sus sueños. Precios Atractivos, Lugares Ideales 😉 @else Encuentre la casa de sus sueños, donde los sueños se hacen realidad 😉 Contamos con una gran variedad de propiedades disponibles ¡Contáctenos! @endif">
 <meta name="keywords" content="@isset($meta_seo) {{ $keywords }} @else casas en venta, casas en venta guayaquil, casas en venta en guayaquil, casas en venta quito, casas en venta en quito, casas en venta cuenca, casas en venta en cuenca, casas de venta en guayaquil, casas de venta en quito, casas de venta en cuenca, casas en venta en guayaquil baratas, casas en venta en quito baratas, casas en venta en cuenca baratas, departamentos en venta, departamentos en venta en quito, departamentos en venta quito, departamentos en venta guayaquil, departamentos en venta en guayaquil, departamentos en venta cuenca, departamentos en venta en cuenca, venta casas cuenca, venta casas guayaquil, venta casas quito, departamentos en alquiler, departamentos en alquiler quito, departamentos en alquiler guayaquil, departamentos en alquiler cuenca, departamentos de alquiler en quito, departamentos de alquiler en guayaquil, departamentos de alquiler en cuenca, terrenos en venta, terrenos en venta cuenca, terrenos en venta en cuenca, terrenos de venta en cuenca, terrenos en venta quito, terrenos en venta en quito, terrenos de venta en quito, terrenos en venta guayaquil, terrenos en venta en guayaquil, terrenos de venta en guayaquil, venta terrenos cuenca, venta terrenos guayaquil, venta terrenos quito, lotes en venta, lotes en venta en cuenca, lotes en venta en quito, lotes en venta en guayaquil, apartamentos en venta, apartamentos en venta quito, apartamentos en venta guayaquil, apartamentos en venta cuenca @endif">
@@ -127,7 +127,7 @@
     {{-- <div class="sticky-top px-5" style="background-color: #bdbdbd"> --}}
       {{-- <form id="newsearch" action="{{route('web.search', ['category', 'en-venta', 'cuenca'])}}" method="GET" class="sticky-top"> --}}
       <div class="d-flex justify-content-center align-items-center pt-5 pb-4 text-center">
-        <h1 class="text-secondary @if($ismobile) pt-4 @endif">{{$h1}}</h1>
+        <h1 class="text-secondary h3 @if($ismobile) pt-4 @endif">@if($h1 != null || $h1 != "") {{$h1}} @else Encuentre las mejores Propiedades en Venta o Alquiler en <b class="text-danger font-weight-bold">Casa Crédito</b> @endif</h1>
       </div>
 
       @if($ismobile)
