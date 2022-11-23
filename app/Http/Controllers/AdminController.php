@@ -68,7 +68,8 @@ class AdminController extends Controller
     }   
 
     public function propertieschangeprice(){
-        $properties_change_price = Comment::where('type', 'LIKE', "%price%")->orderBy('created_at', 'DESC')->paginate(10);
+        $properties_change_price = Comment::where('type', 'LIKE', "%price%")->orWhere('property_price', '<', 'property_price_prev')->orderBy('created_at', 'DESC')->paginate(10);
+        //$properties_change_price = DB::select("select * from comments where type LIKE '%price%' AND property_price < property_price_prev");
         return view('admin.comments.allprice', compact('properties_change_price'));
     }
 }
