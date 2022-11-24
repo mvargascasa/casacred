@@ -107,7 +107,7 @@
 @section('content')
 <main class="overflow-x-hidden overflow-y-auto">
     <div class="mx-4 border my-3 rounded p-4">
-        <p class="font-semibold">ESTADISTICAS PROPIEDADES</p>
+        <p class="font-semibold"><i class="fas fa-chart-bar text-red-600"></i> ESTADISTICAS PROPIEDADES</p>
         <div class="mx-auto my-2">
             {{-- <h3 class="text-gray-700 text-3xl font-medium">Bienvenido</h3>   --}}
             <div class="flex">
@@ -156,7 +156,7 @@
     </div>
     <div class="grid grid-cols-2 mx-4 my-2 w-auto border rounded py-4">
         <div>
-            <p class="font-semibold mx-4 pb-1">UBICACIÓN DE PROPIEDADES</p>
+            <p class="font-semibold mx-4 pb-1"><i class="fas fa-location text-red-600"></i> UBICACIÓN DE PROPIEDADES</p>
             <p class="text-xs mx-4 pb-2">*Puede hacer clic sobre la ubicación de cada propiedad para más información</p>
             <div id="map" class="mx-4 rounded" style="height: 400px"></div>
         </div>
@@ -187,7 +187,7 @@
         </div>
     </div>
     <div class="mx-4 my-3 w-auto border rounded py-4">
-        <p class="font-semibold mx-4">MI USUARIO</p>
+        <p class="font-semibold mx-4"><i class="fas fa-user text-red-600"></i> MI USUARIO</p>
         <div class="mx-4">
             @if (count($properties_at_week)>0)
             <p>Propiedades subidas por <b class="text-gray-600">{{Auth::user()->name}}</b> durante esta semana desde el <b class="text-gray-600">{{$now->startOfWeek()->format('d-M-y')}} </b> hasta el <b class="text-gray-600">{{$now->endOfWeek()->format('d-M-y')}}</b></p>
@@ -241,7 +241,7 @@
     @endif --}}
 
     <div class="mx-4 my-3 w-auto border rounded py-4">
-        <p class="font-semibold mx-4">PROPIEDADES ACTUALIZADAS POR {{Auth::user()->name}}</p>
+        <p class="font-semibold mx-4"><i class="far fa-edit text-red-600"></i> PROPIEDADES ACTUALIZADAS POR {{Auth::user()->name}}</p>
         <div class="mx-4">
             @if (count($updated_listing)>0)
             <div class="grid grid-cols-1 my-2">
@@ -274,7 +274,7 @@
     </div>
 
     <div class="mx-4 my-3 w-auto border rounded py-4">
-        <p class="font-semibold mx-4">PROPIEDADES QUE BAJARON DE PRECIO</p>
+        <p class="font-semibold mx-4"><i class="fas fa-arrow-down text-red-600"></i> PROPIEDADES QUE BAJARON DE PRECIO</p>
         <div class="mx-4">
             @if (count($properties_dropped)>0)
             <div class="grid grid-cols-1 my-2">
