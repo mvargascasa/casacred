@@ -51,7 +51,9 @@ class AdminController extends Controller
 
         $properties_at_week = Listing::where('user_id', Auth::user()->id)->whereBetween('created_at', [$now->startOfWeek()->format('Y-m-d'), $now->endOfWeek()->format('Y-m-d')])->get();
 
-        return view('admin.index', compact('totalproperties', 'totalactivatedproperties', 'totalavailableproperties', 'properties_aux', 'totalcasas', 'totaldepartamentos', 'totalcasascomer', 'totalterrenos', 'totalquintas', 'totalhaciendas', 'totallocalcomer', 'totaloficinas', 'totalsuites', 'properties_at_week', 'properties_today', 'properties_dropped', 'now'));
+        $updated_listing = DB::table('updated_listing')->where('user_id', Auth::user()->id)->get();
+
+        return view('admin.index', compact('totalproperties', 'totalactivatedproperties', 'totalavailableproperties', 'properties_aux', 'totalcasas', 'totaldepartamentos', 'totalcasascomer', 'totalterrenos', 'totalquintas', 'totalhaciendas', 'totallocalcomer', 'totaloficinas', 'totalsuites', 'properties_at_week', 'properties_today', 'properties_dropped', 'updated_listing', 'now'));
     }     
     public function test(){
         return view('admin.test');
@@ -67,9 +69,12 @@ class AdminController extends Controller
         return view('admin.words.index',compact('words'));
     }   
 
-    public function propertieschangeprice(){
-        $properties_change_price = Comment::where('type', 'LIKE', "%price%")->orWhere('property_price', '<', 'property_price_prev')->orderBy('created_at', 'DESC')->paginate(10);
-        //$properties_change_price = DB::select("select * from comments where type LIKE '%price%' AND property_price < property_price_prev");
+    public function propertieschangeprice(Request $request){
+        if($request->property_code) {
+            $properties_change_price = Comment::where('property_code', $request->property_code)->paginate(10);
+        } else {
+            $properties_change_price = Comment::where('type', 'LIKE', "%price%")->orWhere('property_price', '<', 'property_price_prev')->orderBy('created_at', 'DESC')->paginate(10);
+        }
         return view('admin.comments.allprice', compact('properties_change_price'));
     }
 }

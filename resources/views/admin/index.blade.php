@@ -204,7 +204,7 @@
             @endif
         </div>
     </div>
-    @if(Auth::user()->role == "administrator")
+    {{-- @if(Auth::user()->role == "administrator")
     <div class="mx-4 my-3 w-auto border rounded py-4">
         <p class="font-semibold mx-4">PROPIEDADES SUBIDAS EL DÍA DE HOY</p>
         <div class="mx-4">
@@ -238,7 +238,40 @@
             @endif
         </div>
     </div>
-    @endif
+    @endif --}}
+
+    <div class="mx-4 my-3 w-auto border rounded py-4">
+        <p class="font-semibold mx-4">PROPIEDADES ACTUALIZADAS POR {{Auth::user()->name}}</p>
+        <div class="mx-4">
+            @if (count($updated_listing)>0)
+            <div class="grid grid-cols-1 my-2">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
+                        <tr>
+                            <th class="px-4 py-2">Código</th>
+                            <th class="px-4 py-2">Campos Actualizados</th>
+                            <th class="px-4 py-2">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($updated_listing as $update_lis)
+                        @php
+                            $listing = \App\Models\Listing::find($update_lis->listing_id);
+                        @endphp
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-xs">
+                            <td class="px-4 py-4"><a href="{{route('home.tw.edit', $listing)}}">{{$update_lis->property_code}}</a></td>
+                            <td class="px-4 py-4">{{str_replace(",", ", ", $update_lis->value_change)}}</td>
+                            <td class="px-4 py-4">{{date_format(new DateTime($update_lis->created_at), 'd-M-Y')}}</td>
+                        </tr>    
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            @else
+                <p class="text-red-600"><i class="fa-sharp fa-solid fa-circle-exclamation"></i> No hemos encontrado propiedades</p>
+            @endif
+        </div>
+    </div>
 
     <div class="mx-4 my-3 w-auto border rounded py-4">
         <p class="font-semibold mx-4">PROPIEDADES QUE BAJARON DE PRECIO</p>
@@ -265,7 +298,7 @@
                             <td class="px-4 py-4">@if($pd->comment == null || $pd->comment == "") <b>Sin información</b> @else {{$pd->comment}}@endif</td>
                             <td class="px-4 py-4">${{number_format($pd->property_price_prev)}}</td>
                             <td class="px-4 py-4">${{number_format($pd->property_price)}}</td>
-                            <td class="px-4 py-4">{{$pd->created_at}}</td>
+                            <td class="px-4 py-4">{{date_format(new DateTime($pd->created_at), 'd-M-Y')}}</td>
                         </tr>    
                         @endforeach
                     </tbody>
