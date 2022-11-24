@@ -229,11 +229,11 @@ class ListingController extends Controller
 
         $value_change = "";
         if($request->listing_type != $listing->listing_type) $value_change .= "plan,";
-        if($request->status != $listing->status) $value_change .= "estado,";
-        if($request->owner_name != $listing->owner_name) $value_change .= "nombre de propietario,";
-        if($request->identification != $listing->identification) $value_change .= "identificación,";
-        if($request->phone_number != $listing->phone_number) $value_change .= "telefono,";
-        if($request->owner_email != $listing->owner_email) $value_change .= "email,";
+        //if($request->status != $listing->status) $value_change .= "estado,";
+        if(isset($request->owner_name) && $request->owner_name != $listing->owner_name) $value_change .= "nombre de propietario,";
+        if(isset($request->identification) && $request->identification != $listing->identification) $value_change .= "identificación,";
+        if(isset($request->phone_number) && $request->phone_number != $listing->phone_number) $value_change .= "telefono,";
+        if(isset($request->owner_email) && $request->owner_email != $listing->owner_email) $value_change .= "email,";
         if($request->available != $listing->available) $value_change .= "disponibilidad,";
         if($request->listing_title != $listing->listing_title) $value_change .= "titulo de propiedad,";
         if($request->meta_description != $listing->meta_description) $value_change .= "metadescripcion,";
