@@ -276,9 +276,9 @@ class SeoController extends Controller
     }
 
     public function delete($id){
-        $seopage = SeoPage::find($id);
-        $seopage->delete();
-        return redirect()->route('admin.seo.pages.index')->with('isdeleted', 'Se elimino el elemento');
+        // $seopage = SeoPage::find($id);
+        // $seopage->delete();
+        // return redirect()->route('admin.seo.pages.index')->with('isdeleted', 'Se elimino el elemento');
     }
 
     public function indextemplates(){

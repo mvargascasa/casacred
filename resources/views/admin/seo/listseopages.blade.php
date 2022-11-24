@@ -63,10 +63,10 @@
                             </td>
                             <td class="py-4 px-6 flex">
                                 <a class="bg-blue-600 text-white px-3 rounded hover:bg-blue-700" href="{{route('admin.seo.edit', $page)}}">Editar</a>
-                                <form action="{{route('admin.seo.delete', $page->id)}}" method="POST">
+                                {{-- <form action="{{route('admin.seo.delete', $page->id)}}" method="POST">
                                     @csrf
                                     <button type="submit" class="bg-red-600 text-white px-3 mx-1 rounded hover:bg-red-700">Eliminar</button>
-                                </form>
+                                </form> --}}
                             </td>
                         </tr>
                     @endforeach
