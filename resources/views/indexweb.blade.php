@@ -75,8 +75,12 @@
       if(Request()->get('searchtxt') != null){$searchtxt = Request()->get('searchtxt');}
 
       if(is_numeric(request()->segment(2))) {
-        $listing = \App\Models\Listing::select('listing_title')->where('product_code', request()->segment(2))->first();
-        $h1 = $listing->listing_title;
+        $listing = \App\Models\Listing::select('listing_title')->where('status', 1)->where('product_code', request()->segment(2))->first();
+        if($listing){
+          $h1 = $listing->listing_title;
+        } else {
+          $h1 = "Casa Crédito, la mejor opción para Comprar y Vender Propiedades en Ecuador";
+        }
       } else {$h1 = ucwords(str_replace("-", " ", request()->segment(2)));}
     @endphp
 
