@@ -4,7 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\NotificationController;
-// use App\Http\Controllers\PostController;
+//use App\Http\Controllers\PostController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TwController;
@@ -99,6 +99,8 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
     // Route::get('post', [PostController::class, 'index'])->name('admin.post.index');
     // Route::get('post/create', [PostController::class, 'create'])->name('admin.post.create');
     // Route::post('post/store', [PostController::class, 'store'])->name('admin.post.store');
+    // Route::get('post/edit/{id}', [PostController::class, 'edit'])->name('admin.post.edit');
+    // Route::put('post/update/{id}', [PostController::class, 'update'])->name('admin.post.update');
 
     //PROPERTIES DROP PRICE
     Route::get('properties-change-price', [AdminController::class, 'propertieschangeprice'])->name('admin.properties.change.price');
@@ -118,21 +120,21 @@ Route::get('/crm/getlistingscsv', [WebController::class,'listingscsv'])->name('w
 
 //   SEO
 Route::get('/seo', [WebController::class,'seo'])->name('web.seo');
-Route::get('/casas-de-venta-en-ecuador', [WebController::class,'index'])->name('web.casas.ecu');
-Route::get('/departamentos-de-venta-en-ecuador', [WebController::class,'index'])->name('web.depar.ecu');
-Route::get('/terrenos-de-venta-en-ecuador', [WebController::class,'index'])->name('web.terre.ecu');
+// Route::get('/casas-de-venta-en-ecuador', [WebController::class,'index'])->name('web.casas.ecu');
+// Route::get('/departamentos-de-venta-en-ecuador', [WebController::class,'index'])->name('web.depar.ecu');
+// Route::get('/terrenos-de-venta-en-ecuador', [WebController::class,'index'])->name('web.terre.ecu');
 
-Route::get('/casas-de-venta-en-cuenca', [WebController::class,'index'])->name('web.casas.azu');
-Route::get('/departamentos-de-venta-en-cuenca', [WebController::class,'index'])->name('web.depar.azu');
-Route::get('/terrenos-de-venta-en-cuenca', [WebController::class,'index'])->name('web.terre.azu');
+// Route::get('/casas-de-venta-en-cuenca', [WebController::class,'index'])->name('web.casas.azu');
+// Route::get('/departamentos-de-venta-en-cuenca', [WebController::class,'index'])->name('web.depar.azu');
+// Route::get('/terrenos-de-venta-en-cuenca', [WebController::class,'index'])->name('web.terre.azu');
 
-Route::get('/casas-de-venta-en-quito', [WebController::class,'index'])->name('web.casas.qui');
-Route::get('/departamentos-de-venta-en-quito', [WebController::class,'index'])->name('web.depar.qui');
-Route::get('/terrenos-de-venta-en-quito', [WebController::class,'index'])->name('web.terre.qui');
+// Route::get('/casas-de-venta-en-quito', [WebController::class,'index'])->name('web.casas.qui');
+// Route::get('/departamentos-de-venta-en-quito', [WebController::class,'index'])->name('web.depar.qui');
+// Route::get('/terrenos-de-venta-en-quito', [WebController::class,'index'])->name('web.terre.qui');
 
-Route::get('/casas-de-venta-en-guayaquil', [WebController::class,'index'])->name('web.casas.gua');
-Route::get('/terrenos-de-venta-en-guayaquil', [WebController::class,'index'])->name('web.terre.gua');
-Route::get('/departamentos-de-venta-en-guayaquil', [WebController::class,'index'])->name('web.depar.gua');
+// Route::get('/casas-de-venta-en-guayaquil', [WebController::class,'index'])->name('web.casas.gua');
+// Route::get('/terrenos-de-venta-en-guayaquil', [WebController::class,'index'])->name('web.terre.gua');
+// Route::get('/departamentos-de-venta-en-guayaquil', [WebController::class,'index'])->name('web.depar.gua');
 
 //nuevas rutas para el footer de la nueva pagina home
 Route::get('/quito', [WebController::class, 'index'])->name('web.quito');
