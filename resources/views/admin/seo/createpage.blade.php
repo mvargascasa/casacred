@@ -88,10 +88,10 @@
                 {!! Form::textarea('meta_description', null, ['class' => $inputs, 'rows' => 4]) !!}
             </div>
 
-            {{-- <div class="grid grid-cols-1 my-1">
+            <div class="grid grid-cols-1 my-1">
                 {!! Form::label('keywords', 'Keywords', ['class' => 'font-semibold my-1']) !!}
                 {!! Form::textarea('keywords', null, ['class' => $inputs, 'rows' => 4]) !!}
-            </div> --}}
+            </div>
 
             {{-- <div class="grid grid-cols-2 my-1 mt-4">
                 <div>

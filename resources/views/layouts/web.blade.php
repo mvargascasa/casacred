@@ -126,7 +126,7 @@ if(strpos($actual_link, 'localhost') === false){
 <?php };// fin de if url localhost ?>
 
   @yield('header')
-  <meta name="keywords" content="casas en venta en cuenca, departamentos en venta en cuenca, terrenos en venta en cuenta, lotes en venta en cuenca" />
+  {{-- <meta name="keywords" content="casas en venta en cuenca, departamentos en venta en cuenca, terrenos en venta en cuenta, lotes en venta en cuenca" /> --}}
 <style>
    html, body {
         max-width: 100% !important;

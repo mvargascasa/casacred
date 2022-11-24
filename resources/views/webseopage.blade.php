@@ -2,6 +2,7 @@
 @section('header')
 <title>{{$seopage->title_google}}</title>
 <meta name="description" content="{{$seopage->meta_description}}">
+<meta name="keywords" content="@if($seopage->keywords) {{$seopage->keywords}} @else {{strtolower($seopage->title)}} @endif">
 <style>
   .inputs-on-hover:hover{background-color: #EF4444; color: #ffffff; cursor: pointer}
   #labeldiv1, #labeldiv2, #labeldiv3, #labeldiv4, #labeldiv5, #labeldiv6, #labeldiv7, #labeldiv8{cursor: pointer !important;}
