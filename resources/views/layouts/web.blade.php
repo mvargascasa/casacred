@@ -135,14 +135,14 @@ if(strpos($actual_link, 'localhost') === false){
     .wsapp{
         z-index: 3;
         position: fixed;
-        bottom: 20px;
-        right: 10px;
+        bottom: 80px;
+        right: 0px;
     }
     .telf{
         z-index: 3;
         position: fixed;
-        bottom: 80px;
-        right: 10px;
+        bottom: 20px;
+        right: 0px;
     }
     .dropdown-menu-style{width: 250px !important}
     @media only screen and (max-width: 600px) {
@@ -540,15 +540,15 @@ if(strpos($actual_link, 'localhost') === false){
     </div>
   </div>
 
-  <div class="telf">
-    <a href="tel:+593983849073">
-      <i class="fas fa-phone-alt fa-2x bg-danger p-2 text-light rounded-circle"></i> 
-      {{-- <img src="{{asset('img/call-icon.webp')}}" alt="Numero Casa Credito" width="50" height="50"> --}}
-    </a>
-  </div>
   <div class="wsapp">
     <a href="https://api.whatsapp.com/send?phone=593983849073" class="asindeco" target="_blank">
-        <img src="{{asset('img/wpp_logo.png')}}" alt="Whatsapp Casa Credito" width="50" height="50">
+      <img src="{{asset('img/wpp_logo.png')}}" alt="Whatsapp Casa Credito" width="50" height="50">
+    </a>
+  </div>
+  <div class="telf">
+    <a href="tel:+593983849073">
+      <i class="fas fa-phone-alt fa-2x bg-danger p-2 text-light"></i> 
+      {{-- <img src="{{asset('img/call-icon.webp')}}" alt="Numero Casa Credito" width="50" height="50"> --}}
     </a>
   </div>
 {{-- <script src="{{asset('js/popper.min.js')}}"></script> --}}
