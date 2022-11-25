@@ -146,7 +146,7 @@
       }
     }
     #parentBuscador{
-      padding-top: 15%;
+      padding-top: 11%;
     }
     /* #parentBuscador, #searchmobile{
       overflow: auto;
@@ -210,9 +210,16 @@
          }
     @endphp
   <div class="position-relative">
+    @if(!$ismobile)
+    <a class="text-light" href="tel:+593983849073">
+      <div class="position-absolute mr-2 mt-2 border border-light bg-danger px-1 rounded font-weight-bold" style="top: 0; right: 0; z-index: 3; font-size: 14px">
+        <i class="fas fa-phone mr-1 text-light"></i>098-384-9073
+      </div>
+    </a>
+    @endif
     <div>
       <div id="carouselExampleFadeBanner" class="carousel slide carousel-fade"  data-ride="carousel" data-interval="4000">
-          <div class="carousel-inner" style="height: @if($ismobile) 70vw; @else 40vw; @endif">
+          <div class="carousel-inner" style="height: @if($ismobile) 70vw; @else 36vw; @endif">
             @php
               $count = 0;
             @endphp
