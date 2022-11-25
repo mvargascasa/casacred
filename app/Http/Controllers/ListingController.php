@@ -244,13 +244,12 @@ class ListingController extends Controller
         if($request->Front != $listing->Front) $value_change .= "frente,";
         if($request->Fund != $listing->Fund) $value_change .= "fondo,";
         if($request->listyears != $listing->listyears) $value_change .= "años de construccion,";
-        if($request->Front != $listing->Front) $value_change .= "frente,";
         if($request->aval != $listing->aval) $value_change .= "avaluo de la propiedad,";
         if($request->state != $listing->state) $value_change .= "provincia,";
         if($request->city != $listing->city) $value_change .= "ciudad,";
         if($request->address != $listing->address) $value_change .= "direccion,";
         if($request->lat != $listing->lat) $value_change .= "latitud,";
-        if($request->lng != $listing->lng) $value_change .= "frente,";
+        if($request->lng != $listing->lng) $value_change .= "longitud,";
         if($request->listingtype != $listing->listingtype) $value_change .= "categoria,";
         if($request->listingtypestatus != $listing->listingtypestatus) $value_change .= "tipo,";
         if($request->listingtagstatus != $listing->listingtagstatus) $value_change .= "etiquetas,";
