@@ -135,14 +135,16 @@ if(strpos($actual_link, 'localhost') === false){
     .wsapp{
         z-index: 3;
         position: fixed;
-        bottom: 80px;
-        right: 0px;
+        bottom: 10px;
+        right: 10px;
     }
     .telf{
         z-index: 3;
         position: fixed;
-        bottom: 20px;
-        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        animation-duration: 2s;
+        animation-name: slideout;
     }
     .dropdown-menu-style{width: 250px !important}
     @media only screen and (max-width: 600px) {
@@ -216,6 +218,16 @@ if(strpos($actual_link, 'localhost') === false){
       left: 100%;
       margin-left: .1rem;
       margin-right: .1rem;
+    }
+
+    @keyframes slideout {
+      from {margin-left: -100px;}
+      to {margin-left: 0px;}
+    }
+
+    @keyframes slidein{
+      from{margin-left: 0px}
+      to{margin-left: -100px}
     }
 </style>
 </head>
@@ -545,11 +557,21 @@ if(strpos($actual_link, 'localhost') === false){
       <img src="{{asset('img/wpp_logo.png')}}" alt="Whatsapp Casa Credito" width="50" height="50">
     </a>
   </div>
-  <div class="telf">
-    <a href="tel:+593983849073">
+  <div class="telf d-flex">
+    <div id="call-usa-ecu" class="bg-danger text-light" style="margin-left: -100px">
+      <a href="tel:+593983849073">
+        <img width="45px" height="30px" class="mt-2 ml-1" src="{{asset('img/USA-05.webp')}}" alt="telefono casa credito estados unidos">
+        {{-- <img src="{{asset('img/call-icon.webp')}}" alt="Numero Casa Credito" width="50" height="50"> --}}
+      </a>
+      <a href="tel:+593983849073">
+        <img width="45px" height="30px" class="mt-2" src="{{asset('img/ECUADOR-04.webp')}}" alt="telefono casa credito ecuador"> 
+        {{-- <img src="{{asset('img/call-icon.webp')}}" alt="Numero Casa Credito" width="50" height="50"> --}}
+      </a>
+    </div>
+    <div onclick="openDivCallUsaEcu()" style="cursor: pointer">
       <i class="fas fa-phone-alt fa-2x bg-danger p-2 text-light"></i> 
       {{-- <img src="{{asset('img/call-icon.webp')}}" alt="Numero Casa Credito" width="50" height="50"> --}}
-    </a>
+    </div>
   </div>
 {{-- <script src="{{asset('js/popper.min.js')}}"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -560,6 +582,12 @@ if(strpos($actual_link, 'localhost') === false){
 
 @yield('script')
 <script>
+    function openDivCallUsaEcu(){
+      let div = document.getElementById('call-usa-ecu');
+      if(div.style.marginLeft < "0px") { div.style.animation = "slideout 1s"; div.style.marginLeft = "0px";} 
+      else {div.style.animation = "slidein 1s";div.style.marginLeft = "-100px";}
+    }
+
     const myModal = new bootstrap.Modal(document.getElementById('modalContact'));
     const moThank = new bootstrap.Modal(document.getElementById('modalThank'));
     const modalAval = new bootstrap.Modal(document.getElementById('modalAval'));
