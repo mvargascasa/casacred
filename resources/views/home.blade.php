@@ -217,7 +217,7 @@
         <img width="15px" height="15px" src="{{asset('img/ECUADOR-04.webp')}}" alt="telefono casa credito inmobiliaria"> 098-384-9073
       </div>
     </a>
-    <a class="text-light" href="tel:+17186903740 ">
+    <a class="text-light" href="tel:+17186903740">
       <div class="position-absolute mr-2 mt-2 border border-light bg-danger px-1 rounded-pill" style="top: 30px; right: 0; z-index: 3; font-size: 14px">
         {{-- <i class="fas fa-phone mr-1 text-light"></i>098-384-9073 --}}
         <img width="15px" height="13px" src="{{asset('img/USA-05.webp')}}" alt="telefono casa credito inmobiliaria usa" class="mr-1"> 718-690-3740 

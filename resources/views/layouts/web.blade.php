@@ -559,7 +559,7 @@ if(strpos($actual_link, 'localhost') === false){
   </div>
   <div class="telf d-flex">
     <div id="call-usa-ecu" class="bg-danger text-light" style="margin-left: -100px">
-      <a href="tel:+593983849073">
+      <a href="tel:+17186903740">
         <img width="45px" height="30px" class="mt-2 ml-1" src="{{asset('img/USA-05.webp')}}" alt="telefono casa credito estados unidos">
         {{-- <img src="{{asset('img/call-icon.webp')}}" alt="Numero Casa Credito" width="50" height="50"> --}}
       </a>
