@@ -694,7 +694,7 @@
             <div class="container">
               <div class="text-center border px-3 mt-3 rounded py-3">
                 <img class="rounded-circle" width="100px" height="100px" src="{{asset('uploads/profiles/'.$user->profile_photo_path)}}" alt="Imagen de perfil">
-                <p class="text-gray-600 mt-3" style="font-size: 14px">ASESOR {{$user->name}}</p>
+                <p class="text-gray-600 mt-3" style="font-size: 14px">ASESOR/A {{$user->name}}</p>
                 {{-- <a href="tel:" class="bg-danger text-white p-2 rounded-pill">Contactar</a> --}}
               </div>
             </div>
