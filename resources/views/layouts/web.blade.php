@@ -141,7 +141,7 @@ if(strpos($actual_link, 'localhost') === false){
     .telf{
         z-index: 3;
         position: fixed;
-        bottom: 0px;
+        bottom: 7px;
         left: 0px;
         animation-duration: 2s;
         animation-name: slideout;
