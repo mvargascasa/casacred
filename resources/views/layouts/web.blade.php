@@ -135,14 +135,14 @@ if(strpos($actual_link, 'localhost') === false){
     .wsapp{
         z-index: 3;
         position: fixed;
-        bottom: 10px;
+        bottom: 70px;
         right: 10px;
     }
     .telf{
         z-index: 3;
         position: fixed;
-        bottom: 7px;
-        left: 0px;
+        bottom: 10px;
+        right: 0px;
         animation-duration: 2s;
         animation-name: slideout;
     }
@@ -221,13 +221,13 @@ if(strpos($actual_link, 'localhost') === false){
     }
 
     @keyframes slideout {
-      from {margin-left: -100px;}
-      to {margin-left: 0px;}
+      from {margin-right: -105px;}
+      to {margin-right: 0px;}
     }
 
     @keyframes slidein{
-      from{margin-left: 0px}
-      to{margin-left: -100px}
+      from{margin-right: 0px}
+      to{margin-right: -105px}
     }
 </style>
 </head>
@@ -558,19 +558,21 @@ if(strpos($actual_link, 'localhost') === false){
     </a>
   </div>
   <div class="telf d-flex">
-    <div id="call-usa-ecu" class="bg-danger text-light" style="margin-left: -100px">
-      <a href="tel:+17186903740">
-        <img width="45px" height="30px" class="mt-2 ml-1" src="{{asset('img/USA-05.webp')}}" alt="telefono casa credito estados unidos">
+    <div id="call-usa-ecu" class="bg-danger text-light d-flex" style="margin-right: -105px">
+      <div onclick="openDivCallUsaEcu()" style="cursor: pointer; ">
+        <i class="fas fa-phone-alt fa-2x bg-danger p-2 text-light"></i> 
         {{-- <img src="{{asset('img/call-icon.webp')}}" alt="Numero Casa Credito" width="50" height="50"> --}}
-      </a>
-      <a href="tel:+593983849073">
-        <img width="45px" height="30px" class="mt-2" src="{{asset('img/ECUADOR-04.webp')}}" alt="telefono casa credito ecuador"> 
-        {{-- <img src="{{asset('img/call-icon.webp')}}" alt="Numero Casa Credito" width="50" height="50"> --}}
-      </a>
-    </div>
-    <div onclick="openDivCallUsaEcu()" style="cursor: pointer">
-      <i class="fas fa-phone-alt fa-2x bg-danger p-2 text-light"></i> 
-      {{-- <img src="{{asset('img/call-icon.webp')}}" alt="Numero Casa Credito" width="50" height="50"> --}}
+      </div>
+      <div id="diviconsusaecu" style="margin-left: 15px;">
+        <a href="tel:+593983849073">
+          <img width="45px" height="30px" class="mt-2" src="{{asset('img/ECUADOR-04.webp')}}" alt="telefono casa credito ecuador"> 
+          {{-- <img src="{{asset('img/call-icon.webp')}}" alt="Numero Casa Credito" width="50" height="50"> --}}
+        </a>
+        <a href="tel:+17186903740">
+          <img width="45px" height="30px" class="mt-2 ml-1" src="{{asset('img/USA-05.webp')}}" alt="telefono casa credito estados unidos">
+          {{-- <img src="{{asset('img/call-icon.webp')}}" alt="Numero Casa Credito" width="50" height="50"> --}}
+        </a>
+      </div>
     </div>
   </div>
 {{-- <script src="{{asset('js/popper.min.js')}}"></script> --}}
@@ -584,8 +586,8 @@ if(strpos($actual_link, 'localhost') === false){
 <script>
     function openDivCallUsaEcu(){
       let div = document.getElementById('call-usa-ecu');
-      if(div.style.marginLeft < "0px") { div.style.animation = "slideout 1s"; div.style.marginLeft = "0px";} 
-      else {div.style.animation = "slidein 1s";div.style.marginLeft = "-100px";}
+      if(div.style.marginRight < "0px") { div.style.animation = "slideout 1s"; div.style.marginRight = "0px";document.getElementById('diviconsusaecu').style.marginLeft = "0px";} 
+      else {div.style.animation = "slidein 1s";div.style.marginRight = "-105px"; document.getElementById('diviconsusaecu').style.marginLeft = "15px";}
     }
 
     const myModal = new bootstrap.Modal(document.getElementById('modalContact'));
