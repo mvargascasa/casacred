@@ -30,7 +30,7 @@ class UserController extends Controller
        
     public function update(Request $request, User $user){
 
-        $name_firstimage = null;
+        //$name_firstimage = null;
         if($request->hasFile("profile_image")){
             $imagen = $request->file("profile_image");
             if($imagen->isValid()){
@@ -46,13 +46,13 @@ class UserController extends Controller
                         $namefile = "IMG_".Str::slug($request->name).rand(1000,9999).$ext;
                         $img->fit(300,300, function($constraint){$constraint->upsize(); $constraint->aspectRatio();});
                         $img->save($ruta.$namefile, 72);
-                        $name_firstimage = $namefile;
+                        //$name_firstimage = $namefile;
+                        $user->profile_photo_path = $namefile;
                     }
                 }
             }
         }
         $user->fill($request->all());
-        $user->profile_photo_path = $name_firstimage;
         $user->save();
         return redirect()->route('users.index');
     }
