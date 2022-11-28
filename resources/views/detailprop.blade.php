@@ -714,7 +714,7 @@
                     </a>
                   </div>
                   <div class="col-sm-4 col-4">
-                    <a target="_blank" href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *{{$listing->product_code}}* - *{{$listing->listing_title}}* y deseo que me contacten. Gracias 😊%0A{{url()->current()}}%0A">
+                    <a target="_blank" href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *{{$listing->product_code}}* - *{{$listing->listing_title}}* y deseo que me contacten. Gracias 😊%0A{{url()->current()}}">
                       <i class="fab fa-whatsapp bg-danger text-light p-2 rounded-circle"></i>
                     </a>
                   </div>
