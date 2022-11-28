@@ -560,7 +560,7 @@ if(strpos($actual_link, 'localhost') === false){
   <div class="telf d-flex">
     <div id="call-usa-ecu" class="bg-danger text-light d-flex" style="margin-right: -105px">
       <div onclick="openDivCallUsaEcu()" style="cursor: pointer; ">
-        <i class="fas fa-phone-alt fa-2x bg-danger p-2 text-light"></i> 
+        <i class="fas fa-phone-alt fa-2x bg-danger p-2 text-light"></i>
         {{-- <img src="{{asset('img/call-icon.webp')}}" alt="Numero Casa Credito" width="50" height="50"> --}}
       </div>
       <div id="diviconsusaecu" style="margin-left: 15px;">

@@ -139,7 +139,13 @@
 .carousel-control-next {
   width: 50px;
 }
+.card-asesor{box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;}
 .card-asesor:hover{background-color: #dc3545; color: #ffffff}
+.fa-phone-alt:hover{transform: scale(2.0);}
+.fa-whatsapp:hover{transform: scale(2.0);}
+.fa-envelope:hover{transform: scale(2.0);}
+.img-profile:hover{transform: scale(1.2);}
+
 </style>
 @endsection
 
@@ -694,9 +700,30 @@
             @if($user->profile_photo_path != null)
             <div class="container">
               <div class="text-center border px-3 mt-3 rounded py-3 card-asesor">
-                <img class="rounded-circle" width="100px" height="100px" src="{{asset('uploads/profiles/'.$user->profile_photo_path)}}" alt="Imagen de perfil">
-                <p class="text-gray-600 mt-3" style="font-size: 14px">ASESOR(A) {{$user->name}}</p>
+                <img class="rounded-circle img-profile" width="100px" height="100px" src="{{asset('uploads/profiles/'.$user->profile_photo_path)}}" alt="Imagen de perfil">
+                <div class="mb-3">
+                  <label class="text-gray-600 mt-3" style="font-size: 15px">{{$user->name}}</label><br>
+                  <b style="font-size: 14px">ASESOR INMOBILIARIO</b>
+                </div>
+                <hr>
                 {{-- <a href="tel:" class="bg-danger text-white p-2 rounded-pill">Contactar</a> --}}
+                <div class="row">
+                  <div class="col-sm-4">
+                    <a href="tel:+593983849073">
+                      <i class="fas fa-phone-alt bg-danger text-light p-2 rounded-circle"></i>
+                    </a>
+                  </div>
+                  <div class="col-sm-4">
+                    <a href="https://api.whatsapp.com/send?phone=593983849073">
+                      <i class="fab fa-whatsapp bg-danger text-light p-2 rounded-circle"></i>
+                    </a>
+                  </div>
+                  <div class="col-sm-4">
+                    <a href="mailto:ventas@casacredito.com">
+                      <i class="fas fa-envelope bg-danger text-light p-2 rounded-circle"></i>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
             @endif
