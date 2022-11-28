@@ -141,7 +141,7 @@
 }
 .card-asesor{box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;}
 .card-asesor:hover{background-color: #dc3545; color: #ffffff}
-.fa-phone-alt:hover{transform: scale(2.0);}
+.icon-phone:hover{transform: scale(2.0);}
 .fa-whatsapp:hover{transform: scale(2.0);}
 .fa-envelope:hover{transform: scale(2.0);}
 .img-profile:hover{transform: scale(1.2);}
@@ -710,7 +710,7 @@
                 <div class="row">
                   <div class="col-sm-4 col-4">
                     <a href="tel:+593983849073">
-                      <i class="fas fa-phone-alt bg-danger text-light p-2 rounded-circle"></i>
+                      <i class="fas fa-phone-alt bg-danger text-light p-2 rounded-circle icon-phone"></i>
                     </a>
                   </div>
                   <div class="col-sm-4 col-4">
