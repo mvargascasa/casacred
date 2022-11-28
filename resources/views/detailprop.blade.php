@@ -708,17 +708,17 @@
                 <hr>
                 {{-- <a href="tel:" class="bg-danger text-white p-2 rounded-pill">Contactar</a> --}}
                 <div class="row">
-                  <div class="col-sm-4">
+                  <div class="col-sm-4 col-4">
                     <a href="tel:+593983849073">
                       <i class="fas fa-phone-alt bg-danger text-light p-2 rounded-circle"></i>
                     </a>
                   </div>
-                  <div class="col-sm-4">
+                  <div class="col-sm-4 col-4">
                     <a href="https://api.whatsapp.com/send?phone=593983849073">
                       <i class="fab fa-whatsapp bg-danger text-light p-2 rounded-circle"></i>
                     </a>
                   </div>
-                  <div class="col-sm-4">
+                  <div class="col-sm-4 col-4">
                     <a href="mailto:ventas@casacredito.com">
                       <i class="fas fa-envelope bg-danger text-light p-2 rounded-circle"></i>
                     </a>
