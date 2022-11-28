@@ -689,6 +689,17 @@
                 Calcular Monto <i class="fal fa-usd-circle"></i>
               </button>
             </div> --}}
+
+            @if($user->profile_photo_path != null)
+            <div class="container">
+              <div class="text-center border px-3 mt-3 rounded py-3">
+                <img class="rounded-circle" width="100px" height="100px" src="{{asset('uploads/profiles/'.$user->profile_photo_path)}}" alt="Imagen de perfil">
+                <p class="text-gray-600 mt-3" style="font-size: 14px">ASESOR {{$user->name}}</p>
+                {{-- <a href="tel:" class="bg-danger text-white p-2 rounded-pill">Contactar</a> --}}
+              </div>
+            </div>
+            @endif
+
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-12">
               <div class="mt-3" style="position: relative">
                 <img width="100%" height="100%" style="filter: brightness(50%); border-radius: 12px" class="img-fluid lazyLoad imgprojects" data-src="{{ asset('img/toscana.webp') }}" alt="">

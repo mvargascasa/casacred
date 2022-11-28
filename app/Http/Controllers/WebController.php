@@ -235,9 +235,10 @@ class WebController extends Controller
         $services = DB::table('listing_services')->get();
         $types = DB::table('listing_types')->get();  
         $details = DB::table('listing_characteristics')->get();  
+        $user = User::where('id', $listing->user_id)->first();
         // if($ismobile) return view('detailmobile',compact('listing','details','benefits','services','types'));
         // else          
-        return view('detailprop',compact('listing','details','benefits','services','types','mobile'));
+        return view('detailprop',compact('listing','details','benefits','services','types','mobile', 'user'));
     }
 
     public function getstates($id){

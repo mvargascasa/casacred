@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -27,7 +29,30 @@ class UserController extends Controller
     }
        
     public function update(Request $request, User $user){
+
+        $name_firstimage = null;
+        if($request->hasFile("profile_image")){
+            $imagen = $request->file("profile_image");
+            if($imagen->isValid()){
+                $validate = $imagen->getClientOriginalExtension();
+                if(in_array($validate, ['jpeg', 'jpg', 'png', 'JPG', 'PNG'])){
+                    $img = Image::make($imagen);
+                    $mime = $img->mime();
+                    if($mime == 'image/jpeg') $ext = '.jpg';
+                    elseif($mime == 'image/png') $ext = '.png';
+                    else $ext = '';
+                    if(strlen($ext)>0){
+                        $ruta = public_path('uploads/profiles/');
+                        $namefile = "IMG_".Str::slug($request->name).rand(1000,9999).$ext;
+                        $img->fit(300,300, function($constraint){$constraint->upsize(); $constraint->aspectRatio();});
+                        $img->save($ruta.$namefile, 72);
+                        $name_firstimage = $namefile;
+                    }
+                }
+            }
+        }
         $user->fill($request->all());
+        $user->profile_photo_path = $name_firstimage;
         $user->save();
         return redirect()->route('users.index');
     }
