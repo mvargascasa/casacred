@@ -4,7 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\NotificationController;
-//use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TwController;
@@ -96,11 +96,11 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
     Route::get('seo/templates', [SeoController::class, 'indextemplates'])->name('admin.seo.templates.index');
 
     //BLOG
-    // Route::get('post', [PostController::class, 'index'])->name('admin.post.index');
-    // Route::get('post/create', [PostController::class, 'create'])->name('admin.post.create');
-    // Route::post('post/store', [PostController::class, 'store'])->name('admin.post.store');
-    // Route::get('post/edit/{id}', [PostController::class, 'edit'])->name('admin.post.edit');
-    // Route::put('post/update/{id}', [PostController::class, 'update'])->name('admin.post.update');
+    Route::get('post', [PostController::class, 'index'])->name('admin.post.index');
+    Route::get('post/create', [PostController::class, 'create'])->name('admin.post.create');
+    Route::post('post/store', [PostController::class, 'store'])->name('admin.post.store');
+    Route::get('post/edit/{post}', [PostController::class, 'edit'])->name('admin.post.edit');
+    Route::put('post/update/{post}', [PostController::class, 'update'])->name('admin.post.update');
 
     //PROPERTIES DROP PRICE
     Route::get('properties-change-price', [AdminController::class, 'propertieschangeprice'])->name('admin.properties.change.price');

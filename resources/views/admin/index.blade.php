@@ -281,6 +281,7 @@
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
                         <tr>
+                            <th></th>
                             <th class="px-4 py-2">Código</th>
                             <th class="px-4 py-2">Comentario</th>
                             <th class="px-4 py-2">Precio Anterior</th>
@@ -294,6 +295,7 @@
                             $listing = \App\Models\Listing::find($pd->listing_id);
                         @endphp
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-xs">
+                            <td class="px-4 py-4">@if($pd->property_price_prev > $pd->property_price) <i class="fas fa-arrow-down text-green-600"></i> @elseif($pd->property_price_prev < $pd->property_price) <i class="fas fa-arrow-up text-red-600"></i> @else <i class="fas fa-horizontal-rule"></i> @endif </td>
                             <td class="px-4 py-4"><a href="{{route('home.tw.edit', $listing)}}">{{$pd->property_code}}</a></td>
                             <td class="px-4 py-4">@if($pd->comment == null || $pd->comment == "") <b>Sin información</b> @else {{$pd->comment}}@endif</td>
                             <td class="px-4 py-4">${{number_format($pd->property_price_prev)}}</td>
