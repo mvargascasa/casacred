@@ -256,12 +256,12 @@ if(strpos($actual_link, 'localhost') === false){
             <div class="d-flex flex-grow-1">
                 <span class="w-100 d-lg-none d-block pl-4">
                     <a class="navbar-brand" href="{{route('web.index')}}">
-                        <img src="{{asset('img/logo_actualizado2.png')}}" width="65" height="35" alt="">
+                        <img src="{{asset('img/casacredito-logo.png')}}" width="90" height="25" alt="casa credito inmobiliaria">
                     </a>
                 </span>
 
                 <a class="navbar-brand d-none d-lg-inline-block px-4" href="{{route('web.index')}}">
-                    <img src="{{asset('img/logo_actualizado2.png')}}" width="85" height="40" alt="">
+                    <img src="{{asset('img/casacredito-logo.png')}}" width="110" height="40" alt="casa credito inmobiliaria">
                     </a>
                 <div class="w-100 text-right">
                     @if(Route::is('web.index') or Route::is('web.detail') ) 
