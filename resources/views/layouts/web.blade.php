@@ -461,7 +461,7 @@ if(strpos($actual_link, 'localhost') === false){
                     <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 10px; padding-right: 10px; border-radius: 25px" class="fab fa-youtube"></i>
                   </a>
                   
-                  <a href="https://api.whatsapp.com/send?phone=+593983849073" class="asindeco px-1" target="_blank">
+                  <a href="https://api.whatsapp.com/send?phone=593983849073" class="asindeco px-1" target="_blank">
                     {{-- <img src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40"> --}}
                     <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 11px; padding-right: 11px; border-radius: 25px" class="fab fa-whatsapp"></i>
                   </a>
