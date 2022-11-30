@@ -28,7 +28,7 @@
                             <h5 class="card-title font-weight-normal">{{$post->publication_title}}</h5>
                             <p class="card-text">{!!Str::limit($post->content, 70)!!}</p>
                             <div class="text-center">
-                                <a href="{{route('web.show.post', $post->slug)}}" class="btn btn-primary">Ver publicacion</a>
+                                <a href="{{route('web.show.post', $post->slug)}}" class="btn btn-danger">Ver publicacion</a>
                             </div>
                         </div>
                     </div>
