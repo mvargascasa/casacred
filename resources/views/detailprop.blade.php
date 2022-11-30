@@ -915,8 +915,8 @@
             alert('El monto solicitado no puede ser menor al 30% del valor de la propiedad');
           } else {
             let total = value * anios / 100;
-            document.getElementById('totalcred').innerHTML = "$"+total+".00";
-            document.getElementById('totalinfo').innerHTML = "$"+total+".00";
+            document.getElementById('totalcred').innerHTML = "$"+total;
+            document.getElementById('totalinfo').innerHTML = "$"+total;
           }
         } else {
           alert('Por favor, complete los campos')
