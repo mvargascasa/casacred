@@ -402,7 +402,7 @@ if(strpos($actual_link, 'localhost') === false){
   <div style="background-color: #2C3144; color: #ffffff">
     <div class="container">
         <div class="row">           
-            <div class="col-12 col-md-4 p-4 small">
+            <div class="col-12 col-md-4 p-4">
                     <p style="font-size: 20px; font-weight: 500">Cuenca | Ecuador</p>
                         
                         <p class="text-dark-50">Lunes a Viernes 9:00 am&nbsp;a 6:00 pm</p>
@@ -418,7 +418,7 @@ if(strpos($actual_link, 'localhost') === false){
                         
                         <p><a href="mailto:info@casacredito.com" class="asindeco" style="color: #ffffff !important"><i class="fas fa-envelope"></i> info@casacredito.com</a></p>
             </div>
-            <div class="col-12 col-md-4 p-4 small">
+            <div class="col-12 col-md-4 p-4">
                     <p style="font-size: 20px; font-weight: 500">New York | EE.UU.</p>
                         <p class="text-dark-50">Lunes a Viernes 9:00 am a 6:00 pm</p>
 
