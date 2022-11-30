@@ -225,6 +225,26 @@ class WebController extends Controller
     }
 
     public function detail(Listing $listing){
+
+        $values = [
+            5 => 2.05,
+            6 => 1.78,
+            7 => 1.58,
+            8 => 1.44,
+            9 => 1.33,
+            10 => 1.24,
+            11 => 1.17,
+            12 => 1.11,
+            13 => 1.06,
+            14 => 1.02,
+            15 => 0.98,
+            16 => 0.96,
+            17 => 0.92,
+            18 => 0.9,
+            19 => 0.88,
+            20 => 0.86
+        ];
+
         $mobile = false; 
         if(isset($_SERVER['HTTP_USER_AGENT'])){
             $useragent= $_SERVER['HTTP_USER_AGENT'];
@@ -239,7 +259,7 @@ class WebController extends Controller
         $user = User::where('id', $listing->user_id)->first();
         // if($ismobile) return view('detailmobile',compact('listing','details','benefits','services','types'));
         // else          
-        return view('detailprop',compact('listing','details','benefits','services','types','mobile', 'user'));
+        return view('detailprop',compact('listing','details','benefits','services','types','mobile', 'user', 'values'));
     }
 
     public function getstates($id){

@@ -471,6 +471,11 @@
           <div class="row">
             <div class="col-sm-1"></div>
             <div class="col-12 col-sm-11">
+              @if($listing->listingtypestatus != "alquilar")
+              <div class="row align-items-center border border-danger ml-0 rounded mb-3 py-2">
+                <label><i class="fas fa-money-check-edit-alt text-danger"></i> El valor de la cuota mensual para la propiedad es de <b class="font-weight-normal" id="totalinfo"></b></label>
+              </div>
+              @endif
               <div class="row">
                 <div class="col-7 col-sm-9">
                   <p style="margin: 0px; color: #dc3545; font-size: 20px; font-weight: 600;">PRECIO: ${{ number_format($listing->property_price) }}</p>
@@ -697,6 +702,32 @@
               </button>
             </div> --}}
 
+            {{-- calcular credito --}}
+            @if($listing->listingtypestatus != "alquilar")
+            <div class="container mt-3">
+              <div class="border rounded py-3">
+                <p class="text-center text-muted mt-2">Calcule su crédito</p>
+                <div>
+                  <div class="d-flex">
+                    <input class="form-control ml-3 mr-1" id="valuecred" type="number" value="{{$listing->property_price*0.70}}" placeholder="$ Monto">
+                    <select class="form-select mr-3 ml-1" id="anios">
+                      <option value="">Años</option>
+                      @for ($i = 5; $i < 21; $i++)
+                      <option value="{{$values[$i]}}" @if($i==20) selected @endif>{{$i}}</option>
+                      @endfor
+                    </select>
+                  </div>
+                  <div class="text-center py-3">
+                    <button class="btn btn-danger" onclick="calcularcredito()">Calcular</button>
+                  </div>
+                  <div class="text-center">
+                    Total: <label class="font-weight-normal" style="font-size: 20px" id="totalcred"></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            @endif
+
             @if($user->profile_photo_path != null)
             <div class="container">
               <div class="text-center border px-3 mt-3 rounded py-3 card-asesor">
@@ -871,6 +902,29 @@
   AOS.init();
 </script>
 <script>
+    function calcularcredito(){
+      let value = document.getElementById('valuecred');
+      let anios = document.getElementById('anios');
+      if(value && anios){
+        // let value = document.getElementById('valuecred').value;
+        // let anios = document.getElementById('anios').value;
+        value = value.value;
+        anios = anios.value;
+        if(value != "" && anios != ""){
+          if(value < {{$listing->property_price*0.30}}){
+            alert('El monto solicitado no puede ser menor al 30% del valor de la propiedad');
+          } else {
+            let total = value * anios / 100;
+            document.getElementById('totalcred').innerHTML = "$"+total+".00";
+            document.getElementById('totalinfo').innerHTML = "$"+total+".00";
+          }
+        } else {
+          alert('Por favor, complete los campos')
+        }
+      }
+    }
+
+    calcularcredito();
     //     var myCarousel = document.querySelector('#carouselControls');
     //     var carousel = new bootstrap.Carousel(myCarousel);
     
