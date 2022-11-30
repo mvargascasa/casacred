@@ -47,7 +47,7 @@ class AdminController extends Controller
             }
         }
 
-        $properties_dropped = DB::select("select * from comments where type LIKE '%price%' AND property_price < property_price_prev LIMIT 5");
+        $properties_dropped = DB::select("select * from comments where type LIKE '%price%' AND property_price < property_price_prev order by created_at desc  LIMIT 5");
 
         $properties_at_week = Listing::where('user_id', Auth::user()->id)->whereBetween('created_at', [$now->startOfWeek()->format('Y-m-d'), $now->endOfWeek()->format('Y-m-d')])->get();
 
