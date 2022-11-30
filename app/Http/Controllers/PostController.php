@@ -73,13 +73,14 @@ class PostController extends Controller
             'slug' => Str::slug($request->publication_title),
             'title_google' => $request->title_google,
             'metadescription' => $request->metadescription,
+            'keywords' => $request->keywords,
             'content' => $request->content,
             'first_image' => $name_firstimage,
             'second_image' => $name_secondimage
         ]);
 
         if($post){
-            return redirect()->back()->with('created', 'Se creo el post '.$post->publication_title);
+            return redirect()->route('admin.post.edit', $post)->with('created', 'Se creo el post '.$post->publication_title);
         } else {
             return "Ocurrio un error al crear el post. Por favor intentelo de nuevo";
         }
