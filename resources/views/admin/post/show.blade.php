@@ -35,6 +35,7 @@
                 <div>
                     <img width="100%" height="100%" src="{{asset('uploads/posts/'.$post->second_image)}}" alt="">
                 </div>
+                @if(count($related_post)>0)
                 <div class="mt-4">
                     <h2 class="font-weight-normal">Articulos relacionados</h2>
                     <div>
@@ -57,6 +58,7 @@
                         @endforeach
                     </div>
                 </div>
+                @endif
             </div>
         </div>
         {{-- <div class="row">
