@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
+use App\Models\Post;
 use App\Models\SeoPage;
 use App\Models\Service;
 use App\Models\User;
@@ -577,6 +578,21 @@ class WebController extends Controller
         }
         //$state = DB::select('select name from info_states where id = ? and country_id = 63', [$city->state_id]);
         return response()->json($state);
+    }
+
+    public function blog(){
+        $posts = Post::where('status', 1)->get();
+        return view('admin.post.indexweb', compact('posts'));
+    }
+
+    public function showpost($slug){
+        $post = Post::where('slug', $slug)->where('status', 1)->first();
+        if($post){
+            $related_post = Post::where('slug', '!=', $slug)->get();
+            return view('admin.post.show', compact('post', 'related_post'));
+        } else {
+            return redirect()->route('web.blog');
+        }
     }
 
 }

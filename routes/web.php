@@ -115,6 +115,10 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
     
 });
 
+//BLOG
+Route::get('/blog', [WebController::class, 'blog'])->name('web.blog');
+Route::get('/post/{slug}', [WebController::class, 'showpost'])->name('web.show.post');
+
 
 Route::get('/crm/getlistingscsv', [WebController::class,'listingscsv'])->name('web.listingscsv');
 
