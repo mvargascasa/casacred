@@ -145,7 +145,7 @@
 .fa-whatsapp:hover{transform: scale(2.0);}
 .fa-envelope:hover{transform: scale(2.0);}
 .img-profile:hover{transform: scale(1.2);}
-
+#calcularcredmobile{z-index: 4;position: fixed;bottom: 0px;left: 0px;}
 </style>
 @endsection
 
@@ -703,29 +703,31 @@
             </div> --}}
 
             {{-- calcular credito --}}
-            @if($listing->listingtypestatus != "alquilar")
-            <div class="container mt-3">
-              <div class="border rounded py-3">
-                <p class="text-center text-muted mt-2">Calcule su crédito</p>
-                <div>
-                  <div class="d-flex">
-                    <input class="form-control ml-3 mr-1" id="valuecred" type="number" value="{{$listing->property_price*0.70}}" placeholder="$ Monto">
-                    <select class="form-select mr-3 ml-1" id="anios">
-                      <option value="">Años</option>
-                      @for ($i = 5; $i < 21; $i++)
-                      <option value="{{$values[$i]}}" @if($i==20) selected @endif>{{$i}}</option>
-                      @endfor
-                    </select>
-                  </div>
-                  <div class="text-center py-3">
-                    <button class="btn btn-danger" onclick="calcularcredito()">Calcular</button>
-                  </div>
-                  <div class="text-center">
-                    Total: <label class="font-weight-normal" style="font-size: 20px" id="totalcred"></label>
+            @if(!$mobile)
+              @if($listing->listingtypestatus != "alquilar")
+              <div class="container mt-3">
+                <div class="border rounded py-3">
+                  <p class="text-center text-muted mt-2">Calcule su crédito</p>
+                  <div>
+                    <div class="d-flex">
+                      <input class="form-control ml-3 mr-1" id="valuecred" type="number" value="{{$listing->property_price*0.70}}" placeholder="$ Monto">
+                      <select class="form-select mr-3 ml-1" id="anios">
+                        <option value="">Años</option>
+                        @for ($i = 5; $i < 21; $i++)
+                        <option value="{{$values[$i]}}" @if($i==20) selected @endif>{{$i}}</option>
+                        @endfor
+                      </select>
+                    </div>
+                    <div class="text-center py-3">
+                      <button class="btn btn-danger" onclick="calcularcredito()">Calcular</button>
+                    </div>
+                    <div class="text-center">
+                      Total: <label class="font-weight-normal" style="font-size: 20px" id="totalcred"></label>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+              @endif
             @endif
 
             @if($user->profile_photo_path != null)
@@ -853,6 +855,30 @@
         @endif --}}
       </div>
 
+      @if($mobile)
+        @if($listing->listingtypestatus != "alquilar")
+        <div id="calcularcredmobile" class="bg-danger p-2 w-100">
+          <div class="position-absolute px-2" style="top: -15px; left: -5px" onclick="this.parentElement.style.display = 'none';">
+            <i class="fas fa-times-circle bg-light rounded-circle" style="font-size: 20px"></i>
+          </div>
+          <label class="text-light mb-2" style="font-size: 14px;"><i class="fas fa-money-check-edit-alt"></i> Calcule su crédito</label>
+          <div class="d-flex input-group input-group-sm">
+            <input id="valuecred" type="number" class="w-25 mr-1 rounded bg-light border border-light" placeholder="$ Monto" value="{{$listing->property_price*0.70}}">
+            <select id="anios" class="rounded bg-light border border-light">
+              <option value="">Años</option>
+              @for ($i = 5; $i < 21; $i++)
+                  <option value="{{$values[$i]}}" @if($i == 20) selected @endif>{{$i}} años</option>
+              @endfor
+            </select>
+            <button onclick="calcularcredito()" class="btn btn-danger border border-light ml-1">Calcular</button>
+            <div class="d-flex align-items-center ml-2 text-light">
+              <label style="font-size: 20px">= <b id="totalcred" class="font-weight-bold"></b></label>
+            </div>
+          </div>
+        </div>
+        @endif
+      @endif
+
       {{-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -915,6 +941,8 @@
             alert('El monto solicitado no puede ser menor al 30% del valor de la propiedad');
           } else {
             let total = value * anios / 100;
+            let validate = total.toString().includes('.');
+            if(!validate) total = total + ".00";
             document.getElementById('totalcred').innerHTML = "$"+total;
             document.getElementById('totalinfo').innerHTML = "$"+total;
           }
