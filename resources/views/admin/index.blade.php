@@ -241,7 +241,7 @@
     @endif --}}
 
     <div class="mx-4 my-3 w-auto border rounded py-4">
-        <p class="font-semibold mx-4"><i class="far fa-edit text-red-600"></i> PROPIEDADES ACTUALIZADAS POR {{Auth::user()->name}}</p>
+        <p class="font-semibold mx-4"><i class="far fa-edit text-red-600"></i> PROPIEDADES ACTUALIZADAS POR <b class="text-red-500 font-semibold">{{Auth::user()->name}}</b> EL DÍA <b class="text-red-500 font-semibold">{{substr(date(now()), 0, 10)}}</b></p>
         <div class="mx-4">
             @if (count($updated_listing)>0)
             <div class="grid grid-cols-1 my-2">
