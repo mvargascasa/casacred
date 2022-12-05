@@ -1,7 +1,12 @@
 @extends('layouts.web')
 @section('header')
     <title>{{$post->title_google}}</title>
-    <style>
+    <meta name="description" content="{{$post->metadescription}}">
+    @if($post->keywords!=null) <meta name="keywords" content="{{$post->keywords}}"> @endif
+    <meta property="og:title" content="{{$post->title_google}}">
+    <meta property="og:description" content="{{$post->metadescription}}">
+    <meta property="og:image" content="{{asset('uploads/posts/'.$post->first_image)}}">
+    <style> 
         .card-related-posts{box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;}
         .card-related-posts:hover{box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;}
     </style>
