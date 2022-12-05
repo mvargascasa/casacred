@@ -208,4 +208,13 @@ class ApiController extends Controller
                         ->get();
         return $notifications;
     }
+
+    public function getprojectlistings(){
+        $projectslistings = Listing::where('listingtagstatus', 5)->where('listingtype', 23)->get();
+        foreach ($projectslistings as $projectlisting) {
+            $type = DB::table('listing_types')->select('type_title')->where('id', $projectlisting->listingtype)->first();
+            $projectlisting->listingtype = $type->type_title;
+        }
+        return response()->json($projectslistings);
+    }
 }
