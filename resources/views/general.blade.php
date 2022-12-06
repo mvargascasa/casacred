@@ -26,7 +26,7 @@
                     <h2 class="py-3">Cuenca</h2>
                     @foreach ($listingsc as $listingc)
                     @php $type = DB::table('listing_types')->select('type_title')->where('id', $listingc->listingtype)->first(); @endphp
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 my-1">
                             <a href="{{route('web.detail', $listingc->slug)}}">
                                 <div class="border card">
                                     <div class="position-relative">
@@ -52,7 +52,7 @@
             @endif
             @if(count($listingsq)>0)
                 <div class="row mt-5">
-                    <h2>Quito</h2>
+                    <h2 class="py-3">Quito</h2>
                     @foreach ($listingsq as $listingq)
                     @php $type = DB::table('listing_types')->select('type_title')->where('id', $listingq->listingtype)->first(); @endphp
                         <div class="col-sm-4">
@@ -81,7 +81,7 @@
             @endif
             @if(count($listingsg)>0)
                 <div class="row mt-5">
-                    <h2>Guayaquil</h2>
+                    <h2 class="py-3">Guayaquil</h2>
                     @foreach ($listingsg as $listingg)
                         @php $type = DB::table('listing_types')->select('type_title')->where('id', $listingg->listingtype)->first(); @endphp
                         <div class="col-sm-4">
@@ -110,6 +110,48 @@
             @endif
         </div>
 
+        <div class="text-center mt-5 pt-5 pb-5" style="background-color: #ffffff">
+            <h2>¿Necesita una propiedad en otra ubicación?</h2>
+            <div class="@if($ismobile) d-inline-block @else d-flex @endif justify-content-center">
+                <div class="mx-1">
+                    <label for="state">Provincia</label><br>
+                    <select name="" id="bform_province" class="form-select">
+                        <option value="">Seleccione</option>
+                        @foreach ($states as $state)
+                            <option value="{{$state->name}}" data-id="{{$state->id}}">{{$state->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mx-1">
+                    <label for="city">Ciudad</label><br>
+                    <select name="" id="bform_city" class="form-select">
+                        <option value="">Seleccione</option>
+                    </select>
+                </div>
+                <div class="mx-1">
+                    <label for="type">Tipo de Propiedad</label><br>
+                    <select name="" id="bform_type" class="form-select">
+                        <option value="">Seleccione</option>
+                        @foreach ($types as $type)
+                            <option value="{{$type->id}}">{{$type->type_title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mx-1">
+                    <label for="category">Categoría</label><br>
+                    <select name="" id="bform_cat" class="form-select">
+                        <option value="">Seleccione</option>
+                        <option value="venta">Venta</option>
+                        <option value="alquiler">Alquiler</option>
+                        <option value="proyectos">Proyectos</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mt-3">
+                <button onclick="search()" class="btn btn-danger">Buscar</button>
+            </div>
+        </div>
+
     </div>
 @endsection
 
@@ -118,5 +160,61 @@
         window.addEventListener('load', (event) => {
             document.getElementById('prisection').style.backgroundImage = "url({{asset('img/imgheader2.jpg')}})";
         });
+
+        const selState  = document.getElementById('bform_province');
+        const selCities = document.getElementById('bform_city');
+
+        selState.addEventListener("change", async function() {
+            selCities.options.length = 0;
+            let id = selState.options[selState.selectedIndex].dataset.id;
+            const response = await fetch("{{url('getcities')}}/"+id );
+            const cities = await response.json();
+            
+            var opt = document.createElement('option');
+                opt.appendChild( document.createTextNode('Seleccione') );
+                opt.value = '';
+                selCities.appendChild(opt);
+            cities.forEach(city => {
+                var opt = document.createElement('option');
+                opt.appendChild( document.createTextNode(city.name) );
+                opt.value = city.name;
+                selCities.appendChild(opt);
+            });
+        });
+
+        function search(){
+            let state = document.getElementById('bform_province').value;
+            let city = document.getElementById('bform_city').value;
+            let type = document.getElementById('bform_type').value;
+            let category = document.getElementById('bform_cat').value;
+            if(state == "" || city == "" || type == "" || category == ""){
+                alert('Seleccione los elementos de la lista');
+            } else {
+                type_title = getlistingtype(type);
+                slug = type_title + "-en-" + category + "-en-" + city.toLowerCase();
+                url = "{{route('web.propiedades', [':slug'])}}";
+                url = url.replace(':slug', slug);
+                window.location.href = url;
+                //console.log(slug.toLowerCase());
+            }
+        }
+
+        function getlistingtype(type){
+            let type_title="";
+            switch (type) {
+                case "23": type_title = "casas"; break;
+                case "24": type_title = "departamentos"; break;
+                case "25": type_title = "casas-comerciales"; break;
+                case "26": type_title = "terrenos"; break;
+                case "29": type_title = "quintas"; break;
+                case "30": type_title = "haciendas"; break;
+                case "32": type_title = "locales-comerciales"; break;
+                case "35": type_title = "oficinas"; break;
+                case "36": type_title = "suites"; break;
+                default:
+                    break;
+            }
+            return type_title;
+        }
     </script>
 @endsection

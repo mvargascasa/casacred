@@ -150,10 +150,12 @@ class WebController extends Controller
             if($ismobile) return view('indexmobile',compact('states', 'keywords', 'types'));
             else          return view('indexweb',compact('states', 'keywords', 'listings', 'types', 'categories', 'ismobile'));
         } else {
+            $types = DB::table('listing_types')->get();
+            $states = DB::table('info_states')->where('country_id',63)->orderBy('name')->get();      
             $listingsc = Listing::where('state', 'LIKE', 'Azuay')->where('city', 'LIKE', 'Cuenca')->where('available', 1)->where('status', 1)->latest()->take(3)->get();
             $listingsq = Listing::where('state', 'LIKE', 'Pichincha')->where('city', 'LIKE', 'Quito')->where('available', 1)->where('status', 1)->latest()->take(3)->get();
             $listingsg = Listing::where('state', 'LIKE', 'Guayas')->where('city', 'LIKE', 'Guayaquil')->where('available', 1)->where('status', 1)->latest()->take(3)->get();
-            return view('general', compact('listingsc', 'listingsq', 'listingsg'));
+            return view('general', compact('listingsc', 'listingsq', 'listingsg', 'states', 'types', 'ismobile'));
         }
     }
 
