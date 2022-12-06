@@ -32,72 +32,49 @@ class WebController extends Controller
 
         $current_url = request()->segment(1);
 
-        switch ($current_url) {
-            case 'casas-de-venta-en-ecuador':           $keywords = $keywordscas . ", venta casas ecuador, casas de venta ecuador, casas de venta en ecuador, casas en venta ecuador, casas en venta en ecuador"; break;
-            case 'departamentos-de-venta-en-ecuador':   $keywords = $keywordsdep . ", departamentos venta ecuador, departamentos de venta ecuador, departamentos de venta en ecuador, departamentos en venta ecuador, departamentos en venta en ecuador"; break;
-            case 'terrenos-de-venta-en-ecuador':        $keywords = $keywordster . ", terrenos venta ecuador, terrenos de venta ecuador, terrenos de venta en ecuador, terrenos en venta ecuador, terrenos en venta en ecuador"; break;
-            case 'casas-de-venta-en-cuenca':            $keywords = $keywordscas . ", casas venta cuenca, venta casas cuenca, casas en cuenca de venta, casas de venta cuenca, casas venta en cuenca, cuenca casas en venta, casa cuenca venta, casas de venta cuenca ecuador, casas de venta en cuenca ecuador, venta casa cuenca, venta casa en cuenca, venta de casa cuenca, venta de casas cuenca"; break;
-            case 'departamentos-de-venta-en-cuenca':    $keywords = $keywordsdep . ", departamentos venta cuenca, departamentos de venta en cuenca, departamentos de venta cuenca ecuador, venta departamentos cuenca, venta de departamentos en cuenca ecuador, arriendo cuenca, cuenca arriendos, departamentos alquiler cuenca, departamentos arriendo cuenca, departamentos de arriendo en cuenca, departamentos en renta cuenca, cuenca departamentos de arriendo"; break;
-            case 'terrenos-de-venta-en-cuenca':         $keywords = $keywordster . ", terrenos venta cuenca, terrenos de venta cuenca, venta de terrenos cuenca, venta de terrenos en cuenca, venta de terrenos en cuenca ecuador, terrenos de venta cuenca ecuador"; break;
-            case 'casas-de-venta-en-quito':             $keywords = $keywordscas . ", casas venta quito, casa venta quito, venta casas quito, quito casas de venta, quito casas en venta, quito venta casas, casas quito venta, casa de venta en quito, venta de casa quito, casa en venta quito, venta casa quito, venta de casas quito norte, venta de casas quito sur, venta de casas en quito, venta de casas en quito de oportunidad, casa de venta quito sur, casas de venta en quito, casas de venta en quito al norte, casas de venta quito sur, casas venta sur de quito, casas venta norte de quito, casas de venta en quito sur, casas de venta quito norte"; break;
-            case 'departamentos-de-venta-en-quito':     $keywords = $keywordsdep . ", departamentos venta quito, departamento venta quito, venta departamentos quito, departamento quito venta, venta departamentos en quito, departamentos quito venta, venta de departamentos quito, departamentos de venta en quito, departamentos de venta quito, departamentos alquiler quito, departamento de arriendo quito sur, departamentos arriendo sur de quito, departamentos de arriendo quito sur, departamentos de arriendo quito norte, departamentos arriendo norte de quito, quito arriendo, arriendo departamentos quito, departamentos arriendo en quito, quito departamentos de arriendo"; break;
-            case 'terrenos-de-venta-en-quito':          $keywords = $keywordster . ", venta de terrenos en quito, terrenos en venta en quito, terrenos de venta quito, venta de terrenos quito, terreno venta quito, venta terrenos quito, terrenos quito venta, terrenos venta quito, terrenos en venta quito, terrenos en quito de venta, venta de terreno quito, terrenos de venta en quito"; break;
-            case 'casas-de-venta-en-guayaquil':         $keywords = $keywordscas . ", venta de casas guayaquil norte, guayaquil casas en venta, venta de casa guayaquil, venta de casas guayaquil, casa venta guayaquil, casa en venta guayaquil, casas de venta en guayaquil, venta de casas en guayaquil, casas en venta en guayaquil baratas, casas en venta guayaquil baratas, venta de casa en guayaquil, casas de venta guayaquil norte, venta casas guayaquil, casas guayaquil venta, casas guayaquil, casa guayaquil venta, casas de venta guayaquil, venta casa guayaquil, casas venta guayaquil, casa guayaquil"; break;
-            case 'departamentos-de-venta-en-guayaquil': $keywords = $keywordsdep . ", guayaquil departamentos en alquiler, venta departamentos en guayaquil, departamentos en venta en guayaquil, venta departamento guayaquil, alquiler departamentos guayaquil, alquilo departamento guayaquil, departamentos venta guayaquil, departamento guayaquil venta, departamento venta guayaquil, departamentos guayaquil venta, departamentos en guayaquil venta, venta departamentos guayaquil"; break;
-            case 'terrenos-de-venta-en-guayaquil':      $keywords = $keywordster . ", guayaquil terrenos en venta, venta de terrenos guayaquil, terreno en venta en guayaquil, terreno guayaquil venta, terreno venta guayaquil, terrenos guayaquil venta, terrenos de venta guayaquil, venta terreno guayaquil, venta de terreno en guayaquil, terreno venta guayaquil, venta de terreno guayaquil, venta de terrenos en guayaquil, venta terrenos guayaquil, terrenos en venta en guayaquil"; break;
-            default:
-                # code...
-                break;
-        }
-
-        $types = DB::table('listing_types')->get();
-        $states = DB::table('info_states')->where('country_id',63)->orderBy('name')->get();
-        $categories = DB::table('listing_status')->get();
-
-        //return "code: ". $code . " - slug: " . $slug . " - ubication: " . $ubication;
-
-        if(!is_numeric($code)) {
-            $ubication = $slug;
-            $slug = $code;
-            if($ubication){
-                $listings = Listing::filterByListingTitle($ubication)->paginate(20);
+        if(request()->segment(2)){
+            switch ($current_url) {
+                case 'casas-de-venta-en-ecuador':           $keywords = $keywordscas . ", venta casas ecuador, casas de venta ecuador, casas de venta en ecuador, casas en venta ecuador, casas en venta en ecuador"; break;
+                case 'departamentos-de-venta-en-ecuador':   $keywords = $keywordsdep . ", departamentos venta ecuador, departamentos de venta ecuador, departamentos de venta en ecuador, departamentos en venta ecuador, departamentos en venta en ecuador"; break;
+                case 'terrenos-de-venta-en-ecuador':        $keywords = $keywordster . ", terrenos venta ecuador, terrenos de venta ecuador, terrenos de venta en ecuador, terrenos en venta ecuador, terrenos en venta en ecuador"; break;
+                case 'casas-de-venta-en-cuenca':            $keywords = $keywordscas . ", casas venta cuenca, venta casas cuenca, casas en cuenca de venta, casas de venta cuenca, casas venta en cuenca, cuenca casas en venta, casa cuenca venta, casas de venta cuenca ecuador, casas de venta en cuenca ecuador, venta casa cuenca, venta casa en cuenca, venta de casa cuenca, venta de casas cuenca"; break;
+                case 'departamentos-de-venta-en-cuenca':    $keywords = $keywordsdep . ", departamentos venta cuenca, departamentos de venta en cuenca, departamentos de venta cuenca ecuador, venta departamentos cuenca, venta de departamentos en cuenca ecuador, arriendo cuenca, cuenca arriendos, departamentos alquiler cuenca, departamentos arriendo cuenca, departamentos de arriendo en cuenca, departamentos en renta cuenca, cuenca departamentos de arriendo"; break;
+                case 'terrenos-de-venta-en-cuenca':         $keywords = $keywordster . ", terrenos venta cuenca, terrenos de venta cuenca, venta de terrenos cuenca, venta de terrenos en cuenca, venta de terrenos en cuenca ecuador, terrenos de venta cuenca ecuador"; break;
+                case 'casas-de-venta-en-quito':             $keywords = $keywordscas . ", casas venta quito, casa venta quito, venta casas quito, quito casas de venta, quito casas en venta, quito venta casas, casas quito venta, casa de venta en quito, venta de casa quito, casa en venta quito, venta casa quito, venta de casas quito norte, venta de casas quito sur, venta de casas en quito, venta de casas en quito de oportunidad, casa de venta quito sur, casas de venta en quito, casas de venta en quito al norte, casas de venta quito sur, casas venta sur de quito, casas venta norte de quito, casas de venta en quito sur, casas de venta quito norte"; break;
+                case 'departamentos-de-venta-en-quito':     $keywords = $keywordsdep . ", departamentos venta quito, departamento venta quito, venta departamentos quito, departamento quito venta, venta departamentos en quito, departamentos quito venta, venta de departamentos quito, departamentos de venta en quito, departamentos de venta quito, departamentos alquiler quito, departamento de arriendo quito sur, departamentos arriendo sur de quito, departamentos de arriendo quito sur, departamentos de arriendo quito norte, departamentos arriendo norte de quito, quito arriendo, arriendo departamentos quito, departamentos arriendo en quito, quito departamentos de arriendo"; break;
+                case 'terrenos-de-venta-en-quito':          $keywords = $keywordster . ", venta de terrenos en quito, terrenos en venta en quito, terrenos de venta quito, venta de terrenos quito, terreno venta quito, venta terrenos quito, terrenos quito venta, terrenos venta quito, terrenos en venta quito, terrenos en quito de venta, venta de terreno quito, terrenos de venta en quito"; break;
+                case 'casas-de-venta-en-guayaquil':         $keywords = $keywordscas . ", venta de casas guayaquil norte, guayaquil casas en venta, venta de casa guayaquil, venta de casas guayaquil, casa venta guayaquil, casa en venta guayaquil, casas de venta en guayaquil, venta de casas en guayaquil, casas en venta en guayaquil baratas, casas en venta guayaquil baratas, venta de casa en guayaquil, casas de venta guayaquil norte, venta casas guayaquil, casas guayaquil venta, casas guayaquil, casa guayaquil venta, casas de venta guayaquil, venta casa guayaquil, casas venta guayaquil, casa guayaquil"; break;
+                case 'departamentos-de-venta-en-guayaquil': $keywords = $keywordsdep . ", guayaquil departamentos en alquiler, venta departamentos en guayaquil, departamentos en venta en guayaquil, venta departamento guayaquil, alquiler departamentos guayaquil, alquilo departamento guayaquil, departamentos venta guayaquil, departamento guayaquil venta, departamento venta guayaquil, departamentos guayaquil venta, departamentos en guayaquil venta, venta departamentos guayaquil"; break;
+                case 'terrenos-de-venta-en-guayaquil':      $keywords = $keywordster . ", guayaquil terrenos en venta, venta de terrenos guayaquil, terreno en venta en guayaquil, terreno guayaquil venta, terreno venta guayaquil, terrenos guayaquil venta, terrenos de venta guayaquil, venta terreno guayaquil, venta de terreno en guayaquil, terreno venta guayaquil, venta de terreno guayaquil, venta de terrenos en guayaquil, venta terrenos guayaquil, terrenos en venta en guayaquil"; break;
+                default:
+                    # code...
+                    break;
+            }
+    
+            $types = DB::table('listing_types')->get();
+            $states = DB::table('info_states')->where('country_id',63)->orderBy('name')->get();
+            $categories = DB::table('listing_status')->get();
+    
+            //return "code: ". $code . " - slug: " . $slug . " - ubication: " . $ubication;
+    
+            if(!is_numeric($code)) {
+                $ubication = $slug;
+                $slug = $code;
+                if($ubication){
+                    $listings = Listing::filterByListingTitle($ubication)->paginate(20);
+                    //dd($listings);
+                    return view('indexweb',compact('states', 'keywords', 'listings', 'types', 'categories', 'ismobile'));
+                }
+            } else {
+                $listings = Listing::where('product_code', $code)->first();
+                //dd($listings);
                 //dd($listings);
                 return view('indexweb',compact('states', 'keywords', 'listings', 'types', 'categories', 'ismobile'));
             }
-        } else {
-            $listings = Listing::where('product_code', $code)->first();
-            //dd($listings);
-            //dd($listings);
-            return view('indexweb',compact('states', 'keywords', 'listings', 'types', 'categories', 'ismobile'));
-        }
-
-        if($slug){
-            $seopage = SeoPage::where('slug', $slug)->first();
-            if($seopage){
-                if($seopage->category == 0){
-                    $listings = Listing::where('listingtype', $seopage->type)->where('status', 1)->where('available', 1)->where('listingtypestatus', 'LIKE', "%$seopage->typestatus%")->inRandomOrder()->limit(6)->get();
-                } else {
-                    $listings = Listing::where('state', $seopage->state)->where('city', $seopage->city)->where('listingtype', $seopage->type)->where('status', 1)->where('listingtypestatus', 'LIKE', "%$seopage->typestatus%")->paginate(10);
-                }
-                $similarwords = $this->getSimilarWords($seopage->info_header);
-                $similarwordsfooter = $this->getSimilarWords($seopage->info_footer);
-                for ($i=0; $i < count($similarwords); $i++) {
-                    $wordbysearch = $similarwords[$i][0];
-                    $synonim = $similarwords[$i][1][rand(0, count($similarwords[$i][1])-1)];
-                    $seopage->info_header = str_replace("{".$wordbysearch."}", $synonim, $seopage->info_header);
-                }
-                for ($i=0; $i < count($similarwordsfooter); $i++) {
-                    $wordbysearch = $similarwordsfooter[$i][0];
-                    $synonim = $similarwordsfooter[$i][1][rand(0, count($similarwordsfooter[$i][1])-1)];
-                    $seopage->info_footer = str_replace("{".$wordbysearch."}", $synonim, $seopage->info_footer);
-                }
-                if(str_contains($seopage->info_header, "{ciudad}")) $seopage->info_header = str_replace("{ciudad}", $seopage->city, $seopage->info_header);
-                if(isset($seopage->info_footer)) if(str_contains($seopage->info_footer, "{ciudad}")) $seopage->info_footer = str_replace("{ciudad}", $seopage->city, $seopage->info_footer);
-                return view('webseopage', compact('seopage', 'listings', 'ismobile', 'types', 'similarwords', 'states'));
-            } else {
-                $seopage = SeoPage::where('old_slug', $slug)->first();
+    
+            if($slug){
+                $seopage = SeoPage::where('slug', $slug)->first();
                 if($seopage){
-                    return redirect()->route('web.propiedades', $seopage->slug);
                     if($seopage->category == 0){
                         $listings = Listing::where('listingtype', $seopage->type)->where('status', 1)->where('available', 1)->where('listingtypestatus', 'LIKE', "%$seopage->typestatus%")->inRandomOrder()->limit(6)->get();
                     } else {
@@ -119,36 +96,65 @@ class WebController extends Controller
                     if(isset($seopage->info_footer)) if(str_contains($seopage->info_footer, "{ciudad}")) $seopage->info_footer = str_replace("{ciudad}", $seopage->city, $seopage->info_footer);
                     return view('webseopage', compact('seopage', 'listings', 'ismobile', 'types', 'similarwords', 'states'));
                 } else {
-                    $city = ""; $state = "";
-                    $segment2 = request()->segment(2);
-                    if($segment2){
-                        if(!is_numeric($segment2)){
-                            $segments = explode("-", $segment2);
-                            $lastelement = end($segments);
-                            $city = $lastelement;
-                            // $state = $segments[count($segments)-1];
-                            // $city = $segments[count($segments)-2];
+                    $seopage = SeoPage::where('old_slug', $slug)->first();
+                    if($seopage){
+                        return redirect()->route('web.propiedades', $seopage->slug);
+                        if($seopage->category == 0){
+                            $listings = Listing::where('listingtype', $seopage->type)->where('status', 1)->where('available', 1)->where('listingtypestatus', 'LIKE', "%$seopage->typestatus%")->inRandomOrder()->limit(6)->get();
+                        } else {
+                            $listings = Listing::where('state', $seopage->state)->where('city', $seopage->city)->where('listingtype', $seopage->type)->where('status', 1)->where('listingtypestatus', 'LIKE', "%$seopage->typestatus%")->paginate(10);
                         }
+                        $similarwords = $this->getSimilarWords($seopage->info_header);
+                        $similarwordsfooter = $this->getSimilarWords($seopage->info_footer);
+                        for ($i=0; $i < count($similarwords); $i++) {
+                            $wordbysearch = $similarwords[$i][0];
+                            $synonim = $similarwords[$i][1][rand(0, count($similarwords[$i][1])-1)];
+                            $seopage->info_header = str_replace("{".$wordbysearch."}", $synonim, $seopage->info_header);
+                        }
+                        for ($i=0; $i < count($similarwordsfooter); $i++) {
+                            $wordbysearch = $similarwordsfooter[$i][0];
+                            $synonim = $similarwordsfooter[$i][1][rand(0, count($similarwordsfooter[$i][1])-1)];
+                            $seopage->info_footer = str_replace("{".$wordbysearch."}", $synonim, $seopage->info_footer);
+                        }
+                        if(str_contains($seopage->info_header, "{ciudad}")) $seopage->info_header = str_replace("{ciudad}", $seopage->city, $seopage->info_header);
+                        if(isset($seopage->info_footer)) if(str_contains($seopage->info_footer, "{ciudad}")) $seopage->info_footer = str_replace("{ciudad}", $seopage->city, $seopage->info_footer);
+                        return view('webseopage', compact('seopage', 'listings', 'ismobile', 'types', 'similarwords', 'states'));
+                    } else {
+                        $city = ""; $state = "";
+                        $segment2 = request()->segment(2);
+                        if($segment2){
+                            if(!is_numeric($segment2)){
+                                $segments = explode("-", $segment2);
+                                $lastelement = end($segments);
+                                $city = $lastelement;
+                                // $state = $segments[count($segments)-1];
+                                // $city = $segments[count($segments)-2];
+                            }
+                        }
+                        
+                        // $city = DB::table('info_cities')->where('name', $city)->get();
+    
+                        // //return $city;
+    
+                        // $state = DB::table('info_states')->where('id', $city);
+                        
+                        //$listings = Listing::filterByState($state)->filterByCity($city)->paginate(20);
+                        $listings = Listing::where('city', 'LIKE', "%$city%")->paginate(20);
+                        return view('indexweb',compact('states', 'keywords', 'listings', 'types', 'categories', 'ismobile'));
                     }
-                    
-                    // $city = DB::table('info_cities')->where('name', $city)->get();
-
-                    // //return $city;
-
-                    // $state = DB::table('info_states')->where('id', $city);
-                    
-                    //$listings = Listing::filterByState($state)->filterByCity($city)->paginate(20);
-                    $listings = Listing::where('city', 'LIKE', "%$city%")->paginate(20);
-                    return view('indexweb',compact('states', 'keywords', 'listings', 'types', 'categories', 'ismobile'));
                 }
             }
+    
+            $listings = Listing::filterByState($request->state)->filterByCity($request->city)->paginate(20);
+            //$types = DB::table('listing_types')->get();
+            if($ismobile) return view('indexmobile',compact('states', 'keywords', 'types'));
+            else          return view('indexweb',compact('states', 'keywords', 'listings', 'types', 'categories', 'ismobile'));
+        } else {
+            $listingsc = Listing::where('state', 'LIKE', 'Azuay')->where('city', 'LIKE', 'Cuenca')->where('available', 1)->where('status', 1)->latest()->take(3)->get();
+            $listingsq = Listing::where('state', 'LIKE', 'Pichincha')->where('city', 'LIKE', 'Quito')->where('available', 1)->where('status', 1)->latest()->take(3)->get();
+            $listingsg = Listing::where('state', 'LIKE', 'Guayas')->where('city', 'LIKE', 'Guayaquil')->where('available', 1)->where('status', 1)->latest()->take(3)->get();
+            return view('general', compact('listingsc', 'listingsq', 'listingsg'));
         }
-
-        $listings = Listing::filterByState($request->state)->filterByCity($request->city)->paginate(20);
-        //$types = DB::table('listing_types')->get();
-        if($ismobile) return view('indexmobile',compact('states', 'keywords', 'types'));
-        else          return view('indexweb',compact('states', 'keywords', 'listings', 'types', 'categories', 'ismobile'));
-        
     }
 
     protected $array_positions = [];
