@@ -23,12 +23,12 @@
         <div class="container mb-5">
             @if(count($listingsc) > 0)
                 <div class="row mt-5">
-                    <h2 class="py-3">Cuenca</h2>
+                    <h2 class="py-3">Propiedades en Cuenca</h2>
                     @foreach ($listingsc as $listingc)
                     @php $type = DB::table('listing_types')->select('type_title')->where('id', $listingc->listingtype)->first(); @endphp
                         <div class="col-sm-4 my-1">
                             <a href="{{route('web.detail', $listingc->slug)}}">
-                                <div class="border card">
+                                <div class="border card h-100">
                                     <div class="position-relative">
                                         <img width="100%" src="{{asset('uploads/listing/600/'.strtok($listingc->images, '|'))}}" alt="IMG_{{$listingc->listing_title}}">
                                         <div class="position-absolute bg-danger text-light rounded px-2" style="top: 5px; left: 5px;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
@@ -52,12 +52,12 @@
             @endif
             @if(count($listingsq)>0)
                 <div class="row mt-5">
-                    <h2 class="py-3">Quito</h2>
+                    <h2 class="py-3">Propiedades en Quito</h2>
                     @foreach ($listingsq as $listingq)
                     @php $type = DB::table('listing_types')->select('type_title')->where('id', $listingq->listingtype)->first(); @endphp
                         <div class="col-sm-4">
                             <a href="{{route('web.detail', $listingq->slug)}}">
-                                <div class="border card">
+                                <div class="border card h-100">
                                     <div class="position-relative">
                                         <img width="100%" src="{{asset('uploads/listing/600/'.strtok($listingq->images, '|'))}}" alt="IMG_{{$listingq->listing_title}}">
                                         <div class="position-absolute bg-danger text-light rounded px-2" style="top: 5px; left: 5px;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
@@ -81,12 +81,12 @@
             @endif
             @if(count($listingsg)>0)
                 <div class="row mt-5">
-                    <h2 class="py-3">Guayaquil</h2>
+                    <h2 class="py-3">Propiedades en Guayaquil</h2>
                     @foreach ($listingsg as $listingg)
                         @php $type = DB::table('listing_types')->select('type_title')->where('id', $listingg->listingtype)->first(); @endphp
                         <div class="col-sm-4">
                             <a href="{{route('web.detail', $listingg->slug)}}">
-                                <div class="border card">
+                                <div class="border card h-100">
                                     <div class="position-relative">
                                         <img width="100%" src="{{asset('uploads/listing/600/'.strtok($listingg->images, '|'))}}" alt="IMG_{{$listingg->listing_title}}">
                                         <div class="position-absolute bg-danger text-light rounded px-2" style="top: 5px; left: 5px;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
