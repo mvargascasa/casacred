@@ -152,9 +152,9 @@ class WebController extends Controller
         } else {
             $types = DB::table('listing_types')->get();
             $states = DB::table('info_states')->where('country_id',63)->orderBy('name')->get();      
-            $listingsc = Listing::where('state', 'LIKE', 'Azuay')->where('city', 'LIKE', 'Cuenca')->where('available', 1)->where('status', 1)->latest()->take(3)->get();
-            $listingsq = Listing::where('state', 'LIKE', 'Pichincha')->where('city', 'LIKE', 'Quito')->where('available', 1)->where('status', 1)->latest()->take(3)->get();
-            $listingsg = Listing::where('state', 'LIKE', 'Guayas')->where('city', 'LIKE', 'Guayaquil')->where('available', 1)->where('status', 1)->latest()->take(3)->get();
+            $listingsc = Listing::where('state', 'LIKE', 'Azuay')->where('city', 'LIKE', 'Cuenca')->where('available', 1)->where('status', 1)->inRandomOrder()->take(3)->get();
+            $listingsq = Listing::where('state', 'LIKE', 'Pichincha')->where('city', 'LIKE', 'Quito')->where('available', 1)->where('status', 1)->inRandomOrder()->take(3)->get();
+            $listingsg = Listing::where('state', 'LIKE', 'Guayas')->where('city', 'LIKE', 'Guayaquil')->where('available', 1)->where('status', 1)->inRandomOrder()->take(3)->get();
             return view('general', compact('listingsc', 'listingsq', 'listingsg', 'states', 'types', 'ismobile'));
         }
     }
