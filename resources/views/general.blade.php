@@ -2,7 +2,11 @@
 @section('header')
     <title>Propiedades de Venta en Ecuador</title>
     <meta name="description" content="Encuentre las mejores propiedades de Venta y Renta en Ecuador. Casa Crédito, un aliado suyo ✅">
-    <meta name="keywords" content="casas en venta en ecuador">
+    <meta name="keywords" content="casas en venta en ecuador, propiedades de venta en ecuador, propiedades en venta en ecuador, propiedades en cuenca, propiedades en quito, propiedades en guayaquil">
+
+    <meta property="og:title" content="Propiedades de Venta en Ecuador">
+    <meta property="og:description" content="Encuentre las mejores propiedades de Venta y Renta en Ecuador. Casa Crédito, un aliado suyo ✅">
+    <meta property="og:image" content="{{asset('img/meta-image-social-cc2.jpg')}}">
     <style>
         .card{box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;}
         .card:hover{box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;}
@@ -13,9 +17,7 @@
     <section id="prisection" style="background: rgba(8, 8, 8, 0.319); background-size: cover;background-position: center center; width: 100%; background-repeat: no-repeat; background-blend-mode: darken;">
         <div>
             <div class="row align-items-center d-flex justify-content-center text-center text-light" style="margin: 0; min-height: @if($ismobile) 250px; @else 450px; @endif">
-                <h1>
-                    Casa Crédito Inmobiliaria
-                </h1>
+                <h1 @if($ismobile) class="mt-5" @endif>Casa Crédito Inmobiliaria</h1>
             </div>
         </div>
     </section>
