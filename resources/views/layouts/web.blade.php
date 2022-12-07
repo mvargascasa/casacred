@@ -432,6 +432,8 @@ if(strpos($actual_link, 'localhost') === false){
                         <p><a style="color: #ffffff !important" href="tel:+17186903740" class="asindeco"><i class="fas fa-phone"></i> 718-690-3740</a>&nbsp;</p>
                         {{-- <p><a href="tel:+13478460067" class="asindeco">347-846-0067</a>&nbsp;</p> --}}
 
+                        <p style="font-size: 20px; font-weight: 500">New Jersey | EE.UU.</p>
+
                         <p class="text-dark-50"><a target="_blank" style="color: #ffffff" href="https://g.page/r/CVNRV-zNuJiZEAE">
                           <i class="fas fa-map-marker-alt"></i> 1146 East Jersey St Elizabeth, NJ 07201
                         </a></p>
