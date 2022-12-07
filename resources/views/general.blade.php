@@ -10,9 +10,9 @@
 @endsection
 
 @section('content')
-    <section id="prisection" style="background: rgba(8, 8, 8, 0.319); background-size: cover;background-position: left center; width: 100%; background-repeat: no-repeat; background-blend-mode: darken;">
+    <section id="prisection" style="background: rgba(8, 8, 8, 0.319); background-size: cover;background-position: center center; width: 100%; background-repeat: no-repeat; background-blend-mode: darken;">
         <div>
-            <div class="row align-items-center d-flex justify-content-center text-center text-light" style="margin: 0; min-height: 450px;">
+            <div class="row align-items-center d-flex justify-content-center text-center text-light" style="margin: 0; min-height: @if($ismobile) 250px; @else 450px; @endif">
                 <h1>
                     Casa Crédito Inmobiliaria
                 </h1>
@@ -24,6 +24,7 @@
             @if(count($listingsc) > 0)
                 <div class="row mt-5">
                     <h2 class="py-3">Propiedades en Cuenca</h2>
+                    <hr>
                     @foreach ($listingsc as $listingc)
                     @php $type = DB::table('listing_types')->select('type_title')->where('id', $listingc->listingtype)->first(); @endphp
                         <div class="col-sm-4 my-1">
@@ -53,9 +54,10 @@
             @if(count($listingsq)>0)
                 <div class="row mt-5">
                     <h2 class="py-3">Propiedades en Quito</h2>
+                    <hr>
                     @foreach ($listingsq as $listingq)
                     @php $type = DB::table('listing_types')->select('type_title')->where('id', $listingq->listingtype)->first(); @endphp
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 my-1">
                             <a href="{{route('web.detail', $listingq->slug)}}">
                                 <div class="border card h-100">
                                     <div class="position-relative">
@@ -82,9 +84,10 @@
             @if(count($listingsg)>0)
                 <div class="row mt-5">
                     <h2 class="py-3">Propiedades en Guayaquil</h2>
+                    <hr>
                     @foreach ($listingsg as $listingg)
                         @php $type = DB::table('listing_types')->select('type_title')->where('id', $listingg->listingtype)->first(); @endphp
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 my-1">
                             <a href="{{route('web.detail', $listingg->slug)}}">
                                 <div class="border card h-100">
                                     <div class="position-relative">
@@ -110,26 +113,26 @@
             @endif
         </div>
 
-        <div class="text-center mt-5 pt-5 pb-5" style="background-color: #ffffff">
-            <h2>¿Necesita una propiedad en otra ubicación?</h2>
-            <div class="@if($ismobile) d-inline-block @else d-flex @endif justify-content-center">
-                <div class="mx-1">
-                    <label for="state">Provincia</label><br>
+        <div class="mt-5 pt-5 pb-5" style="background-color: #ffffff">
+            <h2 class="text-center">¿Necesita una propiedad en otra ubicación?</h2>
+            <div class="row @if($ismobile) mx-1 @else mx-5 px-5 @endif mt-3 mb-4">
+                <div class="col-6 col-sm-3">
+                    <label for="state" class="mb-2 mt-2 text-muted"><i class="fas fa-map-marked-alt"></i> Provincia</label><br>
                     <select name="" id="bform_province" class="form-select">
                         <option value="">Seleccione</option>
                         @foreach ($states as $state)
-                            <option value="{{$state->name}}" data-id="{{$state->id}}">{{$state->name}}</option>
+                            <option class="option" value="{{$state->name}}" data-id="{{$state->id}}">{{$state->name}}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="mx-1">
-                    <label for="city">Ciudad</label><br>
+                <div class="col-6 col-sm-3">
+                    <label for="city" class="mb-2 mt-2 text-muted"><i class="fas fa-map-marker-alt"></i> Ciudad</label><br>
                     <select name="" id="bform_city" class="form-select">
                         <option value="">Seleccione</option>
                     </select>
                 </div>
-                <div class="mx-1">
-                    <label for="type">Tipo de Propiedad</label><br>
+                <div class="col-6 col-sm-3">
+                    <label for="type" class="mb-2 mt-2 text-muted"><i class="fas fa-home"></i> Tipo de Propiedad</label><br>
                     <select name="" id="bform_type" class="form-select">
                         <option value="">Seleccione</option>
                         @foreach ($types as $type)
@@ -137,8 +140,8 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="mx-1">
-                    <label for="category">Categoría</label><br>
+                <div class="col-6 col-sm-3">
+                    <label for="category" class="mb-2 mt-2 text-muted"><i class="fas fa-tasks-alt"></i> Categoría</label><br>
                     <select name="" id="bform_cat" class="form-select">
                         <option value="">Seleccione</option>
                         <option value="venta">Venta</option>
@@ -147,8 +150,8 @@
                     </select>
                 </div>
             </div>
-            <div class="mt-3">
-                <button onclick="search()" class="btn btn-danger">Buscar</button>
+            <div class="mt-3 text-center">
+                <button onclick="search()" class="btn btn-danger"><i class="far fa-search"></i> Buscar</button>
             </div>
         </div>
 
