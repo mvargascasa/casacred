@@ -217,4 +217,9 @@ class ApiController extends Controller
         }
         return response()->json($projectslistings);
     }
+
+    public function getlistingbyslug($slug){
+        $listing = Listing::where('listingtagstatus', 5)->where('listingtype', 23)->where('slug', $slug)->first();
+        return response()->json($listing);
+    }
 }
