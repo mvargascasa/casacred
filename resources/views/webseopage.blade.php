@@ -5,7 +5,7 @@
 <meta name="keywords" content="@if($seopage->keywords) {{$seopage->keywords}} @else {{strtolower($seopage->title)}} @endif">
 <style>
   .inputs-on-hover:hover{background-color: #EF4444; color: #ffffff; cursor: pointer}
-  #labeldiv1, #labeldiv2, #labeldiv3, #labeldiv4, #labeldiv5, #labeldiv6, #labeldiv7, #labeldiv8{cursor: pointer !important;}
+  #labeldiv1, #labeldiv2, #labeldiv3, #labeldiv4, #labeldiv5, #labeldiv6, #labeldiv7, #labeldiv8, #labeldiv9{cursor: pointer !important;}
   .font-size-12{font-size: 14px}
   .card-listing:hover{box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;}
   .btncall{color: #000000 !important;}.btncall:hover{color: #ffffff !important}
@@ -109,6 +109,16 @@
               <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Locales Comerciales" class="border-0 inputs-on-hover" readonly></div>
               <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Oficinas" class="border-0 inputs-on-hover" readonly></div>
               <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Suites" class="border-0 inputs-on-hover" readonly></div>
+            </div>
+          </div>
+
+          <div class="mx-1">
+            <div id="div9" class="pattern bg-white rounded p-1 border">
+              {{-- <input type="hidden" id="bform_searchtxt"> --}}
+              <label for="category" class="d-flex"><div id="labeldiv9back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv9" class="font-weight-bolder">Sector</div></label>
+            </div>
+            <div id="child9" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
+              <div><input type="text" class="border-0 m-1" onkeyup="setcolortodiv9(this)" placeholder="Ubicación  o Código" id="bform_searchtxt"></div>
             </div>
           </div>
   
@@ -552,7 +562,7 @@
             <div class="row">
               <label class="text-secondary font-size-12">¿Qué tipo de propiedad está buscando?</label>
               <div class="col-sm-12 col-12 mt-1">
-                <div class="mx-1">
+                <div>
                   <div id="div8" class="pattern bg-white rounded p-1 border">
                     <input type="hidden" id="bform_type">
                     <label for="category" class="d-flex"><div id="labeldiv8back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv8">Tipo de Propiedad</div></label>
@@ -570,6 +580,17 @@
                   </div>
                 </div>
               </div>
+            </div>
+
+            <label class="mt-2 text-secondary font-size-12 font-weight-bolder">Búsqueda Avanzada</label>
+            <hr style="margin: 0px">
+            <div class="row my-2">
+              <label class="text-secondary font-size-12">¿Algún sector en específico?</label>
+              <div class="col-sm-12 col-12 mt-1">
+                <div>
+                  <div><input type="text" class="border rounded px-1 w-100 py-1" placeholder="Ingrese una ubicación o código" id="bform_searchtxt"></div>
+                </div>
+              </div>            
             </div>
 
             <div class="row my-2">
@@ -721,7 +742,11 @@
           document.getElementById('bform_province').value = "";
           document.getElementById('labeldiv1').innerHTML = "Provincia";
         }
+      }
 
+      function setcolortodiv9(input){
+        if(input.value.length > 0) document.getElementById('labeldiv9back').style.backgroundColor = "#5EBA7D";
+        else document.getElementById('labeldiv9back').style.backgroundColor = "#EF4444";
       }
 
       function setValue(object, label){  

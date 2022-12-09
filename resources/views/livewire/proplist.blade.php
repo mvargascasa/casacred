@@ -233,11 +233,13 @@ const upscroll = () => {
         let bform_bedrooms  = document.getElementById('bform_bedrooms').value;
         let bform_bathrooms = document.getElementById('bform_bathrooms').value;
         let bform_garage    = document.getElementById('bform_garage').value;
+        let bform_searchtxt = document.getElementById('bform_searchtxt').value;
 
         console.log(bform_category);
         console.log(bform_type);
         console.log(bform_province);
         console.log(bform_city);
+        console.log(bform_searchtxt);
         console.log(bform_uptoprice);
         console.log(bform_fromprice);
         console.log(bform_bedrooms);
@@ -253,6 +255,7 @@ const upscroll = () => {
         @this.set('bedrooms', bform_bedrooms);
         @this.set('bathrooms', bform_bathrooms);
         @this.set('garage', bform_garage);
+        @this.set('searchtxt', bform_searchtxt);
     }
 
     function filter_search(){
