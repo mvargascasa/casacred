@@ -23,17 +23,19 @@
 @section('content')
 
     {{-- <section id="bg-header" style="background: rgba(8, 8, 8, 0.449); background-size: cover;background-position: center; width: 100%; background-repeat: no-repeat; background-blend-mode: darken;"> --}}
-      <div class="row justify-content-center pt-5 pb-3">
-        <div @if($ismobile) class="pt-5" @endif>
-          <h1 class="text-center">{{$seopage->title}}</h1>
-          <p class="text-center">{{$seopage->description}}</p>
-          <div class="container">
-            <div class="@if($ismobile) mx-0 @else mx-5 @endif text-center">
-                {!!$seopage->info_header!!}
+      <section id="imgheader" style="background-size: cover;background-position: center; width: 100%; background-repeat: no-repeat;">
+        <div class="row justify-content-center pt-5 pb-3">
+          <div @if($ismobile) class="pt-5" @endif>
+            <h1 class="text-center">{{$seopage->title}}</h1>
+            <p class="text-center">{{$seopage->description}}</p>
+            <div class="container">
+              <div class="@if($ismobile) mx-0 @else mx-5 @endif text-center">
+                  {!!$seopage->info_header!!}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       @if($ismobile)
       {{-- <div class="d-flex justify-content-center"> --}}
@@ -691,6 +693,8 @@
       window.addEventListener('load', (event) => {
         //set image background in search div
         document.getElementById('bgimage').style.backgroundImage = "url({{asset('img/backimagesearch.jpg')}})";
+        document.getElementById('imgheader').style.backgroundImage = "url({{asset('img/imgback2.jpg')}})";
+
         let slug = "{{request()->segment(2)}}";
           if(isNaN(slug)){
             let arrayslug = slug.split("-");

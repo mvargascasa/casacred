@@ -130,9 +130,11 @@
     {{-- new filters --}}
     {{-- <div class="sticky-top px-5" style="background-color: #bdbdbd"> --}}
       {{-- <form id="newsearch" action="{{route('web.search', ['category', 'en-venta', 'cuenca'])}}" method="GET" class="sticky-top"> --}}
-      <div class="d-flex justify-content-center align-items-center pt-5 pb-4 text-center">
-        <h1 class="text-secondary h3 @if($ismobile) pt-4 @endif">@if($h1 != null || $h1 != "") {{$h1}} @else Encuentre las mejores Propiedades en Venta o Alquiler en <b class="text-danger font-weight-bold">Casa Crédito</b> @endif</h1>
-      </div>
+        <section id="imgheader" style="background-size: cover;background-position: bottom center; width: 100%; background-repeat: no-repeat;">
+          <div class="d-flex justify-content-center align-items-center pt-5 pb-4 text-center" style="min-height: 200px; height: 200px">
+            <h1 class="h3 @if($ismobile) pt-4 @endif">@if($h1 != null || $h1 != "") {{$h1}} @else Encuentre las mejores Propiedades en Venta o Alquiler en <b class="text-danger font-weight-bold">Casa Crédito</b> @endif</h1>
+          </div>
+        </section>
 
       @if($ismobile)
         <section id="bgimage" class="d-flex align-items-center justify-content-center py-3" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: @if($ismobile) 55px @else 0px @endif; z-index: 2">
@@ -145,7 +147,7 @@
       @endif
 
       @if(!$ismobile)
-      <section id="bgimage" class="d-flex align-items-center justify-content-center mt-1 mb-3" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: 0; z-index: 2">
+      <section id="bgimage" class="d-flex align-items-center justify-content-center mb-3" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: 0; z-index: 2">
         <div class="d-inline-flex pt-3 px-5 w-100 justify-content-center">
           <div class="mx-1">
             <div id="div1" class="pattern bg-white rounded p-1 border" style="cursor: pointer !important">
@@ -1256,6 +1258,7 @@ function search(){
   window.addEventListener('load', (event) => {
           //set bgimage in the div search
           document.getElementById('bgimage').style.backgroundImage = "url({{asset('img/backimagesearch.jpg')}})";
+          document.getElementById('imgheader').style.backgroundImage = "url({{asset('img/imgback1.jpg')}})";
 
           let slug = "{{request()->segment(2)}}";
           if(isNaN(slug)){
