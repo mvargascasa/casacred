@@ -334,10 +334,10 @@ if(strpos($actual_link, 'localhost') === false){
                   </ul>
                 </li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/asesores-bienes-raices')) active @endif" href="{{route('web.servicio','vende-tu-casa')}}">Vende</a> </li>
-                <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('blog')) active @endif" href="{{route('web.blog')}}">Blog</a></li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/creditos-en-ecuador')) active @endif" href="{{route('web.servicios','creditos-en-ecuador')}}">Creditos</a> </li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/construye')) active @endif" href="{{route('web.servicios','construye')}}">Construye</a> </li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Route::is('web.notariausa') ) active @endif" href="{{route('web.notariausa')}}">Notaría USA</a> </li>
+                <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('blog')) active @endif" href="{{route('web.blog')}}">Blog</a></li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/nosotros')) active @endif" href="{{route('web.servicios','nosotros')}}">Nosotros</a> </li>          
                         <!-- Authentication Links -->
                         @guest
