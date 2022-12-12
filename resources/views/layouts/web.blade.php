@@ -284,24 +284,18 @@ if(strpos($actual_link, 'localhost') === false){
                     <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Casas en Venta</a>
                       <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{route('web.propiedades', 'casas-en-venta-en-cuenca')}}">Casas en Venta en Cuenca</a></li>
-                      </ul>
-                      <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{route('web.propiedades', 'casas-en-venta-en-quito')}}">Casas en Venta en Quito</a></li>
                       </ul>
                     </li>
                     <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Departamentos en Venta</a>
                       <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{route('web.propiedades', 'departamentos-en-venta-en-cuenca')}}">Departamentos en Venta en Cuenca</a></li>
-                      </ul>
-                      <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{route('web.propiedades', 'departamentos-en-venta-en-quito')}}">Departamentos en Venta en Quito</a></li>
                       </ul>
                     </li>
                     <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Terrenos en Venta</a>
                       <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{route('web.propiedades', 'terrenos-en-venta-en-cuenca')}}">Terrenos en Venta en Cuenca</a></li>
-                      </ul>
-                      <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{route('web.propiedades', 'terrenos-en-venta-en-quito')}}">Terrenos en Venta en Quito</a></li>
                       </ul>
                     </li>
