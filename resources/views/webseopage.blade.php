@@ -52,7 +52,14 @@
     @if(!$ismobile)
     <section id="bgimage" class="d-flex align-items-center justify-content-center" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: 0; z-index: 1">
       <div class="searchdesktop">
-        <div class="d-flex justify-content-center pt-3 px-5 w-100">
+        <div class="d-flex justify-content-center pt-3 px-5 w-100 mb-3">
+
+          <div class="mx-1">
+            <div class="bg-white rounded border border-gray-600" style="height: 33px;margin-top: 1px">
+              <input type="text" class="border-0 rounded px-2" style="font-size: 12px; width: 180px; outline: none;padding-top: 7px !important" placeholder="Buscar por sector o código" id="bform_searchtxt"><i class="fas fa-search pl-2 pr-2" style="cursor: pointer; font-size: 12px" onclick="filter_search_aux()"></i>
+            </div>
+          </div>
+
           <div class="mx-1">
             <div id="div1" class="pattern bg-white rounded p-1 border" style="cursor: pointer !important">
               <input type="hidden" id="bform_province" name="state">
@@ -114,15 +121,14 @@
             </div>
           </div>
 
-          <div class="mx-1">
+          {{-- <div class="mx-1">
             <div id="div9" class="pattern bg-white rounded p-1 border">
-              {{-- <input type="hidden" id="bform_searchtxt"> --}}
               <label for="category" class="d-flex"><div id="labeldiv9back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv9" class="font-weight-bolder">Sector</div></label>
             </div>
             <div id="child9" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
               <div><input type="text" class="border-0 m-1" onkeyup="setcolortodiv9(this)" placeholder="Ubicación  o Código" id="bform_searchtxt"></div>
             </div>
-          </div>
+          </div> --}}
   
           <div class="mx-1">
             <div id="div4" class="pattern bg-white rounded p-1 border">
@@ -132,13 +138,13 @@
               <div>
                 <label for="">Desde</label>
                 <div class="input-group input-group-sm">
-                  <input type="number" class="form-control" id="bform_fromprice" placeholder="Ej: 90000">
+                  <input type="number" class="form-control" id="bform_fromprice" placeholder="Ej: 90000" onblur="filter_search_aux()">
                 </div>
               </div>
               <div>
                 <label for="">Hasta</label>
                 <div class="input-group input-group-sm">
-                  <input type="number" class="form-control" id="bform_uptoprice" placeholder="Ej: 100000">
+                  <input type="number" class="form-control" id="bform_uptoprice" placeholder="Ej: 100000" onblur="filter_search_aux()">
                 </div>
               </div>
             </div>
@@ -165,11 +171,11 @@
               <label for="bedrooms" class="d-flex"><div id="labeldiv5back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv5" class="font-weight-bolder">Habitaciones</div></label>
             </div>
             <div id="child5" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
-              <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="1 habitacion(es)" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="2 habitacion(es)" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="3 habitacion(es)" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="4 habitacion(es)" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv5')" type="text" value="5 habitacion(es)" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv5');filter_search_aux();" type="text" value="1 habitación" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv5');filter_search_aux();" type="text" value="2 habitaciones" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv5');filter_search_aux();" type="text" value="3 habitaciones" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv5');filter_search_aux();" type="text" value="4 habitaciones" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv5');filter_search_aux();" type="text" value="5 habitaciones" class="border-0 inputs-on-hover" readonly></div>
             </div>
           </div>
   
@@ -179,11 +185,11 @@
               <label for="bathrooms" class="d-flex"><div id="labeldiv6back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv6" class="font-weight-bolder">Baños</div></label>
             </div>
             <div id="child6" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
-              <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="1 baño(s)" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="2 baño(s)" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="3 baño(s)" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="4 baño(s)" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv6')" type="text" value="5 baño(s)" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv6');filter_search_aux();" type="text" value="1 baño" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv6');filter_search_aux();" type="text" value="2 baños" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv6');filter_search_aux();" type="text" value="3 baños" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv6');filter_search_aux();" type="text" value="4 baños" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv6');filter_search_aux();" type="text" value="5 baños" class="border-0 inputs-on-hover" readonly></div>
             </div>
           </div>
   
@@ -193,18 +199,16 @@
               <label for="bathrooms" class="d-flex"><div id="labeldiv7back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv7" class="font-weight-bolder">Garage</div></label>
             </div>
             <div id="child7" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
-              <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="1 garage" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="2 garage" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="3 garage" class="border-0 inputs-on-hover" readonly></div>
-              <div><input onclick="setValue(this, 'labeldiv7')" type="text" value="4 garage" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv7');filter_search_aux();" type="text" value="1 garage" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv7');filter_search_aux();" type="text" value="2 garage" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv7');filter_search_aux();" type="text" value="3 garage" class="border-0 inputs-on-hover" readonly></div>
+              <div><input onclick="setValue(this, 'labeldiv7');filter_search_aux();" type="text" value="4 garage" class="border-0 inputs-on-hover" readonly></div>
             </div>
           </div>
           
-          <div class="mb-3 ml-1">
-            {{-- <label class="btn btn-danger px-2 btn-sm rounded-circle" onclick="filter_search()"><i class="fas fa-search"></i></label> --}}
+          {{-- <div class="mb-3 ml-1">
             <label class="btn btn-danger px-2 btn-sm rounded-circle" onclick="filter_search_aux()"><i class="fas fa-search"></i></label>
-            {{-- <label class="btn btn-danger px-2 btn-sm rounded-circle" onclick="clear_search()"><i class="fas fa-trash-alt"></i></label> --}}
-          </div>
+          </div> --}}
         </div>
       </div>
     </section>
