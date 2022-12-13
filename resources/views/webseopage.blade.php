@@ -368,7 +368,7 @@
         </div>
         @else --}}
         <div class="mx-5">
-          @if(isset($seopage->similarlinks_g) && count(json_decode($seopage->similarlinks_g))>0)
+          @if(isset($seopage->similarlinks_g) && count(json_decode($seopage->similarlinks_g))> 0 && strlen($seopage->similarlinks_g)>5)
               <h2>{{$seopage->subtitle_if_general}}</h2>
               <div class="row mt-2 mb-4">
                 @php
