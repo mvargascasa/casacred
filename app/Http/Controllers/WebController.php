@@ -32,6 +32,10 @@ class WebController extends Controller
 
         $current_url = request()->segment(1);
 
+        $types = DB::table('listing_types')->get();
+        $states = DB::table('info_states')->where('country_id',63)->orderBy('name')->get();
+        $categories = DB::table('listing_status')->get();
+
         if(request()->segment(2)){
             switch ($current_url) {
                 case 'casas-de-venta-en-ecuador':           $keywords = $keywordscas . ", venta casas ecuador, casas de venta ecuador, casas de venta en ecuador, casas en venta ecuador, casas en venta en ecuador"; break;
@@ -50,10 +54,6 @@ class WebController extends Controller
                     # code...
                     break;
             }
-    
-            $types = DB::table('listing_types')->get();
-            $states = DB::table('info_states')->where('country_id',63)->orderBy('name')->get();
-            $categories = DB::table('listing_status')->get();
     
             //return "code: ". $code . " - slug: " . $slug . " - ubication: " . $ubication;
     
@@ -150,12 +150,15 @@ class WebController extends Controller
             if($ismobile) return view('indexmobile',compact('states', 'keywords', 'types'));
             else          return view('indexweb',compact('states', 'keywords', 'listings', 'types', 'categories', 'ismobile'));
         } else {
-            $types = DB::table('listing_types')->get();
-            $states = DB::table('info_states')->where('country_id',63)->orderBy('name')->get();      
-            $listingsc = Listing::where('state', 'LIKE', 'Azuay')->where('city', 'LIKE', 'Cuenca')->where('available', 1)->where('status', 1)->inRandomOrder()->take(3)->get();
-            $listingsq = Listing::where('state', 'LIKE', 'Pichincha')->where('city', 'LIKE', 'Quito')->where('available', 1)->where('status', 1)->inRandomOrder()->take(3)->get();
-            $listingsg = Listing::where('state', 'LIKE', 'Guayas')->where('city', 'LIKE', 'Guayaquil')->where('available', 1)->where('status', 1)->inRandomOrder()->take(3)->get();
-            return view('general', compact('listingsc', 'listingsq', 'listingsg', 'states', 'types', 'ismobile'));
+            if($ismobile) {return view('indexmobile',compact('states', 'keywords', 'types'));}
+            else{
+                $types = DB::table('listing_types')->get();
+                $states = DB::table('info_states')->where('country_id',63)->orderBy('name')->get();      
+                $listingsc = Listing::where('state', 'LIKE', 'Azuay')->where('city', 'LIKE', 'Cuenca')->where('available', 1)->where('status', 1)->inRandomOrder()->take(3)->get();
+                $listingsq = Listing::where('state', 'LIKE', 'Pichincha')->where('city', 'LIKE', 'Quito')->where('available', 1)->where('status', 1)->inRandomOrder()->take(3)->get();
+                $listingsg = Listing::where('state', 'LIKE', 'Guayas')->where('city', 'LIKE', 'Guayaquil')->where('available', 1)->where('status', 1)->inRandomOrder()->take(3)->get();
+                return view('general', compact('listingsc', 'listingsq', 'listingsg', 'states', 'types', 'ismobile'));
+            }
         }
     }
 
