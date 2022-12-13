@@ -210,6 +210,8 @@ class SeoController extends Controller
             for ($i=0; $i < count($request->anchor_text); $i++) { 
                 $arraylinks[$i] = $request->anchor_text[$i].'|'.$request->link[$i];
             }
+        } else {
+            $arraylinks = null;
         }
 
         $arraylinks_g = [];
