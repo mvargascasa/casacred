@@ -285,6 +285,7 @@ if(strpos($actual_link, 'localhost') === false){
                       <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{route('web.propiedades', 'casas-en-venta-en-cuenca')}}">Casas en Venta en Cuenca</a></li>
                         <li><a class="dropdown-item" href="{{route('web.propiedades', 'casas-en-venta-en-quito')}}">Casas en Venta en Quito</a></li>
+                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'casas-en-venta-en-guayaquil')}}">Casas en Venta en Guayaquil</a></li>
                       </ul>
                     </li>
                     <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Departamentos en Venta</a>
