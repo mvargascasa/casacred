@@ -393,7 +393,7 @@
             </div>
 
             {{-- links --}}
-            @if(isset($seopage->similarlinks) && count(json_decode($seopage->similarlinks))>0)
+            @if(isset($seopage->similarlinks) && count(json_decode($seopage->similarlinks))>0 && strlen($seopage->similarlinks)>5)
             <hr>
               <p class="display-6">También te puede interesar</p>
               <div class="row mt-2 mb-4">
