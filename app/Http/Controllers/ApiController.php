@@ -122,7 +122,8 @@ class ApiController extends Controller
 
     public function listingscsv(){ 
     
-        $listings  = Listing::where('status', '1')->orderBy('id','desc')->limit(400)->get();
+        // $listings  = Listing::where('status', '1')->orderBy('id','desc')->limit(400)->get();
+        $listings  = Listing::where('status', '1')->latest()->limit(500)->get();
     
         if(count($listings)>0){
     
