@@ -742,7 +742,7 @@
     }
     
     const overlay = document.querySelector('.modal-overlay')
-    overlay.addEventListener('click', toggleModal)
+    if(overlay) overlay.addEventListener('click', toggleModal)
     
     let closemodal = document.querySelectorAll('.modal-close')
     for (let i = 0; i < closemodal.length; i++) {
