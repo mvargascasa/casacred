@@ -429,7 +429,7 @@ if(strpos($actual_link, 'localhost') === false){
                         
                         <p style="margin: 0px;" class="text-dark-50"><b style="font-weight: 500; color: #ffffff; margin: 0px"><i class="fas fa-map-marker-alt"></i> Sucursal 2:</b><a target="_blank" style="color: #ffffff" href="https://g.page/r/CV7pH0E3AVo_EBA"> Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero - Edificio Santa Lucia</a></p>                        
                         
-                        <p><a href="tel:+072889395" class="asindeco" style="color: #ffffff !important"><i class="fas fa-phone"></i>  07-288-9395</a>&nbsp;/ 
+                        <p><a href="tel:+072889395" class="asindeco" style="color: #ffffff !important"><i class="fas fa-phone"></i>  07-288-9355</a>&nbsp;/ 
                             <a href="tel:+593983849073" class="asindeco" style="color: #ffffff !important"> 098-384-9073</a>&nbsp;&nbsp;</p>
                         
                         <p><a href="mailto:info@casacredito.com" class="asindeco" style="color: #ffffff !important"><i class="fas fa-envelope"></i> info@casacredito.com</a></p>
