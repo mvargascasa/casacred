@@ -22,11 +22,11 @@
             @if(count($posts)>0)
                 @foreach ($posts as $post)
                     <div class="col-12 col-sm-12 col-md-6 col-lg-4">
-                        <div class="card" style="width: 100%">
+                        <div class="card w-100 mt-1">
                             <img src="{{asset('uploads/posts/'.$post->first_image)}}" alt="{{$post->publication_title}} - img">
                             <div class="card-body">
                                 <h5 class="card-title">{{$post->publication_title}}</h5>
-                                <p class="card-text">{!!Str::limit($post->content, 70)!!}</p>
+                                <p class="card-text text-muted" style="font-size: 14px">{{$post->metadescription}}</p>
                                 <div class="text-center">
                                     <a href="{{route('web.show.post', $post->slug)}}" class="btn btn-danger">Ver publicacion</a>
                                 </div>
