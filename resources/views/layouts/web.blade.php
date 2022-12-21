@@ -556,7 +556,7 @@ if(strpos($actual_link, 'localhost') === false){
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modalThankLabel">¡Gracias por Contactarnos!</h5>
+          <p class="modal-title h5" id="modalThankLabel">¡Gracias por Contactarnos!</p>
           <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">
             <i class="far fa-times"></i>
           </button>

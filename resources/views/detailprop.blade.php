@@ -423,9 +423,9 @@
           </a>
         </div> --}}
         <div style="display: none">
-          <div><h5 class="font-weight-bold pt-4">COD: {{$listing->product_code}}</h5></div>
+          <div><p class="font-weight-bold pt-4">COD: {{$listing->product_code}}</p></div>
             <button type="button" class="btn btn-danger btn-block btn-lg py-2 font-weight-bold">PRECIO: ${{number_format($listing->property_price)}}</button>
-            <h6 class="pt-4">Datos Principales</h6> 
+            <p class="pt-4">Datos Principales</p> 
             @php
               $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
 							$bathroom=0;$garage=0;$squarefit=0;
@@ -544,14 +544,14 @@
               </div>
               <div style="border: none" class="card my-4">
                 <div class="card-body" style="margin: -16px">
-                  <h6 class="card-title text-danger">Descripción de la propiedad</h6>
+                  <h2 class="card-title text-danger h6">Descripción de la propiedad</h2>
                   <p class="card-text">{!!$listing->listing_description!!}</p>
                 </div>
               </div>
               @if(is_array(json_decode($listing->heading_details)))
                 <div style="border: none" class="card my-4">
                   <div class="card-body" style="margin: -16px">
-                    <h6 class="card-title text-danger pt-3">Detalles</h6>
+                    <h2 class="card-title text-danger pt-3 h6">Detalles</h2>
                     @foreach(json_decode($listing->heading_details) as $dets)
                       @isset($dets[0])        
                       <span class="font-weight-bold">{{$dets[0]}}</span><br>
@@ -577,7 +577,7 @@
               @if( count(array_filter(explode(",", $listing->listinglistservices)))>0 )
                 <div style="border: none" class="card my-4">
                   <div class="card-body" style="margin: -16px">
-                    <h6 class="card-title text-danger">Servicios</h6>
+                    <h2 class="card-title text-danger h6">Servicios</h2>
                     <div class="row" style="padding-left: 7px">
                       @foreach(array_filter(explode(",", $listing->listinglistservices)) as $serv)
                         <div class="col-lg-3 col-md-4 col-6 p-1">
@@ -692,7 +692,7 @@
                 </div>
               </div>
               <div id="thankMsjLead" class="card-body d-none my-2">
-                <h6 class="card-title text-danger">¡Gracias por Contactarnos!</h6> <hr>
+                <p class="card-title text-danger h6">¡Gracias por Contactarnos!</p> <hr>
                 En breve le atenderemos.
               </div>
             </div>
@@ -806,7 +806,7 @@
           $listingsSimilar = \App\Models\Listing::select('listing_title', 'images', 'property_price', 'heading_details', 'city', 'state', 'country', 'slug', 'listingtype')->where('city', $listing->city)->where('status', 1)->where('listingtype', $listing->listingtype)->inRandomOrder()->limit(4)->get();
       @endphp
       <div class="row mt-5 justify-content-center" data-aos="zoom-in">
-        <h5 class="text-center mb-5">Propiedades similares</h5>
+        <h3 class="text-center mb-5 h5">Propiedades similares</h3>
         @foreach ($listingsSimilar as $listing_s)
         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 mb-2 d-flex justify-content-center text-center">
           <a style="text-decoration: none; color: #000000" href="{{ route('web.detail', $listing_s->slug) }}">
@@ -816,7 +816,7 @@
               @endphp
               <img class="card-img-top lazyLoad" width="100%" height="100%" data-src="@if(file_exists($imageVerification)) {{asset('uploads/listing/thumb/600/'. strtok($listing_s->images, '|')) }} @else {{ asset('uploads/listing/600/'. strtok($listing_s->images, '|')) }} @endif" alt="{{ $listing_s->listing_title}}">
               <div class="card-body">
-                <h5 style="margin: 0px" class="card-title">${{ number_format($listing_s->property_price) }}</h5>
+                <p style="margin: 0px" class="card-title h5">${{ number_format($listing_s->property_price) }}</p>
                 @php
                   $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
                   $bathroom=0;$garage=0;$squarefit=0;
