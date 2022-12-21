@@ -18,22 +18,22 @@
     </section>
 
     <div class="container my-5">
-        <div class="row">
+        <div class="row mx-5">
             @if(count($posts)>0)
-            @foreach ($posts as $post)
-                <div class="col-sm-4">
-                    <div class="card" style="width: 100%">
-                        <img src="{{asset('uploads/posts/'.$post->first_image)}}" alt="{{$post->publication_title}} - img">
-                        <div class="card-body">
-                            <h5 class="card-title">{{$post->publication_title}}</h5>
-                            <p class="card-text">{!!Str::limit($post->content, 70)!!}</p>
-                            <div class="text-center">
-                                <a href="{{route('web.show.post', $post->slug)}}" class="btn btn-danger">Ver publicacion</a>
+                @foreach ($posts as $post)
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                        <div class="card" style="width: 100%">
+                            <img src="{{asset('uploads/posts/'.$post->first_image)}}" alt="{{$post->publication_title}} - img">
+                            <div class="card-body">
+                                <h5 class="card-title">{{$post->publication_title}}</h5>
+                                <p class="card-text">{!!Str::limit($post->content, 70)!!}</p>
+                                <div class="text-center">
+                                    <a href="{{route('web.show.post', $post->slug)}}" class="btn btn-danger">Ver publicacion</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
             @else
             <p>No hemos encontrado posts publicados</p>
             @endif
