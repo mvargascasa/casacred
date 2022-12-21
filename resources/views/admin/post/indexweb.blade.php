@@ -27,7 +27,9 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{$post->publication_title}}</h5>
                                 <p class="card-text text-muted" style="font-size: 14px">{{$post->metadescription}}</p>
-                                <div class="text-center">
+                            </div>
+                            <div class="card-footer border-0 bg-white">
+                                <div class="text-center" style="margin-bottom: 0px">
                                     <a href="{{route('web.show.post', $post->slug)}}" class="btn btn-danger">Ver publicacion</a>
                                 </div>
                             </div>
