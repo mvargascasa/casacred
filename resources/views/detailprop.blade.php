@@ -592,7 +592,7 @@
               @if( count(array_filter(explode(",", $listing->listingcharacteristic)))>0 )
                 <div style="border: none" class="card my-4">
                   <div class="card-body" style="margin: -16px">
-                    <p class="card-title text-danger h6">Beneficios</p>
+                    <h2 class="card-title text-danger h6">Beneficios</h2>
                     <div class="row" style="padding-left: 7px">
                       @foreach(array_filter(explode(",", $listing->listingcharacteristic)) as $bene)
                         <div class="col-lg-3 col-md-4 col-6 p-1">
