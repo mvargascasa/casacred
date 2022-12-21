@@ -246,7 +246,7 @@
           </div>
   </div>
         <div class="@if($ismobile) pt-2 @else container pt-5 @endif">
-          <p id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 @if($ismobile) mb-3 @else mb-5 @endif">SERVICIOS <b style="font-weight: 400">INMOBILIARIOS</b> A SU ALCANCE</p>
+          <h2 id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 @if($ismobile) mb-3 @else mb-5 @endif">SERVICIOS <b style="font-weight: 400; color: #DC3545">INMOBILIARIOS</b> A SU ALCANCE</h2>
           <div class="row mr-2 ml-2">
               <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
                 <a href="{{route('web.propiedades', 'casas-en-venta-en-cuenca')}}">
@@ -427,7 +427,7 @@
                   <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type[0]->type_title) }}</label>
                 </div>
                 <div class="card-body">
-                  <h5 style="margin: 0px" class="card-title">${{ number_format($listing->property_price) }}</h5>
+                  <p style="margin: 0px" class="card-title h5">${{ number_format($listing->property_price) }}</p>
                   @php
                       $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
                       $bathroom=0;
@@ -462,7 +462,7 @@
 
     <div data-aos="flip-down" class="row" style="background-color: #2c3144; padding-top: 2%; padding-bottom: 2%">
         <div class="col-sm-12 text-center text-white mt-4 mb-4">
-            <h5>¿Quiere vender o rentar su <b style="color: #fcc62e">Propiedad</b>?</h5>
+            <p class="h5">¿Quiere vender o rentar su <b style="color: #fcc62e">Propiedad</b>?</p>
             <p>Escríbanos y lo asesoramos en el proceso</p>
             <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" class="btn" style="background-color: #fcc62e">INICIAR</button>
         </div>
@@ -470,7 +470,7 @@
 
     <div class="container">
       <div class="row mb-4">
-          <h4 class="text-center mt-5 mb-5" style="font-weight: 400">PROYECTOS NUEVOS EN ECUADOR</h4>
+          <h2 class="text-center mt-5 mb-5 h4" style="font-weight: 400">PROYECTOS NUEVOS EN ECUADOR</h2>
           <div data-aos="zoom-in-right" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-3 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
@@ -486,7 +486,7 @@
                   </div>
                   <div class="card-body">
                     <p style="font-size: 12px; margin-bottom: 6px" class="card-text fw-bold">Edificio Vista Linda, Cuenca</p>
-                    <h5>Adra</h5>
+                    <h3 class="h5">Adra</h3>
                     <p style="font-size: 13px" class="card-title text-muted">Desde USD 99.000</p>
                   </div>
                 </div>
@@ -506,7 +506,7 @@
                   </div>
                   <div class="card-body">
                     <p style="font-size: 12px; margin-bottom: 6px" class="card-text fw-bold">Narancay, Cuenca</p>
-                    <h5>Futura Narancay</h5>
+                    <h3 class="h5">Futura Narancay</h3>
                     <p style="font-size: 13px" class="card-title text-muted">Desde USD 78.000</p>
                   </div>
                 </div>
@@ -526,7 +526,7 @@
                   </div>
                   <div class="card-body">
                     <p style="font-size: 12px; margin-bottom: 6px" class="card-text fw-bold">Challuabamba, Cuenca</p>
-                    <h5>Toscana</h5>
+                    <h3 class="h5">Toscana</h3>
                     <p style="font-size: 13px" class="card-title text-muted">Desde USD 150.000</p>
                   </div>
                 </div>
@@ -544,7 +544,7 @@
           @csrf
         <div class="modal-content">
           <div class="modal-header" style="background-color: #8b0000; color: #ffffff">
-            <h6 class="modal-title" id="exampleModalLabel">Complete el formulario y nos contactaremos con usted</h6>
+            <p class="modal-title h6" id="exampleModalLabel">Complete el formulario y nos contactaremos con usted</p>
             <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close"><i class="far fa-times"></i></button>
           </div>
           <div class="modal-body">
@@ -584,7 +584,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header" style="background-color: #8b0000; color: #ffffff">
-            <h5 class="modal-title" id="exampleModalLongTitle">Venda su propiedad con nosotros</h5>
+            <p class="modal-title h5" id="exampleModalLongTitle">Venda su propiedad con nosotros</p>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -663,7 +663,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header" style="background-color: #8b0000; color: #ffffff">
-            <h5 class="modal-title" id="exampleModalLongTitle">Alquilar una propiedad</h5>
+            <p class="modal-title h5" id="exampleModalLongTitle">Alquilar una propiedad</p>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -765,7 +765,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header" style="background-color: #771d1d; color: #ffffff">
-            <h5 class="modal-title" id="modalFiltersLabel">Busqueda</h5>
+            <p class="modal-title h5" id="modalFiltersLabel">Busqueda</p>
             <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
               <i class="far fa-times"></i>
             </button>
