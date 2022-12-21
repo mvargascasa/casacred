@@ -492,7 +492,7 @@
                 <label style="background-color: #dc3545; color: #ffffff; padding-left: 3px; padding-right: 3px; border-radius: 5px; font-weight: 500; font-size: 13px">@if($listing->listingtypestatus == "en-venta") Venta @elseif($listing->listingtypestatus == "alquilar") Alquilar @else Proyectos @endif</label>
               </div>
               <div class="mt-4">
-                <h6 style="font-weight: 500">{{$listing->listing_title}}</h6>
+                <h1 class="h6" style="font-weight: 500">{{$listing->listing_title}}</h1>
                 <p style="font-weight: 400"><i style="color: #dc3545" class="fas fa-map-marker-alt"></i> Sector: @if(Str::contains($listing->address, ',')){{$listing->address}} @else {{$listing->state}}, {{$listing->city}}, {{$listing->address}}@endif</p>
               </div>
               <div>
