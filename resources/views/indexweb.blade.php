@@ -1264,8 +1264,8 @@ function search(){
 
   window.addEventListener('load', (event) => {
           //set bgimage in the div search
-          document.getElementById('bgimage').style.backgroundImage = "url({{asset('img/backimagesearch.jpg')}})";
-          document.getElementById('imgheader').style.backgroundImage = "url({{asset('img/imgback1.jpg')}})";
+          document.getElementById('bgimage').style.backgroundImage = "url({{asset('img/backimagesearch.webp')}})";
+          document.getElementById('imgheader').style.backgroundImage = "url({{asset('img/imgback1.webp')}})";
 
           let slug = "{{request()->segment(2)}}";
           if(isNaN(slug)){

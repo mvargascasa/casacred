@@ -696,8 +696,8 @@
     <script>
       window.addEventListener('load', (event) => {
         //set image background in search div
-        document.getElementById('bgimage').style.backgroundImage = "url({{asset('img/backimagesearch.jpg')}})";
-        document.getElementById('imgheader').style.backgroundImage = "url({{asset('img/imgback2.jpg')}})";
+        document.getElementById('bgimage').style.backgroundImage = "url({{asset('img/backimagesearch.webp')}})";
+        document.getElementById('imgheader').style.backgroundImage = "url({{asset('img/imgback2.webp')}})";
 
         let slug = "{{request()->segment(2)}}";
           if(isNaN(slug)){
