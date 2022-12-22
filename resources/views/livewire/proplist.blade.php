@@ -21,7 +21,7 @@
         <div class="card row mb-3" style="border-top:1px #FA7B34 solid">
           <div class="row">            
             <a data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('ANUNCIO VENDE CON NOSOTROS')">
-                <img width="100vw" height="100vw" style="cursor: pointer" class="img-fluid p-0"  src="@if($ismobile){{asset('img/BANNERS-CASA-CREDITO-VENDE-09_2_.webp')}} @else {{asset('img/vende-tu-propiedad-en-casacredito-web.jpg')}} @endif" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
+                <img style="cursor: pointer" class="img-fluid p-0"  src="@if($ismobile){{asset('img/BANNERS-CASA-CREDITO-VENDE-09_2_.webp')}} @else {{asset('img/vende-tu-propiedad-en-casacredito-web.jpg')}} @endif" alt="Creditos para Migrantes" class="imgdir rounded object-cover h-40 w-full" /> 
             </a>
            </div>
         </div>
@@ -30,7 +30,7 @@
         <div class="card row mb-3" style="border-top:1px #FA7B34 solid">
           <div class="row">
             <a data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('ANUNCIO CREDITOS EN ECUADOR')">
-                <img width="100vw" height="100vw" style="cursor: pointer" class="img-fluid p-0" src="@if($ismobile){{asset('img/vende-tu-propiedad-en-casacredito.webp')}} @else {{asset('img/BANNERS-CASA-CREDITO-VENDE-08.webp')}} @endif" alt="Vende tu casa" class="imgdir rounded object-cover h-40 w-full" /> 
+                <img style="cursor: pointer" class="img-fluid p-0" src="@if($ismobile){{asset('img/vende-tu-propiedad-en-casacredito.webp')}} @else {{asset('img/BANNERS-CASA-CREDITO-VENDE-08.webp')}} @endif" alt="Vende tu casa" class="imgdir rounded object-cover h-40 w-full" /> 
             </a>
            </div>
         </div>
@@ -175,7 +175,7 @@
  <div class="card row mb-3 justify-center" style="border-top:1px #FA7B34 solid">
    <div class="row">
      <a data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('ANUNCIO CREDITOS EN ECUADOR')">
-         <img width="100vw" height="100vw" style="cursor: pointer;" class="img-fluid p-0"  src="@if($ismobile){{asset('img/BANNERS-CASA-CREDITO-VENDE-09_2_.webp')}} @else {{asset('img/BANNERS-CASA-CREDITO-VENDE-08.webp')}} @endif" alt="Creditos para Migrantes" /> 
+         <img style="cursor: pointer;" class="img-fluid p-0"  src="@if($ismobile){{asset('img/BANNERS-CASA-CREDITO-VENDE-09_2_.webp')}} @else {{asset('img/BANNERS-CASA-CREDITO-VENDE-08.webp')}} @endif" alt="Creditos para Migrantes" /> 
      </a>
     </div>
  </div>
@@ -184,7 +184,7 @@
 <div class="card row mb-3" style="border-top:1px #FA7B34 solid">
  <div class="row">            
    <a data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('ANUNCIO VENDE CON NOSOTROS')">
-       <img width="100vw" height="100vw" style="cursor: pointer" class="img-fluid p-0"  src="@if($ismobile){{asset('img/vende-tu-propiedad-en-casacredito.webp')}} @else {{asset('img/vende-tu-propiedad-en-casacredito-web.jpg')}} @endif" alt="Vende tu casa con nosotros" class="imgdir rounded object-cover h-40 w-full" /> 
+       <img style="cursor: pointer" class="img-fluid p-0"  src="@if($ismobile){{asset('img/vende-tu-propiedad-en-casacredito.webp')}} @else {{asset('img/vende-tu-propiedad-en-casacredito-web.jpg')}} @endif" alt="Vende tu casa con nosotros" class="imgdir rounded object-cover h-40 w-full" /> 
    </a>
   </div>
 </div>
