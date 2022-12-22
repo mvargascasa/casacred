@@ -573,7 +573,7 @@ if(strpos($actual_link, 'localhost') === false){
 
   <div class="wsapp">
     <a href="https://api.whatsapp.com/send?phone=593983849073" class="asindeco" target="_blank">
-      <img src="{{asset('img/wpp_logo.webp')}}" alt="Whatsapp Casa Credito" width="50" height="50">
+      <img src="{{asset('img/wpp_logo.webp')}}" alt="Whatsapp Casa Credito" width="50px" height="50px">
     </a>
   </div>
   <div class="telf d-flex">
