@@ -355,9 +355,9 @@
             <a href="{{ route('web.servicios', 'construye') }}" class="btn btn-outline-light" style="border-radius: 25px; width: 40%">Leer más</a>
           </div>
         </div>
-      @php
+      {{-- @php
         $listings = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1661)->orWhere('product_code', 1658)->orWhere('product_code', 1650)->orWhere('product_code', 1621)->get();
-      @endphp
+      @endphp --}}
 
     <div style="margin-left: auto; margin-right: auto" class="mb-5">
       <p style="font-size: 20px; font-weight: 500" class="mt-5 mb-5 text-center">Propiedades destacadas</p>
