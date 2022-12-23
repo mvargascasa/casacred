@@ -364,12 +364,12 @@
       @if ($ismobile)
         <div id="carouselExampleFade" class="carousel slide carousel-fade ml-3 mr-3 position-relative" data-bs-ride="carousel">
           <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; bottom: 50px !important;">
-            @foreach ($listings as $listing)
+            @foreach ($listings_outstanding as $listing)
               <li data-bs-target="#carouselExampleFade" data-bs-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : ''}}"></li>  
             @endforeach
           </ol>
           <div class="carousel-inner">
-            @foreach ($listings as $listing)
+            @foreach ($listings_outstanding as $listing)
               <div class="carousel-item {{ $loop->first ? 'active' : ' '}}">
                 <div class="position-relative">
                   <img style="filter: brightness(80%)" width="100%" height="100%" data-src="{{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }}" class="d-block w-100 lazyLoad" alt="{{$listing->slug}}">
@@ -415,7 +415,7 @@
         </div>
         @else
         <div data-aos="zoom-in" class="row justify-content-center">
-          @foreach ($listings as $listing)
+          @foreach ($listings_outstanding as $listing)
             <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
               <a style="color: #000000" href="{{ route('web.detail', $listing->slug) }}">
                 <div class="position-relative">
@@ -446,7 +446,7 @@
                         }
                       }
                   @endphp
-                  <p style="font-size: 14px; margin: 0px" class="card-text">{{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif | {{ $bathroom }} @if($bathroom > 1) baños @else baño @endif | {{ $listing->construction_area}} m<sup>2</sup></p>
+                  <p style="font-size: 14px; margin: 0px" class="card-text">@if($bedroom > 0){{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif | @endif @if($bathroom > 0){{ $bathroom }} @if($bathroom > 1) baños @else baño @endif | @endif {{ $listing->construction_area}} m<sup>2</sup></p>
                   <p style="font-size: 14px; margin: 0px" class="card-text">@if($listing->slug == "totoracocha-en-venta-casa-nueva-recien-terminada-75579") {{ str_replace(",", " |", ucwords(strtolower($listing->address))) }} @else {{ str_replace(",", " |", $listing->address) }} @endif</p>
                 </div>
               </a>
