@@ -43,6 +43,11 @@
             <div class="col p-0">
                 <div class="card" style="border:none">
                   
+                  @if($ismobile)
+                  <div class="d-flex justify-content-center" style="width: 100%">
+                    <img src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.strtok($listing->images, "|"))) {{asset('uploads/listing/thumb/600/'.strtok($listing->images, '|'))}} @else {{asset('uploads/listing/600/'.strtok($listing->images, '|'))}} @endif" class="d-block w-100" alt="{{$listing->listing_title}}">
+                  </div>
+                  @else
                   <div id="carouselControls{{$listing->id}}" class="carousel slide card-img-top" data-ride="carousel"  data-interval="false">
                     <div class="carousel-inner" style="max-height: 150px;">
                       @php $iiListing=0 @endphp
@@ -75,6 +80,7 @@
                       <span class="sr-only">Next</span>
                     </a>
                   </div>
+                  @endif
    
                   <div class="card-body">
                     <div class="d-flex justify-content-center text-danger">Precio: $ <span class=" font-weight-bold"> {{number_format($listing->property_price, 0, ',', '.')}}</span></div>
