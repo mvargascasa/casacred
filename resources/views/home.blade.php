@@ -372,7 +372,7 @@
             @foreach ($listings_outstanding as $listing)
               <div class="carousel-item {{ $loop->first ? 'active' : ' '}}">
                 <div class="position-relative">
-                  <img style="filter: brightness(80%)" width="100%" height="100%" data-src="{{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }}" class="d-block w-100 lazyLoad" alt="{{$listing->slug}}">
+                  <img style="filter: brightness(80%)" width="100%" height="100%" data-src="{{ asset('uploads/listing/600/' . strtok($listing->images, '|') ) }}" class="d-block w-100 lazyLoad" alt="{{$listing->slug}}">
                   <div class="position-absolute" style="bottom: 5px; right: 5px;">
                     <a class="btn btn-sm btn-outline-light" href="{{ route('web.detail', $listing->slug) }}">Ver propiedad</a>
                   </div>
