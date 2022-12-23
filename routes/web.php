@@ -57,6 +57,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
     Route::get('tw/show/{id}', [TwController::class, 'show'])->name('home.tw.show');
 
     Route::post('setcomment', [TwController::class, 'setcomment'])->name('home.tw.setcomment');
+    Route::post('setoutstanding', [AdminController::class, 'setoutstanding'])->name('home.tw.setoutstanding');
 
     Route::get('contacts', [TwController::class,'contacts'])->name('admin.contacts');
     Route::get('opports', [TwController::class,'opports'])->name('admin.opports');
