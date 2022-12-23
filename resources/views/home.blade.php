@@ -420,7 +420,7 @@
               <a style="color: #000000" href="{{ route('web.detail', $listing->slug) }}">
                 <div class="position-relative">
                   {{-- {{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }} --}}
-                  <img width="100%" src="{{ asset('uploads/listing/600/' . substr($listing->images, 0, 25) ) }}" class="card-img-top" alt="{{$listing->slug}}-image">
+                  <img width="100%" src="{{ asset('uploads/listing/600/' . strtok($listing->images, '|') ) }}" class="card-img-top" alt="{{$listing->slug}}-image">
                   @php
                       $type = DB::table('listing_types')->select('type_title')->where('id', $listing->listingtype)->get();
                   @endphp
