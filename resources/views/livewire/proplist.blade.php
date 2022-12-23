@@ -44,9 +44,11 @@
                 <div class="card" style="border:none">
                   
                   @if($ismobile)
-                  <div class="d-flex justify-content-center" style="width: 100%">
-                    <img src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.strtok($listing->images, "|"))) {{asset('uploads/listing/thumb/600/'.strtok($listing->images, '|'))}} @else {{asset('uploads/listing/600/'.strtok($listing->images, '|'))}} @endif" class="d-block w-100" alt="{{$listing->listing_title}}">
-                  </div>
+                  <a href="{{route('web.detail', $listing->slug)}}">
+                    <div class="d-flex justify-content-center" style="width: 100%">
+                      <img src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.strtok($listing->images, "|"))) {{asset('uploads/listing/thumb/600/'.strtok($listing->images, '|'))}} @else {{asset('uploads/listing/600/'.strtok($listing->images, '|'))}} @endif" class="d-block w-100" alt="{{$listing->listing_title}}">
+                    </div>
+                  </a>
                   @else
                   <div id="carouselControls{{$listing->id}}" class="carousel slide card-img-top" data-ride="carousel"  data-interval="false">
                     <div class="carousel-inner" style="max-height: 150px;">
