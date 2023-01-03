@@ -119,7 +119,7 @@ if(strpos($actual_link, 'localhost') === false){
     fbq('init', '3081509562095231');
     fbq('track', 'PageView');
     console.log('cargando script de facebook...');
-  }, 3000);
+  }, 4000);
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=3081509562095231&ev=PageView&noscript=1"
