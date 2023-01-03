@@ -264,10 +264,10 @@ if(strpos($actual_link, 'localhost') === false){
                     <img src="{{asset('img/LOGO CASA CREDITO.png')}}" width="130" height="50" alt="casa credito inmobiliaria">
                     </a>
                 <div class="w-100 text-right">
-                    @if(Route::is('web.index') or Route::is('web.detail') ) 
+                    {{-- @if(Route::is('web.index') or Route::is('web.detail') ) 
                         <button type="button"  data-toggle="modal" data-target="#modalSearch" class="btn btn-sm btn-outline-secondary d-sm-block d-md-none">
                             Busqueda</button> 
-                    @endif
+                    @endif --}}
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -783,7 +783,7 @@ if(strpos($actual_link, 'localhost') === false){
         });
         return false;
       });
-  }, 3100);
+  }, 3500);
 </script>
 </body>
 </html>
