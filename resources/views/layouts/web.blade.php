@@ -85,7 +85,7 @@ if(strpos($actual_link, 'localhost') === false){
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       console.log('cargando gtm 5h6gc9z');
       })(window,document,'script','dataLayer','GTM-5H6GC9Z');
-  }, 3000);
+  }, 4000);
   </script>
   <!-- End Google Tag Manager -->
 
