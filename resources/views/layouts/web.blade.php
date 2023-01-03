@@ -281,7 +281,7 @@ if(strpos($actual_link, 'localhost') === false){
                     Comprar
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Casas en Venta</a>
+                    <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle test" href="#">Casas en Venta</a>
                       <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{route('web.propiedades', 'casas-en-venta-en-cuenca')}}">Casas en Venta en Cuenca</a></li>
                         <li><a class="dropdown-item" href="{{route('web.propiedades', 'casas-en-venta-en-quito')}}">Casas en Venta en Quito</a></li>
@@ -595,23 +595,38 @@ if(strpos($actual_link, 'localhost') === false){
     </div>
   </div>
 {{-- <script src="{{asset('js/popper.min.js')}}"></script> --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-<script src="{{asset('js/5.0.0/bootstrap.min.js')}}"></script>
+<script id="scriptjquery" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{{-- <script src="{{asset('js/jquery3.6.1.min.js')}}"></script> --}}
+<script id="scriptpopper" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script id="scriptbootstrap52" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<script id="scriptbootstrap5"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 @yield('script')
 <script>
+
+    let loaded = false;
+
+
+    window.addEventListener('load', () => {
+      //loadscript();
+      // loadscript("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js");
+      // loadscript("https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js");
+      // loadscript("https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js");
+      // loadscript("{{asset('js/5.0.0/bootstrap.min.js')}}");
+    })
+
     function openDivCallUsaEcu(){
       let div = document.getElementById('call-usa-ecu');
       if(div.style.marginRight < "0px") { div.style.animation = "slideout 1s"; div.style.marginRight = "0px";document.getElementById('diviconsusaecu').style.marginLeft = "0px";} 
       else {div.style.animation = "slidein 1s";div.style.marginRight = "-105px"; document.getElementById('diviconsusaecu').style.marginLeft = "15px";}
     }
 
-    const myModal = new bootstrap.Modal(document.getElementById('modalContact'));
-    const moThank = new bootstrap.Modal(document.getElementById('modalThank'));
-    const modalAval = new bootstrap.Modal(document.getElementById('modalAval'));
+    if(loaded){
+      const myModal = new bootstrap.Modal(document.getElementById('modalContact'));
+      const moThank = new bootstrap.Modal(document.getElementById('modalThank'));
+      const modalAval = new bootstrap.Modal(document.getElementById('modalAval'));
+    }
     const sendFormLead = async() =>{
         
         if( document.getElementById('fname').value.length>2 && document.getElementById('tlf').value.length>6 ){
@@ -735,19 +750,40 @@ if(strpos($actual_link, 'localhost') === false){
 }
 // end if innerWidth
 });
-$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
-  if (!$(this).next().hasClass('show')) {
-    $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+
+  function loadscript(){
+    let scriptjquery = document.getElementById('scriptjquery');
+    let scriptpopper = document.getElementById('scriptpopper');
+    let scriptbootstrap52 = document.getElementById('scriptbootstrap52');
+    let scriptbootstrap5 = document.getElementById('scriptbootstrap5');
+
+    scriptjquery.src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js";
+    scriptpopper.src = "https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js";
+    scriptbootstrap52.src = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js";
+    scriptbootstrap5.src = "{{asset('js/5.0.0/bootstrap.min.js')}}";
+
+    loaded = true;
   }
-  var $subMenu = $(this).next(".dropdown-menu");
-  $subMenu.toggleClass('show');
+
+  setTimeout(() => {
+    loadscript();
+  }, 3000);
+
+  setTimeout(() => {
+    $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+        if (!$(this).next().hasClass('show')) {
+          $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+        }
+        var $subMenu = $(this).next(".dropdown-menu");
+        $subMenu.toggleClass('show');
 
 
-  $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
-    $('.dropdown-submenu .show').removeClass("show");
-  });
-  return false;
-});
+        $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+          $('.dropdown-submenu .show').removeClass("show");
+        });
+        return false;
+      });
+  }, 3100);
 </script>
 </body>
 </html>

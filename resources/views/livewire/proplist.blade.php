@@ -214,8 +214,12 @@ const upscroll = () => {
         window.scrollTo(0,0)
 }
 
+  let verified = false;
+  let scriptloaded = document.getElementById('scriptjquery');
+  if(scriptloaded && scriptloaded.src != "") verified = true;
+
   let modSearch = document.getElementById('modalSearch');
-  if(modSearch) modSearch = new bootstrap.Modal(modSearch); 
+  if(modSearch && verified) modSearch = new bootstrap.Modal(modSearch); 
   
     var bform_range;
     let rangebform_range = document.getElementById('bform_range');
