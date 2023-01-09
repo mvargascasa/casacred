@@ -525,7 +525,7 @@
                 @elseif(isset($listing))
                 <input type="file" class="px-4 py-2 border border-gray-300 rounded-md" name="galleryImages[]" id="galleryImages" accept=".jpg, .jpeg, .png" multiple onchange="changetxtgallery(this)">
                 @else --}}
-                <input type="file" class="px-4 py-2 border border-gray-300 rounded-md" name="galleryImages[]" id="galleryImages" accept=".jpg, .jpeg, .png" multiple onchange="changetxtgallery(this)">
+                <input type="file" class="px-4 py-2 border border-gray-300 rounded-md" name="galleryImages[]" id="galleryImages" accept=".jpg, .jpeg, .png, .mp4" multiple onchange="changetxtgallery(this)">
                 {{-- @endif --}}
             </div>      
             <ul id="gridImages" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 px-4 py-2 border border-gray-300 rounded-md">
@@ -545,6 +545,18 @@
                     @endforeach
                 @endisset
             </ul>
+            @if(isset($listing) && $listing->video)
+                <div id="gridVideo" class="border border-gray-300 rounded-md mt-4 relative">
+                    <p class="absolute bg-red-800 text-white px-3 rounded-full" style="top:-10px; left: 15px">Videos</p>
+                    <ul class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-3 px-4 py-2">
+                        <li class="relative"> 
+                            <button type="button" style="z-index: 3" onclick="delVideoUpload('gridVideo')" class="absolute right-0 px-2 rounded bg-red-800 text-white font-bold">X</button>
+                            <video class="rounded" src="{{asset('uploads/video/'.$listing->video)}}" autoplay muted loop controls></video>
+                            <input type="hidden" value="{{$listing->video}}" name="updatedVideo[]">
+                        </li>
+                    </ul>
+                </div>
+            @endif
         </div>  
         
         <hr class="mt-4">
@@ -953,6 +965,10 @@
     }
     const delImageUpload = (idDiv) =>{
         document.getElementById('imageUpload'+idDiv).remove();
+    }
+
+    const delVideoUpload = (idDiv) => {
+        document.getElementById(idDiv).remove();
     }
 
     const rangeSlide = (value) => {

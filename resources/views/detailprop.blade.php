@@ -647,6 +647,13 @@
               </div> --}}
             </div>
           </div>
+          @if($listing->video)
+            <div class="text-center mb-4">
+              <div>
+                <video class="video" width="@if($mobile) 100% @else 40% @endif" height="@if($mobile) 100% @else 40% @endif" autoplay muted loop controls></video>
+              </div>
+            </div>
+          @endif
           @if($listing->status)
           <div class="container">
             <p class="text-center" style="font-weight: 400; font-size:20px">Compartir</p>
@@ -953,6 +960,15 @@
     }
 
     calcularcredito();
+
+    function setsrcvideo(){
+      let video = document.querySelector('.video');
+      if(video) video.src = "{{asset('uploads/video/'.$listing->video)}}";
+    }
+
+    setTimeout(() => {
+      setsrcvideo();
+    }, 5000);
     //     var myCarousel = document.querySelector('#carouselControls');
     //     var carousel = new bootstrap.Carousel(myCarousel);
     

@@ -129,6 +129,11 @@ class ListingController extends Controller
                             $img3->insert($watermark, 'center', 0, 0);
                             $img3->save($folder_3.$nameFile, 40);
                         }
+                    } elseif ($validate == "mp4"){
+                        $namefile = $listing->slug.".".$image->getClientOriginalExtension();
+                        $filepath = public_path() . '/uploads/video/';
+                        $image->move($filepath, $namefile);
+                        $listing->video = $namefile;
                     }
                 }
             }            
@@ -276,6 +281,8 @@ class ListingController extends Controller
         if(is_array($request->updatedImages)) $request->merge(['images' => implode("|", $request->updatedImages)]); 
         else $request->merge(['images' => '']);
 
+        if(!$request->updatedVideo && $listing->video != null) $listing->video = null;
+
         $result=[];        $ii=0;
         foreach($request->all() as $key=>$value){ if("detail" == substr($key,0,6)) $result[] = $value; }
         $bedrooms=0;$bathrooms=0;$garage=0;
@@ -327,8 +334,6 @@ class ListingController extends Controller
         $listing->garage = $garage;
 
         if(!$listing->locked && ($listing->owner_name != null || $request->owner_name != null) && ($listing->identification != null || $request->identification != null) && ($listing->phone_number != null || $request->phone_number != null) && ($listing->owner_email != null || $request->owner_email != null)) $listing->locked = true;
-
-        $listing->save();
 
         $uploads=[];
 
@@ -388,6 +393,11 @@ class ListingController extends Controller
                             $img3->insert($watermark, 'center', 0, 0);
                             $img3->save($folder_3.$nameFile, 40);
                         }
+                    } elseif($validate == "mp4"){
+                        $namefile = $listing->slug.".".$image->getClientOriginalExtension();
+                        $filepath = public_path() . '/uploads/video/';
+                        $image->move($filepath, $namefile);
+                        $listing->video = $namefile;
                     }
                 }
             }            
@@ -400,8 +410,11 @@ class ListingController extends Controller
                 $listing->update(['images'  => $save_uploads   ]);
             }
             
-            
+
         }
+
+        $listing->save();
+
         $messages = ['status'=>'Propiedad Actualizada'];
         //$messages = array_merge($messages, ['alert'=>'Hola Mundo']);
 
