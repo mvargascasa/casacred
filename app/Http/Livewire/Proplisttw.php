@@ -23,7 +23,8 @@ class Proplisttw extends Component
     $state, $city,
     $fromprice, $uptoprice,
     $asesor,
-    $fromdate, $untildate;
+    $fromdate, $untildate,
+    $credit_vip;
 
     public function render()
     {
@@ -91,6 +92,8 @@ class Proplisttw extends Component
         //buscando por fecha
         if($this->fromdate || $this->untildate)         $properties_filter->whereBetween('created_at', [$this->fromdate, $this->untildate]);
 
+        if($this->credit_vip)           $properties_filter->where('credit_vip', $this->credit_vip);
+
         //buscando por precio strlen($this->fromprice)>1   strlen($this->uptoprice)>1 
         if($this->fromprice && filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT)>1){
             $fromprice_ = filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT);
@@ -139,6 +142,7 @@ class Proplisttw extends Component
 
         $types = DB::table('listing_types')->get(); 
         $categories = DB::table('listing_status')->get(); 
+
         return view('livewire.proplisttw',compact('properties','types','categories', 'viewaux', 'url_current', 'similar_properties'));
     }
 }

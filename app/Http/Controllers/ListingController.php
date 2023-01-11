@@ -197,6 +197,8 @@ class ListingController extends Controller
             $listing->phone_number = $request->phone_number;
 
             $listing->status = $request->status;
+
+            $listing->credit_vip = $request->credit_vip;
             //bloqueando la propiedad una vez creada
             //$listing->locked = true;
             if(!$listing->locked && ($listing->owner_name != null || $request->owner_name != null) && ($listing->identification != null || $request->identification != null) && ($listing->phone_number != null || $request->phone_number != null) && ($listing->owner_email != null || $request->owner_email != null)) $listing->locked = true;
@@ -332,6 +334,9 @@ class ListingController extends Controller
         $listing->bedroom = $bedrooms;
         $listing->bathroom = $bathrooms;
         $listing->garage = $garage;
+
+        //set if listing credit vip
+        $listing->credit_vip = $request->credit_vip;
 
         if(!$listing->locked && ($listing->owner_name != null || $request->owner_name != null) && ($listing->identification != null || $request->identification != null) && ($listing->phone_number != null || $request->phone_number != null) && ($listing->owner_email != null || $request->owner_email != null)) $listing->locked = true;
 

@@ -442,9 +442,12 @@ function filter_properties(){
     let b_fromdate = document.getElementById('fromdate').value;
     let b_untildate = document.getElementById('untildate').value;
 
+    let b_credit_vip = document.getElementById('b_credit_vip').value;
+
     if(b_untildate < b_fromdate) alert('Formato no valido');
 
     let order_aux;
+
 
     // console.log("Codigo " + b_code);
     // console.log("Status " + b_status);
@@ -492,6 +495,8 @@ function filter_properties(){
 
     @this.set('fromdate', b_fromdate);
     @this.set('untildate', b_untildate);
+
+    @this.set('credit_vip', b_credit_vip);
 
     //document.getElementById('pricemaxmin').style.display = "none";
     //document.getElementById('datefilter').style.display = "none";

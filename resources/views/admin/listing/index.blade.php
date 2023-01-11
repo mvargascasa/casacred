@@ -208,7 +208,7 @@
                                         <option value="DESC">Descendente</option>
                                     </select>
                                 </div> --}}
-                                <div class="w-auto bg-gray-100 pt-4 pb-8 relative pr-1 pl-2 text-justify">
+                                <div class="w-auto bg-gray-100 pt-4 pb-8 relative pr-1 pl-1 text-justify">
                                     <label class="text-xs text-gray-400">Precio</label>
                                     <div id="div6" class="pattern block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                         <label for="">Precio</label>
@@ -227,6 +227,15 @@
                                             <label for="css" class="text-xs" title="Descendente">DESC</label><br>
                                         </div>
                                     </div>
+                                </div>
+
+                                <div class="w-auto bg-gray-100 pt-4 pb-8 pl-1 text-justify">
+                                    <label class="text-xs text-gray-400">Crédito VIP</label>
+                                    <select class="block w-24 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none"id="b_credit_vip" name="b_credit_vip">
+                                        <option value="" selected>Todos</option>
+                                        <option value="1">Aplica</option>
+                                        <option value="0">No Aplica</option>
+                                    </select>
                                 </div>
 
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 relative pr-1 pl-1 text-justify">

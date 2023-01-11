@@ -346,7 +346,7 @@
         </div>
 
         {{-- nuevo div para guardar los años de construccion --}}
-        <div class="grid grid-cols-2 gap-4 mt-4">
+        <div class="grid grid-cols-3 gap-4 mt-4">
             <div>
                 {!! Form::label('listyears', 'Años de construcción', ['class' => 'font-semibold']) !!} <br>
                 <span id="rangeValue">Entre 0 a 5 años</span><br>
@@ -355,6 +355,19 @@
                 @else --}}
                 {!! Form::range('listyears', null,  ['class' => 'form-range', 'min' => '0', 'max' => '4', 'step' => '1', 'onchange' => 'rangeSlide(this.value)', 'onmousemove' => 'rangeSlide(this.value)']) !!}
                 {{-- @endif --}}
+            </div>
+            <div>
+                {!! Form::label('credit', '¿Aplica Crédito VIP?', ['class' => 'font-semibold']) !!}
+                <div class="flex">
+                    <div class="form-check form-check-inline">
+                        {!! Form::radio('credit_vip', '1', null, ['class' => 'form-check-input']) !!}
+                        {!! Form::label('inlineRadio1', 'SI', ['class' => 'form-check-label']) !!}
+                    </div>
+                    <div class="form-check form-check-inline ml-5">
+                        {!! Form::radio('credit_vip', '0', null, ['class' => 'form-check-input']) !!}
+                        {!! Form::label('inlineRadio2', 'NO', ['class' => 'form-check-label']) !!}
+                    </div>
+                </div>
             </div>
             <div>
                 {!! Form::label('aval', 'Avaluo de la propiedad', ['class' => 'font-semibold']) !!}
