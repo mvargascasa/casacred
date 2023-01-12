@@ -20,9 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/sendlead', [ApiController::class, 'sendlead']);
-Route::get('/getproperties', [ApiController::class, 'getproperties']);
 Route::get('/listingscsv', [ApiController::class, 'listingscsv']);
 Route::group(["middleware" => "apikey.validate"], function(){
+    Route::get('/getproperties', [ApiController::class, 'getproperties']);
     Route::get('/notifications', [ApiController::class, 'getnotifications']);
     Route::get('/projects', [ApiController::class, 'getprojectlistings']);
     Route::get('/project/{slug}', [ApiController::class, 'getlistingbyslug']);
