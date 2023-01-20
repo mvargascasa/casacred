@@ -106,7 +106,7 @@
                 {{-- @if(isset($listing) && $listing->locked)
                     {!! Form::select('listing_type',['2'=>'PAGO','1'=>'GRATIS'], null, ['class' => $inputs, 'disabled']) !!}
                 @else --}}
-                    {!! Form::select('listing_type',['' => 'Seleccione', '2'=>'PAGO','1'=>'GRATIS'], null, ['class' => $inputs, 'required']) !!}
+                {!! Form::select('listing_type',['' => 'Seleccione', '2'=>'PAGO','1'=>'GRATIS'], null, ['class' => $inputs, 'required']) !!}
                 {{-- @endif --}}
             </div>
     
@@ -473,6 +473,22 @@
             </div>
         </div>
 
+        <div id="divlicenciaurbanistica" class="grid grid-cols-1 gap-4 mt-4 sm:gap-6 @if(isset($listing) && $listing->listingtype == 26) block @else hidden @endif">
+            <div class="flex content-center border @if(isset($listing) && $listing->planing_license == 0) border-red-500 @elseif(isset($listing) && $listing->planing_license == 1) border-green-500 @endif p-4">
+                <div>
+                    <i class="fas fa-map"></i> {!! Form::label('planing_license', '¿El terreno posee licencia urbanística?', ['class' => 'font-semibold mr-4']) !!}
+                </div>
+                <div class="form-check form-check-inline">
+                    {!! Form::radio('planing_license', '1', null, ['class' => 'form-check-input']) !!}
+                    {!! Form::label('inlineRadio1', 'SI', ['class' => 'form-check-label']) !!}
+                </div>
+                <div class="form-check form-check-inline ml-5">
+                    {!! Form::radio('planing_license', '0', null, ['class' => 'form-check-input']) !!}
+                    {!! Form::label('inlineRadio2', 'NO', ['class' => 'form-check-label']) !!}
+                </div>
+            </div>
+        </div>
+
         <div class="gap-4 mt-4 sm:gap-6">
             {!! Form::label('listing_description', 'Descripcion de Propiedad', ['class' => 'font-semibold']) !!}
             {{-- @if(isset($listing) && $listing->locked)
@@ -738,6 +754,21 @@
         if(selstatus) selstatus = selstatus.value; 
         let selavailable = document.querySelector("select[name='available']");
         if(selavailable) selavailable = selavailable.value;
+
+        let selectlistingtype = document.querySelector("select[name='listingtype']");
+        selectlistingtype.addEventListener('change', function(){
+            let divlicenciaurbanistica = document.getElementById('divlicenciaurbanistica');
+            if(selectlistingtype.value == 26){
+                document.getElementById("planing_license").required = true;
+                divlicenciaurbanistica.classList.remove('hidden');
+                divlicenciaurbanistica.classList.add('block');
+            } else {
+                document.getElementById("planing_license").required = false;
+                divlicenciaurbanistica.classList.remove('block');
+                divlicenciaurbanistica.classList.add('hidden');
+            }   
+        });
+
         //let valueStatus;
 
         // if(window.location.toString().includes("edit")) {

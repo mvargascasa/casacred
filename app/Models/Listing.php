@@ -24,7 +24,8 @@ class Listing extends Model
         'identification', 'phone_number', // new variables to save cedula and numero telefonico
         'aval', //new variable to avaluo
         'locked',
-        'credit_vip'
+        'credit_vip',
+        'planing_license'
     ];   
     
     public function user()
