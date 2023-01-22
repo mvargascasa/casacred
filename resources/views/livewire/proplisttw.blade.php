@@ -123,13 +123,17 @@
                         <p>g-{{$propertie->garage}}</p>
                     </div>
                 @endif
-                <div class="flex justify-center">
-                    {{-- <a target="_blank" class="btn-view mr-1 p-1 rounded" style="background-color: #c6f6d5" href="{{ route('admin.show.listing', $propertie) }}" style="text-decoration: none;">
-                        <p class="text-black text-xs" style="font-weight: 500">Ver propiedad</p>
-                    </a> --}}
-                    <a target="_blank" class="btn-edit ml-1 p-1 rounded" style="background-color: #c6f6d5" href="{{ route('home.tw.edit', $propertie) }}" style="text-decoration: none">
-                        <p class="text-black text-sm" style="font-weight: 500">Editar propiedad</p>
-                    </a>
+                <div>
+                    <div class="flex justify-center">
+                        <a target="_blank" class="btn-edit ml-1 p-1 rounded" style="background-color: #c6f6d5" href="{{ route('home.tw.edit', $propertie) }}" style="text-decoration: none">
+                            <p class="text-black text-sm" style="font-weight: 500">Editar propiedad</p>
+                        </a>
+                    </div>
+                    <div class="float-right mr-2">
+                        <button onclick="setLinkToShare('{{$propertie->slug}}')">
+                            <img width="25px" src="{{asset('img/wpp_logo.png')}}" alt="">
+                        </button>
+                    </div>
                 </div>
                 @endif
             </div>
@@ -520,6 +524,14 @@ const prevpage = () => {
         console.log(pagActual);
     }
 }
+
+    function setLinkToShare(slug){
+        let link = "https://api.whatsapp.com/send?text=";
+        let message = "https://casacredito.com/propiedad/"+slug;
+        message += "%0AReciba un cordial saludo de Casa Crédito 👋🏻🏠 Le hacemos llegar la propiedad en la que se encuentra interesado.%0A"
+        message += "%0A_*Casa Crédito, Haciendo sus sueños realidad*_%0A"
+        window.open(link+message, '_blank');
+    }
 </script>
 
 @endpush
