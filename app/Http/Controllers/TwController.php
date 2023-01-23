@@ -26,7 +26,7 @@ class TwController extends Controller
         $benefits = DB::table('listing_benefits')->get();  
         $services = DB::table('listing_services')->get();  
         $types = DB::table('listing_types')->get();  
-        $details = DB::table('listing_characteristics')->get(); 
+        $details = DB::table('listing_characteristics')->orderBy('charac_titile', 'ASC')->get(); 
         $categories = DB::table('listing_status')->get();
         $tags = DB::table('listing_tags')->get();
         
@@ -40,13 +40,16 @@ class TwController extends Controller
     }   
     
     public function edit(Listing $listing){
+
+        $isvalid = $this->iscomplete($listing);
+
         if(Auth::user()->role != "administrator" && $listing->user_id!= Auth::id()){
             return redirect()->route('admin.listingshow',compact('listing'));
         }
         $benefits = DB::table('listing_benefits')->get();   
         $services = DB::table('listing_services')->get();
         $types = DB::table('listing_types')->get();  
-        $details = DB::table('listing_characteristics')->get();  
+        $details = DB::table('listing_characteristics')->orderBy('charac_titile', 'ASC')->get();  
         $categories = DB::table('listing_status')->get();  
         $tags = DB::table('listing_tags')->get();
         $states = DB::table('info_states')->where('country_id',63)->orderBy('name')->get();
@@ -58,7 +61,7 @@ class TwController extends Controller
         }
         $cities = DB::table('info_cities')->where('state_id',$getCities)->get(); 
         return view('admin.listing.add-tw',compact('listing','benefits','services','types','categories',
-                    'tags','details','states','optAttrib','cities'));
+                    'tags','details','states','optAttrib','cities', 'isvalid'));
     } 
 
     
@@ -147,5 +150,17 @@ class TwController extends Controller
             if($ismobile) $mobile = true; else  $mobile = false; 
         }else{ $ismobile = false; }
         return $mobile;
+    }
+
+    public function iscomplete(Listing $listing){
+        
+        $isvalid = true;
+
+        if($listing->listing_type == null || $listing->owner_name == null || $listing->identification == null || $listing->phone_number == null || $listing->owner_email == null || $listing->available == null || $listing->listing_title == null || $listing->meta_description == null || $listing->property_price == null || $listing->property_price_min == null || $listing->construction_area == null || $listing->land_area == null || $listing->Front == null || $listing->Fund == null || $listing->listyears == null || $listing->state == null || $listing->city == null || $listing->address == null || $listing->lat == null || $listing->lng == null || $listing->listingtype == null || $listing->listingtypestatus == null || $listing->listingtagstatus == null || $listing->listing_description == null || $listing->images == null || $listing->heading_details == null) $isvalid = false;
+
+        // if(!isset($listing->listing_title) || $listing->listing_title == "" || !isset($listing->images) || $listing->images == "" || !isset($listing->meta_description) || $listing->meta_description == "" || !isset($listing->Front) || $listing->Front == "" || !isset($listing->Fund) || $listing->Fund == "" || !isset($listing->land_area) || $listing->land_area == "" || !isset($listing->construction_area) || $listing->construction_area == "" || !isset($listing->property_price) || $listing->property_price == "" || !isset($listing->property_price_min) || $listing->property_price_min == "" || !isset($listing->listing_description) || $listing->listing_description == "" || !isset($listing->listing_type) || $listing->listing_type == "" || !isset($listing->address) || $listing->address == "" || !isset($listing->state) || $listing->state == "" || !isset($listing->city) || $listing->city == "" || !isset($listing->listingtype) || $listing->listingtype == "" || !isset($listing->listingcharacteristic) || $listing->listingcharacteristic == "" || !isset($listing->listinglistservices) || $listing->listinglistservices == "" || !isset($listing->listingtypestatus) || $listing->listingtypestatus == "" || !isset($listing->listingtagstatus) || $listing->listingtagstatus == "" || !isset($listing->listyears) || $listing->listyears == "" || !isset($listing->lat) || $listing->lat == "" || !isset($listing->lng) || $listing->lng == "" || !isset($listing->available)  || $listing->available == "" || !isset($listing->heading_details) || $listing->heading_details == "" || !isset($listing->owner_name) || $listing->owner_name == "" || !isset($listing->owner_email) || $listing->owner_email == "" || !isset($listing->identification) || $listing->identification == "" || !isset($listing->phone_number) || $listing->phone_number == ""){
+        //     $isvalid = false;
+        // }
+        return $isvalid;
     }
 }

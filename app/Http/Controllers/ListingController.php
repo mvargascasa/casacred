@@ -22,7 +22,7 @@ class ListingController extends Controller
         $benefits = DB::table('listing_benefits')->get();  
         $services = DB::table('listing_services')->get();  
         $types = DB::table('listing_types')->get();  
-        $details = DB::table('listing_characteristics')->get(); 
+        $details = DB::table('listing_characteristics')->orderBy('charac_titile', 'ASC')->get(); 
         $categories = DB::table('listing_status')->get();
         $tags = DB::table('listing_tags')->get();
         
@@ -220,7 +220,7 @@ class ListingController extends Controller
         $benefits = DB::table('listing_benefits')->get();   
         $services = DB::table('listing_services')->get();
         $types = DB::table('listing_types')->get();  
-        $details = DB::table('listing_characteristics')->get();  
+        $details = DB::table('listing_characteristics')->orderBy('charac_titile', 'ASC')->get();  
         $categories = DB::table('listing_status')->get();  
         $tags = DB::table('listing_tags')->get();
         $states = DB::table('info_states')->where('country_id',63)->orderBy('name')->get();
