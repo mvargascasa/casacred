@@ -25,7 +25,8 @@ class Listing extends Model
         'aval', //new variable to avaluo
         'locked',
         'credit_vip',
-        'planing_license'
+        'planing_license',
+        'mortgaged'
     ];   
     
     public function user()

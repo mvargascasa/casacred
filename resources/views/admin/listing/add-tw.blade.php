@@ -473,6 +473,22 @@
             </div>
         </div>
 
+        <div class="grid grid-cols-1 gap-4 mt-4 sm:gap-6">
+            <div class="flex content-center p-4 border">
+                <div>
+                    <i class="fas fa-money-check-alt"></i> {!! Form::label('mortgaged', '¿El bien inmueble se encuentra hipotecado?', ['class' => 'font-semibold mr-4']) !!}
+                </div>
+                <div class="form-check form-check-inline">
+                    {!! Form::radio('mortgaged', '1', null, ['class' => 'form-check-input', 'required']) !!}
+                    {!! Form::label('inlineRadiomortgaged', 'SI', ['class' => 'form-check-label']) !!}
+                </div>
+                <div class="form-check form-check-inline ml-5">
+                    {!! Form::radio('mortgaged', '0', null, ['class' => 'form-check-input', 'required']) !!}
+                    {!! Form::label('inlineRadiomortgaged', 'NO', ['class' => 'form-check-label']) !!}
+                </div>
+            </div>
+        </div>
+
         <div id="divlicenciaurbanistica" class="grid grid-cols-1 gap-4 mt-4 sm:gap-6 @if(isset($listing) && $listing->listingtype == 26) block @else hidden @endif">
             <div class="flex content-center border @if(isset($listing) && $listing->planing_license == 0) border-red-500 @elseif(isset($listing) && $listing->planing_license == 1) border-green-500 @endif p-4">
                 <div>

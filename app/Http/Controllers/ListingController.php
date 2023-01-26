@@ -177,6 +177,7 @@ class ListingController extends Controller
             $listing->listingtype = $request->listingtype;
 
             if($request->listingtype == 26) $listing->planing_license = $request->planing_license;
+            $listing->mortgaged = $request->mortgaged;
 
             $listing->listingcharacteristic = $request->listingcharacteristic;
             $listing->listinglistservices = $request->listinglistservices;
@@ -338,6 +339,7 @@ class ListingController extends Controller
         $listing->garage = $garage;
 
         if($request->listingtype == 26) $listing->planing_license = $request->planing_license;
+        $listing->mortgaged = $request->mortgaged;
 
         //set if listing credit vip
         $listing->credit_vip = $request->credit_vip;
