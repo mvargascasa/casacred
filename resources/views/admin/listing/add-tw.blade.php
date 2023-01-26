@@ -510,7 +510,7 @@
                 </div>
                 <div class="form-group w-full ml-1">
                     <i class="fas fa-file-invoice-dollar"></i> {!! Form::label('mount_mortgaged', 'Monto de la hipoteca', ['class' => 'font-semibold ml-1 w-full']) !!}
-                    {!! Form::number('mount_mortgaged', null, ['class' => $inputs]) !!}
+                    {!! Form::text('mount_mortgaged', null, ['class' => $inputs]) !!}
                 </div>
             </div>
         </div>
