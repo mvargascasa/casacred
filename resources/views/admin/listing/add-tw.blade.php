@@ -473,22 +473,6 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 gap-4 mt-4 sm:gap-6">
-            <div class="flex content-center p-4 border">
-                <div>
-                    <i class="fas fa-money-check-alt"></i> {!! Form::label('mortgaged', '¿El bien inmueble se encuentra hipotecado?', ['class' => 'font-semibold mr-4']) !!}
-                </div>
-                <div class="form-check form-check-inline">
-                    {!! Form::radio('mortgaged', '1', null, ['class' => 'form-check-input', 'required']) !!}
-                    {!! Form::label('inlineRadiomortgaged', 'SI', ['class' => 'form-check-label']) !!}
-                </div>
-                <div class="form-check form-check-inline ml-5">
-                    {!! Form::radio('mortgaged', '0', null, ['class' => 'form-check-input', 'required']) !!}
-                    {!! Form::label('inlineRadiomortgaged', 'NO', ['class' => 'form-check-label']) !!}
-                </div>
-            </div>
-        </div>
-
         <div id="divlicenciaurbanistica" class="grid grid-cols-1 gap-4 mt-4 sm:gap-6 @if(isset($listing) && $listing->listingtype == 26) block @else hidden @endif">
             <div class="flex content-center border @if(isset($listing) && $listing->planing_license == 0) border-red-500 @elseif(isset($listing) && $listing->planing_license == 1) border-green-500 @endif p-4">
                 <div>
@@ -501,6 +485,32 @@
                 <div class="form-check form-check-inline ml-5">
                     {!! Form::radio('planing_license', '0', null, ['class' => 'form-check-input']) !!}
                     {!! Form::label('inlineRadio2', 'NO', ['class' => 'form-check-label']) !!}
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 mt-4 sm:gap-6 border">
+            <div class="flex content-center px-4 pt-4 pb-4">
+                <div>
+                    <i class="fas fa-money-check-alt"></i> {!! Form::label('mortgaged', '¿El bien inmueble se encuentra hipotecado?', ['class' => 'font-semibold mr-4']) !!}
+                </div>
+                <div class="form-check form-check-inline">
+                    {!! Form::radio('mortgaged', '1', null, ['class' => 'form-check-input', 'onclick' => 'showinfoentitymortgaged(this)']) !!}
+                    {!! Form::label('inlineRadiomortgaged', 'SI', ['class' => 'form-check-label']) !!}
+                </div>
+                <div class="form-check form-check-inline ml-5">
+                    {!! Form::radio('mortgaged', '0', null, ['class' => 'form-check-input', 'onclick' => 'showinfoentitymortgaged(this)']) !!}
+                    {!! Form::label('inlineRadiomortgaged', 'NO', ['class' => 'form-check-label']) !!}
+                </div>
+            </div>
+            <div class="px-4 flex w-full mb-3 @if(isset($listing->mortgaged) && $listing->mortgaged == 1) block @else hidden @endif" id="divinfoentitymortgaged">
+                <div class="form-group w-full mr-1">
+                    <i class="fas fa-building"></i>{!! Form::label('entity_mortgaged', 'Entidad con la que tiene la hipoteca', ['class' => 'font-semibold ml-1 w-full']) !!}
+                    {!! Form::text('entity_mortgaged', null, ['class' => $inputs]) !!}
+                </div>
+                <div class="form-group w-full ml-1">
+                    <i class="fas fa-file-invoice-dollar"></i> {!! Form::label('mount_mortgaged', 'Monto de la hipoteca', ['class' => 'font-semibold ml-1 w-full']) !!}
+                    {!! Form::number('mount_mortgaged', null, ['class' => $inputs]) !!}
                 </div>
             </div>
         </div>
@@ -916,6 +926,9 @@
 
             if(input_meta_description.value.length > 0) label_count_desc.innerHTML = input_meta_description.value.length;
             else label_count_desc.innerHTML = "0";
+
+            if('{{isset($listing->id)}}') document.getElementById("mortgaged").required = false;
+            else document.getElementById("mortgaged").required = true;
         });
 
         function countCharsTitle(object){
@@ -1132,6 +1145,20 @@
         modal.classList.toggle('opacity-0')
         modal.classList.toggle('pointer-events-none')
         body.classList.toggle('modal-active')
+    }
+
+    function showinfoentitymortgaged(checkbox){
+        if(checkbox.value == 1){
+            document.getElementById('divinfoentitymortgaged').classList.remove('hidden');
+            document.getElementById('divinfoentitymortgaged').classList.add('block');
+            document.getElementById('entity_mortgaged').required = true;
+            document.getElementById('mount_mortgaged').required = true;
+        } else if(checkbox.value == 0){
+            document.getElementById('divinfoentitymortgaged').classList.remove('block');
+            document.getElementById('divinfoentitymortgaged').classList.add('hidden');
+            document.getElementById('entity_mortgaged').required = false;
+            document.getElementById('mount_mortgaged').required = false;
+        } 
     }
     </script>
 @endsection

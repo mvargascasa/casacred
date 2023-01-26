@@ -26,7 +26,9 @@ class Listing extends Model
         'locked',
         'credit_vip',
         'planing_license',
-        'mortgaged'
+        'mortgaged',
+        'entity_mortgaged',
+        'mount_mortgaged'
     ];   
     
     public function user()

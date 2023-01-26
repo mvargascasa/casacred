@@ -178,6 +178,13 @@ class ListingController extends Controller
 
             if($request->listingtype == 26) $listing->planing_license = $request->planing_license;
             $listing->mortgaged = $request->mortgaged;
+            if($listing->mortgaged == 1){
+                $listing->entity_mortgaged = $request->entity_mortgaged;
+                $listing->mount_mortgaged = $request->mount_mortgaged;
+            } else if($listing->mortgaged == 0){
+                $listing->entity_mortgaged = null;
+                $listing->mount_mortgaged = null;
+            }
 
             $listing->listingcharacteristic = $request->listingcharacteristic;
             $listing->listinglistservices = $request->listinglistservices;
@@ -340,6 +347,13 @@ class ListingController extends Controller
 
         if($request->listingtype == 26) $listing->planing_license = $request->planing_license;
         $listing->mortgaged = $request->mortgaged;
+        if($listing->mortgaged == 1){
+            $listing->entity_mortgaged = $request->entity_mortgaged;
+            $listing->mount_mortgaged = $request->mount_mortgaged;
+        } else if($listing->mortgaged == 0){
+            $listing->entity_mortgaged = null;
+            $listing->mount_mortgaged = null;
+        }
 
         //set if listing credit vip
         $listing->credit_vip = $request->credit_vip;
