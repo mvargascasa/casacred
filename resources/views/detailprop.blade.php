@@ -740,11 +740,7 @@
             @if($user->profile_photo_path != null)
             <div class="container">
               <div class="text-center border px-3 mt-3 rounded py-3 card-asesor">
-                <img class="rounded-circle img-profile" width="100px" height="100px" src="{{asset('uploads/profiles/'.$user->profile_photo_path)}}" alt="Imagen de perfil">
-                <div class="mb-3">
-                  <label class="text-gray-600 mt-3" style="font-size: 15px">{{$user->name}}</label><br>
-                  <b style="font-size: 14px">ASESOR INMOBILIARIO</b>
-                </div>
+                <img class="rounded-circle" width="170px" height="170px" src="{{asset('uploads/profiles/'.$user->profile_photo_path)}}" alt="Imagen de perfil">
                 <hr>
                 {{-- <a href="tel:" class="bg-danger text-white p-2 rounded-pill">Contactar</a> --}}
                 <div class="row">
