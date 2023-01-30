@@ -537,6 +537,10 @@ const prevpage = () => {
     }
 
     let values = [];
+
+    if(values.length>0) document.getElementById('btnCompartir').style.display = "block";
+    else if(values.length == 0) document.getElementById('btnCompartir').style.display = "none";
+    
     function share(){
         let checkboxes = document.querySelectorAll(".checktoshare");
         let valuesaux = [];
