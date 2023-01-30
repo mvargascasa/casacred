@@ -129,10 +129,13 @@
                             <p class="text-black text-sm" style="font-weight: 500">Editar propiedad</p>
                         </a>
                     </div>
-                    <div class="float-right mr-2">
+                    <div class="flex float-right mr-2">
                         <button onclick="setLinkToShare('{{$propertie->slug}}')">
                             <img width="25px" src="{{asset('img/wpp_logo.png')}}" alt="">
                         </button>
+                        <div class="ml-2">
+                            <input type="checkbox" value="{{$propertie->listing_title.'|'.$propertie->slug}}" name="propertiestoshare[]" class="checktoshare" onclick="share()">
+                        </div>
                     </div>
                 </div>
                 @endif
@@ -530,6 +533,36 @@ const prevpage = () => {
         let message = "https://casacredito.com/propiedad/"+slug;
         message += "%0AReciba un cordial saludo de Casa Crédito 👋🏻🏠 Le hacemos llegar la propiedad en la que se encuentra interesado.%0A"
         message += "%0A_*Casa Crédito, Haciendo sus sueños realidad*_%0A"
+        window.open(link+message, '_blank');
+    }
+
+    let values = [];
+    function share(){
+        let checkboxes = document.querySelectorAll(".checktoshare");
+        let valuesaux = [];
+        for (let i = 0; i < checkboxes.length; i++) {
+            if(checkboxes[i].checked){
+                valuesaux.push(checkboxes[i].value);
+            }
+        }
+        values = valuesaux;
+        console.log(values);
+        if(values.length>0) document.getElementById('btnCompartir').style.display = "block";
+        else if(values.length == 0) document.getElementById('btnCompartir').style.display = "none";
+    }
+
+    function sharetowpp(){
+        let link = "https://api.whatsapp.com/send?text=";
+        let message = "Reciba un cordial saludo de Casa Crédito 👋🏻🏠 Le hacemos llegar la propiedad en la que se encuentra interesado.%0A"
+        values.forEach(listing => {
+            let index = listing.indexOf("|");
+            let linklisting = listing.substring(0, index);
+            let title = listing.substring(index+1);
+            message += "%0A"+linklisting+"✅";
+            message += "%0Ahttps://casacredito.com/propiedad/"+title+"%0A";
+        });
+
+        message += "%0A_*Casa Crédito, Haciendo sus sueños realidad*_"
         window.open(link+message, '_blank');
     }
 </script>

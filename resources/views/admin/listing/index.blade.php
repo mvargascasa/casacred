@@ -379,7 +379,9 @@
                         </div>
                     </div>
 
-                    
+                    <div id="btnCompartir" style="display: none" onclick="sharetowpp()" class="fixed bottom-2 p-3 rounded-full left-1/2 -translate-x-1/2 bg-green-500">
+                        <p class="text-2xl text-white mb-1">Compartir</p>
+                    </div>        
     </div>
 </main>
 
