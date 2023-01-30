@@ -130,9 +130,9 @@
                         </a>
                     </div>
                     <div class="flex float-right mr-2">
-                        <button onclick="setLinkToShare('{{$propertie->slug}}')">
+                        {{-- <button onclick="setLinkToShare('{{$propertie->slug}}')">
                             <img width="25px" src="{{asset('img/wpp_logo.png')}}" alt="">
-                        </button>
+                        </button> --}}
                         <div class="ml-2">
                             <input type="checkbox" value="{{$propertie->listing_title.'|'.$propertie->slug}}" name="propertiestoshare[]" class="checktoshare" onclick="share()">
                         </div>
@@ -244,9 +244,9 @@
                     </a>
                 </div>
                 <div class="flex float-right mr-2">
-                    <button onclick="setLinkToShare('{{$propertie->slug}}')">
+                    {{-- <button onclick="setLinkToShare('{{$propertie->slug}}')">
                         <img width="25px" src="{{asset('img/wpp_logo.png')}}" alt="">
-                    </button>
+                    </button> --}}
                     <div class="ml-2">
                         <input type="checkbox" value="{{$s_propertie->listing_title.'|'.$s_propertie->slug}}" name="propertiestoshare[]" class="checktoshare" onclick="share()">
                     </div>
