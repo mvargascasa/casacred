@@ -129,16 +129,16 @@
                             <p class="text-black text-sm" style="font-weight: 500">Editar propiedad</p>
                         </a>
                     </div>
-                    <div class="flex float-right mr-2">
-                        {{-- <button onclick="setLinkToShare('{{$propertie->slug}}')">
-                            <img width="25px" src="{{asset('img/wpp_logo.png')}}" alt="">
-                        </button> --}}
-                        <div class="ml-2">
-                            <input type="checkbox" value="{{$propertie->listing_title.'|'.$propertie->slug}}" name="propertiestoshare[]" class="checktoshare" onclick="share()">
-                        </div>
-                    </div>
                 </div>
                 @endif
+                <div class="flex float-right mr-2">
+                    {{-- <button onclick="setLinkToShare('{{$propertie->slug}}')">
+                        <img width="25px" src="{{asset('img/wpp_logo.png')}}" alt="">
+                    </button> --}}
+                    <div class="ml-2">
+                        <input type="checkbox" value="{{$propertie->listing_title.'|'.$propertie->slug}}" name="propertiestoshare[]" class="checktoshare" onclick="share()">
+                    </div>
+                </div>
             </div>
         @endforeach
         <input type="hidden" id="pagActual" value="{{$pagActual}}">
@@ -243,6 +243,7 @@
                         <p class="text-black text-sm" style="font-weight: 500">Editar propiedad</p>
                     </a>
                 </div>
+                @endif
                 <div class="flex float-right mr-2">
                     {{-- <button onclick="setLinkToShare('{{$propertie->slug}}')">
                         <img width="25px" src="{{asset('img/wpp_logo.png')}}" alt="">
@@ -251,7 +252,6 @@
                         <input type="checkbox" value="{{$s_propertie->listing_title.'|'.$s_propertie->slug}}" name="propertiestoshare[]" class="checktoshare" onclick="share()">
                     </div>
                 </div>
-                @endif
             </div>
         @endforeach
     </div>
