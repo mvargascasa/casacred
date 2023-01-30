@@ -248,7 +248,7 @@
                         <img width="25px" src="{{asset('img/wpp_logo.png')}}" alt="">
                     </button>
                     <div class="ml-2">
-                        <input type="checkbox" value="{{$propertie->listing_title.'|'.$propertie->slug}}" name="propertiestoshare[]" class="checktoshare" onclick="share()">
+                        <input type="checkbox" value="{{$s_propertie->listing_title.'|'.$s_propertie->slug}}" name="propertiestoshare[]" class="checktoshare" onclick="share()">
                     </div>
                 </div>
                 @endif
