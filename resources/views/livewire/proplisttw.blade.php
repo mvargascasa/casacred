@@ -1,4 +1,4 @@
-<div class="bg-white">
+<div class="bg-white pb-10">
     @if(count($properties)>0)
     @if($view == 'grid')
     <div class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mx-4">
@@ -242,6 +242,14 @@
                     <a target="_blank" class="btn-edit ml-1 p-1 rounded" style="background-color: #c6f6d5" href="{{ route('home.tw.edit', $s_propertie) }}" style="text-decoration: none">
                         <p class="text-black text-sm" style="font-weight: 500">Editar propiedad</p>
                     </a>
+                </div>
+                <div class="flex float-right mr-2">
+                    <button onclick="setLinkToShare('{{$propertie->slug}}')">
+                        <img width="25px" src="{{asset('img/wpp_logo.png')}}" alt="">
+                    </button>
+                    <div class="ml-2">
+                        <input type="checkbox" value="{{$propertie->listing_title.'|'.$propertie->slug}}" name="propertiestoshare[]" class="checktoshare" onclick="share()">
+                    </div>
                 </div>
                 @endif
             </div>
