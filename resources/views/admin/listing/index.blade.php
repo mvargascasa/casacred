@@ -239,6 +239,54 @@
                                 </div>
 
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 relative pr-1 pl-1 text-justify">
+                                    <label class="text-xs text-gray-400">Avanzado</label>
+                                    <div id="div9" class="pattern block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                                {{-- onclick="openDateFilter();" --}}
+                                        <label for="">Seleccione</label>
+                                    </div>
+                                    <div class="block w-full p-1 text-justify" id="child9" style="display: none; position:absolute; z-index: 3;border: 1px solid #000000; background-color: #ffffff">
+                                        <div>
+                                            <div style="background-color: #EF4444; color: #ffffff">
+                                                <p class="ml-2 text-xs"># habitaciones</p>
+                                            </div>
+                                            <div>
+                                                <div class="flex mt-1">
+                                                    <div class="mx-1">
+                                                        <input type="radio" id="b_bedrooms" name="bedrooms" value="1">
+                                                        <label for="">1</label>
+                                                    </div>
+                                                    <div class="mx-1">
+                                                        <input type="radio" id="b_bedrooms" name="bedrooms" value="2">
+                                                        <label for="">2</label>
+                                                    </div>
+                                                    <div class="mx-1">
+                                                        <input type="radio" id="b_bedrooms" name="bedrooms" value="3">
+                                                        <label for="">3</label>
+                                                    </div>
+                                                    {{-- <input type="radio" id="" class="block m-2 shadow appearance-none border rounded py-1 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"> --}}
+                                                </div>
+                                                <div class="flex mt-1">
+                                                    <div class="mx-1">
+                                                        <input type="radio" id="b_bedrooms" name="bedrooms" value="4">
+                                                        <label for="">4</label>
+                                                    </div>
+                                                    <div class="mx-1">
+                                                        <input type="radio" id="b_bedrooms" name="bedrooms" value="5">
+                                                        <label for="">5</label>
+                                                    </div>
+                                                    <div class="mx-1">
+                                                        <input type="radio" id="b_bedrooms" name="bedrooms" value="6">
+                                                        <label for="">6</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+
+                                <div class="w-auto bg-gray-100 pt-4 pb-8 relative pr-1 pl-1 text-justify">
                                     <label class="text-xs text-gray-400">Fecha</label>
                                     <div id="div7" class="pattern block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                                 {{-- onclick="openDateFilter();" --}}

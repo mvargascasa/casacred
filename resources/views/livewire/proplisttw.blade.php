@@ -463,6 +463,12 @@ function filter_properties(){
 
     let order_aux;
 
+    let b_bedrooms = "";
+
+    let ele = document.getElementsByName('bedrooms');
+    for (let i = 0; i < ele.length; i++) {
+        if(ele[i].checked) b_bedrooms = ele[i].value;
+    }
 
     // console.log("Codigo " + b_code);
     // console.log("Status " + b_status);
@@ -512,6 +518,8 @@ function filter_properties(){
     @this.set('untildate', b_untildate);
 
     @this.set('credit_vip', b_credit_vip);
+
+    @this.set('bedrooms', b_bedrooms);
 
     //document.getElementById('pricemaxmin').style.display = "none";
     //document.getElementById('datefilter').style.display = "none";
