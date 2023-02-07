@@ -168,6 +168,8 @@ class ApiController extends Controller
                 $li->images = $imgcover.str_replace("|", ",$imgcover", $li->images);
                 $condition = 'Nueva';
                 if($li->listingtagstatus==6) $condition = 'Usada';
+
+                $description = strip_tags($li->listing_description);
     
                 $lineData = array(	$li->id,	
                                     $li->product_code, 
@@ -178,7 +180,7 @@ class ApiController extends Controller
                                     $imgpri,
                                     $li->images,
                                     ucwords(strtolower($li->listing_title)), 
-                                    strip_tags(ucwords(strtolower($li->listing_description))), 
+                                    ucwords(strtolower($description)), 
                                     'Cuenca',
                                     'Azuay',
                                     'Ecuador',
