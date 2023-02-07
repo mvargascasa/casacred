@@ -123,7 +123,7 @@ class ApiController extends Controller
     public function listingscsv(){ 
     
         // $listings  = Listing::where('status', '1')->orderBy('id','desc')->limit(400)->get();
-        $listings  = Listing::where('status', '1')->latest()->limit(500)->get();
+        $listings = Listing::where('status', '1')->where('available', 1)->latest()->limit(500)->get();
     
         if(count($listings)>0){
     
@@ -178,7 +178,7 @@ class ApiController extends Controller
                                     $imgpri,
                                     $li->images,
                                     ucwords(strtolower($li->listing_title)), 
-                                    strip_tags($li->listing_description), 
+                                    strip_tags(ucwords(strtolower($li->listing_description))), 
                                     'Cuenca',
                                     'Azuay',
                                     'Ecuador',
