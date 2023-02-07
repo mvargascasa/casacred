@@ -123,7 +123,9 @@ class ApiController extends Controller
     public function listingscsv(){ 
     
         // $listings  = Listing::where('status', '1')->orderBy('id','desc')->limit(400)->get();
-        $listings = Listing::where('status', '1')->where('available', 1)->latest()->limit(500)->get();
+        $listings = Listing::where('status', '1')->where('available', '1')->latest()->limit(500)->get();
+
+        return $listings;
     
         if(count($listings)>0){
     
@@ -151,8 +153,9 @@ class ApiController extends Controller
                                 'property_type',
                                 'price', 
                                 'inventory',
-                                'year_built',
-                                'google_product_category');	
+                                'year_built'
+                                //'google_product_category'
+                            );	
             fputcsv($f, $fields, $delimiter);
             
             foreach($listings as $li){	
@@ -192,8 +195,8 @@ class ApiController extends Controller
                                     'house',
                                     $li->property_price.' USD',
                                     '1',
-                                    '2020',
-                                    'Real State'
+                                    '2020'
+                                    //'Real State'
                                 );
                 fputcsv($f, $lineData, $delimiter);
             }
