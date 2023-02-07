@@ -124,8 +124,6 @@ class ApiController extends Controller
     
         // $listings  = Listing::where('status', '1')->orderBy('id','desc')->limit(400)->get();
         $listings = Listing::where('status', '1')->where('available', '1')->latest()->limit(500)->get();
-
-        return $listings;
     
         if(count($listings)>0){
     

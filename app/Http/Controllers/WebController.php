@@ -442,7 +442,7 @@ class WebController extends Controller
     
     public function listingscsv(){ 
 
-		$listings  = Listing::where('status', '1')->latest()->limit(500)->get();
+		$listings  = Listing::where('status', '1')->where('available', '1')->latest()->limit(500)->get();
 
 		if(count($listings)>0){
 
@@ -470,8 +470,9 @@ class WebController extends Controller
 								'property_type',
 								'price', 
 								'inventory',
-								'year_built',
-								'google_product_category');	
+								'year_built'
+								//'google_product_category'
+                            );	
 			fputcsv($f, $fields, $delimiter);
 			
 			foreach($listings as $li){	
@@ -488,6 +489,8 @@ class WebController extends Controller
 				$condition = 'Nueva';
 				if($li->listingtagstatus==6) $condition = 'Usada';
 
+                $description = strip_tags($li->listing_description);
+
 				$lineData = array(	$li->id,	
 									$li->product_code, 
 									'Casa Credito Inmobiliaria',
@@ -497,7 +500,7 @@ class WebController extends Controller
 									$imgpri,
 									$li->images,
 									ucwords(strtolower($li->listing_title)), 
-									strip_tags($li->listing_description), 
+									ucwords(strtolower($description)), 
 									'Cuenca',
 									'Azuay',
 									'Ecuador',
@@ -509,8 +512,8 @@ class WebController extends Controller
 									'house',
 									$li->property_price.' USD',
 									'1',
-									'2020',
-									'Real State'
+									'2020'
+									//'Real State'
 								);
 				fputcsv($f, $lineData, $delimiter);
 			}
