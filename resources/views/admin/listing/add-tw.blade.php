@@ -84,7 +84,7 @@
 
         @php  
             // class
-            $inputs = 'block w-full px-4 py-2 mt-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-md focus:border-red-500 focus:outline-none focus:ring';
+            $inputs = 'block w-full px-4 py-2 mt-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-0 focus:border-red-500 focus:outline-none focus:ring';
 
             if(isset($listing->id)) $default = null; else $default = '0';
             if(Auth::user()->role == 'administrator') $readonly = ['class' => 'form-select form-select-sm','readonly'=>'readonly'];
@@ -110,7 +110,7 @@
                 {{-- @endif --}}
             </div>
     
-            @if(Auth::user()->role == "administrator")
+            @if(Auth::user()->role == "administrator" && isset($listing) && isset($isvalid) && $isvalid)
                 <div>
                     {!! Form::label('status', 'Status',['class' => 'font-semibold']) !!}
                     {{-- @if(isset($listing) && $listing->locked)
@@ -145,6 +145,16 @@
                     </div>
                 @endisset
             @endif
+        </div>
+
+        <div id="numfactura" class="grid grid-cols-1 gap-4 mt-4 sm:gap-6 @if(isset($listing) && $listing->listing_type == 2) block  @else hidden @endif">
+            <div class="border p-4">
+                {!! Form::label('num_factura', '# Número de factura', ['class' => 'font-semibold']) !!}
+                {!! Form::text('num_factura', null, ['class' => $inputs]) !!}
+                <div>
+                    <p class="font-semibold text-gray-500" style="font-size: 14px"><i class="fas fa-info-circle"></i> La propiedad no podrá ser activada si no cuenta con el número de factura</p>
+                </div>
+            </div>
         </div>
 
         {{-- <div id="comment_plan" class="grid grid-cols-1 gap-4 mt-4 sm:gap-6" style="display: none">
@@ -530,7 +540,7 @@
 
         <div class="gap-4 mt-4 sm:gap-6">
             <h4 class="font-semibold">Beneficios</h4>   
-            <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3 border border-gray-300 rounded-md px-4 py-2">
+            <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3 border @if(isset($listing) && $listing->listingcharacteristic == null) border-red-500 @else border-gray-300 @endif rounded-md px-4 py-2">
                 @foreach ($benefits as $bene)            
                         <label class="inline-flex items-center mt-3">  
                             {{-- @if(isset($listing) && $listing->locked)
@@ -551,7 +561,7 @@
 
         <div class="gap-4 mt-4 sm:gap-6">
             <h4 class="font-semibold">Servicios</h4>   
-            <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3 border border-gray-300 rounded-md px-4 py-2">
+            <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3  border @if(isset($listing) && $listing->listinglistservices == null) border-red-500 @else border-gray-300 @endif rounded-md px-4 py-2">
                 @foreach ($services as $serv)
                         <label class="inline-flex items-center mt-3">  
                             {{-- @if(isset($listing) && $listing->locked)
@@ -583,7 +593,7 @@
                 <input type="file" class="px-4 py-2 border border-gray-300 rounded-md" name="galleryImages[]" id="galleryImages" accept=".jpg, .jpeg, .png, .mp4" multiple onchange="changetxtgallery(this)">
                 {{-- @endif --}}
             </div>      
-            <ul id="gridImages" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 px-4 py-2 border border-gray-300 rounded-md">
+            <ul id="gridImages" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 px-4 py-2 border @if(isset($listing) && $listing->images == null) border-red-500 @else border-gray-300 @endif rounded-md">
                 @isset($listing)
                     @php $ii=0; @endphp
                     @foreach(array_filter(explode("|", $listing->images)) as $img)
@@ -1160,5 +1170,20 @@
             document.getElementById('mount_mortgaged').required = false;
         } 
     }
+
+    let sellistingtype = document.querySelector("select[name='listing_type']");
+    let divnumfactura = document.getElementById('numfactura');
+
+    sellistingtype.addEventListener('change', () => {
+        if(sellistingtype.value == 2){
+            divnumfactura.classList.remove('hidden');
+            divnumfactura.classList.add('block');
+            //document.querySelector("input[name='num_factura']").required = true;
+        } else if(sellistingtype.value == 1 || sellistingtype.value == ""){
+            divnumfactura.classList.remove('block');
+            divnumfactura.classList.add('hidden');
+            //document.querySelector("input[name='num_factura']").required = false;
+        }
+    });
     </script>
 @endsection
