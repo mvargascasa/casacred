@@ -344,13 +344,13 @@
               @if($propertie->land_area > 0)
                 <div class="col-sm-6 d-flex mt-3 mb-3">
                   <i style="font-size: 20px; margin-right: 5px" class="fas fa-compress-arrows-alt"></i>
-                  <p> Área Interior: {{ $propertie->land_area}} m<sup>2</sup></p>
+                  <p> Área Terreno: {{ $propertie->land_area}} m<sup>2</sup></p>
                 </div>
               @endif
             @if($propertie->construction_area > 0)
               <div class="col-sm-6 d-flex mt-3 mb-3">
                 <i style="font-size: 20px; margin-right: 5px" class="fas fa-expand-arrows-alt"></i>
-                <p>Área Total: {{ $propertie->construction_area}} m<sup>2</sup></p>
+                <p>Área Construcción: {{ $propertie->construction_area}} m<sup>2</sup></p>
               </div>
             @endif
             @if($propertie->Front > 0)
