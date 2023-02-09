@@ -477,7 +477,7 @@
                     <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="{{ asset('/img/adra_50.webp') }}" class="card-img-top" alt="Departamentos de Venta en Cuenca Ecuador - Proyecto Adra">
                   <div class="middle">
                     <div class="link">
-                      <a href="https://casacreditopromotora.com/proyectos/Adra">Ver proyecto</a>
+                      <a href="https://casacreditopromotora.com/proyectos/departamentos/adra">Ver proyecto</a>
                     </div>
                   </div>
                 </div>
@@ -497,7 +497,7 @@
                     <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="{{ asset('/img/futuranarancay_50.webp') }}" class="card-img-top" alt="Departamentos de Venta en Cuenca Ecuador - Futura Narancay">
                     <div class="middle">
                       <div class="link">
-                        <a href="https://casacreditopromotora.com/proyectos/Futura Narancay">Ver proyecto</a>
+                        <a href="https://casacreditopromotora.com/proyectos/departamentos/futura-narancay">Ver proyecto</a>
                       </div>
                     </div>
                 </div>
@@ -517,7 +517,7 @@
                     <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="{{ asset('/img/toscana_50.webp') }}" class="card-img-top" alt="Condominios, Casas nuevas de venta en Cuenca - Proyecto Toscana">
                     <div class="middle">
                       <div class="link">
-                        <a href="https://casacreditopromotora.com/proyectos/Toscana">Ver proyecto</a>
+                        <a href="https://casacreditopromotora.com/proyectos/condominios/toscana">Ver proyecto</a>
                       </div>
                     </div>
                 </div>  
