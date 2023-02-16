@@ -741,6 +741,8 @@
             <div class="container">
               <div class="text-center border px-3 mt-3 rounded py-3 card-asesor">
                 <img class="rounded-circle" width="170px" height="170px" src="{{asset('uploads/profiles/'.$user->profile_photo_path)}}" alt="Imagen de perfil">
+                <p class="mt-3">{{$user->name}}</p>
+                <p class="font-weight-normal">@if($user->role == "ASESOR") Asesor Inmobiliario @else Gestor Inmobiliario @endif</p> 
                 <hr>
                 {{-- <a href="tel:" class="bg-danger text-white p-2 rounded-pill">Contactar</a> --}}
                 <div class="row">
