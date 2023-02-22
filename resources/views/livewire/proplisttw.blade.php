@@ -457,7 +457,8 @@ function filter_properties(){
     let b_fromdate = document.getElementById('fromdate').value;
     let b_untildate = document.getElementById('untildate').value;
 
-    let b_credit_vip = document.getElementById('b_credit_vip').value;
+    let b_credit_vip = document.getElementById('b_credit_vip');
+    if(b_credit_vip) b_credit_vip = b_credit_vip.value;
 
     if(b_untildate < b_fromdate) alert('Formato no valido');
 
