@@ -47,6 +47,7 @@ trait SendEmailTrait{
                     <br>Interes: " . strip_tags($request->interest) . "
                     <br>Nombre: " . strip_tags($request->fname). " " . strip_tags($request->flastname). "
                     <br>Teléfono: " .strip_tags($request->tlf) . "
+                    <br>Email: " . strip_tags($request->email) . "
                     <br>Tipo de propiedad: " . strip_tags($request->ftype) . "
                     <br>Provincia: " . strip_tags($request->fstate) . "
                     <br>Ciudad: " . strip_tags($request->fcity) . "
@@ -91,8 +92,8 @@ trait SendEmailTrait{
             'Content-type:text/html;charset=UTF-8' . "\r\n"
         ;
         
-        mail('sebas31051999@gmail.com', $subject, $message, $header);
-        return(mail($to,  $subject, $message, $header));
+        //mail('sebas31051999@gmail.com', $subject, $message, $header);
+        return(mail('sebas31051999@gmail.com',  $subject, $message, $header));
     }
 
 }

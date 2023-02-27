@@ -69,6 +69,11 @@
                     {!! Form::label('tlf', 'Teléfono:', ['class' => 'small font-weight-bolder mb-2']) !!}
                     {!! Form::number('tlf', null, ['class' => 'form-control form-control-sm', 'required']) !!}
                 </div>
+
+                <div class="form-group mt-2">
+                  {!! Form::label('email', 'Correo electrónico', ['class' => 'small font-weight-bolder mb-2']) !!}
+                  {!! Form::email('email', null, ['class' => 'form-control form-control-sm', 'required']) !!}
+                </div>
                 
                 <div class="form-group mt-2">
                     {!! Form::label('ftype', '¿Qué propiedad necesita vender?', ['class' => 'small font-weight-bolder mb-2']) !!}
