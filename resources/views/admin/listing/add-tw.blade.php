@@ -110,7 +110,7 @@
                 {{-- @endif --}}
             </div>
     
-            @if(Auth::user()->role == "administrator" && isset($listing) && isset($isvalid) && $isvalid)
+            @if(Auth::user()->role == "administrator")
                 <div>
                     {!! Form::label('status', 'Status',['class' => 'font-semibold']) !!}
                     {{-- @if(isset($listing) && $listing->locked)
