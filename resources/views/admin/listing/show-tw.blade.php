@@ -185,7 +185,7 @@
                   $imageVerification = asset('uploads/listing/thumb/600/'.$img);    
                 @endphp
                 <div class="carousel-item @if($iiListing==0) active @endif" data-slide-number="{{ $iiListing }}">
-                  <img style="width: 100%; height: 100%" src="@if(@getimagesize($imageVerification)){{url('uploads/listing/thumb',$img)}} @else {{url('uploads/listing', $img)}} @endif" class="d-block w-100 ccimgpro" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$propertie->listing_title}}-{{$iiListing++}}">
+                  <img style="width: 100%; height: 100%" src="@if(@getimagesize($imageVerification) && Auth::user()->email == "info@notarialatina.com"){{url('uploads/listing/thumb',$img)}} @else {{url('uploads/listing', $img)}} @endif" class="d-block w-100 ccimgpro" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$propertie->listing_title}}-{{$iiListing++}}">
                 </div>
               @endforeach
           </div>
@@ -225,7 +225,7 @@
               @for ($i = 0; $i < $aux; $i++)
                 <div id="carousel-selector-{{ $i }}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
                   @isset($arrayImages[$i])
-                    <img style="width: 100%" src="@if(@getimagesize($imageVerification)){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{ $i}}">     
+                    <img style="width: 100%" src="@if(@getimagesize($imageVerification) && Auth::user()->email == "info@notarialatina.com"){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{ $i}}">     
                   @endisset
                 </div>   
               @endfor
@@ -238,7 +238,7 @@
               @for ($i = 6; $i < 12; $i++)
                 <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
                   @isset($arrayImages[$i])
-                    <img style="width: 100%" src="@if(@getimagesize($imageVerification)){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
+                    <img style="width: 100%" src="@if(@getimagesize($imageVerification) && Auth::user()->email == "info@notarialatina.com"){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
                     @endisset
                 </div>
               @endfor
@@ -252,7 +252,7 @@
               @for ($i = 12; $i < 18; $i++)
                 <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
                   @isset($arrayImages[$i])
-                    <img style="width: 100%" src="@if(@getimagesize($imageVerification)){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
+                    <img style="width: 100%" src="@if(@getimagesize($imageVerification) && Auth::user()->email == "info@notarialatina.com"){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
                   @endisset
                 </div>
               @endfor
@@ -266,7 +266,7 @@
               @for ($i = 18; $i < 24; $i++)
                 <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
                   @isset($arrayImages[$i])
-                    <img style="width: 100%" src="@if(@getimagesize($imageVerification)){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
+                    <img style="width: 100%" src="@if(@getimagesize($imageVerification) && Auth::user()->email == "info@notarialatina.com"){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
                     @endisset
                 </div>
               @endfor
@@ -280,7 +280,7 @@
               @for ($i = 24; $i < 30; $i++)
                 <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
                   @isset($arrayImages[$i])
-                    <img style="width: 100%" src="@if(@getimagesize($imageVerification)){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
+                    <img style="width: 100%" src="@if(@getimagesize($imageVerification) && Auth::user()->email == "info@notarialatina.com"){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
                     @endisset
                 </div>
               @endfor
