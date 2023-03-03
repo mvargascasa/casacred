@@ -471,6 +471,11 @@ function filter_properties(){
 
     let order_aux;
 
+    let b_plusvalia = document.getElementById('b_plusvalia');
+
+    if(b_plusvalia.checked) @this.set('plusvalia', 1);
+    else @this.set('plusvalia', '');
+
     let b_bedrooms = "";
 
     let ele = document.getElementsByName('bedrooms');

@@ -19,7 +19,7 @@
 @section('content')
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
     <div class="flex grid justify-items-end w-full pt-4 px-4">
-        <div class="px-5 flex float-right"  >
+        <div class="px-5 flex float-right">
             <button onclick="prevpage()" class="bg-red-500 text-white rounded-md px-2 py-1 hover:bg-red-600"> 
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -280,6 +280,24 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div>
+                                            <div class="flex" style="background-color: #EF4444; color: #ffffff">
+                                                <p class="ml-2 text-xs">¿Está en Plusvalia?</p>
+                                                <input class="ml-1" type="checkbox" name="plusvalia" id="b_plusvalia">
+                                            </div>
+                                            {{-- <div>
+                                                <div class="flex mt-1">
+                                                    <div class="mx-1">
+                                                        <input type="radio" id="b_plusvalia" name="plusvalia" value="1">
+                                                        <label for="">SI</label>
+                                                    </div>
+                                                    <div class="mx-1">
+                                                        <input type="radio" id="b_plusvalia" name="plusvalia" value="0">
+                                                        <label for="">NO</label>
+                                                    </div>
+                                                </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>

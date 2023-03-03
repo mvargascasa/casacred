@@ -25,7 +25,8 @@ class Proplisttw extends Component
     $asesor,
     $fromdate, $untildate,
     $credit_vip,
-    $bedrooms;
+    $bedrooms,
+    $plusvalia;
 
     public function render()
     {
@@ -96,6 +97,9 @@ class Proplisttw extends Component
         if($this->credit_vip)           $properties_filter->where('credit_vip', $this->credit_vip);
 
         if($this->bedrooms)     $properties_filter->where('bedroom', $this->bedrooms);
+
+        if($this->plusvalia)  $properties_filter->where('plusvalia', $this->plusvalia);
+        
 
         //buscando por precio strlen($this->fromprice)>1   strlen($this->uptoprice)>1 
         if($this->fromprice && filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT)>1){
