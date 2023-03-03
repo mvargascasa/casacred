@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
+use App\Models\Listing;
 
 class UserController extends Controller
 {
@@ -64,6 +65,15 @@ class UserController extends Controller
     public function searchuser(Request $request){
         $users = User::name($request->name)->get();
         return view('admin.users.index',compact('users'));
+    }
+
+    public function quitwatermark(Request $request){
+        $user = User::where('id', Auth::user()->id)->first();
+        $listing = Listing::where('id', $request->watermark)->first();
+        if($user->watermark) $user->watermark = false;
+        else $user->watermark = true;
+        $user->save();
+        return redirect()->route('admin.show.listing', $listing);
     }
 
 }

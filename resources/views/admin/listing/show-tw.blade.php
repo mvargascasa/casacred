@@ -175,6 +175,22 @@
 
   <div class="row d-flex justify-content-center">
     <div class="col-sm-8">
+      @if(Auth::user()->email == "seo@casacredito.com" || Auth::user()->email == "info@casacredito.com")
+      <div class="mb-2">
+        <div>
+          <form action="{{route('home.user.watermark')}}" method="POST">
+            @csrf
+            <input type="hidden" name="watermark" value="{{$propertie->id}}">
+            <button type="submit">
+              @if(Auth::user()->watermark)
+              <i class="far fa-eye"></i>
+              @else
+              <i class="far fa-eye-slash"></i>
+              @endif
+            </button>
+          </form>
+        </div>
+      </div>
       
       @if ($propertie->images != null)
         <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -185,7 +201,7 @@
                   $imageVerification = asset('uploads/listing/thumb/600/'.$img);    
                 @endphp
                 <div class="carousel-item @if($iiListing==0) active @endif" data-slide-number="{{ $iiListing }}">
-                  <img style="width: 100%; height: 100%" src="@if(@getimagesize($imageVerification) && Auth::user()->email != "seo@casacredito.com"){{url('uploads/listing/thumb',$img)}} @else {{url('uploads/listing', $img)}} @endif" class="d-block w-100 ccimgpro" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$propertie->listing_title}}-{{$iiListing++}}">
+                  <img style="width: 100%; height: 100%" src="@if(@getimagesize($imageVerification) && !Auth::user()->watermark){{url('uploads/listing/thumb',$img)}} @else {{url('uploads/listing', $img)}} @endif" class="d-block w-100 ccimgpro" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$propertie->listing_title}}-{{$iiListing++}}">
                 </div>
               @endforeach
           </div>
