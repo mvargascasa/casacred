@@ -19,6 +19,8 @@ Route::get('/home', [WebController::class, 'home'])->name('web.home');
 Route::get('/creditos', [WebController::class, 'creditos'])->name('web.creditos');
 Route::post('/send-lead-contact', [WebController::class, 'sendLeadContact'])->name('web.lead.contact');
 
+//Route::get('/avaluo-de-propiedad', [WebController::class, 'avaluo'])->name('web.avaluo.propiedad');
+
 Route::get('/propiedad/{listing:slug}', [WebController::class,'detail'])->name('web.detail');
 Route::get('/getcities/{idState}', [WebController::class,'getcities'])->name('web.getcities');
 Route::get('/getstate/{city}', [WebController::class, 'getstatebycity'])->name('web.getstate');
@@ -58,6 +60,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
 
     Route::post('setcomment', [TwController::class, 'setcomment'])->name('home.tw.setcomment');
     Route::post('setoutstanding', [AdminController::class, 'setoutstanding'])->name('home.tw.setoutstanding');
+    Route::post('setisinplusvalia', [AdminController::class, 'setisinplusvalia'])->name('home.tw.setisinplusvalia');
 
     Route::get('contacts', [TwController::class,'contacts'])->name('admin.contacts');
     Route::get('opports', [TwController::class,'opports'])->name('admin.opports');

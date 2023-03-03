@@ -52,7 +52,14 @@
                 </form>
             @endif
         </div>
-        <div class="float-right" style="margin-top: -30px">
+        <div class="float-right flex" style="margin-top: -30px">
+            <form action="{{ route('home.tw.setisinplusvalia') }}" method="POST" class="mr-2">
+                @csrf
+                <input type="hidden" name="plusvalia" value="{{$listing->id}}">
+                <button type="submit" style="outline: none">
+                    <i class="fas fa-parking @if(isset($listing) && $listing->plusvalia) text-green-600 @else text-red-600 @endif"></i>
+                </button>
+            </form>
             <form action="{{ route('home.tw.setoutstanding') }}" method="POST">
                 @csrf
                 <input type="hidden" id="outstanding" name="outstanding" value="{{$listing->id}}">

@@ -28,7 +28,8 @@ class Listing extends Model
         'planing_license',
         'mortgaged',
         'entity_mortgaged',
-        'mount_mortgaged'
+        'mount_mortgaged',
+        'plusvalia'
     ];   
     
     public function user()

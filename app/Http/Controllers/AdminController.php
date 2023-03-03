@@ -85,4 +85,13 @@ class AdminController extends Controller
         $listing->save();
         return redirect()->route('home.tw.edit', $listing);
     }
+
+    public function setisinplusvalia(Request $request){
+        $listing = Listing::where('id', $request->plusvalia)->first();
+        if($listing->plusvalia) $listing->plusvalia = false;
+        else $listing->plusvalia = true;
+        $listing->save();
+        return redirect()->route('home.tw.edit', $listing);
+    }
+
 }
