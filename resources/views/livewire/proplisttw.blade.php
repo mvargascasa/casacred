@@ -51,15 +51,6 @@
                     @endif
                 </div>
 
-                <div class="absolute right-1 top-0">
-                    @if($propertie->plusvalia)
-                        <div class="text-xs font-semibold" style="margin-top: 5px; margin-left:5px; border-radius: 10px; width: 10px; height: 10px; background-color: #01842a; border-radius: 25px">
-                            {{-- <img width="35px" src="{{ asset('img/on.png') }}" alt="ON"> --}}
-                            <img width="100px" height="100px" src="{{asset('img/plusvalia.png')}}" alt="">
-                        </div>
-                    @endif
-                </div>
-
                 <div class="px-2 py-2">
                 <div class="text-xs text-gray-500">{{$propertie->created_at->format('d-M-y')}}</div>
                 <div class="font-bold text-sm">{{ Str::limit($propertie->listing_title, 30, '...')}}</div>
