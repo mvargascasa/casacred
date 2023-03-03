@@ -191,6 +191,7 @@
           </form>
         </div>
       </div>
+      @endif
       
       @if ($propertie->images != null)
         <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
