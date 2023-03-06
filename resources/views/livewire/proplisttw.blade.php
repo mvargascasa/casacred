@@ -131,21 +131,21 @@
                     </div>
                 </div>
                 @endif
-                <div class="flex float-right mr-2">
-                    {{-- <button onclick="setLinkToShare('{{$propertie->slug}}')">
-                        <img width="25px" src="{{asset('img/wpp_logo.png')}}" alt="">
-                    </button> --}}
-                    @if(Auth::user()->email == "developer2@casacredito.com" || Auth::user()->email == "info@casacredito.com" || Auth::user()->email == "seo@casacredito.com")
-                        <div>
-                            @if($propertie->plusvalia)
-                            <img width="12" height="12" src="{{asset('img/plusvalia.png')}}" alt="">
-                            @endif
+                @if($propertie->plusvalia)
+                    <div class="flex float-right mr-2">
+                        {{-- <button onclick="setLinkToShare('{{$propertie->slug}}')">
+                            <img width="25px" src="{{asset('img/wpp_logo.png')}}" alt="">
+                        </button> --}}
+                        {{-- @if(Auth::user()->email == "developer2@casacredito.com" || Auth::user()->email == "info@casacredito.com" || Auth::user()->email == "seo@casacredito.com") --}}
+                            <div>
+                                <img width="12" height="12" src="{{asset('img/plusvalia.png')}}" alt="">
+                            </div>
+                        {{-- @endif --}}
+                        <div class="ml-2">
+                            <input type="checkbox" value="{{$propertie->listing_title.'|'.$propertie->slug}}" name="propertiestoshare[]" class="checktoshare" onclick="share()">
                         </div>
-                    @endif
-                    <div class="ml-2">
-                        <input type="checkbox" value="{{$propertie->listing_title.'|'.$propertie->slug}}" name="propertiestoshare[]" class="checktoshare" onclick="share()">
                     </div>
-                </div>
+                @endif
             </div>
         @endforeach
         <input type="hidden" id="pagActual" value="{{$pagActual}}">
