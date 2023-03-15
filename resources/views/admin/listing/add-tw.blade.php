@@ -290,19 +290,19 @@
         <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6">
             <div>
                 {!! Form::label('property_price', 'Precio Max', ['class' => 'font-semibold']) !!}
-                {{-- @if(isset($listing) && $listing->locked)
+                @if(isset($listing) && $listing->property_price != null && $listing->property_price > 0 && Auth::user()->role != "administrator")
                     {!! Form::text('property_price', null, ['class' => $inputs, 'disabled']) !!}
-                @else --}}
+                @else
                     {!! Form::text('property_price', null, ['class' => $inputs, 'required']) !!}
-                {{-- @endif --}}
+                @endif
             </div>
             <div>
                 {!! Form::label('property_price_min', 'Precio Min', ['class' => 'font-semibold']) !!}
-                {{-- @if(isset($listing) && $listing->locked)
+                @if(isset($listing) && $listing->property_price_min != null && $listing->property_price_min > 0 && Auth::user()->role != "administrator")
                 {!! Form::text('property_price_min', null, ['class' => $inputs, 'disabled']) !!}
-                @else --}}
+                @else
                 {!! Form::text('property_price_min', null, ['class' => $inputs, 'required']) !!}
-                {{-- @endif --}}
+                @endif
             </div>
         </div>
 
