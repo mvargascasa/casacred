@@ -473,7 +473,7 @@
             <div class="col-12 col-sm-11">
               @if($listing->listingtypestatus != "alquilar")
               <div class="row align-items-center border border-danger ml-0 rounded mb-3 py-2">
-                <label><i class="fas fa-money-check-edit-alt text-danger"></i> El valor de la cuota mensual para la propiedad es de <b class="font-weight-normal" id="totalinfo"></b></label>
+                <label><i class="fas fa-money-check-edit-alt text-danger"></i> *El <b class="text-danger font-weight-bold">valor aproximado</b> de la cuota mensual para la propiedad es de <b class="font-weight-normal" id="totalinfo"></b></label>
               </div>
               @endif
               <div class="row">
@@ -729,7 +729,8 @@
                       <button class="btn btn-danger" onclick="calcularcredito()">Calcular</button>
                     </div>
                     <div class="text-center">
-                      Total: <label class="font-weight-normal" style="font-size: 20px" id="totalcred"></label>
+                      <p>*Precio Referencial Aproximado:</p>
+                      <label class="font-weight-normal" style="font-size: 20px" id="totalcred"></label>
                     </div>
                   </div>
                 </div>
