@@ -204,11 +204,11 @@ class ListingController extends Controller
 
             //$listing->mortgaged = $request->mortgaged;
 
-            if($listing->mortgaged == 1){
+            if($request->mortgaged == "on"){
                 $listing->entity_mortgaged = $request->entity_mortgaged;
                 $listing->mount_mortgaged = $request->mount_mortgaged;
                 $listing->warranty = $request->warranty; 
-            } else if($listing->mortgaged == 0){
+            } else{
                 $listing->entity_mortgaged = null;
                 $listing->mount_mortgaged = null;
                 $listing->warranty = null; 
