@@ -191,7 +191,7 @@ class ListingController extends Controller
             $listing->listingenvironments = $request->listingenvironments;
             if($request->cavity_error == "on") $listing->cavity_error = 1; else $listing->cavity_error = 0;
             if($request->vip == "on") $listing->vip = 1; else $listing->vip = 0;
-            if($request->morgaged == "on") $listing->mortgaged = 1; else $listing->mortgaged = 0;      
+            if($request->mortgaged == "on") $listing->mortgaged = 1; else $listing->mortgaged = 0;      
 
             $listing->listing_description = $request->listing_description;
             $listing->listing_type = $request->listing_type;

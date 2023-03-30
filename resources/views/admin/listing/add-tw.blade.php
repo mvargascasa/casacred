@@ -1175,19 +1175,19 @@
         body.classList.toggle('modal-active')
     }
 
-    function showinfoentitymortgaged(checkbox){
-        if(checkbox.value == 1){
-            document.getElementById('divinfoentitymortgaged').classList.remove('hidden');
-            document.getElementById('divinfoentitymortgaged').classList.add('block');
-            document.getElementById('entity_mortgaged').required = true;
-            document.getElementById('mount_mortgaged').required = true;
-        } else if(checkbox.value == 0){
-            document.getElementById('divinfoentitymortgaged').classList.remove('block');
-            document.getElementById('divinfoentitymortgaged').classList.add('hidden');
-            document.getElementById('entity_mortgaged').required = false;
-            document.getElementById('mount_mortgaged').required = false;
-        } 
-    }
+    // function showinfoentitymortgaged(checkbox){
+    //     if(checkbox.value == 1){
+    //         document.getElementById('divinfoentitymortgaged').classList.remove('hidden');
+    //         document.getElementById('divinfoentitymortgaged').classList.add('block');
+    //         document.getElementById('entity_mortgaged').required = true;
+    //         document.getElementById('mount_mortgaged').required = true;
+    //     } else if(checkbox.value == 0){
+    //         document.getElementById('divinfoentitymortgaged').classList.remove('block');
+    //         document.getElementById('divinfoentitymortgaged').classList.add('hidden');
+    //         document.getElementById('entity_mortgaged').required = false;
+    //         document.getElementById('mount_mortgaged').required = false;
+    //     } 
+    // }
 
     let sellistingtype = document.querySelector("select[name='listing_type']");
     let divnumfactura = document.getElementById('numfactura');
