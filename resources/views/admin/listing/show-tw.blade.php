@@ -465,6 +465,36 @@
           </div>
         </div>
       @endif
+      @if( count(array_filter(explode(",", $propertie->listinggeneralcharacteristics)))>0 )
+        <div style="border: none" class="card my-4">
+          <div class="card-body" style="margin: -16px">
+            <h6 class="card-title text-danger">Características Generales</h6>
+            <div class="row" style="padding-left: 7px">
+              @foreach(array_filter(explode(",", $propertie->listinggeneralcharacteristics)) as $gc)
+                <div class="col-lg-3 col-md-4 col-6 p-1">
+                  {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
+                  <span class="text-muted small">@foreach ($general_characteristics as $general_characteristic) @if($general_characteristic->id==$gc) {{$general_characteristic->title}} @endif  @endforeach</span>
+                </div>
+              @endforeach    
+            </div> 
+          </div>
+        </div>
+      @endif
+      @if( count(array_filter(explode(",", $propertie->listingenvironments)))>0 )
+        <div style="border: none" class="card my-4">
+          <div class="card-body" style="margin: -16px">
+            <h6 class="card-title text-danger">Ambientes</h6>
+            <div class="row" style="padding-left: 7px">
+              @foreach(array_filter(explode(",", $propertie->listingenvironments)) as $le)
+                <div class="col-lg-3 col-md-4 col-6 p-1">
+                  {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
+                  <span class="text-muted small">@foreach ($environments as $environment) @if($environment->id==$le) {{$environment->title}} @endif  @endforeach</span>
+                </div>
+              @endforeach    
+            </div> 
+          </div>
+        </div>
+      @endif
       {{-- <a target="_blank" href="{{$propertie->ubication_url}}">Ver ubicación en Google Maps</a> --}}
     </div>
   </div>

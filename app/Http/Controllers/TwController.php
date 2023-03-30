@@ -25,6 +25,8 @@ class TwController extends Controller
         $lastcode = Listing::where('product_code','!=','')->orderBy('product_code','desc')->first();
         $benefits = DB::table('listing_benefits')->get();  
         $services = DB::table('listing_services')->get();  
+        $general_characteristics = DB::table('listing_general_characteristics')->get();
+        $environments = DB::table('listing_environments')->get();
         $types = DB::table('listing_types')->get();  
         $details = DB::table('listing_characteristics')->orderBy('charac_titile', 'ASC')->get(); 
         $categories = DB::table('listing_status')->get();
@@ -36,7 +38,7 @@ class TwController extends Controller
             $optAttrib[$state->name] = ['data-id' => $state->id];
         }
 
-        return view('admin.listing.add-tw',compact('benefits','services','types','categories','tags','details','states','optAttrib','lastcode'));
+        return view('admin.listing.add-tw',compact('benefits','services','types','categories','tags','details','states','optAttrib','lastcode', 'general_characteristics', 'environments'));
     }   
     
     public function edit(Listing $listing){
@@ -48,6 +50,8 @@ class TwController extends Controller
         }
         $benefits = DB::table('listing_benefits')->get();   
         $services = DB::table('listing_services')->get();
+        $general_characteristics = DB::table('listing_general_characteristics')->get();
+        $environments = DB::table('listing_environments')->get();
         $types = DB::table('listing_types')->get();  
         $details = DB::table('listing_characteristics')->orderBy('charac_titile', 'ASC')->get();  
         $categories = DB::table('listing_status')->get();  
@@ -61,7 +65,7 @@ class TwController extends Controller
         }
         $cities = DB::table('info_cities')->where('state_id',$getCities)->get(); 
         return view('admin.listing.add-tw',compact('listing','benefits','services','types','categories',
-                    'tags','details','states','optAttrib','cities', 'isvalid'));
+                    'tags','details','states','optAttrib','cities', 'isvalid', 'general_characteristics', 'environments'));
     } 
 
     

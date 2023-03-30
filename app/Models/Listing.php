@@ -14,21 +14,26 @@ class Listing extends Model
         'bedroom', 'bathroom', 'garage', //new variables to filters
         'meta_description', 'keywords', 'Front','Fund','land_area','construction_area', 'property_price_min','property_price',
         'listing_description','listing_type', 'num_factura', 'address','state','city','listingtype',
-        'listingcharacteristic','listinglistservices','listingtypestatus','listingtagstatus',
+        'listingcharacteristic','listinglistservices','listingtypestatus','listingtagstatus', 'listinggeneralcharacteristics', 'listingenvironments',
         'listyears',//se agrego esta nueva variable
         'lat', 'lng', //nuevas variables se quito lat y lng como variables
         //'ubication_url', //se agrego esto para la ubicacion
         'available',
         'status','user_id',
-        'threedegreeview','heading_details','owner_name', 'owner_email',
+        'threedegreeview','heading_details','owner_name', 'owner_email', 'owner_address',
         'identification', 'phone_number', // new variables to save cedula and numero telefonico
         'aval', //new variable to avaluo
         'locked',
-        'credit_vip',
+        'vip',
         'planing_license',
         'mortgaged',
         'entity_mortgaged',
         'mount_mortgaged',
+        'cadastral_key',
+        'aliquot',
+        'observations_type_property',
+        'cavity_error',
+        'warranty',
         'plusvalia'
     ];   
     
