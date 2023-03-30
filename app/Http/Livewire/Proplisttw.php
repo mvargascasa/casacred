@@ -94,7 +94,7 @@ class Proplisttw extends Component
         //buscando por fecha
         if($this->fromdate || $this->untildate)         $properties_filter->whereBetween('created_at', [$this->fromdate, $this->untildate]);
 
-        if($this->credit_vip)           $properties_filter->where('credit_vip', $this->credit_vip);
+        if($this->credit_vip)           $properties_filter->where('vip', $this->credit_vip);
 
         if($this->bedrooms)     $properties_filter->where('bedroom', $this->bedrooms);
 
