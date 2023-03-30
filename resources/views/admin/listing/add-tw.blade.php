@@ -16,6 +16,54 @@
       overflow-x: hidden;
       overflow-y: visible !important;
     }
+
+        .loader {
+        width: 60px;
+        }
+
+        .loader-wheel {
+            animation: spin 1s infinite linear;
+            border: 2px solid rgba(30, 30, 30, 0.5);
+            border-left: 4px solid #fff;
+            border-radius: 50%;
+            height: 50px;
+            margin-bottom: 10px;
+            width: 50px;
+        }
+
+        .loader-text {
+        color: #000;
+        font-family: arial, sans-serif;
+        }
+
+        .loader-text:after {
+        content: 'Loading';
+        animation: load 2s linear infinite;
+        }
+
+        @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+        }
+
+        @keyframes load {
+        0% {
+            content: 'Loading';
+        }
+        33% {
+            content: 'Loading.';
+        }
+        67% {
+            content: 'Loading..';
+        }
+        100% {
+            content: 'Loading...';
+        }
+        }
 </style>
 
 @endsection
@@ -23,6 +71,11 @@
 @section('content')
 
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
+
+    <div class="loader absolute" style="top: 50%; left: 50%; z-index: 300; display: none">
+        <div class="loader-wheel"></div>
+        <div class="loader-text"></div>
+      </div>
 
  <section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md mt-10">
     
@@ -766,6 +819,7 @@
             const response = await fetch("{{route('admin.listings.store')}}",
             { body: dataform, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}"}});
             let mensaje = await response.json();
+            document.querySelector('.loader').style.display = "none";
             if(mensaje.success && mensaje.fragment == "first"){ document.getElementById('first').style.display="none";document.getElementById('second').style.display="block";setfragmentvalue('second');changeclass('second');}
             if(mensaje.success && mensaje.fragment == "second"){ document.getElementById('second').style.display="none";document.getElementById('third').style.display="block";setfragmentvalue('third');changeclass('third');}
             if(mensaje.success && mensaje.fragment == "third"){ document.getElementById('third').style.display="none";document.getElementById('fourth').style.display="block";setfragmentvalue('fourth');changeclass('fourth');}
@@ -779,6 +833,7 @@
             const response = await fetch("{{route('admin.listings.update', $listing->id)}}",
             { body: dataform, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}"}});
             let mensaje = await response.json();
+            document.querySelector('.loader').style.display = "none";
             console.log('saving...');
             if(mensaje.success && mensaje.fragment == "first"){ document.getElementById('first').style.display="none";document.getElementById('second').style.display="block";setfragmentvalue('second');changeclass('second');}
             if(mensaje.success && mensaje.fragment == "second"){ document.getElementById('second').style.display="none";document.getElementById('third').style.display="block";setfragmentvalue('third');changeclass('third');}
@@ -843,6 +898,7 @@
         if(btnSave){
             btnSave.addEventListener("click", function(event){
                 event.preventDefault();
+                document.querySelector('.loader').style.display = "block";
                 let valueStatus = document.querySelector("select[name='status']");
                 let valuePlan = document.querySelector("select[name='listing_type']").value;
                 let valueAvailable = document.querySelector("select[name='available']").value;
