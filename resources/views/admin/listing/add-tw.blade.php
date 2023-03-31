@@ -276,11 +276,9 @@
                     @endif
                 </div>
                 <div>
-                    {!! Form::label('owner_address', 'Dirección', ['class' => 'font-semibold']) !!}
+                    {!! Form::label('owner_address', 'Dirección del propietario', ['class' => 'font-semibold']) !!}
                     @if(isset($listing) && $listing->locked)
-                    {!! Form::text('owner_address', null, ['class' => $inputs, 'disabled']) !!}
-                    @elseif(Auth::user()->email == "developer2@casacredito.com")
-                    {!! Form::text('owner_address', null, ['class' => $inputs]) !!}
+                    {!! Form::text('owner_address', null, ['class' => $inputs, 'readonly']) !!}
                     @else
                     {!! Form::text('owner_address', null, ['class' => $inputs]) !!}
                     @endif
@@ -751,9 +749,11 @@
             {{-- @if(isset($listing) && $listing->locked)
                 <button type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform bg-red-700 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600" disabled>GUARDAR</button>
             @else --}}
+                @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "home.tw.create")
                 <button id="btnSave" type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform bg-red-700 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600">GUARDAR</button>
+                @endif
                 @if(Route::current()->getName() == "admin.listings.edit" || Route::current()->getName() == "home.tw.edit")
-                <button onclick="saveandclose()" class="px-6 py-2 ml-3 text-xl leading-5 text-white bg-green-500 transition-colors duration-200 transform rounded  focus:outline-none">GUARDAR Y SALIR</button>
+                <button onclick="saveandclose(event)" class="px-6 py-2 ml-3 text-xl leading-5 text-white bg-green-500 transition-colors duration-200 transform rounded  focus:outline-none">GUARDAR Y SALIR</button>
                 @endif
             {{-- @endif --}}
                 {{-- <button type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform bg-red-700 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600">GUARDAR</button> --}}
@@ -812,33 +812,42 @@
 
 @section('endscript')
     <script src="{{asset('js/sortable.min.js')}}"></script>
+    <script>let bandera = false;</script>
     @if(Route::current()->getName() == "admin.listings.create")
         <script>
-            const save = async() => {
-            let dataform = new FormData(document.getElementById('formsave'));
-            const response = await fetch("{{route('admin.listings.store')}}",
-            { body: dataform, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}"}});
-            let mensaje = await response.json();
-            document.querySelector('.loader').style.display = "none";
-            if(mensaje.success && mensaje.fragment == "first"){ document.getElementById('first').style.display="none";document.getElementById('second').style.display="block";setfragmentvalue('second');changeclass('second');}
-            if(mensaje.success && mensaje.fragment == "second"){ document.getElementById('second').style.display="none";document.getElementById('third').style.display="block";setfragmentvalue('third');changeclass('third');}
-            if(mensaje.success && mensaje.fragment == "third"){ document.getElementById('third').style.display="none";document.getElementById('fourth').style.display="block";setfragmentvalue('fourth');changeclass('fourth');}
-            if(mensaje.success && mensaje.fragment == "fourth"){window.location.replace("{{route('admin.properties')}}");}
+            const save = async(event) => {
+                if(bandera){
+                    event.preventDefault();
+                } else {
+                    let dataform = new FormData(document.getElementById('formsave'));
+                    const response = await fetch("{{route('admin.listings.store')}}",
+                    { body: dataform, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}"}});
+                    let mensaje = await response.json();
+                    document.querySelector('.loader').style.display = "none";
+                    if(mensaje.success && mensaje.fragment == "first"){ document.getElementById('first').style.display="none";document.getElementById('second').style.display="block";setfragmentvalue('second');changeclass('second');}
+                    if(mensaje.success && mensaje.fragment == "second"){ document.getElementById('second').style.display="none";document.getElementById('third').style.display="block";setfragmentvalue('third');changeclass('third');}
+                    if(mensaje.success && mensaje.fragment == "third"){ document.getElementById('third').style.display="none";document.getElementById('fourth').style.display="block";setfragmentvalue('fourth');changeclass('fourth');}
+                    if(mensaje.success && mensaje.fragment == "fourth" && !ischangestatus && !ischangeplan && !ischangeavailable){window.location.replace("{{route('admin.properties')}}");}
+                }
             }
         </script>
     @elseif(Route::current()->getName() == "admin.listings.edit" || Route::current()->getName() == "home.tw.edit")
         <script>
-            const save = async() => {
-            let dataform = new FormData(document.getElementById('formsave'));
-            const response = await fetch("{{route('admin.listings.update', $listing->id)}}",
-            { body: dataform, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}"}});
-            let mensaje = await response.json();
-            document.querySelector('.loader').style.display = "none";
-            console.log('saving...');
-            if(mensaje.success && mensaje.fragment == "first"){ document.getElementById('first').style.display="none";document.getElementById('second').style.display="block";setfragmentvalue('second');changeclass('second');}
-            if(mensaje.success && mensaje.fragment == "second"){ document.getElementById('second').style.display="none";document.getElementById('third').style.display="block";setfragmentvalue('third');changeclass('third');}
-            if(mensaje.success && mensaje.fragment == "third"){ document.getElementById('third').style.display="none";document.getElementById('fourth').style.display="block";setfragmentvalue('fourth');changeclass('fourth');}
-            if(mensaje.success && mensaje.fragment == "fourth"){window.location.replace("{{route('admin.properties')}}");}
+            const save = async(event) => {
+            if(bandera){
+                event.preventDefault();
+            } else {
+                let dataform = new FormData(document.getElementById('formsave'));
+                const response = await fetch("{{route('admin.listings.update', $listing->id)}}",
+                { body: dataform, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}"}});
+                let mensaje = await response.json();
+                document.querySelector('.loader').style.display = "none";
+                console.log('saving...');
+                if(mensaje.success && mensaje.fragment == "first"){ document.getElementById('first').style.display="none";document.getElementById('second').style.display="block";setfragmentvalue('second');changeclass('second');}
+                if(mensaje.success && mensaje.fragment == "second"){ document.getElementById('second').style.display="none";document.getElementById('third').style.display="block";setfragmentvalue('third');changeclass('third');}
+                if(mensaje.success && mensaje.fragment == "third"){ document.getElementById('third').style.display="none";document.getElementById('fourth').style.display="block";setfragmentvalue('fourth');changeclass('fourth');}
+                if(mensaje.success && mensaje.fragment == "fourth" && !ischangestatus && !ischangeplan && !ischangeavailable){window.location.replace("{{route('admin.properties')}}");}
+            }
             }
         </script>
     @endif
@@ -894,32 +903,39 @@
         let ischangeplan = false;
         let ischangeavailable = false;
 
+        const showmodalsifchange = () => {
+            document.querySelector('.loader').style.display = "none";
+            let valueStatus = document.querySelector("select[name='status']");
+            let valuePlan = document.querySelector("select[name='listing_type']").value;
+            let valueAvailable = document.querySelector("select[name='available']").value;
+            if(valueStatus) {
+                valueStatus = valueStatus.value;
+                if(selstatus == 1 && valueStatus == 0){
+                    ischangestatus = true;
+                    event.preventDefault();
+                    bandera = true;
+                    toggleModal("status");
+                } else if(valuePlan == 1 && selstatus == 0 && valueStatus == 1){
+                    ischangeplan = true;
+                    event.preventDefault();
+                    bandera = true;
+                    toggleModal('plan');
+                } else if(valueAvailable == 2 && selavailable == 1) {
+                    ischangeavailable = true;
+                    event.preventDefault();
+                    bandera = true;
+                    toggleModal('available');
+                }
+            }
+        }
+
         let btnSave = document.getElementById('btnSave');
         if(btnSave){
             btnSave.addEventListener("click", function(event){
                 event.preventDefault();
                 document.querySelector('.loader').style.display = "block";
-                let valueStatus = document.querySelector("select[name='status']");
-                let valuePlan = document.querySelector("select[name='listing_type']").value;
-                let valueAvailable = document.querySelector("select[name='available']").value;
-                if(valueStatus) {
-                    valueStatus = valueStatus.value;
-                    if(selstatus == 1 && valueStatus == 0){
-                        ischangestatus = true;
-                        event.preventDefault();
-                        toggleModal("status");
-                    } else if(valuePlan == 1 && selstatus == 0 && valueStatus == 1){
-                        ischangeplan = true;
-                        event.preventDefault();
-                        toggleModal('plan');
-                    } else if(valueAvailable == 2 && selavailable == 1) {
-                        ischangeavailable = true;
-                        event.preventDefault();
-                        toggleModal('available');
-                    }
-                }
                 removeelement();
-                save();
+                save(event);
             });
         }
 
@@ -1147,11 +1163,11 @@
         else if(div_help_desc.style.display == "block") div_help_desc.style.display = "none";
     }
 
-    form.addEventListener('submit', (event) => {
-        let text = "¿Esta seguro de guardar los cambios?";
-        if(confirm(text) == true){return true}
-        else {event.preventDefault();}
-    });
+    // form.addEventListener('submit', (event) => {
+    //     let text = "¿Esta seguro de guardar los cambios?";
+    //     if(confirm(text) == true){return true}
+    //     else {event.preventDefault();}
+    // });
 
     var alert_del = document.querySelectorAll('.alert-del');
     alert_del.forEach((x) =>
@@ -1213,14 +1229,14 @@
             case "status": txttitlemodal.innerHTML = "Por favor, indique la razón por la cual se desactiva la propiedad"; break;
             case "plan"  : txttitlemodal.innerHTML = "Por favor, indique la razón por la cual se activa la propiedad gratis"; break;
             case "available": txttitlemodal.innerHTML = "Por favor, ingrese la razón por la cual la propiedad ya no está disponible"; break;
-            default:
-                break;
+            default:break;
         }
         const body = document.querySelector('body')
         const modal = document.querySelector('.modal')
         modal.classList.toggle('opacity-0')
         modal.classList.toggle('pointer-events-none')
         body.classList.toggle('modal-active')
+        //saveandclose();
     }
 
     function toggleModalSuccess(){
@@ -1294,12 +1310,40 @@
         }
     } 
 
-    const saveandclose = () => {
-        let input = document.createElement('input');
-        input.type = "hidden"; input.name = "edit"; input.value = 1;
+    const saveandclose = (event) => {
+        if(bandera){
+            event.preventDefault();
+        }
+        let input_hidden_edit = document.querySelector("input[name='edit']");
         let form = document.getElementById('formsave');
-        form.appendChild(input);
-        form.submit();
+        if(!input_hidden_edit){
+            let input = document.createElement('input');
+            input.type = "hidden"; input.name = "edit"; input.value = 1;
+            form.appendChild(input);
+        } else {
+            form.appendChild(input_hidden_edit);
+        }
+        let valueStatus = document.querySelector("select[name='status']");
+        let valuePlan = document.querySelector("select[name='listing_type']").value;
+        let valueAvailable = document.querySelector("select[name='available']").value;
+        if(valueStatus) {
+            valueStatus = valueStatus.value;
+            if(selstatus == 1 && valueStatus == 0){
+                ischangestatus = true;
+                event.preventDefault();
+                toggleModal("status");
+            } else if(valuePlan == 1 && selstatus == 0 && valueStatus == 1){
+                ischangeplan = true;
+                event.preventDefault();
+                toggleModal('plan');
+            } else if(valueAvailable == 2 && selavailable == 1) {
+                ischangeavailable = true;
+                event.preventDefault();
+                toggleModal('available');
+            }
+        } else {
+            form.submit();
+        }
     }
 
     const removeelement = () => {
