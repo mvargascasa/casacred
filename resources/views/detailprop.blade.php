@@ -811,6 +811,8 @@
       @php
           $listingsSimilar = \App\Models\Listing::select('listing_title', 'images', 'property_price', 'heading_details', 'city', 'state', 'country', 'slug', 'listingtype')->where('city', $listing->city)->where('status', 1)->where('listingtype', $listing->listingtype)->inRandomOrder()->limit(4)->get();
       @endphp
+
+      @if(count($listingsSimilar)>0)
       <div class="row mt-5 justify-content-center" data-aos="zoom-in">
         <h3 class="text-center mb-5 h5">Propiedades similares</h3>
         @foreach ($listingsSimilar as $listing_s)
@@ -851,6 +853,7 @@
           </div>
           @endforeach
       </div>
+      @endif
 
         </div>
         {{-- @if(isset($mobile) && $mobile==true)
