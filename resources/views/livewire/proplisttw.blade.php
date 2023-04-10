@@ -122,6 +122,9 @@
                         <p>b-{{$propertie->bathroom}}</p>
                         <p>g-{{$propertie->garage}}</p>
                     </div>
+                    <div class="mx-3">
+                        <p>{{$propertie->slug}}</p>
+                    </div>
                 @endif
                 <div>
                     <div class="flex justify-center">
