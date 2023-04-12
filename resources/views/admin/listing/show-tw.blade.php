@@ -144,6 +144,7 @@
 @php
   $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
 	$bathroom=0;$garage=0;$squarefit=0;
+  $departments=0;
 	if(!empty($propertie->heading_details)){
 	  $allheadingdeatils=json_decode($propertie->heading_details); 
     foreach($allheadingdeatils as $singleedetails){ 
@@ -152,7 +153,8 @@
       if($i%2==0){  
         if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
         if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];
-        if($singleedetails[$i-1]==43) $garage+=$singleedetails[$i];									  
+        if($singleedetails[$i-1]==43) $garage+=$singleedetails[$i];	
+        if($singleedetails[$i-1]==109 || $singleedetails[$i-1]==110 || $singleedetails[$i-1]==111) $departments+=$singleedetails[$i];								  
       }								   
     }								
 	$i++;
@@ -398,6 +400,12 @@
               <div class="col-sm-6 d-flex mt-3 mb-3">
                 <i style="font-size: 20px; margin-right: 5px" class="fas fa-car"></i>
                 <p>{{ $garage }} @if($garage > 1) parqueaderos @else parqueadero @endif</p>
+              </div>
+            @endif
+            @if ($departments > 0)
+              <div class="col-sm-6 d-flex mt-3 mb-3">
+                <i style="font-size: 20px; margin-right: 5px" class="fas fa-building"></i>
+                <p>{{ $departments }} @if($departments > 1) departamentos @else departamento @endif</p>
               </div>
             @endif
           </div>
