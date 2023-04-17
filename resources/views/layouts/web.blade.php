@@ -787,7 +787,7 @@ if(strpos($actual_link, 'localhost') === false){
         });
         return false;
       });
-  }, 3000);
+  }, 3500);
 </script>
 </body>
 </html>
