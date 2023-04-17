@@ -88,7 +88,7 @@ if(strpos($actual_link, 'localhost') === false){
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       console.log('cargando gtm 5h6gc9z');
       })(window,document,'script','dataLayer','GTM-5H6GC9Z');
-  }, 4000);
+  }, 3500);
   </script>
   <!-- End Google Tag Manager -->
 
@@ -104,8 +104,7 @@ if(strpos($actual_link, 'localhost') === false){
 
     gtag('config', 'AW-806267889'); //    Adwords
     gtag('config', 'UA-124437679-1');//  Analytics 
-    console.log('cargando script de analytics...');
-  }, 3000);
+  }, 3500);
 </script>
 
 <!-- Facebook Pixel Code -->
