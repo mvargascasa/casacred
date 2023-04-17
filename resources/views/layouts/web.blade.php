@@ -772,7 +772,7 @@ if(strpos($actual_link, 'localhost') === false){
 
   setTimeout(() => {
     loadscript();
-  }, 2000);
+  }, 3000);
 
   setTimeout(() => {
     $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
