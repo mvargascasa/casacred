@@ -9,6 +9,7 @@
   .font-size-12{font-size: 14px}
   .card-listing:hover{box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;}
   .btncall{color: #000000 !important;}.btncall:hover{color: #ffffff !important}
+  .services{max-width: 100%; height: auto;}
 </style>
 @livewireStyles
 @endsection
