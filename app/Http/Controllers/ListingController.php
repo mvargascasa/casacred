@@ -236,6 +236,10 @@ class ListingController extends Controller
 
             $listing->status = $request->status;
 
+            if($request->niv_constr <= 0) $listing->niv_constr = null; else $listing->niv_constr = $request->niv_constr;
+            if($request->num_pisos <= 0) $listing->num_pisos = null; else $listing->num_pisos = $request->num_pisos;
+            if($request->pisos_constr <= 0) $listing->pisos_constr = null; else $listing->pisos_constr = $request->pisos_constr;
+
             //$listing->credit_vip = $request->credit_vip;
             //bloqueando la propiedad una vez creada
             //$listing->locked = true;
@@ -391,6 +395,10 @@ class ListingController extends Controller
         $listing->bedroom = $bedrooms;
         $listing->bathroom = $bathrooms;
         $listing->garage = $garage;
+
+        if($request->niv_constr <= 0) $listing->niv_constr = null; else $listing->niv_constr = $request->niv_constr;
+        if($request->num_pisos <= 0) $listing->num_pisos = null; else $listing->num_pisos = $request->num_pisos;
+        if($request->pisos_constr <= 0) $listing->pisos_constr = null; else $listing->pisos_constr = $request->pisos_constr;
 
         //new values
         $listing->owner_address = $request->owner_address;

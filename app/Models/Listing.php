@@ -34,7 +34,8 @@ class Listing extends Model
         'observations_type_property',
         'cavity_error',
         'warranty',
-        'plusvalia'
+        'plusvalia',
+        'niv_constr', 'num_pisos', 'pisos_constr' // nuevas variables para las caracteristicas generales
     ];   
     
     public function user()

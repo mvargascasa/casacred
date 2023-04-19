@@ -504,8 +504,17 @@
                     <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3 border-gray-300 rounded-md px-4 py-2">
                         @foreach ($general_characteristics as $general_characteristic)
                                 <label class="inline-flex items-center mt-3">  
-                                    {!! Form::checkbox("checkgc[]", $general_characteristic->id, isset($listing->listinggeneralcharacteristics) && in_array($general_characteristic->id,explode(",", $listing->listinggeneralcharacteristics)) ? true : false,['class' => 'form-checkbox h-5 w-5 text-red-600', 'type'=>'checkbox', 'id'=>"checkgc$general_characteristic->id"]) !!}
+                                    {!! Form::checkbox("checkgc[]", $general_characteristic->id, isset($listing->listinggeneralcharacteristics) && in_array($general_characteristic->id,explode(",", $listing->listinggeneralcharacteristics)) ? true : false,['class' => 'form-checkbox h-5 w-5 text-red-600 checkbox-characteristic', 'type'=>'checkbox', 'id'=>"checkgc$general_characteristic->id"]) !!}
                                     <span class="ml-2 text-gray-700">{{$general_characteristic->title}}</span>
+                                    @switch($general_characteristic->id)
+                                        @case(7) @php $newinput = "niv_constr"; @endphp @break
+                                        @case(8) @php $newinput = "num_pisos"; @endphp @break
+                                        @case(15) @php $newinput = "pisos_constr"; @endphp @break
+                                        @default @break
+                                    @endswitch
+                                    @if($general_characteristic->id == 7 || $general_characteristic->id == 8 || $general_characteristic->id == 15)
+                                        {!! Form::number($newinput, null, ['class' => 'w-12 h-7 ml-3 pl-2 py-2 mt-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-0 focus:border-red-500 focus:outline-none focus:ring hidden']) !!}
+                                    @endif
                                 </label>
                         @endforeach
                     </div>    
@@ -1029,6 +1038,14 @@
 
             // if('{{isset($listing->id)}}') document.getElementById("mortgaged").required = false;
             // else document.getElementById("mortgaged").required = true;
+
+            let checkbox_characteristics = document.querySelectorAll(".checkbox-characteristic");
+    
+            checkbox_characteristics.forEach(element => {
+                if(element.checked && element.value == 7) document.querySelector("input[name='niv_constr']").classList.remove('hidden');document.querySelector("input[name='niv_constr']").classList.add('block');
+                if(element.checked && element.value == 8) document.querySelector("input[name='num_pisos']").classList.remove('hidden');document.querySelector("input[name='num_pisos']").classList.add('block')
+                if(element.checked && element.value == 15) document.querySelector("input[name='pisos_constr']").classList.remove('hidden');document.querySelector("input[name='pisos_constr']").classList.add('block')
+            });
         });
 
         function countCharsTitle(object){
@@ -1350,5 +1367,31 @@
         let input = document.querySelector("input[name='edit']");
         if(input) input.remove();
     }
+
+    let checkbox_characteristics = document.querySelectorAll(".checkbox-characteristic");
+    
+    checkbox_characteristics.forEach(element => {
+        if(element.value == 7){
+            element.addEventListener('change', () => {
+                if(element.checked && element.value == 7){document.querySelector("input[name='niv_constr']").classList.remove('hidden');document.querySelector("input[name='niv_constr']").classList.add('block');} else {document.querySelector("input[name='niv_constr']").classList.remove('block');document.querySelector("input[name='niv_constr']").classList.add('hidden');document.querySelector("input[name='niv_constr']").value = 0;}
+            });
+        }
+        if(element.value == 8){
+            element.addEventListener('change', () => {
+                if(element.checked && element.value == 8){document.querySelector("input[name='num_pisos']").classList.remove('hidden');document.querySelector("input[name='num_pisos']").classList.add('block')} else {document.querySelector("input[name='num_pisos']").classList.remove('block');document.querySelector("input[name='num_pisos']").classList.add('hidden'); document.querySelector("input[name='num_pisos']").value = 0;}
+            });
+        }
+        if(element.value == 15){
+            element.addEventListener('change', () => {
+                if(element.checked && element.value == 15){document.querySelector("input[name='pisos_constr']").classList.remove('hidden');document.querySelector("input[name='pisos_constr']").classList.add('block')} else {document.querySelector("input[name='pisos_constr']").classList.remove('block');document.querySelector("input[name='pisos_constr']").classList.add('hidden');document.querySelector("input[name='pisos_constr']").value = 0;}
+            });
+        }
+    });
+
+    // checkbox_characteristic.addEventListener('change', () => {
+    //     console.log('entra aqui');
+    //     if(this.checked) alert(this.value);
+    // });
+
     </script>
 @endsection
