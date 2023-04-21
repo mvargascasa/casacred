@@ -77,6 +77,13 @@
         <div class="loader-text"></div>
       </div>
 
+    @if(isset($isvalid) && !$isvalid)
+        <div class="bg-red-100 border border-red-400 absolute text-red-700 px-2 shadow-lg py-3 mb-2 w-48 right-8 top-16 rounded">
+            <p class="font-semibold text-sm"><i class="fa-solid fa-circle-exclamation"></i> LA PROPIEDAD TIENE CAMPOS VACIOS</p>
+            <p>Al administrador no se le permitira activar la propiedad si los campos no están completos</p>
+        </div>
+    @endif
+
  <section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md mt-10">
     
     @if(session('message'))
@@ -87,12 +94,6 @@
             </span>
         </div>
     @endif
-
-    {{-- @if(isset($isvalid) && !$isvalid)
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-2 rounded relative">
-            <i class="fa-solid fa-circle-exclamation"></i> LA PROPIEDAD TIENE CAMPOS SIN COMPLETAR
-        </div>
-    @endif --}}
     
     @if(isset($listing->id))
     <div>
@@ -129,15 +130,6 @@
     {!! Form::open(['route' => 'admin.listings.store','enctype' => 'multipart/form-data', 'id' => 'formsave']) !!}
     @endif
 
-    <hr class="mt-4 mb-4">
-    <div class="flex gap-6 justify-center">
-        <label id="btnfragment1" style="cursor: pointer" onclick="changefragment('first')" class="bg-red-600 text-white px-5 font-semibold">Información General</label>
-        <label id="btnfragment2" style="cursor: pointer" onclick="changefragment('second')" class="font-semibold">Servicios</label>
-        <label id="btnfragment3" style="cursor: pointer" onclick="changefragment('third')" class="font-semibold">Informacion adicional</label>
-        <label id="btnfragment4" style="cursor: pointer" onclick="changefragment('fourth')" class="font-semibold">Imagenes</label>
-    </div>
-    <hr class="mt-4">
-
     @if(Auth::user()->role != "administrator")
         @if(isset($listing->status) && $listing->status == "0")
             <div class="bg-green-300 rounded mt-2 mb-2 p-2"><i class="fa-solid fa-circle-info"></i> El Administrador activará la propiedad una vez los campos hayan sido completados.</div>
@@ -147,6 +139,16 @@
             <div class="bg-green-300 rounded mt-2 mb-2 p-2"><i class="fa-solid fa-circle-info"></i> Completar todos los campos para que el Administrador active la nueva propiedad.</div>
         @endif
     @endif
+
+    <hr class="mt-4 mb-4">
+    <div class="flex gap-6 justify-center">
+        <label id="btnfragment1" style="cursor: pointer" onclick="changefragment('first')" class="bg-red-600 text-white px-5 font-semibold">Información General</label>
+        <label id="btnfragment2" style="cursor: pointer" onclick="changefragment('second')" class="font-semibold">Servicios</label>
+        <label id="btnfragment3" style="cursor: pointer" onclick="changefragment('third')" class="font-semibold">Informacion adicional</label>
+        <label id="btnfragment4" style="cursor: pointer" onclick="changefragment('fourth')" class="font-semibold">Imagenes</label>
+    </div>
+    <hr class="mt-4">
+
 
 
         @php  
@@ -190,14 +192,20 @@
                     </div>
             
                     @if(Auth::user()->role == "administrator")
-                        <div>
-                            {!! Form::label('status', 'Status',['class' => 'font-semibold']) !!}
-                            {{-- @if(isset($listing) && $listing->locked)
-                                {!! Form::select('status',['0'=>'DESACTIVADO','1'=>'ACTIVO'], null, ['class' => $inputs, 'disabled']) !!}
-                            @else --}}
-                                {!! Form::select('status',['0'=>'DESACTIVADO','1'=>'ACTIVO'], null, ['class' => $inputs]) !!}
-                            {{-- @endif --}}
-                        </div>
+                        @if(isset($isvalid) && $isvalid)
+                            <div>
+                                {!! Form::label('status', 'Status',['class' => 'font-semibold']) !!}
+                                {{-- @if(isset($listing) && $listing->locked)
+                                    {!! Form::select('status',['0'=>'DESACTIVADO','1'=>'ACTIVO'], null, ['class' => $inputs, 'disabled']) !!}
+                                @else --}}
+                                    {!! Form::select('status',['0'=>'DESACTIVADO','1'=>'ACTIVO'], null, ['class' => $inputs]) !!}
+                                {{-- @endif --}}
+                            </div>
+                        @else
+                            <div class="text-xs mt-8">
+                                <p class="font-semibold">Faltan campos por ser completados para habilitar la opción de Activar</p>
+                            </div>
+                        @endif
                     @else
                         @isset($listing)
                             <div>
@@ -236,7 +244,7 @@
                 </div>
             </div>
     
-            <div class="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-3 border px-5 py-4 relative">
+            <div class="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-3 border px-5 py-4 relative hover:shadow-md">
                 <div>      
                     {!! Form::label('owner_name', 'Nombre de Propietario', ['class' => 'font-semibold']) !!}
                     @if(isset($listing) && $listing->locked)
@@ -286,7 +294,7 @@
                 <p class="bg-red-600 text-white w-64 font-semibold absolute text-center ml-3" style="margin-top: -13px; letter-spacing: 1px">DATOS DEL PROPIETARIO</p>
             </div>
     
-            <div class="relative border px-5 py-4 mt-10">
+            <div class="relative border px-5 py-4 mt-10 hover:shadow-md">
                 <div class="gap-4 mt-4 sm:gap-6">
                         {!! Form::label('listing_title', 'Titulo de Propiedad', ['class' => 'font-semibold']) !!}
                         {!! Form::text('listing_title', null, ['class' => $inputs, 'pattern' => '.{50,60}', 'onkeyup' => 'countCharsTitle(this);', 'placeholder' => 'Ej: Casa en Venta en Cuenca - Sector...']) !!}
@@ -395,7 +403,7 @@
                 <p class="bg-red-600 text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">DATOS DEL INMUEBLE</p>
             </div>
     
-            <div class="relative border px-5 py-4 mt-10">
+            <div class="relative border px-5 py-4 mt-10 hover:shadow-md">
                 <div class="grid grid-cols-3 gap-4">
                     <div> 
                         {!! Form::label('listingtype', 'Categoría', ['class' => 'font-semibold']) !!}
@@ -427,7 +435,7 @@
                 <p class="bg-red-600 text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">TIPO DE INMUEBLE</p>
             </div>
     
-            <div class="border relative px-5 py-4 mt-10">
+            <div class="border relative px-5 py-4 mt-10 hover:shadow-md">
                 <div id="rowsTitles">
                     @if(isset($listing) && is_array(json_decode($listing->heading_details)))
                     @php $ii=-1; @endphp
@@ -483,7 +491,7 @@
         </div>
 
         <div id="second" style="display: none" class="fragment2">
-            <div class="border relative px-5 py-4 mt-10">
+            <div class="border relative px-5 py-4 mt-10 hover:shadow-md">
                 <div class="gap-4 mt-4 sm:gap-6">
                     <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3  @if(isset($listing) && $listing->listinglistservices == null) border-red-500 @else border-gray-300 @endif rounded-md px-4 py-2">
                         @foreach ($services as $serv)
@@ -499,7 +507,7 @@
                 <p class="bg-red-600 text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">SERVICIOS</p>
             </div>
     
-            <div class="border relative px-5 py-4 mt-10">
+            <div class="border relative px-5 py-4 mt-10 hover:shadow-md">
                 <div class="gap-4 mt-4 sm:gap-6">
                     <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3 border-gray-300 rounded-md px-4 py-2">
                         @foreach ($general_characteristics as $general_characteristic)
@@ -522,7 +530,7 @@
                 <p class="bg-red-600 text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">CARACTERISTICAS GENERALES</p>
             </div>
     
-            <div class="border relative px-5 py-4 mt-10">
+            <div class="border relative px-5 py-4 mt-10 hover:shadow-md">
                 <div class="gap-4 mt-4 sm:gap-6">
                     <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3 border-gray-300 rounded-md px-4 py-2">
                         @foreach ($environments as $envir)
@@ -536,7 +544,7 @@
                 <p class="bg-red-600 text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">AMBIENTES</p>
             </div>
     
-            <div class="gap-4 mt-4 sm:gap-6 border relative px-5 py-4 mt-10 shadow-md">
+            <div class="gap-4 mt-4 sm:gap-6 border relative px-5 py-4 mt-10 hover:shadow-md">
                 {{-- <h4 class="font-semibold">Beneficios</h4>    --}}
                 <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3 px-4 py-2">
                     @foreach ($benefits as $bene)            
@@ -553,7 +561,7 @@
         </div>
 
         <div id="third" style="display: none" class="fragment3">
-            <div class="gap-4 mt-4 sm:gap-6 border relative px-5 py-4 mt-10 shadow-md">
+            <div class="gap-4 mt-4 sm:gap-6 border relative px-5 py-4 mt-10 hover:shadow-md">
                 <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3 px-4 py-2">
                     <div>
                         <div>
