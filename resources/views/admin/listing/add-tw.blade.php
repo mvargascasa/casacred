@@ -192,7 +192,7 @@
                     </div>
             
                     @if(Auth::user()->role == "administrator")
-                        @if(isset($isvalid) && $isvalid)
+                        @if(isset($isvalid) && $isvalid || isset($listing) && $listing->status == 1)
                             <div>
                                 {!! Form::label('status', 'Status',['class' => 'font-semibold']) !!}
                                 {{-- @if(isset($listing) && $listing->locked)
