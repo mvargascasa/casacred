@@ -18,7 +18,7 @@
             <tr class="text-center border"><td class="font-bold border px-4 py-2 @if($parent->status==0) text-red-500 @else text-green-500 @endif">{{$parent->status==1?'Activo':'Desactivado'}}</td><td>{{$parent->title}} </td>
                 <td class="border px-4 py-2">
                     @foreach ($services->where('parent',$parent->id) as $serv)
-                        <a class="text-blue-500" href="{{route('admin.services.edit',$serv)}}">{{$serv->title}}</a> {{$serv->status==0 ? '(Desac)' : ''}} <br>
+                        <a style="color: blue" href="{{route('admin.services.edit',$serv)}}">{{$serv->title}}</a> {{$serv->status==0 ? '(Desac)' : ''}} <br>
                     @endforeach
                 </td>
             </tr>
