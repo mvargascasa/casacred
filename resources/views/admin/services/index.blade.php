@@ -12,13 +12,13 @@
         </div>
     </div>
     <div class="grid grid-cols-1">
-        <table class="table table-striped">
-            <tr><th width="50">Estatus</th><th>Principal</th><th>Sub-Servicio</th></tr>
+        <table class="table-auto shadow">
+            <tr class="bg-gray-400"><th class="px-4 py-2">Estatus</th><th class="px-4 py-2">Principal</th><th class="px-4 py-2">Sub-Servicio</th></tr>
             @foreach ($services->where('parent',0) as $parent)
-            <tr class="text-center border"><td  @if($parent->status==0) class="text-danger" @endif>{{$parent->status==1?'Activo':'Desactivado'}}</td><td>{{$parent->title}} </td>
-                <td>
+            <tr class="text-center border"><td class="font-bold border px-4 py-2 @if($parent->status==0) text-red-500 @else text-green-500 @endif">{{$parent->status==1?'Activo':'Desactivado'}}</td><td>{{$parent->title}} </td>
+                <td class="border px-4 py-2">
                     @foreach ($services->where('parent',$parent->id) as $serv)
-                        <a @if($serv->status==0) class="link-secondary" @endif 
+                        <a class="@if($serv->status==0) link-secondary @else text-blue-500 @endif" 
                             href="{{route('admin.services.edit',$serv)}}">{{$serv->title}}</a> {{$serv->status==0 ? '(Desac)' : ''}} <br>
                     @endforeach
                 </td>
