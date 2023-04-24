@@ -435,8 +435,9 @@ class WebController extends Controller
     }     
     
     public function seo(){
+        $seo_pages = SeoPage::all();
         $listings = Listing::where('status',1)->latest()->get();
-        return view('seo',compact('listings'));
+        return view('seo',compact('listings', 'seo_pages'));
     } 
 
     
@@ -629,5 +630,9 @@ class WebController extends Controller
             return redirect()->route('web.blog');
         }
     }
+
+    // public function avaluo(){
+    //     return view('');//crear la vista y retornar
+    // }
 
 }
