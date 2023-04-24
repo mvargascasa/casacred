@@ -6,7 +6,10 @@
 @section('content')
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 p-4">
     <div class="grid grid-cols-1 p-4">
-          <h1>Servicios</h1>
+        <div>
+            <h1 class="text-xl font-semibold">Servicios</h1>
+            <a class="float-right bg-green-500 text-white px-3 rounded shadow hover:shadow-lg" href="{{route('admin.services.create')}}">Crear Nuevo Sub-Servicio</a>
+        </div>
     </div>
     <div class="grid grid-cols-1">
         <table class="table table-striped">

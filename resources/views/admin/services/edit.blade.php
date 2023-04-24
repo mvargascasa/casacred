@@ -18,10 +18,6 @@
 
             @include('admin.services.form')
             {!! Form::close() !!}
-
-            <div id="editor">
-                <p>prueba</p>
-            </div>
         </div>
     </div>
 </div>
