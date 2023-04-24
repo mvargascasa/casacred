@@ -29,7 +29,7 @@
     @if($service->slug != "vende-tu-casa")
   <div>
   
-      <div class="row p-4 p-md-5 align-items-end" style="min-height: 450px;background:rgba(2, 2, 2, 0.5)">
+      <div class="row p-4 p-md-5 align-items-center" style="min-height: 450px;background:rgba(2, 2, 2, 0.5)">
   
         <div class="col-12 text-white text-center">
             <h1 style="text-align:center"><span style="color:#ffffff"><span style="font-size:40px">{{$service->page_title}}</span></span></h1> 
