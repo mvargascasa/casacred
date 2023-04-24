@@ -1,6 +1,6 @@
 @extends('layouts.web')
 @section('header')
-<title>Políticas de Privacidad - CasaCredito</title>
+<title>Propiedades Disponibles - CasaCredito</title>
 <meta name="description" content="Casas en Venta en Cuenca, Departamentos en venta en Cuenca, Lotes en Venta en Cuenca, Terrenos en Venta en Cuenca. Venta de Propiedades y Gestión de Créditos."/>
 <meta name="keywords" content="Casas en venta en cuenca, Apartamentos en venta en cuenca, terrenos en venta en cuenca, lotes en venta en cuenca">
 
@@ -14,31 +14,20 @@
 
 @section('content')
 <div class="container p-4">
-<p dir="ltr"><strong>Propiedades: {{count($listings)}}</strong></p>
-@foreach ($listings as $listing)
+<p dir="ltr"><strong>Propiedades:</strong></p>
+{{-- @foreach ($listings as $listing)
     <a style="color:darkblue;font-size: 12px" href="{{route('web.detail',$listing->slug)}}">
         {{$listing->product_code}}: {{$listing->listing_title}} - {{$listing->address}}
     </a> <br>
-@endforeach
-<p class="text-lg mt-3">Probando nuevas urls</p>
-@php $other_listings = []; @endphp
+@endforeach --}}
+
+{{-- @php $other_listings = []; @endphp --}}
 @foreach ($seo_pages as $seo_page)
     <a style="color:darkblue;font-size: 15px" href="{{route('web.propiedades', $seo_page->slug)}}">{{$seo_page->title}}</a><br>
     <ul>
         @foreach ($listings as $listing)
         @if($seo_page->state == $listing->state && $seo_page->city == $listing->city && $seo_page->type == $listing->listingtype && $seo_page->typestatus == $listing->listingtypestatus)
             <li><a style="color:darkblue;font-size: 12px" href="{{route('web.detail', $listing->slug)}}">{{$listing->product_code}}: {{$listing->listing_title}} - {{$listing->address}}</a></li>
-        {{-- @else
-            @php
-                if(count(array($other_listings))){
-                    array_push($other_listings, $listing);
-                } else {
-                    for ($i=0; $i < count($other_listings); $i++) { 
-                        if($other_listings[$i]['id'] != $listing->id) array_push($other_listings, $listing);
-                    }
-                }
-                
-            @endphp --}}
         @endif
         @endforeach
     </ul>
