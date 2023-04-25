@@ -34,9 +34,9 @@
     
     //count_char
 
-    let input_meta_description = document.querySelector("input[name='page_seocescription']");
-    input_meta_description.addEventListener('keyup', () => {
-        alert('entra');
-    })
+    // let input_meta_description = document.querySelector("input[name='page_seocescription']");
+    // input_meta_description.addEventListener('keyup', () => {
+    //     alert('entra');
+    // })
 </script>
 @endsection
