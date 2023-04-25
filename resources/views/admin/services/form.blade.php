@@ -177,7 +177,7 @@
 <br>
 
 <div class="mb-5 text-center">
-    <button type="submit" class="bg-green-600 text-white rounded px-5 py-1 hover:shadow-lg">💾 Guardar</button>
+    <button type="submit" class="bg-green-500 text-white rounded px-5 py-1 hover:shadow-lg">💾 Guardar</button>
 </div>
 <hr>
 
