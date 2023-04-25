@@ -117,7 +117,7 @@
         {!! Form::label('page_seocescription', 'Meta Descripcion en Google', ['class' => 'font-semibold']) !!}
         {!! Form::text('page_seocescription', null, ['class' => 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline']) !!}
         <div class="text-sm text-gray-500 font-semibold mt-2">
-            <p><b id="count_char">0</b> caracteres de 150 (Óptimo)</p>
+            <p><b id="count_char">0</b> caracteres de 160 (Óptimo)</p>
         </div>
     </div>
 </div>
@@ -130,7 +130,7 @@
                 @isset($service->page_title){{$service->page_title}}@endisset</span><br>            
         <span id="goo_descript">@isset($service->page_seocescription){{Str::limit($service->page_seocescription, 140)}}@endisset</span>
     </div>
-    @if(isset($service->page_seocescription) && strlen($service->page_seocescription) > 150)
+    @if(isset($service->page_seocescription) && strlen($service->page_seocescription) > 160)
         <div class="bg-yellow-200 rounded mt-5 shadow-md">
             <p class="px-4 py-1 font-semibold">⚠ La cantidad de caracteres de la meta descripcion no es óptima</p>
         </div>
