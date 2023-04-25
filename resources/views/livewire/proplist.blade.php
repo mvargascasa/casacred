@@ -30,7 +30,7 @@
         <div class="card row align-items-center mb-3" style="border-top:1px #FA7B34 solid">
           <div class="row">
             <a data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('ANUNCIO CREDITOS EN ECUADOR')">
-                <img style="cursor: pointer" class="p-0" width="340" height="320" src="@if($ismobile){{asset('img/vende-tu-propiedad-en-casacredito.webp')}} @else {{asset('img/BANNERS-CASA-CREDITO-VENDE-08.webp')}} @endif" alt="Vende tu casa" class="imgdir rounded object-cover services" /> 
+                <img style="cursor: pointer" class="p-0" src="@if($ismobile){{asset('img/vende-tu-propiedad-en-casacredito.webp')}} @else {{asset('img/BANNERS-CASA-CREDITO-VENDE-08.webp')}} @endif" alt="Vende tu casa" class="imgdir rounded object-cover services" /> 
             </a>
            </div>
         </div>
