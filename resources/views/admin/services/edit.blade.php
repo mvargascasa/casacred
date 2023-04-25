@@ -5,7 +5,7 @@
 
 @section('content')
     
-<div class="px-10 mt-5 overflow-auto">
+<div class="px-10 mt-5 ms-5 me-5" style="overflow: auto">
     <div>
         <div class="row py-2">
             @if(isset($service))
