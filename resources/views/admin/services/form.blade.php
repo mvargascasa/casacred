@@ -128,7 +128,7 @@
         <div style="width:600px;">
             <span id="goo_title" style="color:darkblue;font-size: 18px;text-transform: uppercase;">
                 @isset($service->page_title){{$service->page_title}}@endisset</span><br>            
-        <span id="goo_descript">@isset($service->page_seocescription){{Str::limit($service->page_seocescription, 140)}}@endisset</span>
+        <span id="goo_descript">@isset($service->page_seocescription){{Str::limit($service->page_seocescription, 160)}}@endisset</span>
     </div>
     @if(isset($service->page_seocescription) && strlen($service->page_seocescription) > 160)
         <div class="bg-yellow-200 rounded mt-5 shadow-md">
