@@ -1,18 +1,18 @@
-@extends('layouts.dash')
-@section('header')
+@extends('layouts.dashtw')
+@section('firstscript')
 <title>Dashboard</title>
 @endsection
 
 @section('content')
     
-<div class="col-md-10">
-    <div class="container">
+<div class="px-10 mt-5 overflow-auto">
+    <div>
         <div class="row py-2">
             @if(isset($service))
-            <h4 class="p-2 text-danger">Editando Servicio  <span style="color:darkgray">Creado: {{$service->created_at->format('d M y')}}</span></h4>
+            <h4 class="text-red-500 font-semibold text-lg">Editando Servicio  <span style="color:darkgray">Creado: {{$service->created_at->format('d M y')}}</span></h4>
             {!! Form::model($service, ['route' => ['admin.services.update',$service->id],'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
             @else
-            <h4 class="p-2 text-danger">Nuevo Servicio</h4>
+            <h4 class="text-red-500 font-semibold text-lg">Nuevo Servicio</h4>
             {!! Form::open(['route' => 'admin.services.store','enctype' => 'multipart/form-data']) !!}
             @endif
 
@@ -23,7 +23,7 @@
 </div>
 @endsection
 
-@section('scripts')
+@section('endscript')
 
 {{-- <script src="https://cdn.ckeditor.com/4.14.1/basic/ckeditor.js"></script> --}}
 <script src="//cdn.ckeditor.com/4.20.0/full/ckeditor.js"></script>
@@ -31,5 +31,12 @@
     document.addEventListener("DOMContentLoaded", function(event) {
         CKEDITOR.replace('description');
     });
+    
+    //count_char
+
+    let input_meta_description = document.querySelector("input[name='page_seocescription']");
+    input_meta_description.addEventListener('keyup', () => {
+        alert('entra');
+    })
 </script>
 @endsection
