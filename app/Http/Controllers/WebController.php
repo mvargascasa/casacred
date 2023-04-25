@@ -471,8 +471,8 @@ class WebController extends Controller
 								'property_type',
 								'price', 
 								'inventory',
-								'year_built'
-								//'google_product_category'
+								'year_built',
+								'google_product_category'
                             );	
 			fputcsv($f, $fields, $delimiter);
 			
@@ -513,8 +513,8 @@ class WebController extends Controller
 									'house',
 									$li->property_price.' USD',
 									'1',
-									'2020'
-									//'Real State'
+									'2020',
+									'536'
 								);
 				fputcsv($f, $lineData, $delimiter);
 			}
