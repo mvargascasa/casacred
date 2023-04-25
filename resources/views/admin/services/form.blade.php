@@ -116,9 +116,6 @@
     <div>
         {!! Form::label('page_seocescription', 'Meta Descripcion en Google', ['class' => 'font-semibold']) !!}
         {!! Form::text('page_seocescription', null, ['class' => 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline']) !!}
-        <div class="text-sm text-gray-500 font-semibold mt-2">
-            <p><b id="count_char">0</b> caracteres de 160 (Óptimo)</p>
-        </div>
     </div>
 </div>
 
