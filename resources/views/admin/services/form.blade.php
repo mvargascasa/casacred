@@ -130,11 +130,6 @@
                 @isset($service->page_title){{$service->page_title}}@endisset</span><br>            
         <span id="goo_descript">@isset($service->page_seocescription){{Str::limit($service->page_seocescription, 160)}}@endisset</span>
     </div>
-    @if(isset($service->page_seocescription) && strlen($service->page_seocescription) > 160)
-        <div class="bg-yellow-200 rounded mt-5 shadow-md">
-            <p class="px-4 py-1 font-semibold">⚠ La cantidad de caracteres de la meta descripcion no es óptima</p>
-        </div>
-    @endif
 </div>
 </div>
 
