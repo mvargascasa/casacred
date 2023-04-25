@@ -40,7 +40,7 @@ class AdminController extends Controller
                                 ->where('available', 1)
                                 ->where(DB::raw('LENGTH(lat)'), '>', 5)
                                 ->where(DB::raw('LENGTH(lng)'), '>', 5)
-                                ->latest()->take(10)->get();
+                                ->latest()->take(20)->get();
         foreach ($properties as $p) {
             if(Str::startsWith($p->lat, '-') && Str::startsWith($p->lng, '-') && Str::contains($p->lat, '.') && Str::contains($p->lng, '.')){
                 array_push($properties_aux, $p);
