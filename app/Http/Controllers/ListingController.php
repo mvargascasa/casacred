@@ -171,6 +171,8 @@ class ListingController extends Controller
             $listing->bathroom = $bathrooms;
             $listing->garage = $garage;
 
+            $listing->num_factura = $request->num_factura;
+
             $listing->meta_description = $request->meta_description;
             $listing->keywords = $request->keywords;
             $listing->Front = $request->Front;
