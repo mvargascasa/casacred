@@ -192,7 +192,7 @@
                     </div>
             
                     @if(Auth::user()->role == "administrator")
-                        @if(isset($isvalid) && $isvalid)
+                        {{-- @if(isset($isvalid) && $isvalid) --}}
                             <div>
                                 {!! Form::label('status', 'Status',['class' => 'font-semibold']) !!}
                                 {{-- @if(isset($listing) && $listing->locked)
@@ -201,11 +201,11 @@
                                     {!! Form::select('status',['0'=>'DESACTIVADO','1'=>'ACTIVO'], null, ['class' => $inputs]) !!}
                                 {{-- @endif --}}
                             </div>
-                        @else
+                        {{-- @else
                             <div class="text-xs mt-8">
                                 <p class="font-semibold">Faltan campos por ser completados para habilitar la opción de Activar</p>
                             </div>
-                        @endif
+                        @endif --}}
                     @else
                         @isset($listing)
                             <div>
