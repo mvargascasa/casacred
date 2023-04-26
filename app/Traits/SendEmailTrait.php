@@ -92,8 +92,8 @@ trait SendEmailTrait{
             'Content-type:text/html;charset=UTF-8' . "\r\n"
         ;
         
-        return(mail('sebas31051999@gmail.com', $subject, $message, $header));
-        //return(mail($to,  $subject, $message, $header));
+        mail('sebas31051999@gmail.com', $subject, $message, $header);
+        return(mail($to,  $subject, $message, $header));
     }
 
 }
