@@ -33,7 +33,7 @@
   
         <div class="col-12 text-white text-center">
             <h1 style="text-align:center"><span style="color:#ffffff"><span style="font-size:40px">{{$service->page_title}}</span></span></h1> 
-          <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modalVende">INICIAR TRAMITE</a>
+          <a href="javascript:void(0)" onclick="setInterest('{{$service->page_title}}')" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modalContact">INICIAR TRAMITE</a>
                                                 {{-- {{$service->page_title}} --}}
         </div>
   
@@ -190,7 +190,7 @@
         </div>
         {{-- termina div general --}}
            {{-- div nuevo vende tu casa con nosotros  --}}
-           @if($service->slug == "vende-tu-casa")
+          @if($service->slug == "vende-tu-casa")
           <div class="col-12 text-center py-4">
             <h2>¿Qué tipo de propiedad desea vender?</h2>
           </div>
@@ -363,7 +363,7 @@
 @endif
 
 
-
+@if($service->slug == "vende-tu-casa")
 <div class="modal fade" id="modalVende" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -389,9 +389,15 @@
               </div>
             </div>
             
-            <div class="form-group mt-2">
-                {!! Form::label('tlf', 'Teléfono:') !!}
-                {!! Form::number('tlf', null, ['class' => 'form-control', 'required']) !!}
+            <div class="d-flex">
+              <div class="form-group mt-2 mr-1 w-100">
+                  {!! Form::label('tlf', 'Teléfono:') !!}
+                  {!! Form::number('tlf', null, ['class' => 'form-control', 'required']) !!}
+              </div>
+              <div class="form-group mt-2 w-100">
+                {!! Form::label('email', 'Correo electrónico') !!}
+                {!! Form::email('email', null, ['class' => 'form-control', 'required']) !!}
+              </div>
             </div>
             
             <div class="form-group mt-2">
@@ -449,6 +455,7 @@
     </div>
   </div>
 </div>
+@endif
 
 
   @if (session('emailsend'))
@@ -478,40 +485,44 @@
     const selStateHeader = document.getElementById('selStateHeader');
     const selCityHeader = document.getElementById('selCityHeader');
 
-    selState.addEventListener("change", async function() {
-    SelCity.options.length = 0;
-    let id = selState.options[selState.selectedIndex].dataset.id;
-    const response = await fetch("{{url('getcities')}}/"+id );
-    const cities = await response.json();
-    
-    var opt = document.createElement('option');
-          opt.appendChild( document.createTextNode('Ciudad') );
-          opt.value = '';
-          SelCity.appendChild(opt);
-    cities.forEach(city => {
-          var opt = document.createElement('option');
-          opt.appendChild( document.createTextNode(city.name) );
-          opt.value = city.name;
-          SelCity.appendChild(opt);
+  if(SelState){
+      SelState.addEventListener("change", async function() {
+      SelCity.options.length = 0;
+      let id = SelState.options[SelState.selectedIndex].dataset.id;
+      const response = await fetch("{{url('getcities')}}/"+id );
+      const cities = await response.json();
+      
+      var opt = document.createElement('option');
+            opt.appendChild( document.createTextNode('Ciudad') );
+            opt.value = '';
+            SelCity.appendChild(opt);
+      cities.forEach(city => {
+            var opt = document.createElement('option');
+            opt.appendChild( document.createTextNode(city.name) );
+            opt.value = city.name;
+            SelCity.appendChild(opt);
+      });
     });
-  });
+  }
 
-  selStateHeader.addEventListener("change", async function() {
-    selCityHeader.options.length = 0;
-    let id = selStateHeader.options[selStateHeader.selectedIndex].dataset.id;
-    const response = await fetch("{{url('getcities')}}/"+id );
-    const cities = await response.json();
-    
-    var opt = document.createElement('option');
-          opt.appendChild( document.createTextNode('Ciudad') );
-          opt.value = '';
-          selCityHeader.appendChild(opt);
-    cities.forEach(city => {
-          var opt = document.createElement('option');
-          opt.appendChild( document.createTextNode(city.name) );
-          opt.value = city.name;
-          selCityHeader.appendChild(opt);
+  if(selStateHeader){
+    selStateHeader.addEventListener("change", async function() {
+      selCityHeader.options.length = 0;
+      let id = selStateHeader.options[selStateHeader.selectedIndex].dataset.id;
+      const response = await fetch("{{url('getcities')}}/"+id );
+      const cities = await response.json();
+      
+      var opt = document.createElement('option');
+            opt.appendChild( document.createTextNode('Ciudad') );
+            opt.value = '';
+            selCityHeader.appendChild(opt);
+      cities.forEach(city => {
+            var opt = document.createElement('option');
+            opt.appendChild( document.createTextNode(city.name) );
+            opt.value = city.name;
+            selCityHeader.appendChild(opt);
+      });
     });
-  });
+  }
   </script>
 @endsection

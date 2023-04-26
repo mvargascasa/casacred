@@ -8,7 +8,7 @@ trait SendEmailTrait{
     
     public function sendemail(Request $request){
 
-        $to = "info@casacredito.com,hserrano@casacredito.com"; //info@casacredito.com,hserrano@casacredito.com,ventas@casacredito.com
+        $to = "info@casacredito.com"; //info@casacredito.com,hserrano@casacredito.com,ventas@casacredito.com
         //$to = "sebas31051999@gmail.com";
         $subject = "Lead Casa Credito - " . strip_tags($request->name) . " | " . date(now());
         switch ($request->interest) {
@@ -92,8 +92,8 @@ trait SendEmailTrait{
             'Content-type:text/html;charset=UTF-8' . "\r\n"
         ;
         
-        mail('sebas31051999@gmail.com', $subject, $message, $header);
-        return(mail($to,  $subject, $message, $header));
+        return(mail('sebas31051999@gmail.com', $subject, $message, $header));
+        //return(mail($to,  $subject, $message, $header));
     }
 
 }

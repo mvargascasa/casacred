@@ -18,7 +18,7 @@
 
 <div class="form-group my-2">
     {!! Form::label('tlf', 'Teléfono/Celular:', ['class' => 'mb-1 font-weight-bolder']) !!}
-    {!! Form::number('tlf', null, ['class' => 'form-control','rows' => '2']) !!}
+    {!! Form::number('tlf', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group my-2">

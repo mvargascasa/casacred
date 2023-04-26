@@ -541,7 +541,7 @@ if(strpos($actual_link, 'localhost') === false){
     </div>
   </div>
 
-  <div class="modal fade" id="modalcite" tabindex="-1" role="dialog" aria-labelledby="modalcitelabel" aria-hidden="true">
+  {{-- <div class="modal fade" id="modalcite" tabindex="-1" role="dialog" aria-labelledby="modalcitelabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header text-white" style="background-color: darkred !important;">
@@ -555,7 +555,7 @@ if(strpos($actual_link, 'localhost') === false){
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   
 
 
@@ -626,16 +626,19 @@ if(strpos($actual_link, 'localhost') === false){
       else {div.style.animation = "slidein 1s";div.style.marginRight = "-105px"; document.getElementById('diviconsusaecu').style.marginLeft = "15px";}
     }
 
-    if(loaded){
+    document.getElementById('scriptbootstrap5').addEventListener('load', () => {
       const myModal = new bootstrap.Modal(document.getElementById('modalContact'));
       const moThank = new bootstrap.Modal(document.getElementById('modalThank'));
       const modalAval = new bootstrap.Modal(document.getElementById('modalAval'));
-    }
+    });
+
     const sendFormLead = async() =>{
-        
+
         if( document.getElementById('fname').value.length>2 && document.getElementById('tlf').value.length>6 ){
-                myModal.hide();
-                moThank.show();
+                //myModal.hide();
+                $("#modalContact").modal('hide');
+                //moThank.show();
+                $("#modalThank").modal('toggle');
                 var dataForm = new FormData(document.getElementById('mainFormLead'));
                 const response = await fetch("{{route('web.sendlead')}}",
                 { body: dataForm, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}" }  })
