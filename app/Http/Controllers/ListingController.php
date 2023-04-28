@@ -329,6 +329,10 @@ class ListingController extends Controller
             ]);
         }
 
+        if(isset($request->listing_title) && !isset($listing->slug)){
+            $slug = Str::of($request->listing_title) ->trim()->slug()->limit(70,'').'-'.rand(10000, 99999);
+            $request->merge(['slug' => $slug]);
+        }
 
         if(Auth::user()->role != "administrator") $this->authorize('update', $listing);
         if(is_array($request->checkBene)) $request->merge(['listingcharacteristic' => implode(",", $request->checkBene)]); 
@@ -426,6 +430,8 @@ class ListingController extends Controller
             $listing->mount_mortgaged = null;
             $listing->warranty = null;
         }
+
+        if(!isset($listing->slug)) $listing->slug = $request->slug;
 
         //set if listing credit vip
         //$listing->credit_vip = $request->credit_vip;
