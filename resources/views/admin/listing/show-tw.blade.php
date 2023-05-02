@@ -481,7 +481,7 @@
               @foreach(array_filter(explode(",", $propertie->listinggeneralcharacteristics)) as $gc)
                 <div class="col-lg-3 col-md-4 col-6 p-1">
                   {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
-                  <span class="text-muted small">@foreach ($general_characteristics as $general_characteristic) @if($general_characteristic->id==$gc) {{$general_characteristic->title}} @endif  @endforeach</span>
+                  <span class="text-muted small">@foreach ($general_characteristics as $general_characteristic) @if($general_characteristic->id==$gc){{$general_characteristic->title}}@endif @if($general_characteristic->id==$gc && $gc == 8 && $propertie->num_pisos > 0)<b class="bg-red-800 text-white px-1">{{$propertie->num_pisos}}</b> @endif @if($general_characteristic->id==$gc && $gc == 7 && $propertie->niv_constr > 0)<b class="bg-red-800 text-white px-1"> {{$propertie->niv_constr}}</b> @endif @if($general_characteristic->id==$gc && $gc == 15 && $propertie->pisos_constr > 0)<b class="bg-red-800 text-white px-1"> {{$propertie->pisos_constr}}</b> @endif @endforeach</span>
                 </div>
               @endforeach    
             </div> 
