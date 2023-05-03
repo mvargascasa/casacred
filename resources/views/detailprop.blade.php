@@ -146,6 +146,7 @@
 .fa-envelope:hover{transform: scale(2.0);}
 .img-profile:hover{transform: scale(1.2);}
 #calcularcredmobile{z-index: 4;position: fixed;bottom: 0px;left: 0px;}
+.bg-orange{background-color: #dc3545;}
 </style>
 @endsection
 
@@ -598,6 +599,36 @@
                         <div class="col-lg-3 col-md-4 col-6 p-1">
                           {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
                           <span class="text-muted small">@foreach ($benefits as $benef) @if($benef->id==$bene) {{$benef->charac_titile}} @endif  @endforeach</span>
+                        </div>
+                      @endforeach    
+                    </div> 
+                  </div>
+                </div>
+              @endif
+              @if( count(array_filter(explode(",", $listing->listinggeneralcharacteristics)))>0 )
+                <div style="border: none" class="card my-4">
+                  <div class="card-body" style="margin: -16px">
+                    <h2 class="card-title text-danger h6">Características Generales</h2>
+                    <div class="row" style="padding-left: 7px">
+                      @foreach(array_filter(explode(",", $listing->listinggeneralcharacteristics)) as $lgc)
+                        <div class="col-lg-3 col-md-4 col-6 p-1">
+                          {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
+                          <span class="text-muted small">@foreach ($generalcharacteristics as $gc) @if($gc->id==$lgc) {{$gc->title}} @endif @if($gc->id==$lgc && $lgc == 8 && $listing->num_pisos > 0)<b class="bg-orange text-white px-1">{{$listing->num_pisos}}</b> @endif @if($gc->id==$lgc && $lgc == 7 && $listing->niv_constr > 0)<b class="bg-orange text-white px-1"> {{$listing->niv_constr}}</b> @endif @if($gc->id==$lgc && $lgc == 15 && $listing->pisos_constr > 0)<b class="bg-orange text-white px-1"> {{$listing->pisos_constr}}</b> @endif  @endforeach</span>
+                        </div>
+                      @endforeach    
+                    </div> 
+                  </div>
+                </div>
+              @endif
+              @if( count(array_filter(explode(",", $listing->listingenvironments)))>0 )
+                <div style="border: none" class="card my-4">
+                  <div class="card-body" style="margin: -16px">
+                    <h2 class="card-title text-danger h6">Ambientes</h2>
+                    <div class="row" style="padding-left: 7px">
+                      @foreach(array_filter(explode(",", $listing->listingenvironments)) as $lenv)
+                        <div class="col-lg-3 col-md-4 col-6 p-1">
+                          {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
+                          <span class="text-muted small">@foreach ($environments as $environment) @if($environment->id==$lenv) {{$environment->title}} @endif  @endforeach</span>
                         </div>
                       @endforeach    
                     </div> 
