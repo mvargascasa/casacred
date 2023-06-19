@@ -399,7 +399,12 @@
                         }
                       }
                   @endphp
-                  <p style="margin: 0px">{{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif | {{ $bathroom }} @if($bathroom > 1) baños @else baño @endif | {{ $listing->construction_area}} m<sup>2</sup></p>
+                  {{-- <p style="margin: 0px">{{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif | {{ $bathroom }} @if($bathroom > 1) baños @else baño @endif | {{ $listing->construction_area}} m<sup>2</sup></p> --}}
+                  <div class="text-right">
+                    @if($bedroom > 0) <span>{{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif</span> | @endif
+                    @if($bathroom > 0) <span>{{ $bathroom }} @if($bathroom > 1) baños @else baño @endif</span> | @endif
+                    @if($listing->construction_area > 0) <span>{{ $listing->construction_area }} m<sup>2</sup></span> @endif
+                  </div>
                 </div>
               </div>
             @endforeach
