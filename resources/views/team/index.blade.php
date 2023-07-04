@@ -1,7 +1,8 @@
 @extends('layouts.web')
 
 @section('header')
-    
+    <title>Nuestro Equipo | Casa Crédito</title>
+    <meta name="robots" content="noindex">
 @endsection
 
 @section('content')
