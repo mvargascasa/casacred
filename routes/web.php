@@ -10,6 +10,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TwController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WebController::class,'home'])->name('web.index');
@@ -21,6 +22,7 @@ Route::post('/send-lead-contact', [WebController::class, 'sendLeadContact'])->na
 
 //Route::get('/avaluo-de-propiedad', [WebController::class, 'avaluo'])->name('web.avaluo.propiedad');
 
+Route::get('/equipo', [TeamController::class, 'index'])->name('team.index');
 Route::get('/propiedad/{listing:slug}', [WebController::class,'detail'])->name('web.detail');
 Route::get('/getcities/{idState}', [WebController::class,'getcities'])->name('web.getcities');
 Route::get('/getstate/{city}', [WebController::class, 'getstatebycity'])->name('web.getstate');
