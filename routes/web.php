@@ -11,6 +11,7 @@ use App\Http\Controllers\TwController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\HistoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WebController::class,'home'])->name('web.index');
@@ -111,6 +112,8 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
 
     //PROPERTIES DROP PRICE
     Route::get('properties-change-price', [AdminController::class, 'propertieschangeprice'])->name('admin.properties.change.price');
+
+    Route::get('history', [HistoryController::class, 'index'])->name('admin.history');
     
     //Route::get('listings', [ListingController::class,'listings'])->name('admin.listings');
     //Route::get('listingadd', [ListingController::class,'create'])->name('admin.listingadd');
