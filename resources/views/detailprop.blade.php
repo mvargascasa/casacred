@@ -177,7 +177,7 @@
       <div class="col-12 col-sm-12 pb-2">     
         <div class="row pt-3">
           <div class="col-sm-1"></div>
-          <div class="col-sm-5 d-flex">
+          {{-- <div class="col-sm-5 d-flex">
             <div onclick="history.back();" class="d-flex" style="cursor: pointer">
               <i style="margin-top: 10px; margin-right: 10px" class="fal fa-angle-left"></i><p style="margin-top: 6px; margin-right: 10px">Regresar</p>
             </div>
@@ -187,7 +187,7 @@
                 <button class="btn" type="submit" style="background-color: #dc3545; color: #ffffff" class="input-group-text" id="basic-addon2"><i class="fal fa-search"></i></button>
               </div>
             </form>
-          </div>
+          </div> --}}
         </div>
         <div class="row">
           <div class="col-sm-1"></div>
@@ -709,7 +709,7 @@
       
       {{-- aqui --}}
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-3">
-        <div class="divEmail d-flex justify-content-center" style="margin-top: @if($mobile) 0%; @else 22%; @endif">
+        <div class="divEmail d-flex justify-content-center" style="margin-top: @if($mobile) 0%; @else 5%; @endif">
           <div class="row">
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-12">
               <div class="formEmail rounded">
