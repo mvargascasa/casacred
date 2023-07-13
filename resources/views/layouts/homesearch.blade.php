@@ -30,21 +30,24 @@
     </div>
 </div> --}}
 @if ($ismobile)
-<div id="searchmobile" style="width: 80vw; position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center">
-  <div style="text-align: center; color: #ffffff; background-color: rgba(2, 2, 2, 0.5); padding-top: 5%; padding-bottom: 5%; margin: 0px">
+<div id="searchmobile" style="margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center">
+  <div style="text-align: center; color: #ffffff; background-color: rgb(2, 2, 2); padding-top: 2%; padding-bottom: 5%; margin: 0px">
     <p style="font-size: 22px; margin-bottom: 0px; font-weight: 400">Su sueño está aquí</p>
     <h1 style="font-size: 17px; font-weight: 100">Venta y Alquiler de Propiedades</h1>
-    <div class="d-flex justify-content-center">
-      <button type="button" data-bs-toggle="modal" data-bs-target="#modalFilters" id="btnsearch" class="btn" style="display: none; border-radius: 25px; padding: 6px 10px 6px 10px; background-color: #dc3545; color: #ffffff"><i class="fas fa-search"></i></button>
+    <div class="d-flex justify-content-center text-center">
+      <div class="d-flex w-50" data-bs-toggle="modal" data-bs-target="#modalFilters">
+        <input type="text" class="form-control" style="border-radius: 25px 0px 0px 25px" placeholder="Buscar" readonly>
+        <button type="button" id="btnsearch" class="btn" style="display: none; border-radius: 0px 25px 25px 0px; padding: 6px 10px 6px 10px; background-color: #dc3545; color: #ffffff"><i class="fas fa-search"></i></button>
+      </div>
     </div>
   </div>
 </div>
 @else
-<div id="parentBuscador" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center">
+<div id="parentBuscador" style="margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center;">
         
   <div class="row align-items-center d-flex justify-content-center" style="margin: 0; min-height: 250px;">
 
-      <div class="col-12 text-white text-center p-4" style="width: 600px;background:rgba(2, 2, 2, 0.5)">
+      <div class="col-12 text-white text-center p-4" style="width: 600px;background:rgb(2, 2, 2); z-index: 3 !important">
         <p class="font-weight-bold heading-title" style="font-size: 30px; margin-bottom: 0px">Su sueño está aquí</p>
         <h1 id="txtcasas" style="font-size: 20px">Venta y Alquiler de todo tipo de Propiedades</h1>
         {{-- <form id="formhomesearch" action="{{route('web.propiedades')}}" method="GET"> --}}
