@@ -271,9 +271,12 @@ class WebController extends Controller
         $user = User::where('id', $listing->user_id)->first();
         $generalcharacteristics = DB::table('listing_general_characteristics')->get();
         $environments = DB::table('listing_environments')->get();
+
+        $difference_prices = $listing->property_price - $listing->property_price_min;
+        $media = $difference_prices / 2;
         // if($ismobile) return view('detailmobile',compact('listing','details','benefits','services','types'));
         // else          
-        return view('detailprop',compact('listing','details','benefits','services','types','mobile', 'user', 'values', 'generalcharacteristics', 'environments'));
+        return view('detailprop',compact('listing','details','benefits','services','types','mobile', 'user', 'values', 'generalcharacteristics', 'environments', 'media'));
     }
 
     public function getstates($id){

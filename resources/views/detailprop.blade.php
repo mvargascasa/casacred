@@ -236,43 +236,49 @@
                       </div> --}}
 
                       {{-- thumbnails carousel prueba --}}
-                      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                          @php
-                              $filexists = false;
-                              if (file_exists(public_path().'/uploads/listing/thumb/600/'. strtok($listing->images, '|'))) {$filexists=true;}
-                              //$imageVerification = asset('uploads/listing/thumb/600/'.$img);
-                          @endphp
-                        <div class="carousel-inner">
-                          @php $iiListing=0 @endphp
-                          @foreach (array_filter(explode("|", $listing->images)) as $img)
-                            <div class="carousel-item @if($iiListing==0) active @endif" data-slide-number="{{ $iiListing }}">
-                              <img style="width: 100%; height: 100%" src="
-                              @if($mobile)
-                                @if($filexists)
-                                  {{url('uploads/listing/thumb/600',$img)}} 
-                                @else 
-                                  {{url('uploads/listing/600',$img)}} 
-                                @endif
-                              @else
-                                @if($filexists)
-                                  {{url('uploads/listing/thumb', $img)}}
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                            @php
+                                $filexists = false;
+                                if (file_exists(public_path().'/uploads/listing/thumb/600/'. strtok($listing->images, '|'))) {$filexists=true;}
+                                //$imageVerification = asset('uploads/listing/thumb/600/'.$img);
+                            @endphp
+                          <div class="carousel-inner position-relative">
+                            @php $iiListing=0 @endphp
+                            @foreach (array_filter(explode("|", $listing->images)) as $img)
+                              <div class="carousel-item @if($iiListing==0) active @endif" data-slide-number="{{ $iiListing }}">
+                                <img style="width: 100%; height: 100%" src="
+                                @if($mobile)
+                                  @if($filexists)
+                                    {{url('uploads/listing/thumb/600',$img)}} 
+                                  @else 
+                                    {{url('uploads/listing/600',$img)}} 
+                                  @endif
                                 @else
-                                  {{url('uploads/listing', $img)}}
+                                  @if($filexists)
+                                    {{url('uploads/listing/thumb', $img)}}
+                                  @else
+                                    {{url('uploads/listing', $img)}}
+                                  @endif
                                 @endif
-                              @endif
-                                " class="d-block w-100 ccimgpro" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$listing->listing_title}}-{{$iiListing++}}">
+                                  " class="d-block w-100 ccimgpro" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$listing->listing_title}}-{{$iiListing++}}">
+                              </div>
+                            @endforeach
+                            <div class="position-absolute text-white d-flex justify-content-center align-items-center py-2" style="width: 400px; height: auto; top: 20px; left: -145px; background-color: #DC3545; transform: rotateY(0deg) rotate(-40deg);">
+                              <div class="text-center">
+                                <span style="font-weight: bold; color: yellow">PRECIO FERIA</span><br>
+                                <span style="font-weight: 600">${{ number_format($listing->property_price - $media) }}</span>
+                              </div>
                             </div>
-                          @endforeach
+                          </div>
+                          <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                          </a>
+                          <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                          </a>
                         </div>
-                        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="sr-only">Next</span>
-                        </a>
-                      </div>
 
                       @php
                         $arrayImages = [];
@@ -478,11 +484,14 @@
               </div>
               @endif
               <div class="row">
-                <div class="col-7 col-sm-9">
-                  <p style="margin: 0px; color: #dc3545; font-size: 20px; font-weight: 600;">PRECIO: ${{ number_format($listing->property_price) }}</p>
+                <div class="col-12 col-sm-9">
+                  <p style="margin: 0px; color: #f9a322; font-size: 18px; font-weight: 600;">PRECIO: <del>${{ number_format($listing->property_price) }}</del></p>
+                  <div style="color: #dc3545;" class="rounded mt-2">
+                    <p style="font-size: 20px; font-weight: 600;"><i class="fas fa-bomb"></i> PRECIO FERIA: ${{ number_format($listing->property_price - $media) }} </p>
+                  </div>
                 </div>
-                <div class="col-5 col-sm-3 d-flex justify-content-end">
-                  <label style="background-color: #dc3545; color: #ffffff; border-radius: 5px;padding: 5px; font-weight: 600">CÓDIGO: {{ $listing->product_code }}</label>
+                <div class="col-12 col-sm-3 d-flex mb-1">
+                  <span style="background-color: #dc3545; color: #ffffff; border-radius: 5px;padding: 5px; font-weight: 600; height: 40px;" class="d-flex align-items-center">CÓDIGO: {{ $listing->product_code }}</span>
                 </div>
               </div>
               @php
