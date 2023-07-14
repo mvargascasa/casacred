@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
+// use Illuminate\Support\Carbon;
 
 class ListingController extends Controller
 {
@@ -246,6 +247,10 @@ class ListingController extends Controller
             //bloqueando la propiedad una vez creada
             //$listing->locked = true;
             if(!$listing->locked && ($listing->owner_name != null || $request->owner_name != null) && ($listing->identification != null || $request->identification != null) && ($listing->phone_number != null || $request->phone_number != null) && ($listing->owner_email != null || $request->owner_email != null) && ($listing->owner_address != null || $request->owner_address != null)) $listing->locked = true;
+            
+            // $date = new Carbon('Y-m-d H:i:s', $listing->created_at);
+            // $daysAdd = 1;
+            // $listing->delete_at = $date->addDays($daysAdd);
             $listing->save();
         }
 
@@ -359,7 +364,7 @@ class ListingController extends Controller
             $request->merge(['heading_details' => json_encode($result)]);
             foreach ($result as $r) {
                 for ($i=0; $i < count($r); $i++) { 
-                    if($r[$i] == 49 || $r[$i] == 86 || $r[$i] == 41) $bedrooms = $bedrooms + $r[$i+1];
+                    if($r[$i] == 49 || $r[$i] == 86 || $r[$i] == 41 || $r[$i] == 115) $bedrooms = $bedrooms + $r[$i+1];
                     if($r[$i] == 48 || $r[$i] == 76 || $r[$i] == 81) $bathrooms = $bathrooms + $r[$i+1];
                     if($r[$i] == 43) $garage = $garage + $r[$i+1];
                 }

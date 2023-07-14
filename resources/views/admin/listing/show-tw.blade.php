@@ -151,7 +151,7 @@
 			unset($singleedetails[0]);								
       for($i=1;$i<=count($singleedetails);$i++){ 
       if($i%2==0){  
-        if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
+        if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49 || $singleedetails[$i-1]==115) $bedroom+=$singleedetails[$i];
         if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];
         if($singleedetails[$i-1]==43) $garage+=$singleedetails[$i];	
         if($singleedetails[$i-1]==109 || $singleedetails[$i-1]==110 || $singleedetails[$i-1]==111) $departments+=$singleedetails[$i];								  
