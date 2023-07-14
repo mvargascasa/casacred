@@ -263,12 +263,6 @@
                                   " class="d-block w-100 ccimgpro" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$listing->listing_title}}-{{$iiListing++}}">
                               </div>
                             @endforeach
-                            <div class="position-absolute text-white d-flex justify-content-center align-items-center py-2" style="width: 400px; height: auto; top: 20px; left: -145px; background-color: #DC3545; transform: rotateY(0deg) rotate(-40deg);">
-                              <div class="text-center">
-                                <span style="font-weight: bold; color: yellow">PRECIO FERIA</span><br>
-                                <span style="font-weight: 600">${{ number_format($listing->property_price - $media) }}</span>
-                              </div>
-                            </div>
                           </div>
                           <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -485,10 +479,7 @@
               @endif
               <div class="row">
                 <div class="col-12 col-sm-9">
-                  <p style="margin: 0px; color: #f9a322; font-size: 18px; font-weight: 600;">PRECIO: <del>${{ number_format($listing->property_price) }}</del></p>
-                  <div style="color: #dc3545;" class="rounded mt-2">
-                    <p style="font-size: 20px; font-weight: 600;"><i class="fas fa-bomb"></i> PRECIO FERIA: ${{ number_format($listing->property_price - $media) }} </p>
-                  </div>
+                  <p style="margin: 0px; color: #dc3545; font-size: 18px; font-weight: 600;">PRECIO: ${{ number_format($listing->property_price) }}</p>
                 </div>
                 <div class="col-12 col-sm-3 d-flex mb-1">
                   <span style="background-color: #dc3545; color: #ffffff; border-radius: 5px;padding: 5px; font-weight: 600; height: 40px;" class="d-flex align-items-center">CÓDIGO: {{ $listing->product_code }}</span>
