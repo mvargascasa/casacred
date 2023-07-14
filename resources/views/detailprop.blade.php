@@ -478,8 +478,8 @@
               </div>
               @endif
               <div class="row">
-                <div class="col-12 col-sm-9">
-                  <p style="margin: 0px; color: #dc3545; font-size: 18px; font-weight: 600;">PRECIO: ${{ number_format($listing->property_price) }}</p>
+                <div class="col-12 col-sm-9 mb-1">
+                  <p style="margin: 0px; color: #dc3545; font-size: 20px; font-weight: 600;">PRECIO: ${{ number_format($listing->property_price) }}</p>
                 </div>
                 <div class="col-12 col-sm-3 d-flex mb-1">
                   <span style="background-color: #dc3545; color: #ffffff; border-radius: 5px;padding: 5px; font-weight: 600; height: 40px;" class="d-flex align-items-center">CÓDIGO: {{ $listing->product_code }}</span>
