@@ -146,7 +146,7 @@
       }
     }
     #parentBuscador{
-      margin-top: -120px;
+      
     }
     /* #parentBuscador, #searchmobile{
       overflow: auto;
@@ -157,12 +157,12 @@
       right: 0;
     } */
     #search_lay{
-      /* overflow: auto; */
-      /* margin: 0 auto; */
-      /* top: 0; */
-      /* left: 0; */
-      /* bottom: 0px; */
-      /* right: 0; */
+      overflow: auto;
+      margin: 0 auto;
+      top: 0;
+      left: 0;
+      bottom: 0px;
+      right: 0;
     }
     .lazyLoad {
         width: 100%;
@@ -209,41 +209,72 @@
            }
          }
     @endphp
-  <div class="position-relative">
+
+  <section>
+    <div class="position-relative">
+      @if(!$ismobile)
+        <div class="position-absolute" style="top: 0; right: 0; z-index: 3">
+          <a class="text-light" href="tel:+593983849073">
+            <div class="mr-2 mt-2 px-1 rounded-pill font-weight-normal" style="top: 0; right: 0; z-index: 3; font-size: 16px;">
+              <img width="20px" height="15px" src="{{asset('img/ECUADOR-04.webp')}}" alt="telefono casa credito inmobiliaria"> 098-384-9073
+            </div>
+          </a>
+          <a class="text-light" href="tel:+17186903740">
+            <div class="mr-2 mt-2 px-1 rounded-pill font-weight-normal" style="top: 30px; right: 0; z-index: 3; font-size: 16px">
+              <img width="20px" height="13px" src="{{asset('img/USA-05.webp')}}" alt="telefono casa credito inmobiliaria usa" class="mr-1"> 718-690-3740 
+            </div>
+          </a>
+        </div>
+      @endif
+      <div id="carouselExampleFadeBanner" class="carousel slide carousel-fade" data-ride="carousel" data-interval="1000">
+        <div class="carousel-inner position-relative">
+          @for ($i = 1; $i < 5; $i++)
+            <div class="carousel-item @if($i == 1) active @endif">
+              <img width="100%" class="img-fluid lazyload" src="{{ asset('img/banner'.$i.'.webp') }}" style="filter: brightness(50%); width: 100%; @if($ismobile) height: auto; margin-top: 60px; @else height: 40vw; @endif" alt="">
+            </div>
+          @endfor
+          <div class="position-absolute w-100" style="top: 50%; left: 50%; transform: translate(-50%, -50%)">
+            @include('layouts.homesearch')
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{-- <div class="position-relative">
     @if(!$ismobile)
     <a class="text-light" href="tel:+593983849073">
       <div class="position-absolute mr-2 mt-2 px-1 rounded-pill font-weight-normal" style="top: 0; right: 0; z-index: 3; font-size: 16px;">
-        {{-- <i class="fas fa-phone mr-1 text-light"></i>098-384-9073 --}}
         <img width="20px" height="15px" src="{{asset('img/ECUADOR-04.webp')}}" alt="telefono casa credito inmobiliaria"> 098-384-9073
       </div>
     </a>
     <a class="text-light" href="tel:+17186903740">
       <div class="position-absolute mr-2 mt-2 px-1 rounded-pill font-weight-normal" style="top: 30px; right: 0; z-index: 3; font-size: 16px">
-        {{-- <i class="fas fa-phone mr-1 text-light"></i>098-384-9073 --}}
         <img width="20px" height="13px" src="{{asset('img/USA-05.webp')}}" alt="telefono casa credito inmobiliaria usa" class="mr-1"> 718-690-3740 
       </div>
     </a>
     @endif
-    <div>
-      <div id="carouselExampleFadeBanner" class="carousel slide carousel-fade"  data-ride="carousel" data-interval="1000">
-          <div class="carousel-inner" style="height: @if($ismobile) auto; @else 36vw; @endif">
-            @php
-              $count = 0;
-            @endphp
-              {{-- @for ($i = 1; $i < 5; $i++) --}}
-                <div class="carousel-item @if($count == 0) active @endif">
-                  <img class="img-fluid lazyLoad" style="filter: brightness(90%); width: 100%; @if($ismobile) height: auto; margin-top: 60px; @else height: 40vw; @endif" data-src="{{ asset('img/feria.jpg') }}" alt="Compra, Venta y Alquiler de Casas, Departamentos y Terrenos en Cuenca Ecuador">   
-                  {{-- @php $count++; @endphp      {{ asset('img/banner'. $i .'.webp') }} --}}
-                </div>
-              {{-- @endfor --}}
+    <div class="position-relative">
+            <div id="carouselExampleFadeBanner" class="carousel slide carousel-fade"  data-ride="carousel" data-interval="1000">
+              <div class="carousel-inner" style="height: @if($ismobile) auto; @else 36vw; @endif">
+                @php
+                  $count = 0;
+                @endphp
+                @for ($i = 1; $i < 5; $i++)
+                  <div class="carousel-item @if($count == 0) active @endif">
+                    <img class="img-fluid lazyLoad" style="filter: brightness(50%); width: 100%; @if($ismobile) height: auto; margin-top: 60px; @else height: 40vw; @endif" data-src="{{ asset('img/banner'. $i .'.webp') }}" alt="Compra, Venta y Alquiler de Casas, Departamentos y Terrenos en Cuenca Ecuador">   
+                    @php $count++; @endphp
+                  </div>
+                @endfor
               </div>
             </div> 
           </div>
-          <div id="search_lay" style="left: 0; right: 0; opacity: 1 !important;">
+          <div id="search_lay" style="opacity: 1 !important;">
             @include('layouts.homesearch')
           </div>
         </div>
-  </div>
+      </div>
+  </div> --}}
         <div class="@if($ismobile) pt-2 @else container pt-5 @endif">
           <h2 id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 @if($ismobile) mb-3 @else mb-5 @endif">SERVICIOS <b style="font-weight: 400; color: #DC3545">INMOBILIARIOS</b> A SU ALCANCE</h2>
           <div class="row mr-2 ml-2">

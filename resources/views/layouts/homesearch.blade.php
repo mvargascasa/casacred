@@ -43,7 +43,7 @@
   </div>
 </div>
 @else
-<div id="parentBuscador" style="margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center;">
+<div id="parentBuscador" style="">
         
   <div class="row align-items-center d-flex justify-content-center" style="margin: 0; min-height: 250px;">
 
