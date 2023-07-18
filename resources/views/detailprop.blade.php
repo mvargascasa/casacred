@@ -211,7 +211,7 @@
               </a>
             </div>     --}}
 
-              <div class="row">
+              <div class="row @if($mobile) mt-5 @endif">
                   <div class="col-md-12">
                       {{-- <div id="custCarousel" class="carousel slide" data-ride="carousel">
                           <!-- slides -->
@@ -678,13 +678,13 @@
               </div> --}}
             </div>
           </div>
-          @if($listing->video)
+          {{-- @if($listing->video)
             <div class="text-center mb-4">
               <div>
                 <video class="video" width="@if($mobile) 100% @else 40% @endif" height="@if($mobile) 100% @else 40% @endif" autoplay muted loop controls></video>
               </div>
             </div>
-          @endif
+          @endif --}}
           @if($listing->status)
           <div class="container">
             <p class="text-center" style="font-weight: 400; font-size:20px">Compartir</p>
@@ -700,6 +700,11 @@
       
       {{-- aqui --}}
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-3">
+        @if($listing->video)
+        <div class="mt-3">
+          <video class="shadow rounded video" width="100%" height="100%" autoplay muted loop controls></video>
+        </div>
+        @endif
         <div class="divEmail d-flex justify-content-center" style="margin-top: @if($mobile) 0%; @else 5%; @endif">
           <div class="row">
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-12">
@@ -741,7 +746,7 @@
             </div> --}}
 
             {{-- calcular credito --}}
-            @if(!$mobile)
+            {{-- @if(!$mobile)
               @if($listing->listingtypestatus != "alquilar")
               <div class="container mt-3">
                 <div class="border rounded py-3">
@@ -767,7 +772,7 @@
                 </div>
               </div>
               @endif
-            @endif
+            @endif --}}
 
             @if($user->profile_photo_path != null)
             <div class="container">
@@ -1001,7 +1006,7 @@
 
     setTimeout(() => {
       setsrcvideo();
-    }, 5000);
+    }, 3000);
     //     var myCarousel = document.querySelector('#carouselControls');
     //     var carousel = new bootstrap.Carousel(myCarousel);
     
