@@ -923,6 +923,15 @@
         document.getElementById('secondsection').style.backgroundImage = "url('img/imgbannermiddle.webp')";
     });
 
+    let inpSearchTxt = document.getElementById('ftop_txt');
+    if(inpSearchTxt){
+      inpSearchTxt.addEventListener("keypress", function(event){
+        if(event.keyCode == 13){
+          search();
+        }
+      })
+    }
+
     function onSubmit(token) {
       document.getElementById("demo-form").submit();
     }
