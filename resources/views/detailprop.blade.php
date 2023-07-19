@@ -147,6 +147,7 @@
 .img-profile:hover{transform: scale(1.2);}
 #calcularcredmobile{z-index: 4;position: fixed;bottom: 0px;left: 0px;}
 .bg-orange{background-color: #dc3545;}
+.tiktok-embed{width: 100% !important}
 </style>
 @endsection
 
@@ -700,10 +701,13 @@
       
       {{-- aqui --}}
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-3">
-        @if($listing->video)
+        {{-- @if($listing->video)
         <div class="mt-3">
           <video class="shadow rounded video" width="100%" height="100%" autoplay muted loop controls></video>
         </div>
+        @endif --}}
+        @if($listing->tiktokcode)
+          {!! $listing->tiktokcode !!}
         @endif
         <div class="divEmail d-flex justify-content-center" style="margin-top: @if($mobile) 0%; @else 5%; @endif">
           <div class="row">

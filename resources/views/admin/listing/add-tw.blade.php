@@ -756,6 +756,10 @@
                         </ul>
                     </div>
                 @endif
+                <section class="mt-3">
+                    {!! Form::label('tiktokcode', 'Código de TikTok', ['class' => 'font-semibold']) !!}
+                    {!! Form::textarea('tiktokcode', null, ['class' => $inputs, 'rows' => 5]) !!}
+                </section>
             </div>          
         </div>
         

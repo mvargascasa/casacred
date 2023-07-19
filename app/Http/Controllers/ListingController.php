@@ -243,6 +243,9 @@ class ListingController extends Controller
             if($request->num_pisos <= 0) $listing->num_pisos = null; else $listing->num_pisos = $request->num_pisos;
             if($request->pisos_constr <= 0) $listing->pisos_constr = null; else $listing->pisos_constr = $request->pisos_constr;
 
+            $tiktok_html = str_replace('max-width: 605px;min-width: 325px;', 'min-width: 100%;', $request->tiktokcode);
+            if($tiktok_html) $listing->tiktokcode = $tiktok_html;
+
             //$listing->credit_vip = $request->credit_vip;
             //bloqueando la propiedad una vez creada
             //$listing->locked = true;
@@ -401,6 +404,11 @@ class ListingController extends Controller
         }
 
         $listing->fill($request->all());
+
+        if($listing->tiktokcode){
+            $tiktok_html = str_replace('max-width: 605px;min-width: 325px;', 'min-width: 100%;', $listing->tiktokcode);
+            $listing->tiktokcode = $tiktok_html;
+        }
         
         //set variables bedroom bathroom y garage
         $listing->bedroom = $bedrooms;
