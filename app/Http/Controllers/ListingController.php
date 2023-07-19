@@ -405,7 +405,7 @@ class ListingController extends Controller
 
         $listing->fill($request->all());
 
-        if($listing->tiktokcode){
+        if($request->tiktokcode){
             $tiktok_html = str_replace('max-width: 605px;min-width: 325px;', 'min-width: 100%;', $listing->tiktokcode);
             $listing->tiktokcode = $tiktok_html;
         }
