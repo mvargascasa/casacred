@@ -35,7 +35,9 @@ class Listing extends Model
         'cavity_error',
         'warranty',
         'plusvalia',
-        'niv_constr', 'num_pisos', 'pisos_constr' // nuevas variables para las caracteristicas generales
+        'tiktokcode',
+        'niv_constr', 'num_pisos', 'pisos_constr', // nuevas variables para las caracteristicas generales
+        'delete_at'
     ];   
     
     public function user()
