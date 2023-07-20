@@ -275,105 +275,112 @@
         </div>
       </div>
   </div> --}}
-        <div class="@if($ismobile) pt-2 @else container pt-5 @endif">
-          <h2 id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 @if($ismobile) mb-3 @else mb-5 @endif">SERVICIOS <b style="font-weight: 400; color: #DC3545">INMOBILIARIOS</b> A SU ALCANCE</h2>
-          <div class="row mr-2 ml-2">
-              <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
-                <a href="{{route('web.propiedades', 'casas-en-venta-en-cuenca')}}">
-                  <div class="position-relative d-flex justify-content-center shadow rounded cursor">
-                    <img style="border-radius: 5px;"  width="100rem" height="100rem" class="img-fluid lazyLoad" data-src="{{ asset('img/CAS-IDEAL.webp') }}" alt="Compra y Venta de Casas en Cuenca Ecuador">
-                    @if(!$ismobile)
-                      <div class="text-center position-absolute p-1 rounded mb-2 fw-bold buttons-services">
-                        Comprar una propiedad <i class="fas fa-arrow-circle-right"></i>
-                            {{-- <a class="btn cta a-btn-services" href="{{ route('web.propiedades') }}">
-                              <span>Comprar</span>
-                              <svg width="12px" height="10px" viewBox="0 0 13 10">
-                                <path d="M1,5 L11,5"></path>
-                                <polyline points="8 1 12 5 8 9"></polyline>
-                              </svg>
-                            </a> --}}
-                      </div>
-                      @endif
-                  </div>
-                  @if($ismobile)
-                  <div class="text-center p-1 rounded mb-2 fw-bold buttons-services-mobile mt-3" style="font-size: 12px">
-                    Comprar una propiedad <i class="fas fa-arrow-circle-right"></i>
-                  </div>
-                  @endif
-                </a>
-              </div>
-              <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
-                <div class="position-relative d-flex justify-content-center shadow rounded cursor" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                  <img style="border-radius: 5px;" width="100rem" height="100rem" class="img-fluid lazyLoad" data-src="{{ asset('img/VENDA-SU-PROPIEDAD.webp') }}" alt="Venda su propiedad con nosotros">
-                  @if(!$ismobile)
-                    <div class="text-center position-absolute p-1 rounded mb-2 fw-bold buttons-services">
-                        Vender una propiedad <i class="fas fa-arrow-circle-right"></i>
-                      {{-- <button data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-whatever="  una propiedad">
-                          <span>Vender</span>
-                          <svg width="13px" height="10px" viewBox="0 0 13 10">
-                            <path d="M1,5 L11,5"></path>
-                            <polyline points="8 1 12 5 8 9"></polyline>
-                          </svg>
-                        </button> --}}
-                    </div>
-                  @endif
+
+  <div style="margin-left: auto; margin-right: auto" class="mb-5">
+    <p style="font-size: 20px; font-weight: 500" class="mt-5 mb-5 text-center">Propiedades destacadas</p>
+    @if ($ismobile)
+      <div id="carouselExampleFade" class="carousel slide carousel-fade ml-3 mr-3 position-relative" data-bs-ride="carousel">
+        <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; bottom: 50px !important;">
+          @foreach ($listings_outstanding as $listing)
+            <li data-bs-target="#carouselExampleFade" data-bs-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : ''}}"></li>  
+          @endforeach
+        </ol>
+        <div class="carousel-inner">
+          @foreach ($listings_outstanding as $listing)
+            <div class="carousel-item {{ $loop->first ? 'active' : ' '}}">
+              <div class="position-relative">
+                <img style="filter: brightness(80%)" width="100%" height="100%" data-src="{{ asset('uploads/listing/600/' . strtok($listing->images, '|') ) }}" class="d-block w-100 lazyLoad" alt="{{$listing->slug}}">
+                <div class="position-absolute" style="bottom: 5px; right: 5px;">
+                  <a class="btn btn-sm btn-outline-light" href="{{ route('web.detail', $listing->slug) }}">Ver propiedad</a>
                 </div>
-                @if($ismobile)
-                <div class="text-center mt-3 p-1 rounded mb-2 fw-bold buttons-services-mobile" style="font-size: 12px" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                  Vender una propiedad <i class="fas fa-arrow-circle-right"></i>
-                </div>
-                @endif
               </div>
-              <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
-                <div class="position-relative d-flex justify-content-center shadow rounded cursor" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
-                  <img style="border-radius: 5px;" width="100rem" height="100rem" class="img-fluid lazyLoad" data-src="{{ asset('img/ALQUILE.webp') }}" alt="Alquiler de viviendas o departamentos">
-                  @if(!$ismobile)
-                    <div class="text-center mt-5 position-absolute p-1 rounded mb-2 fw-bold buttons-services">
-                        Alquilar una propiedad <i class="fas fa-arrow-circle-right"></i> 
-                      {{-- <button class="btn cta a-btn-services" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
-                          <span>Alquilar</span>
-                          <svg width="13px" height="10px" viewBox="0 0 13 10">
-                            <path d="M1,5 L11,5"></path>
-                            <polyline points="8 1 12 5 8 9"></polyline>
-                          </svg>
-                        </button> --}}
-                    </div>
-                  @endif
+              <div class="float-right mt-3">
+                <p style="font-weight: 400; margin: 0px; text-align: end">
+                  @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing->address)))) @endphp
+                </p>
+                @php
+                    $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
+                    $bathroom=0;
+                    
+                    if(!empty($listing->heading_details)){
+                      $allheadingdeatils=json_decode($listing->heading_details); 
+                      foreach($allheadingdeatils as $singleedetails){ 
+                        unset($singleedetails[0]);								
+                        for($i=1;$i<=count($singleedetails);$i++){ 
+                          if($i%2==0){  
+                            if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
+                            if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];									  
+                          }								   
+                        }								
+                      $i++;
+                      }
+                    }
+                @endphp
+                {{-- <p style="margin: 0px">{{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif | {{ $bathroom }} @if($bathroom > 1) baños @else baño @endif | {{ $listing->construction_area}} m<sup>2</sup></p> --}}
+                <div class="text-right">
+                  @if($bedroom > 0) <span>{{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif</span> | @endif
+                  @if($bathroom > 0) <span>{{ $bathroom }} @if($bathroom > 1) baños @else baño @endif</span> | @endif
+                  @if($listing->construction_area > 0) <span>{{ $listing->construction_area }} m<sup>2</sup></span> @endif
                 </div>
-                @if($ismobile)
-                  <div class="text-center mt-3 p-1 rounded mb-2 fw-bold buttons-services-mobile" style="font-size: 12px" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
-                    Alquilar una propiedad <i class="fas fa-arrow-circle-right"></i> 
-                  </div>
-                @endif
               </div>
-              <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
-                <a href="{{route('web.servicios', 'creditos-en-ecuador')}}">
-                  <div class="position-relative d-flex justify-content-center shadow rounded cursor">
-                    <img style="border-radius: 5px;" width="100rem" height="100rem" class="img-fluid lazyLoad" data-src="{{ asset('img/CREDITOS.webp') }}" alt="Creditos para ecuatorianos en el extranjero">
-                    @if(!$ismobile)
-                      <div class="text-center mt-5 position-absolute p-1 rounded mb-2 fw-bold buttons-services">
-                          Solicitar un crédito <i class="fas fa-arrow-circle-right"></i>
-                        {{-- <a href="{{ route('web.servicios', 'creditos-en-ecuador') }}" class="btn cta a-btn-services">
-                            <span>Solicitar</span>
-                            <svg width="13px" height="10px" viewBox="0 0 13 10">
-                              <path d="M1,5 L11,5"></path>
-                              <polyline points="8 1 12 5 8 9"></polyline>
-                            </svg>
-                          </a> --}}
-                      </div>
-                    @endif
-                  </div>
-                </a>
-                @if($ismobile)
-                <a href="{{route('web.servicios', 'creditos-en-ecuador')}}">
-                  <div class="text-center mt-3 p-1 rounded mb-2 fw-bold buttons-services-mobile" style="font-size: 12px">
-                    Solicitar un crédito <i class="fas fa-arrow-circle-right"></i>
-                  </div>
-                </a>
-                @endif
             </div>
-          </div>
+          @endforeach
+        </div>
+        <button style="height: 50px; margin-top: 25%" class="carousel-control-prev btn" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+          {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> --}}
+          <span class="visually-hidden"><i style="color: #ffffff;font-weight:bold; font-size: 20px" class="far fa-angle-left"></i></span>
+        </button>
+        <button style="height: 50px; margin-top: 25%" class="carousel-control-next btn" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+          {{-- <span class="carousel-control-next-icon" aria-hidden="true"></span> --}}
+          <span class="visually-hidden"><i style="color: #ffffff; font-size: 20px" class="far fa-angle-right"></i></span>
+        </button>
       </div>
+      @else
+      <div data-aos="zoom-in" class="row justify-content-center">
+        @foreach ($listings_outstanding as $listing)
+          <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
+            <a style="color: #000000" href="{{ route('web.detail', $listing->slug) }}">
+              <div class="position-relative">
+                {{-- {{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }} --}}
+                <img width="100%" src="{{ asset('uploads/listing/600/' . strtok($listing->images, '|') ) }}" class="card-img-top" alt="{{$listing->slug}}-image">
+                @php
+                    $type = DB::table('listing_types')->select('type_title')->where('id', $listing->listingtype)->get();
+                @endphp
+                <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type[0]->type_title) }}</label>
+              </div>
+              <div class="card-body">
+                <p style="margin: 0px" class="card-title h5">${{ number_format($listing->property_price) }}</p>
+                @php
+                    $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
+                    $bathroom=0;
+                    
+                    if(!empty($listing->heading_details)){
+                      $allheadingdeatils=json_decode($listing->heading_details); 
+                      foreach($allheadingdeatils as $singleedetails){ 
+                        unset($singleedetails[0]);								
+                        for($i=1;$i<=count($singleedetails);$i++){ 
+                          if($i%2==0){  
+                            if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
+                            if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];									  
+                          }								   
+                        }								
+                      $i++;
+                      }
+                    }
+                @endphp
+                <p style="font-size: 14px; margin: 0px" class="card-text">@if($bedroom > 0){{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif | @endif @if($bathroom > 0){{ $bathroom }} @if($bathroom > 1) baños @else baño @endif | @endif {{ $listing->construction_area}} m<sup>2</sup></p>
+                <p style="font-size: 14px; margin: 0px" class="card-text">@if($listing->slug == "totoracocha-en-venta-casa-nueva-recien-terminada-75579") {{ str_replace(",", " |", ucwords(strtolower($listing->address))) }} @else {{ str_replace(",", " |", $listing->address) }} @endif</p>
+              </div>
+            </a>
+          </div>
+        @endforeach
+      </div>
+    @endif
+    <div class="d-flex justify-content-center mt-3">
+      <a style="background-color: #2c3144; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 18px" class="btn" href="{{ route('web.propiedades') }}">Ver todas las propiedades <i style="color: #fcc62e" class="fas fa-long-arrow-alt-right"></i></a>
+    </div>
+  </div>
+
         <div data-aos="zoom-out" class="position-relative d-flex justify-content-center align-items-center mt-4 mb-5">
           <section id="secondsection" style="@if($ismobile) height: 13rem; @else height: 32rem; @endif background-size: cover;background-position: 10% 40%; width: 100%; background-repeat: no-repeat;">
           </section>
@@ -389,110 +396,105 @@
         $listings = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1661)->orWhere('product_code', 1658)->orWhere('product_code', 1650)->orWhere('product_code', 1621)->get();
       @endphp --}}
 
-    <div style="margin-left: auto; margin-right: auto" class="mb-5">
-      <p style="font-size: 20px; font-weight: 500" class="mt-5 mb-5 text-center">Propiedades destacadas</p>
-      @if ($ismobile)
-        <div id="carouselExampleFade" class="carousel slide carousel-fade ml-3 mr-3 position-relative" data-bs-ride="carousel">
-          <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; bottom: 50px !important;">
-            @foreach ($listings_outstanding as $listing)
-              <li data-bs-target="#carouselExampleFade" data-bs-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : ''}}"></li>  
-            @endforeach
-          </ol>
-          <div class="carousel-inner">
-            @foreach ($listings_outstanding as $listing)
-              <div class="carousel-item {{ $loop->first ? 'active' : ' '}}">
-                <div class="position-relative">
-                  <img style="filter: brightness(80%)" width="100%" height="100%" data-src="{{ asset('uploads/listing/600/' . strtok($listing->images, '|') ) }}" class="d-block w-100 lazyLoad" alt="{{$listing->slug}}">
-                  <div class="position-absolute" style="bottom: 5px; right: 5px;">
-                    <a class="btn btn-sm btn-outline-light" href="{{ route('web.detail', $listing->slug) }}">Ver propiedad</a>
+    <div class="container mt-5 mb-5">
+      <h2 id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 @if($ismobile) mb-3 @else mb-5 @endif">SERVICIOS <b style="font-weight: 400; color: #DC3545">INMOBILIARIOS</b> A SU ALCANCE</h2>
+      <div class="row mr-2 ml-2">
+          <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
+            <a href="{{route('web.propiedades', 'casas-en-venta-en-cuenca')}}">
+              <div class="position-relative d-flex justify-content-center shadow rounded cursor">
+                <img style="border-radius: 5px;"  width="100rem" height="100rem" class="img-fluid lazyLoad" data-src="{{ asset('img/CAS-IDEAL.webp') }}" alt="Compra y Venta de Casas en Cuenca Ecuador">
+                @if(!$ismobile)
+                  <div class="text-center position-absolute p-1 rounded mb-2 fw-bold buttons-services">
+                    Comprar una propiedad <i class="fas fa-arrow-circle-right"></i>
+                        {{-- <a class="btn cta a-btn-services" href="{{ route('web.propiedades') }}">
+                          <span>Comprar</span>
+                          <svg width="12px" height="10px" viewBox="0 0 13 10">
+                            <path d="M1,5 L11,5"></path>
+                            <polyline points="8 1 12 5 8 9"></polyline>
+                          </svg>
+                        </a> --}}
                   </div>
-                </div>
-                <div class="float-right mt-3">
-                  <p style="font-weight: 400; margin: 0px; text-align: end">
-                    @php echo str_replace("ñ", "Ñ",(strtoupper(str_replace(",", " |", $listing->address)))) @endphp
-                  </p>
-                  @php
-                      $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
-                      $bathroom=0;
-                      
-                      if(!empty($listing->heading_details)){
-                        $allheadingdeatils=json_decode($listing->heading_details); 
-                        foreach($allheadingdeatils as $singleedetails){ 
-                          unset($singleedetails[0]);								
-                          for($i=1;$i<=count($singleedetails);$i++){ 
-                            if($i%2==0){  
-                              if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
-                              if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];									  
-                            }								   
-                          }								
-                        $i++;
-                        }
-                      }
-                  @endphp
-                  {{-- <p style="margin: 0px">{{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif | {{ $bathroom }} @if($bathroom > 1) baños @else baño @endif | {{ $listing->construction_area}} m<sup>2</sup></p> --}}
-                  <div class="text-right">
-                    @if($bedroom > 0) <span>{{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif</span> | @endif
-                    @if($bathroom > 0) <span>{{ $bathroom }} @if($bathroom > 1) baños @else baño @endif</span> | @endif
-                    @if($listing->construction_area > 0) <span>{{ $listing->construction_area }} m<sup>2</sup></span> @endif
-                  </div>
-                </div>
+                  @endif
               </div>
-            @endforeach
+              @if($ismobile)
+              <div class="text-center p-1 rounded mb-2 fw-bold buttons-services-mobile mt-3" style="font-size: 12px">
+                Comprar una propiedad <i class="fas fa-arrow-circle-right"></i>
+              </div>
+              @endif
+            </a>
           </div>
-          <button style="height: 50px; margin-top: 25%" class="carousel-control-prev btn" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-            {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> --}}
-            <span class="visually-hidden"><i style="color: #ffffff;font-weight:bold; font-size: 20px" class="far fa-angle-left"></i></span>
-          </button>
-          <button style="height: 50px; margin-top: 25%" class="carousel-control-next btn" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-            {{-- <span class="carousel-control-next-icon" aria-hidden="true"></span> --}}
-            <span class="visually-hidden"><i style="color: #ffffff; font-size: 20px" class="far fa-angle-right"></i></span>
-          </button>
-        </div>
-        @else
-        <div data-aos="zoom-in" class="row justify-content-center">
-          @foreach ($listings_outstanding as $listing)
-            <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
-              <a style="color: #000000" href="{{ route('web.detail', $listing->slug) }}">
-                <div class="position-relative">
-                  {{-- {{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }} --}}
-                  <img width="100%" src="{{ asset('uploads/listing/600/' . strtok($listing->images, '|') ) }}" class="card-img-top" alt="{{$listing->slug}}-image">
-                  @php
-                      $type = DB::table('listing_types')->select('type_title')->where('id', $listing->listingtype)->get();
-                  @endphp
-                  <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type[0]->type_title) }}</label>
+          <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
+            <div class="position-relative d-flex justify-content-center shadow rounded cursor" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+              <img style="border-radius: 5px;" width="100rem" height="100rem" class="img-fluid lazyLoad" data-src="{{ asset('img/VENDA-SU-PROPIEDAD.webp') }}" alt="Venda su propiedad con nosotros">
+              @if(!$ismobile)
+                <div class="text-center position-absolute p-1 rounded mb-2 fw-bold buttons-services">
+                    Vender una propiedad <i class="fas fa-arrow-circle-right"></i>
+                  {{-- <button data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-whatever="  una propiedad">
+                      <span>Vender</span>
+                      <svg width="13px" height="10px" viewBox="0 0 13 10">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                      </svg>
+                    </button> --}}
                 </div>
-                <div class="card-body">
-                  <p style="margin: 0px" class="card-title h5">${{ number_format($listing->property_price) }}</p>
-                  @php
-                      $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
-                      $bathroom=0;
-                      
-                      if(!empty($listing->heading_details)){
-                        $allheadingdeatils=json_decode($listing->heading_details); 
-                        foreach($allheadingdeatils as $singleedetails){ 
-                          unset($singleedetails[0]);								
-                          for($i=1;$i<=count($singleedetails);$i++){ 
-                            if($i%2==0){  
-                              if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
-                              if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];									  
-                            }								   
-                          }								
-                        $i++;
-                        }
-                      }
-                  @endphp
-                  <p style="font-size: 14px; margin: 0px" class="card-text">@if($bedroom > 0){{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif | @endif @if($bathroom > 0){{ $bathroom }} @if($bathroom > 1) baños @else baño @endif | @endif {{ $listing->construction_area}} m<sup>2</sup></p>
-                  <p style="font-size: 14px; margin: 0px" class="card-text">@if($listing->slug == "totoracocha-en-venta-casa-nueva-recien-terminada-75579") {{ str_replace(",", " |", ucwords(strtolower($listing->address))) }} @else {{ str_replace(",", " |", $listing->address) }} @endif</p>
-                </div>
-              </a>
+              @endif
             </div>
-          @endforeach
+            @if($ismobile)
+            <div class="text-center mt-3 p-1 rounded mb-2 fw-bold buttons-services-mobile" style="font-size: 12px" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+              Vender una propiedad <i class="fas fa-arrow-circle-right"></i>
+            </div>
+            @endif
+          </div>
+          <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
+            <div class="position-relative d-flex justify-content-center shadow rounded cursor" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
+              <img style="border-radius: 5px;" width="100rem" height="100rem" class="img-fluid lazyLoad" data-src="{{ asset('img/ALQUILE.webp') }}" alt="Alquiler de viviendas o departamentos">
+              @if(!$ismobile)
+                <div class="text-center mt-5 position-absolute p-1 rounded mb-2 fw-bold buttons-services">
+                    Alquilar una propiedad <i class="fas fa-arrow-circle-right"></i> 
+                  {{-- <button class="btn cta a-btn-services" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
+                      <span>Alquilar</span>
+                      <svg width="13px" height="10px" viewBox="0 0 13 10">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                      </svg>
+                    </button> --}}
+                </div>
+              @endif
+            </div>
+            @if($ismobile)
+              <div class="text-center mt-3 p-1 rounded mb-2 fw-bold buttons-services-mobile" style="font-size: 12px" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
+                Alquilar una propiedad <i class="fas fa-arrow-circle-right"></i> 
+              </div>
+            @endif
+          </div>
+          <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
+            <a href="{{route('web.servicios', 'creditos-en-ecuador')}}">
+              <div class="position-relative d-flex justify-content-center shadow rounded cursor">
+                <img style="border-radius: 5px;" width="100rem" height="100rem" class="img-fluid lazyLoad" data-src="{{ asset('img/CREDITOS.webp') }}" alt="Creditos para ecuatorianos en el extranjero">
+                @if(!$ismobile)
+                  <div class="text-center mt-5 position-absolute p-1 rounded mb-2 fw-bold buttons-services">
+                      Solicitar un crédito <i class="fas fa-arrow-circle-right"></i>
+                    {{-- <a href="{{ route('web.servicios', 'creditos-en-ecuador') }}" class="btn cta a-btn-services">
+                        <span>Solicitar</span>
+                        <svg width="13px" height="10px" viewBox="0 0 13 10">
+                          <path d="M1,5 L11,5"></path>
+                          <polyline points="8 1 12 5 8 9"></polyline>
+                        </svg>
+                      </a> --}}
+                  </div>
+                @endif
+              </div>
+            </a>
+            @if($ismobile)
+            <a href="{{route('web.servicios', 'creditos-en-ecuador')}}">
+              <div class="text-center mt-3 p-1 rounded mb-2 fw-bold buttons-services-mobile" style="font-size: 12px">
+                Solicitar un crédito <i class="fas fa-arrow-circle-right"></i>
+              </div>
+            </a>
+            @endif
         </div>
-      @endif
-      <div class="d-flex justify-content-center mt-3">
-        <a style="background-color: #2c3144; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 18px" class="btn" href="{{ route('web.propiedades') }}">Ver todas las propiedades <i style="color: #fcc62e" class="fas fa-long-arrow-alt-right"></i></a>
       </div>
-    </div>
+  </div>
 
 
     <div data-aos="flip-down" class="row" style="background-color: #2c3144; padding-top: 2%; padding-bottom: 2%">
