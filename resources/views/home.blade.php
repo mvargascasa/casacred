@@ -30,8 +30,29 @@
         #inforowconstruye2{font-size: 11px !important;}
       }
       @media screen and (max-width: 1040px){
-        #formtopsearch{display: none !important;}
-        #btnsearch{display: block !important;}
+        #parentBuscador{
+          position: relative !important;
+          top: 0px !important;
+          margin-top: -130px !important;
+          padding-left: 5px !important;
+          padding-right: 5px !important;
+
+        }
+        #form-inputs{
+          padding-left: 0px !important;
+          padding-right: 0px !important;
+        }
+        .video-header{
+          height: 400px !important; 
+        }
+      }
+      #parentBuscador{
+        top: 250px;
+        position: absolute;
+      }
+      #form-inputs{
+        padding-left: 10%;
+        padding-right: 10%;
       }
       .hover-image:hover{-webkit-transform: scale(1.1); transform: scale(1.1);-webkit-transition: 1s;}
       .img-container {position: relative;}
@@ -127,9 +148,7 @@
     }
     .carousel-item{position:relative;display:none;float:left;width:100%;margin-right:-100%;-webkit-backface-visibility:hidden;backface-visibility:hidden;transition:transform .6s ease-in-out}@media(prefers-reduced-motion:reduce){.carousel-item{transition:none}}.carousel-item-next,.carousel-item-prev,.carousel-item.active{display:block}/*!rtl:begin:ignore*/.active.carousel-item-end,.carousel-item-next:not(.carousel-item-start){transform:translateX(100%)}.active.carousel-item-start,.carousel-item-prev:not(.carousel-item-end){transform:translateX(-100%)}/*!rtl:end:ignore*/.carousel-fade .carousel-item{opacity:0;transition-property:opacity;transform:none}.carousel-fade .carousel-item-next.carousel-item-start,.carousel-fade .carousel-item-prev.carousel-item-end,.carousel-fade .carousel-item.active{z-index:1;opacity:1}.carousel-fade .active.carousel-item-end,.carousel-fade .active.carousel-item-start{z-index:0;opacity:0;transition:opacity 0s .6s}@media(prefers-reduced-motion:reduce){.carousel-fade .active.carousel-item-end,.carousel-fade .active.carousel-item-start{transition:none}}
     @media screen and (max-width: 1100px){
-      #parentBuscador{
-        /* padding-top: 7% !important; */
-      }
+      
     }
     @media screen and (max-width: 850px){
       #searchmobile{
@@ -145,17 +164,6 @@
         width: 425px !important;
       }
     }
-    #parentBuscador{
-      
-    }
-    /* #parentBuscador, #searchmobile{
-      overflow: auto;
-      margin: 0 auto;
-      top: 0;
-      left: 50px;
-      bottom: 0;
-      right: 0;
-    } */
     #search_lay{
       overflow: auto;
       margin: 0 auto;
@@ -173,9 +181,9 @@
         transition: opacity 1000ms ease;
         opacity: 1;
     }
-    #ftop_ptype{
+    /* #ftop_ptype{
       max-width: 170px !important;
-    }
+    } */
     .carousel-item.active{z-index: 0 !important;opacity: 1 !important}
     ::placeholder {color: #b9babb !important;font-size: 14px}
     .shadow{box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;}
@@ -210,7 +218,7 @@
          }
     @endphp
 
-  <section>
+  <section class="section-header">
     <div class="position-relative">
       @if(!$ismobile)
         <div class="position-absolute" style="top: 0; right: 0; z-index: 3">
@@ -226,18 +234,10 @@
           </a>
         </div>
       @endif
-      <div id="carouselExampleFadeBanner" class="carousel slide carousel-fade" data-ride="carousel" data-interval="1000">
-        <div class="carousel-inner position-relative">
-          @for ($i = 1; $i < 5; $i++)
-            <div class="carousel-item @if($i == 1) active @endif">
-              <img width="100%" class="img-fluid lazyload" src="{{ asset('img/banner'.$i.'.webp') }}" style="filter: brightness(50%); width: 100%; @if($ismobile) height: auto; margin-top: 60px; @else height: 40vw; @endif" alt="">
-            </div>
-          @endfor
-          <div class="position-absolute w-100" style="top: 50%; left: 50%; transform: translate(-50%, -50%)">
-            @include('layouts.homesearch')
-          </div>
-        </div>
-      </div>
+      <video class="video-header" style="object-fit:cover; width: 100%; height: 700px;" src="{{ asset('img/video-home.mp4') }}" autoplay muted loop></video>
+      {{-- <div class="w-100 position-absolute" style="top: 35%;"> --}}
+        @include('layouts.homesearch')
+      {{-- </div> --}}
     </div>
   </section>
 
