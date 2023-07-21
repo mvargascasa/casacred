@@ -98,7 +98,7 @@
     @if(isset($listing->id))
     <div>
         <div class="flex">
-            <h2 class="text-lg font-semibold text-red-700">EDITAR PROPIEDAD {{ $listing->aval }}<span style="color:darkgray"> Creado: {{$listing->created_at->format('d M y')}} ({{$listing->user->name??'User'}})</span></h2>
+            <h2 class="text-lg font-semibold text-red-700">EDITAR PROPIEDAD <span style="color:darkgray"> Creado: {{$listing->created_at->format('d M y')}} ({{$listing->user->name??'User'}})</span></h2>
             @if(Auth::user()->role == "administrator" && $listing->locked)
                 <form action="{{route('admin.listings.unlocked', $listing->id)}}" method="POST">
                     @csrf
