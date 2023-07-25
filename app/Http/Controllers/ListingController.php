@@ -457,7 +457,7 @@ class ListingController extends Controller
             foreach($request->file('galleryImages') as $image){
                 if ($image->isValid()) {
                     $validate = $image->getClientOriginalExtension();
-                    if(in_array($validate,['jpeg','jpg','png','heic'])){
+                    if(in_array($validate,['jpeg','jpg','png','heic','heif'])){
                         $img = Image::make($image);
                         $img2 = Image::make($image);
                         $img3 = Image::make($image);
@@ -465,6 +465,7 @@ class ListingController extends Controller
                         if ($mime == 'image/jpeg') $ext = '.jpg';
                         elseif ($mime == 'image/png') $ext = '.png';
                         elseif($mime == 'image/heic') $ext = '.heic';
+                        elseif($mime == 'image/heif') $ext = '.heif';
                         else $ext = '';
                         if(strlen($ext)>0){
                             $folder = 'uploads/listing/';
