@@ -73,6 +73,8 @@
 
   <link rel="stylesheet" href="{{asset('css/style.css?x=5')}}">
   <meta name="facebook-domain-verification" content="st7nmy30bjdubvp2cuvvhwuk6n2syf" />
+
+  {{-- @livewireStyles --}}
   
 <?php
 $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -258,7 +260,7 @@ if(strpos($actual_link, 'localhost') === false){
   @endphp
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light navbar-cc bg-white fixed-search" style="z-index: 100;">
+        <nav class="navbar navbar-expand-lg navbar-light navbar-cc bg-white fixed-search shadow-sm" style="z-index: 100;">
 
             <div class="d-flex flex-grow-1">
                 <span class="w-100 d-lg-none d-block pl-1">
@@ -421,6 +423,37 @@ if(strpos($actual_link, 'localhost') === false){
   </section>
 </div> --}}
 {{-- @endif --}}
+
+<!-- Messenger Plugin de chat Code -->
+<div id="fb-root"></div>
+
+<!-- Your Plugin de chat code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+
+<script>
+  var chatbox = document.getElementById('fb-customer-chat');
+  chatbox.setAttribute("page_id", "366818313367457");
+  chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+
+<!-- Your SDK code -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      xfbml            : true,
+      version          : 'v17.0'
+    });
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/es_LA/sdk/xfbml.customerchat.js';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+    </script>
 <footer>
   <div style="background-color: #2C3144; color: #ffffff">
     <div class="container">
@@ -504,6 +537,10 @@ if(strpos($actual_link, 'localhost') === false){
         <br><a href="{{route('web.politicas')}}" style="color: #c30000"> Políticas de Privacidad</a> <span  style="color: #c30000">-</span>  <a  style="color: #c30000" href="{{route('web.seo')}}">SEO</a>
     </div>
 </footer>
+
+{{-- <div style="position: fixed; bottom: 10px; right: 10px; z-index: 1000">
+  @livewire('chat-bot')
+</div> --}}
  <!-- Modal -->
  <div class="modal fade" id="modalContact" tabindex="-1" role="dialog" aria-labelledby="modalContactLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -610,6 +647,7 @@ if(strpos($actual_link, 'localhost') === false){
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 @yield('script')
+{{-- @livewireScripts --}}
 <script>
 
     let loaded = false;
