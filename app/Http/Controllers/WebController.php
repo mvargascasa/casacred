@@ -275,8 +275,10 @@ class WebController extends Controller
         $difference_prices = $listing->property_price - $listing->property_price_min;
         $media = $difference_prices / 2;
         // if($ismobile) return view('detailmobile',compact('listing','details','benefits','services','types'));
-        // else          
-        return view('detailprop',compact('listing','details','benefits','services','types','mobile', 'user', 'values', 'generalcharacteristics', 'environments', 'media'));
+        // else
+
+        if($listing->status != 0) return view('detailprop',compact('listing','details','benefits','services','types','mobile', 'user', 'values', 'generalcharacteristics', 'environments', 'media'));
+        else return redirect()->route('web.propiedades');
     }
 
     public function getstates($id){
