@@ -706,9 +706,6 @@
           <video class="shadow rounded video" width="100%" height="100%" autoplay muted loop controls></video>
         </div>
         @endif --}}
-        @if($listing->tiktokcode)
-          {!! $listing->tiktokcode !!}
-        @endif
         <div class="divEmail d-flex justify-content-center" style="margin-top: @if($mobile) 0%; @else 5%; @endif">
           <div class="row">
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-12">
