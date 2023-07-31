@@ -177,10 +177,10 @@
           </div>
             <div class="d-flex mt-3">
             @if(count($images)>3)
-              <article onclick="addactive(1)" class="mr-2 shadow rounded" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 250px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[1]) : url('uploads/listing',$images[3]) }}')"></article>
+              <article onclick="addactive(3)" class="mr-2 shadow rounded" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 250px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[3]) : url('uploads/listing',$images[3]) }}')"></article>
             @endif
             @if(count($images)>4)
-              <article onclick="addactive(2)" class="ml-2 shadow rounded" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 250px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[2]) : url('uploads/listing',$images[4]) }}')"></article>
+              <article onclick="addactive(4)" class="ml-2 shadow rounded" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 250px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[4]) : url('uploads/listing',$images[4]) }}')"></article>
             @endif
             </div>
         </div>
