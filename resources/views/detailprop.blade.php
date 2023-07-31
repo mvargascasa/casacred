@@ -32,7 +32,7 @@
     background-color: #ffffff;
   }
 /* Small devices (landscape phones, 576px and up)*/
-@media (min-width: 576px) {  .ccimgpro{max-height:250px ;}  }
+@media (min-width: 576px) {  .ccimgpro{max-height:250px ;} }
 
 /* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) { .ccimgpro{max-height:350px ;}  }
@@ -151,7 +151,96 @@
 </style>
 @endsection
 
+@php
+    $images = array_filter(explode("|", $listing->images));
+    $filexists = false;
+    if (file_exists(public_path().'/uploads/listing/thumb/600/'. strtok($listing->images, '|'))) {$filexists=true;}
+@endphp
+
 @section('content')
+@if(!$mobile)
+<section class="header-images-desktop mt-4">
+  <section class="row mx-2">
+    <div class="col-12 col-sm-12 col-md-12 col-xl-6">
+      <article onclick="addactive(0)" class="shadow rounded" data-toggle="modal" data-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 600px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[0]) : url('uploads/listing',$images[0]) }}')"></article>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-xl-6">
+      <div class="row align-items-center h-100">
+        <div class="col-sm-6 w-100">
+          <div class="d-flex mb-3">
+            @if(count($images) > 1)
+              <article onclick="addactive(1)" class="mr-2 shadow rounded" data-toggle="modal" data-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 250px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[1]) : url('uploads/listing',$images[1]) }}')"></article>
+            @endif
+            @if(count($images) > 2)
+              <article onclick="addactive(2)" class="ml-2 shadow rounded" data-toggle="modal" data-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 250px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[2]) : url('uploads/listing',$images[2]) }}')"></article>
+            @endif
+          </div>
+            <div class="d-flex mt-3">
+            @if(count($images)>3)
+              <article onclick="addactive(1)" class="mr-2 shadow rounded" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 250px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[1]) : url('uploads/listing',$images[1]) }}')"></article>
+            @endif
+            @if(count($images)>4)
+              <article onclick="addactive(2)" class="ml-2 shadow rounded" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 250px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[2]) : url('uploads/listing',$images[2]) }}')"></article>
+            @endif
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content bg-transparent border-0">
+        <div class="modal-bg-transparent">
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              @php $index = 0; @endphp
+              @foreach ($images as $img)    
+                <div id="img_{{ $index }}" class="carousel-item @if($index == 0) active @endif">
+                  <img class="d-block w-100" style="max-height: 90vh !important" data-slide-to="{{ $index }}" src="{{ url('uploads/listing/thumb', $img) }}" alt="First slide">
+                </div>
+                @php $index++; @endphp
+              @endforeach
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+@else
+<section>
+  <div id="carouselImageMobile" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      @php $index = 0; @endphp
+      @foreach ($images as $img)    
+        <div id="img_{{ $index }}" class="carousel-item @if($index == 0) active @endif">
+          <img class="d-block w-100" style="max-height: 90vh !important" data-slide-to="{{ $index }}" src="{{ url('uploads/listing/thumb', $img) }}" alt="First slide">
+        </div>
+        @php $index++; @endphp
+      @endforeach
+    </div>
+    <a class="carousel-control-prev" href="#carouselImageMobile" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselImageMobile" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</section>
+@endif
+
+
   <div class="container">
     {{-- <div style="display: none" class="row pt-3">
       aqui
@@ -212,7 +301,7 @@
               </a>
             </div>     --}}
 
-              <div class="row @if($mobile) mt-5 @endif">
+              <div class="row">
                   <div class="col-md-12">
                       {{-- <div id="custCarousel" class="carousel slide" data-ride="carousel">
                           <!-- slides -->
@@ -237,7 +326,7 @@
                       </div> --}}
 
                       {{-- thumbnails carousel prueba --}}
-                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        {{-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
                             @php
                                 $filexists = false;
                                 if (file_exists(public_path().'/uploads/listing/thumb/600/'. strtok($listing->images, '|'))) {$filexists=true;}
@@ -273,9 +362,9 @@
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                           </a>
-                        </div>
+                        </div> --}}
 
-                      @php
+                      {{-- @php
                         $arrayImages = [];
                         foreach (array_filter(explode("|", $listing->images)) as $img){
                           array_push($arrayImages, $img);
@@ -371,7 +460,7 @@
                           <span class="sr-only">Next</span>
                         </a>
                         @endif
-                      </div>
+                      </div> --}}
                       {{-- termina carousel thumbnails prueba --}}
 
                   </div>
@@ -1079,6 +1168,13 @@
     document.getElementById('shareToFacebook').addEventListener('click', () => {window.open('https://www.facebook.com/sharer/sharer.php?u=' + shareLink, 'facebook-share-dialog', 'width=626, height=436');});
     //document.getElementById('shareToTwitter').addEventListener('click', () => {window.open('https://twitter.com/intent/tweet?url='+shareLink)});
     document.getElementById('shareToWpp').addEventListener('click', () => {window.open('https://api.whatsapp.com/send?text='+shareLink, '_blank')});
+
+    const addactive = (id) => {
+      let images = document.querySelectorAll('.active');
+      images.forEach(element => { element.classList.remove('active'); });
+      let image = document.getElementById('img_'+id);
+      image.classList.add('active');
+    }
 
 </script>
 @endsection
