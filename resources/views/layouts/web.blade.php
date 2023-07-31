@@ -260,7 +260,7 @@ if(strpos($actual_link, 'localhost') === false){
   @endphp
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light navbar-cc bg-white fixed-search shadow-sm" style="z-index: 100;">
+        <nav class="navbar navbar-expand-lg navbar-light navbar-cc bg-white shadow-sm" style="z-index: 100;">
 
             <div class="d-flex flex-grow-1">
                 <span class="w-100 d-lg-none d-block pl-1">
@@ -373,7 +373,10 @@ if(strpos($actual_link, 'localhost') === false){
           </div>
       </nav>
       </header>
-@yield('content')
+
+        @yield('content')
+        
+
 {{-- <div>
   {{$navbar_items}}
 </div>
