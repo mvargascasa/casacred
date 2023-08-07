@@ -37,7 +37,9 @@ class Listing extends Model
         'plusvalia',
         'tiktokcode',
         'niv_constr', 'num_pisos', 'pisos_constr', // nuevas variables para las caracteristicas generales
-        'delete_at'
+        'delete_at',
+        'posted_on_facebook',
+        'date_posted_facebook'
     ];   
     
     public function user()

@@ -51,6 +51,24 @@
                     @endif
                 </div>
 
+                {{-- @php
+                    if($propertie->delete_at != null){
+                        $startTime = Illuminate\Support\Carbon::now();
+                        $endTime = Illuminate\Support\Carbon::parse($propertie->delete_at);
+                        $totalDuration = $endTime->diffInHours($startTime);
+                    }
+                @endphp
+                @if($propertie->delete_at != null)
+                    <div class="absolute right-0 top-0 bg-red-500 text-white px-2 rounded">
+                        @if($totalDuration > 0)
+                        <p>En {{ $totalDuration }} hrs. será eliminada</p>
+                        @else
+                        <p>La propiedad va a ser eliminada</p>
+                        @endif
+                    </div>
+                @endif --}}
+
+
                 <div class="px-2 py-2">
                 <div class="text-xs text-gray-500">{{$propertie->created_at->format('d-M-y')}}</div>
                 <div class="font-bold text-sm">{{ Str::limit($propertie->listing_title, 30, '...')}}</div>
@@ -125,6 +143,12 @@
                     <div class="mx-3">
                         <p>{{$propertie->slug}}</p>
                     </div>
+                    {{-- @if($propertie->delete_at != null && $propertie->delete_at < Illuminate\Support\Carbon::now())
+                    <form action="{{ route('admin.listings.delete', $propertie->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="bg-red-500 text-white ml-3 px-2 rounded shadow w-full">Eliminar</button>
+                    </form>
+                    @endif --}}
                 @endif
                 <div>
                     <div class="flex justify-center">
@@ -143,6 +167,12 @@
                             <div>
                                 <img width="12" height="12" src="{{asset('img/plusvalia.png')}}" alt="">
                             </div>
+                        @endif
+                        @if(Auth::user()->email == "marketing@casacredito.com" || Auth::user()->email == "developer2@casacredito.com")
+                            <form action="{{ route('admin.listing.posted.facebook', $propertie->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="@if($propertie->posted_on_facebook) bg-blue-500 @else bg-gray-500 @endif text-white px-2 rounded shadow">f</button>
+                            </form>
                         @endif
                         {{-- @endif --}}
                         <div class="ml-2">

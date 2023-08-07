@@ -48,7 +48,9 @@ Route::get('/test88', function () {             });
 Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/', [AdminController::class,'index'])->name('admin.index');        
     Route::resource('listings', ListingController::class, ['as' => 'admin']);
-    Route::post('unlocked/{id}', [ListingController::class, 'unlocked'])->name('admin.listings.unlocked');    
+    Route::post('unlocked/{id}', [ListingController::class, 'unlocked'])->name('admin.listings.unlocked');
+    //Route::post('delete/{listing_id}', [ListingController::class, 'delete'])->name('admin.listings.delete');    
+    Route::post('posted-on-facebook/{listing_id}', [ListingController::class, 'postedfacebook'])->name('admin.listing.posted.facebook');
     Route::get('reslug/{listing}', [ListingController::class,'reslug'])->name('admin.reslug');
     Route::get('seo', [ListingController::class,'seo'])->name('admin.seo');
     Route::get('/show-listing/{listing}', [ListingController::class, 'show_listing'])->name('admin.show.listing');
