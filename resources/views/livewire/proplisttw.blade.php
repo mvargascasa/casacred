@@ -171,7 +171,7 @@
                         @if(Auth::user()->email == "marketing@casacredito.com" || Auth::user()->email == "developer2@casacredito.com")
                             <form action="{{ route('admin.listing.posted.facebook', $propertie->id) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="@if($propertie->posted_on_facebook) bg-blue-500 @else bg-gray-500 @endif text-white px-2 rounded shadow">f</button>
+                                <button type="submit" class="@if($propertie->posted_on_facebook) bg-blue-500 @else bg-gray-500 @endif text-white px-2 rounded shadow ml-2">f</button>
                             </form>
                         @endif
                         {{-- @endif --}}
