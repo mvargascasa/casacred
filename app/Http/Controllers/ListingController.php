@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
-// use Illuminate\Support\Carbon;
+use Illuminate\Support\Carbon;
 
 class ListingController extends Controller
 {
@@ -251,11 +251,17 @@ class ListingController extends Controller
             //$listing->locked = true;
             if(!$listing->locked && ($listing->owner_name != null || $request->owner_name != null) && ($listing->identification != null || $request->identification != null) && ($listing->phone_number != null || $request->phone_number != null) && ($listing->owner_email != null || $request->owner_email != null) && ($listing->owner_address != null || $request->owner_address != null)) $listing->locked = true;
             
-            // $date = new Carbon('Y-m-d H:i:s', $listing->created_at);
-            // $daysAdd = 1;
-            // $listing->delete_at = $date->addDays($daysAdd);
             $listing->save();
         }
+
+        // $isvalid = $this->iscomplete($listing);
+        // if(!$isvalid){
+        //     $delete_at = Carbon::parse($listing->created_at)->addDay();
+        //     $listing->delete_at = $delete_at;
+        // } else {
+        //     $listing->delete_at = null;
+        // } 
+        // $listing->save();
 
         // if($request->fragment == "first" || $request->fragment == "second" || $request->fragment == "third"){
         return response()->json([
@@ -511,7 +517,7 @@ class ListingController extends Controller
                             $img3->insert($watermark, 'center', 0, 0);
                             $img3->save($folder_3.$nameFile, 40);
                         }
-                    } elseif($validate == "mp4"){
+                    } elseif($validate == "mp4" || $validate == "MOV"){
                         $namefile = $listing->slug.".".$image->getClientOriginalExtension();
                         $filepath = public_path() . '/uploads/video/';
                         $image->move($filepath, $namefile);
@@ -531,6 +537,14 @@ class ListingController extends Controller
             
 
         }
+
+        // $isvalid = $this->iscomplete($listing);
+        // if(!$isvalid){
+        //     $delete_at = Carbon::parse($listing->created_at)->addDay();
+        //     $listing->delete_at = $delete_at;
+        // } else {
+        //     $listing->delete_at = null;
+        // }
 
         $listing->save();
 
@@ -645,4 +659,10 @@ class ListingController extends Controller
         }else{ $ismobile = false; }
         return $mobile;
     }
+
+    // public function delete($listing_id){
+    //     $listing = Listing::where('id', $listing_id)->first();
+    //     $listing->delete();
+    //     return redirect()->route('admin.properties');
+    // }
 }
