@@ -1067,7 +1067,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content bg-transparent border-0">
       <div class="modal-body border-0 text-center position-relative">
-        <video class="video img-fluid" autoplay muted loop controls controlslist="nodownload"></video>
+        <video oncontextmenu="return false;" class="video img-fluid" autoplay muted loop controls controlslist="nodownload"></video>
         <button type="button" class="btn btn-danger rounded-pill text-center position-absolute" style="top: 0px; right: 6px" data-bs-dismiss="modal"><i class="fas fa-times"></i></button>
       </div>
     </div>
