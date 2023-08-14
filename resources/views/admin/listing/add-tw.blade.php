@@ -140,13 +140,45 @@
         @endif
     @endif
 
-    <hr class="mt-4 mb-4">
-    <div class="flex gap-6 justify-center">
-        <label id="btnfragment1" style="cursor: pointer" onclick="changefragment('first')" class="bg-red-600 text-white px-5 font-semibold">Información General</label>
-        <label id="btnfragment2" style="cursor: pointer" onclick="changefragment('second')" class="font-semibold">Servicios</label>
-        <label id="btnfragment3" style="cursor: pointer" onclick="changefragment('third')" class="font-semibold">Informacion adicional</label>
-        <label id="btnfragment4" style="cursor: pointer" onclick="changefragment('fourth')" class="font-semibold">Imagenes</label>
-    </div>
+    <hr class="my-4">
+    @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "home.tw.create")
+    <div class="grid grid-cols-4 gap-x-2">
+        <div>
+            <div>
+                <span class="font-semibold">Paso 1</span>
+                <div id="paso1" class="bg-red-500" style="width: auto; height: 15px;"></div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <span class="font-semibold">Paso 2</span>
+                <div id="paso2" class="bg-gray-500" style="width: auto; height: 15px;"></div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <span class="font-semibold">Paso 3</span>
+                <div id="paso3" class="bg-gray-500" style="width: auto; height: 15px;"></div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <span class="font-semibold">Paso 4</span>
+                <div id="paso4" class="bg-gray-500" style="width: auto; height: 15px;"></div>
+            </div>
+        </div>
+    </div>                
+    @endif
+    
+    @if(Route::current()->getName() == "admin.listings.edit" || Route::current()->getName() == "home.tw.edit")
+        <div class="flex gap-6 justify-center">
+            <label id="btnfragment1" style="cursor: pointer" onclick="changefragment('first')" class="bg-red-600 text-white px-5 font-semibold">Información General</label>
+            <label id="btnfragment2" style="cursor: pointer" onclick="changefragment('second')" class="font-semibold">Servicios</label>
+            <label id="btnfragment3" style="cursor: pointer" onclick="changefragment('third')" class="font-semibold">Informacion adicional</label>
+            <label id="btnfragment4" style="cursor: pointer" onclick="changefragment('fourth')" class="font-semibold">Imagenes</label>
+        </div>
+    @endif
+
     <hr class="mt-4">
 
 
@@ -293,7 +325,11 @@
                 </div>
                 <p class="bg-red-600 text-white w-64 font-semibold absolute text-center ml-3" style="margin-top: -13px; letter-spacing: 1px">DATOS DEL PROPIETARIO</p>
             </div>
-    
+        </div>
+
+        <div id="second" style="display: none" class="fragment2">
+
+            <!--div datos del inmueble-->
             <div class="relative border px-5 py-4 mt-10 hover:shadow-md">
                 <div class="gap-4 mt-4 sm:gap-6">
                         {!! Form::label('listing_title', 'Titulo de Propiedad', ['class' => 'font-semibold']) !!}
@@ -402,6 +438,7 @@
     
                 <p class="bg-red-600 text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">DATOS DEL INMUEBLE</p>
             </div>
+            <!--termina div datos del inmueble-->
     
             <div class="relative border px-5 py-4 mt-10 hover:shadow-md">
                 <div class="grid grid-cols-3 gap-4">
@@ -468,7 +505,7 @@
                         <div class="gap-4 mt-4 sm:gap-6">
                             <label class="font-semibold">Titulo</label>
                             <div class="flex flex-row mt-2">
-                                <input  class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" name="details0[]" type="text"/>
+                                <input id="details"  class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" name="details0[]" type="text"/>
                                 <button class="w-12 h-10 py-2 bg-red-700 text-white rounded-r text-sm" type="button" onclick="delrowTitle(this)">X</button>
                             </div>
                             <div class="font-semibold ml-4 mt-4">Detalles</div>
@@ -478,7 +515,7 @@
                                         <option value="{{$detail->id}}">{{$detail->charac_titile}}</option>
                                     @endforeach
                                 </select>
-                                <input  class="w-24 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300" type="number" name="details0[]" pattern="[0-9]+" onkeydown="return false" value="1"/>
+                                <input id="subdetails"  class="w-24 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300" type="number" name="details0[]" pattern="[0-9]+" onkeydown="return false" value="1"/>
                                 <button class="w-12 h-10 py-2 bg-red-700 text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
                             </div>
                             <button type="button" class="px-4 py-2 ml-4 mt-4 text-xl leading-5 text-black bg-green-300 rounded" onclick="addRowDetail(this,0)">Agregar Detalle</button>
@@ -487,10 +524,8 @@
                     @endif
                     <button type="button" class="px-4 py-2 mt-4 text-xl leading-5 text-black bg-blue-300 rounded" onclick="addRowTitles()">Agregar Titulo</button>
                     <p class="bg-red-600 text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">DETALLES DEL INMUEBLE</p>
-            </div>
-        </div>
+                </div>
 
-        <div id="second" style="display: none" class="fragment2">
             <div class="border relative px-5 py-4 mt-10 hover:shadow-md">
                 <div class="gap-4 mt-4 sm:gap-6">
                     <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3  @if(isset($listing) && $listing->listinglistservices == null) border-red-500 @else border-gray-300 @endif rounded-md px-4 py-2">
@@ -591,15 +626,15 @@
                             </label>
                         </div>
                         <div>
-                            {!! Form::text('mount_mortgaged', null, ['class' => $inputs, 'placeholder' => 'Monto $']) !!}
+                            {!! Form::text('mount_mortgaged', null, ['class' => $inputs, 'placeholder' => 'Monto $', 'id' => 'mount_mortgaged']) !!}
                         </div>
                     </div>
                     <div>
                         <div>
-                            {!! Form::text('entity_mortgaged', null, ['class' => $inputs, 'placeholder' => 'Banco']) !!}
+                            {!! Form::text('entity_mortgaged', null, ['class' => $inputs, 'placeholder' => 'Banco', 'id' => 'entity_mortgaged']) !!}
                         </div>
                         <div>
-                            {!! Form::text('warranty', null, ['class' => $inputs, 'placeholder' => 'Garante']) !!}
+                            {!! Form::text('warranty', null, ['class' => $inputs, 'placeholder' => 'Garante', 'id' => 'warranty']) !!}
                         </div>
                     </div>
                 </div>   
@@ -756,10 +791,10 @@
                         </ul>
                     </div>
                 @endif
-                <section class="mt-3">
+                {{-- <section class="mt-3">
                     {!! Form::label('tiktokcode', 'Código de TikTok', ['class' => 'font-semibold']) !!}
                     {!! Form::textarea('tiktokcode', null, ['class' => $inputs, 'rows' => 5]) !!}
-                </section>
+                </section> --}}
             </div>          
         </div>
         
@@ -845,10 +880,10 @@
                     { body: dataform, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}"}});
                     let mensaje = await response.json();
                     document.querySelector('.loader').style.display = "none";
-                    if(mensaje.success && mensaje.fragment == "first"){ document.getElementById('first').style.display="none";document.getElementById('second').style.display="block";setfragmentvalue('second');changeclass('second');}
-                    if(mensaje.success && mensaje.fragment == "second"){ document.getElementById('second').style.display="none";document.getElementById('third').style.display="block";setfragmentvalue('third');changeclass('third');}
-                    if(mensaje.success && mensaje.fragment == "third"){ document.getElementById('third').style.display="none";document.getElementById('fourth').style.display="block";setfragmentvalue('fourth');changeclass('fourth');}
-                    if(mensaje.success && mensaje.fragment == "fourth" && !ischangestatus && !ischangeplan && !ischangeavailable){window.location.replace("{{route('admin.properties')}}");}
+                    if(mensaje.success && mensaje.fragment == "first"){ document.getElementById('first').style.display="none";document.getElementById('second').style.display="block";setfragmentvalue('second'); if(document.getElementById('paso1')){document.getElementById('paso1').classList.remove('bg-red-500');document.getElementById('paso1').classList.add('bg-green-500');if(document.getElementById('paso2')){document.getElementById('paso2').classList.remove('bg-gray-500'); document.getElementById('paso2').classList.add('bg-red-500')}}}
+                    if(mensaje.success && mensaje.fragment == "second"){ document.getElementById('second').style.display="none";document.getElementById('third').style.display="block";setfragmentvalue('third'); if(document.getElementById('paso2')){document.getElementById('paso2').classList.remove('bg-red-500');document.getElementById('paso2').classList.add('bg-green-500');if(document.getElementById('paso3')){document.getElementById('paso3').classList.remove('bg-gray-500'); document.getElementById('paso3').classList.add('bg-red-500')}}}
+                    if(mensaje.success && mensaje.fragment == "third"){ document.getElementById('third').style.display="none";document.getElementById('fourth').style.display="block";setfragmentvalue('fourth'); if(document.getElementById('paso3')){document.getElementById('paso3').classList.remove('bg-red-500');document.getElementById('paso3').classList.add('bg-green-500');if(document.getElementById('paso4')){document.getElementById('paso4').classList.remove('bg-gray-500'); document.getElementById('paso4').classList.add('bg-red-500')}}}
+                    if(mensaje.success && mensaje.fragment == "fourth" && !ischangestatus && !ischangeplan && !ischangeavailable){window.location.replace("{{route('admin.properties')}}"); if(document.getElementById('paso4')){document.getElementById('paso4').classList.remove('bg-red-500');document.getElementById('paso4').classList.add('bg-green-500');}}
                 }
             }
         </script>
@@ -954,27 +989,138 @@
         if(btnSave){
             btnSave.addEventListener("click", function(event){
                 event.preventDefault();
+                if(!validate()) return;
                 document.querySelector('.loader').style.display = "block";
                 removeelement();
                 save(event);
             });
         }
 
+        const validate = () => {
+
+            let fragment = "";
+            let bandera = false;
+            let banderaChecks = true;
+
+            const form = document.getElementById('formsave');
+
+            const formElements = Array.from(form.elements);
+
+            formElements.forEach(element => {
+                if(element.name == "fragment") fragment = element.value;
+            });
+
+            switch(fragment){
+                case "first": 
+                    let listing_type = document.getElementById('listing_type');
+                    let num_factura = document.getElementById('num_factura');
+                    let owner_name = document.getElementById('owner_name');
+                    let identification = document.getElementById('identification');
+                    let phone_number = document.getElementById('phone_number');
+                    let owner_email = document.getElementById('owner_email');
+                    let owner_address = document.getElementById('owner_address');
+
+
+                    if(listing_type.value != "" && owner_name.value != "" && identification.value != "" && phone_number.value != "" && owner_email.value != "" && owner_address.value != ""){
+                        bandera = true;
+                        if(listing_type.value == 2 && num_factura.value == ""){
+                            bandera = false;
+                        } else if(listing_type.value == 1) {
+                            bandera = true;
+                        }
+                    } else {
+                        bandera = false;
+                    }
+                break;
+
+                case "second":
+                    let listing_title = document.getElementById('listing_title').value;
+                    let listing_description = document.getElementById('listing_description').value;
+                    let state = document.getElementById('state').value;
+                    let city = document.getElementById('city').value;
+                    let address = document.getElementById('address').value;
+                    let construction_area = document.getElementById('construction_area').value;
+                    let land_area = document.getElementById('land_area').value;
+                    let Front = document.getElementById('Front').value;
+                    let Fund = document.getElementById('Fund').value;
+                    let property_price = document.getElementById('property_price').value;
+                    let property_price_min = document.getElementById('property_price_min').value;
+                    let lat = document.getElementById('lat').value;
+                    let lng = document.getElementById('lng').value;
+                    let cadastral_key = document.getElementById('cadastral_key').value;
+                    let listingtype = document.getElementById('listingtype').value;
+                    let listingtypestatus = document.getElementById('listingtypestatus').value;
+                    let listingtagstatus = document.getElementById('listingtagstatus').value;
+                    let listyears = document.getElementById('listyears').value;
+                    let aliquot = document.getElementById('aliquot').value;
+                    let observations_type_property = document.getElementById('observations_type_property').value;
+                    let details = document.getElementById('details').value;
+                    let subdetails = document.getElementById('subdetails').value;
+
+                    let checkboxesServ = document.querySelectorAll("input[name='checkServ[]']:checked");
+                    let checkboxesGeneralCharacteristic = document.querySelectorAll("input[name='checkgc[]']:checked");
+                    let checkboxesEnvir = document.querySelectorAll("input[name='checkEnvir[]']:checked");
+                    let checkboxesBene = document.querySelectorAll("input[name='checkBene[]']:checked");
+
+                    if(listing_title != "" && listing_description != "" && state != "" && city != "" && address != "" && construction_area != "" && land_area != "" && Front != "" && Fund != "" && property_price != "" && property_price_min != "" && lat != "" && lng != "" && cadastral_key != "" && listingtype != "" && listingtypestatus != "" && listingtagstatus != "" && listyears != "" && aliquot != "" && observations_type_property != "" && details != "" && subdetails != ""){
+                        bandera = true;
+                        if(checkboxesServ.length > 0 && checkboxesGeneralCharacteristic.length > 0 && checkboxesEnvir.length > 0 && checkboxesBene.length > 0){
+                            banderaChecks = true;
+                        } else {
+                            banderaChecks = false;
+                        }
+                    } else {
+                        bandera = false;
+                    }
+
+                break;
+                case "third":
+                    let mortgaged = document.getElementById('check_mortgage');
+                    let mount_mortgaged = document.getElementById('mount_mortgaged').value;
+                    let entity_mortgaged = document.getElementById('entity_mortgaged').value;
+                    let warranty = document.getElementById('warranty').value;
+                    let aval = document.getElementById('aval').value;
+                    
+                    if(aval != "") bandera = true; else bandera = false;
+
+                    if(mortgaged.checked){
+                        if(mount_mortgaged != "" && entity_mortgaged != "" && warranty != ""){
+                            bandera = true;
+                        } else {
+                            bandera = false;
+                        }
+                    }
+                break;
+                case "fourth": 
+                    bandera = true;
+                    banderaChecks = true;
+                break;
+            }
+
+            if(!bandera && banderaChecks) alert('Complete los campos para continuar');
+            if(bandera && !banderaChecks) alert('Seleccione al menos un campo')
+
+            if(!banderaChecks || !bandera) bandera = false;
+            else bandera = true;
+            
+            return bandera;
+        }
+
         // const form = document.getElementById('formsave');
 
         // ✅ Get all form elements
 
-        if("{{Route::current()->getName()}}" == "admin.listings.create"){
-            const formElements = Array.from(form.elements);
+        // if("{{Route::current()->getName()}}" == "admin.listings.create"){
+        //     const formElements = Array.from(form.elements);
 
-            formElements.forEach(element => {
-                if(element.name != "_token"){
-                    element.addEventListener("focus", () => {
-                        savelisting();
-                    });
-                }
-            });
-        }
+        //     formElements.forEach(element => {
+        //         if(element.name != "_token"){
+        //             element.addEventListener("focus", () => {
+        //                 savelisting();
+        //             });
+        //         }
+        //     });
+        // }
 
         // let inputowner = document.querySelector("input[name='owner_name']");
         // inputowner.addEventListener("keypress", (event) => {
