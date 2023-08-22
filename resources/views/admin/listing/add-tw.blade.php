@@ -455,6 +455,21 @@
                         {!! Form::select('listingtagstatus',$tags->pluck('tags_title','id'),    null,    ['class' => $inputs]) !!}
                     </div>
                 </div>
+                <div id="divlicenciaurbanistica" class="grid grid-cols-1 @if(isset($listing) && $listing->listingtype == 26) block @else hidden @endif mt-5">
+                    <div class="flex content-center border p-4">
+                        <div>
+                            <i class="fas fa-map text-red-600"></i> {!! Form::label('planing_license', '¿El terreno posee licencia urbanística?', ['class' => 'font-semibold mr-4']) !!}
+                        </div>
+                        <div class="form-check form-check-inline">
+                            {!! Form::radio('planing_license', '1', null, ['class' => 'form-check-input']) !!}
+                            {!! Form::label('inlineRadio1', 'SI', ['class' => 'form-check-label']) !!}
+                        </div>
+                        <div class="form-check form-check-inline ml-5">
+                            {!! Form::radio('planing_license', '0', null, ['class' => 'form-check-input']) !!}
+                            {!! Form::label('inlineRadio2', 'NO', ['class' => 'form-check-label']) !!}
+                        </div>
+                    </div>
+                </div>
                 <div class="grid grid-cols-3 gap-4 mt-4 sm:gap-6">
                     <div>
                         {!! Form::label('listyears', 'Antiguedad', ['class' => 'font-semibold']) !!}
@@ -638,21 +653,6 @@
                         </div>
                     </div>
                 </div>   
-                <div id="divlicenciaurbanistica" class="grid grid-cols-1 @if(isset($listing) && $listing->listingtype == 26) block @else hidden @endif">
-                    <div class="flex content-center border p-4">
-                        <div>
-                            <i class="fas fa-map text-red-600"></i> {!! Form::label('planing_license', '¿El terreno posee licencia urbanística?', ['class' => 'font-semibold mr-4']) !!}
-                        </div>
-                        <div class="form-check form-check-inline">
-                            {!! Form::radio('planing_license', '1', null, ['class' => 'form-check-input']) !!}
-                            {!! Form::label('inlineRadio1', 'SI', ['class' => 'form-check-label']) !!}
-                        </div>
-                        <div class="form-check form-check-inline ml-5">
-                            {!! Form::radio('planing_license', '0', null, ['class' => 'form-check-input']) !!}
-                            {!! Form::label('inlineRadio2', 'NO', ['class' => 'form-check-label']) !!}
-                        </div>
-                    </div>
-                </div>
                 <div>
                     <div class="mt-3">
                         {!! Form::label('aval', 'Avaluo de la propiedad', ['class' => 'font-semibold']) !!}
@@ -1062,8 +1062,29 @@
                     let checkboxesEnvir = document.querySelectorAll("input[name='checkEnvir[]']:checked");
                     let checkboxesBene = document.querySelectorAll("input[name='checkBene[]']:checked");
 
+                    let planing_license = "";
+
+                    if(listingtype == 26){
+                        console.log('obteniendo valor de planing-license');
+                        planing_license = document.getElementsByName('planing_license');
+                        console.log(planing_license);
+                    }
+
                     if(listing_title != "" && listing_description != "" && state != "" && city != "" && address != "" && construction_area != "" && land_area != "" && Front != "" && Fund != "" && property_price != "" && property_price_min != "" && lat != "" && lng != "" && cadastral_key != "" && listingtype != "" && listingtypestatus != "" && listingtagstatus != "" && listyears != "" && aliquot != "" && observations_type_property != "" && details != "" && subdetails != ""){
                         bandera = true;
+                        // if(listingtype == 26){
+                        //     console.log('entrando a validacion de planing_license');
+
+                        //     for (let index = 0; index < planing_license.length; index++) {
+                        //         if(planing_license[index].checked){
+                        //             bandera = true;
+                        //             console.log('bandera planing_license: ' + bandera);
+                        //         } else {
+                        //             bandera = false;
+                        //         console.log('bandera planing_license: ' + bandera);
+                        //         }
+                        //     }
+                        // }
                         if(checkboxesServ.length > 0 && checkboxesGeneralCharacteristic.length > 0 && checkboxesEnvir.length > 0 && checkboxesBene.length > 0){
                             banderaChecks = true;
                         } else {
