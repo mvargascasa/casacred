@@ -3,9 +3,9 @@
 @php
     if(isset($_GET['searchtxt'])){ $searchtxt = $_GET['searchtxt'];}
 @endphp
-    <title>Casa Crédito Inmobiliaria</title>
+    <title>Casa Crédito - Inmobiliaria en Cuenca</title>
     <meta name="description" content="Contamos con un amplio directorio de propiedades dentro del territorio ecuatoriano. Venta y Alquiler de Casas, Departamentos y Terrenos @isset($searchtxt) en {{ $searchtxt }}. @else ¡Visítenos! @endif ✅"/>
-    <meta name="keywords" content="inmobiliaria en cuenca, inmobiliarias en cuenca, inmobiliarias cuenca, inmobiliaria en cuenca ecuador, inmobiliaria cuenca, inmobiliarias en cuenca ecuador, casa credito, casa credito inmobiliaria">
+    <meta name="keywords" content="inmobiliaria en cuenca, inmobiliarias en cuenca, inmobiliarias cuenca, inmobiliaria en cuenca ecuador, inmobiliarias en cuenca ecuador, casa credito, casa credito inmobiliaria">
 
     <meta property="og:url"                content="{{route('web.index')}}" />
     <meta property="og:type"               content="website" />
