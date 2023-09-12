@@ -870,7 +870,7 @@
               @endif
             @endif
 
-            @if($user->profile_photo_path != null)
+            @if($user->profile_photo_path != null && $user->status == 1)
             <div class="container">
               <div class="text-center border px-3 mt-3 rounded py-3 card-asesor">
                 <img class="rounded-circle" width="170px" height="170px" src="{{asset('uploads/profiles/'.$user->profile_photo_path)}}" alt="Imagen de perfil">
