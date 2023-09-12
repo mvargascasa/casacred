@@ -200,7 +200,7 @@
               @php $index = 0; @endphp
               @foreach ($images as $img)    
                 <div id="img_{{ $index }}" class="carousel-item @if($index == 0) active @endif">
-                  <img class="d-block w-100" style="max-height: 90vh !important" data-slide-to="{{ $index }}" src="{{ url('uploads/listing/thumb', $img) }}" alt="First slide">
+                  <img class="d-block w-100" style="max-height: 90vh !important" data-slide-to="{{ $index }}" src="{{ $filexists ? url('uploads/listing/thumb', $img) : url('uploads/listing', $img)}}" alt="First slide">
                 </div>
                 @php $index++; @endphp
               @endforeach
