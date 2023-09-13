@@ -73,7 +73,7 @@
       var infoWindowContent = [
           ['<div class="info_content">' +
           '<h3>{{$propertie->listing_title}}</h3>' +
-          '<p>{!! $propertie->listing_description !!}</p>' + '</div>'],
+          '</div>'],
           // ['<div class="info_content">' +
           // '<h3>Brooklyn Public Library</h3>' +
           // '<p>The Brooklyn Public Library (BPL) is the public library system of the borough of Brooklyn, in New York City.</p>' +
