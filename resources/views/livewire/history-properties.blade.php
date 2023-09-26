@@ -2,7 +2,12 @@
     <p class="text-sm mt-5">Seleccione un rango de fechas para realizar la búsqueda</p>
     <div class="mt-5">
         <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" wire:model="product_code" placeholder="Código">
-        <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" wire:model="user_id" placeholder="Usuario">
+        <select wire:model="user_id" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <option value="">Seleccione</option>
+          @foreach ($users as $user)
+              <option value="{{ $user->id}}">{{ $user->name }}</option>
+          @endforeach
+        </select>
         <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" wire:model="from_date">
         <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" wire:model="to_date">
     </div>
@@ -24,7 +29,13 @@
                     <tr class="border-b dark:border-neutral-500">
                       <td class="whitespace-nowrap px-6 py-4">{{ $updated_listing->property_code}}</td>
                       <td class="whitespace-nowrap px-6 py-4">{{ $updated_listing->value_change}}</td>
-                      <td class="whitespace-nowrap px-6 py-4">{{ $updated_listing->user_id}}</td>
+                      <td class="whitespace-nowrap px-6 py-4">
+                        @foreach ($users as $user)
+                          @if($user->id == $updated_listing->user_id)
+                            {{ $user->name }}
+                          @endif
+                        @endforeach
+                      </td>
                       <td class="whitespace-nowrap px-6 py-4">{{ $updated_listing->created_at }}</td>
                     </tr>
                 @endforeach
@@ -32,6 +43,11 @@
               </table>
             </div>
           </div>
+          @if(count($updated_listings) == 0)
+          <div class="text-center text-sm text-red-700 mt-5 font-semibold">
+            <p>No hemos encontrado resultados. Verifique que los campos esten completos correctamente</p>
+          </div>
+          @endif
         </div>
       </div>
       {{ $updated_listings->links() }}
