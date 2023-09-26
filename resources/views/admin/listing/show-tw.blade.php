@@ -162,7 +162,7 @@
   }
 @endphp
 
-<div class="container overflow-scroll mx-auto mt-3 pb-3 relative">
+<div class="container overflow-scroll mt-3 pb-3 relative">
 
   @if(session('status'))
   <div id="alert" class="absolute top-0 right-0 z-10">
@@ -175,347 +175,393 @@
   </div>
   @endif
 
-  <div class="row d-flex justify-content-center">
+  <section class="row">
     <div class="col-sm-8">
-      @if(Auth::user()->email == "seo@casacredito.com" || Auth::user()->email == "info@casacredito.com" || Auth::user()->email == "developer2@casacredito.com")
-      <div class="mb-2">
-        <div>
-          <form action="{{route('home.user.watermark')}}" method="POST">
-            @csrf
-            <input type="hidden" name="watermark" value="{{$propertie->id}}">
-            <button type="submit">
-              @if(Auth::user()->watermark)
-              <i class="far fa-eye"></i>
-              @else
-              <i class="far fa-eye-slash"></i>
+      <div class="row d-flex justify-content-center">
+        <div class="col-sm-12">
+          @if(Auth::user()->email == "seo@casacredito.com" || Auth::user()->email == "info@casacredito.com" || Auth::user()->email == "developer2@casacredito.com")
+          <div class="mb-2">
+            <div>
+              <form action="{{route('home.user.watermark')}}" method="POST">
+                @csrf
+                <input type="hidden" name="watermark" value="{{$propertie->id}}">
+                <button type="submit">
+                  @if(Auth::user()->watermark)
+                  <i class="far fa-eye"></i>
+                  @else
+                  <i class="far fa-eye-slash"></i>
+                  @endif
+                </button>
+              </form>
+            </div>
+          </div>
+          @endif
+          
+          @if ($propertie->images != null)
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                @php $iiListing=0 @endphp
+                  @foreach (array_filter(explode("|", $propertie->images)) as $img)
+                    @php
+                      $imageVerification = asset('uploads/listing/thumb/600/'.$img);    
+                    @endphp
+                    <div class="carousel-item @if($iiListing==0) active @endif" data-slide-number="{{ $iiListing }}">
+                      <img style="width: 100%; height: 100%" src="@if(@getimagesize($imageVerification) && !Auth::user()->watermark){{url('uploads/listing/thumb',$img)}} @else {{url('uploads/listing', $img)}} @endif" class="d-block w-100 ccimgpro" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$propertie->listing_title}}-{{$iiListing++}}">
+                    </div>
+                  @endforeach
+              </div>
+              <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          @else
+            <div class="flex items-center content-center justify-center p-3">
+              <p class="text-red-600 text-lg font-semibold">No hemos encontrado imágenes para esta propiedad</p>
+            </div>
+          @endif
+          
+          @php
+            $arrayImages = [];
+            foreach (array_filter(explode("|", $propertie->images)) as $img){
+              array_push($arrayImages, $img);
+            }
+          @endphp
+    
+          <div id="carousel-thumbs" class="carousel slide mt-2" data-bs-ride="carousel" style="margin-left: -20px; margin-right: -20px">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row mx-0 justify-content-center">
+                  @php
+                    if(count($arrayImages) < 6){
+                      $aux = count($arrayImages);
+                    } else {
+                      $aux = 6;
+                    }
+                  @endphp
+                  @for ($i = 0; $i < $aux; $i++)
+                    <div id="carousel-selector-{{ $i }}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
+                      @isset($arrayImages[$i])
+                        <img style="width: 100%" src="@if(@getimagesize($imageVerification) && Auth::user()->email == "seo@casacredito.com"){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{ $i}}">     
+                      @endisset
+                    </div>   
+                  @endfor
+                </div>
+              </div>
+    
+              @if(count($arrayImages) > 6)
+              <div class="carousel-item">
+                <div class="row mx-0 justify-content-center">
+                  @for ($i = 6; $i < 12; $i++)
+                    <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
+                      @isset($arrayImages[$i])
+                        <img style="width: 100%" src="@if(@getimagesize($imageVerification) && Auth::user()->email == "seo@casacredito.com"){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
+                        @endisset
+                    </div>
+                  @endfor
+                </div>
+              </div> 
               @endif
-            </button>
-          </form>
+    
+              @if(count($arrayImages) > 12)
+              <div class="carousel-item">
+                <div class="row mx-0 justify-content-center">
+                  @for ($i = 12; $i < 18; $i++)
+                    <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
+                      @isset($arrayImages[$i])
+                        <img style="width: 100%" src="@if(@getimagesize($imageVerification) && Auth::user()->email == "seo@casacredito.com"){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
+                      @endisset
+                    </div>
+                  @endfor
+                </div>
+              </div>
+              @endif
+    
+              @if(count($arrayImages) > 18)
+              <div class="carousel-item">
+                <div class="row mx-0 justify-content-center">
+                  @for ($i = 18; $i < 24; $i++)
+                    <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
+                      @isset($arrayImages[$i])
+                        <img style="width: 100%" src="@if(@getimagesize($imageVerification) && Auth::user()->email == "seo@casacredito.com"){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
+                        @endisset
+                    </div>
+                  @endfor
+                </div>
+              </div>
+              @endif
+    
+              @if(count($arrayImages) > 24)
+              <div class="carousel-item">
+                <div class="row mx-0 justify-content-center">
+                  @for ($i = 24; $i < 30; $i++)
+                    <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
+                      @isset($arrayImages[$i])
+                        <img style="width: 100%" src="@if(@getimagesize($imageVerification) && Auth::user()->email == "seo@casacredito.com"){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
+                        @endisset
+                    </div>
+                  @endfor
+                </div>
+              </div>
+              @endif
+    
+            </div>
+    
+            @if(count($arrayImages) > 6)
+            <a class="carousel-control-prev" href="#carousel-thumbs" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-thumbs" role="button" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+            @endif
+          </div>
         </div>
       </div>
-      @endif
-      
-      @if ($propertie->images != null)
-        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            @php $iiListing=0 @endphp
-              @foreach (array_filter(explode("|", $propertie->images)) as $img)
-                @php
-                  $imageVerification = asset('uploads/listing/thumb/600/'.$img);    
-                @endphp
-                <div class="carousel-item @if($iiListing==0) active @endif" data-slide-number="{{ $iiListing }}">
-                  <img style="width: 100%; height: 100%" src="@if(@getimagesize($imageVerification) && !Auth::user()->watermark){{url('uploads/listing/thumb',$img)}} @else {{url('uploads/listing', $img)}} @endif" class="d-block w-100 ccimgpro" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$propertie->listing_title}}-{{$iiListing++}}">
-                </div>
-              @endforeach
-          </div>
-          <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      @else
-        <div class="flex items-center content-center justify-center p-3">
-          <p class="text-red-600 text-lg font-semibold">No hemos encontrado imágenes para esta propiedad</p>
-        </div>
-      @endif
-      
+    
       @php
-        $arrayImages = [];
-        foreach (array_filter(explode("|", $propertie->images)) as $img){
-          array_push($arrayImages, $img);
-        }
+          $user = \App\Models\User::where('id', $propertie->user_id)->first();
       @endphp
-
-      <div id="carousel-thumbs" class="carousel slide mt-2" data-bs-ride="carousel" style="margin-left: -20px; margin-right: -20px">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="row mx-0 justify-content-center">
-              @php
-                if(count($arrayImages) < 6){
-                  $aux = count($arrayImages);
-                } else {
-                  $aux = 6;
-                }
-              @endphp
-              @for ($i = 0; $i < $aux; $i++)
-                <div id="carousel-selector-{{ $i }}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
-                  @isset($arrayImages[$i])
-                    <img style="width: 100%" src="@if(@getimagesize($imageVerification) && Auth::user()->email == "seo@casacredito.com"){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{ $i}}">     
+    
+      <div class="row d-flex justify-content-center mt-3">
+        <div class="col-sm-12">
+          {{-- @if($user)
+          <div class="border rounded p-1">
+            <h6 class="text-muted mb-1"><i class="fas fa-info-circle"></i> Subido por <b>{{$user->name}}</b> el <b>{{$propertie->created_at->format('d-M-y')}}</b></h6>
+          </div>
+          @endif --}}
+          <div class="mt-3">
+            <h3 style="font-weight: 500" class="mt-2 mb-2">{{ $propertie->listing_title }}</h3>
+            @php
+              $listingtype = DB::table('listing_types')->where('id', $propertie->listingtype)->first();
+            @endphp
+            <div>
+              <label style="background-color: #f9a322; color: #ffffff; padding-left: 3px; padding-right: 3px; border-radius: 5px; font-weight: 500; font-size: 13px">{{ $listingtype->type_title}}</label>
+              <label style="background-color: #dc3545; color: #ffffff; padding-left: 3px; padding-right: 3px; border-radius: 5px; font-weight: 500; font-size: 13px">@if($propertie->listingtypestatus == "en-venta") Venta @elseif($propertie->listingtypestatus == "alquilar") Alquilar @else Proyectos @endif</label>
+            </div>
+            <div class="row mt-2">
+              <div class="col-sm-6">
+                <div style="margin: 0px; color: #dc3545; font-size: 20px; font-weight: 700;">
+                  ${{ number_format($propertie->property_price) }}
+                </div>
+              </div>
+              <div class="col-sm-6 d-flex justify-content-end">
+                <label style="background-color: #dc3545; color: #ffffff; border-radius: 5px;padding: 5px; font-weight: 600">CÓDIGO: {{ $propertie->product_code }}</label>
+              </div>
+            </div>
+            <div class="d-flex mt-2">
+              <img style="width: 25px; height: 25px" src="{{ asset('img/ubicacion.png') }}" alt="">
+              <p style="font-weight: 400">Sector: @if(Str::contains($propertie->address, ',')) {{$propertie->address}} @else {{ $propertie->state }}, {{$propertie->city}}, {{Str::ucfirst(Str::lower($propertie->address))}} @endif</p>
+            </div>
+            {{-- <div class="mt-4">
+              <h5 style="font-weight: 500">Características:</h5>
+              
+            </div> --}}
+          </div>
+          <div style="border: none" class="card my-4">
+            <div class="card-body" style="margin: -16px">
+              <h6 class="card-title text-danger">Descripción de la propiedad</h6>
+              <p class="card-text">{!!$propertie->listing_description!!}</p>
+            </div>
+          </div>
+          @if(is_array(json_decode($propertie->heading_details)))
+            <div style="border: none" class="card my-4">
+              <div class="card-body" style="margin: -16px">
+                <h6 class="card-title text-danger pt-3">Detalles</h6>
+                @foreach(json_decode($propertie->heading_details) as $dets)
+                  @isset($dets[0])        
+                  <span class="font-weight-bold">{{$dets[0]}}</span><br>
                   @endisset
-                </div>   
-              @endfor
+                  <div class="row" style="padding-left: 7px">
+                    <?php unset($dets[0]); $printControl=0; ?>        
+                    @foreach($dets as $det)
+                      @if($printControl==0)
+                        <?php $printControl=1; ?>                          
+                        <div class="col-lg-3 col-md-4 col-6 p-1">
+                          {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
+                          <span class="text-muted small">@foreach ($details as $detail) @if($detail->id==$det) {{$detail->charac_titile}} @endif  @endforeach</span>
+                        </div>
+                      @else                
+                        <?php $printControl=0; ?>      
+                      @endif
+                    @endforeach    
+                  </div> 
+                @endforeach  
+              </div>
             </div>
-          </div>
-
-          @if(count($arrayImages) > 6)
-          <div class="carousel-item">
-            <div class="row mx-0 justify-content-center">
-              @for ($i = 6; $i < 12; $i++)
-                <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
-                  @isset($arrayImages[$i])
-                    <img style="width: 100%" src="@if(@getimagesize($imageVerification) && Auth::user()->email == "seo@casacredito.com"){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
-                    @endisset
-                </div>
-              @endfor
+          @endif     
+          @if( count(array_filter(explode(",", $propertie->listinglistservices)))>0 )
+            <div style="border: none" class="card my-4">
+              <div class="card-body" style="margin: -16px">
+                <h6 class="card-title text-danger">Servicios</h6>
+                <div class="row" style="padding-left: 7px">
+                  @foreach(array_filter(explode(",", $propertie->listinglistservices)) as $serv)
+                    <div class="col-lg-3 col-md-4 col-6 p-1">
+                      {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
+                      <span class="text-muted small">@foreach ($services as $service) @if($service->id==$serv) {{$service->charac_titile}} @endif  @endforeach</span>
+                    </div>
+                  @endforeach    
+                </div> 
+              </div>
             </div>
-          </div> 
           @endif
-
-          @if(count($arrayImages) > 12)
-          <div class="carousel-item">
-            <div class="row mx-0 justify-content-center">
-              @for ($i = 12; $i < 18; $i++)
-                <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
-                  @isset($arrayImages[$i])
-                    <img style="width: 100%" src="@if(@getimagesize($imageVerification) && Auth::user()->email == "seo@casacredito.com"){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
-                  @endisset
-                </div>
-              @endfor
+          @if( count(array_filter(explode(",", $propertie->listingcharacteristic)))>0 )
+            <div style="border: none" class="card my-4">
+              <div class="card-body" style="margin: -16px">
+                <h6 class="card-title text-danger">Beneficios</h6>
+                <div class="row" style="padding-left: 7px">
+                  @foreach(array_filter(explode(",", $propertie->listingcharacteristic)) as $bene)
+                    <div class="col-lg-3 col-md-4 col-6 p-1">
+                      {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
+                      <span class="text-muted small">@foreach ($benefits as $benef) @if($benef->id==$bene) {{$benef->charac_titile}} @endif  @endforeach</span>
+                    </div>
+                  @endforeach    
+                </div> 
+              </div>
             </div>
-          </div>
           @endif
-
-          @if(count($arrayImages) > 18)
-          <div class="carousel-item">
-            <div class="row mx-0 justify-content-center">
-              @for ($i = 18; $i < 24; $i++)
-                <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
-                  @isset($arrayImages[$i])
-                    <img style="width: 100%" src="@if(@getimagesize($imageVerification) && Auth::user()->email == "seo@casacredito.com"){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
-                    @endisset
-                </div>
-              @endfor
+          @if( count(array_filter(explode(",", $propertie->listinggeneralcharacteristics)))>0 )
+            <div style="border: none" class="card my-4">
+              <div class="card-body" style="margin: -16px">
+                <h6 class="card-title text-danger">Características Generales</h6>
+                <div class="row" style="padding-left: 7px">
+                  @foreach(array_filter(explode(",", $propertie->listinggeneralcharacteristics)) as $gc)
+                    <div class="col-lg-3 col-md-4 col-6 p-1">
+                      {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
+                      <span class="text-muted small">@foreach ($general_characteristics as $general_characteristic) @if($general_characteristic->id==$gc){{$general_characteristic->title}}@endif @if($general_characteristic->id==$gc && $gc == 8 && $propertie->num_pisos > 0)<b class="bg-red-800 text-white px-1">{{$propertie->num_pisos}}</b> @endif @if($general_characteristic->id==$gc && $gc == 7 && $propertie->niv_constr > 0)<b class="bg-red-800 text-white px-1"> {{$propertie->niv_constr}}</b> @endif @if($general_characteristic->id==$gc && $gc == 15 && $propertie->pisos_constr > 0)<b class="bg-red-800 text-white px-1"> {{$propertie->pisos_constr}}</b> @endif @endforeach</span>
+                    </div>
+                  @endforeach    
+                </div> 
+              </div>
             </div>
-          </div>
           @endif
-
-          @if(count($arrayImages) > 24)
-          <div class="carousel-item">
-            <div class="row mx-0 justify-content-center">
-              @for ($i = 24; $i < 30; $i++)
-                <div id="carousel-selector-{{$i}}" class="thumb col-2 col-sm-2 px-0 selected" data-bs-slide-to="{{$i}}" data-bs-target="#myCarousel">
-                  @isset($arrayImages[$i])
-                    <img style="width: 100%" src="@if(@getimagesize($imageVerification) && Auth::user()->email == "seo@casacredito.com"){{ url('uploads/listing/thumb/300/', $arrayImages[$i]) }} @else {{url('uploads/listing/300',$arrayImages[$i])}} @endif" class="img-fluid" alt="{{$propertie->listing_title}}-{{$i}}">  
-                    @endisset
-                </div>
-              @endfor
+          @if( count(array_filter(explode(",", $propertie->listingenvironments)))>0 )
+            <div style="border: none" class="card my-4">
+              <div class="card-body" style="margin: -16px">
+                <h6 class="card-title text-danger">Ambientes</h6>
+                <div class="row" style="padding-left: 7px">
+                  @foreach(array_filter(explode(",", $propertie->listingenvironments)) as $le)
+                    <div class="col-lg-3 col-md-4 col-6 p-1">
+                      {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
+                      <span class="text-muted small">@foreach ($environments as $environment) @if($environment->id==$le) {{$environment->title}} @endif  @endforeach</span>
+                    </div>
+                  @endforeach    
+                </div> 
+              </div>
             </div>
-          </div>
           @endif
-
+          {{-- <a target="_blank" href="{{$propertie->ubication_url}}">Ver ubicación en Google Maps</a> --}}
         </div>
-
-        @if(count($arrayImages) > 6)
-        <a class="carousel-control-prev" href="#carousel-thumbs" role="button" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carousel-thumbs" role="button" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-        @endif
       </div>
+      {{-- <div class="mx-5" id="map"></div> --}}
+      
     </div>
-  </div>
-
-  @php
-      $user = \App\Models\User::where('id', $propertie->user_id)->first();
-  @endphp
-
-  <div class="row d-flex justify-content-center mt-3">
-    <div class="col-sm-9">
-      @if($user)
-      <div class="border rounded p-1">
-        <h6 class="text-muted mb-1"><i class="fas fa-info-circle"></i> Subido por <b>{{$user->name}}</b> el <b>{{$propertie->created_at->format('d-M-y')}}</b></h6>
-      </div>
-      @endif
-      <div class="mt-3">
-        <h3 style="font-weight: 500" class="mt-2 mb-2">{{ $propertie->listing_title }}</h3>
-        @php
-          $listingtype = DB::table('listing_types')->where('id', $propertie->listingtype)->first();
-        @endphp
-        <div>
-          <label style="background-color: #f9a322; color: #ffffff; padding-left: 3px; padding-right: 3px; border-radius: 5px; font-weight: 500; font-size: 13px">{{ $listingtype->type_title}}</label>
-          <label style="background-color: #dc3545; color: #ffffff; padding-left: 3px; padding-right: 3px; border-radius: 5px; font-weight: 500; font-size: 13px">@if($propertie->listingtypestatus == "en-venta") Venta @elseif($propertie->listingtypestatus == "alquilar") Alquilar @else Proyectos @endif</label>
-        </div>
-        <div class="row mt-2">
-          <div class="col-sm-6">
-            <div style="margin: 0px; color: #dc3545; font-size: 20px; font-weight: 700;">
-              ${{ number_format($propertie->property_price) }}
+    <div class="col-sm-4">
+      <div class="sticky-top">
+        <div class="card border-light shadow-sm mb-3 mt-4">
+          <div class="card-header text-white" style="background-color: #DC3545">Información</div>
+          <div class="card-body">
+            @if($user)
+              <div class="row mb-3">
+                <p class="text-muted"><i class="fas fa-info-circle"></i> Subido por <b>{{$user->name}}</b> el <b>{{$propertie->created_at->format('d-M-y')}}</b></p>
+              </div>
+            @endif
+            <div class="row mb-3">
+              <div class="col-sm-6">
+                <p><span style="font-weight: 500">Tipo:</span> @if($propertie->listingtypestatus == "en-venta") Venta @elseif($propertie->listingtypestatus == "alquilar") Alquilar @else Proyectos @endif</p>
+              </div>
+              <div class="col-sm-6">
+                <p><span style="font-weight: 500">Categoría:</span> {{ $listingtype->type_title}}</p>
+              </div>
             </div>
-          </div>
-          <div class="col-sm-6 d-flex justify-content-end">
-            <label style="background-color: #dc3545; color: #ffffff; border-radius: 5px;padding: 5px; font-weight: 600">CÓDIGO: {{ $propertie->product_code }}</label>
-          </div>
-        </div>
-        <div class="d-flex mt-2">
-          <img style="width: 25px; height: 25px" src="{{ asset('img/ubicacion.png') }}" alt="">
-          <p style="font-weight: 400">Sector: @if(Str::contains($propertie->address, ',')) {{$propertie->address}} @else {{ $propertie->state }}, {{$propertie->city}}, {{Str::ucfirst(Str::lower($propertie->address))}} @endif</p>
-        </div>
-        <div class="mt-4">
-          <h5 style="font-weight: 500">Características:</h5>
-          <div class="row mt-2">
+            <div class="row mt-2">
+              <h5 class="card-title fw-bold">Características</h5>
               @if($propertie->land_area > 0)
-                <div class="col-sm-6 d-flex mt-3 mb-3">
+                <div class="col-sm-6 d-flex mt-2 mb-3">
                   <i style="font-size: 20px; margin-right: 5px" class="fas fa-compress-arrows-alt"></i>
                   <p> Área Terreno: {{ $propertie->land_area}} m<sup>2</sup></p>
                 </div>
               @endif
-            @if($propertie->construction_area > 0)
-              <div class="col-sm-6 d-flex mt-3 mb-3">
-                <i style="font-size: 20px; margin-right: 5px" class="fas fa-expand-arrows-alt"></i>
-                <p>Área Construcción: {{ $propertie->construction_area}} m<sup>2</sup></p>
+              @if($propertie->construction_area > 0)
+                <div class="col-sm-6 d-flex mt-3 mb-3">
+                  <i style="font-size: 20px; margin-right: 5px" class="fas fa-expand-arrows-alt"></i>
+                  <p>Área Construcción: {{ $propertie->construction_area}} m<sup>2</sup></p>
+                </div>
+              @endif
+              @if($propertie->Front > 0)
+                <div class="col-sm-6 d-flex mt-3 mb-3">
+                  <i style="font-size: 20px; margin-right: 5px" class="fas fa-expand-alt"></i>
+                  <p> Frente: {{ $propertie->Front}} m<sup>2</sup></p>
+                </div>
+              @endif
+              @if($propertie->Fund > 0)
+                <div class="col-sm-6 d-flex mt-3 mb-3">
+                  <i style="font-size: 20px; margin-right: 5px" class="fas fa-expand-alt"></i>
+                  <p> Fondo: {{ $propertie->Fund}} m<sup>2</sup></p>
+                </div>
+              @endif
+              @if ($bedroom > 0)
+                <div class="col-sm-6 d-flex mt-3 mb-3">
+                  <i style="font-size: 20px; margin-right: 5px" class="fas fa-bed"></i>
+                  <p>{{ $bedroom }} @if($bedroom > 1) habitaciones @else habitación @endif</p>
+                </div>
+              @endif
+              @if($bathroom > 0)
+                <div class="col-sm-6 d-flex mt-3 mb-3">
+                  <i style="font-size: 20px; margin-right: 5px" class="fas fa-bath"></i>
+                  <p>{{ $bathroom}} @if($bathroom > 1) baños @else baño @endif</p>
+                </div>
+              @endif
+              @if ($garage > 0)
+                <div class="col-sm-6 d-flex mt-3 mb-3">
+                  <i style="font-size: 20px; margin-right: 5px" class="fas fa-car"></i>
+                  <p>{{ $garage }} @if($garage > 1) parqueaderos @else parqueadero @endif</p>
+                </div>
+              @endif
+              @if ($departments > 0)
+                <div class="col-sm-6 d-flex mt-3 mb-3">
+                  <i style="font-size: 20px; margin-right: 5px" class="fas fa-building"></i>
+                  <p>{{ $departments }} @if($departments > 1) departamentos @else departamento @endif</p>
+                </div>
+              @endif
+            </div>
+            @if($propertie->aliquot != null && $propertie->aliquot > 0)
+              <div class="row mb-3">
+                <h5 class="card-title fw-bold">Alicuota</h5>
+                <p>${{ $propertie->aliquot }}</p>
               </div>
             @endif
-            @if($propertie->Front > 0)
-              <div class="col-sm-6 d-flex mt-3 mb-3">
-                <i style="font-size: 20px; margin-right: 5px" class="fas fa-expand-alt"></i>
-                <p> Frente: {{ $propertie->Front}} m<sup>2</sup></p>
-              </div>
-            @endif
-            @if($propertie->Fund > 0)
-              <div class="col-sm-6 d-flex mt-3 mb-3">
-                <i style="font-size: 20px; margin-right: 5px" class="fas fa-expand-alt"></i>
-                <p> Fondo: {{ $propertie->Fund}} m<sup>2</sup></p>
-              </div>
-            @endif
-            @if ($bedroom > 0)
-              <div class="col-sm-6 d-flex mt-3 mb-3">
-                <i style="font-size: 20px; margin-right: 5px" class="fas fa-bed"></i>
-                <p>{{ $bedroom }} @if($bedroom > 1) habitaciones @else habitación @endif</p>
-              </div>
-            @endif
-            @if($bathroom > 0)
-              <div class="col-sm-6 d-flex mt-3 mb-3">
-                <i style="font-size: 20px; margin-right: 5px" class="fas fa-bath"></i>
-                <p>{{ $bathroom}} @if($bathroom > 1) baños @else baño @endif</p>
-              </div>
-            @endif
-            @if ($garage > 0)
-              <div class="col-sm-6 d-flex mt-3 mb-3">
-                <i style="font-size: 20px; margin-right: 5px" class="fas fa-car"></i>
-                <p>{{ $garage }} @if($garage > 1) parqueaderos @else parqueadero @endif</p>
-              </div>
-            @endif
-            @if ($departments > 0)
-              <div class="col-sm-6 d-flex mt-3 mb-3">
-                <i style="font-size: 20px; margin-right: 5px" class="fas fa-building"></i>
-                <p>{{ $departments }} @if($departments > 1) departamentos @else departamento @endif</p>
+            @if($propertie->cadastral_key != null)
+              <div class="row mb-3">
+                <h5 class="card-title fw-bold">Clave Catastral</h5>
+                <p>{{ $propertie->cadastral_key }}</p>
               </div>
             @endif
           </div>
+          <div class="row">
+          </div>
+        </div>
+        <div class="flex justify-center">
+          @if(Auth::user()->role == 'administrator')
+          <a class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" style="text-decoration: none;" href="{{ route('home.tw.edit', $propertie) }}">Editar</a>
+          <button type="button" class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Historial</button>
+          @endif
+          <button type="button" class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" data-bs-toggle="modal" data-bs-target="#modalSendEmail">Compartir</button>
+          <button type="button" class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" data-bs-toggle="modal" data-bs-target="#modalMap">Mapa</button>
         </div>
       </div>
-      <div style="border: none" class="card my-4">
-        <div class="card-body" style="margin: -16px">
-          <h6 class="card-title text-danger">Descripción de la propiedad</h6>
-          <p class="card-text">{!!$propertie->listing_description!!}</p>
-        </div>
-      </div>
-      @if(is_array(json_decode($propertie->heading_details)))
-        <div style="border: none" class="card my-4">
-          <div class="card-body" style="margin: -16px">
-            <h6 class="card-title text-danger pt-3">Detalles</h6>
-            @foreach(json_decode($propertie->heading_details) as $dets)
-              @isset($dets[0])        
-              <span class="font-weight-bold">{{$dets[0]}}</span><br>
-              @endisset
-              <div class="row" style="padding-left: 7px">
-                <?php unset($dets[0]); $printControl=0; ?>        
-                @foreach($dets as $det)
-                  @if($printControl==0)
-                    <?php $printControl=1; ?>                          
-                    <div class="col-lg-3 col-md-4 col-6 p-1">
-                      {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
-                      <span class="text-muted small">@foreach ($details as $detail) @if($detail->id==$det) {{$detail->charac_titile}} @endif  @endforeach</span>
-                    </div>
-                  @else                
-                    <?php $printControl=0; ?>      
-                  @endif
-                @endforeach    
-              </div> 
-            @endforeach  
-          </div>
-        </div>
-      @endif     
-      @if( count(array_filter(explode(",", $propertie->listinglistservices)))>0 )
-        <div style="border: none" class="card my-4">
-          <div class="card-body" style="margin: -16px">
-            <h6 class="card-title text-danger">Servicios</h6>
-            <div class="row" style="padding-left: 7px">
-              @foreach(array_filter(explode(",", $propertie->listinglistservices)) as $serv)
-                <div class="col-lg-3 col-md-4 col-6 p-1">
-                  {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
-                  <span class="text-muted small">@foreach ($services as $service) @if($service->id==$serv) {{$service->charac_titile}} @endif  @endforeach</span>
-                </div>
-              @endforeach    
-            </div> 
-          </div>
-        </div>
-      @endif
-      @if( count(array_filter(explode(",", $propertie->listingcharacteristic)))>0 )
-        <div style="border: none" class="card my-4">
-          <div class="card-body" style="margin: -16px">
-            <h6 class="card-title text-danger">Beneficios</h6>
-            <div class="row" style="padding-left: 7px">
-              @foreach(array_filter(explode(",", $propertie->listingcharacteristic)) as $bene)
-                <div class="col-lg-3 col-md-4 col-6 p-1">
-                  {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
-                  <span class="text-muted small">@foreach ($benefits as $benef) @if($benef->id==$bene) {{$benef->charac_titile}} @endif  @endforeach</span>
-                </div>
-              @endforeach    
-            </div> 
-          </div>
-        </div>
-      @endif
-      @if( count(array_filter(explode(",", $propertie->listinggeneralcharacteristics)))>0 )
-        <div style="border: none" class="card my-4">
-          <div class="card-body" style="margin: -16px">
-            <h6 class="card-title text-danger">Características Generales</h6>
-            <div class="row" style="padding-left: 7px">
-              @foreach(array_filter(explode(",", $propertie->listinggeneralcharacteristics)) as $gc)
-                <div class="col-lg-3 col-md-4 col-6 p-1">
-                  {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
-                  <span class="text-muted small">@foreach ($general_characteristics as $general_characteristic) @if($general_characteristic->id==$gc){{$general_characteristic->title}}@endif @if($general_characteristic->id==$gc && $gc == 8 && $propertie->num_pisos > 0)<b class="bg-red-800 text-white px-1">{{$propertie->num_pisos}}</b> @endif @if($general_characteristic->id==$gc && $gc == 7 && $propertie->niv_constr > 0)<b class="bg-red-800 text-white px-1"> {{$propertie->niv_constr}}</b> @endif @if($general_characteristic->id==$gc && $gc == 15 && $propertie->pisos_constr > 0)<b class="bg-red-800 text-white px-1"> {{$propertie->pisos_constr}}</b> @endif @endforeach</span>
-                </div>
-              @endforeach    
-            </div> 
-          </div>
-        </div>
-      @endif
-      @if( count(array_filter(explode(",", $propertie->listingenvironments)))>0 )
-        <div style="border: none" class="card my-4">
-          <div class="card-body" style="margin: -16px">
-            <h6 class="card-title text-danger">Ambientes</h6>
-            <div class="row" style="padding-left: 7px">
-              @foreach(array_filter(explode(",", $propertie->listingenvironments)) as $le)
-                <div class="col-lg-3 col-md-4 col-6 p-1">
-                  {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
-                  <span class="text-muted small">@foreach ($environments as $environment) @if($environment->id==$le) {{$environment->title}} @endif  @endforeach</span>
-                </div>
-              @endforeach    
-            </div> 
-          </div>
-        </div>
-      @endif
-      {{-- <a target="_blank" href="{{$propertie->ubication_url}}">Ver ubicación en Google Maps</a> --}}
     </div>
-  </div>
-  {{-- <div class="mx-5" id="map"></div> --}}
-  <div class="flex justify-center">
-    @if(Auth::user()->role == 'administrator')
-    <a class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" style="text-decoration: none;" href="{{ route('home.tw.edit', $propertie) }}">Editar Propiedad</a>
-    <button type="button" class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver Historial</button>
-    @endif
-    <button type="button" class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" data-bs-toggle="modal" data-bs-target="#modalSendEmail">Compartir</button>
-    <button type="button" class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" data-bs-toggle="modal" data-bs-target="#modalMap">Ver Mapa</button>
-  </div>
-</div>
+    </div>
+
+  </section>
+
+
 
 <!-- Modal -->
 <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
