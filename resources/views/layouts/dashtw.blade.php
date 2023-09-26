@@ -46,7 +46,7 @@
                 <a style="text-decoration: none !important" href="{{route('admin.properties')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/properties*') || (Request::is('admin/show-listing*') && Str::contains(URL::previous(), 'admin/properties'))) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Propiedades</span>
                 </a>
-                <a style="text-decoration: none !important" href="{{route('admin.history')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/history*') || (Request::is('admin/show-listing*') && Str::contains(URL::previous(), 'admin/properties'))) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <a style="text-decoration: none !important" href="{{route('admin.history')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/history*') || (Request::is('admin/history*') && Str::contains(URL::previous(), 'admin/properties'))) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Historial</span>
                 </a>
             @if(Auth::user()->role!="administrator")
