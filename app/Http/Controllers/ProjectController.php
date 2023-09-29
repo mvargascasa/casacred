@@ -14,7 +14,6 @@ class ProjectController extends Controller
         ->get('https://casapromotora.com/api/projects');
 
         $projects = $response->json();
-        dd($projects);
 
         return view('admin.api-projects.index', compact('projects'));
 
