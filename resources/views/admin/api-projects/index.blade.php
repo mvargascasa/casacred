@@ -1,7 +1,7 @@
 @extends('layouts.dashtw')
 
 @section('firstscript')
-    
+    <title>Proyectos subidos en Casa Promotora</title>
 @endsection
 
 @section('content')
