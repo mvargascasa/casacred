@@ -9,7 +9,7 @@
         <section class="container mx-auto">
             <h2 class="text-3xl mt-4">{{ $project['project_name'] }}</h2>
 
-            <section class="grid grid-cols-5 gap-4 mt-5">
+            <section class="grid grid-cols-4 gap-4 mt-5">
                 @foreach (array_filter(explode("|", $project['images'])) as $image)
                     <div>
                         <img src="https://casapromotora.com/uploads/projects/300/{{$image}}" alt="">
