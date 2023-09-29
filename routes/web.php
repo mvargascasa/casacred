@@ -13,6 +13,7 @@ use App\Http\Controllers\WebController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ModalController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WebController::class,'home'])->name('web.index');
@@ -120,6 +121,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
 
     //ROUTE TO SHOW PROJECTS TO CASA PROMOTORA
     Route::get('projects', [ProjectController::class, 'index'])->name('admin.api.projects.index');
+    Route::get('project/{id}', [ProjectController::class, 'projectById'])->name('admin.api.project.show');
+
+    //Route::get('modals', [ModalController::class, 'index'])->name('admin.modals.index');
 
     //Route::get('listings', [ListingController::class,'listings'])->name('admin.listings');
     //Route::get('listingadd', [ListingController::class,'create'])->name('admin.listingadd');
