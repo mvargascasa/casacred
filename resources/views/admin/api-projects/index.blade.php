@@ -9,7 +9,7 @@
         <section class="container mx-auto">
             <h2 class="text-3xl pt-4 pb-3">Proyectos Casa Promotora</h2>
             <p class="pb-5">Esta visualizando los proyectos de <span class="font-semibold">casapromotora.com</span>.  Para poder editarlos ingrese al <a class="text-blue-500 font-semibold" href="https://casapromotora.com/login" target="_blank">sitio web</a> como administrador </p>
-            <section class="grid grid-cols-4 gap-x-4 gap-y-4">
+            <section class="grid grid-cols-4 gap-4">
                 @foreach ($projects as $project)
                 <div class="div">
                     <div class="max-w-sm rounded overflow-hidden shadow-lg">
