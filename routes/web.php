@@ -12,10 +12,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WebController::class,'home'])->name('web.index');
-Route::get('/propiedades/{code?}/{slug?}/{ubication?}/{bedrooms?}/{bathrooms?}/{garage?}/{price?}', [WebController::class,'index'])->name('web.propiedades');
+Route::get('/propiedades/{code?}/{slug?}', [WebController::class,'index'])->name('web.propiedades');
 //NUEVAS RUTAS
 Route::get('/home', [WebController::class, 'home'])->name('web.home');
 Route::get('/creditos', [WebController::class, 'creditos'])->name('web.creditos');
@@ -116,7 +117,10 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
     Route::get('properties-change-price', [AdminController::class, 'propertieschangeprice'])->name('admin.properties.change.price');
 
     Route::get('history', [HistoryController::class, 'index'])->name('admin.history');
-    
+
+    //ROUTE TO SHOW PROJECTS TO CASA PROMOTORA
+    Route::get('projects', [ProjectController::class, 'index'])->name('admin.api.projects.index');
+
     //Route::get('listings', [ListingController::class,'listings'])->name('admin.listings');
     //Route::get('listingadd', [ListingController::class,'create'])->name('admin.listingadd');
     //Route::post('listingstore', [ListingController::class,'store'])->name('admin.listingstore');
