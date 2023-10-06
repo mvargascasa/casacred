@@ -120,6 +120,8 @@ if(strpos($actual_link, 'localhost') === false){
     gtag('js', new Date());
 
     gtag('config', 'AW-11250334200');
+
+    console.log('script analytics conversions loaded');
   }, 3000);
 </script>
 
