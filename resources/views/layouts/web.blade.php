@@ -111,13 +111,16 @@ if(strpos($actual_link, 'localhost') === false){
 </script>
 
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11250334200"></script>
+<script id="script-analytics-conversions"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  setTimeout(() => {
+    document.getElementById('script-analytics-conversions').src="https://www.googletagmanager.com/gtag/js?id=AW-11250334200";
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'AW-11250334200');
+    gtag('config', 'AW-11250334200');
+  }, 3000);
 </script>
 
 <!-- Facebook Pixel Code -->
