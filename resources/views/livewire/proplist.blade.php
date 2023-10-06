@@ -162,7 +162,7 @@
             @php
               $urlwpp = "https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *" . strtoupper($listing->listing_title) . "*. Código: *" . $listing->product_code ."*";
             @endphp
-            <a target="_blank" onclick="return gtag_report_conversion('{{ $urlwpp }}')" href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *{{strtoupper($listing->listing_title)}}*. Código: *{{$listing->product_code}}*" class="btn btn-success btn-sm rounded-circle shadow-sm" title="Contactar por Whatsapp"><i class="fab fa-whatsapp"></i></a>
+            <a onclick="return gtag_report_conversion('{{ $urlwpp }}')" href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *{{strtoupper($listing->listing_title)}}*. Código: *{{$listing->product_code}}*" class="btn btn-success btn-sm rounded-circle shadow-sm" title="Contactar por Whatsapp"><i class="fab fa-whatsapp"></i></a>
             {{-- @else --}}
             {{-- <a href="tel:+593983849073  " class="btn btn-info btn-sm px-1 rounded-pill" style="font-size:13px;"><i class="fas fa-phone"></i> Ecuador</a>
             <a href="tel:+17186903740" class="btn btn-info btn-sm px-1 rounded-pill" style="font-size:13px;"><i class="fas fa-phone"></i> Estados Unidos</a>
