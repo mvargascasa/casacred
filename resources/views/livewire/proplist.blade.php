@@ -46,7 +46,7 @@
                   @if($ismobile)
                   <a href="{{route('web.detail', $listing->slug)}}">
                     <div class="d-flex justify-content-center" style="width: 100%">
-                      <img width="400px" height="250px" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.strtok($listing->images, "|"))) {{asset('uploads/listing/thumb/600/'.strtok($listing->images, '|'))}} @else {{asset('uploads/listing/600/'.strtok($listing->images, '|'))}} @endif" class="d-block" alt="{{$listing->listing_title}}">
+                      <img width="400px" height="250px" src="@if(file_exists(public_path().'/uploads/listing/thumb/300/'.strtok($listing->images, "|"))) {{asset('uploads/listing/thumb/300/'.strtok($listing->images, '|'))}} @else {{asset('uploads/listing/300/'.strtok($listing->images, '|'))}} @endif" class="d-block" alt="{{$listing->listing_title}}">
                     </div>
                   </a>
                   @else
@@ -67,7 +67,7 @@
                         @endphp
                           @foreach(array_filter(explode("|", $listing->images)) as $img)              
                             <div class="carousel-item @if($iiListing==0) active @endif">
-                              <img loading="lazy" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.$img)) {{url('uploads/listing/thumb/600',$img)}} @else {{url('uploads/listing/600',$img)}} @endif" class="d-block w-100" alt="{{$listing->listing_title}}-{{$iiListing++}}">
+                              <img loading="lazy" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.$img)) {{url('uploads/listing/thumb/600',$img)}} @else {{url('uploads/listing/600',$img)}} @endif" class="" alt="{{$listing->listing_title}}-{{$iiListing++}}">
                               {{-- @if(@getimagesize($imageVerification)) {{url('uploads/listing/thumb/600',$img)}} @else {{url('uploads/listing/600',$img)}} @endif --}}
                             </div>
                           @endforeach
@@ -159,7 +159,10 @@
             <button class="btn btn-danger btn-sm px-2 d-sm-inline-block rounded-pill shadow-sm" 
             data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('COD {{$listing->product_code}}')" title="Solicitar Información">Contactar</button>
             {{-- <button class="btn btn-danger btn-sm rounded-circle" title="Agendar una Cita"><i class="fas fa-calendar"></i></button> --}}
-            <a target="_blank" href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *{{strtoupper($listing->listing_title)}}*. Código: *{{$listing->product_code}}*" class="btn btn-success btn-sm rounded-circle shadow-sm" title="Contactar por Whatsapp"><i class="fab fa-whatsapp"></i></a>
+            @php
+              $urlwpp = "https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *" . strtoupper($listing->listing_title) . "*. Código: *" . $listing->product_code ."*";
+            @endphp
+            <a target="_blank" onclick="return gtag_report_conversion('{{ $urlwpp }}')" href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *{{strtoupper($listing->listing_title)}}*. Código: *{{$listing->product_code}}*" class="btn btn-success btn-sm rounded-circle shadow-sm" title="Contactar por Whatsapp"><i class="fab fa-whatsapp"></i></a>
             {{-- @else --}}
             {{-- <a href="tel:+593983849073  " class="btn btn-info btn-sm px-1 rounded-pill" style="font-size:13px;"><i class="fas fa-phone"></i> Ecuador</a>
             <a href="tel:+17186903740" class="btn btn-info btn-sm px-1 rounded-pill" style="font-size:13px;"><i class="fas fa-phone"></i> Estados Unidos</a>

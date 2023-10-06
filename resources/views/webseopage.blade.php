@@ -11,6 +11,24 @@
   .btncall{color: #000000 !important;}.btncall:hover{color: #ffffff !important}
   .services{max-width: 100%; height: auto;}
 </style>
+
+<!-- Event snippet for Botón Whatshap Casa credito conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-11250334200/2UCHCPDGr-kYEPjzyfQp',
+        'event_callback': callback
+    });
+    return false;
+  }
+</script>
+
 @livewireStyles
 @endsection
 

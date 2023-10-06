@@ -106,6 +106,8 @@ if(strpos($actual_link, 'localhost') === false){
 
     gtag('config', 'AW-806267889'); //    Adwords
     gtag('config', 'UA-124437679-1');//  Analytics 
+
+    gtag('config', 'AW-11250334200');
   }, 3500);
 </script>
 
