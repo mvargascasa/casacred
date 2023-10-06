@@ -107,8 +107,17 @@ if(strpos($actual_link, 'localhost') === false){
     gtag('config', 'AW-806267889'); //    Adwords
     gtag('config', 'UA-124437679-1');//  Analytics 
 
-    gtag('config', 'AW-11250334200');
   }, 3500);
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11250334200"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-11250334200');
 </script>
 
 <!-- Facebook Pixel Code -->
