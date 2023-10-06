@@ -111,18 +111,13 @@ if(strpos($actual_link, 'localhost') === false){
 </script>
 
 <!-- Google tag (gtag.js) -->
-<script id="script-analytics-conversions"></script>
+<script defer src="https://www.googletagmanager.com/gtag/js?id=AW-11250334200"></script>
 <script>
-  setTimeout(() => {
-    document.getElementById('script-analytics-conversions').src="https://www.googletagmanager.com/gtag/js?id=AW-11250334200";
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
     gtag('config', 'AW-11250334200');
-
-    console.log('script analytics conversions loaded');
-  }, 3000);
 </script>
 
 <!-- Facebook Pixel Code -->
