@@ -169,6 +169,8 @@ Route::get('/guayaquil', [WebController::class, 'index'])->name('web.guayaquil')
 Route::post('/landing/leadcredito', [LandingController::class, 'sendleadcredito'])->name('web.lead.credito');
 Route::get('/landing/solicite-su-credito', [LandingController::class, 'credito'])->name('web.landing.credito');
 
+Route::get('/thank', function(){return view('thank');})->name('thank');
+
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //    return view('dashboard');
 //})->name('dashboard');
