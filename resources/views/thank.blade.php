@@ -3,12 +3,19 @@
 @section('header')
     <title>Gracias por enviar su información | Casa Crédito</title>
     <meta name="description" content="En Casa Crédito contamos con un amplio catálogo de propiedades. Visite nuestro portal web o nuestras redes sociales para más información ✅">
+    <meta name="robots" content="noindex">
+
+    <style>
+        @media screen and (max-width: 580px){
+            .card-info{width: 100% !important}
+        }
+    </style>
 @endsection
 
 @section('content')
 <section class="container">
     <section class="d-flex justify-content-center py-5">
-        <section class="d-flex align-items-center justify-content-center py-5 bg-white shadow px-5 w-50">
+        <section class="d-flex align-items-center justify-content-center py-5 bg-white shadow px-5 w-50 card-info">
             <div class="text-center">
                 <img src="{{ asset('img/email_726623.png') }}" alt="">
                 <p class="font-weight-bold mt-4">GRACIAS POR ENVIAR SU INFORMACIÓN</p>
@@ -18,7 +25,7 @@
         </section>
     </section>
     <section>
-        <section class="bg-danger text-white d-flex align-items-center justify-content-center pt-4 pb-1">
+        <section class="bg-danger text-white d-flex align-items-center justify-content-center pt-4 pb-1 px-4">
             <p style="font-size: large">¿Desea saber más información? Visite nuestras <span class="font-weight-bold">redes sociales</span> o visite nuestro <span class="font-weight-bold">sitio web</span></p>
         </section>
     </section>
