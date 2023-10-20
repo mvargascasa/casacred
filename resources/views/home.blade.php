@@ -511,10 +511,10 @@
           <div data-aos="zoom-in-right" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-3 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
-                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="{{ asset('/img/adra_50.webp') }}" class="card-img-top" alt="Departamentos de Venta en Cuenca Ecuador - Proyecto Adra">
+                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="https://casapromotora.com/uploads/projects/300/img-rubik-64d418d009c2e.png" class="card-img-top" alt="Departamentos de Venta en Cuenca Ecuador">
                   <div class="middle">
                     <div class="link">
-                      <a href="https://casacreditopromotora.com/proyectos/departamentos/adra">Ver proyecto</a>
+                      <a href="https://casapromotora.com/proyectos/departamentos/rubik">Ver proyecto</a>
                     </div>
                   </div>
                 </div>
@@ -522,19 +522,19 @@
                     Departamentos
                   </div>
                   <div class="card-body">
-                    <p style="font-size: 12px; margin-bottom: 6px" class="card-text fw-bold">Edificio Vista Linda, Cuenca</p>
-                    <h3 class="h5">Adra</h3>
-                    <p style="font-size: 13px" class="card-title text-muted">Desde USD 99.000</p>
+                    <p style="font-size: 12px; margin-bottom: 6px" class="card-text fw-bold">Ordoñez Lasso, Cuenca</p>
+                    <h3 class="h5">Rubik</h3>
+                    <p style="font-size: 13px" class="card-title text-muted">Desde USD 120.000</p>
                   </div>
                 </div>
           </div>
           <div data-aos="zoom-in" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-3 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
-                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="{{ asset('/img/futuranarancay_50.webp') }}" class="card-img-top" alt="Departamentos de Venta en Cuenca Ecuador - Futura Narancay">
+                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="https://casapromotora.com/uploads/projects/300/img-seascape-64b1c3e0c200d.webp" class="card-img-top" alt="Departamentos de Venta en Cuenca Ecuador">
                     <div class="middle">
                       <div class="link">
-                        <a href="https://casacreditopromotora.com/proyectos/departamentos/futura-narancay">Ver proyecto</a>
+                        <a href="https://casapromotora.com/uploads/projects/300/img-seascape-64b1c3e0c200d.webp">Ver proyecto</a>
                       </div>
                     </div>
                 </div>
@@ -542,29 +542,29 @@
                     Departamentos
                   </div>
                   <div class="card-body">
-                    <p style="font-size: 12px; margin-bottom: 6px" class="card-text fw-bold">Narancay, Cuenca</p>
-                    <h3 class="h5">Futura Narancay</h3>
-                    <p style="font-size: 13px" class="card-title text-muted">Desde USD 78.000</p>
+                    <p style="font-size: 12px; margin-bottom: 6px" class="card-text fw-bold">Punta Barandúa</p>
+                    <h3 class="h5">Seascape</h3>
+                    <p style="font-size: 13px" class="card-title text-muted">Desde USD 125.000</p>
                   </div>
                 </div>
           </div>
           <div data-aos="zoom-in-left" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
               <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem; height: 21rem">
                 <div class="img-container">
-                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="{{ asset('/img/toscana_50.webp') }}" class="card-img-top" alt="Condominios, Casas nuevas de venta en Cuenca - Proyecto Toscana">
+                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="https://casapromotora.com/uploads/projects/300/img-zante-64e37ed043357.jpg" class="card-img-top" alt="Condominios, Casas nuevas de venta en Cuenca - Proyecto Toscana">
                     <div class="middle">
                       <div class="link">
-                        <a href="https://casacreditopromotora.com/proyectos/condominios/toscana">Ver proyecto</a>
+                        <a href="https://casapromotora.com/proyectos/departamentos/zante">Ver proyecto</a>
                       </div>
                     </div>
                 </div>  
                   <div class="position-absolute" style="top: 5px; left: 5px; background-color: #2c314484; padding: 5px; font-size: 11px; border-radius: 7px; color: #ffffff;">
-                    Condominios
+                    Departamentos
                   </div>
                   <div class="card-body">
-                    <p style="font-size: 12px; margin-bottom: 6px" class="card-text fw-bold">Challuabamba, Cuenca</p>
-                    <h3 class="h5">Toscana</h3>
-                    <p style="font-size: 13px" class="card-title text-muted">Desde USD 150.000</p>
+                    <p style="font-size: 12px; margin-bottom: 6px" class="card-text fw-bold">Isla Mocolí</p>
+                    <h3 class="h5">Zante</h3>
+                    <p style="font-size: 13px" class="card-title text-muted">Desde USD 280.000</p>
                   </div>
                 </div>
           </div>
