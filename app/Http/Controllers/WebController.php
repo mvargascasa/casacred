@@ -18,7 +18,7 @@ class WebController extends Controller
 {
     use SendEmailTrait;
 
-    public function index(Request $request, ?string $code = null, ?string $slug = null, ?string $ubication = null, ?string $category = null, ?string $type = null, ?string $state = null, ?string $city = null){
+    public function index(Request $request, ?string $code = null, ?string $slug = null){
         
         if(isset($_SERVER['HTTP_USER_AGENT'])){
             $useragent= $_SERVER['HTTP_USER_AGENT'];
@@ -37,6 +37,8 @@ class WebController extends Controller
         $categories = DB::table('listing_status')->get();
 
         if(request()->segment(2)){
+
+            //return request()->segment(2);
             switch ($current_url) {
                 case 'casas-de-venta-en-ecuador':           $keywords = $keywordscas . ", venta casas ecuador, casas de venta ecuador, casas de venta en ecuador, casas en venta ecuador, casas en venta en ecuador"; break;
                 case 'departamentos-de-venta-en-ecuador':   $keywords = $keywordsdep . ", departamentos venta ecuador, departamentos de venta ecuador, departamentos de venta en ecuador, departamentos en venta ecuador, departamentos en venta en ecuador"; break;
@@ -347,9 +349,11 @@ class WebController extends Controller
         $header .= "Reply-To: ".'info@casacredito.com'."\r\n";
         $header .= "MIME-Version: 1.0\r\n";
         $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-        mail('mvargas@casacredito.com,info@casacredito.com','Lead CasaCredito: '.strip_tags($request->fname), $message, $header);
+        //mail('mvargas@casacredito.com,info@casacredito.com','Lead CasaCredito: '.strip_tags($request->fname), $message, $header);
         mail('sebas31051999@gmail.com', 'Lead CasaCredito: '.strip_tags($request->fname), $message, $header);
         //mvargas@casacredito.com,info@casacredito.com,ventas@casacredito.com
+
+        return redirect()->route('thank');
     }
 
     public function sendcite(Request $request){

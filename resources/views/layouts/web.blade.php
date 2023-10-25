@@ -111,8 +111,11 @@ if(strpos($actual_link, 'localhost') === false){
 </script>
 
 <!-- Google tag (gtag.js) -->
-<script defer src="https://www.googletagmanager.com/gtag/js?id=AW-11250334200"></script>
+<script id="script_analytics_nuevo"></script>
 <script>
+    setTimeout(() => {
+      document.getElementById('script_analytics_nuevo').src="https://www.googletagmanager.com/gtag/js?id=AW-11250334200";
+    }, 3000);
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
@@ -536,7 +539,8 @@ if(strpos($actual_link, 'localhost') === false){
           </button>
         </div>
         <div class="modal-body">
-            <form action="" id="mainFormLead">
+            <form action="{{ route('web.sendlead') }}" method="POST" id="mainFormLead">
+              @csrf
                 @include('z-form')
             </form>
         </div>
@@ -654,18 +658,21 @@ if(strpos($actual_link, 'localhost') === false){
       const modalAval = new bootstrap.Modal(document.getElementById('modalAval'));
     });
 
-    const sendFormLead = async() =>{
-
+    function sendFormLead(event){
+        event.preventDefault();
         if( document.getElementById('fname').value.length>2 && document.getElementById('tlf').value.length>6 ){
+          let form = document.getElementById('mainFormLead');
+          form.submit();
                 //myModal.hide();
-                $("#modalContact").modal('hide');
-                //moThank.show();
-                $("#modalThank").modal('toggle');
-                var dataForm = new FormData(document.getElementById('mainFormLead'));
-                const response = await fetch("{{route('web.sendlead')}}",
-                { body: dataForm, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}" }  })
-                let mensaje = await response.text();
-                console.log(mensaje);
+                // $("#modalContact").modal('hide');
+                // //moThank.show();
+                // $("#modalThank").modal('toggle');
+                // var dataForm = new FormData(document.getElementById('mainFormLead'));
+                // const response = await fetch("{{route('web.sendlead')}}",
+                // { body: dataForm, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}" }  })
+                // let mensaje = await response.text();
+                // console.log(mensaje);
+
         }else{
           alert('Complete el formulario para enviar información...')
         }
