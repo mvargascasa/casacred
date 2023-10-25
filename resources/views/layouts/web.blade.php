@@ -110,19 +110,6 @@ if(strpos($actual_link, 'localhost') === false){
   }, 3500);
 </script>
 
-<!-- Google tag (gtag.js) -->
-<script id="script_analytics_nuevo"></script>
-<script>
-    setTimeout(() => {
-      document.getElementById('script_analytics_nuevo').src="https://www.googletagmanager.com/gtag/js?id=AW-11250334200";
-    }, 3000);
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'AW-11250334200');
-</script>
-
 <!-- Facebook Pixel Code -->
 <script>
   setTimeout(() => {
