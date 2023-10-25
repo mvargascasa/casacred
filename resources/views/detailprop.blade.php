@@ -807,7 +807,8 @@
               <div class="formEmail rounded">
                 <div style="padding-top: 20px; padding-left: 15px; padding-right: 15px; padding-bottom: 15px;">
                   <p style="font-weight: 500">Quiero más información de esta propiedad</p>
-                  <form id="formDetailProp" class="inputs">
+                  <form action="{{ route('web.sendlead') }}" method="POST" id="formDetailProp" class="inputs">
+                    @csrf
                   <div class="mb-3 d-flex">
                     <input style="font-size: 12px" type="text" class="form-control mr-1" id="fname" name="fname" placeholder="Nombre">
                     <input style="font-size: 12px" type="text" class="form-control mr-1" id="flastname" name="flastname" placeholder="Apellido">
@@ -823,7 +824,7 @@
                     <textarea class="form-control" name="message" id="message" rows="4">Hola, me interesa este inmueble y quiero que me contacten. Gracias</textarea>
                   </div>
                   <div class="d-grid gap-2">
-                    <button id="btnEnviar" type="button" class="btn btn-block mb-1"  onclick="sendFormDetail({{$listing->product_code}}, this)">Enviar</button>
+                    <button id="btnEnviar" type="button" class="btn btn-block mb-1"  onclick="sendFormDetail({{$listing->product_code}}, event)">Enviar</button>
                     <a id="btnWhatsapp" target="_blank" class="btn btn-block" href="https://wa.me/+593983849073/?text=Me interesa esta propiedad con código: {{ $listing->product_code}}">Contactar por Whatsapp <i id="iconwpp" class="fab fa-whatsapp"></i></a>
                   </div>
                 </form>

@@ -677,29 +677,31 @@ if(strpos($actual_link, 'localhost') === false){
       document.getElementById('interestcite').value = interest;
     }
     
-    const sendFormDetail = async(codPro, element) =>{
+    const sendFormDetail = async(codPro, event) => {
+      event.preventDefault();
         if(document.getElementById('fname').value.length>3 && document.getElementById('flastname').value.length>2 && document.getElementById('tlf').value.length>7 && document.getElementById('email').value.length>12){
                 //document.getElementById('formMsjLead').classList.toggle('d-none');
                 //document.getElementById('thankMsjLead').classList.toggle('d-none');
                 document.getElementById('interestDetail').value = codPro;
-                var dataForm = new FormData(document.getElementById('formDetailProp'));
-                let icon = document.createElement('i');
-                icon.classList.add('fa', 'fa-spinner', 'fa-spin', 'ml-2');
-                element.appendChild(icon);
-                const response = await fetch("{{route('web.sendlead')}}",
-                { body: dataForm, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}" }  })
-                let status = await response.status;
-                if(status == 200){
-                  swal("Información Enviada!", "Un asesor lo contáctara en breve", "success");
-                  element.removeChild(icon);
-                  document.getElementById('fname').value = "";
-                  document.getElementById('flastname').value = "";
-                  document.getElementById('tlf').value = "";
-                  document.getElementById('email').value = "";
-                  document.getElementById('message').value = "Hola, me interesa este inmueble y quiero que me contacten. Gracias";
-                } else {
-                  swal("Algo salio mal!", "Por favor, recargue la página e intentelo de nuevo", "error");
-                }
+                let form = document.getElementById('formDetailProp');
+                form.submit();
+                // let icon = document.createElement('i');
+                // icon.classList.add('fa', 'fa-spinner', 'fa-spin', 'ml-2');
+                // element.appendChild(icon);
+                // const response = await fetch("{{route('web.sendlead')}}",
+                // { body: dataForm, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}" }  })
+                // let status = await response.status;
+                // if(status == 200){
+                //   swal("Información Enviada!", "Un asesor lo contáctara en breve", "success");
+                //   element.removeChild(icon);
+                //   document.getElementById('fname').value = "";
+                //   document.getElementById('flastname').value = "";
+                //   document.getElementById('tlf').value = "";
+                //   document.getElementById('email').value = "";
+                //   document.getElementById('message').value = "Hola, me interesa este inmueble y quiero que me contacten. Gracias";
+                // } else {
+                //   swal("Algo salio mal!", "Por favor, recargue la página e intentelo de nuevo", "error");
+                // }
         }else{
             alert('Complete los Campos')
         }
