@@ -72,8 +72,13 @@
                 <div class="px-2 py-2">
                 <div class="text-xs text-gray-500">{{$propertie->created_at->format('d-M-y')}}</div>
                 <div class="font-bold text-sm">{{ Str::limit($propertie->listing_title, 30, '...')}}</div>
+                @php
+                    $address = "";
+                    if($propertie->address) $address = $propertie->address;
+                    if($propertie->sector) $address = $propertie->sector;
+                @endphp
                 <p class="text-gray-700 text-base">
-                    @if(Str::contains($propertie->address, ',')){{ Str::limit($propertie->address, 30, '...')}} @else {{Str::limit($propertie->state . ', ' . $propertie->city . ', ' . $propertie->address, 30, '...') }} @endif
+                    @if(Str::contains($address, ',')){{ Str::limit($propertie->address, 30, '...')}} @else {{Str::limit($propertie->state . ', ' . $propertie->city . ', ' . $address, 30, '...') }} @endif
                 </p>
                 <p>@if(Auth::id()==123)<span style="font-size: 10px">{{$propertie->slug}}</span> <br>@endif</p>
                 </div>
