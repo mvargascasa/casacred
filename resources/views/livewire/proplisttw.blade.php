@@ -168,7 +168,7 @@
                         <img width="25px" src="{{asset('img/wpp_logo.png')}}" alt="">
                     </button> --}}
                     {{-- @if(Auth::user()->email == "developer2@casacredito.com" || Auth::user()->email == "info@casacredito.com" || Auth::user()->email == "seo@casacredito.com") --}}
-                    @if($propertie->status)
+                    @if($propertie->status && Auth::user()->email == "marketing@casacredito.com")
                         <a target="_blank" href="{{ route('web.detail', $propertie->slug) }}">
                             <img width="20px" title="Visualizar en el sitio web" src="{{ asset('img/redireccionar.png') }}" alt="">
                         </a>
