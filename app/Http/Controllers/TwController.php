@@ -64,8 +64,18 @@ class TwController extends Controller
             $optAttrib[$state->name] = ['data-id' => $state->id];
         }
         $cities = DB::table('info_cities')->where('state_id',$getCities)->get(); 
+
+        $optAttribSector = [];
+        $cityID = 0;
+        foreach($cities as $city){
+            if($listing->city == $city->name){ $cityID = $city->id;};
+            $optAttribSector[$city->name] = ['data-id' => $city->id];
+        }
+
+        $sectores = DB::table('info_sector')->where('city_id', $cityID)->get();
+
         return view('admin.listing.add-tw',compact('listing','benefits','services','types','categories',
-                    'tags','details','states','optAttrib','cities', 'isvalid', 'general_characteristics', 'environments'));
+                    'tags','details','states','optAttrib','cities', 'isvalid', 'general_characteristics', 'environments', 'sectores', 'optAttribSector'));
     } 
 
     

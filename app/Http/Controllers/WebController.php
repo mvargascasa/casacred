@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\SeoPage;
 use App\Models\Service;
 use App\Models\User;
+use App\Models\Sector;
 use App\Traits\SendEmailTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -289,9 +290,14 @@ class WebController extends Controller
     }
     
     public function getcities($id){
-            $cities = DB::table('info_cities')->where('state_id',$id)->get(); 
+            $cities = DB::table('info_cities')->where('state_id',$id)->get();
             return response()->json($cities);      
     }    
+
+    public function getsector($city_id){
+        $sectores = Sector::where('city_id', $city_id)->get();
+        return response()->json($sectores);
+    }
     
     public function notariausa(){
         return view('services.notariausa');

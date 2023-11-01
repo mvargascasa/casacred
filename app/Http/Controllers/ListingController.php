@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Sector;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +40,9 @@ class ListingController extends Controller
             $optAttrib[$state->name] = ['data-id' => $state->id];
         }
 
-        return view('admin.listing.add-tw',compact('benefits','services','types','categories','tags','details','states','optAttrib','lastcode', 'environments', 'general_characteristics'));
+        $optAttribSector = []; 
+
+        return view('admin.listing.add-tw',compact('benefits','services','types','categories','tags','details','states','optAttrib','lastcode', 'environments', 'general_characteristics', 'optAttribSector'));
     }   
     public function store(Request $request){
 
@@ -199,6 +202,10 @@ class ListingController extends Controller
             $listing->listing_description = $request->listing_description;
             $listing->listing_type = $request->listing_type;
             $listing->address = $request->address;
+
+            //save sector
+            $listing->sector = $request->sector;
+
             $listing->state = $request->state;
             $listing->city = $request->city;
             $listing->listingtype = $request->listingtype;
@@ -299,9 +306,20 @@ class ListingController extends Controller
             if($listing->state==$state->name){ $getCities=$state->id; }
             $optAttrib[$state->name] = ['data-id' => $state->id];
         }
-        $cities = DB::table('info_cities')->where('state_id',$getCities)->get(); 
+
+        $cities = DB::table('info_cities')->where('state_id',$getCities)->get();
+
+        $optAttribSector = [];
+        $cityID = 0;
+        foreach($cities as $city){
+            if($listing->city == $city->name){$cityID = $city->id;}
+            $optAttribSector[$city->name] = ['data-id' => $cityID];
+        }
+
+        $sectores = Sector::where('city_id', $cityID)->get();
+
         return view('admin.listing.add-tw',compact('listing','benefits','services','types','categories',
-                    'tags','details','states','optAttrib','cities', 'isvalid', 'environments', 'general_characteristics', 'isvalid'));
+                    'tags','details','states','optAttrib','cities', 'isvalid', 'environments', 'general_characteristics', 'isvalid', 'sectores', 'optAttribSector'));
     } 
 
     public function update(Request $request, Listing $listing){

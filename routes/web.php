@@ -28,6 +28,7 @@ Route::post('/send-lead-contact', [WebController::class, 'sendLeadContact'])->na
 Route::get('/equipo', [TeamController::class, 'index'])->name('team.index');
 Route::get('/propiedad/{listing:slug}', [WebController::class,'detail'])->name('web.detail');
 Route::get('/getcities/{idState}', [WebController::class,'getcities'])->name('web.getcities');
+Route::get('/getsector/{city_id}', [WebController::class, 'getsector'])->name('web.getsector');
 Route::get('/getstate/{city}', [WebController::class, 'getstatebycity'])->name('web.getstate');
 Route::get('/getstates/{idCountry}', [WebController::class, 'getstates'])->name('web.states');
 Route::get('/nuestros-servicios', [WebController::class,'serviciosall'])->name('web.nuestros-servicios');

@@ -356,12 +356,19 @@
                     </div>
                     <div>          
                         {!! Form::label('city', 'Ciudad', ['class' => 'font-semibold']) !!}
-                        {!! Form::select('city', isset($cities) ? $cities->pluck('name','name')->toArray() : [''=>'Selecione'] , null, ['id'=>'city','class' => $inputs ]) !!}
+                        {!! Form::select('city', isset($cities) ? $cities->pluck('name','name')->toArray() : [''=>'Selecione'] , null, ['id'=>'city','class' => $inputs ], $optAttribSector) !!}
                     </div>
-                    <div>
-                        {!! Form::label('address', 'Sector (Ej: Ricaurte) ', ['class' => 'font-semibold']) !!}
-                        {!! Form::text('address', null, ['class' => $inputs]) !!}
-                    </div>
+                    @if(isset($listing) && $listing->address != null)
+                        <div>
+                            {!! Form::label('address', 'Sector (Ej: Ricaurte) ', ['class' => 'font-semibold']) !!}
+                            {!! Form::text('address', null, ['class' => $inputs]) !!}
+                        </div>
+                    @else
+                        <div>
+                            {!! Form::label('sector', 'Sector', ['class' => 'font-semibold']) !!}
+                            {!! Form::select('sector', isset($sectores) ? $sectores->pluck('name', 'name')->toArray() : [''=>'Seleccione'], null, ['id' => 'sector', 'class' => $inputs]) !!}
+                        </div>
+                    @endif
                 </div>
                 <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6 sm:grid-cols-4">
                     <div>          
@@ -1038,7 +1045,11 @@
                     let listing_description = document.getElementById('listing_description').value;
                     let state = document.getElementById('state').value;
                     let city = document.getElementById('city').value;
-                    let address = document.getElementById('address').value;
+                    let address = "";
+                    let address_aux = document.getElementById('address');
+                    let sector_aux = document.getElementById('sector');
+                    if(address_aux) address = address_aux.value;
+                    else if(sector_aux) address = sector_aux.value;
                     let construction_area = document.getElementById('construction_area').value;
                     let land_area = document.getElementById('land_area').value;
                     let Front = document.getElementById('Front').value;
@@ -1274,6 +1285,7 @@
         });
         const selState = document.getElementById('state');
         const selCities= document.getElementById('city');
+        const selSector = document.getElementById('sector');
         
         selState.addEventListener("change", async function() {
             selCities.options.length = 0;
@@ -1281,13 +1293,40 @@
             const response = await fetch("{{url('getcities')}}/"+id );
             const cities = await response.json(); 
 
+            let firstopt = document.createElement('option');
+            firstopt.appendChild( document.createTextNode('Seleccione') );
+            firstopt.value = "";
+            selCities.appendChild(firstopt);
+
             cities.forEach(city => {
                 var opt = document.createElement('option');
                 opt.appendChild( document.createTextNode(city.name) );
                 opt.value = city.name;
+                opt.setAttribute('data-id', city.id);
                 selCities.appendChild(opt);
             });
         });
+
+        if(selSector){
+            selCities.addEventListener("change", async function(){
+                selSector.options.length = 0;
+                let id = selCities.options[selCities.selectedIndex].dataset.id;
+                const response = await fetch("{{ url('getsector') }}/"+id);
+                const sectores = await response.json();
+
+                let firstopt = document.createElement('option');
+                firstopt.appendChild( document.createTextNode('Seleccione') );
+                firstopt.value = '';
+                selSector.appendChild(firstopt);
+
+                sectores.forEach(sector => {
+                    let opt = document.createElement('option');
+                    opt.appendChild( document.createTextNode(sector.name) );
+                    opt.value = sector.name;
+                    selSector.appendChild(opt);
+                });
+            });
+        }
 
         const selOptionsDetails = @json($details);
         
