@@ -131,7 +131,9 @@ class Proplisttw extends Component
         if($this->code){
             $propertie_to_similar = Listing::where('product_code', 'LIKE', "%$this->code%")->first();
             if($propertie_to_similar){
-                $address = $propertie_to_similar->address;
+                $address = "";
+                if($propertie_to_similar->address != null) $address = $propertie_to_similar->address;
+                if($propertie_to_similar->sector != null) $address = $propertie_to_similar->sector;
                 if(str_contains($address, ",")){
                     $separate_address = explode(",", $address);
                     $address = end($separate_address);
