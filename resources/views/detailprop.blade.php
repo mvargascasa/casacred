@@ -843,7 +843,7 @@
             </div> --}}
 
             {{-- calcular credito --}}
-            @if(!$mobile)
+            {{-- @if(!$mobile)
               @if($listing->listingtypestatus != "alquilar")
               <div class="container mt-3">
                 <div class="border rounded py-3">
@@ -869,7 +869,7 @@
                 </div>
               </div>
               @endif
-            @endif
+            @endif --}}
 
             @if($user->profile_photo_path != null && $user->status == 1)
             <div class="container">
