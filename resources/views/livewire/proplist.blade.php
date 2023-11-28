@@ -67,7 +67,7 @@
                         @endphp
                           @foreach(array_filter(explode("|", $listing->images)) as $img)              
                             <div class="carousel-item @if($iiListing==0) active @endif">
-                              <img loading="lazy" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.$img)) {{url('uploads/listing/thumb/600',$img)}} @else {{url('uploads/listing/600',$img)}} @endif" class="" alt="{{$listing->listing_title}}-{{$iiListing++}}">
+                              <img loading="lazy" class="img-fluid" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.$img)) {{url('uploads/listing/thumb/600',$img)}} @else {{url('uploads/listing/600',$img)}} @endif" class="" alt="{{$listing->listing_title}}-{{$iiListing++}}">
                               {{-- @if(@getimagesize($imageVerification)) {{url('uploads/listing/thumb/600',$img)}} @else {{url('uploads/listing/600',$img)}} @endif --}}
                             </div>
                           @endforeach
