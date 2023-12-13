@@ -57,8 +57,8 @@
                             <img width="70px" src="{{ asset('img/logo-footer.png') }}" alt="">
                         </div>
                     @else
-                        <div class="px-2 py-1">
-                            <img width="70px" src="{{ asset('img/logo_actualizado2.png') }}" alt="">
+                        <div>
+                            <img width="90px" src="{{ asset('img/LOGO CASA CREDITO.png') }}" alt="">
                         </div>
                     @endif
                 </div>
