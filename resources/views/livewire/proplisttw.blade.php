@@ -54,11 +54,11 @@
                 <div class="absolute right-0 top-0">
                     @if($propertie->property_by == "Housing")
                         <div style="background-color: #1C2444" class="px-2 py-1">
-                            <img width="50px" src="{{ asset('img/logo-footer.png') }}" alt="">
+                            <img width="70px" src="{{ asset('img/logo-footer.png') }}" alt="">
                         </div>
                     @else
                         <div class="px-2 py-1">
-                            <img width="50px" src="{{ asset('img/logo_actualizado2.png') }}" alt="">
+                            <img width="70px" src="{{ asset('img/logo_actualizado2.png') }}" alt="">
                         </div>
                     @endif
                 </div>
