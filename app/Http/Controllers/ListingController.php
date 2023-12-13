@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Route;
 
 class ListingController extends Controller
 {
@@ -21,6 +22,9 @@ class ListingController extends Controller
     }
     
     public function create(){
+
+        $currentRouteName = Route::currentRouteName();
+        
         $lastcode = Listing::where('product_code','!=','')->orderBy('product_code','desc')->first();
         $benefits = DB::table('listing_benefits')->get();  
         $services = DB::table('listing_services')->get();  
@@ -42,7 +46,7 @@ class ListingController extends Controller
 
         $optAttribSector = []; 
 
-        return view('admin.listing.add-tw',compact('benefits','services','types','categories','tags','details','states','optAttrib','lastcode', 'environments', 'general_characteristics', 'optAttribSector'));
+        return view('admin.listing.add-tw',compact('benefits','services','types','categories','tags','details','states','optAttrib','lastcode', 'environments', 'general_characteristics', 'optAttribSector', 'currentRouteName'));
     }   
     public function store(Request $request){
 
@@ -258,6 +262,9 @@ class ListingController extends Controller
             //$listing->locked = true;
             if(!$listing->locked && ($listing->owner_name != null || $request->owner_name != null) && ($listing->identification != null || $request->identification != null) && ($listing->phone_number != null || $request->phone_number != null) && ($listing->owner_email != null || $request->owner_email != null) && ($listing->owner_address != null || $request->owner_address != null)) $listing->locked = true;
             
+            if($request->currentUrl == "admin.housing.property.create") $listing->property_by = 'Housing';
+            else $listing->property_by = 'Casa Credito';
+
             $listing->save();
         }
 
@@ -285,6 +292,7 @@ class ListingController extends Controller
         // if(Auth::user()->role != "administrator" && $listing->user_id!= Auth::id()){
         //     return redirect()->route('admin.listings.show',compact('listing'));
         // }
+        $currentRouteName = Route::currentRouteName();
 
         $isvalid = $this->iscomplete($listing);
 
@@ -319,7 +327,7 @@ class ListingController extends Controller
         $sectores = Sector::where('city_id', $cityID)->get();
 
         return view('admin.listing.add-tw',compact('listing','benefits','services','types','categories',
-                    'tags','details','states','optAttrib','cities', 'isvalid', 'environments', 'general_characteristics', 'isvalid', 'sectores', 'optAttribSector'));
+                    'tags','details','states','optAttrib','cities', 'isvalid', 'environments', 'general_characteristics', 'isvalid', 'sectores', 'optAttribSector', 'currentRouteName'));
     } 
 
     public function update(Request $request, Listing $listing){
@@ -574,7 +582,11 @@ class ListingController extends Controller
         //$messages = array_merge($messages, ['alert'=>'Hola Mundo']);
 
         if(isset($request->edit)){
-            return redirect()->route('admin.listings.edit',compact('listing'))->with($messages);
+            if($listing->property_by == "Housing"){
+                return redirect()->route('admin.housing.property.edit', compact('listing'))->with($messages);
+            } else {
+                return redirect()->route('admin.listings.edit',compact('listing'))->with($messages);
+            }
         } else {
             return response()->json([
                 'success' => true,
@@ -663,10 +675,19 @@ class ListingController extends Controller
         if($listing->address) $address = $listing->address;
         if($listing->sector) $address = $listing->sector;
 
-        if($listing->listing_type == null || $listing->owner_name == null || $listing->identification == null || $listing->phone_number == null || $listing->owner_email == null || $listing->owner_address == null || $listing->listing_title == null || $listing->listing_description == null || $listing->state == null || $listing->city == null || $address == null || $listing->construction_area == null || $listing->land_area == null || $listing->Front == null || $listing->Fund == null || $listing->property_price == null || $listing->property_price_min == null || $listing->lat == null || $listing->lng == null || $listing->cadastral_key == null || $listing->listyears === null || $listing->listinglistservices == "" || $listing->listinggeneralcharacteristics == "" || $listing->listingenvironments == "" || $listing->listingcharacteristic == "" || $listing->aval == null || $listing->images == "") $isvalid = false;    
+        if($listing->listing_type == null || $listing->owner_name == null || $listing->identification == null || $listing->phone_number == null || $listing->owner_email == null || $listing->owner_address == null || $listing->listing_title == null || $listing->listing_description == null || $listing->state == null || $listing->city == null || $address == null || $listing->construction_area == null || $listing->land_area == null || $listing->Front == null || $listing->Fund == null || $listing->property_price == null || $listing->property_price_min == null || $listing->lat == null || $listing->lng == null || $listing->listyears === null || $listing->listinglistservices == "" || $listing->listinggeneralcharacteristics == "" || $listing->listingenvironments == "" || $listing->listingcharacteristic == "" || $listing->aval == null || $listing->images == "") $isvalid = false;    
         $aux_heading_details = json_decode($listing->heading_details);
         if($aux_heading_details[0][0] == null || count($aux_heading_details[0]) <= 1) $isvalid = false;
-        if($listing->mortgaged && ($listing->entity_mortgaged == null || $listing->mount_mortgaged == null || $listing->warranty == null)) $isvalid = false;
+        
+        if($listing->property_by != "Housing"){
+            if($listing->cadastral_key == null) $isvalid = false;
+            else $isvalid = true;
+        }
+
+        if($listing->property_by != "Housing"){
+            if($listing->mortgaged && ($listing->entity_mortgaged == null || $listing->mount_mortgaged == null || $listing->warranty == null)) $isvalid = false;
+        }
+        
         if($listing->listing_type == 2 && $listing->num_factura == null) $isvalid = false;
         
         return $isvalid;

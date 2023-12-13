@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\Housing\PropertyController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ModalController;
 use Illuminate\Support\Facades\Route;
@@ -133,7 +134,11 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
     //Route::get('listingshow/{listing}', [ListingController::class,'show'])->name('admin.listingshow');
     //Route::put('listingupdate/{listing}', [ListingController::class,'update'])->name('admin.listingupdate');
     //Route::delete('listingdelete/{listing}', [ListingController::class,'delete'])->name('admin.listingdelete');
-    
+
+    //HOUSING
+    Route::get('housing', [PropertyController::class, 'index'])->name('housing.index');
+    Route::get('housing/property/create', [ListingController::class, 'create'])->name('admin.housing.property.create');
+    Route::get('housing/property/edit/{listing}', [TwController::class, 'edit'])->name('admin.housing.property.edit');
 });
 
 //BLOG

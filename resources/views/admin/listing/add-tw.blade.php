@@ -94,11 +94,19 @@
             </span>
         </div>
     @endif
+
+    @php
+        //to change color to checkboxes
+        $bgcheckbox = 'text-red-600';
+        if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit"){
+            $bgcheckbox = 'text-blue-900';
+        }
+    @endphp
     
     @if(isset($listing->id))
     <div>
         <div class="flex">
-            <h2 class="text-lg font-semibold text-red-700">EDITAR PROPIEDAD <span style="color:darkgray"> Creado: {{$listing->created_at->format('d M y')}} ({{$listing->user->name??'User'}})</span></h2>
+            <h2 class="text-lg font-semibold @if($currentRouteName == "admin.housing.property.edit") text-blue-900 @else text-red-700 @endif">EDITAR PROPIEDAD <span style="color:darkgray"> Creado: {{$listing->created_at->format('d M y')}} ({{$listing->user->name??'User'}})</span></h2>
             @if(Auth::user()->role == "administrator" && $listing->locked)
                 <form action="{{route('admin.listings.unlocked', $listing->id)}}" method="POST">
                     @csrf
@@ -126,9 +134,11 @@
 
     {!! Form::model($listing, ['route' => ['admin.listings.update',$listing->id],'method' => 'PUT', 'enctype' => 'multipart/form-data', 'id' => 'formsave']) !!}
     @else
-    <h2 class="text-lg font-semibold text-red-700">NUEVA PROPIEDAD</h2>
+    <h2 class="text-lg font-semibold @if($currentRouteName == "admin.housing.property.create") text-blue-800 @else text-red-700 @endif">NUEVA PROPIEDAD EN @if($currentRouteName == "admin.housing.property.create") HOUSING RENT @endif</h2>
     {!! Form::open(['route' => 'admin.listings.store','enctype' => 'multipart/form-data', 'id' => 'formsave']) !!}
     @endif
+
+    {!! Form::hidden('currentUrl', $currentRouteName) !!}
 
     @if(Auth::user()->role != "administrator")
         @if(isset($listing->status) && $listing->status == "0")
@@ -141,8 +151,8 @@
     @endif
 
     <hr class="my-4">
-    @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "home.tw.create")
-    <div class="grid grid-cols-4 gap-x-2">
+    @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "home.tw.create" || Route::current()->getName() == "admin.housing.property.create")
+    <div class="grid grid-cols-3 gap-x-2 items-center justify-center">
         <div>
             <div>
                 <span class="font-semibold">Paso 1</span>
@@ -155,27 +165,27 @@
                 <div id="paso2" class="bg-gray-500" style="width: auto; height: 15px;"></div>
             </div>
         </div>
+        {{-- <div>
+            <div>
+                <span class="font-semibold">Paso 3</span>
+                <div id="paso3" class="bg-gray-500" style="width: auto; height: 15px;"></div>
+            </div>
+        </div> --}}
         <div>
             <div>
                 <span class="font-semibold">Paso 3</span>
                 <div id="paso3" class="bg-gray-500" style="width: auto; height: 15px;"></div>
             </div>
         </div>
-        <div>
-            <div>
-                <span class="font-semibold">Paso 4</span>
-                <div id="paso4" class="bg-gray-500" style="width: auto; height: 15px;"></div>
-            </div>
-        </div>
     </div>                
     @endif
     
-    @if(Route::current()->getName() == "admin.listings.edit" || Route::current()->getName() == "home.tw.edit")
+    @if(Route::current()->getName() == "admin.listings.edit" || Route::current()->getName() == "home.tw.edit" || Route::current()->getName() == "admin.housing.property.edit")
         <div class="flex gap-6 justify-center">
-            <label id="btnfragment1" style="cursor: pointer" onclick="changefragment('first')" class="bg-red-600 text-white px-5 font-semibold">Información General</label>
-            <label id="btnfragment2" style="cursor: pointer" onclick="changefragment('second')" class="font-semibold">Servicios</label>
-            <label id="btnfragment3" style="cursor: pointer" onclick="changefragment('third')" class="font-semibold">Informacion adicional</label>
-            <label id="btnfragment4" style="cursor: pointer" onclick="changefragment('fourth')" class="font-semibold">Imagenes</label>
+            <label id="btnfragment1" style="cursor: pointer" onclick="changefragment('first')" class="@if($currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white px-5 font-semibold">Información del Propietario</label>
+            <label id="btnfragment2" style="cursor: pointer" onclick="changefragment('second')" class="font-semibold">Información del Inmueble</label>
+            {{-- <label id="btnfragment3" style="cursor: pointer" onclick="changefragment('third')" class="font-semibold">Informacion adicional</label> --}}
+            <label id="btnfragment3" style="cursor: pointer" onclick="changefragment('third')" class="font-semibold">Multimedia</label>
         </div>
     @endif
 
@@ -214,14 +224,12 @@
                         {!! Form::label('available', 'Disponibilidad', ['class' => 'font-semibold']) !!}
                         {!! Form::select('available', ['1' => 'DISPONIBLE', '2' => 'NO DISPONIBLE'], null, ['class' => $inputs, 'onchange' => 'requiredFalse(this.value);', 'required']) !!}
                     </div>
-                    <div>       
-                        {!! Form::label('listing_type', 'Plan',['class' => 'font-semibold']) !!}
-                        {{-- @if(isset($listing) && $listing->locked)
-                            {!! Form::select('listing_type',['2'=>'PAGO','1'=>'GRATIS'], null, ['class' => $inputs, 'disabled']) !!}
-                        @else --}}
-                        {!! Form::select('listing_type',['' => 'Seleccione', '2'=>'PAGO','1'=>'GRATIS'], null, ['class' => $inputs]) !!}
-                        {{-- @endif --}}
-                    </div>
+                    {{-- @if($currentRouteName != "admin.housing.property.create" && $currentRouteName != "admin.housing.property.edit") --}}
+                        <div>       
+                            {!! Form::label('listing_type', 'Plan',['class' => 'font-semibold']) !!}
+                            {!! Form::select('listing_type',['' => 'Seleccione', '2'=>'PAGO','1'=>'GRATIS'], null, ['class' => $inputs]) !!}
+                        </div>
+                    {{-- @endif --}}
             
                     @if(Auth::user()->role == "administrator")
                         @if(isset($isvalid) && $isvalid || isset($listing) && $listing->status == 1)
@@ -323,7 +331,7 @@
                     {!! Form::text('owner_address', null, ['class' => $inputs]) !!}
                     @endif
                 </div>
-                <p class="bg-red-600 text-white w-64 font-semibold absolute text-center ml-3" style="margin-top: -13px; letter-spacing: 1px">DATOS DEL PROPIETARIO</p>
+                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center ml-3" style="margin-top: -13px; letter-spacing: 1px">DATOS DEL PROPIETARIO</p>
             </div>
         </div>
 
@@ -333,12 +341,14 @@
             <div class="relative border px-5 py-4 mt-10 hover:shadow-md">
                 <div class="gap-4 mt-4 sm:gap-6">
                         {!! Form::label('listing_title', 'Titulo de Propiedad', ['class' => 'font-semibold']) !!}
-                        {!! Form::text('listing_title', null, ['class' => $inputs, 'pattern' => '.{50,60}', 'onkeyup' => 'countCharsTitle(this);', 'placeholder' => 'Ej: Casa en Venta en Cuenca - Sector...']) !!}
-                    <div id="div_info_character" style="background-color: @if(isset($listing) &&  Str::length($listing->listing_title) >= 50 && Str::length($listing->listing_title) <=60) #9AE6B4 @else #FEB2B2 @endif" class="flex p-1 mt-2">
-                        <label style="font-weight: 400">
-                            Actual <b id="label_count_title"></b> caracteres. (Mínimo 50 - Máximo 60 caracteres)
-                        </label>
-                    </div>
+                        {!! Form::text('listing_title', null, ['class' => $inputs, 'pattern' => isset($currentRouteName) && ($currentRouteName != "admin.housing.property.create" || $currentRouteName != "admin.housing.property.edit") ? '.{50,60}' : '.{0,150}', 'onkeyup' => 'countCharsTitle(this);', 'placeholder' => 'Ej: Casa en Venta en Cuenca - Sector...']) !!}
+                    {{-- @if($currentRouteName != "admin.housing.property.create" && $currentRouteName != "admin.housing.property.edit") --}}
+                        <div id="div_info_character" style="background-color: @if(isset($listing) &&  Str::length($listing->listing_title) >= 50 && Str::length($listing->listing_title) <=60) #9AE6B4 @else #FEB2B2 @endif" class="flex p-1 mt-2">
+                            <label style="font-weight: 400">
+                                Actual <b id="label_count_title"></b> caracteres. (Mínimo 50 - Máximo 60 caracteres)
+                            </label>
+                        </div>
+                    {{-- @endif --}}
                     @if(isset($listing->id) && Auth::id()==123)
                         <a href="{{route('admin.reslug',$listing->id)}}" target="_blank">{{$listing->slug}}</a>            
                     @endif
@@ -437,13 +447,14 @@
                     </div>
                 </div>
         
+                @if($currentRouteName != "admin.housing.property.create" && $currentRouteName != "admin.housing.property.edit")
+                    <div class="grid grid-cols-1 mt-4">
+                        {!! Form::label('cadastral_key', 'Clave Catastral', ['class' => 'font-semibold']) !!}
+                        {!! Form::text('cadastral_key', null, ['class' => $inputs]) !!}
+                    </div>
+                @endif
     
-                <div class="grid grid-cols-1 mt-4">
-                    {!! Form::label('cadastral_key', 'Clave Catastral', ['class' => 'font-semibold']) !!}
-                    {!! Form::text('cadastral_key', null, ['class' => $inputs]) !!}
-                </div>
-    
-                <p class="bg-red-600 text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">DATOS DEL INMUEBLE</p>
+                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">DATOS DEL INMUEBLE</p>
             </div>
             <!--termina div datos del inmueble-->
     
@@ -491,7 +502,7 @@
                     {!! Form::label('observations_type_property', 'Observaciones', ['class' => 'font-semibold']) !!}
                     {!! Form::textarea('observations_type_property', null, ['class' => $inputs, 'rows' => 4]) !!}
                 </div>
-                <p class="bg-red-600 text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">TIPO DE INMUEBLE</p>
+                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">TIPO DE INMUEBLE</p>
             </div>
     
             <div class="border relative px-5 py-4 mt-10 hover:shadow-md">
@@ -503,7 +514,7 @@
                             <div class="gap-4 mt-4 sm:gap-6">
                                 <label class="font-semibold">Titulo</label>
                                 <div class="flex flex-row mt-2">
-                                    <input  class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" name="details{{$ii}}[]" type="text" value="{{$dets[0]}}"/>
+                                    <input id="details" class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" name="details{{$ii}}[]" type="text" value="{{$dets[0]}}"/>
                                 </div>            
                             @php unset($dets[0]); $printControl=0; @endphp
                             <div class="font-semibold ml-4 mt-4">Detalles</div>
@@ -514,8 +525,8 @@
                                             {!! Form::select('details'.$ii.'[]',$details->pluck('charac_titile','id'), $det   ,    ['class' => 'w-44 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l']) !!}
                                     @else                
                                     @php $printControl=0; @endphp
-                                            <input  class="w-24 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300" type="number" name="details{{$ii}}[]" pattern="[0-9]+" onkeydown="return false" value="{{!is_numeric($det)?1:$det}}"/>
-                                            <button class="w-12 h-10 py-2 bg-red-700 text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
+                                            <input id="subdetails" class="w-24 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300" type="number" name="details{{$ii}}[]" pattern="[0-9]+" onkeydown="return false" value="{{!is_numeric($det)?1:$det}}"/>
+                                            <button class="w-12 h-10 py-2 @if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
                                         </div>
                                     @endif
                                 @endforeach
@@ -528,7 +539,7 @@
                             <label class="font-semibold">Titulo</label>
                             <div class="flex flex-row mt-2">
                                 <input id="details"  class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" name="details0[]" type="text"/>
-                                <button class="w-12 h-10 py-2 bg-red-700 text-white rounded-r text-sm" type="button" onclick="delrowTitle(this)">X</button>
+                                <button class="w-12 h-10 py-2 @if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowTitle(this)">X</button>
                             </div>
                             <div class="font-semibold ml-4 mt-4">Detalles</div>
                             <div class="flex flex-row mt-2 ml-4">
@@ -538,14 +549,14 @@
                                     @endforeach
                                 </select>
                                 <input id="subdetails"  class="w-24 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300" type="number" name="details0[]" pattern="[0-9]+" onkeydown="return false" value="1"/>
-                                <button class="w-12 h-10 py-2 bg-red-700 text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
+                                <button class="w-12 h-10 py-2 @if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
                             </div>
                             <button type="button" class="px-4 py-2 ml-4 mt-4 text-xl leading-5 text-black bg-green-300 rounded" onclick="addRowDetail(this,0)">Agregar Detalle</button>
                         </div>
                     </div>
                     @endif
                     <button type="button" class="px-4 py-2 mt-4 text-xl leading-5 text-black bg-blue-300 rounded" onclick="addRowTitles()">Agregar Titulo</button>
-                    <p class="bg-red-600 text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">DETALLES DEL INMUEBLE</p>
+                    <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">DETALLES DEL INMUEBLE</p>
                 </div>
 
             <div class="border relative px-5 py-4 mt-10 hover:shadow-md">
@@ -555,13 +566,13 @@
                                 <label class="inline-flex items-center mt-3">  
                                     {!! Form::checkbox("checkServ[]", $serv->id, 
                                     isset($listing->listinglistservices) && in_array($serv->id,explode(",", $listing->listinglistservices)) ? true : false,
-                                    ['class' => 'form-checkbox h-5 w-5 text-red-600', 'type'=>'checkbox', 'id'=>"checkServ$serv->id"]) !!}
+                                    ['class' => 'form-checkbox h-5 w-5 '.$bgcheckbox, 'type'=>'checkbox', 'id'=>"checkServ$serv->id"]) !!}
                                     <span class="ml-2 text-gray-700">{{$serv->charac_titile}}</span>
                                 </label>
                         @endforeach
                     </div>    
                 </div>
-                <p class="bg-red-600 text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">SERVICIOS</p>
+                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">SERVICIOS</p>
             </div>
     
             <div class="border relative px-5 py-4 mt-10 hover:shadow-md">
@@ -569,7 +580,7 @@
                     <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3 border-gray-300 rounded-md px-4 py-2">
                         @foreach ($general_characteristics as $general_characteristic)
                                 <label class="inline-flex items-center mt-3">  
-                                    {!! Form::checkbox("checkgc[]", $general_characteristic->id, isset($listing->listinggeneralcharacteristics) && in_array($general_characteristic->id,explode(",", $listing->listinggeneralcharacteristics)) ? true : false,['class' => 'form-checkbox h-5 w-5 text-red-600 checkbox-characteristic', 'type'=>'checkbox', 'id'=>"checkgc$general_characteristic->id"]) !!}
+                                    {!! Form::checkbox("checkgc[]", $general_characteristic->id, isset($listing->listinggeneralcharacteristics) && in_array($general_characteristic->id,explode(",", $listing->listinggeneralcharacteristics)) ? true : false,['class' => 'form-checkbox h-5 w-5 checkbox-characteristic '.$bgcheckbox, 'type'=>'checkbox', 'id'=>"checkgc$general_characteristic->id"]) !!}
                                     <span class="ml-2 text-gray-700">{{$general_characteristic->title}}</span>
                                     @switch($general_characteristic->id)
                                         @case(7) @php $newinput = "niv_constr"; @endphp @break
@@ -584,7 +595,7 @@
                         @endforeach
                     </div>    
                 </div>
-                <p class="bg-red-600 text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">CARACTERISTICAS GENERALES</p>
+                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">CARACTERISTICAS GENERALES</p>
             </div>
     
             <div class="border relative px-5 py-4 mt-10 hover:shadow-md">
@@ -592,13 +603,13 @@
                     <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3 border-gray-300 rounded-md px-4 py-2">
                         @foreach ($environments as $envir)
                                 <label class="inline-flex items-center mt-3">  
-                                    {!! Form::checkbox("checkEnvir[]", $envir->id, isset($listing->listingenvironments) && in_array($envir->id,explode(",", $listing->listingenvironments)) ? true : false,['class' => 'form-checkbox h-5 w-5 text-red-600', 'type'=>'checkbox', 'id'=>"checkEnvir$envir->id"]) !!}
+                                    {!! Form::checkbox("checkEnvir[]", $envir->id, isset($listing->listingenvironments) && in_array($envir->id,explode(",", $listing->listingenvironments)) ? true : false,['class' => 'form-checkbox h-5 w-5 '.$bgcheckbox, 'type'=>'checkbox', 'id'=>"checkEnvir$envir->id"]) !!}
                                     <span class="ml-2 text-gray-700">{{$envir->title}}</span>
                                 </label>
                         @endforeach
                     </div>    
                 </div>
-                <p class="bg-red-600 text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">AMBIENTES</p>
+                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">AMBIENTES</p>
             </div>
     
             <div class="gap-4 mt-4 sm:gap-6 border relative px-5 py-4 mt-10 hover:shadow-md">
@@ -608,70 +619,74 @@
                             <label class="inline-flex items-center mt-3">  
                                 {!! Form::checkbox("checkBene[]", $bene->id, 
                                 isset($listing->listingcharacteristic) && in_array($bene->id,explode(",", $listing->listingcharacteristic)) ? true : false,
-                                ['class' => 'form-checkbox h-5 w-5 text-red-600', 'type'=>'checkbox', 'id'=>"checkBene$bene->id"]) !!}
+                                ['class' => 'form-checkbox h-5 w-5 '.$bgcheckbox, 'type'=>'checkbox', 'id'=>"checkBene$bene->id"]) !!}
                                 <span class="ml-2 text-gray-700">{{$bene->charac_titile}}</span>
                             </label>
                     @endforeach
                 </div>    
-                <p class="bg-red-600 text-white w-64 font-semibold absolute text-center top-0 shadow-lg" style="margin-top: -13px; letter-spacing: 1px">BENEFICIOS</p>
+                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0 shadow-lg" style="margin-top: -13px; letter-spacing: 1px">BENEFICIOS</p>
             </div>
+
+            @if($currentRouteName != "admin.housing.property.create" && $currentRouteName != "admin.housing.property.edit")
+                <div class="gap-4 mt-4 sm:gap-6 border relative px-5 py-4 mt-10 hover:shadow-md">
+                    <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3 px-4 py-2">
+                        <div>
+                            <div>
+                                <label class="inline-flex items-center mt-3">  
+                                    <span class="ml-2 text-gray-700 mr-2">Error de Cavida</span>
+                                    {!! Form::checkbox("cavity_error", null, 
+                                    isset($listing->cavity_error) && $listing->cavity_error ? true : false,
+                                    ['class' => 'form-checkbox h-5 w-5 '.$bgcheckbox, 'type'=>'checkbox', 'id'=>"check_cavity_error"]) !!}
+                                </label>
+                            </div>
+                            <div>
+                                <label class="inline-flex items-center mt-3">  
+                                    <span class="ml-2 text-gray-700 mr-2">VIP</span>
+                                    {!! Form::checkbox("vip", null, 
+                                    isset($listing->vip) && $listing->vip ? true : false,
+                                    ['class' => 'form-checkbox h-5 w-5 '.$bgcheckbox, 'type'=>'checkbox']) !!}
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <label class="inline-flex items-center mt-3">  
+                                    <span class="ml-2 text-gray-700 mr-2">Hipoteca</span>
+                                    {!! Form::checkbox("mortgaged", null, 
+                                    isset($listing->mortgaged) && $listing->mortgaged ? true : false,
+                                    ['class' => 'form-checkbox h-5 w-5 '.$bgcheckbox, 'type'=>'checkbox', 'id'=>"check_mortgage"]) !!}
+                                </label>
+                            </div>
+                            <div>
+                                {!! Form::text('mount_mortgaged', null, ['class' => $inputs, 'placeholder' => 'Monto $', 'id' => 'mount_mortgaged']) !!}
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                {!! Form::text('entity_mortgaged', null, ['class' => $inputs, 'placeholder' => 'Banco', 'id' => 'entity_mortgaged']) !!}
+                            </div>
+                            <div>
+                                {!! Form::text('warranty', null, ['class' => $inputs, 'placeholder' => 'Garante', 'id' => 'warranty']) !!}
+                            </div>
+                        </div>
+                    </div>   
+                    <div>
+                        <div class="mt-3">
+                            {!! Form::label('aval', 'Avaluo de la propiedad', ['class' => 'font-semibold']) !!}
+                            {!! Form::number('aval', null, ['class' => $inputs, 'placeholder' => 'Ej: 100000']) !!}
+                            <div class="text-xs bg-gray-100 mt-2 p-1 rounded">
+                                <i class="fa-solid fa-circle-info"></i> Si necesita obtener el avaluo de la propiedad, puede ingresar al <a target="_blank" class="text-blue-500" href="https://enlinea.cuenca.gob.ec/#/informe-predial">siguiente enlace</a> y consultar por el número de cédula.
+                            </div>
+                        </div>
+                    </div> 
+                    <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0 shadow-lg" style="margin-top: -13px; letter-spacing: 1px">DATOS ADICIONALES</p>
+                </div>
+            @endif
         </div>
 
-        <div id="third" style="display: none" class="fragment3">
-            <div class="gap-4 mt-4 sm:gap-6 border relative px-5 py-4 mt-10 hover:shadow-md">
-                <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3 px-4 py-2">
-                    <div>
-                        <div>
-                            <label class="inline-flex items-center mt-3">  
-                                <span class="ml-2 text-gray-700 mr-2">Error de Cavida</span>
-                                {!! Form::checkbox("cavity_error", null, 
-                                isset($listing->cavity_error) && $listing->cavity_error ? true : false,
-                                ['class' => 'form-checkbox h-5 w-5 text-red-600', 'type'=>'checkbox', 'id'=>"check_cavity_error"]) !!}
-                            </label>
-                        </div>
-                        <div>
-                            <label class="inline-flex items-center mt-3">  
-                                <span class="ml-2 text-gray-700 mr-2">VIP</span>
-                                {!! Form::checkbox("vip", null, 
-                                isset($listing->vip) && $listing->vip ? true : false,
-                                ['class' => 'form-checkbox h-5 w-5 text-red-600', 'type'=>'checkbox']) !!}
-                            </label>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <label class="inline-flex items-center mt-3">  
-                                <span class="ml-2 text-gray-700 mr-2">Hipoteca</span>
-                                {!! Form::checkbox("mortgaged", null, 
-                                isset($listing->mortgaged) && $listing->mortgaged ? true : false,
-                                ['class' => 'form-checkbox h-5 w-5 text-red-600', 'type'=>'checkbox', 'id'=>"check_mortgage"]) !!}
-                            </label>
-                        </div>
-                        <div>
-                            {!! Form::text('mount_mortgaged', null, ['class' => $inputs, 'placeholder' => 'Monto $', 'id' => 'mount_mortgaged']) !!}
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            {!! Form::text('entity_mortgaged', null, ['class' => $inputs, 'placeholder' => 'Banco', 'id' => 'entity_mortgaged']) !!}
-                        </div>
-                        <div>
-                            {!! Form::text('warranty', null, ['class' => $inputs, 'placeholder' => 'Garante', 'id' => 'warranty']) !!}
-                        </div>
-                    </div>
-                </div>   
-                <div>
-                    <div class="mt-3">
-                        {!! Form::label('aval', 'Avaluo de la propiedad', ['class' => 'font-semibold']) !!}
-                        {!! Form::number('aval', null, ['class' => $inputs, 'placeholder' => 'Ej: 100000']) !!}
-                        <div class="text-xs bg-gray-100 mt-2 p-1 rounded">
-                            <i class="fa-solid fa-circle-info"></i> Si necesita obtener el avaluo de la propiedad, puede ingresar al <a target="_blank" class="text-blue-500" href="https://enlinea.cuenca.gob.ec/#/informe-predial">siguiente enlace</a> y consultar por el número de cédula.
-                        </div>
-                    </div>
-                </div> 
-                <p class="bg-red-600 text-white w-64 font-semibold absolute text-center top-0 shadow-lg" style="margin-top: -13px; letter-spacing: 1px">DATOS ADICIONALES</p>
-            </div>
-        </div>
+        {{-- <div id="third" style="display: none" class="fragment3">
+            
+        </div> --}}
 
 
         {{-- <div class="gap-4 mt-4 sm:gap-6">
@@ -757,7 +772,7 @@
             </div>
         </div> --}}
 
-        <div id="fourth" style="display: none" class="fragment4">
+        <div id="third" style="display: none" class="fragment3">
             <div class="gap-4 mt-4 sm:gap-6">
                 <label class="font-semibold">Galeria de Imagenes</label>
                 <div>
@@ -812,11 +827,11 @@
             {{-- @if(isset($listing) && $listing->locked)
                 <button type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform bg-red-700 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600" disabled>GUARDAR</button>
             @else --}}
-                @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "home.tw.create")
-                <button id="btnSave" type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform bg-red-700 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600">GUARDAR</button>
+                @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "home.tw.create" ||  Route::current()->getName() == "admin.housing.property.create")
+                <button id="btnSave" type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform @if($currentRouteName == "admin.housing.property.create") bg-blue-900 hover:bg-blue-700 @else bg-red-700 hover:bg-red-600 focus:bg-red-600 @endif rounded focus:outline-none">GUARDAR</button>
                 @endif
-                @if(Route::current()->getName() == "admin.listings.edit" || Route::current()->getName() == "home.tw.edit")
-                <button onclick="saveandclose(event)" class="px-6 py-2 ml-3 text-xl leading-5 text-white bg-green-500 transition-colors duration-200 transform rounded  focus:outline-none">GUARDAR Y SALIR</button>
+                @if(Route::current()->getName() == "admin.listings.edit" || Route::current()->getName() == "home.tw.edit" || Route::current()->getName() == "admin.housing.property.edit")
+                <button onclick="saveandclose(event)" class="px-6 py-2 ml-3 text-xl leading-5 text-white @if($currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-green-500 @endif transition-colors duration-200 transform rounded  focus:outline-none">GUARDAR Y SALIR</button>
                 @endif
             {{-- @endif --}}
                 {{-- <button type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform bg-red-700 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600">GUARDAR</button> --}}
@@ -876,7 +891,7 @@
 @section('endscript')
     <script src="{{asset('js/sortable.min.js')}}"></script>
     <script>let bandera = false;</script>
-    @if(Route::current()->getName() == "admin.listings.create")
+    @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "admin.housing.property.create")
         <script>
             const save = async(event) => {
                 if(bandera){
@@ -887,10 +902,10 @@
                     { body: dataform, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}"}});
                     let mensaje = await response.json();
                     document.querySelector('.loader').style.display = "none";
-                    if(mensaje.success && mensaje.fragment == "first"){ document.getElementById('first').style.display="none";document.getElementById('second').style.display="block";setfragmentvalue('second'); if(document.getElementById('paso1')){document.getElementById('paso1').classList.remove('bg-red-500');document.getElementById('paso1').classList.add('bg-green-500');if(document.getElementById('paso2')){document.getElementById('paso2').classList.remove('bg-gray-500'); document.getElementById('paso2').classList.add('bg-red-500')}}}
-                    if(mensaje.success && mensaje.fragment == "second"){ document.getElementById('second').style.display="none";document.getElementById('third').style.display="block";setfragmentvalue('third'); if(document.getElementById('paso2')){document.getElementById('paso2').classList.remove('bg-red-500');document.getElementById('paso2').classList.add('bg-green-500');if(document.getElementById('paso3')){document.getElementById('paso3').classList.remove('bg-gray-500'); document.getElementById('paso3').classList.add('bg-red-500')}}}
-                    if(mensaje.success && mensaje.fragment == "third"){ document.getElementById('third').style.display="none";document.getElementById('fourth').style.display="block";setfragmentvalue('fourth'); if(document.getElementById('paso3')){document.getElementById('paso3').classList.remove('bg-red-500');document.getElementById('paso3').classList.add('bg-green-500');if(document.getElementById('paso4')){document.getElementById('paso4').classList.remove('bg-gray-500'); document.getElementById('paso4').classList.add('bg-red-500')}}}
-                    if(mensaje.success && mensaje.fragment == "fourth" && !ischangestatus && !ischangeplan && !ischangeavailable){window.location.replace("{{route('admin.properties')}}"); if(document.getElementById('paso4')){document.getElementById('paso4').classList.remove('bg-red-500');document.getElementById('paso4').classList.add('bg-green-500');}}
+                    if(mensaje.success && mensaje.fragment == "first"){ document.getElementById('first').style.display="none";document.getElementById('second').style.display="block";setfragmentvalue('second'); if(document.getElementById('paso1')){document.getElementById('paso1').classList.remove('bg-red-500');if("{{ $currentRouteName == 'admin.housing.property.create'}}") {document.getElementById('paso1').classList.add('bg-blue-900');} else {document.getElementById('paso1').classList.add('bg-green-500');}; if(document.getElementById('paso2')){document.getElementById('paso2').classList.remove('bg-gray-500'); document.getElementById('paso2').classList.add('bg-red-500')}}}
+                    if(mensaje.success && mensaje.fragment == "second"){ document.getElementById('second').style.display="none";document.getElementById('third').style.display="block";setfragmentvalue('third'); if(document.getElementById('paso2')){document.getElementById('paso2').classList.remove('bg-red-500');if("{{ $currentRouteName == 'admin.housing.property.create'}}") {document.getElementById('paso2').classList.add('bg-blue-900');} else {document.getElementById('paso2').classList.add('bg-green-500');}; if(document.getElementById('paso3')){document.getElementById('paso3').classList.remove('bg-gray-500'); document.getElementById('paso3').classList.add('bg-red-500')}}}
+                    //if(mensaje.success && mensaje.fragment == "third"){ document.getElementById('third').style.display="none";document.getElementById('fourth').style.display="block";setfragmentvalue('fourth'); if(document.getElementById('paso3')){document.getElementById('paso3').classList.remove('bg-red-500');if("{{ $currentRouteName == 'admin.housing.property.create'}}") {document.getElementById('paso3').classList.add('bg-blue-900');} else {document.getElementById('paso3').classList.add('bg-green-500');}; if(document.getElementById('paso4')){document.getElementById('paso4').classList.remove('bg-gray-500'); document.getElementById('paso4').classList.add('bg-red-500')}}}
+                    if(mensaje.success && mensaje.fragment == "third" && !ischangestatus && !ischangeplan && !ischangeavailable){window.location.replace("{{route('admin.properties')}}"); if(document.getElementById('paso4')){document.getElementById('paso4').classList.remove('bg-red-500');document.getElementById('paso4').classList.add('bg-green-500');}}
                 }
             }
         </script>
@@ -908,8 +923,8 @@
                 console.log('saving...');
                 if(mensaje.success && mensaje.fragment == "first"){ document.getElementById('first').style.display="none";document.getElementById('second').style.display="block";setfragmentvalue('second');changeclass('second');}
                 if(mensaje.success && mensaje.fragment == "second"){ document.getElementById('second').style.display="none";document.getElementById('third').style.display="block";setfragmentvalue('third');changeclass('third');}
-                if(mensaje.success && mensaje.fragment == "third"){ document.getElementById('third').style.display="none";document.getElementById('fourth').style.display="block";setfragmentvalue('fourth');changeclass('fourth');}
-                if(mensaje.success && mensaje.fragment == "fourth" && !ischangestatus && !ischangeplan && !ischangeavailable){window.location.replace("{{route('admin.properties')}}");}
+                //if(mensaje.success && mensaje.fragment == "third"){ document.getElementById('third').style.display="none";document.getElementById('fourth').style.display="block";setfragmentvalue('fourth');changeclass('fourth');}
+                if(mensaje.success && mensaje.fragment == "third" && !ischangestatus && !ischangeplan && !ischangeavailable){window.location.replace("{{route('admin.properties')}}");}
             }
             }
         </script>
@@ -1028,19 +1043,27 @@
                     let owner_address = document.getElementById('owner_address');
 
 
-                    if(listing_type.value != "" && owner_name.value != "" && identification.value != "" && phone_number.value != "" && owner_email.value != "" && owner_address.value != ""){
-                        bandera = true;
-                        if(listing_type.value == 2 && num_factura.value == ""){
-                            bandera = false;
-                        } else if(listing_type.value == 1) {
+                    if(listing_type){
+                        if(listing_type.value != "" && owner_name.value != "" && identification.value != "" && phone_number.value != "" && owner_email.value != "" && owner_address.value != ""){
                             bandera = true;
+                            if(listing_type.value == 2 && num_factura.value == ""){
+                                bandera = false;
+                            } else if(listing_type.value == 1) {
+                                bandera = true;
+                            }
+                        } else {
+                            bandera = false;
                         }
                     } else {
-                        bandera = false;
+                        if(owner_name.value != "" && identification.value != "" && phone_number.value != "" && owner_email.value != "" && owner_address.value != ""){
+                            bandera = true;
+                        } else {
+                            bandera = false;
+                        }
                     }
                 break;
 
-                case "second":
+                case "second":  
                     let listing_title = document.getElementById('listing_title').value;
                     let listing_description = document.getElementById('listing_description').value;
                     let state = document.getElementById('state').value;
@@ -1058,7 +1081,7 @@
                     let property_price_min = document.getElementById('property_price_min').value;
                     let lat = document.getElementById('lat').value;
                     let lng = document.getElementById('lng').value;
-                    let cadastral_key = document.getElementById('cadastral_key').value;
+                    let cadastral_key = document.getElementById('cadastral_key');
                     let listingtype = document.getElementById('listingtype').value;
                     let listingtypestatus = document.getElementById('listingtypestatus').value;
                     let listingtagstatus = document.getElementById('listingtagstatus').value;
@@ -1073,6 +1096,15 @@
                     let checkboxesEnvir = document.querySelectorAll("input[name='checkEnvir[]']:checked");
                     let checkboxesBene = document.querySelectorAll("input[name='checkBene[]']:checked");
 
+                    //variables que eran del paso 3
+                    //if("{{$currentRouteName != 'admin.housing.property.create' && $currentRouteName != 'admin.housing.property.edit'}}"){
+                        let mortgaged = document.getElementById('check_mortgage');
+                        let mount_mortgaged = document.getElementById('mount_mortgaged');
+                        let entity_mortgaged = document.getElementById('entity_mortgaged');
+                        let warranty = document.getElementById('warranty');
+                        let aval = document.getElementById('aval');
+                    //}
+
                     let planing_license = "";
 
                     if(listingtype == 26){
@@ -1081,51 +1113,78 @@
                         console.log(planing_license);
                     }
 
-                    if(listing_title != "" && listing_description != "" && state != "" && city != "" && address != "" && construction_area != "" && land_area != "" && Front != "" && Fund != "" && property_price != "" && property_price_min != "" && lat != "" && lng != "" && cadastral_key != "" && listingtype != "" && listingtypestatus != "" && listingtagstatus != "" && listyears != "" && aliquot != "" && observations_type_property != "" && details != "" && subdetails != ""){
-                        bandera = true;
-                        // if(listingtype == 26){
-                        //     console.log('entrando a validacion de planing_license');
+                    if(listing_title.length < 50 || listing_title.length > 60){
+                        bandera = false;
+                        alert('El título debe tener una longitud entre 50 a 60 caracteres');
+                        return;
+                    }
 
-                        //     for (let index = 0; index < planing_license.length; index++) {
-                        //         if(planing_license[index].checked){
-                        //             bandera = true;
-                        //             console.log('bandera planing_license: ' + bandera);
-                        //         } else {
-                        //             bandera = false;
-                        //         console.log('bandera planing_license: ' + bandera);
-                        //         }
-                        //     }
-                        // }
+                    if(listing_title != "" && listing_description != "" && state != "" && city != "" && address != "" && construction_area != "" && land_area != "" && Front != "" && Fund != "" && property_price != "" && property_price_min != "" && lat != "" && lng != "" && listingtype != "" && listingtypestatus != "" && listingtagstatus != "" && listyears != "" && aliquot != "" && observations_type_property != "" && details != "" && subdetails != ""){
+                        bandera = true;
                         if(checkboxesServ.length > 0 && checkboxesGeneralCharacteristic.length > 0 && checkboxesEnvir.length > 0 && checkboxesBene.length > 0){
                             banderaChecks = true;
                         } else {
                             banderaChecks = false;
+                            alert('Seleccione al menos 1 campo');
+                            return;
                         }
                     } else {
                         bandera = false;
+                        alert('Complete todos los campos');
+                        return;
                     }
 
-                break;
-                case "third":
-                    let mortgaged = document.getElementById('check_mortgage');
-                    let mount_mortgaged = document.getElementById('mount_mortgaged').value;
-                    let entity_mortgaged = document.getElementById('entity_mortgaged').value;
-                    let warranty = document.getElementById('warranty').value;
-                    let aval = document.getElementById('aval').value;
-                    
-                    if(aval != "") bandera = true; else bandera = false;
-
-                    if(mortgaged.checked){
-                        if(mount_mortgaged != "" && entity_mortgaged != "" && warranty != ""){
+                    if(cadastral_key){
+                        if(cadastral_key.value != ""){
                             bandera = true;
                         } else {
                             bandera = false;
+                            alert('La clave catastral es obligatoria para subir la propiedad');
+                            return;
                         }
                     }
+
+                    //condicional de validacion que eran del paso 3
+                    // if("{{$currentRouteName != 'admin.housing.property.create' && $currentRouteName != 'admin.housing.property.edit'}}"){
+                        if(aval){
+                            if(aval.value != "") {
+                                bandera = true;
+                            } else { 
+                                bandera = false;
+                                alert('El avaluo de la propiedad es necesario');
+                                return;
+                            };
+                        }
+
+                        if(mortgaged){
+                            if(mortgaged.checked){
+                                if(mount_mortgaged.value != "" && entity_mortgaged.value != "" && warranty.value != ""){
+                                    bandera = true;
+                                } else {
+                                    bandera = false;
+                                    alert('Complete los campos para ');
+                                    return;
+                                }
+                            }
+                        }
+                    //}
+
                 break;
-                case "fourth": 
+                case "third":
+                    if("{{Route::current()->getName() == 'admin.listings.create' || Route::current()->getName() == 'home.tw.create' || Route::current()->getName() == 'admin.housing.property.create'}}"){
+                        let galleryImages = document.getElementById('galleryImages');
+                        if(galleryImages.files.length < 5){
+                            bandera = false;
+                            alert('Es necesario subir 5 imágenes o más')
+                            return;
+    
+                        }
+                    }
                     bandera = true;
                     banderaChecks = true;
+                break;
+                case "fourth": 
+                
                 break;
             }
 
@@ -1220,8 +1279,10 @@
             var range =  document.getElementById('listyears').value;
             //rangeSlide(range);
             //document.getElementById('charcount').innerHTML = document.getElementById('metadescription').value.length;
-            if(input_listing_title.value.length > 0) label_count_title.innerHTML = input_listing_title.value.length;
-            else label_count_title.innerHTML = "0";
+            if(label_count_title){
+                if(input_listing_title.value.length > 0) label_count_title.innerHTML = input_listing_title.value.length;
+                else label_count_title.innerHTML = "0";
+            }
 
             // if(input_meta_description.value.length > 0) label_count_desc.innerHTML = input_meta_description.value.length;
             // else label_count_desc.innerHTML = "0";
@@ -1239,12 +1300,14 @@
         });
 
         function countCharsTitle(object){
-            if(object.value.length >= 50 && object.value.length <=60){
-                div_info_character.style.backgroundColor = "#9AE6B4";
-            } else {
-                div_info_character.style.backgroundColor = "#FEB2B2";
+            if(label_count_title){
+                if(object.value.length >= 50 && object.value.length <=60){
+                    div_info_character.style.backgroundColor = "#9AE6B4";
+                } else {
+                    div_info_character.style.backgroundColor = "#FEB2B2";
+                }
+                label_count_title.innerHTML = object.value.length;
             }
-            label_count_title.innerHTML = object.value.length;
         }
 
         function countCharsDesc(object){
@@ -1339,13 +1402,13 @@
                 <label class="font-semibold">Titulo</label>
                 <div class="flex flex-row mt-2">
                     <input  class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" type="text" name="details${idUniq}[]" required/>
-                    <button class="w-12 h-10 py-2 bg-red-700 text-white rounded-r text-sm" type="button" onclick="delrowTitle(this)">X</button>
+                    <button class="w-12 h-10 py-2 @if($currentRouteName == 'admin.housing.property.create') bg-blue-900 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowTitle(this)">X</button>
                 </div>
                 <div class="font-semibold ml-4 mt-4">Detalles</div>
                 <div class="flex flex-row mt-2 ml-4">
                     <select class="w-44 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" name="details${idUniq}[]">${InsertOptions}</select>
                     <input  class="w-24 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300" type="number"  name="details${idUniq}[]" pattern="[0-9]+" onkeydown="return false" value="1"/>
-                    <button class="w-12 h-10 py-2 bg-red-700 text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
+                    <button class="w-12 h-10 py-2 @if($currentRouteName == 'admin.housing.property.create') bg-blue-900 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
                 </div>
                 <button type="button" class="px-4 py-2 ml-4 mt-4 text-xl leading-5 text-black bg-green-300 rounded" onclick="addRowDetail(this,${idUniq})">Agregar Detalle</button>
             </div>`
@@ -1358,7 +1421,7 @@
         let rowTemplate =   `<div class="flex flex-row mt-2 ml-4">
                                 <select class="w-44 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" name="details${id}[]">${InsertOptions}</select>
                                 <input id="subdetails"  class="w-24 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300" type="number" name="details${id}[]" pattern="[0-9]+" onkeydown="return false" value="1"/>
-                                <button class="w-12 h-10 py-2 bg-red-700 text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
+                                <button class="w-12 h-10 py-2 @if($currentRouteName == 'admin.housing.property.create') bg-blue-900 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
                             </div>`;
         row.insertAdjacentHTML('beforebegin',rowTemplate);
     }
@@ -1499,34 +1562,36 @@
     let sellistingtype = document.querySelector("select[name='listing_type']");
     let divnumfactura = document.getElementById('numfactura');
 
-    sellistingtype.addEventListener('change', () => {
-        if(sellistingtype.value == 2){
-            divnumfactura.classList.remove('hidden');
-            divnumfactura.classList.add('block');
-            //document.querySelector("input[name='num_factura']").required = true;
-        } else if(sellistingtype.value == 1 || sellistingtype.value == ""){
-            divnumfactura.classList.remove('block');
-            divnumfactura.classList.add('hidden');
-            //document.querySelector("input[name='num_factura']").required = false;
-        }
-    });
+    if(sellistingtype){
+        sellistingtype.addEventListener('change', () => {
+            if(sellistingtype.value == 2){
+                divnumfactura.classList.remove('hidden');
+                divnumfactura.classList.add('block');
+                //document.querySelector("input[name='num_factura']").required = true;
+            } else if(sellistingtype.value == 1 || sellistingtype.value == ""){
+                divnumfactura.classList.remove('block');
+                divnumfactura.classList.add('hidden');
+                //document.querySelector("input[name='num_factura']").required = false;
+            }
+        });
+    }
 
     let first_fragment = document.getElementById('first');
     let second_fragment = document.getElementById('second');
     let third_fragment = document.getElementById('third');
-    let fourth_fragment = document.getElementById('fourth');
+    //let fourth_fragment = document.getElementById('fourth');
 
     let btnfragment1 = document.getElementById('btnfragment1');
     let btnfragment2 = document.getElementById('btnfragment2');
     let btnfragment3 = document.getElementById('btnfragment3');
-    let btnfragment4 = document.getElementById('btnfragment4');
+    //let btnfragment4 = document.getElementById('btnfragment4');
 
     const changefragment = (id) => {
         switch (id) {
-            case 'first': first_fragment.style.display='block';second_fragment.style.display='none';third_fragment.style.display='none';fourth_fragment.style.display='none';setfragmentvalue('first');changeclass('first');break;
-            case 'second': first_fragment.style.display='none';second_fragment.style.display='block';third_fragment.style.display='none';fourth_fragment.style.display='none';setfragmentvalue('second');changeclass('second');break;
-            case 'third': first_fragment.style.display='none';second_fragment.style.display='none';third_fragment.style.display='block';fourth_fragment.style.display='none';setfragmentvalue('third');changeclass('third');break;
-            case 'fourth': first_fragment.style.display='none';second_fragment.style.display='none';third_fragment.style.display='none';fourth_fragment.style.display='block';setfragmentvalue('fourth');changeclass('fourth');break;
+            case 'first': first_fragment.style.display='block';second_fragment.style.display='none';third_fragment.style.display='none';setfragmentvalue('first');changeclass('first');break;
+            case 'second': first_fragment.style.display='none';second_fragment.style.display='block';third_fragment.style.display='none';setfragmentvalue('second');changeclass('second');break;
+            case 'third': first_fragment.style.display='none';second_fragment.style.display='none';third_fragment.style.display='block';setfragmentvalue('third');changeclass('third');break;
+            //case 'fourth': first_fragment.style.display='none';second_fragment.style.display='none';third_fragment.style.display='none';fourth_fragment.style.display='block';setfragmentvalue('fourth');changeclass('fourth');break;
             default: break;
         }
     }
@@ -1536,18 +1601,29 @@
     }
 
     const changeclass = (fragment) => {
-        switch (fragment) {
-            case 'first': btnfragment1.classList.add('bg-red-600', 'text-white', 'px-5');btnfragment2.classList.remove('bg-red-600', 'text-white', 'px-5');btnfragment3.classList.remove('bg-red-600', 'text-white', 'px-5');btnfragment4.classList.remove('bg-red-600', 'text-white', 'px-5');break;
-            case 'second': btnfragment1.classList.remove('bg-red-600', 'text-white', 'px-5');btnfragment2.classList.add('bg-red-600', 'text-white', 'px-5');btnfragment3.classList.remove('bg-red-600', 'text-white', 'px-5');btnfragment4.classList.remove('bg-red-600', 'text-white', 'px-5');break;
-            case 'third': btnfragment1.classList.remove('bg-red-600', 'text-white', 'px-5');btnfragment2.classList.remove('bg-red-600', 'text-white', 'px-5');btnfragment3.classList.add('bg-red-600', 'text-white', 'px-5');btnfragment4.classList.remove('bg-red-600', 'text-white', 'px-5');break;
-            case 'fourth': btnfragment1.classList.remove('bg-red-600', 'text-white', 'px-5');btnfragment2.classList.remove('bg-red-600', 'text-white', 'px-5');btnfragment3.classList.remove('bg-red-600', 'text-white', 'px-5');btnfragment4.classList.add('bg-red-600', 'text-white', 'px-5');break;
-            default:break;
+        if("{{ $currentRouteName == 'admin.housing.property.edit'}}"){
+            switch (fragment) {
+                case 'first': btnfragment1.classList.add('bg-blue-900', 'text-white', 'px-5');btnfragment2.classList.remove('bg-blue-900', 'text-white', 'px-5');btnfragment3.classList.remove('bg-blue-900', 'text-white', 'px-5');break;
+                case 'second': btnfragment1.classList.remove('bg-blue-900', 'text-white', 'px-5');btnfragment2.classList.add('bg-blue-900', 'text-white', 'px-5');btnfragment3.classList.remove('bg-blue-900', 'text-white', 'px-5');break;
+                case 'third': btnfragment1.classList.remove('bg-blue-900', 'text-white', 'px-5');btnfragment2.classList.remove('bg-blue-900', 'text-white', 'px-5');btnfragment3.classList.add('bg-blue-900', 'text-white', 'px-5');break;
+                case 'fourth': btnfragment1.classList.remove('bg-blue-900', 'text-white', 'px-5');btnfragment2.classList.remove('bg-blue-900', 'text-white', 'px-5');btnfragment3.classList.remove('bg-blue-900', 'text-white', 'px-5');break;
+                default:break;
+            }
+        } else {
+            switch (fragment) {
+                case 'first': btnfragment1.classList.add('bg-red-600', 'text-white', 'px-5');btnfragment2.classList.remove('bg-red-600', 'text-white', 'px-5');btnfragment3.classList.remove('bg-red-600', 'text-white', 'px-5');break;
+                case 'second': btnfragment1.classList.remove('bg-red-600', 'text-white', 'px-5');btnfragment2.classList.add('bg-red-600', 'text-white', 'px-5');btnfragment3.classList.remove('bg-red-600', 'text-white', 'px-5');break;
+                case 'third': btnfragment1.classList.remove('bg-red-600', 'text-white', 'px-5');btnfragment2.classList.remove('bg-red-600', 'text-white', 'px-5');btnfragment3.classList.add('bg-red-600', 'text-white', 'px-5');break;
+                case 'fourth': btnfragment1.classList.remove('bg-red-600', 'text-white', 'px-5');btnfragment2.classList.remove('bg-red-600', 'text-white', 'px-5');btnfragment3.classList.remove('bg-red-600', 'text-white', 'px-5');break;
+                default:break;
+            }
         }
     } 
 
     const saveandclose = (event) => {
-        if(bandera){
+        if(!validate()){
             event.preventDefault();
+            return;
         }
         let input_hidden_edit = document.querySelector("input[name='edit']");
         let form = document.getElementById('formsave');
