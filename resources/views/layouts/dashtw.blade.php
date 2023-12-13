@@ -125,10 +125,6 @@
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Perfil</span>
                 </a>
                 @endif
-
-                <a style="text-decoration: none !important" href="{{route('housing.index')}}" class="flex items-center @if(Request::is('admin/housing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('user/profile')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
-                    <span class="mx-3 @if(Request::is('admin/housing*')) py-3 @else py-4 @endif">Housing</span>
-                </a>
     
                 
             </nav>
