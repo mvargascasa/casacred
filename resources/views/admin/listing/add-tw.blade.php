@@ -839,7 +839,7 @@
     </form>
 
     @isset($listing)
-    <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+    <div id="modalStatus" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
         <div class="absolute w-full h-full bg-gray-900 opacity-50"></div>
         
         <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50">
@@ -1259,7 +1259,7 @@
                     success: function(response){
                     if(response){
                         icon.classList.remove('fa', 'fa-spinner', 'fa-spin');
-                        toggleModal();
+                        //toggleModal('modalStatus');
                         form.submit();
                         //toggleModalSuccess();
                     } else {
@@ -1504,7 +1504,7 @@
     
     let closemodal = document.querySelectorAll('.modal-close')
     for (let i = 0; i < closemodal.length; i++) {
-      closemodal[i].addEventListener('click', toggleModal)
+      closemodal[i].addEventListener('click', toggleModalStatus)
     }
     
     // document.onkeydown = function(evt) {
@@ -1521,7 +1521,8 @@
     // };
     
     
-    function toggleModal (selectchange) {
+    function toggleModalStatus (selectchange) {
+        
         let txttitlemodal = document.getElementById('txttitlemodal');
         switch (selectchange) {
             case "status": txttitlemodal.innerHTML = "Por favor, indique la razón por la cual se desactiva la propiedad"; break;
@@ -1529,6 +1530,7 @@
             case "available": txttitlemodal.innerHTML = "Por favor, ingrese la razón por la cual la propiedad ya no está disponible"; break;
             default:break;
         }
+        console.log('entra aqui');
         const body = document.querySelector('body')
         const modal = document.querySelector('.modal')
         modal.classList.toggle('opacity-0')
@@ -1642,15 +1644,15 @@
             if(selstatus == 1 && valueStatus == 0){
                 ischangestatus = true;
                 event.preventDefault();
-                toggleModal("status");
+                toggleModalStatus("status");
             } else if(valuePlan == 1 && selstatus == 0 && valueStatus == 1){
                 ischangeplan = true;
                 event.preventDefault();
-                toggleModal('plan');
+                toggleModalStatus('plan');
             } else if(valueAvailable == 2 && selavailable == 1) {
                 ischangeavailable = true;
                 event.preventDefault();
-                toggleModal('available');
+                toggleModalStatus('available');
             }
         } else {
             form.submit();
