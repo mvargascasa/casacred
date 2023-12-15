@@ -357,7 +357,7 @@
             </div>
             <div class="d-flex mt-2">
               <img style="width: 25px; height: 25px" src="{{ asset('img/ubicacion.png') }}" alt="">
-              <p style="font-weight: 400">Sector: @if(Str::contains($propertie->address, ',')) {{$propertie->address}} @else {{ $propertie->state }}, {{$propertie->city}}, {{Str::ucfirst(Str::lower($propertie->address))}} @endif</p>
+              <p style="font-weight: 400">Sector: @if(Str::contains($propertie->address, ',')) {{$propertie->address}} @else {{ $propertie->state }}, {{$propertie->city}}, {{ $propertie->address ? Str::ucfirst(Str::lower($propertie->address)) : $propertie->sector }} @endif</p>
             </div>
             {{-- <div class="mt-4">
               <h5 style="font-weight: 500">Características:</h5>
