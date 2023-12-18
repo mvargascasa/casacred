@@ -30,7 +30,7 @@ class ApiController extends Controller
     }
     public function getproperties(Request $req) {
         
-        $properties = Listing::select('id','product_code','slug','listing_title','address','listingtypestatus','listingtype','property_price','images','heading_details','construction_area','land_area')->where('status',1)->orderBy('product_code','DESC');
+        $properties = Listing::select('id','product_code','slug','listing_title','address','listingtypestatus','listingtype','property_price','images','heading_details','construction_area','land_area', 'property_by')->where('status',1)->orderBy('product_code','DESC');
         
         if(strlen($req->txt)>2){
             $txt = filter_var ( $req->txt, FILTER_SANITIZE_NUMBER_INT);
@@ -225,5 +225,13 @@ class ApiController extends Controller
     public function getlistingbyslug($slug){
         $listing = Listing::where('listingtagstatus', 5)->where('listingtype', 23)->where('slug', $slug)->first();
         return response()->json($listing);
+    }
+
+    public function listPropertiesHousing(){
+        
+        $properties = Listing::select('id', 'product_code', 'listing_title', 'listing_description', 'bedroom', 'bathroom', 'garage', 'property_price')->where('property_by', 'Housing')->get();
+
+        return $properties;
+
     }
 }
