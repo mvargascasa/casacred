@@ -179,7 +179,7 @@
     <div class="col-sm-8">
       <div class="row d-flex justify-content-center">
         <div class="col-sm-12">
-          @if(Auth::user()->email == "seo@casacredito.com" || Auth::user()->email == "info@casacredito.com" || Auth::user()->email == "developer2@casacredito.com")
+          @if(Auth::user()->email == "seo@casacredito.com" || Auth::user()->email == "info@casacredito.com" || Auth::user()->email == "developer2@casacredito.com" || Auth::user()->email == "graficos@casacredito.com")
           <div class="mb-2">
             <div>
               <form action="{{route('home.user.watermark')}}" method="POST">
