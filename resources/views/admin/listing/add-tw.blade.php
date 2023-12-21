@@ -8,6 +8,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">  
 <style>
+    body{
+        scroll-behavior: smooth !important;
+    }
     /* input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none; margin: 0;} */
     .modal, .modalSuccess {
       transition: opacity 0.25s ease;
@@ -288,7 +291,7 @@
                 <div>      
                     {!! Form::label('owner_name', 'Nombre de Propietario', ['class' => 'font-semibold']) !!}
                     @if(isset($listing) && $listing->locked)
-                        {!! Form::text('owner_name', null, ['class' =>  $inputs, 'disabled']) !!}
+                        {!! Form::text('owner_name', null, ['class' =>  $inputs, 'readonly']) !!}
                     @else
                         {!! Form::text('owner_name', null, ['class' =>  $inputs]) !!}
                     @endif
@@ -296,7 +299,7 @@
                 <div>
                     {!! Form::label('identification', 'Cédula de Identidad', ['class' => 'font-semibold']) !!}
                     @if(isset($listing) && $listing->locked)
-                    {!! Form::text('identification', null, ['class' => $inputs, 'disabled']) !!}
+                    {!! Form::text('identification', null, ['class' => $inputs, 'readonly']) !!}
                     @elseif(Auth::user()->email == "developer2@casacredito.com")
                     {!! Form::text('identification', null, ['class' => $inputs, 'minlength' => 10, 'maxlength' => 10, 'pattern' => '[0-9]+']) !!}
                     @else
@@ -306,7 +309,7 @@
                 <div>
                     {!! Form::label('phone_number', 'Teléfono/Celular', ['class' => 'font-semibold']) !!}
                     @if(isset($listing) && $listing->locked)
-                    {!! Form::text('phone_number', null, ['class' => $inputs, 'disabled']) !!}
+                    {!! Form::text('phone_number', null, ['class' => $inputs, 'readonly']) !!}
                     @elseif(Auth::user()->email == "developer2@casacredito.com")
                     {!! Form::text('phone_number', null, ['class' => $inputs, 'minlength' => 7, 'maxlength' => 10, 'pattern' => '[0-9]+']) !!}
                     @else
@@ -316,7 +319,7 @@
                 <div>
                     {!! Form::label('owner_email', 'Email del Propietario', ['class' => 'font-semibold']) !!}
                     @if(isset($listing) && $listing->locked)
-                    {!! Form::email('owner_email', null, ['class' => $inputs, 'disabled']) !!}
+                    {!! Form::email('owner_email', null, ['class' => $inputs, 'readonly']) !!}
                     @elseif(Auth::user()->email == "developer2@casacredito.com")
                     {!! Form::email('owner_email', null, ['class' => $inputs]) !!}
                     @else
@@ -407,16 +410,16 @@
                 <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6">
                     <div>
                         {!! Form::label('property_price', 'Precio Max', ['class' => 'font-semibold']) !!}
-                        @if(isset($listing) && $listing->property_price != null && $listing->property_price > 0 && Auth::user()->role != "administrator")
-                            {!! Form::text('property_price', null, ['class' => $inputs]) !!}
+                        @if(isset($listing) && $listing->locked)
+                            {!! Form::text('property_price', null, ['class' => $inputs, 'disabled']) !!}
                         @else
                             {!! Form::text('property_price', null, ['class' => $inputs]) !!}
                         @endif
                     </div>
                     <div>
                         {!! Form::label('property_price_min', 'Precio Min', ['class' => 'font-semibold']) !!}
-                        @if(isset($listing) && $listing->property_price_min != null && $listing->property_price_min > 0 && Auth::user()->role != "administrator")
-                        {!! Form::text('property_price_min', null, ['class' => $inputs]) !!}
+                        @if(isset($listing) && $listing->locked)
+                        {!! Form::text('property_price_min', null, ['class' => $inputs, 'disabled']) !!}
                         @else
                         {!! Form::text('property_price_min', null, ['class' => $inputs]) !!}
                         @endif
@@ -1322,17 +1325,32 @@
         //mostrando input de comentario si el precio cambia de valor
         let input_price = document.querySelector("[name='property_price']");
         let price = input_price.value;
-        input_price.addEventListener('change', () => {
+        // input_price.addEventListener('change', () => {
+        //     validateCommentChangePrice();
+        // });
+
+        function validateCommentChangePrice(){
             let divcomment = document.getElementById('divcomment');
             let newprice = input_price.value;
             if(price != "" && price != newprice){
                 divcomment.style.display = "block";
-                document.querySelector("[name='comment']").required = true;
+                let comment = document.getElementById('comment').value;
+                if(comment == null || comment == ""){
+                    document.querySelector("[name='comment']").required = true;
+                    alert('Por favor, indique la razón por la que cambia el precio');
+                    divcomment.scrollIntoView({ 
+                        behavior: 'smooth' 
+                    });
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
                 divcomment.style.display = "none";
                 document.querySelector("[name='comment']").required = false;
+                return false;
             }
-        });
+        }
 
         //alert(document.querySelector("[name='property_price']").value);
         //alert(document.querySelector("[name='property_price_min']").value);
@@ -1623,7 +1641,7 @@
     } 
 
     const saveandclose = (event) => {
-        if(!validate()){
+        if(!validate() || validateCommentChangePrice()){
             event.preventDefault();
             return;
         }
