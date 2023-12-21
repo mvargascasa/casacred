@@ -408,7 +408,7 @@
                     <div>
                         {!! Form::label('property_price', 'Precio Max', ['class' => 'font-semibold']) !!}
                         @if(isset($listing) && $listing->property_price != null && $listing->property_price > 0 && Auth::user()->role != "administrator")
-                            {!! Form::text('property_price', null, ['class' => $inputs, 'disabled']) !!}
+                            {!! Form::text('property_price', null, ['class' => $inputs]) !!}
                         @else
                             {!! Form::text('property_price', null, ['class' => $inputs]) !!}
                         @endif
@@ -416,7 +416,7 @@
                     <div>
                         {!! Form::label('property_price_min', 'Precio Min', ['class' => 'font-semibold']) !!}
                         @if(isset($listing) && $listing->property_price_min != null && $listing->property_price_min > 0 && Auth::user()->role != "administrator")
-                        {!! Form::text('property_price_min', null, ['class' => $inputs, 'disabled']) !!}
+                        {!! Form::text('property_price_min', null, ['class' => $inputs]) !!}
                         @else
                         {!! Form::text('property_price_min', null, ['class' => $inputs]) !!}
                         @endif
