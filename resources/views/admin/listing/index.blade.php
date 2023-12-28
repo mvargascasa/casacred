@@ -638,7 +638,7 @@
                 check1.classList.add('bg-red-600', 'text-white');check1.classList.remove('hover:bg-red-600', 'hover:text-white');
                 check4.classList.remove('bg-blue-900', 'text-white');check4.classList.add('hover:bg-blue-900', 'hover:text-white', 'bg-gray-100');
                 check2.classList.add('bg-gray-100', 'text-black','hover:bg-red-600', 'hover:text-white');check2.classList.remove('bg-red-600', 'text-white');
-                check3.classList.remove('bg-red-600', 'text-white');check3.classList.add('hover:bg-red-600', 'hover:text-white');
+                check3.classList.remove('bg-red-800', 'text-white');check3.classList.add('hover:bg-red-800', 'hover:text-white');
                 document.getElementById('b_tipo').value = "";
                 break;
             case "lbl_ftop_category_1":
