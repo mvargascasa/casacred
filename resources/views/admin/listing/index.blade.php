@@ -9,7 +9,7 @@
     select > option{background-color: #ffffff; font-size: 14px !important;}
     .btn-edit:hover{background-color: #79dfa0 !important}
     .div-selects > input:hover{background-color: #ef4444; color: #ffffff; cursor: pointer}
-    #lbl_ftop_category_0, #lbl_ftop_category_1, #lbl_ftop_category_2{cursor: pointer !important;} 
+    #lbl_ftop_category_0, #lbl_ftop_category_1, #lbl_ftop_category_2, #lbl_ftop_category_3{cursor: pointer !important;} 
     .modal {transition: opacity 0.25s ease;}
     body.modal-active {overflow-x: hidden;overflow-y: visible !important;}
 </style>
@@ -42,16 +42,19 @@
                                     <input type="hidden" id="b_tipo">
                                     <div class="flex align-items-center">
                                         {{-- <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_0" autocomplete="off" value="en-venta" @if($category === "en-venta") checked @endif onclick="btnradio_search(this);setCategoryOnLoadIfRequestQueryHas(this.value)"> --}}
-                                        <input type="radio" style="display: none" class="btn-check" name="ftop_category[]" id="b_tipo" autocomplete="off" value="">
-                                        <label class="bg-red-600 hover:bg-red-600 text-white pt-4 px-5" id="lbl_ftop_category_0" for="ftop_category_0" style="width:100px;font-size: 18px;" onclick="changeClassBtnRadio(this)">TODOS</label>
+                                        <input type="radio" style="display: none" name="ftop_category[]" id="b_tipo" autocomplete="off" value="">
+                                        <label class="bg-red-600 hover:bg-red-600 text-white pt-4 px-5 font-semibold" id="lbl_ftop_category_0" for="ftop_category_0" style="width:100px;font-size: 18px;" onclick="changeClassBtnRadio(this)">TODOS</label>
                                         
                                         {{-- <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_1" autocomplete="off" value="alquilar" @if($category === "alquilar") checked @endif onclick="btnradio_search(this);setCategoryOnLoadIfRequestQueryHas(this.value)"> --}}
-                                        <input type="radio" style="display: none" class="btn-check" name="ftop_category[]" id="b_tipo" autocomplete="off" value="en-venta">
-                                        <label class="bg-gray-100 hover:bg-red-600 text-black hover:text-white pb-1 pt-4 px-5" id="lbl_ftop_category_1" for="ftop_category_1" style="width:100px;font-size: 18px" onclick="changeClassBtnRadio(this)">VENTA</label>
+                                        <input type="radio" style="display: none" name="ftop_category[]" id="b_tipo" autocomplete="off" value="en-venta">
+                                        <label class="bg-gray-100 hover:bg-red-600 text-black hover:text-white pb-1 pt-4 px-5 font-semibold" id="lbl_ftop_category_1" for="ftop_category_1" style="width:auto;font-size: 18px" onclick="changeClassBtnRadio(this)">CASA CREDITO</label>
                                         
                                         {{-- <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_2" autocomplete="off" value="proyectos" @if($category === "proyectos") checked @endif onclick="btnradio_search(this);setCategoryOnLoadIfRequestQueryHas(this.value)"> --}}
                                         <input type="radio" style="display:none" name="ftop_category[]" id="b_tipo" autocomplete="off" value="alquilar">
-                                        <label class="bg-gray-100 hover:bg-red-600 text-black hover:text-white pb-1 pt-4 px-5" id="lbl_ftop_category_2" for="ftop_category_2" style="width:100px;font-size: 18px" onclick="changeClassBtnRadio(this)">RENTA</label>
+                                        <label class="bg-gray-100 hover:bg-red-800 text-black hover:text-white pb-1 pt-4 px-5 font-semibold" id="lbl_ftop_category_2" for="ftop_category_2" style="width:auto;font-size: 18px" onclick="changeClassBtnRadio(this)">PROMOTORA</label>
+
+                                        <input type="radio" style="display:none" name="ftop_category[]" id="b_tipo" autocomplete="off" value="">
+                                        <label class="bg-gray-100 hover:bg-blue-900 text-black hover:text-white pb-1 pt-4 px-5 font-semibold" id="lbl_ftop_category_3" for="ftop_category_3" style="width:auto;font-size: 18px" onclick="changeClassBtnRadio(this)">HOUSING</label>
                                     </div>
                                 </div> 
                                 <div class="flex flex-wrap justify-center">
@@ -626,28 +629,38 @@
     });
 
     function changeClassBtnRadio(object){
-        console.log(object.id);
         let check1 = document.getElementById("lbl_ftop_category_0");
         let check2 = document.getElementById("lbl_ftop_category_1");
         let check3 = document.getElementById("lbl_ftop_category_2");
+        let check4 = document.getElementById("lbl_ftop_category_3");
         switch (object.id) {
             case "lbl_ftop_category_0":
                 check1.classList.add('bg-red-600', 'text-white');check1.classList.remove('hover:bg-red-600', 'hover:text-white');
+                check4.classList.remove('bg-blue-900', 'text-white');check4.classList.add('hover:bg-blue-900', 'hover:text-white', 'bg-gray-100');
                 check2.classList.add('bg-gray-100', 'text-black','hover:bg-red-600', 'hover:text-white');check2.classList.remove('bg-red-600', 'text-white');
                 check3.classList.remove('bg-red-600', 'text-white');check3.classList.add('hover:bg-red-600', 'hover:text-white');
                 document.getElementById('b_tipo').value = "";
                 break;
             case "lbl_ftop_category_1":
                 check2.classList.remove('hover:bg-red-600', 'hover:text-white');check2.classList.add('bg-red-600', 'text-white');
+                check4.classList.remove('bg-blue-900', 'text-white');check4.classList.add('hover:bg-blue-900', 'hover:text-white', 'bg-gray-100');
                 check1.classList.remove('bg-red-600', 'text-white');check1.classList.add('hover:bg-red-600', 'hover:text-white', 'bg-gray-100');
-                check3.classList.remove('bg-red-600', 'text-white');check3.classList.add('hover:bg-red-600', 'hover:text-white');
-                document.getElementById('b_tipo').value = "en-venta";
+                check3.classList.remove('bg-red-800', 'text-white');check3.classList.add('hover:bg-red-800', 'hover:text-white');
+                document.getElementById('b_tipo').value = "Casa Credito";
                 break;
             case "lbl_ftop_category_2":
                 check2.classList.remove('bg-red-600', 'text-white');check2.classList.add('hover:bg-red-600', 'hover:text-white', 'bg-gray-100');
                 check1.classList.remove('bg-red-600', 'text-white');check1.classList.add('hover:bg-red-600', 'hover:text-white', 'bg-gray-100');
-                check3.classList.remove('hover:bg-red-600', 'hover:text-white');check3.classList.add('bg-red-600', 'text-white');
-                document.getElementById('b_tipo').value = "alquilar";
+                check4.classList.remove('bg-blue-900', 'text-white');check4.classList.add('hover:bg-blue-900', 'hover:text-white', 'bg-gray-100');
+                check3.classList.remove('hover:bg-red-800', 'hover:text-white');check3.classList.add('bg-red-800', 'text-white');
+                document.getElementById('b_tipo').value = "Promotora";
+                break;
+            case "lbl_ftop_category_3":
+                check2.classList.remove('bg-red-600', 'text-white');check2.classList.add('hover:bg-red-600', 'hover:text-white', 'bg-gray-100');
+                check1.classList.remove('bg-red-600', 'text-white');check1.classList.add('hover:bg-red-600', 'hover:text-white', 'bg-gray-100');
+                check3.classList.remove('bg-red-800', 'text-white');check3.classList.add('hover:bg-red-800', 'hover:text-white', 'bg-gray-100');
+                check4.classList.remove('hover:bg-blue-900', 'hover:text-white');check4.classList.add('bg-blue-900', 'text-white');
+                document.getElementById('b_tipo').value = "Housing";
                 break;
             default:
                 break;

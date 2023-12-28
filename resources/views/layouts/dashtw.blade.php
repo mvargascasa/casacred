@@ -19,13 +19,15 @@
 
         <div :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="fixed z-20 inset-0 bg-black opacity-50 transition-opacity lg:hidden"></div>
     
-        <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed z-30 inset-y-0 left-0 w-40 transition duration-300 transform @if(Route::currentRouteName() != "admin.housing.property.create") bg-gray-500 @endif overflow-y-auto lg:translate-x-0 lg:static lg:inset-0" @if(Route::currentRouteName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.housing.property.edit") style="background-color:  #1C2444" @endif>
+        <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed z-30 inset-y-0 left-0 w-44 transition duration-300 transform @if(Route::currentRouteName() != "admin.housing.property.create") bg-gray-500 @endif overflow-y-auto lg:translate-x-0 lg:static lg:inset-0" style="background-color: @if(Route::currentRouteName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.housing.property.edit" || str_contains(Auth::user()->email, 'housingrentgroup')) #1C2444 @elseif(Route::currentRouteName()=='admin.promotora.property.create' || Route::currentRouteName() == "admin.promotora.property.edit") #670C07 @endif">
             <div class="flex items-center justify-center @if(Request::is('admin/show-listing*')) mt-3 @else mt-4 @endif">
                 <div class="flex items-center">
-                    @if(Route::currentRouteName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.housing.property.edit")
+                    @if(Route::currentRouteName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.housing.property.edit" || str_contains(Auth::user()->email, 'housingrentgroup'))
                         <img class="h-14" src="{{asset('img/logo-footer.png')}}">
+                    @elseif (Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit")
+                        <img class="h-12" src="{{ asset('img/logo-promotora.png') }}" alt="">
                     @else
-                        <img class="h-10" src="{{asset('img/casacredito-logo-crm.svg')}}">
+                    <img class="h-10" src="{{asset('img/casacredito-logo-crm.svg')}}">
                     @endif
                 </div>
             </div>
@@ -43,7 +45,7 @@
                     <span class="@if(Request::is('admin/show-listing*')) py-3  @else py-4 @endif  mx-3">Dashboard</span>
                 </a>               
     
-                <button  aria-controls="dropdown-example" data-collapse-toggle="dropdown-example" style="text-decoration: none !important" href="{{route('admin.listings.create')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-1 @else px-2 @endif text-sm text-white focus:outline-none @if(Request::is('admin/listings/create')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <button  aria-controls="dropdown-example" data-collapse-toggle="dropdown-example" style="text-decoration: none !important" href="{{route('admin.listings.create')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-1 @else px-4 @endif text-sm text-white focus:outline-none @if(Request::is('admin/listings/create')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white w-full">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Crear Propiedad</span>
                     
                 </button>
@@ -53,7 +55,7 @@
                             class="flex items-center w-full p-2 text-sm font-semibold text-white transition duration-75 group hover:bg-gray-600 pl-8">Casa Crédito</a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{{ route('admin.promotora.property.create') }}"
                             class="flex items-center w-full p-2 text-sm font-semibold text-white transition duration-75 group hover:bg-gray-600 pl-8">Promotora</a>
                     </li>
                     <li>
@@ -69,8 +71,8 @@
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Historial</span>
                 </a>
                 <div class="relative">
-                    <a style="text-decoration: none !important" href="{{route('admin.api.projects.index')}}" class="flex items-center @if(Request::is('admin/projects*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/projects*') || (Request::is('admin/projects*') && Str::contains(URL::previous(), 'admin/properties'))) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
-                        <span class="mx-3 @if(Request::is('admin/projects*')) py-3 @else py-4 @endif">Proyectos <br> <span class="text-white text-xs font-semibold">Promotora</span> </span>
+                    <a style="text-decoration: none !important" href="{{route('admin.api.projects.index')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/projects*') || (Request::is('admin/projects*') && Str::contains(URL::previous(), 'admin/properties'))) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                        <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Proyectos <br> <span class="text-white text-xs font-semibold">Promotora</span> </span>
                     </a>
                     <div class="font-semibold absolute bg-white rounded px-2 text-xs" style="right: 7px; top: 40%">
                         <span>Nuevo</span>
@@ -130,7 +132,7 @@
             </nav>
         </div>
         <div class="flex-1 flex flex-col overflow-hidden">
-            <header class="flex justify-between items-center py-1 px-6 bg-gray-300 border-b-4 border-red-800">
+            <header class="flex justify-between items-center py-1 px-6 @if(str_contains(Auth::user()->email, 'casacredito')) bg-gray-300 @endif border-b-4 border-red-800" @if(str_contains(Auth::user()->email, "housingrentgroup")) style="background-color: #1C2444" @endif>
                 <div class="flex items-center">
                     <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
                         <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -201,7 +203,7 @@
     
                     <div x-data="{ dropdownOpen: false }" class="relative">
                         <button @click="dropdownOpen = ! dropdownOpen"
-                            class="relative block h-8 overflow-hidden focus:outline-none">
+                            class="relative block h-8 overflow-hidden focus:outline-none @if(str_contains(Auth::user()->email, "housingrentgroup")) text-white @endif">
                            {{Auth::user()->name}}
                         </button>
     

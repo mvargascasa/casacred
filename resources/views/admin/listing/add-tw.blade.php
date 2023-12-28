@@ -137,7 +137,7 @@
 
     {!! Form::model($listing, ['route' => ['admin.listings.update',$listing->id],'method' => 'PUT', 'enctype' => 'multipart/form-data', 'id' => 'formsave']) !!}
     @else
-    <h2 class="text-lg font-semibold @if($currentRouteName == "admin.housing.property.create") text-blue-800 @else text-red-700 @endif">NUEVA PROPIEDAD EN @if($currentRouteName == "admin.housing.property.create") HOUSING RENT @endif</h2>
+    <h2 class="text-lg font-semibold @if($currentRouteName == "admin.housing.property.create") text-blue-800 @else text-red-700 @endif">NUEVA PROPIEDAD EN @if($currentRouteName == "admin.housing.property.create") HOUSING RENT @elseif(Route::currentRouteName() == "admin.promotora.property.create") CASA PROMOTORA @else CASA CREDITO @endif</h2>
     {!! Form::open(['route' => 'admin.listings.store','enctype' => 'multipart/form-data', 'id' => 'formsave']) !!}
     @endif
 
@@ -183,9 +183,9 @@
     </div>                
     @endif
     
-    @if(Route::current()->getName() == "admin.listings.edit" || Route::current()->getName() == "home.tw.edit" || Route::current()->getName() == "admin.housing.property.edit")
+    @if(Route::current()->getName() == "admin.listings.edit" || Route::current()->getName() == "home.tw.edit" || Route::current()->getName() == "admin.housing.property.edit" || Route::current()->getName() == "admin.promotora.property.edit")
         <div class="flex gap-6 justify-center">
-            <label id="btnfragment1" style="cursor: pointer" onclick="changefragment('first')" class="@if($currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white px-5 font-semibold">Información del Propietario</label>
+            <label id="btnfragment1" style="cursor: pointer" onclick="changefragment('first')" class="@if($currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif($currentRouteName == "admin.promotora.property.edit") bg-red-800 @else bg-red-600 @endif text-white px-5 font-semibold">Información del Propietario</label>
             <label id="btnfragment2" style="cursor: pointer" onclick="changefragment('second')" class="font-semibold">Información del Inmueble</label>
             {{-- <label id="btnfragment3" style="cursor: pointer" onclick="changefragment('third')" class="font-semibold">Informacion adicional</label> --}}
             <label id="btnfragment3" style="cursor: pointer" onclick="changefragment('third')" class="font-semibold">Multimedia</label>
@@ -334,7 +334,7 @@
                     {!! Form::text('owner_address', null, ['class' => $inputs]) !!}
                     @endif
                 </div>
-                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center ml-3" style="margin-top: -13px; letter-spacing: 1px">DATOS DEL PROPIETARIO</p>
+                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center ml-3" style="margin-top: -13px; letter-spacing: 1px">DATOS DEL PROPIETARIO</p>
             </div>
         </div>
 
@@ -457,7 +457,7 @@
                     </div>
                 @endif
     
-                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">DATOS DEL INMUEBLE</p>
+                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">DATOS DEL INMUEBLE</p>
             </div>
             <!--termina div datos del inmueble-->
     
@@ -505,7 +505,7 @@
                     {!! Form::label('observations_type_property', 'Observaciones', ['class' => 'font-semibold']) !!}
                     {!! Form::textarea('observations_type_property', null, ['class' => $inputs, 'rows' => 4]) !!}
                 </div>
-                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">TIPO DE INMUEBLE</p>
+                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">TIPO DE INMUEBLE</p>
             </div>
     
             <div class="border relative px-5 py-4 mt-10 hover:shadow-md">
@@ -529,7 +529,7 @@
                                     @else                
                                     @php $printControl=0; @endphp
                                             <input id="subdetails" class="w-24 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300" type="number" name="details{{$ii}}[]" pattern="[0-9]+" onkeydown="return false" value="{{!is_numeric($det)?1:$det}}"/>
-                                            <button class="w-12 h-10 py-2 @if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
+                                            <button class="w-12 h-10 py-2 @if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
                                         </div>
                                     @endif
                                 @endforeach
@@ -542,7 +542,7 @@
                             <label class="font-semibold">Titulo</label>
                             <div class="flex flex-row mt-2">
                                 <input id="details"  class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" name="details0[]" type="text"/>
-                                <button class="w-12 h-10 py-2 @if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowTitle(this)">X</button>
+                                <button class="w-12 h-10 py-2 @if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowTitle(this)">X</button>
                             </div>
                             <div class="font-semibold ml-4 mt-4">Detalles</div>
                             <div class="flex flex-row mt-2 ml-4">
@@ -552,14 +552,14 @@
                                     @endforeach
                                 </select>
                                 <input id="subdetails"  class="w-24 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300" type="number" name="details0[]" pattern="[0-9]+" onkeydown="return false" value="1"/>
-                                <button class="w-12 h-10 py-2 @if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
+                                <button class="w-12 h-10 py-2 @if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
                             </div>
                             <button type="button" class="px-4 py-2 ml-4 mt-4 text-xl leading-5 text-black bg-green-300 rounded" onclick="addRowDetail(this,0)">Agregar Detalle</button>
                         </div>
                     </div>
                     @endif
                     <button type="button" class="px-4 py-2 mt-4 text-xl leading-5 text-black bg-blue-300 rounded" onclick="addRowTitles()">Agregar Titulo</button>
-                    <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">DETALLES DEL INMUEBLE</p>
+                    <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">DETALLES DEL INMUEBLE</p>
                 </div>
 
             <div class="border relative px-5 py-4 mt-10 hover:shadow-md">
@@ -575,7 +575,7 @@
                         @endforeach
                     </div>    
                 </div>
-                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">SERVICIOS</p>
+                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">SERVICIOS</p>
             </div>
     
             <div class="border relative px-5 py-4 mt-10 hover:shadow-md">
@@ -598,7 +598,7 @@
                         @endforeach
                     </div>    
                 </div>
-                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">CARACTERISTICAS GENERALES</p>
+                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">CARACTERISTICAS GENERALES</p>
             </div>
     
             <div class="border relative px-5 py-4 mt-10 hover:shadow-md">
@@ -612,7 +612,7 @@
                         @endforeach
                     </div>    
                 </div>
-                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">AMBIENTES</p>
+                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">AMBIENTES</p>
             </div>
     
             <div class="gap-4 mt-4 sm:gap-6 border relative px-5 py-4 mt-10 hover:shadow-md">
@@ -627,7 +627,7 @@
                             </label>
                     @endforeach
                 </div>    
-                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0 shadow-lg" style="margin-top: -13px; letter-spacing: 1px">BENEFICIOS</p>
+                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0 shadow-lg" style="margin-top: -13px; letter-spacing: 1px">BENEFICIOS</p>
             </div>
 
             @if($currentRouteName != "admin.housing.property.create" && $currentRouteName != "admin.housing.property.edit")
@@ -682,7 +682,7 @@
                             </div>
                         </div>
                     </div> 
-                    <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0 shadow-lg" style="margin-top: -13px; letter-spacing: 1px">DATOS ADICIONALES</p>
+                    <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0 shadow-lg" style="margin-top: -13px; letter-spacing: 1px">DATOS ADICIONALES</p>
                 </div>
             @endif
         </div>
@@ -796,7 +796,7 @@
                                 {{-- @if(isset($listing) && $listing->locked)
                                 <button type="button" onclick="delImageUpload({{$ii}})" class="absolute right-0 px-2 rounded bg-red-800 text-white font-bold" disabled>X</button>
                                 @else --}}
-                                <button type="button" onclick="delImageUpload({{$ii}})" class="absolute right-0 px-2 rounded bg-red-800 text-white font-bold">X</button>
+                                <button type="button" onclick="delImageUpload({{$ii}})" class="absolute right-0 px-2 rounded @if($listing->property_by == "Housing") bg-blue-800 @elseif($listing->property_by == "Promotora") bg-red-700 @else bg-red-800 @endif text-white font-bold">X</button>
                                 {{-- @endif --}}
                                 <img class="rounded" src="@if(@getimagesize($imageVerification)){{url('uploads/listing/thumb/300', $img)}} @else {{url('uploads/listing/300',$img)}} @endif">
                                 <input type="hidden" value="{{$img}}" name="updatedImages[]">
@@ -830,11 +830,11 @@
             {{-- @if(isset($listing) && $listing->locked)
                 <button type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform bg-red-700 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600" disabled>GUARDAR</button>
             @else --}}
-                @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "home.tw.create" ||  Route::current()->getName() == "admin.housing.property.create")
-                <button id="btnSave" type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform @if($currentRouteName == "admin.housing.property.create") bg-blue-900 hover:bg-blue-700 @else bg-red-700 hover:bg-red-600 focus:bg-red-600 @endif rounded focus:outline-none">GUARDAR</button>
+                @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "home.tw.create" ||  Route::current()->getName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.promotora.property.create")
+                <button id="btnSave" type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform @if($currentRouteName == "admin.housing.property.create") bg-blue-900 hover:bg-blue-700 @elseif(Route::currentRouteName() == "admin.promotora.property.create") bg-red-800 hover:bg-red-700 focus:bg-red-700 @else bg-red-700 hover:bg-red-600 focus:bg-red-600 @endif rounded focus:outline-none">GUARDAR</button>
                 @endif
-                @if(Route::current()->getName() == "admin.listings.edit" || Route::current()->getName() == "home.tw.edit" || Route::current()->getName() == "admin.housing.property.edit")
-                <button onclick="saveandclose(event)" class="px-6 py-2 ml-3 text-xl leading-5 text-white @if($currentRouteName == "admin.housing.property.edit") bg-blue-900 @else bg-green-500 @endif transition-colors duration-200 transform rounded  focus:outline-none">GUARDAR Y SALIR</button>
+                @if(Route::current()->getName() == "admin.listings.edit" || Route::current()->getName() == "home.tw.edit" || Route::current()->getName() == "admin.housing.property.edit" || Route::currentRouteName() == "admin.promotora.property.edit")
+                <button onclick="saveandclose(event)" class="px-6 py-2 ml-3 text-xl leading-5 text-white @if($currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-green-500 @endif transition-colors duration-200 transform rounded  focus:outline-none">GUARDAR Y SALIR</button>
                 @endif
             {{-- @endif --}}
                 {{-- <button type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform bg-red-700 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600">GUARDAR</button> --}}
@@ -894,7 +894,7 @@
 @section('endscript')
     <script src="{{asset('js/sortable.min.js')}}"></script>
     <script>let bandera = false;</script>
-    @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "admin.housing.property.create")
+    @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.promotora.property.create")
         <script>
             const save = async(event) => {
                 if(bandera){
@@ -1174,7 +1174,7 @@
 
                 break;
                 case "third":
-                    if("{{Route::current()->getName() == 'admin.listings.create' || Route::current()->getName() == 'home.tw.create' || Route::current()->getName() == 'admin.housing.property.create'}}"){
+                    if("{{Route::current()->getName() == 'admin.listings.create' || Route::current()->getName() == 'home.tw.create' || Route::current()->getName() == 'admin.housing.property.create' || Route::current()->getName() == 'admin.promotora.property.create'}}"){
                         let galleryImages = document.getElementById('galleryImages');
                         if(galleryImages.files.length < 5){
                             bandera = false;
@@ -1420,13 +1420,13 @@
                 <label class="font-semibold">Titulo</label>
                 <div class="flex flex-row mt-2">
                     <input  class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" type="text" name="details${idUniq}[]" required/>
-                    <button class="w-12 h-10 py-2 @if($currentRouteName == 'admin.housing.property.create') bg-blue-900 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowTitle(this)">X</button>
+                    <button class="w-12 h-10 py-2 @if($currentRouteName == 'admin.housing.property.create' || $currentRouteName == 'admin.housing.property.edit') bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowTitle(this)">X</button>
                 </div>
                 <div class="font-semibold ml-4 mt-4">Detalles</div>
                 <div class="flex flex-row mt-2 ml-4">
                     <select class="w-44 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" name="details${idUniq}[]">${InsertOptions}</select>
                     <input  class="w-24 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300" type="number"  name="details${idUniq}[]" pattern="[0-9]+" onkeydown="return false" value="1"/>
-                    <button class="w-12 h-10 py-2 @if($currentRouteName == 'admin.housing.property.create') bg-blue-900 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
+                    <button class="w-12 h-10 py-2 @if($currentRouteName == 'admin.housing.property.create' || $currentRouteName == 'admin.housing.property.edit') bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
                 </div>
                 <button type="button" class="px-4 py-2 ml-4 mt-4 text-xl leading-5 text-black bg-green-300 rounded" onclick="addRowDetail(this,${idUniq})">Agregar Detalle</button>
             </div>`
@@ -1439,7 +1439,7 @@
         let rowTemplate =   `<div class="flex flex-row mt-2 ml-4">
                                 <select class="w-44 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" name="details${id}[]">${InsertOptions}</select>
                                 <input id="subdetails"  class="w-24 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300" type="number" name="details${id}[]" pattern="[0-9]+" onkeydown="return false" value="1"/>
-                                <button class="w-12 h-10 py-2 @if($currentRouteName == 'admin.housing.property.create') bg-blue-900 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
+                                <button class="w-12 h-10 py-2 @if($currentRouteName == 'admin.housing.property.create' || $currentRouteName == 'admin.housing.property.edit') bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
                             </div>`;
         row.insertAdjacentHTML('beforebegin',rowTemplate);
     }
@@ -1627,6 +1627,14 @@
                 case 'second': btnfragment1.classList.remove('bg-blue-900', 'text-white', 'px-5');btnfragment2.classList.add('bg-blue-900', 'text-white', 'px-5');btnfragment3.classList.remove('bg-blue-900', 'text-white', 'px-5');break;
                 case 'third': btnfragment1.classList.remove('bg-blue-900', 'text-white', 'px-5');btnfragment2.classList.remove('bg-blue-900', 'text-white', 'px-5');btnfragment3.classList.add('bg-blue-900', 'text-white', 'px-5');break;
                 case 'fourth': btnfragment1.classList.remove('bg-blue-900', 'text-white', 'px-5');btnfragment2.classList.remove('bg-blue-900', 'text-white', 'px-5');btnfragment3.classList.remove('bg-blue-900', 'text-white', 'px-5');break;
+                default:break;
+            }
+        } else if("{{ $currentRouteName == 'admin.promotora.property.edit'}}"){
+            switch(fragment){
+                case 'first': btnfragment1.classList.add('bg-red-800', 'text-white', 'px-5');btnfragment2.classList.remove('bg-red-800', 'text-white', 'px-5');btnfragment3.classList.remove('bg-red-800', 'text-white', 'px-5');break;
+                case 'second': btnfragment1.classList.remove('bg-red-800', 'text-white', 'px-5');btnfragment2.classList.add('bg-red-800', 'text-white', 'px-5');btnfragment3.classList.remove('bg-red-800', 'text-white', 'px-5');break;
+                case 'third': btnfragment1.classList.remove('bg-red-800', 'text-white', 'px-5');btnfragment2.classList.remove('bg-red-800', 'text-white', 'px-5');btnfragment3.classList.add('bg-red-800', 'text-white', 'px-5');break;
+                case 'fourth': btnfragment1.classList.remove('bg-red-800', 'text-white', 'px-5');btnfragment2.classList.remove('bg-red-800', 'text-white', 'px-5');btnfragment3.classList.remove('bg-red-800', 'text-white', 'px-5');break;
                 default:break;
             }
         } else {

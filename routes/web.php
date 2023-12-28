@@ -139,6 +139,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
     Route::get('housing', [PropertyController::class, 'index'])->name('housing.index');
     Route::get('housing/property/create', [ListingController::class, 'create'])->name('admin.housing.property.create');
     Route::get('housing/property/edit/{listing}', [TwController::class, 'edit'])->name('admin.housing.property.edit');
+
+    Route::get('promotora/property/create', [ListingController::class, 'create'])->name('admin.promotora.property.create');
+    Route::get('promotora/property/edit/{listing}', [TwController::class, 'edit'])->name('admin.promotora.property.edit');
 });
 
 //BLOG

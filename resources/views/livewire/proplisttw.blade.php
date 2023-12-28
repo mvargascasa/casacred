@@ -11,7 +11,7 @@
                 {{-- web.detail  --}}
                 {{-- {{route('admin.listings.edit',$propertie->id)}} --}}
                 @if(Auth::user()->role == "user" || Auth::user()->role == "ASESOR")
-                    <a href="@if($url_current == "admin.myproperties" || Route::current()->getName() == "admin.myproperties"){{ route('admin.listings.edit', $propertie->id) }} @else {{route('admin.show.listing', $propertie->id)}}@endif" target="_blank">
+                    <a href="@if(($url_current == "admin.myproperties" || Route::current()->getName() == "admin.myproperties") && $propertie->property_by == "Housing") {{ route('admin.housing.property.edit', $propertie) }} @elseif(($url_current == "admin.myproperties" || Route::current()->getName() == "admin.myproperties") && $propertie->property_by == "Promotora") {{ route('admin.promotora.property.edit', $propertie) }} @elseif($url_current == "admin.myproperties" || Route::current()->getName() == "admin.myproperties" && $propertie->property_by == "" || $propertie->property_by == "Casa Credito") {{ route('admin.listings.edit', $propertie->id) }} @else {{route('admin.show.listing', $propertie->id)}}@endif" target="_blank">
                         {{-- @if(Route::current()->getName() == "admin.myproperties" || Auth::user()->role == "administrator") {{ route('admin.listings.edit', $propertie->id) }} @else {{ route('admin.show.listing', $propertie->id) }} @endif --}}
                 @endif
 
@@ -19,10 +19,10 @@
                 @php
                     $imageVerification = asset('uploads/listing/thumb/600/'.$dirImg);
                 @endphp
-                <a target="_blank" href="@if($url_current == "admin.myproperties" || Route::current()->getName() == "admin.myproperties"){{ route('admin.listings.edit', $propertie->id) }} @else {{ route('admin.show.listing', $propertie) }} @endif"><img class="w-full" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.$dirImg)) {{ url('/uploads/listing/thumb/600/', $dirImg) }} @else {{url('uploads/listing/600', $dirImg)}} @endif" alt="{{ $propertie->listing_title}}"></a>
+                <a target="_blank" href="@if($url_current == "admin.myproperties" || Route::current()->getName() == "admin.myproperties" && $propertie->property_by == 'Housing') {{ route('admin.housing.property.edit', $propertie) }} @elseif($url_current == "admin.myproperties" || Route::current()->getName() == "admin.myproperties" && $propertie->property_by == "" || $propertie->property_by == "Casa Credito") {{ route('admin.listings.edit', $propertie->id) }} @elseif($url_current == "admin.myproperties" || Route::current()->getName() == "admin.myproperties" && $propertie->property_by == 'Promotora') {{ route('admin.promotora.property.edit', $propertie) }} @else {{ route('admin.show.listing', $propertie) }} @endif"><img class="w-full" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.$dirImg)) {{ url('/uploads/listing/thumb/600/', $dirImg) }} @else {{url('uploads/listing/600', $dirImg)}} @endif" alt="{{ $propertie->listing_title}}"></a>
                 {{-- @if(@getimagesize($imageVerification)) {{ url('/uploads/listing/thumb/600/', $dirImg) }} @else {{url('uploads/listing/600', $dirImg)}} @endif --}}
                 @else
-                    <a target="_blank" href="@if($url_current == "admin.myproperties" || Route::current()->getName() =="admin.myproperties"){{route('admin.listings.edit', $propertie->id) }} @else {{ route('admin.show.listing', $propertie) }} @endif"><img class="w-full" src="{{ asset('img/sin-imagenes.jpg') }}" alt="Sunset in the mountains"></a>
+                    <a target="_blank" href="@if($url_current == "admin.myproperties" || Route::current()->getName() =="admin.myproperties" && $propertie->property_by == 'Housing') {{ route('admin.housing.property.edit', $propertie) }} @elseif($url_current == "admin.myproperties" || Route::current()->getName() =="admin.myproperties" && $propertie->property_by == 'Promotora') {{ route('admin.promotora.property.edit', $propertie) }} @elseif($url_current == "admin.myproperties" || Route::current()->getName() =="admin.myproperties" && $propertie->property_by == '' || $propertie->property_by == "Casa Credito") {{route('admin.listings.edit', $propertie->id) }} @else {{ route('admin.show.listing', $propertie) }} @endif"><img class="w-full" src="{{ asset('img/sin-imagenes.jpg') }}" alt="Sunset in the mountains"></a>
                     {{-- <div class="absolute top-0 left-0 w-full h-full" style="display: flex; justify-content: center; align-items: center">
                         <p style="color: #ffffff" class="flex">Sin imágenes</p>
                     </div> --}}
@@ -55,6 +55,10 @@
                     @if($propertie->property_by == "Housing")
                         <div style="background-color: #1C2444" class="px-2 py-1">
                             <img width="70px" src="{{ asset('img/logo-footer.png') }}" alt="">
+                        </div>
+                    @elseif($propertie->property_by == "Promotora")
+                        <div style="background-color: #670C07" class="px-2 py-1">
+                            <img width="90px" src="{{ asset('img/logo-promotora.png') }}" alt="">
                         </div>
                     @else
                         <div>

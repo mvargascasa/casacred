@@ -263,6 +263,7 @@ class ListingController extends Controller
             if(!$listing->locked && ($listing->owner_name != null || $request->owner_name != null) && ($listing->identification != null || $request->identification != null) && ($listing->phone_number != null || $request->phone_number != null) && ($listing->owner_email != null || $request->owner_email != null) && ($listing->owner_address != null || $request->owner_address != null)) $listing->locked = true;
             
             if($request->currentUrl == "admin.housing.property.create") $listing->property_by = 'Housing';
+            if($request->currentUrl == "admin.promotora.property.create") $listing->property_by = 'Promotora';
             else $listing->property_by = 'Casa Credito';
 
             $listing->save();
