@@ -162,7 +162,14 @@
 <section class="header-images-desktop mt-4">
   <section class="row mx-2">
     <div class="col-12 col-sm-12 col-md-12 col-xl-6 position-relative">
-      <article onclick="addactive(0)" class="shadow rounded" data-toggle="modal" data-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 600px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[0]) : url('uploads/listing',$images[0]) }}')"></article>
+      <article onclick="addactive(0)" class="shadow rounded position-relative" data-toggle="modal" data-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 600px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[0]) : url('uploads/listing',$images[0]) }}')">
+      
+        @if($listing->product_code == 2191)
+          <div class="position-absolute" style="top: 0px; width: 100%;">
+            <label style="width: 100%; padding-left: 50px; text-align: center; font-size: 25px" class="bg-danger text-white">Propiedad Rentada</label>
+          </div>
+        @endif
+      </article>
       @if($listing->video != null)
         <button type="button" class="btn btn-danger position-absolute rounded-pill" style="bottom: -15px; left: 60px" data-bs-toggle="modal" data-bs-target="#video_modal">Ver video <i class="fas fa-video"></i></button>
       @endif
@@ -222,7 +229,7 @@
 @else
 <section>
   <div id="carouselImageMobile" class="carousel slide position-relative" data-ride="carousel">
-    <div class="carousel-inner">
+    <div class="carousel-inner position-relative">
       @php $index = 0; @endphp
       @foreach ($images as $img)    
         <div id="img_{{ $index }}" class="carousel-item @if($index == 0) active @endif">
@@ -230,6 +237,11 @@
         </div>
         @php $index++; @endphp
       @endforeach
+      @if($listing->product_code == 2191)
+        <div class="position-absolute" style="top: 20px; right: -40px; transform: rotate(35deg);">
+          <label style="width: 200px; padding-left: 60px; font-size: 25px" class="bg-danger text-white">Rentada</label>
+        </div>
+      @endif
     </div>
     @if($listing->video != null)
       <button type="button" class="btn btn-danger position-absolute rounded-pill" style="bottom: -15px; left: 30px" data-bs-toggle="modal" data-bs-target="#video_modal">Video <i class="fas fa-video"></i></button>
