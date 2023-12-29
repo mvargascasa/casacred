@@ -174,7 +174,7 @@
                 <div>
                     <div class="flex justify-center">
                         <a target="_blank" class="btn-edit ml-1 p-1 rounded" style="background-color: #c6f6d5" href="@if($propertie->property_by == 'Housing') {{ route('admin.housing.property.edit', $propertie) }} @elseif($propertie->property_by == 'Casa Credito' || $propertie->property_by == null || $propertie->property_by == ""){{ route('home.tw.edit', $propertie) }} @elseif($propertie->property_by == "Promotora") {{ route('admin.promotora.property.edit', $propertie) }} @endif" style="text-decoration: none">
-                            <p class="text-black text-sm" style="font-weight: 500">Editar propiedad C</p>
+                            <p class="text-black text-sm" style="font-weight: 500">Editar propiedad</p>
                         </a>
                     </div>
                 </div>
@@ -306,7 +306,7 @@
                 @endif
                 <div class="flex justify-center">
                     <a target="_blank" class="btn-edit ml-1 p-1 rounded" style="background-color: #c6f6d5" href="{{ route('home.tw.edit', $s_propertie) }}" style="text-decoration: none">
-                        <p class="text-black text-sm" style="font-weight: 500">Editar propiedad x</p>
+                        <p class="text-black text-sm" style="font-weight: 500">Editar propiedad</p>
                     </a>
                 </div>
                 @endif
