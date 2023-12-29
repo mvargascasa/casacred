@@ -48,11 +48,6 @@
                     <div class="d-flex justify-content-center" style="width: 100%">
                       <div class="position-relative">
                         <img width="400px" height="250px" src="@if(file_exists(public_path().'/uploads/listing/thumb/300/'.strtok($listing->images, "|"))) {{asset('uploads/listing/thumb/300/'.strtok($listing->images, '|'))}} @else {{asset('uploads/listing/300/'.strtok($listing->images, '|'))}} @endif" class="d-block" alt="{{$listing->listing_title}}">
-                        @if($listing->product_code == 2191)
-                          <div class="position-absolute" style="bottom: 0px; width: 100%">
-                            <label style="width: 100%; text-align: center; height: 40px; font-size: 25px" class="bg-danger text-white">Rentada</label>
-                          </div>
-                        @endif
                       </div>
                     </div>
                   </a>
@@ -79,11 +74,6 @@
                             </div>
                           @endforeach
                       {{-- @endif --}}
-                        @if($listing->product_code == 2191)
-                          <div class="position-absolute" style="top: 15px; right: -25px; transform: rotate(35deg);">
-                            <label style="width: 150px; padding-left: 50px" class="bg-danger text-white">Rentada</label>
-                          </div>
-                        @endif
                     </div>
                     <a class="carousel-control-prev" href="#carouselControls{{$listing->id}}" role="button" data-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>

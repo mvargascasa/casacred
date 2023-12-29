@@ -148,6 +148,7 @@
 #calcularcredmobile{z-index: 4;position: fixed;bottom: 0px;left: 0px;}
 .bg-orange{background-color: #dc3545;}
 .tiktok-embed{width: 100% !important}
+.filter-image:hover{filter: brightness(70%)}
 </style>
 @endsection
 
@@ -160,43 +161,38 @@
 @section('content')
 @if(!$mobile)
 <section class="header-images-desktop mt-4">
-  <section class="row mx-2">
-    <div class="col-12 col-sm-12 col-md-12 col-xl-6 position-relative">
-      <article onclick="addactive(0)" class="shadow rounded position-relative" data-toggle="modal" data-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 600px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[0]) : url('uploads/listing',$images[0]) }}')">
-      
-        @if($listing->product_code == 2191)
-          <div class="position-absolute" style="top: 0px; width: 100%;">
-            <label style="width: 100%; padding-left: 50px; text-align: center; font-size: 25px" class="bg-danger text-white">Propiedad Rentada</label>
-          </div>
+  <div class="container">
+    <section class="row mx-2">
+      <div class="col-12 col-sm-12 col-md-12 col-xl-6 position-relative">
+        <article onclick="addactive(0)" class="shadow position-relative filter-image" data-toggle="modal" data-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 500px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[0]) : url('uploads/listing',$images[0]) }}')"></article>
+        @if($listing->video != null)
+          <button type="button" class="btn btn-danger position-absolute rounded-pill" style="bottom: -15px; left: 60px" data-bs-toggle="modal" data-bs-target="#video_modal">Ver video <i class="fas fa-video"></i></button>
         @endif
-      </article>
-      @if($listing->video != null)
-        <button type="button" class="btn btn-danger position-absolute rounded-pill" style="bottom: -15px; left: 60px" data-bs-toggle="modal" data-bs-target="#video_modal">Ver video <i class="fas fa-video"></i></button>
-      @endif
-    </div>
-    <div class="col-12 col-sm-12 col-md-12 col-xl-6">
-      <div class="row align-items-center h-100">
-        <div class="col-sm-6 w-100">
-          <div class="d-flex mb-3">
-            @if(count($images) > 1)
-              <article onclick="addactive(1)" class="mr-2 shadow rounded" data-toggle="modal" data-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 250px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[1]) : url('uploads/listing',$images[1]) }}')"></article>
-            @endif
-            @if(count($images) > 2)
-              <article onclick="addactive(2)" class="ml-2 shadow rounded" data-toggle="modal" data-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 250px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[2]) : url('uploads/listing',$images[2]) }}')"></article>
-            @endif
-          </div>
-            <div class="d-flex mt-3">
-            @if(count($images)>3)
-              <article onclick="addactive(3)" class="mr-2 shadow rounded" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 250px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[3]) : url('uploads/listing',$images[3]) }}')"></article>
-            @endif
-            @if(count($images)>4)
-              <article onclick="addactive(4)" class="ml-2 shadow rounded" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 250px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[4]) : url('uploads/listing',$images[4]) }}')"></article>
-            @endif
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-xl-6">
+        <div class="row align-items-center h-100">
+          <div class="col-sm-6 w-100">
+            <div class="d-flex mb-3">
+              @if(count($images) > 1)
+                <article onclick="addactive(1)" class="mr-2 shadow filter-image" data-toggle="modal" data-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 242px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[1]) : url('uploads/listing',$images[1]) }}')"></article>
+              @endif
+              @if(count($images) > 2)
+                <article onclick="addactive(2)" class="ml-2 shadow filter-image" data-toggle="modal" data-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 242px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[2]) : url('uploads/listing',$images[2]) }}')"></article>
+              @endif
             </div>
+              <div class="d-flex mt-3">
+              @if(count($images)>3)
+                <article onclick="addactive(3)" class="mr-2 shadow filter-image" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 242px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[3]) : url('uploads/listing',$images[3]) }}')"></article>
+              @endif
+              @if(count($images)>4)
+                <article onclick="addactive(4)" class="ml-2 shadow filter-image" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 242px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[4]) : url('uploads/listing',$images[4]) }}')"></article>
+              @endif
+              </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
   
   <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
     <div class="modal-dialog modal-xl modal-dialog-centered">
@@ -237,11 +233,6 @@
         </div>
         @php $index++; @endphp
       @endforeach
-      @if($listing->product_code == 2191)
-        <div class="position-absolute" style="top: 20px; right: -40px; transform: rotate(35deg);">
-          <label style="width: 200px; padding-left: 60px; font-size: 25px" class="bg-danger text-white">Rentada</label>
-        </div>
-      @endif
     </div>
     @if($listing->video != null)
       <button type="button" class="btn btn-danger position-absolute rounded-pill" style="bottom: -15px; left: 30px" data-bs-toggle="modal" data-bs-target="#video_modal">Video <i class="fas fa-video"></i></button>
@@ -259,7 +250,7 @@
 @endif
 
 
-  <div class="container">
+  <div class="container mt-4">
     {{-- <div style="display: none" class="row pt-3">
       aqui
       <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">          
