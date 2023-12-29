@@ -465,8 +465,11 @@
     <div class="col-sm-4">
       <div class="sticky-top">
         <div class="card border-light shadow-sm mb-3 mt-4">
-          <div class="card-header text-white" style="background-color: #DC3545">Información</div>
+          <div class="card-header text-white" style="background-color: @if($propertie->property_by == "Casa Credito") #DC3545 @elseif($propertie->property_by == "Housing") #1C2444 @elseif($propertie->property_by == "Promotora") #AC3837 @endif">Información</div>
           <div class="card-body">
+            <div class="row mb-3">
+              <p class="h6 d-flex gap-2 align-items-center">Esta propiedad pertenece a <img width="100px" src="@if($propertie->property_by == "Housing") {{ asset('img/logo-housing-rent.png') }} @elseif($propertie->property_by == "Promotora") {{ asset('img/logo-rojo-promotora.png') }} @elseif($propertie->property_by == "Casa Credito") {{ asset('img/LOGO CASA CREDITO_Mesa de trabajo 1.png') }} @endif" alt=""></p>
+            </div>
             @if($user)
               <div class="row mb-3">
                 <p class="text-muted"><i class="fas fa-info-circle"></i> Subido por <b>{{$user->name}}</b> el <b>{{$propertie->created_at->format('d-M-y')}}</b></p>
@@ -537,11 +540,13 @@
                 <p>${{ $propertie->aliquot }}</p>
               </div>
             @endif
-            @if($propertie->cadastral_key != null)
-              <div class="row mb-3">
-                <h5 class="card-title fw-bold">Clave Catastral</h5>
-                <p>{{ $propertie->cadastral_key }}</p>
-              </div>
+            @if($propertie->property_by == "Casa Credito" || $propertie->property_by == "Promotora")
+              @if($propertie->cadastral_key != null)
+                <div class="row mb-3">
+                  <h5 class="card-title fw-bold">Clave Catastral</h5>
+                  <p>{{ $propertie->cadastral_key }}</p>
+                </div>
+              @endif
             @endif
           </div>
           <div class="row">
