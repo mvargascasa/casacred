@@ -554,7 +554,7 @@
         </div>
         <div class="flex justify-center">
           @if(Auth::user()->role == 'administrator')
-          <a class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" style="text-decoration: none;" href="{{ route('home.tw.edit', $propertie) }}">Editar</a>
+          <a class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" style="text-decoration: none;" href="@if($propertie->property_by == "Housing"){{ route('admin.housing.property.edit', $propertie) }} @elseif($propertie->property_by == "Promotora") {{ route('admin.promotora.property.edit', $propertie) }} @elseif($propertie->property_by == "Casa Credito") {{ route('home.tw.edit', $propertie) }} @endif">Editar</a>
           <button type="button" class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Historial</button>
           @endif
           <button type="button" class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" data-bs-toggle="modal" data-bs-target="#modalSendEmail">Compartir</button>
