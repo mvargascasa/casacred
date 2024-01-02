@@ -6,7 +6,19 @@
 
 {{-- link para el loading button --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">  
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+
+{{-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.js" crossorigin=""></script> --}}
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <!-- Load Esri Leaflet from CDN -->
+    <script src="https://unpkg.com/esri-leaflet@3.0.10/dist/esri-leaflet.js"></script>
+    <!-- Load Esri Leaflet Geocoder from CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.css" crossorigin="" />
+    <script src="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.js" crossorigin=""></script>
 <style>
     body{
         scroll-behavior: smooth !important;
@@ -66,6 +78,14 @@
         100% {
             content: 'Loading...';
         }
+        }
+        #map{
+            width: 100% !important;
+            height: 500px !important;
+            border-radius: 10px !important;
+        }
+        .leaflet-grab {
+            cursor: auto;
         }
 </style>
 
@@ -430,6 +450,16 @@
                     {!! Form::label('comment', 'Comentario', ['class' => 'font-semibold']) !!}
                     {!! Form::textarea('comment', null, ['class' => $inputs, 'rows' => 2, 'placeholder' => 'Ingrese el motivo por el cual cambio el precio']) !!}
                 </div>
+                
+                {{-- map --}}
+                <div>
+                    <p class="font-semibold mt-5">Ubicación de la propiedad</p>
+                    <p class="text-gray-500 text-sm">Realice la búsqueda de las calles, haga click en el punto donde se encuentra la propiedad en el mapa y automaticamente cargará la latitud y longitud.</p>
+                    <div id="map" class="mt-5" style="height: 400px !important">
+                        
+                    </div>
+                </div>
+                {{-- termina map --}}
     
                 <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6">
                     <div>          
@@ -905,8 +935,63 @@
                     { body: dataform, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}"}});
                     let mensaje = await response.json();
                     document.querySelector('.loader').style.display = "none";
-                    if(mensaje.success && mensaje.fragment == "first"){ document.getElementById('first').style.display="none";document.getElementById('second').style.display="block";setfragmentvalue('second'); if(document.getElementById('paso1')){document.getElementById('paso1').classList.remove('bg-red-500');if("{{ $currentRouteName == 'admin.housing.property.create'}}") {document.getElementById('paso1').classList.add('bg-blue-900');} else {document.getElementById('paso1').classList.add('bg-green-500');}; if(document.getElementById('paso2')){document.getElementById('paso2').classList.remove('bg-gray-500'); document.getElementById('paso2').classList.add('bg-red-500')}}}
-                    if(mensaje.success && mensaje.fragment == "second"){ document.getElementById('second').style.display="none";document.getElementById('third').style.display="block";setfragmentvalue('third'); if(document.getElementById('paso2')){document.getElementById('paso2').classList.remove('bg-red-500');if("{{ $currentRouteName == 'admin.housing.property.create'}}") {document.getElementById('paso2').classList.add('bg-blue-900');} else {document.getElementById('paso2').classList.add('bg-green-500');}; if(document.getElementById('paso3')){document.getElementById('paso3').classList.remove('bg-gray-500'); document.getElementById('paso3').classList.add('bg-red-500')}}}
+                    if(mensaje.success && mensaje.fragment == "first"){ 
+                        document.getElementById('first').style.display="none";
+                        document.getElementById('second').style.display="block";
+                        setfragmentvalue('second'); 
+                        let map = L.map('map').setView([-2.9003262789921513, -79.00517388859988], 13);
+
+                        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        }).addTo(map);
+
+                        let inpLat = document.getElementById('lat');
+                        let inpLng = document.getElementById('lng');
+                        
+                        let marker = null;
+                        const apiKey = "AAPK6cd0390360a34c47abb6992f612c3a4eHDSN5oz15wvKsDnnOXQAT1xiCNYDtP4B8XRcytqys3UphqELHcSD_tlTbsijCbGz";
+                        map.on('click', (event)=> {
+
+                            if(marker !== null){
+                                map.removeLayer(marker);
+                            }
+
+                            marker = L.marker([event.latlng.lat , event.latlng.lng]).addTo(map);
+
+                            inpLat.value = event.latlng.lat;
+                            inpLng.value = event.latlng.lng;
+                            
+                        });
+
+                        const searchControl = L.esri.Geocoding.geosearch({
+                            position: "topright",
+                            placeholder: "Ingrese la dirección de la propiedad",
+                            useMapBounds: false,
+                            providers: [
+                            L.esri.Geocoding.arcgisOnlineProvider({
+                                apikey: apiKey,
+                                nearby: {
+                                lat: -33.8688,
+                                lng: 151.2093
+                                }
+                            })
+                            ]
+                        }).addTo(map);
+
+                        const results = L.layerGroup().addTo(map);
+
+                        searchControl.on("results", function (data) {
+                            results.clearLayers();
+                            for (let i = data.results.length - 1; i >= 0; i--) {
+                            results.addLayer(L.marker(data.results[i].latlng));
+                            }
+                        });
+                        if(document.getElementById('paso1')){document.getElementById('paso1').classList.remove('bg-red-500');if("{{ $currentRouteName == 'admin.housing.property.create'}}") {document.getElementById('paso1').classList.add('bg-blue-900');} else {document.getElementById('paso1').classList.add('bg-green-500');}; if(document.getElementById('paso2')){document.getElementById('paso2').classList.remove('bg-gray-500'); document.getElementById('paso2').classList.add('bg-red-500')}}}
+                    if(mensaje.success && mensaje.fragment == "second"){ 
+                        document.getElementById('second').style.display="none";
+                        document.getElementById('third').style.display="block";
+                        setfragmentvalue('third');
+                        if(document.getElementById('paso2')){document.getElementById('paso2').classList.remove('bg-red-500');if("{{ $currentRouteName == 'admin.housing.property.create'}}") {document.getElementById('paso2').classList.add('bg-blue-900');} else {document.getElementById('paso2').classList.add('bg-green-500');}; if(document.getElementById('paso3')){document.getElementById('paso3').classList.remove('bg-gray-500'); document.getElementById('paso3').classList.add('bg-red-500')}}}
                     //if(mensaje.success && mensaje.fragment == "third"){ document.getElementById('third').style.display="none";document.getElementById('fourth').style.display="block";setfragmentvalue('fourth'); if(document.getElementById('paso3')){document.getElementById('paso3').classList.remove('bg-red-500');if("{{ $currentRouteName == 'admin.housing.property.create'}}") {document.getElementById('paso3').classList.add('bg-blue-900');} else {document.getElementById('paso3').classList.add('bg-green-500');}; if(document.getElementById('paso4')){document.getElementById('paso4').classList.remove('bg-gray-500'); document.getElementById('paso4').classList.add('bg-red-500')}}}
                     if(mensaje.success && mensaje.fragment == "third" && !ischangestatus && !ischangeplan && !ischangeavailable){window.location.replace("{{route('admin.properties')}}"); if(document.getElementById('paso4')){document.getElementById('paso4').classList.remove('bg-red-500');document.getElementById('paso4').classList.add('bg-green-500');}}
                 }
@@ -1609,7 +1694,62 @@
     const changefragment = (id) => {
         switch (id) {
             case 'first': first_fragment.style.display='block';second_fragment.style.display='none';third_fragment.style.display='none';setfragmentvalue('first');changeclass('first');break;
-            case 'second': first_fragment.style.display='none';second_fragment.style.display='block';third_fragment.style.display='none';setfragmentvalue('second');changeclass('second');break;
+            case 'second': first_fragment.style.display='none';second_fragment.style.display='block';third_fragment.style.display='none';setfragmentvalue('second');changeclass('second'); 
+            let map = L.map('map').setView([-2.9003262789921513, -79.00517388859988], 13);
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            let inpLat = document.getElementById('lat');
+            let inpLng = document.getElementById('lng');
+
+            if((inpLat.value != null || inpLat.value > 0) && (inpLng.value != null || inpLng.value > 0)){
+                L.marker([inpLat.value, inpLng.value]).addTo(map)
+                    .bindPopup(`<a target='blank' href='https://api.whatsapp.com/send?text=https://maps.google.com/?q=${inpLat.value},${inpLng.value}'>Compartir Ubicación</a>`)
+                    .openPopup();
+            }
+
+            let marker = null;
+            const apiKey = "AAPK6cd0390360a34c47abb6992f612c3a4eHDSN5oz15wvKsDnnOXQAT1xiCNYDtP4B8XRcytqys3UphqELHcSD_tlTbsijCbGz";
+            map.on('click', (event)=> {
+
+                if(marker !== null){
+                    map.removeLayer(marker);
+                }
+
+                marker = L.marker([event.latlng.lat , event.latlng.lng]).addTo(map);
+
+                inpLat.value = event.latlng.lat;
+                inpLng.value = event.latlng.lng;
+                
+            });
+
+            const searchControl = L.esri.Geocoding.geosearch({
+                position: "topright",
+                placeholder: "Ingrese la dirección de la propiedad",
+                useMapBounds: false,
+                providers: [
+                L.esri.Geocoding.arcgisOnlineProvider({
+                    apikey: apiKey,
+                    nearby: {
+                    lat: -33.8688,
+                    lng: 151.2093
+                    }
+                })
+                ]
+            }).addTo(map);
+
+            const results = L.layerGroup().addTo(map);
+
+            searchControl.on("results", function (data) {
+                results.clearLayers();
+                for (let i = data.results.length - 1; i >= 0; i--) {
+                results.addLayer(L.marker(data.results[i].latlng));
+                }
+            });
+
+            break;
             case 'third': first_fragment.style.display='none';second_fragment.style.display='none';third_fragment.style.display='block';setfragmentvalue('third');changeclass('third');break;
             //case 'fourth': first_fragment.style.display='none';second_fragment.style.display='none';third_fragment.style.display='none';fourth_fragment.style.display='block';setfragmentvalue('fourth');changeclass('fourth');break;
             default: break;
