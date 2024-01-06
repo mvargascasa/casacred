@@ -439,14 +439,16 @@ if(strpos($actual_link, 'localhost') === false){
                         
                         <p class="text-dark-50">Sábados 9:00 am a 1:00 pm</p>
                         
-                        <p class="text-dark-50 mt-2"><b style="font-weight: 500; color: #ffffff"><i class="fas fa-map-marker-alt"></i> Sucursal 1:</b><a href="https://g.page/r/CRcVix2z3D8lEAE" style="color: #ffffff" target="_blank"> Av. Fray Vicente Solano 3-54 y Remigio Tamariz Crespo</a></p>
+                        {{-- <p class="text-dark-50 mt-2"><i class="fas fa-map-marker-alt text-white"></i><a href="https://g.page/r/CRcVix2z3D8lEAE" style="color: #ffffff" target="_blank"> Av. Fray Vicente Solano 3-54 y Remigio Tamariz Crespo</a></p> --}}
                         
-                        <p style="margin: 0px;" class="text-dark-50"><b style="font-weight: 500; color: #ffffff; margin: 0px"><i class="fas fa-map-marker-alt"></i> Sucursal 2:</b><a target="_blank" style="color: #ffffff" href="https://g.page/r/CV7pH0E3AVo_EBA"> Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero - Edificio Santa Lucia</a></p>                        
+                        <p class="text-dark-50"><i class="fas fa-map-marker-alt"></i><a target="_blank" style="color: #ffffff" href="https://g.page/r/CV7pH0E3AVo_EBA"> Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero - Edificio Santa Lucia</a></p>                        
                         
-                        <p><a href="tel:+072889395" class="asindeco" style="color: #ffffff !important"><i class="fas fa-phone"></i>  07-288-9355</a>&nbsp;/ 
-                            <a href="tel:+593983849073" class="asindeco" style="color: #ffffff !important"> 098-384-9073</a>&nbsp;&nbsp;</p>
+                        <p><a href="tel:+593999944247" class="asindeco" style="color: #ffffff !important"><i class="fas fa-phone"></i> 099-994-4247</a> <br>
+                            <a href="tel:+593999944590" class="asindeco" style="color: #ffffff !important"><i class="fas fa-phone"></i> 099-994-4590</a> <br>
+                            <a href="tel:+593987746833" class="asindeco" style="color: #ffffff !important"><i class="fas fa-phone"></i> 098-774-6833</a>
+                        </p>
                         
-                        <p><a href="mailto:info@casacredito.com" class="asindeco" style="color: #ffffff !important"><i class="fas fa-envelope"></i> info@casacredito.com</a></p>
+                        <p><a href="mailto:ventas@habitarenecuador.com" class="asindeco" style="color: #ffffff !important"><i class="fas fa-envelope"></i> ventas@habitarenecuador.com</a></p>
             </div>
             <div class="col-12 col-md-4 p-4">
                     <p style="font-size: 20px; font-weight: 500">New York | EE.UU.</p>
@@ -469,7 +471,7 @@ if(strpos($actual_link, 'localhost') === false){
                         </a></p>
                         <p><a style="color: #ffffff !important" href="tel:+19083810090" class="asindeco"><i class="fas fa-phone"></i> 908-381-0090</a></p>
 
-                        <p><a style="color: #ffffff !important" href="mailto:info@casacredito.com" class="asindeco"><i class="fas fa-envelope"></i> info@casacredito.com</a></p>
+                        {{-- <p><a style="color: #ffffff !important" href="mailto:info@casacredito.com" class="asindeco"><i class="fas fa-envelope"></i> info@casacredito.com</a></p> --}}
             </div>
             <div class="col-12 col-md-4 p-4">
                 <p style="font-size: 20px; font-weight: 500">Síguenos en:</p>
@@ -507,7 +509,7 @@ if(strpos($actual_link, 'localhost') === false){
         </div>
     </div>
   </div>
-    <div style="background-color: #2c3144" class="text-center navfoot py-3 text-white">Copyright ©2018 Casa Crédito . All rights reserved.
+    <div style="background-color: #2c3144" class="text-center navfoot py-3 text-white">Copyright ©2024 . All rights reserved.
         <br><a href="{{route('web.politicas')}}" style="color: #c30000"> Políticas de Privacidad</a> <span  style="color: #c30000">-</span>  <a  style="color: #c30000" href="{{route('web.seo')}}">SEO</a>
     </div>
 </footer>
