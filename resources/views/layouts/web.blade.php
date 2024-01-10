@@ -443,12 +443,10 @@ if(strpos($actual_link, 'localhost') === false){
                         
                         <p class="text-dark-50"><i class="fas fa-map-marker-alt"></i><a target="_blank" style="color: #ffffff" href="https://g.page/r/CV7pH0E3AVo_EBA"> Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero - Edificio Santa Lucia</a></p>                        
                         
-                        <p><a href="tel:+593999944247" class="asindeco" style="color: #ffffff !important"><i class="fas fa-phone"></i> 099-994-4247</a> <br>
-                            <a href="tel:+593999944590" class="asindeco" style="color: #ffffff !important"><i class="fas fa-phone"></i> 099-994-4590</a> <br>
-                            <a href="tel:+593987746833" class="asindeco" style="color: #ffffff !important"><i class="fas fa-phone"></i> 098-774-6833</a>
+                        <p><a href="tel:+593983849073" class="asindeco" style="color: #ffffff !important"><i class="fas fa-phone"></i> 098-384-9073</a>
                         </p>
                         
-                        <p><a href="mailto:ventas@habitarenecuador.com" class="asindeco" style="color: #ffffff !important"><i class="fas fa-envelope"></i> ventas@habitarenecuador.com</a></p>
+                        <p><a href="mailto:info@casacredito.com" class="asindeco" style="color: #ffffff !important; text-decoration: none"><i class="fas fa-envelope"></i> info@casacredito.com</a></p>
             </div>
             <div class="col-12 col-md-4 p-4">
                     <p style="font-size: 20px; font-weight: 500">New York | EE.UU.</p>
