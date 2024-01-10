@@ -116,9 +116,11 @@ class TwController extends Controller
        
     public function properties(){
         $states = DB::table('info_states')->where('country_id',63)->orderBy('name')->get();
+        $cities = DB::table('info_cities')->where('state_id', 1022)->orderBy('name')->get();
+        $sectores = DB::table('info_sector')->where('city_id', 15307)->orderBy('name')->get();
         $users = DB::select("select id, name from users where (role = 'ASESOR' and status = 1) or (role = 'administrator' and name = 'KAREN' or role = 'administrator' and name = 'SILVANA' or role = 'administrator' and name = 'MARIELA' or role = 'administrator' and name = 'MICHELLE' or role = 'administrator' and name = 'FERNANDA')");
         $ismobile = $this->isMobile();
-        return view('admin.listing.index', compact('states', 'users', 'ismobile'));
+        return view('admin.listing.index', compact('states', 'users', 'ismobile', 'cities', 'sectores'));
     }
     
     

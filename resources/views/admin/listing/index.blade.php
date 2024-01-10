@@ -108,6 +108,9 @@
                                     <label class="text-xs text-gray-400">Ciudad</label>
                                     <select class="block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_city">
                                         <option value="">Todas</option>
+                                        @foreach ($cities as $city)
+                                            <option value="{{$city->name}}" data-id="{{$city->id}}">{{$city->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 pl-1 pr-1 text-justify">
@@ -115,7 +118,9 @@
                                     {{-- <input class="block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_detalle" name="b_detalle" type="text" placeholder="Ej: Ricaurte"> --}}
                                     <select class="block w-32 pl-2 border-gray-300 hover:border-gray-400 focus:outline-none shadow-md" id="b_sector">
                                         <option value="">Todas</option>
-                                        <option value="">Totoracocha</option>
+                                        @foreach ($sectores as $sector)
+                                            <option value="{{$sector->name}}" data-id="{{$sector->id}}">{{$sector->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 pr-1 pl-1 text-justify">
