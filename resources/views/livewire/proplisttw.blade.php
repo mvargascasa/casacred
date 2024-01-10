@@ -495,7 +495,7 @@ function clear_filters(){
 function filter_properties(){
     let b_code      = document.getElementById('b_code').value;
     let b_status    = document.getElementById('b_status').value;
-    let b_detalle   = document.getElementById('b_detalle').value;
+    //let b_detalle   = document.getElementById('b_detalle').value;
     let b_categoria = document.getElementById('b_categoria').value;
     let b_tipo      = document.getElementById('b_tipo').value;
     //let b_price     = document.getElementById('b_price').value;
@@ -508,6 +508,7 @@ function filter_properties(){
     //let b_country   = document.getElementById('b_country').value;
     let b_state     = document.getElementById('b_state').value;
     let b_city      = document.getElementById('b_city').value;
+    let b_sector    = document.getElementById('b_sector').value;
 
     //variables nuevas para buscar por precio y ordenar asc o desc
     let b_maxprice = document.getElementById('maxprice').value;
@@ -567,7 +568,7 @@ function filter_properties(){
 
     @this.set('code', b_code);  
     @this.set('status', b_status);  
-    @this.set('detalle', b_detalle);  
+    //@this.set('detalle', b_detalle);  
     @this.set('categoria', b_categoria);  
     @this.set('tipo', b_tipo);
     //@this.set('price', b_price);
@@ -580,6 +581,7 @@ function filter_properties(){
     //@this.set('country', b_country);
     @this.set('state', b_state);
     @this.set('city', b_city);
+    @this.set('sector', b_sector);
 
     @this.set('fromprice', b_minprice);
     @this.set('uptoprice', b_maxprice);

@@ -112,7 +112,11 @@
                                 </div>
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 pl-1 pr-1 text-justify">
                                     <label class="text-xs text-gray-400">Sector</label>
-                                    <input class="block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_detalle" name="b_detalle" type="text" placeholder="Ej: Ricaurte">
+                                    {{-- <input class="block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_detalle" name="b_detalle" type="text" placeholder="Ej: Ricaurte"> --}}
+                                    <select class="block w-32 pl-2 border-gray-300 hover:border-gray-400 focus:outline-none shadow-md" id="b_sector">
+                                        <option value="">Todas</option>
+                                        <option value="">Totoracocha</option>
+                                    </select>
                                 </div>
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 pr-1 pl-1 text-justify">
                                     <label class="text-xs text-gray-400">Código</label>
@@ -753,6 +757,7 @@
     //const selCountry = document.getElementById('b_country');
     const selState = document.getElementById('b_state');
     const selCity = document.getElementById('b_city');
+    const selSector = document.getElementById('b_sector');
 
     // const selState = document.getElementById('selState');
     // const selCity = document.getElementById('child2');
@@ -818,9 +823,30 @@
             var opt = document.createElement('option');
             opt.appendChild( document.createTextNode(city.name) );
             opt.value = city.name;
+            opt.setAttribute('data-id', city.id);
             selCity.appendChild(opt);
         });
     });
+    }
+
+    if(selCity){
+        selCity.addEventListener("change", async function(){
+            selSector.options.length = 0;
+            let id = selCity.options[selCity.selectedIndex].dataset.id;
+            const response = await fetch("{{url('getsector')}}/"+id);
+            const sectores = await response.json();
+            
+            let opt = document.createElement('option');
+            opt.appendChild( document.createTextNode('Todas') );
+            opt.value = '';
+            selSector.appendChild(opt);
+            sectores.forEach(sector => {
+                let opt = document.createElement('option');
+                opt.appendChild( document.createTextNode(sector.name) );
+                opt.value = sector.name;
+                selSector.appendChild(opt);
+            });
+        });
     }
 
   let openmodal = document.querySelectorAll('.modal-open')

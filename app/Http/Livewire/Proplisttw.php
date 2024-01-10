@@ -20,7 +20,7 @@ class Proplisttw extends Component
     $view = 'grid', $available,
     $current_url,
     //$country, 
-    $state, $city,
+    $state, $city, $sector,
     $fromprice, $uptoprice,
     $asesor,
     $fromdate, $untildate,
@@ -87,6 +87,7 @@ class Proplisttw extends Component
         //if($this->country)              $properties_filter->where('country', $this->country);
         if($this->state)                $properties_filter->where('state', $this->state);
         if($this->city)                 $properties_filter->where('city', $this->city);
+        if($this->sector)               $properties_filter->where('sector', $this->sector);
 
         //buscando por asesor
         if($this->asesor)               $properties_filter->where('user_id', $this->asesor);
