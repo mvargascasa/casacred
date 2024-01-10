@@ -986,11 +986,14 @@
                             results.addLayer(L.marker(data.results[i].latlng));
                             }
                         });
-                        if(document.getElementById('paso1')){document.getElementById('paso1').classList.remove('bg-red-500');if("{{ $currentRouteName == 'admin.housing.property.create'}}") {document.getElementById('paso1').classList.add('bg-blue-900');} else {document.getElementById('paso1').classList.add('bg-green-500');}; if(document.getElementById('paso2')){document.getElementById('paso2').classList.remove('bg-gray-500'); document.getElementById('paso2').classList.add('bg-red-500')}}}
+                        if(document.getElementById('paso1')){document.getElementById('paso1').classList.remove('bg-red-500');if("{{ $currentRouteName == 'admin.housing.property.create'}}") {document.getElementById('paso1').classList.add('bg-blue-900');} else {document.getElementById('paso1').classList.add('bg-green-500');}; if(document.getElementById('paso2')){document.getElementById('paso2').classList.remove('bg-gray-500'); document.getElementById('paso2').classList.add('bg-red-500')}}
+                    }
                     if(mensaje.success && mensaje.fragment == "second"){ 
                         document.getElementById('second').style.display="none";
                         document.getElementById('third').style.display="block";
                         setfragmentvalue('third');
+                        //cambiando value de input product_code con el nuevo codigo con letras
+                        document.getElementById('product_code').value = mensaje.productcode;
                         if(document.getElementById('paso2')){document.getElementById('paso2').classList.remove('bg-red-500');if("{{ $currentRouteName == 'admin.housing.property.create'}}") {document.getElementById('paso2').classList.add('bg-blue-900');} else {document.getElementById('paso2').classList.add('bg-green-500');}; if(document.getElementById('paso3')){document.getElementById('paso3').classList.remove('bg-gray-500'); document.getElementById('paso3').classList.add('bg-red-500')}}}
                     //if(mensaje.success && mensaje.fragment == "third"){ document.getElementById('third').style.display="none";document.getElementById('fourth').style.display="block";setfragmentvalue('fourth'); if(document.getElementById('paso3')){document.getElementById('paso3').classList.remove('bg-red-500');if("{{ $currentRouteName == 'admin.housing.property.create'}}") {document.getElementById('paso3').classList.add('bg-blue-900');} else {document.getElementById('paso3').classList.add('bg-green-500');}; if(document.getElementById('paso4')){document.getElementById('paso4').classList.remove('bg-gray-500'); document.getElementById('paso4').classList.add('bg-red-500')}}}
                     if(mensaje.success && mensaje.fragment == "third" && !ischangestatus && !ischangeplan && !ischangeavailable){window.location.replace("{{route('admin.properties')}}"); if(document.getElementById('paso4')){document.getElementById('paso4').classList.remove('bg-red-500');document.getElementById('paso4').classList.add('bg-green-500');}}

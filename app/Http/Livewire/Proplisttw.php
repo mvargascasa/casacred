@@ -45,7 +45,7 @@ class Proplisttw extends Component
             if($this->price=='ASC') $properties_filter = Listing::orderBy('property_price','ASC');
             else $properties_filter = Listing::orderBy('property_price','DESC');
         }else{
-            $properties_filter = Listing::orderBy('product_code','DESC');
+            $properties_filter = Listing::orderBy('id','DESC');
         }
 
         //mostrar las propiedades de un asesor

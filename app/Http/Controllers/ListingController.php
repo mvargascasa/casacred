@@ -215,6 +215,12 @@ class ListingController extends Controller
             $listing->listingtype = $request->listingtype;
 
             if($request->listingtype == 26) $listing->planing_license = $request->planing_license;
+            if($request->listingtype != null && $request->fragment == "second"){
+                $codeCategory = DB::table('listing_types')->select('code')->where('id', $request->listingtype)->first();
+                if($codeCategory != null){
+                    $listing->product_code = $codeCategory->code.$listing->product_code;
+                }
+            }
 
             //$listing->mortgaged = $request->mortgaged;
 
@@ -281,7 +287,8 @@ class ListingController extends Controller
         // if($request->fragment == "first" || $request->fragment == "second" || $request->fragment == "third"){
         return response()->json([
             'success' => true,
-            'fragment' => $request->fragment
+            'fragment' => $request->fragment,
+            'productcode' => $listing->product_code
         ]);
         // } else if($request->fragment == "fourth") {
         //     return redirect()->route('admin.listings.edit',compact('listing'))->with('status','Propiedad Creada');
