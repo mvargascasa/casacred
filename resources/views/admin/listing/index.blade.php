@@ -184,6 +184,14 @@
                                         <option value="36">Suites</option>
                                     </select>
                                 </div>
+                                <div class="w-auto bg-gray-100 pt-4 pb-8 pl-2 text-justify">
+                                    <label class="text-xs text-gray-400">Tipo de transaccion</label>
+                                    <select class="block w-full pl-2 border-gray-300 hover:border-gray-400 shadow-md leading-tight focus:outline-none" id="b_transaccion">
+                                        <option value="">Todas</option>	
+                                        <option value="venta">Venta </option>
+                                        <option value="alquilar">Renta </option>
+                                    </select>
+                                </div>
                                 {{-- <div class="w-auto bg-gray-100 py-8 relative pl-1 pr-1">
                                     <div id="div5" class="pattern block w-24 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                         <input type="hidden" id="b_status">
@@ -316,10 +324,9 @@
 
                                 
 
-                                <div class="w-auto bg-gray-100 pt-4 pb-8 relative pr-1 pl-1 text-justify">
+                                {{-- <div class="w-auto bg-gray-100 pt-4 pb-8 relative pr-1 pl-1 text-justify">
                                     <label class="text-xs text-gray-400">Fecha</label>
                                     <div id="div7" class="pattern block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
-                                                {{-- onclick="openDateFilter();" --}}
                                         <label for="">Seleccione</label>
                                     </div>
                                     <div class="block w-full p-1 text-justify" id="child7" style="display: none; position:absolute; z-index: 3;border: 1px solid #000000; background-color: #ffffff">
@@ -328,7 +335,7 @@
                                         <label class="ml-2 text-xs" for="untildate">Hasta</label>
                                         <input type="date" class="block w-28 m-2 shadow appearance-none border rounded py-1 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="untildate">
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 {{-- <div class="w-auto bg-gray-100 py-8 relative pl-1 pr-1">
                                     <div id="div8" class="pattern block w-32 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
@@ -345,7 +352,7 @@
                                         @endforeach
                                     </div>
                                 </div> --}}
-                                <div class="w-auto bg-gray-100 pt-4 pb-8 relative pr-1 pl-2 text-justify">
+                                {{-- <div class="w-auto bg-gray-100 pt-4 pb-8 relative pr-1 pl-2 text-justify">
                                     <label class="text-xs text-gray-400">Asesor</label>
                                     <select class="block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_asesor">
                                         <option value="">Asesor</option>
@@ -353,7 +360,7 @@
                                             <option value="{{$user->id}}">{{$user->name}}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div> --}}
 
                                 
                                 <input type="hidden" name="b_current_url" id="b_current_url" value="{{ Route::current()->getName() }}">

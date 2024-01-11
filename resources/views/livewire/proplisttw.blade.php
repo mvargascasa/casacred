@@ -517,17 +517,20 @@ function filter_properties(){
     let b_order_asc = document.getElementById('asc');
     let b_order_desc = document.getElementById('desc');
 
+    //filtro por venta o renta
+    let b_transaccion = document.getElementById('b_transaccion').value;
+
     //filtrar por asesor
-    let b_asesor = document.getElementById('b_asesor').value;
+    // let b_asesor = document.getElementById('b_asesor').value;
 
     //filter date
-    let b_fromdate = document.getElementById('fromdate').value;
-    let b_untildate = document.getElementById('untildate').value;
+    // let b_fromdate = document.getElementById('fromdate').value;
+    // let b_untildate = document.getElementById('untildate').value;
 
     let b_credit_vip = document.getElementById('b_credit_vip');
     if(b_credit_vip) b_credit_vip = b_credit_vip.value;
 
-    if(b_untildate < b_fromdate) alert('Formato no valido');
+    //if(b_untildate < b_fromdate) alert('Formato no valido');
 
     let order_aux;
 
@@ -586,10 +589,12 @@ function filter_properties(){
     @this.set('fromprice', b_minprice);
     @this.set('uptoprice', b_maxprice);
 
-    @this.set('asesor', b_asesor);
+    @this.set('transaccion', b_transaccion);
 
-    @this.set('fromdate', b_fromdate);
-    @this.set('untildate', b_untildate);
+    // @this.set('asesor', b_asesor);
+
+    // @this.set('fromdate', b_fromdate);
+    // @this.set('untildate', b_untildate);
 
     @this.set('credit_vip', b_credit_vip);
 
