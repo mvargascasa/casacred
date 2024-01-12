@@ -179,23 +179,29 @@
     <div class="col-sm-8">
       <div class="row d-flex justify-content-center">
         <div class="col-sm-12">
-          @if(Auth::user()->email == "seo@casacredito.com" || Auth::user()->email == "info@casacredito.com" || Auth::user()->email == "developer2@casacredito.com" || Auth::user()->email == "marketing@casacredito.com")
-          <div class="mb-2">
-            <div>
-              <form action="{{route('home.user.watermark')}}" method="POST">
-                @csrf
-                <input type="hidden" name="watermark" value="{{$propertie->id}}">
-                <button type="submit">
-                  @if(Auth::user()->watermark)
-                  <i class="far fa-eye"></i>
-                  @else
-                  <i class="far fa-eye-slash"></i>
-                  @endif
-                </button>
-              </form>
+          <section class="d-flex justify-content-between mb-3">
+            @if(Auth::user()->email == "seo@casacredito.com" || Auth::user()->email == "info@casacredito.com" || Auth::user()->email == "developer2@casacredito.com" || Auth::user()->email == "marketing@casacredito.com")
+            <div class="mb-2">
+              <div>
+                <form action="{{route('home.user.watermark')}}" method="POST">
+                  @csrf
+                  <input type="hidden" name="watermark" value="{{$propertie->id}}">
+                  <button type="submit">
+                    @if(Auth::user()->watermark)
+                    <i class="far fa-eye"></i>
+                    @else
+                    <i class="far fa-eye-slash"></i>
+                    @endif
+                  </button>
+                </form>
+              </div>
             </div>
-          </div>
-          @endif
+            @endif
+  
+            <div>
+              <a class="btn btn-success rounded-pill btn-sm" href="{{ route('download.images', $propertie->id) }}"><i class="fas fa-download"></i>Download Images</a>
+            </div>
+          </section>
           
           @if ($propertie->images != null)
             <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">

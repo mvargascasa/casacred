@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\NotificationController;
@@ -142,6 +143,8 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
 
     Route::get('promotora/property/create', [ListingController::class, 'create'])->name('admin.promotora.property.create');
     Route::get('promotora/property/edit/{listing}', [TwController::class, 'edit'])->name('admin.promotora.property.edit');
+
+    Route::get('download-images/{listing_id}', [DownloadController::class, 'download'])->name('download.images');
 });
 
 //BLOG
