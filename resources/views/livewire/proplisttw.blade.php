@@ -658,10 +658,10 @@ const prevpage = () => {
             let linklisting = listing.substring(0, index);
             let title = listing.substring(index+1);
             message += "%0A"+linklisting+"✅";
-            message += "%0Ahttps://casacredito.com/propiedad/"+title+"%0A";
+            message += "%0Ahttps://grupohousing.com/propiedad/"+title+"%0A";
         });
 
-        message += "%0A_*Casa Crédito, Haciendo sus sueños realidad*_"
+        message += "%0A_*Grupo Housing, Haciendo sus sueños realidad*_"
         window.open(link+message, '_blank');
     }
 </script>
