@@ -652,7 +652,7 @@ const prevpage = () => {
 
     function sharetowpp(){
         let link = "https://api.whatsapp.com/send?text=";
-        let message = "Reciba un cordial saludo de Casa Crédito 👋🏻🏠 Le hacemos llegar la propiedad en la que se encuentra interesado.%0A"
+        let message = "Reciba un cordial saludo de Grupo Housing 👋🏻🏠 Le hacemos llegar la propiedad en la que se encuentra interesado.%0A"
         values.forEach(listing => {
             let index = listing.indexOf("|");
             let linklisting = listing.substring(0, index);
