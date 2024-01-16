@@ -735,7 +735,7 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
   <div id="sharetowpp" class="hidden">
     <div class="mt-2">
       <img class="w-full h-60" src="{{asset('/uploads/listing/600/'. strtok($propertie->images, '|'))}}" alt="cargando imagen...">
-      <p class="text-blue-700 mt-2">https://casacredito.com/propiedad/{{$propertie->slug}}</p>
+      <p class="text-blue-700 mt-2">https://grupohousing.com/propiedad/{{$propertie->slug}}</p>
       <p class="text-sm font-semibold">{{$propertie->listing_title}}</p>
     </div>
     @if (count($similarProperties)>0)
@@ -866,8 +866,8 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
 
     function setLinkToShare(){
       let link = "https://api.whatsapp.com/send?text=";
-      let message = "https://casacredito.com/propiedad/{{$propertie->slug}}";
-      message += "%0AReciba un cordial saludo de Casa Crédito 👋🏻🏠 Le hacemos llegar la propiedad en la que se encuentra interesado.%0A"
+      let message = "https://grupohousing.com/propiedad/{{$propertie->slug}}";
+      message += "%0AReciba un cordial saludo de Grupo Housing 👋🏻🏠 Le hacemos llegar la propiedad en la que se encuentra interesado.%0A"
       let firstparagraph = false;
       for (let i = 0; i < {{count($similarProperties)}}; i++) {
         if(document.querySelector("input[name='similarwpp"+i+"']").checked) firstparagraph = true;
@@ -880,10 +880,10 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
           let index = value.indexOf("|");
           let linklisting = value.substring(0, index);
           let title = value.substring(index+1);
-          message += "%0A✅"+title+"%0Ahttps://casacredito.com/propiedad/"+linklisting+"%0A";
+          message += "%0A✅"+title+"%0Ahttps://grupohousing.com/propiedad/"+linklisting+"%0A";
         }
       }
-      message += "%0A_*Casa Crédito, Haciendo sus sueños realidad*_%0A"
+      message += "%0A_*Grupo Housing, Haciendo sus sueños realidad*_%0A"
       window.open(link+message, '_blank');
     }
     
