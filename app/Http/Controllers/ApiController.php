@@ -234,4 +234,18 @@ class ApiController extends Controller
         return $properties;
 
     }
+
+    public function propertyById($id){
+        
+        $listing = Listing::where('id', $id)->first();
+        
+        if($listing){
+            return response()->json($listing);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Property ' . $id . ' not found'
+            ]);
+        }
+    }
 }

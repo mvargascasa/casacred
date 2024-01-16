@@ -26,5 +26,9 @@ Route::group(["middleware" => "apikey.validate"], function(){
     Route::get('/notifications', [ApiController::class, 'getnotifications']);
     Route::get('/projects', [ApiController::class, 'getprojectlistings']);
     Route::get('/project/{slug}', [ApiController::class, 'getlistingbyslug']);
+
+    Route::get('/property/{id}', [ApiController::class, 'propertyById']);
+
+    //Route::get('/list-properties', [ApiController::class, 'listPropertiesHousing']);
 });
 
