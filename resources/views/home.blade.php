@@ -363,7 +363,7 @@
           @foreach ($listings_outstanding as $listing)
             <div class="col-sm-4 card-max-width-mobile" style="width: 18rem">
               <a style="color: #000000" href="{{ route('web.detail', $listing->slug) }}">
-                <div class="card" style="border-radius: 25px">
+                <div class="card h-100" style="border-radius: 25px">
                   <div class="position-relative">
                     {{-- {{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }} --}}
                     <img width="100%" height="250px" style="border-radius: 25px 25px 0px 0px; object-fit: cover" src="{{ asset('uploads/listing/600/' . strtok($listing->images, '|') ) }}" class="card-img-top" alt="{{$listing->slug}}-image">
