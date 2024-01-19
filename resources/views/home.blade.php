@@ -139,6 +139,15 @@
     .card:hover{
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
+    .card:hover > .card-body-listings{
+      background-color: #182741;
+    }
+    .card:hover > .card-body-listings > h2, .card:hover > .card-body-listings > div > p {
+      color: #ffffff;
+    }
+    .card-body-listings > h2, .card-body-listings > div > p{
+      color: #182741;
+    }
     #secondsection{
       filter: brightness(60%);
     }
@@ -162,6 +171,12 @@
       }
       .carousel-inner .row .col-12{
         width: 425px !important;
+      }
+      .cards-services{
+        justify-content: center !important;
+      }
+      .card-max-width-mobile{
+        width: 100% !important;
       }
     }
     #search_lay{
@@ -191,6 +206,13 @@
     .buttons-services-mobile{bottom: 0px !important; background-color: #DC3545; color: #ffffff;cursor: pointer; box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;}
     .shadow:hover{box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px !important;}
     .cursor{cursor: pointer !important;}
+    .btn-check:checked+.btn-outline-danger, .btn-outline-danger.active, .btn-outline-danger.dropdown-toggle.show, .btn-outline-danger:active, .btn-outline-danger:hover, .btn-outline-danger:focus, .btn.active {
+        color: #fff;
+        background-color: #182741 !important;
+        border-color: #182741 !important;
+        outline: 0 !important;
+        box-shadow: none !important;
+    }
     </style>
     @livewireStyles
 @endsection
@@ -277,7 +299,7 @@
   </div> --}}
 
   <div style="margin-left: auto; margin-right: auto" class="mb-5">
-    <p style="font-size: 20px; font-weight: 500" class="mt-5 mb-5 text-center">Propiedades destacadas</p>
+    <h2 style="font-size: 30px; color: #182741" class="mt-5 mb-5 text-center"><span style="font-weight: 300">PROPIEDADES</span> <span style="font-weight: 600">DESTACADAS</span></h2>
     @if ($ismobile)
       <div id="carouselExampleFade" class="carousel slide carousel-fade ml-3 mr-3 position-relative" data-bs-ride="carousel">
         <ol class="carousel-indicators position-absolute" style="margin-left: 5px; width: 120px !important; bottom: 50px !important;">
@@ -336,48 +358,55 @@
         </button>
       </div>
       @else
-      <div data-aos="zoom-in" class="row justify-content-center">
-        @foreach ($listings_outstanding as $listing)
-          <div class="card mb-4" style="width: 18rem; margin-right: 8px; margin-left: 8px; padding-left: 0px; padding-right: 0px">
-            <a style="color: #000000" href="{{ route('web.detail', $listing->slug) }}">
-              <div class="position-relative">
-                {{-- {{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }} --}}
-                <img width="100%" src="{{ asset('uploads/listing/600/' . strtok($listing->images, '|') ) }}" class="card-img-top" alt="{{$listing->slug}}-image">
-                @php
-                    $type = DB::table('listing_types')->select('type_title')->where('id', $listing->listingtype)->get();
-                @endphp
-                <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type[0]->type_title) }}</label>
-              </div>
-              <div class="card-body">
-                <p style="margin: 0px" class="card-title h5">${{ number_format($listing->property_price) }}</p>
-                @php
-                    $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
-                    $bathroom=0;
-                    
-                    if(!empty($listing->heading_details)){
-                      $allheadingdeatils=json_decode($listing->heading_details); 
-                      foreach($allheadingdeatils as $singleedetails){ 
-                        unset($singleedetails[0]);								
-                        for($i=1;$i<=count($singleedetails);$i++){ 
-                          if($i%2==0){  
-                            if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
-                            if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];									  
-                          }								   
-                        }								
-                      $i++;
-                      }
-                    }
-                @endphp
-                <p style="font-size: 14px; margin: 0px" class="card-text">@if($bedroom > 0){{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif | @endif @if($bathroom > 0){{ $bathroom }} @if($bathroom > 1) baños @else baño @endif | @endif {{ $listing->construction_area}} m<sup>2</sup></p>
-                <p style="font-size: 14px; margin: 0px" class="card-text">@if($listing->slug == "totoracocha-en-venta-casa-nueva-recien-terminada-75579") {{ str_replace(",", " |", ucwords(strtolower($listing->address))) }} @else {{ str_replace(",", " |", $listing->address) }} @endif</p>
-              </div>
-            </a>
-          </div>
-        @endforeach
+      <div class="container">
+        <div data-aos="zoom-in" class="row justify-content-center">
+          @foreach ($listings_outstanding as $listing)
+            <div class="col-sm-4 card-max-width-mobile" style="width: 18rem">
+              <a style="color: #000000" href="{{ route('web.detail', $listing->slug) }}">
+                <div class="card" style="border-radius: 25px">
+                  <div class="position-relative">
+                    {{-- {{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }} --}}
+                    <img width="100%" height="250px" style="border-radius: 25px 25px 0px 0px; object-fit: cover" src="{{ asset('uploads/listing/600/' . strtok($listing->images, '|') ) }}" class="card-img-top" alt="{{$listing->slug}}-image">
+                    {{-- @php
+                        $type = DB::table('listing_types')->select('type_title')->where('id', $listing->listingtype)->get();
+                    @endphp
+                    <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type[0]->type_title) }}</label> --}}
+                  </div>
+                  <div class="card-body card-body-listings" style="border-radius: 0px 0px 25px 25px">
+                    <h2 style="margin: 0px; font-size: 14px;">{{ $listing->listing_title }}</h2>
+                    {{-- @php
+                        $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
+                        $bathroom=0;
+                        
+                        if(!empty($listing->heading_details)){
+                          $allheadingdeatils=json_decode($listing->heading_details); 
+                          foreach($allheadingdeatils as $singleedetails){ 
+                            unset($singleedetails[0]);								
+                            for($i=1;$i<=count($singleedetails);$i++){ 
+                              if($i%2==0){  
+                                if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
+                                if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];									  
+                              }								   
+                            }								
+                          $i++;
+                          }
+                        }
+                    @endphp --}}
+                    {{-- <p style="font-size: 14px; margin: 0px" class="card-text">@if($bedroom > 0){{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif | @endif @if($bathroom > 0){{ $bathroom }} @if($bathroom > 1) baños @else baño @endif | @endif {{ $listing->construction_area}} m<sup>2</sup></p> --}}
+                    <div class="d-flex justify-content-between mt-3">
+                      <p style="font-size: 12px; margin: 0px; font-weight: 500" class="card-text"><i class="fas fa-map-marker-alt"></i>@if($listing->slug == "totoracocha-en-venta-casa-nueva-recien-terminada-75579") {{ str_replace(",", " |", ucwords(strtolower($listing->address))) }} @else {{ str_replace(",", " |", $listing->address) }} @endif</p>
+                      <p style="margin: 0px; font-size: 14px;" class="card-title h5">${{ number_format($listing->property_price) }}</p>                      
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          @endforeach
+        </div>
       </div>
     @endif
-    <div class="d-flex justify-content-center mt-3">
-      <a style="background-color: #2c3144; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 18px" class="btn" href="{{ route('web.propiedades') }}">Ver todas las propiedades <i style="color: #fcc62e" class="fas fa-long-arrow-alt-right"></i></a>
+    <div class="d-flex justify-content-center mt-5">
+      <a style="background-color: #182741; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 18px" class="btn" href="{{ route('web.propiedades') }}">Ver todas las propiedades</a>
     </div>
   </div>
 
@@ -396,23 +425,55 @@
         $listings = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1661)->orWhere('product_code', 1658)->orWhere('product_code', 1650)->orWhere('product_code', 1621)->get();
       @endphp --}}
 
-    <div class="container mt-5 mb-5">
-      <h2 id="txtserviciosinmo" style="font-size: 20px" class="text-center mt-3 @if($ismobile) mb-3 @else mb-5 @endif">SERVICIOS <b style="font-weight: 400; color: #DC3545">INMOBILIARIOS</b> A SU ALCANCE</h2>
-      <div class="row mr-2 ml-2">
-          <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
+    <section class="container mt-5 pb-5">
+      <h2 id="txtserviciosinmo" style="font-size: 30px; color: #182741" class="text-center mt-3 @if($ismobile) mb-3 @else mb-5 @endif"> <span style="font-weight: 100">SERVICIOS</span> <span style="font-weight: 700;">INMOBILIARIOS</span></h2>
+      <section class="row mr-2 ml-2 pb-5">
+        <article class="col-lg-4 col-md-6 col-sm-12 col-12 mb-3">
+          <section class="d-flex justify-content-end cards-services">
+            <div class="border p-5" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+              <section class="d-flex">
+                <p class="h5 mr-2"> <span style="font-weight: 100">TENEMOS LA</span> <br> <span class="h3" style="font-weight: 500">CASA IDEAL</span></p>
+                <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
+              </section>
+              <section class="d-flex justify-content-end mt-2">
+                <a href="{{route('web.propiedades', 'casas-en-venta-en-cuenca')}}" class="btn btn-sm text-white" style="background-color: #182741">Comprar una propiedad</a>
+              </section>
+            </div>
+          </section>
+        </article>
+        <article class="col-lg-4 col-md-6 col-sm-12 col-12 mb-3">
+          <section class="d-flex justify-content-center">
+            <div class="border p-5" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+              <section class="d-flex">
+                <p class="h5 mr-2"> <span style="font-weight: 100">VENDA SU</span> <br> <span class="h3" style="font-weight: 500">PROPIEDAD</span></p>
+                <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
+              </section>
+              <section class="d-flex justify-content-end mt-2">
+                <button class="btn btn-sm text-white" style="background-color: #182741" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Vender una propiedad</button>
+              </section>
+            </div>
+          </section>
+        </article>
+        <article class="col-lg-4 col-md-6 col-sm-12 col-12 mb-3">
+          <section class="d-flex justify-content-start cards-services">
+            <div class="border p-5" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+              <section class="d-flex">
+                <p class="h5 mr-2"> <span style="font-weight: 100">ALQUILE CON</span> <br> <span class="h3" style="font-weight: 500">NOSOTROS</span></p>
+                <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
+              </section>
+              <section class="d-flex justify-content-end mt-2">
+                <button data-bs-toggle="modal" data-bs-target="#modalAlquiler" class="btn btn-sm text-white" style="background-color: #182741">Alquilar una propiedad</button>
+              </section>
+            </div>
+          </section>
+        </article>
+          {{-- <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
             <a href="{{route('web.propiedades', 'casas-en-venta-en-cuenca')}}">
               <div class="position-relative d-flex justify-content-center shadow rounded cursor">
                 <img style="border-radius: 5px;"  width="100rem" height="100rem" class="img-fluid lazyLoad" data-src="{{ asset('img/CAS-IDEAL.webp') }}" alt="Compra y Venta de Casas en Cuenca Ecuador">
                 @if(!$ismobile)
                   <div class="text-center position-absolute p-1 rounded mb-2 fw-bold buttons-services">
                     Comprar una propiedad <i class="fas fa-arrow-circle-right"></i>
-                        {{-- <a class="btn cta a-btn-services" href="{{ route('web.propiedades') }}">
-                          <span>Comprar</span>
-                          <svg width="12px" height="10px" viewBox="0 0 13 10">
-                            <path d="M1,5 L11,5"></path>
-                            <polyline points="8 1 12 5 8 9"></polyline>
-                          </svg>
-                        </a> --}}
                   </div>
                   @endif
               </div>
@@ -422,20 +483,13 @@
               </div>
               @endif
             </a>
-          </div>
-          <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
+          </div> --}}
+          {{-- <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
             <div class="position-relative d-flex justify-content-center shadow rounded cursor" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
               <img style="border-radius: 5px;" width="100rem" height="100rem" class="img-fluid lazyLoad" data-src="{{ asset('img/VENDA-SU-PROPIEDAD.webp') }}" alt="Venda su propiedad con nosotros">
               @if(!$ismobile)
                 <div class="text-center position-absolute p-1 rounded mb-2 fw-bold buttons-services">
                     Vender una propiedad <i class="fas fa-arrow-circle-right"></i>
-                  {{-- <button data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-whatever="  una propiedad">
-                      <span>Vender</span>
-                      <svg width="13px" height="10px" viewBox="0 0 13 10">
-                        <path d="M1,5 L11,5"></path>
-                        <polyline points="8 1 12 5 8 9"></polyline>
-                      </svg>
-                    </button> --}}
                 </div>
               @endif
             </div>
@@ -444,20 +498,13 @@
               Vender una propiedad <i class="fas fa-arrow-circle-right"></i>
             </div>
             @endif
-          </div>
-          <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
+          </div> --}}
+          {{-- <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
             <div class="position-relative d-flex justify-content-center shadow rounded cursor" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
               <img style="border-radius: 5px;" width="100rem" height="100rem" class="img-fluid lazyLoad" data-src="{{ asset('img/ALQUILE.webp') }}" alt="Alquiler de viviendas o departamentos">
               @if(!$ismobile)
                 <div class="text-center mt-5 position-absolute p-1 rounded mb-2 fw-bold buttons-services">
                     Alquilar una propiedad <i class="fas fa-arrow-circle-right"></i> 
-                  {{-- <button class="btn cta a-btn-services" data-bs-toggle="modal" data-bs-target="#modalAlquiler">
-                      <span>Alquilar</span>
-                      <svg width="13px" height="10px" viewBox="0 0 13 10">
-                        <path d="M1,5 L11,5"></path>
-                        <polyline points="8 1 12 5 8 9"></polyline>
-                      </svg>
-                    </button> --}}
                 </div>
               @endif
             </div>
@@ -466,21 +513,14 @@
                 Alquilar una propiedad <i class="fas fa-arrow-circle-right"></i> 
               </div>
             @endif
-          </div>
-          <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
+          </div> --}}
+          {{-- <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
             <a href="{{route('web.servicios', 'creditos-en-ecuador')}}">
               <div class="position-relative d-flex justify-content-center shadow rounded cursor">
                 <img style="border-radius: 5px;" width="100rem" height="100rem" class="img-fluid lazyLoad" data-src="{{ asset('img/CREDITOS.webp') }}" alt="Creditos para ecuatorianos en el extranjero">
                 @if(!$ismobile)
                   <div class="text-center mt-5 position-absolute p-1 rounded mb-2 fw-bold buttons-services">
                       Solicitar un crédito <i class="fas fa-arrow-circle-right"></i>
-                    {{-- <a href="{{ route('web.servicios', 'creditos-en-ecuador') }}" class="btn cta a-btn-services">
-                        <span>Solicitar</span>
-                        <svg width="13px" height="10px" viewBox="0 0 13 10">
-                          <path d="M1,5 L11,5"></path>
-                          <polyline points="8 1 12 5 8 9"></polyline>
-                        </svg>
-                      </a> --}}
                   </div>
                 @endif
               </div>
@@ -492,12 +532,12 @@
               </div>
             </a>
             @endif
-        </div>
-      </div>
-  </div>
+        </div> --}}
+      </section>
+  </section>
 
 
-    <div data-aos="flip-down" class="row" style="background-color: #2c3144; padding-top: 2%; padding-bottom: 2%">
+    <div data-aos="flip-down" class="row" style="background-color: #182741; padding-top: 2%; padding-bottom: 2%">
         <div class="col-sm-12 text-center text-white mt-4 mb-4">
             <p class="h5">¿Quiere vender o rentar su <b style="color: #fcc62e">Propiedad</b>?</p>
             <p>Escríbanos y lo asesoramos en el proceso</p>
@@ -569,7 +609,7 @@
                 </div>
           </div>
           <div class="d-flex justify-content-center mt-3">
-              <a style="background-color: #2c3144; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 13px" class="btn" href="https://casacreditopromotora.com/proyectos">VISITE NUESTRO CATÁLOGO DE PROYECTOS EN <b style="color: #fcc62e;">ECUADOR </b><i class="fas fa-long-arrow-alt-right"></i></a>
+              <a style="background-color: #182741; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 13px" class="btn" href="https://casacreditopromotora.com/proyectos">VISITE NUESTRO CATÁLOGO DE PROYECTOS EN <b style="color: #fcc62e;">ECUADOR </b><i class="fas fa-long-arrow-alt-right"></i></a>
           </div>
       </div>
     </div>
@@ -620,7 +660,7 @@
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header" style="background-color: #8b0000; color: #ffffff">
+          <div class="modal-header" style="background-color: #182741; color: #ffffff">
             <p class="modal-title h5" id="exampleModalLongTitle">Venda su propiedad con nosotros</p>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -687,7 +727,7 @@
             </div>
           </div>
           <div class="modal-footer justify-content-center">
-            <button class="btn" type="submit" style="background: #8b0000; color: #ffffff">Enviar</button>
+            <button class="btn" type="submit" style="background: #182741; color: #ffffff">Enviar</button>
           </div>
         </form>
         </div>
@@ -699,7 +739,7 @@
     <div class="modal fade" id="modalAlquiler" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header" style="background-color: #8b0000; color: #ffffff">
+          <div class="modal-header" style="background-color: #182741; color: #ffffff">
             <p class="modal-title h5" id="exampleModalLongTitle">Alquilar una propiedad</p>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -743,7 +783,7 @@
               </div>
             </div>
             <div class="modal-footer justify-content-center">
-              <button type="submit" class="btn" style="background-color: #8b0000; color: #ffffff">Ver opciones</button>
+              <button type="submit" class="btn" style="background-color: #182741; color: #ffffff">Ver opciones</button>
             </div>
             </form>
           </div>
@@ -788,7 +828,7 @@
               </div>
             </div>
             <div class="modal-footer justify-content-center">
-              <button type="submit" class="btn btn-primary" style="background-color: #8b0000; color: #ffffff">Enviar</button>
+              <button type="submit" class="btn btn-primary" style="background-color: #182741; color: #ffffff">Enviar</button>
             </div>
           </form>
           </div>

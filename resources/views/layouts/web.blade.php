@@ -71,7 +71,7 @@
         <link rel="stylesheet" href="{{ asset('css/5.0.0/bootstrap.min.css') }}">
     </noscript> --}}
 
-  <link rel="stylesheet" href="{{asset('css/style.css?x=5')}}">
+  <link rel="stylesheet" href="{{asset('css/style.css?x=6')}}">
   <meta name="facebook-domain-verification" content="st7nmy30bjdubvp2cuvvhwuk6n2syf" />
 
   {{-- @livewireStyles --}}
@@ -266,12 +266,12 @@ if(strpos($actual_link, 'localhost') === false){
             <div class="d-flex flex-grow-1">
                 <span class="w-100 d-lg-none d-block pl-1">
                     <a class="navbar-brand" href="{{route('web.index')}}">
-                        <img src="{{asset('img/LOGO CASA CREDITO.png')}}" width="110" height="45" alt="casa credito inmobiliaria">
+                        <img src="{{asset('img/logo-azul-grupo-housing.png')}}" width="110" height="45" alt="casa credito inmobiliaria">
                     </a>
                 </span>
 
                 <a class="navbar-brand d-none d-lg-inline-block px-4" href="{{route('web.index')}}">
-                    <img src="{{asset('img/LOGO CASA CREDITO.png')}}" width="130" height="50" alt="casa credito inmobiliaria">
+                    <img src="{{asset('img/logo-azul-grupo-housing.png')}}" width="100" height="50" alt="casa credito inmobiliaria">
                     </a>
                 <div class="w-100 text-right">
                     {{-- @if(Route::is('web.index') or Route::is('web.detail') ) 
@@ -345,8 +345,8 @@ if(strpos($actual_link, 'localhost') === false){
                   </ul>
                 </li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicio/vende-tu-casa')) active @endif" href="{{route('web.servicio','vende-tu-casa')}}">Vende</a> </li>
-                <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/creditos-en-ecuador')) active @endif" href="{{route('web.servicios','creditos-en-ecuador')}}">Creditos</a> </li>
-                <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/construye')) active @endif" href="{{route('web.servicios','construye')}}">Construye</a> </li>
+                {{-- <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/creditos-en-ecuador')) active @endif" href="{{route('web.servicios','creditos-en-ecuador')}}">Creditos</a> </li> --}}
+                {{-- <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/construye')) active @endif" href="{{route('web.servicios','construye')}}">Construye</a> </li> --}}
                 <li class="nav-item pr-2"> <a class="nav-link @if(Route::is('web.notariausa') ) active @endif" href="{{route('web.notariausa')}}">Notaría USA</a> </li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('blog')) active @endif" href="{{route('web.blog')}}">Blog</a></li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/nosotros')) active @endif" href="{{route('web.servicios','nosotros')}}">Nosotros</a> </li>          
@@ -429,7 +429,7 @@ if(strpos($actual_link, 'localhost') === false){
 {{-- @endif --}}
 
 <footer>
-  <div style="background-color: #2C3144; color: #ffffff">
+  <div style="background-color: #182741; color: #ffffff">
     <div class="container">
         <div class="row">           
             <div class="col-12 col-md-4 p-4">
@@ -507,8 +507,8 @@ if(strpos($actual_link, 'localhost') === false){
         </div>
     </div>
   </div>
-    <div style="background-color: #2c3144" class="text-center navfoot py-3 text-white">Copyright ©2024 . All rights reserved.
-        <br><a href="{{route('web.politicas')}}" style="color: #c30000"> Políticas de Privacidad</a> <span  style="color: #c30000">-</span>  <a  style="color: #c30000" href="{{route('web.seo')}}">SEO</a>
+    <div style="background-color: #182741" class="text-center navfoot py-3 text-white">Copyright ©2024 . All rights reserved.
+        <br><a href="{{route('web.politicas')}}" style="color: #ffffff; font-weight: 500"> Políticas de Privacidad</a> <span  style="color: #ffffff">-</span>  <a  style="color: #ffffff" href="{{route('web.seo')}}">SEO</a>
     </div>
 </footer>
 
