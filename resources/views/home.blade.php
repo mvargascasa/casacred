@@ -428,7 +428,7 @@
     <section class="container mt-5 pb-5">
       <h2 id="txtserviciosinmo" style="font-size: 30px; color: #182741" class="text-center mt-3 @if($ismobile) mb-3 @else mb-5 @endif"> <span style="font-weight: 100">SERVICIOS</span> <span style="font-weight: 700;">INMOBILIARIOS</span></h2>
       <section class="row mr-2 ml-2 pb-5">
-        <article class="col-lg-4 col-md-6 col-sm-12 col-12 mb-3">
+        <article data-aos="fade-up" class="col-lg-4 col-md-6 col-sm-12 col-12 mb-3">
           <section class="d-flex justify-content-end cards-services">
             <div class="border p-5" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
               <section class="d-flex">
@@ -441,7 +441,7 @@
             </div>
           </section>
         </article>
-        <article class="col-lg-4 col-md-6 col-sm-12 col-12 mb-3">
+        <article data-aos="fade-up" class="col-lg-4 col-md-6 col-sm-12 col-12 mb-3">
           <section class="d-flex justify-content-center">
             <div class="border p-5" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
               <section class="d-flex">
@@ -454,7 +454,7 @@
             </div>
           </section>
         </article>
-        <article class="col-lg-4 col-md-6 col-sm-12 col-12 mb-3">
+        <article data-aos="fade-up" class="col-lg-4 col-md-6 col-sm-12 col-12 mb-3">
           <section class="d-flex justify-content-start cards-services">
             <div class="border p-5" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
               <section class="d-flex">
