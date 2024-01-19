@@ -192,7 +192,7 @@ class WebController extends Controller
         }else{ $ismobile = false; }
         // if($ismobile) return view('indexmobile', compact('states'));
         // else 
-        $listings_outstanding = Listing::where('status', 1)->where('available', 1)->where('outstanding', 1)->take(4)->inRandomOrder()->get();
+        $listings_outstanding = Listing::where('status', 1)->where('available', 1)->where('outstanding', 1)->take(3)->inRandomOrder()->get();
         return view('home', compact('ismobile', 'listings_outstanding'));
     }
 
