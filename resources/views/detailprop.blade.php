@@ -156,6 +156,7 @@
     $images = array_filter(explode("|", $listing->images));
     $filexists = false;
     if (file_exists(public_path().'/uploads/listing/thumb/600/'. strtok($listing->images, '|'))) {$filexists=true;}
+    $listingtype = DB::table('listing_types')->where('id', $listing->listingtype)->first();
 @endphp
 
 @section('content')
@@ -174,18 +175,18 @@
           <div class="col-sm-6 w-100">
             <div class="d-flex mb-3">
               @if(count($images) > 1)
-                <article onclick="addactive(1)" class="mr-2 shadow filter-image" data-toggle="modal" data-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 242px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[1]) : url('uploads/listing',$images[1]) }}')"></article>
+                <article onclick="addactive(1)" class="mr-2 shadow filter-image" data-toggle="modal" data-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 242px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb/600',$images[1]) : url('uploads/listing/600',$images[1]) }}')"></article>
               @endif
               @if(count($images) > 2)
-                <article onclick="addactive(2)" class="ml-2 shadow filter-image" data-toggle="modal" data-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 242px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[2]) : url('uploads/listing',$images[2]) }}')"></article>
+                <article onclick="addactive(2)" class="ml-2 shadow filter-image" data-toggle="modal" data-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 242px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb/600',$images[2]) : url('uploads/listing/600',$images[2]) }}')"></article>
               @endif
             </div>
               <div class="d-flex mt-3">
               @if(count($images)>3)
-                <article onclick="addactive(3)" class="mr-2 shadow filter-image" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 242px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[3]) : url('uploads/listing',$images[3]) }}')"></article>
+                <article onclick="addactive(3)" class="mr-2 shadow filter-image" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 242px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb/600',$images[3]) : url('uploads/listing/600',$images[3]) }}')"></article>
               @endif
               @if(count($images)>4)
-                <article onclick="addactive(4)" class="ml-2 shadow filter-image" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 242px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb',$images[4]) : url('uploads/listing',$images[4]) }}')"></article>
+                <article onclick="addactive(4)" class="ml-2 shadow filter-image" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" style="cursor: pointer; width: 100%; height: 242px; background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('{{ $filexists ? url('uploads/listing/thumb/600',$images[4]) : url('uploads/listing/600',$images[4]) }}')"></article>
               @endif
               </div>
           </div>
@@ -203,7 +204,7 @@
               @php $index = 0; @endphp
               @foreach ($images as $img)    
                 <div id="img_{{ $index }}" class="carousel-item @if($index == 0) active @endif">
-                  <img class="d-block w-100" style="max-height: 90vh !important" data-slide-to="{{ $index }}" src="{{ $filexists ? url('uploads/listing/thumb', $img) : url('uploads/listing', $img)}}" alt="First slide">
+                  <img class="d-block w-100" style="max-height: 90vh !important" data-slide-to="{{ $index }}" src="{{ $filexists ? url('uploads/listing/thumb', $img) : url('uploads/listing', $img)}}" alt="{{ $listingtype->type_title }}@if($listing->listingtypestatus == "en-venta") en venta @elseif($listing->listingtypestatus == "alquilar") de renta @else en proyectos @endif en {{ $listing->address != null ? $listing->address : $listing->sector }}, {{ $listing->city }} - {{ $index }}">
                 </div>
                 @php $index++; @endphp
               @endforeach
@@ -584,9 +585,6 @@
                   <span style="background-color: #dc3545; color: #ffffff; border-radius: 5px;padding: 5px; font-weight: 600; height: 40px;" class="d-flex align-items-center">CÓDIGO: {{ $listing->product_code }}</span>
                 </div>
               </div>
-              @php
-                  $listingtype = DB::table('listing_types')->where('id', $listing->listingtype)->first();
-              @endphp
               <div class="mt-2">
                 <label style="background-color: #f9a322; color: #ffffff; padding-left: 3px; padding-right: 3px; border-radius: 5px; font-weight: 500; font-size: 13px">{{ $listingtype->type_title}}</label>
                 <label style="background-color: #dc3545; color: #ffffff; padding-left: 3px; padding-right: 3px; border-radius: 5px; font-weight: 500; font-size: 13px">@if($listing->listingtypestatus == "en-venta") Venta @elseif($listing->listingtypestatus == "alquilar") Alquilar @else Proyectos @endif</label>

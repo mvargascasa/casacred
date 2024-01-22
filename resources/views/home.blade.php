@@ -1117,7 +1117,7 @@
       //filter_properties();
       let check1 = document.getElementById('ftop_category_0');
       let check2 = document.getElementById('ftop_category_1');
-      let check3 = document.getElementById('ftop_category_2');
+      //let check3 = document.getElementById('ftop_category_2');
       let category;
       let selType = document.getElementById('ftop_ptype').value;
       let inpSearchTxt = document.getElementById('ftop_txt').value;
@@ -1127,7 +1127,7 @@
       //alert(selType);
       if(check1.checked) category = "en-venta";
       if(check2.checked) category = "en-alquiler";
-      if(check3.checked) category = "en-proyectos";
+      //if(check3.checked) category = "en-proyectos";
       slug = selType + "-" + category + "-en-ecuador";
       if(inpSearchTxt){
         if(isNaN(inpSearchTxt)){
