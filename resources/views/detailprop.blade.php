@@ -591,7 +591,7 @@
               </div>
               <div class="mt-4">
                 <h1 class="h6" style="font-weight: 500">{{$listing->listing_title}}</h1>
-                <p style="font-weight: 400"><i style="color: #dc3545" class="fas fa-map-marker-alt"></i> Sector: @if(Str::contains($listing->address, ',')){{$listing->address}} @else {{$listing->state}}, {{$listing->city}}, {{$listing->address}}@endif</p>
+                <p style="font-weight: 400"><i style="color: #dc3545" class="fas fa-map-marker-alt"></i> Sector: @if(Str::contains($listing->address, ',')){{$listing->address}} @else {{$listing->state}}, {{$listing->city}}, {{$listing->address != null ? $listing->address : $listing->sector}}@endif</p>
               </div>
               <div>
                 <div class="row">
