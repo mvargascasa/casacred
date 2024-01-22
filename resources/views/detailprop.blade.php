@@ -572,11 +572,11 @@
           <div class="row">
             <div class="col-sm-1"></div>
             <div class="col-12 col-sm-11">
-              @if($listing->listingtypestatus != "alquilar")
+              {{-- @if($listing->listingtypestatus != "alquilar")
               <div class="row align-items-center border border-danger ml-0 rounded mb-3 py-2">
                 <label><i class="fas fa-money-check-edit-alt text-danger"></i> *El <b class="text-danger font-weight-bold">valor aproximado</b> de la cuota mensual para la propiedad es de <b class="font-weight-normal" id="totalinfo"></b></label>
               </div>
-              @endif
+              @endif --}}
               <div class="row">
                 <div class="col-12 col-sm-9 mb-1">
                   <p style="margin: 0px; color: #dc3545; font-size: 20px; font-weight: 600;">PRECIO: ${{ number_format($listing->property_price) }}</p>
@@ -949,6 +949,7 @@
       @if(count($listingsSimilar)>0)
       <div class="row mt-5 justify-content-center" data-aos="zoom-in">
         <h3 class="text-center mb-5 h5">Propiedades similares</h3>
+        <p>Más {{ $listingtype->type_title }}@if($listing->listingtypestatus == "en-venta") en venta @elseif($listing->listingtypestatus == "alquilar") en renta @else en proyectos @endif en {{ $listing->city }} </p>
         @foreach ($listingsSimilar as $listing_s)
         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 mb-2 d-flex justify-content-center text-center">
           <a style="text-decoration: none; color: #000000" href="{{ route('web.detail', $listing_s->slug) }}">
