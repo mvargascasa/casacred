@@ -47,7 +47,7 @@
                   <a href="{{route('web.detail', $listing->slug)}}">
                     <div class="d-flex justify-content-center" style="width: 100%">
                       <div class="position-relative">
-                        <img width="400px" height="250px" src="@if(file_exists(public_path().'/uploads/listing/thumb/300/'.strtok($listing->images, "|"))) {{asset('uploads/listing/thumb/300/'.strtok($listing->images, '|'))}} @else {{asset('uploads/listing/300/'.strtok($listing->images, '|'))}} @endif" class="d-block" alt="{{$listing->listing_title}}">
+                        <img loading="lazy" width="400px" height="250px" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.strtok($listing->images, "|"))) {{asset('uploads/listing/thumb/300/'.strtok($listing->images, '|'))}} @else {{asset('uploads/listing/300/'.strtok($listing->images, '|'))}} @endif" class="d-block" alt="{{$listing->listing_title}}">
                       </div>
                     </div>
                   </a>
