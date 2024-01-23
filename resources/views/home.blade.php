@@ -1113,6 +1113,10 @@
       document.getElementById('formhomesearch').submit();
     }
 
+    function containsNumber(str) {
+      return /\d/.test(str);
+    }
+
     function search(){
       //filter_properties();
       let check1 = document.getElementById('ftop_category_0');
@@ -1130,7 +1134,7 @@
       //if(check3.checked) category = "en-proyectos";
       slug = selType + "-" + category + "-en-ecuador";
       if(inpSearchTxt){
-        if(isNaN(inpSearchTxt)){
+        if(!containsNumber(inpSearchTxt)){
           url = "{{route('web.propiedades', [':slug', ':ubication'])}}";
           url = url.replace(':slug', slug);
           url = url.replace(':ubication', inpSearchTxt);
