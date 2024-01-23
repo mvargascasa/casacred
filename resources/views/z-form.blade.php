@@ -32,7 +32,7 @@
 </div>
 
 <div class="form-group my-2">
-    {!! Form::submit('Enviar',  ['class' => 'btn btn-lg btn-danger btn-block mt-4','style'=>'background-color:darkred',
+    {!! Form::submit('Enviar',  ['class' => 'btn btn-lg btn-block mt-4 text-white','style'=>'background-color:#182741',
     'onclick'=>'sendFormLead(event)']) !!}
 </div>
 

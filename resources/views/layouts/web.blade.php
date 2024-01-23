@@ -519,7 +519,7 @@ if(strpos($actual_link, 'localhost') === false){
  <div class="modal fade" id="modalContact" tabindex="-1" role="dialog" aria-labelledby="modalContactLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header text-white" style="background-color: darkred !important;">
+        <div class="modal-header text-white" style="background-color: #182741 !important;">
           <span class="modal-title" id="modalContactLabel">Complete el siguiente formulario y en breve será contactado.</span>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true" style="color: #FFF !important;">&times;</span>
@@ -538,7 +538,7 @@ if(strpos($actual_link, 'localhost') === false){
   <div class="modal fade" id="modalAval" tabindex="-1" role="dialog" aria-labelledby="modalContactLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header text-white" style="background-color: darkred !important;">
+        <div class="modal-header text-white" style="background-color: #182741 !important;">
           <span class="modal-title" id="modalContactLabel">Complete el siguiente formulario y en breve será contactado.</span>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true" style="color: #FFF !important;">&times;</span>

@@ -37,11 +37,11 @@
         @endif
 
 
-    <div class="card row mb-3 shadow-sm card-listing" style="border-top:1px #FA7B34 solid">
+    <div class="card row mb-3 shadow-sm card-listing">
       <div class="row pr-0">
-          <div class="col-sm-6 col-md-6 col-lg-4 p-0">
-            <div class="col p-0">
-                <div class="card" style="border:none">
+          <div class="col-sm-6 col-md-6 col-lg-5 p-0">
+            <div class="col p-0 h-100">
+                <div class="card h-100" style="border:none">
                   
                   @if($ismobile)
                   <a href="{{route('web.detail', $listing->slug)}}">
@@ -52,127 +52,144 @@
                     </div>
                   </a>
                   @else
-                  <div id="carouselControls{{$listing->id}}" class="carousel slide card-img-top" data-ride="carousel"  data-interval="false">
-                    <div class="carousel-inner position-relative" style="max-height: 150px;">
-                      @php $iiListing=0 @endphp
-                      {{-- @if($mobile==true)
-                          @php 
-                            $firstImg = array_filter(explode("|", $listing->images)); 
-                            $imageVerification = asset('uploads/listing/thumb/600/'.$firstImg[0]); 
+                    {{-- <div id="carouselControls{{$listing->id}}" class="carousel slide card-img-top" data-ride="carousel"  data-interval="false">
+                      <div class="carousel-inner position-relative" style="max-height: 150px;">
+                        @php $iiListing=0 @endphp
+                          @php
+                              $imageVerification = asset('uploads/listing/thumb/600/'. strtok($listing->images, '|'));
                           @endphp
-                          <div class="carousel-item @if($iiListing==0) active @endif">
-                            <img loading="lazy" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.$firstImg[0])) {{url('uploads/listing/thumb/600',$firstImg[0]??'')}} @else {{url('uploads/listing/600',$firstImg[0]??'')}} @endif" class="d-block w-100" alt="{{$listing->listing_title}}-{{$iiListing++}}">
-                          </div>
-                      @else --}}
-                        @php
-                            $imageVerification = asset('uploads/listing/thumb/600/'. strtok($listing->images, '|'));
-                        @endphp
-                          @foreach(array_filter(explode("|", $listing->images)) as $img)              
-                            <div class="carousel-item @if($iiListing==0) active @endif">
-                              <img loading="lazy" class="img-fluid" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.$img)) {{url('uploads/listing/thumb/600',$img)}} @else {{url('uploads/listing/600',$img)}} @endif" class="" alt="{{$listing->listing_title}}-{{$iiListing++}}">
-                              {{-- @if(@getimagesize($imageVerification)) {{url('uploads/listing/thumb/600',$img)}} @else {{url('uploads/listing/600',$img)}} @endif --}}
-                            </div>
-                          @endforeach
-                      {{-- @endif --}}
+                            @foreach(array_filter(explode("|", $listing->images)) as $img)              
+                              <div class="carousel-item @if($iiListing==0) active @endif">
+                                <img loading="lazy" class="img-fluid" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.$img)) {{url('uploads/listing/thumb/600',$img)}} @else {{url('uploads/listing/600',$img)}} @endif" class="" alt="{{$listing->listing_title}}-{{$iiListing++}}">
+                              </div>
+                            @endforeach
+                      </div>
+                      <a class="carousel-control-prev" href="#carouselControls{{$listing->id}}" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="carousel-control-next" href="#carouselControls{{$listing->id}}" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </div> --}}
+                    <div id="carouselControls{{$listing->id}}" class="carousel slide card-img-top h-100" data-ride="carousel"  data-interval="false">
+                      <div class="carousel-inner position-relative h-100">
+                        @php $iiListing=0 @endphp
+                          @php
+                              $imageVerification = asset('uploads/listing/thumb/600/'. strtok($listing->images, '|'));
+                          @endphp
+                            @foreach(array_filter(explode("|", $listing->images)) as $img)              
+                              <div class="carousel-item @if($iiListing==0) active @endif">
+                                <img loading="lazy" width="100%" height="340px" style="object-fit: cover !important" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.$img)) {{url('uploads/listing/thumb/600',$img)}} @else {{url('uploads/listing/600',$img)}} @endif" class="" alt="{{$listing->listing_title}}-{{$iiListing++}}">
+                              </div>
+                            @endforeach
+                      </div>
+                      <a class="carousel-control-prev" href="#carouselControls{{$listing->id}}" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="carousel-control-next" href="#carouselControls{{$listing->id}}" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                      </a>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselControls{{$listing->id}}" role="button" data-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselControls{{$listing->id}}" role="button" data-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </div>
                   @endif
    
-                  <div class="card-body">
+                  {{-- <div class="card-body">
                     <div class="d-flex justify-content-center text-danger">Precio: $ <span class=" font-weight-bold"> {{number_format($listing->property_price, 0, ',', '.')}}</span></div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
           </div>   
-        <div class="col-sm-6 col-md-6 col-lg-8"> 
-            <div onclick="window.location.href('{{route('web.detail',$listing->slug)}}');return false;" style="cursor:pointer;">
-              
-              <div class="text-muted font-weight-bold float-left pb-1">COD:<span class="font-weight-bold text-danger">{{$listing->product_code}}</span> </div>
-              <div class="float-right px-3 py-0" style="color:white;font-size: 13px;background-color: #FA7B34">
-                  @foreach ($types as $type) @if ($type->id==$listing->listingtype) {{$type->type_title}} @endif @endforeach
-                </div>                
-                <div class="float-right small px-2" style="color:#FA7B34;font-weight: 500">
-                  @foreach ($categories as $cat) @if ($cat->slug==$listing->listingtypestatus) {{$cat->status_title}} @endif @endforeach
-                </div>
-                <br>
-                <h2 class="w-100 h6 font-weight-bold text-truncate"><a class="link-dark link-sindeco" href="{{route('web.detail',$listing->slug)}}">{{$listing->listing_title}}</a></h2>
-              <div class="p-0 small font-weight-bold text-muted">@if(Str::contains($listing->address, ',')){{$listing->address}} @else {{$listing->state}}, {{$listing->city}}, {{$listing->address}}@endif</div>
-              <div class="small lh-sm" style="max-height:50px; overflow: hidden;">{{mb_substr(strip_tags($listing->listing_description),0,200)}}...</div>
-                @php
-                    $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
-                      $bathroom=0;$garage=0;$squarefit=0;
-                      if(!empty($listing->heading_details)){
-                        $allheadingdeatils=json_decode($listing->heading_details); 
-                        foreach($allheadingdeatils as $singleedetails) {
-                          unset($singleedetails[0]);
-                          for($i=1;$i<=count($singleedetails);$i++) { 
-                            if($i%2==0) {  
-                              if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49)
-                              { 
-                                  if(empty($singleedetails[$i])){ $bedroom+=0; }else{
-                                  $bedroom+=$singleedetails[$i]; }
-                              }
-                              if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81)
-                              {
-                                  if(empty($singleedetails[$i])){ $bathroom+=0; }else{
-                                  $bathroom+=$singleedetails[$i]; }
-                              }
-                              if($singleedetails[$i-1]==43)
-                              {
-                                  if(empty($singleedetails[$i])){ $garage+=0; }else{
-                                  $garage+=$singleedetails[$i]; }
-                              }
+        <div class="col-sm-6 col-md-6 col-lg-7 card border-0">
+            <div class="px-3 py-3" onclick="window.location.href('{{route('web.detail',$listing->slug)}}');return false;" style="cursor:pointer;">
+              @php
+                  $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
+                    $bathroom=0;$garage=0;$squarefit=0;
+                    if(!empty($listing->heading_details)){
+                      $allheadingdeatils=json_decode($listing->heading_details); 
+                      foreach($allheadingdeatils as $singleedetails) {
+                        unset($singleedetails[0]);
+                        for($i=1;$i<=count($singleedetails);$i++) { 
+                          if($i%2==0) {  
+                            if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49)
+                            { 
+                                if(empty($singleedetails[$i])){ $bedroom+=0; }else{
+                                $bedroom+=$singleedetails[$i]; }
+                            }
+                            if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81)
+                            {
+                                if(empty($singleedetails[$i])){ $bathroom+=0; }else{
+                                $bathroom+=$singleedetails[$i]; }
+                            }
+                            if($singleedetails[$i-1]==43)
+                            {
+                                if(empty($singleedetails[$i])){ $garage+=0; }else{
+                                $garage+=$singleedetails[$i]; }
                             }
                           }
-                          $i++;
                         }
-											}
-
-                      
-                @endphp
-                <div class="py-2">
+                        $i++;
+                      }
+                    }
+              @endphp
+              <div class="card-body">
+                <p class="h2" style="color: #182741; font-weight: 600">${{ number_format($listing->property_price) }}</p>
+                <p class="m-0" style="color: #182741; font-weight: 400">COD: {{ $listing->product_code }}</p>
+                <p class="m-0" style="color: #182741; font-weight: 500">{{ $listing->listing_title }}</p>
+                <p style="font-size: small">@if(isset($listing->address) && str_contains($listing->address, ',')) {{ $listing->address }} @else {{ $listing->state}}, {{ $listing->city }}, {{ $listing->address != null ? $listing->address : $listing->sector}} @endif</p>
+                <p style="font-size: small">{{ Str::limit($listing->listing_description, 120) }} <a href="{{ route('web.detail',$listing->slug) }}" style="color: blue; font-weight: 400">Más info</a></p>
+                <div class="d-flex" style="gap: 10px">
+                  @if($listing->construction_area>0) <div class="items-cards"> <img src="{{asset('img/house.png')}}" width="25">@if($ismobile)<br>@endif<span class="pr-2 items-cards-txt" style="font-weight: 400"> {{$listing->construction_area}} m<sup>2</sup> </span> </div> @endif
+                  @if($listing->land_area>0) <div class="items-cards"><img src="{{asset('img/floor.png')}}" width="25"> @if($ismobile)<br>@endif<span class="pr-2 items-cards-txt" style="font-weight: 400"> {{$listing->land_area}} m<sup>2</sup> </span></div> @endif
+                  @if($bedroom>0) <div class="items-cards"><img src="{{asset('img/bed-black.png')}}" width="25">@if($ismobile)<br>@endif<span class="pr-2 items-cards-txt" style="font-weight: 400"> {{$bedroom}} HAB.</span></div> @endif
+                  @if($bathroom>0) <div class="items-cards"><img src="{{asset('img/bathroom-black.png')}}" width="25">@if($ismobile)<br>@endif<span class="pr-2 items-cards-txt" style="font-weight: 400"> {{$bathroom}} @if($bathroom > 1) BAÑOS @else BAÑO @endif </span></div> @endif
+                  @if($garage>0) <div class="items-cards"><img src="{{asset('img/garage-black.png')}}" width="25">@if($ismobile)<br>@endif<span class="pr-2 items-cards-txt" style="font-weight: 400"> {{$garage}} @if($garage > 1) GARAGES @else GARAGE @endif </span></div>  @endif
+                </div>
+              </div>
+              <div class="card-footer bg-white">
+                <div class="d-flex pt-3" style="gap: 10px">
+                  <a href="tel:+593983849073" class="btn btn-sm btn-contact" style="border: 1px solid #182741; color: #182741"><img width="20px" height="15px" src="{{asset('img/ECUADOR-04.webp')}}" alt=""> LLAMAR</a>
+                  <a href="tel:+17186903740" class="btn btn-sm btn-contact" style="border: 1px solid #182741; color: #182741"><img width="20px" height="15px" src="{{asset('img/USA-05.webp')}}" alt="">  LLAMAR</a>
+                  <button data-toggle="modal" data-target="#modalContact" onclick="setInterest('COD {{$listing->product_code}}')" title="Solicitar Información" class="btn btn-sm btn-contact" style="border: 1px solid #182741; color: #182741"><i class="fas fa-envelope-open-text"></i></button>
+                  @php
+                    $urlwpp = "https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *" . strtoupper($listing->listing_title) . "*. Código: *" . $listing->product_code ."*";
+                  @endphp
+                  <a onclick="return gtag_report_conversion('{{ $urlwpp }}')" href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *{{strtoupper($listing->listing_title)}}*. Código: *{{$listing->product_code}}*" title="Contactar por Whatsapp" class="btn btn-sm btn-contact" style="border: 1px solid #182741; color: #182741"><i class="fab fa-whatsapp"></i></a>
+                </div>
+              </div>
+              {{-- <div class="text-muted font-weight-bold float-left pb-1">COD:<span class="font-weight-bold text-danger">{{$listing->product_code}}</span> </div>
+              <div class="float-right px-3 py-0" style="color:white;font-size: 13px;background-color: #FA7B34">
+                  @foreach ($types as $type) @if ($type->id==$listing->listingtype) {{$type->type_title}} @endif @endforeach
+              </div>                
+              <div class="float-right small px-2" style="color:#FA7B34;font-weight: 500">
+                @foreach ($categories as $cat) @if ($cat->slug==$listing->listingtypestatus) {{$cat->status_title}} @endif @endforeach
+              </div>
+              <br>
+              <h2 class="w-100 h6 font-weight-bold text-truncate"><a class="link-dark link-sindeco" href="{{route('web.detail',$listing->slug)}}">{{$listing->listing_title}}</a></h2>
+              <div class="p-0 small font-weight-bold text-muted">@if(Str::contains($listing->address, ',')){{$listing->address}} @else {{$listing->state}}, {{$listing->city}}, {{$listing->address}}@endif</div>
+              <div class="small lh-sm" style="max-height:50px; overflow: hidden;">{{mb_substr(strip_tags($listing->listing_description),0,200)}}...</div> --}}
+                {{-- <div class="py-2">
                   @if($listing->construction_area>0)<img src="{{asset('img/house.png')}}" width="15"><span class="text-danger font-weight-bold small pr-2"> {{$listing->construction_area}} m<sup>2</sup> </span> @endif
                   @if($listing->land_area>0)<img src="{{asset('img/floor.png')}}" width="15"><span class="text-danger font-weight-bold small pr-2"> {{$listing->land_area}} m<sup>2</sup> </span> @endif
                   @if($bedroom>0)<img src="{{asset('img/bed-black.png')}}" width="15"><span class="text-danger font-weight-bold small pr-2"> {{$bedroom}} </span> @endif
                   @if($bathroom>0)<img src="{{asset('img/bathroom-black.png')}}" width="15"><span class="text-danger font-weight-bold small pr-2"> {{$bathroom}} </span> @endif
                   @if($garage>0)<img src="{{asset('img/garage-black.png')}}" width="15"><span class="text-danger font-weight-bold small pr-2"> {{$garage}} </span> @endif
-                </div>
-          </div>
-          <hr>
+                </div> --}}
+            </div>
+          {{-- <hr>
           <div class="pb-3 float-right">
-            {{-- @if(!$ismobile) --}}
-           
-          {{-- <button class="btn btn-danger btn-sm px-1 d-block d-sm-none" 
-          data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('COD {{$listing->product_code}}')"><i class="fas fa-comment"></i> Solicitar Informacion</button> --}}
-          <div class="d-block d-sm-none py-1"></div>
+            <div class="d-block d-sm-none py-1"></div>
             <a href="tel:+593983849073" class="btn btn-outline-danger btn-sm px-2 rounded-pill btncall border shadow-sm" style="font-size:13px;"><img width="20px" height="15px" src="{{asset('img/ECUADOR-04.webp')}}" alt=""> Llamar</a>
             <a href="tel:+17186903740" class="btn btn-outline-danger btn-sm px-2 rounded-pill btncall border shadow-sm" style="font-size:13px;"><img width="20px" height="15px" src="{{asset('img/USA-05.webp')}}" alt=""> Llamar</a>
-            {{-- background-color:#F1C255;color: #ffffff --}}
-            {{-- <button class="btn btn-danger btn-sm px-2 d-sm-inline-block rounded-circle" 
-            data-toggle="modal" data-target="#modalcite" style="font-size:13px;" onclick="setInteresCite('COD {{$listing->product_code}}')" title="Agendar Cita"><i class="fas fa-calendar-alt"></i></button> --}}
             <button class="btn btn-danger btn-sm px-2 d-sm-inline-block rounded-pill shadow-sm" 
             data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('COD {{$listing->product_code}}')" title="Solicitar Información">Contactar</button>
-            {{-- <button class="btn btn-danger btn-sm rounded-circle" title="Agendar una Cita"><i class="fas fa-calendar"></i></button> --}}
             @php
               $urlwpp = "https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *" . strtoupper($listing->listing_title) . "*. Código: *" . $listing->product_code ."*";
             @endphp
             <a onclick="return gtag_report_conversion('{{ $urlwpp }}')" href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *{{strtoupper($listing->listing_title)}}*. Código: *{{$listing->product_code}}*" class="btn btn-success btn-sm rounded-circle shadow-sm" title="Contactar por Whatsapp"><i class="fab fa-whatsapp"></i></a>
-            {{-- @else --}}
-            {{-- <a href="tel:+593983849073  " class="btn btn-info btn-sm px-1 rounded-pill" style="font-size:13px;"><i class="fas fa-phone"></i> Ecuador</a>
-            <a href="tel:+17186903740" class="btn btn-info btn-sm px-1 rounded-pill" style="font-size:13px;"><i class="fas fa-phone"></i> Estados Unidos</a>
-            <button class="btn btn-danger btn-sm px-2 d-sm-inline-block rounded-circle" 
-            data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('COD {{$listing->product_code}}')"><i class="fas fa-envelope"></i></button>
-            <a target="_blank" href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *{{strtoupper($listing->listing_title)}}*. Código: *{{$listing->product_code}}*" class="btn btn-success btn-sm rounded-circle px-2" title="Contactar por Whatsapp"><i class="fab fa-whatsapp"></i></a> --}}
-            {{-- @endif --}}
-          </div>
+          </div> --}}
         </div>   
       </div>
     </div>        
