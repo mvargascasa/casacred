@@ -66,7 +66,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
       {{-- <div class="d-flex justify-content-center"> --}}
         <section id="bgimage" class="d-flex align-items-center justify-content-center py-3" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: @if($ismobile) 0px @else 0px @endif; z-index: 2">
           <div class="d-flex justify-content-center searchmobile">
-            <button type="button" class="btn" style="background-color: #182741" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn text-white" style="background-color: #182741" data-bs-toggle="modal" data-bs-target="#exampleModal">
               FILTROS
             </button>
           </div>
