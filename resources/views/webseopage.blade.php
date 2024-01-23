@@ -10,6 +10,12 @@
   .card-listing:hover{box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;}
   .btncall{color: #000000 !important;}.btncall:hover{color: #ffffff !important}
   .services{max-width: 100%; height: auto;}
+  .items-cards-txt{ font-size: 14px}
+  @media screen and (max-width: 580px){
+    .items-cards-txt{ font-size: 12px !important}
+    .items-cards > img { width: 20px !important}
+    .items-cards{text-align: center}
+  }
 </style>
 
 <!-- Event snippet for Botón Whatshap Casa credito conversion page
