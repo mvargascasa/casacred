@@ -65,9 +65,9 @@
   .btncall{color: #000000 !important;}.btncall:hover{color: #ffffff !important}
   .btn-wpp:hover{background-color: green; color: #ffffff}
   .btn-contact:hover{ background-color: #182741; color: #ffffff !important}
-  .items-cards-txt{ font-size: 14px !important}
+  .items-cards-txt{ font-size: 14px}
   @media screen and (max-width: 580px){
-    .items-cards-txt{ font-size: 13px !important}
+    .items-cards-txt{ font-size: 12px !important}
     .items-cards > img { width: 20px !important}
     .items-cards{text-align: center}
   }
