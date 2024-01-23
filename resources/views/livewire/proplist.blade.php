@@ -37,17 +37,17 @@
         @endif
 
 
-    <div class="card row mb-3 shadow-sm card-listing">
-      <div class="row pr-0">
+    <div class="card mb-3 shadow-sm card-listing">
+      <div class="row">
           <div class="col-sm-6 col-md-6 col-lg-5 p-0">
             <div class="col p-0 h-100">
                 <div class="card h-100" style="border:none">
                   
                   @if($ismobile)
                   <a href="{{route('web.detail', $listing->slug)}}">
-                    <div class="d-flex justify-content-center" style="width: 100%">
+                    <div class="d-flex justify-content-center w-100">
                       <div class="position-relative">
-                        <img loading="lazy" width="400px" height="250px" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.strtok($listing->images, "|"))) {{asset('uploads/listing/thumb/300/'.strtok($listing->images, '|'))}} @else {{asset('uploads/listing/300/'.strtok($listing->images, '|'))}} @endif" class="d-block" alt="{{$listing->listing_title}}">
+                        <img loading="lazy" width="100%" height="250px" src="@if(file_exists(public_path().'/uploads/listing/thumb/600/'.strtok($listing->images, "|"))) {{asset('uploads/listing/thumb/600/'.strtok($listing->images, '|'))}} @else {{asset('uploads/listing/600/'.strtok($listing->images, '|'))}} @endif" class="d-block" alt="{{$listing->listing_title}}">
                       </div>
                     </div>
                   </a>
