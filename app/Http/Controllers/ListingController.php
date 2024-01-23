@@ -25,7 +25,13 @@ class ListingController extends Controller
 
         $currentRouteName = Route::currentRouteName();
         
-        $lastcode = Listing::where('product_code','!=','')->orderBy('product_code','desc')->first();
+        // $lastcode = Listing::where('product_code','!=','')->orderBy('product_code','desc')->first();
+        $lastcode = Listing::latest()->first();
+
+        strlen($lastcode->product_code) > 4 ? $lastcode->product_code = substr($lastcode->product_code, 2) : null;
+
+        //dd($lastcode->product_code);
+
         $benefits = DB::table('listing_benefits')->get();  
         $services = DB::table('listing_services')->get();  
 
