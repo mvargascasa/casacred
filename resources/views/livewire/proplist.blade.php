@@ -104,7 +104,7 @@
             </div>   
             <div class="col-sm-6 col-md-6 col-lg-7 card border-0">
               <a href="{{route('web.detail',$listing->slug)}}">
-                <div class="px-3 py-3">
+                <div class="px-3 py-3 padding-x-mobile">
                   @php
                       $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
                         $bathroom=0;$garage=0;$squarefit=0;
@@ -135,7 +135,7 @@
                           }
                         }
                   @endphp
-                  <div class="card-body">
+                  <div class="card-body padding-x-mobile">
                     <p class="h2" style="color: #182741; font-weight: 600">${{ number_format($listing->property_price) }}</p>
                     <p class="m-0" style="color: #182741; font-weight: 400">COD: {{ $listing->product_code }}</p>
                     <p class="m-0" style="color: #182741; font-weight: 500">{{ $listing->listing_title }}</p>

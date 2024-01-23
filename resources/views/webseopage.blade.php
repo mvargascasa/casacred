@@ -15,6 +15,7 @@
     .items-cards-txt{ font-size: 12px !important}
     .items-cards > img { width: 20px !important}
     .items-cards{text-align: center}
+    .padding-x-mobile{padding-left: 0px !important; padding-right: 0px !important}
   }
 </style>
 
