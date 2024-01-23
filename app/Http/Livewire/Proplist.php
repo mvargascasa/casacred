@@ -55,7 +55,7 @@ class Proplist extends Component
         if(strlen($this->searchtxt)>2){
             $txt = filter_var ( $this->searchtxt, FILTER_SANITIZE_NUMBER_INT);
             if($txt>999){
-                $listings_filter->where('product_code', $txt);
+                $listings_filter->where('product_code', 'LIKE', '%'.$txt.'%');
                 $this->state = null;
             }else{
                 $listings_filter->where('address','LIKE',"%$this->searchtxt%");
@@ -139,7 +139,7 @@ class Proplist extends Component
 
         //dd($this->city);
 
-        if(strlen($this->city)>2 && $this->city != "ecuador") $listings_filter->where('city', $this->city);
+        if(strlen($this->city)>2 && $this->city != "ecuador") $listings_filter->where('city', $this->city); 
         
         if(strlen($this->fromprice)>1 && filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT)>1){
             $fromprice_ = filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT);

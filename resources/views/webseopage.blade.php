@@ -240,7 +240,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
             $category = ""; $type = ""; $city = ""; $state = ""; $segments = [];
             $segment2 = request()->segment(2);
             if($segment2){
-              if(!is_numeric($segment2)){
+              if(!is_numeric($segment2) && preg_match('/[0-9]/', $segment2) == 0){
                 $segments = explode("-", $segment2);
                 $city = end($segments);
                 if(($segments[0] == "casas" && $segments[1] == "comerciales") || ($segments[0] == "locales" && $segments[1] == "comerciales")){

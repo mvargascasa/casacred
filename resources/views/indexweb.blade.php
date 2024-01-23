@@ -63,6 +63,7 @@
   .inputs-on-hover:hover{background-color: #EF4444; color: #ffffff; cursor: pointer}
   #labeldiv1, #labeldiv2, #labeldiv3, #labeldiv4, #labeldiv5, #labeldiv6, #labeldiv7, #labeldiv8, #labeldiv9{cursor: pointer !important;}
   .btncall{color: #000000 !important;}.btncall:hover{color: #ffffff !important}
+  .btn-wpp:hover{background-color: green; color: #ffffff}
 </style>
 @livewireStyles
 @endsection
@@ -74,7 +75,7 @@
       if(Request()->get('ptype') != null){$ptype = Request()->get('ptype');}
       if(Request()->get('searchtxt') != null){$searchtxt = Request()->get('searchtxt');}
 
-      if(is_numeric(request()->segment(2))) {
+      if(is_numeric(request()->segment(2)) || preg_match('/[0-9]/', request()->segment(2)) == 1) {
         $listing = \App\Models\Listing::select('listing_title')->where('status', 1)->where('product_code', request()->segment(2))->first();
         if($listing){
           $h1 = $listing->listing_title;
@@ -575,7 +576,7 @@
     $segment2 = request()->segment(2);
     $segment3 = request()->segment(3);
     if($segment2){
-      if(!is_numeric($segment2)){
+      if(!is_numeric($segment2) && preg_match('/[0-9]/', $segment2) == 0){
         $segments = explode("-", $segment2);
         $city = end($segments);
         if(($segments[0] == "casas" && $segments[1] == "comerciales") || ($segments[0] == "locales" && $segments[1] == "comerciales")){
