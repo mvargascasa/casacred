@@ -67,7 +67,7 @@
   .btn-contact:hover{ background-color: #182741; color: #ffffff !important}
   .items-cards-txt{ font-size: 14px}
   @media screen and (max-width: 580px){
-    .items-cards-txt{ font-size: 12px !important}
+    .items-cards-txt{ font-size: 10px !important}
     .items-cards > img { width: 20px !important}
     .items-cards{text-align: center}
   }
