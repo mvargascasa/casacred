@@ -221,12 +221,12 @@ class ListingController extends Controller
             $listing->listingtype = $request->listingtype;
 
             if($request->listingtype == 26) $listing->planing_license = $request->planing_license;
-            if($request->listingtype != null && $request->fragment == "second"){
-                $codeCategory = DB::table('listing_types')->select('code')->where('id', $request->listingtype)->first();
-                if($codeCategory != null){
-                    $listing->product_code = $codeCategory->code.$listing->product_code;
-                }
-            }
+            // if($request->listingtype != null && $request->fragment == "second"){
+            //     $codeCategory = DB::table('listing_types')->select('code')->where('id', $request->listingtype)->first();
+            //     if($codeCategory != null){
+            //         $listing->product_code = $codeCategory->code.$listing->product_code;
+            //     }
+            // }
 
             //$listing->mortgaged = $request->mortgaged;
 
