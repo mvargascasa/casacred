@@ -238,7 +238,7 @@
                         {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
                         {!! Form::text('product_code', $newcode, ['class' => $inputs.' font-bold', 'disabled']) !!}
                         @else --}}
-                        {!! Form::text('product_code', $newcode, ['class' => $inputs.' font-bold', 'readonly']) !!}
+                        {!! Form::text('product_code', null, ['class' => $inputs.' font-bold']) !!}
                         {{-- @endif --}}
                     </div>
                 </div>
