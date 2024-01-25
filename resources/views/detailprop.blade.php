@@ -1117,7 +1117,9 @@
     }
 
     setTimeout(() => {
-      setsrcvideo();
+      if('{{ $listing->video != null }}'){
+        setsrcvideo();
+      }
     }, 3000);
     //     var myCarousel = document.querySelector('#carouselControls');
     //     var carousel = new bootstrap.Carousel(myCarousel);
