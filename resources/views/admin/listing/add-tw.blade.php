@@ -103,7 +103,7 @@
     @if(isset($isvalid) && !$isvalid)
         <div class="bg-red-100 border border-red-400 absolute text-red-700 px-2 shadow-lg py-3 mb-2 w-48 right-8 top-16 rounded">
             <p class="font-semibold text-sm"><i class="fa-solid fa-circle-exclamation"></i> LA PROPIEDAD TIENE CAMPOS VACIOS</p>
-            <p>Al administrador no se le permitira activar la propiedad si los campos no están completos</p>
+            <p>Completar todos los campos para mejorar la cobertura e indexación de las páginas en Google.</p>
         </div>
     @endif
 
@@ -255,7 +255,7 @@
                     {{-- @endif --}}
             
                     @if(Auth::user()->role == "administrator")
-                        @if(isset($isvalid) && $isvalid || isset($listing) && $listing->status == 1)
+                        {{-- @if(isset($isvalid) && $isvalid || isset($listing) && $listing->status == 1) --}}
                             <div>
                                 {!! Form::label('status', 'Status',['class' => 'font-semibold']) !!}
                                 {{-- @if(isset($listing) && $listing->locked)
@@ -264,11 +264,11 @@
                                     {!! Form::select('status',['0'=>'DESACTIVADO','1'=>'ACTIVO'], null, ['class' => $inputs]) !!}
                                 {{-- @endif --}}
                             </div>
-                        @else
+                        {{-- @else
                             <div class="text-xs mt-8">
                                 <p class="font-semibold">Faltan campos por ser completados para habilitar la opción de Activar</p>
                             </div>
-                        @endif
+                        @endif --}}
                     @else
                         @isset($listing)
                             <div>
