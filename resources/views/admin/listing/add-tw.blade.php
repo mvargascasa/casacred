@@ -364,7 +364,8 @@
             <div class="relative border px-5 py-4 mt-10 hover:shadow-md">
                 <div class="gap-4 mt-4 sm:gap-6">
                         {!! Form::label('listing_title', 'Titulo de Propiedad', ['class' => 'font-semibold']) !!}
-                        {!! Form::text('listing_title', null, ['class' => $inputs, 'pattern' => isset($currentRouteName) && ($currentRouteName != "admin.housing.property.create" || $currentRouteName != "admin.housing.property.edit") ? '.{50,60}' : '.{0,150}', 'onkeyup' => 'countCharsTitle(this);', 'placeholder' => 'Ej: Casa en Venta en Cuenca - Sector...']) !!}
+                        {{-- {!! Form::text('listing_title', null, ['class' => $inputs, 'pattern' => isset($currentRouteName) && ($currentRouteName != "admin.housing.property.create" || $currentRouteName != "admin.housing.property.edit") ? '.{50,60}' : '.{0,150}', 'onkeyup' => 'countCharsTitle(this);', 'placeholder' => 'Ej: Casa en Venta en Cuenca - Sector...']) !!} --}}
+                        {!! Form::text('listing_title', null, ['class' => $inputs, 'onkeyup' => 'countCharsTitle(this);', 'placeholder' => 'Ej: Casa en Venta en Cuenca - Sector...']) !!}
                     {{-- @if($currentRouteName != "admin.housing.property.create" && $currentRouteName != "admin.housing.property.edit") --}}
                         <div id="div_info_character" style="background-color: @if(isset($listing) &&  Str::length($listing->listing_title) >= 50 && Str::length($listing->listing_title) <=60) #9AE6B4 @else #FEB2B2 @endif" class="flex p-1 mt-2">
                             <label style="font-weight: 400">
