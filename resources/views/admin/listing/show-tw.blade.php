@@ -213,7 +213,7 @@
                 @php $iiListing=0 @endphp
                   @foreach (array_filter(explode("|", $propertie->images)) as $img)
                     <div class="carousel-item @if($iiListing==0) active @endif" data-slide-number="{{ $iiListing }}">
-                      <img style="width: 100%; height: 100%" src="@if($imageVerification && !Auth::user()->watermark){{url('uploads/listing/thumb',$img)}} @else {{url('uploads/listing', $img)}} @endif" class="d-block w-100 ccimgpro" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$propertie->listing_title}}-{{$iiListing++}}">
+                      <img style="width: 100%; height: 100%" data-src="@if($imageVerification && !Auth::user()->watermark){{url('uploads/listing/thumb',$img)}} @else {{url('uploads/listing', $img)}} @endif" class="d-block w-100 ccimgpro lazy" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$propertie->listing_title}}-{{$iiListing++}}">
                     </div>
                   @endforeach
               </div>
@@ -922,5 +922,7 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
       modal.classList.toggle('pointer-events-none')
       body.classList.toggle('modal-active')
     }
+
+    document.addEventListener("DOMContentLoaded",function(){var e;if("IntersectionObserver"in window){e=document.querySelectorAll(".lazy");var n=new IntersectionObserver(function(e,t){e.forEach(function(e){if(e.isIntersecting){var t=e.target;t.src=t.dataset.src,t.classList.remove("lazy"),n.unobserve(t)}})});e.forEach(function(e){n.observe(e)})}else{var t;function r(){t&&clearTimeout(t),t=setTimeout(function(){var n=window.pageYOffset;e.forEach(function(e){e.offsetTop<window.innerHeight+n&&(e.src=e.dataset.src,e.classList.remove("lazy"))}),0==e.length&&(document.removeEventListener("scroll",r),window.removeEventListener("resize",r),window.removeEventListener("orientationChange",r))},20)}e=document.querySelectorAll(".lazy"),document.addEventListener("scroll",r),window.addEventListener("resize",r),window.addEventListener("orientationChange",r)}});
 </script>
 @endsection
