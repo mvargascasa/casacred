@@ -203,16 +203,17 @@
             </div>
           </section>
           
+          @php
+            $propertie->images != null ? $imageVerification = asset('uploads/listing/thumb/600/'.explode('|', $propertie->images)[0]) : $imageVerification = null;    
+          @endphp
+          
           @if ($propertie->images != null)
             <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
               <div class="carousel-inner">
                 @php $iiListing=0 @endphp
                   @foreach (array_filter(explode("|", $propertie->images)) as $img)
-                    @php
-                      $imageVerification = asset('uploads/listing/thumb/600/'.$img);    
-                    @endphp
                     <div class="carousel-item @if($iiListing==0) active @endif" data-slide-number="{{ $iiListing }}">
-                      <img style="width: 100%; height: 100%" src="@if(@getimagesize($imageVerification) && !Auth::user()->watermark){{url('uploads/listing/thumb',$img)}} @else {{url('uploads/listing', $img)}} @endif" class="d-block w-100 ccimgpro" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$propertie->listing_title}}-{{$iiListing++}}">
+                      <img style="width: 100%; height: 100%" src="@if($imageVerification && !Auth::user()->watermark){{url('uploads/listing/thumb',$img)}} @else {{url('uploads/listing', $img)}} @endif" class="d-block w-100 ccimgpro" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$propertie->listing_title}}-{{$iiListing++}}">
                     </div>
                   @endforeach
               </div>
