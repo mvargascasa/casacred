@@ -320,15 +320,6 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    newarray = @json($properties_aux);
-
-    for(let i = 0; i < newarray.length; i++){
-        let images = newarray[i]['images'].split('|');
-        let marker = L.marker([newarray[i]['lat'], newarray[i]['lng']]).addTo(map)
-            .bindPopup(`<div style='display: flex; gap: 5px; align-items: center'><div><span style='font-weight: bold'>Propiedad ${newarray[i]['product_code']}</span><br><span>${newarray[i]['listing_title']}</span><br><a target='blank' href='https://api.whatsapp.com/send?text=https://maps.google.com/?q=${newarray[i]['lat']},${newarray[i]['lng']}'>Compartir Ubicación</a><br><a href="https://grupohousing.com/admin/show-listing/${newarray[i]['id']}">Ver propiedad</a></div><div><img width='200px' src='https://grupohousing.com/uploads/listing/600/${images[0]}'></div></div>`)
-            .openPopup();
-    }
-
     const apiKey = "AAPK6cd0390360a34c47abb6992f612c3a4eHDSN5oz15wvKsDnnOXQAT1xiCNYDtP4B8XRcytqys3UphqELHcSD_tlTbsijCbGz";
 
     const searchControl = L.esri.Geocoding.geosearch({
@@ -345,5 +336,14 @@
             })
         ]
     }).addTo(map);
+
+    newarray = @json($properties_aux);
+
+    for(let i = 0; i < newarray.length; i++){
+        let images = newarray[i]['images'].split('|');
+        let marker = L.marker([newarray[i]['lat'], newarray[i]['lng']]).addTo(map)
+            .bindPopup(`<div style='display: flex; gap: 5px; align-items: center'><div><span style='font-weight: bold'>Propiedad ${newarray[i]['product_code']}</span><br><span>${newarray[i]['listing_title']}</span><br><a target='blank' href='https://api.whatsapp.com/send?text=https://maps.google.com/?q=${newarray[i]['lat']},${newarray[i]['lng']}'>Compartir Ubicación</a><br><a href="https://grupohousing.com/admin/show-listing/${newarray[i]['id']}">Ver propiedad</a></div><div><img width='200px' src='https://grupohousing.com/uploads/listing/600/${images[0]}'></div></div>`)
+            .openPopup();
+    }
 </script>
 @endsection
