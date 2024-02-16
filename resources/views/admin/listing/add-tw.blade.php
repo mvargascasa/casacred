@@ -235,11 +235,11 @@
                 <div class="grid grid-cols-3 gap-4 sm:gap-6">
                     <div>          
                         {!! Form::label('product_code', 'Codigo',['class' => 'font-semibold']) !!}
-                        {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user")
+                        {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user") --}}
                         {!! Form::text('product_code', $newcode, ['class' => $inputs.' font-bold', 'disabled']) !!}
-                        @else --}}
+                        {{-- @else
                         {!! Form::text('product_code', null, ['class' => $inputs.' font-bold']) !!}
-                        {{-- @endif --}}
+                        @endif --}}
                     </div>
                 </div>
                 <div class="grid grid-cols-3 gap-6 mt-4">
