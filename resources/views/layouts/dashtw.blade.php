@@ -27,7 +27,7 @@
                     @elseif (Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit")
                         <img class="h-12" src="{{ asset('img/logo-promotora.png') }}" alt="">
                     @else
-                    <img class="h-14" src="{{asset('img/logo-azul-grupo-housing.png')}}">
+                    <img class="h-12" src="{{asset('img/logo-azul-grupo-housing.png')}}">
                     @endif
                 </div>
             </div>
