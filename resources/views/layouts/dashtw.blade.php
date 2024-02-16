@@ -52,15 +52,15 @@
                 <ul id="dropdown-example" class="hidden py-2 space-y-2 border w-52">
                     <li class="flex items-center">
                         <a href="{{ route('admin.listings.create') }}"
-                            class="flex items-center w-full py-3 text-sm font-semibold text-white transition duration-75 px-2 group hover:bg-gray-600"><img width="70px" src="{{ asset('img/logo-azul-grupo-housing.png') }}" alt="" class="pr-3"> Grupo Housing</a>
+                            class="flex items-center w-full py-3 text-sm font-semibold text-white transition duration-75 px-2 group hover:bg-gray-600"><img width="60px" src="{{ asset('img/logo-azul-grupo-housing.png') }}" alt="" class="pr-3"> Grupo Housing</a>
                     </li>
                     <li>
                         <a href="{{ route('admin.promotora.property.create') }}"
-                            class="flex items-center w-52 py-3 text-sm font-semibold text-white transition duration-75 px-2 group hover:bg-gray-600"><img width="70px" src="{{ asset('img/logo-promotora.png') }}" alt="" class="pr-3"> Promotora</a>
+                            class="flex items-center w-52 py-3 text-sm font-semibold text-white transition duration-75 px-2 group hover:bg-gray-600"><img width="60px" src="{{ asset('img/logo-promotora.png') }}" alt="" class="pr-3"> Promotora</a>
                     </li>
                     <li>
                         <a href="{{ route('admin.housing.property.create') }}"
-                            class="flex items-center w-52 py-3 text-sm font-semibold text-white transition duration-75 px-2 group hover:bg-gray-600"><img width="70px" src="{{ asset('img/logo-housing-rent.png') }}" alt="" class="pr-3"> Housing Rent</a>
+                            class="flex items-center w-52 py-3 text-sm font-semibold text-white transition duration-75 px-2 group hover:bg-gray-600"><img width="60px" src="{{ asset('img/logo-housing-rent.png') }}" alt="" class="pr-3"> Housing Rent</a>
                     </li>
                 </ul>
     
