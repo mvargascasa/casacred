@@ -19,7 +19,7 @@
 
         <div :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="fixed z-20 inset-0 bg-black opacity-50 transition-opacity lg:hidden"></div>
     
-        <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed z-30 inset-y-0 left-0 w-44 transition duration-300 transform @if(Route::currentRouteName() != "admin.housing.property.create") bg-gray-500 @endif overflow-y-auto lg:translate-x-0 lg:static lg:inset-0" style="background-color: @if(Route::currentRouteName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.housing.property.edit" || str_contains(Auth::user()->email, 'housingrentgroup')) #1C2444 @elseif(Route::currentRouteName()=='admin.promotora.property.create' || Route::currentRouteName() == "admin.promotora.property.edit") #670C07 @endif">
+        <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed z-30 inset-y-0 left-0 w-52 transition duration-300 transform @if(Route::currentRouteName() != "admin.housing.property.create") bg-gray-500 @endif overflow-y-auto lg:translate-x-0 lg:static lg:inset-0" style="background-color: @if(Route::currentRouteName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.housing.property.edit" || str_contains(Auth::user()->email, 'housingrentgroup')) #1C2444 @elseif(Route::currentRouteName()=='admin.promotora.property.create' || Route::currentRouteName() == "admin.promotora.property.edit") #670C07 @endif">
             <div class="flex items-center justify-center @if(Request::is('admin/show-listing*')) mt-3 @else mt-4 @endif">
                 <div class="flex items-center">
                     @if(Route::currentRouteName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.housing.property.edit" || str_contains(Auth::user()->email, 'housingrentgroup'))
@@ -27,7 +27,7 @@
                     @elseif (Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit")
                         <img class="h-12" src="{{ asset('img/logo-promotora.png') }}" alt="">
                     @else
-                    <img class="h-10" src="{{asset('img/casacredito-logo-crm.svg')}}">
+                    <img class="h-14" src="{{asset('img/logo-azul-grupo-housing.png')}}">
                     @endif
                 </div>
             </div>
@@ -41,7 +41,7 @@
                 </a> 
                 @endif
 
-                <a style="text-decoration: none !important" href="{{route('admin.index')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <a style="text-decoration: none !important" href="{{route('admin.index')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin')) border-l-4 border-white bg-gray-900 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="@if(Request::is('admin/show-listing*')) py-3  @else py-4 @endif  mx-3">Dashboard</span>
                 </a>               
     
@@ -49,29 +49,29 @@
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Crear Propiedad</span>
                     
                 </button>
-                <ul id="dropdown-example" class="hidden py-2 space-y-2 border">
-                    <li>
+                <ul id="dropdown-example" class="hidden py-2 space-y-2 border w-52">
+                    <li class="flex items-center">
                         <a href="{{ route('admin.listings.create') }}"
-                            class="flex items-center w-full p-2 text-sm font-semibold text-white transition duration-75 group hover:bg-gray-600 pl-8">Casa Crédito</a>
+                            class="flex items-center w-full py-3 text-sm font-semibold text-white transition duration-75 px-2 group hover:bg-gray-600"><img width="70px" src="{{ asset('img/logo-azul-grupo-housing.png') }}" alt="" class="pr-3"> Grupo Housing</a>
                     </li>
                     <li>
                         <a href="{{ route('admin.promotora.property.create') }}"
-                            class="flex items-center w-full p-2 text-sm font-semibold text-white transition duration-75 group hover:bg-gray-600 pl-8">Promotora</a>
+                            class="flex items-center w-52 py-3 text-sm font-semibold text-white transition duration-75 px-2 group hover:bg-gray-600"><img width="70px" src="{{ asset('img/logo-promotora.png') }}" alt="" class="pr-3"> Promotora</a>
                     </li>
                     <li>
                         <a href="{{ route('admin.housing.property.create') }}"
-                            class="flex items-center w-full p-2 text-sm font-semibold text-white transition duration-75 group hover:bg-gray-600 pl-8">Housing</a>
+                            class="flex items-center w-52 py-3 text-sm font-semibold text-white transition duration-75 px-2 group hover:bg-gray-600"><img width="70px" src="{{ asset('img/logo-housing-rent.png') }}" alt="" class="pr-3"> Housing Rent</a>
                     </li>
                 </ul>
     
-                <a style="text-decoration: none !important" href="{{route('admin.properties')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/properties*') || (Request::is('admin/show-listing*') && Str::contains(URL::previous(), 'admin/properties'))) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <a style="text-decoration: none !important" href="{{route('admin.properties')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/properties*') || (Request::is('admin/show-listing*') && Str::contains(URL::previous(), 'admin/properties'))) border-l-4 border-white bg-gray-900 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Propiedades</span>
                 </a>
-                <a style="text-decoration: none !important" href="{{route('admin.history')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/history*') || (Request::is('admin/history*') && Str::contains(URL::previous(), 'admin/properties'))) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <a style="text-decoration: none !important" href="{{route('admin.history')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/history*') || (Request::is('admin/history*') && Str::contains(URL::previous(), 'admin/properties'))) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Historial</span>
                 </a>
                 <div class="relative">
-                    <a style="text-decoration: none !important" href="{{route('admin.api.projects.index')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/projects*') || (Request::is('admin/projects*') && Str::contains(URL::previous(), 'admin/properties'))) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                    <a style="text-decoration: none !important" href="{{route('admin.api.projects.index')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/projects*') || (Request::is('admin/projects*') && Str::contains(URL::previous(), 'admin/properties'))) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                         <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Proyectos <br> <span class="text-white text-xs font-semibold">Promotora</span> </span>
                     </a>
                     <div class="font-semibold absolute bg-white rounded px-2 text-xs" style="right: 7px; top: 40%">
@@ -79,43 +79,43 @@
                     </div>
                 </div>
             @if(Auth::user()->role!="administrator")
-                <a style="text-decoration: none !important" href="{{ route('admin.myproperties') }}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/my-properties*') || (Request::is('admin/listings/*/edit') && Str::contains(URL::previous(), 'admin/my-properties'))) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <a style="text-decoration: none !important" href="{{ route('admin.myproperties') }}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/my-properties*') || (Request::is('admin/listings/*/edit') && Str::contains(URL::previous(), 'admin/my-properties'))) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Mis Propiedades</span>
                 </a> 
             @endif         
-                <a style="text-decoration: none !important" href="{{route('admin.soldout')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/sold-out*') || (Request::is('admin/show-listing*') && Str::contains(URL::previous(), 'admin/sold-out'))) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <a style="text-decoration: none !important" href="{{route('admin.soldout')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/sold-out*') || (Request::is('admin/show-listing*') && Str::contains(URL::previous(), 'admin/sold-out'))) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Archivadas</span>
                 </a>
             @if (Auth::id()==123 || Auth::id()==147 || Auth::id()==15 || Auth::user()->id == 148)
 
-                <a style="text-decoration: none" href="{{ route('admin.notifications') }}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/notification*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <a style="text-decoration: none" href="{{ route('admin.notifications') }}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/notification*')) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">
                         Notificaciones
                     </span>
                     <div id="divnotification" style="display: none" class="rounded-md bg-red-500 px-1">0</div>
                 </a>
         
-                <a style="text-decoration: none" href="{{route('admin.contacts')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/contacts*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                {{-- <a style="text-decoration: none" href="{{route('admin.contacts')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/contacts*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Contactos</span>
-                </a>
+                </a> --}}
     
-                <a style="text-decoration: none" href="{{route('admin.opports')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/opports*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                {{-- <a style="text-decoration: none" href="{{route('admin.opports')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/opports*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Oportunidades</span>
-                </a>     
+                </a>      --}}
     
-                <a style="text-decoration: none" href="{{route('admin.services.index')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/service*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <a style="text-decoration: none" href="{{route('admin.services.index')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/service*')) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Servicios</span>
                 </a>        
     
-                <a style="text-decoration: none" href="{{route('users.index')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('users/*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <a style="text-decoration: none" href="{{route('users.index')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/users*')) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Usuarios</span>
                 </a>           
             @endif
             @if(Auth::user()->id == 148 || Auth::user()->email == "developer2@casacredito.com")
-            <a style="text-decoration: none" href="{{route('admin.seo.index')}}" class="flex items-center @if(Request::is('admin/seo*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/seo*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+            <a style="text-decoration: none" href="{{route('admin.seo.index')}}" class="flex items-center @if(Request::is('admin/seo*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/seo*')) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                 <span class="mx-3 @if(Request::is('admin/seo*')) py-3 @else py-4 @endif">SEO</span>
             </a>
-            <a style="text-decoration: none" href="{{route('admin.post.index')}}" class="flex items-center @if(Request::is('admin/post*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/post*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+            <a style="text-decoration: none" href="{{route('admin.post.index')}}" class="flex items-center @if(Request::is('admin/post*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/post*')) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                 <span class="mx-3 @if(Request::is('admin/blog*')) py-3 @else py-4 @endif">Blog</span>
             </a>
             {{-- <a style="text-decoration: none" href="{{route('admin.modals.index')}}" class="flex items-center @if(Request::is('admin/modals*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/modals*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
@@ -132,7 +132,7 @@
             </nav>
         </div>
         <div class="flex-1 flex flex-col overflow-hidden">
-            <header class="flex justify-between items-center py-1 px-6 @if(str_contains(Auth::user()->email, 'casacredito')) bg-gray-300 @endif border-b-4 border-red-800" @if(str_contains(Auth::user()->email, "housingrentgroup")) style="background-color: #1C2444" @endif>
+            <header class="flex justify-between items-center py-1 px-6 @if(str_contains(Auth::user()->email, 'casacredito')) bg-gray-300 @endif border-b-4 border-gray-800" @if(str_contains(Auth::user()->email, "housingrentgroup")) style="background-color: #1C2444" @endif>
                 <div class="flex items-center">
                     <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
                         <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -213,11 +213,11 @@
                         <div x-show="dropdownOpen"
                             class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10"
                             style="display: none;">
-                            <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-800 hover:text-white"
+                            <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-800 hover:text-white"
                                     href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Cerrar Sesión') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
