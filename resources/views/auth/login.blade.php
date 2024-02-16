@@ -4,7 +4,7 @@
 
         <x-jet-validation-errors class="mb-4" />
             <div class="p-6 text-grey-darker text-justify flex flex-col">
-                <img src="{{asset('casacredito-logo.svg')}}" height="30" class="w-64 flex self-center">
+                <img src="{{asset('img/logo-azul-grupo-housing.png')}}" height="30" class="w-64 flex self-center">
             </div>
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
@@ -39,7 +39,7 @@
                     </a>
                 @endif
 
-                <x-jet-button class="w-full bg-red-800 h-10">
+                <x-jet-button class="w-full bg-[#141828] h-10">
                     {{ __('Login') }}
                 </x-jet-button>
             </div>
