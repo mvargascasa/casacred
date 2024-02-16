@@ -3,7 +3,18 @@
 <title>Dashboard - Casa Crédito</title>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA9HaUDMtwi6jqW1M8avBHmOpspAUFto4"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script>
+
+{{-- map leaflet --}}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<!-- Load Esri Leaflet from CDN -->
+<script src="https://unpkg.com/esri-leaflet@3.0.10/dist/esri-leaflet.js"></script>
+<!-- Load Esri Leaflet Geocoder from CDN -->
+<link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.css" crossorigin="" />
+<script src="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.js" crossorigin=""></script>
+{{-- <script>
     var newarray = [];
     function initMap() {
       var map;
@@ -36,30 +47,13 @@
           //['Brooklyn Public Library, NY', 40.672587, -73.968146],
           //['Prospect Park Zoo, NY', 40.665588, -73.965336]
       ];
-      //console.log("-------------MARKERS--------------");
-      //console.log(markers);
                           
       // Info window content
       var infoWindowContent = [
           ['<div class="info_content">' +
           '<h3>Brooklyn Public Library</h3>' +
           '<p>The Brooklyn Public Library (BPL) is the public library system of the borough of Brooklyn, in New York City.</p>' + '</div>'],
-          // ['<div class="info_content">' +
-          // '<h3>Brooklyn Public Library</h3>' +
-          // '<p>The Brooklyn Public Library (BPL) is the public library system of the borough of Brooklyn, in New York City.</p>' +
-          // '</div>'],
-          // ['<div class="info_content">' +
-          // '<h3>Prospect Park Zoo</h3>' +
-          // '<p>The Prospect Park Zoo is a 12-acre (4.9 ha) zoo located off Flatbush Avenue on the eastern side of Prospect Park, Brooklyn, New York City.</p>' +
-          // '</div>']
       ];
-
-      //console.log("-----------------infoWindowContent-------------------");
-      //console.log(infoWindowContent);
-
-
-      //console.log("---------------infoWindowContentAux-------------------")
-      //console.log(infoWindowContent_aux);
           
       // Add multiple markers to map
       var infoWindow = new google.maps.InfoWindow(), marker, i;
@@ -101,66 +95,67 @@
   //if(){
     google.maps.event.addDomListener(window, 'load', initMap);
   //}  
-</script>
+</script> --}}
 @endsection
 
 @section('content')
 <main class="overflow-x-hidden overflow-y-auto">
     <div class="mx-4 border my-3 rounded p-4">
-        <p class="font-semibold"><i class="fas fa-chart-bar text-red-600"></i> ESTADISTICAS PROPIEDADES</p>
+        <p class="font-semibold"><i class="fas fa-chart-bar text-gray-600"></i> ESTADISTICAS PROPIEDADES</p>
         <div class="mx-auto my-2">
             {{-- <h3 class="text-gray-700 text-3xl font-medium">Bienvenido</h3>   --}}
             <div class="flex">
-                <div class="mx-1 border p-2 rounded">
+                <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
                     <p>Total de Propiedades: <b>{{$totalproperties}}</b></p>
                 </div>
-                <div class="mx-1 border p-2 rounded">
+                <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
                     <p>Propiedades Activadas: <b>{{$totalactivatedproperties}}</b></p>
                 </div>
-                <div class="mx-1 border p-2 rounded">
+                <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
                     <p>Propiedades Disponibles: <b>{{$totalavailableproperties}}</b></p>
                 </div>
             </div>
         </div>
         <div class="mx-auto my-2">
             <div class="flex text-sm">
-                <div class="mx-1 border p-2 rounded">
-                    <p><i class="fa-sharp fa-solid fa-circle text-red-500"></i> Total Casas: <b>{{$totalcasas}}</b></p>
+                <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
+                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Total Casas: <b>{{$totalcasas}}</b></p>
                 </div>
-                <div class="mx-1 border p-2 rounded">
-                    <p><i class="fa-sharp fa-solid fa-circle text-red-500"></i> Total Departamentos: <b>{{$totaldepartamentos}}</b></p>
+                <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
+                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Total Departamentos: <b>{{$totaldepartamentos}}</b></p>
                 </div>
-                <div class="mx-1 border p-2 rounded">
-                    <p><i class="fa-sharp fa-solid fa-circle text-red-500"></i> Total Casas Comerciales: <b>{{$totalcasascomer}}</b></p>
+                <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
+                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Total Casas Comerciales: <b>{{$totalcasascomer}}</b></p>
                 </div>
-                <div class="mx-1 border p-2 rounded">
-                    <p><i class="fa-sharp fa-solid fa-circle text-red-500"></i> Total Terrenos: <b>{{$totalterrenos}}</b></p>
+                <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
+                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Total Terrenos: <b>{{$totalterrenos}}</b></p>
                 </div>
-                <div class="mx-1 border p-2 rounded">
-                    <p><i class="fa-sharp fa-solid fa-circle text-red-500"></i> Total Quintas: <b>{{$totalquintas}}</b></p>
+                <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
+                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Total Quintas: <b>{{$totalquintas}}</b></p>
                 </div>
-                <div class="mx-1 border p-2 rounded">
-                    <p><i class="fa-sharp fa-solid fa-circle text-red-500"></i> Total Haciendas: <b>{{$totalhaciendas}}</b></p>
+                <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
+                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Total Haciendas: <b>{{$totalhaciendas}}</b></p>
                 </div>
-                <div class="mx-1 border p-2 rounded">
-                    <p><i class="fa-sharp fa-solid fa-circle text-red-500"></i> Total Locales Comerciales: <b>{{$totallocalcomer}}</b></p>
+                <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
+                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Total Locales Comerciales: <b>{{$totallocalcomer}}</b></p>
                 </div>
-                <div class="mx-1 border p-2 rounded">
-                    <p><i class="fa-sharp fa-solid fa-circle text-red-500"></i> Total Oficinas: <b>{{$totaloficinas}}</b></p>
+                <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
+                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Total Oficinas: <b>{{$totaloficinas}}</b></p>
                 </div>
-                <div class="mx-1 border p-2 rounded">
-                    <p><i class="fa-sharp fa-solid fa-circle text-red-500"></i> Total Suites: <b>{{$totalsuites}}</b></p>
+                <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
+                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Total Suites: <b>{{$totalsuites}}</b></p>
                 </div>
             </div>
         </div>
     </div>
     <div class="grid grid-cols-2 mx-4 my-2 w-auto border rounded py-4">
         <div>
-            <p class="font-semibold mx-4 pb-1"><i class="fas fa-location text-red-600"></i> UBICACIÓN DE PROPIEDADES</p>
+            <p class="font-semibold mx-4 pb-1"><i class="fas fa-location text-gray-800"></i> UBICACIÓN DE PROPIEDADES</p>
             <p class="text-xs mx-4 pb-2">*Puede hacer clic sobre la ubicación de cada propiedad para más información</p>
-            <div id="map" class="mx-4 rounded" style="height: 400px"></div>
+            {{-- <div id="map" class="mx-4 rounded" style="height: 400px"></div> --}}
+            <div id="map" style="height: 500px; z-index: 3"></div>
         </div>
-        <div class="mt-5" style="height: 400px; overflow: auto">
+        <div class="mt-5" style="height: 500px; overflow: auto">
             <p class=" bg-white font-semibold text-center sticky top-0">Ultimas propiedades subidas</p>
             <div class="flex justify-center mx-2">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -187,7 +182,7 @@
         </div>
     </div>
     <div class="mx-4 my-3 w-auto border rounded py-4">
-        <p class="font-semibold mx-4"><i class="fas fa-user text-red-600"></i> MI USUARIO</p>
+        <p class="font-semibold mx-4"><i class="fas fa-user text-gray-800"></i> MI USUARIO</p>
         <div class="mx-4">
             @if (count($properties_at_week)>0)
             <p>Propiedades subidas por <b class="text-gray-600">{{Auth::user()->name}}</b> durante esta semana desde el <b class="text-gray-600">{{$now->startOfWeek()->format('d-M-y')}} </b> hasta el <b class="text-gray-600">{{$now->endOfWeek()->format('d-M-y')}}</b></p>
@@ -241,7 +236,7 @@
     @endif --}}
 
     <div class="mx-4 my-3 w-auto border rounded py-4">
-        <p class="font-semibold mx-4"><i class="far fa-edit text-red-600"></i> PROPIEDADES ACTUALIZADAS POR <b class="text-red-500 font-semibold">{{Auth::user()->name}}</b> EL DÍA <b class="text-red-500 font-semibold">{{substr(date(now()), 0, 10)}}</b></p>
+        <p class="font-semibold mx-4"><i class="far fa-edit text-gray-800"></i> PROPIEDADES ACTUALIZADAS POR <b class="text-gray-800 font-semibold">{{Auth::user()->name}}</b> EL DÍA <b class="text-gray-800 font-semibold">{{substr(date(now()), 0, 10)}}</b></p>
         <div class="mx-4">
             @if (count($updated_listing)>0)
             <div class="grid grid-cols-1 my-2">
@@ -274,7 +269,7 @@
     </div>
 
     <div class="mx-4 my-3 w-auto border rounded py-4">
-        <p class="font-semibold mx-4"><i class="fas fa-arrow-down text-red-600"></i> PROPIEDADES QUE BAJARON DE PRECIO</p>
+        <p class="font-semibold mx-4"><i class="fas fa-arrow-down text-gray-800"></i> PROPIEDADES QUE BAJARON DE PRECIO</p>
         <div class="mx-4">
             @if (count($properties_dropped)>0)
             <div class="grid grid-cols-1 my-2">
@@ -315,4 +310,26 @@
         </div>
     </div>
 </main>
+@endsection
+
+@section('endscript')
+<script>
+    let map = L.map('map').setView([-2.9004975301629137, -79.00414343755442], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    newarray = @json($properties_aux);
+
+    console.log(newarray);
+
+    for(let i = 0; i < newarray.length; i++){
+        let images = newarray[i]['images'].split('|');
+        console.log(images[0]);
+        let marker = L.marker([newarray[i]['lat'], newarray[i]['lng']]).addTo(map)
+            .bindPopup(`<div style='display: flex; gap: 5px; align-items: center'><div><span style='font-weight: bold'>Propiedad ${newarray[i]['product_code']}</span><br><span>${newarray[i]['listing_title']}</span><br><a target='blank' href='https://api.whatsapp.com/send?text=https://maps.google.com/?q=${newarray[i]['lat']},${newarray[i]['lng']}'>Compartir Ubicación</a><br><a href="http://localhost/acasaweb-master/public/admin/show-listing/${newarray[i]['id']}">Ver propiedad</a></div><div><img width='200px' src='http://localhost/acasaweb-master/public/uploads/listing/600/${images[0]}'></div></div>`)
+            .openPopup();
+    }
+</script>
 @endsection

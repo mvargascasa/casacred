@@ -10,12 +10,26 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use App\Models\HistoryListings;
 
 class AdminController extends Controller
 {     
     public function index(){
 
+        // $listings = Listing::where('delete_at', '<', Carbon::now())->get();
+        
+        // if(count($listings)>0){
+        //     foreach($listings as $listing){
+        //         HistoryListings::create($listing);
+        //         $listing->delete();
+        //     }
+        // }
+
         $now = Carbon::now();
+
+        // $properties_to_delete = Listing::select('created_at')->where('user_id', Auth::user()->id)->where('created_at', '<', Carbon::now()->subDays(1))->get();
+
+        // return $properties_to_delete;
 
         $properties_today = Listing::whereDate('created_at', '=', Carbon::today()->toDateString())->get();
 
@@ -34,7 +48,7 @@ class AdminController extends Controller
         $totalavailableproperties = Listing::where('available', 1)->count();
 
         $properties = []; $properties_aux = [];
-        $properties = Listing::select('product_code', 'lat', 'lng', 'listing_title', 'id', 'address', 'created_at')
+        $properties = Listing::select('product_code', 'lat', 'lng', 'listing_title', 'id', 'address', 'images', 'created_at')
                                 ->where('city', 'LIKE', "%Cuenca%")
                                 // ->where('listingtype', 'LIKE', "%%")
                                 ->where('available', 1)
