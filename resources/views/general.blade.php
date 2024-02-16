@@ -41,7 +41,7 @@
                                     <div class="my-2 mx-2">
                                         <p class="float-right font-weight-normal text-light rounded px-1" style="background-color: #FEBB19; font-size: 13px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">COD: {{$listingc->product_code}}</p>
                                         <p><i class="fas fa-tag"></i> {{strtoupper($listingc->listingtypestatus)}}</p>
-                                        <p><i class="fas fa-map-marker-alt text-danger"></i> @if(str_contains($listingc->address, ",")){{$listingc->address}} @else {{$listingc->state.", ".$listingc->city.", ".$listingc->address}}@endif</p>
+                                        <p><i class="fas fa-map-marker-alt text-danger"></i> @if($listingc->address != null && str_contains($listingc->address, ",")){{$listingc->address}} @else {{$listingc->state.", ".$listingc->city.", ".$listingc->address}}@endif</p>
                                         <p class="font-weight-normal">{{$listingc->listing_title}}</p>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                                     <div class="my-2 mx-2">
                                         <p><i class="fas fa-tag"></i> {{strtoupper($listingq->listingtypestatus)}}</p>
                                         <p class="float-right font-weight-normal text-light rounded px-1" style="background-color: #FEBB19; font-size: 13px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">COD: {{$listingq->product_code}}</p>
-                                        <p><i class="fas fa-map-marker-alt text-danger"></i> @if(str_contains($listingq->address, ",")){{$listingq->address}} @else {{$listingq->state.", ".$listingq->city.", ".$listingq->address}}@endif</p>
+                                        <p><i class="fas fa-map-marker-alt text-danger"></i> @if($listingq->address != null && str_contains($listingq->address, ",")){{$listingq->address}} @else {{$listingq->state.", ".$listingq->city.", ".$listingq->address}}@endif</p>
                                         <p class="font-weight-normal">{{$listingq->listing_title}}</p>
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                                     <div class="my-2 mx-2">
                                         <p><i class="fas fa-tag"></i> {{strtoupper($listingg->listingtypestatus)}}</p>
                                         <p class="float-right font-weight-normal text-light rounded px-1" style="background-color: #FEBB19; font-size: 13px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">COD: {{$listingg->product_code}}</p>
-                                        <p><i class="fas fa-map-marker-alt text-danger"></i> @if(str_contains($listingg->address, ",")){{$listingq->address}} @else {{$listingg->state.", ".$listingg->city.", ".$listingg->address}}@endif</p>
+                                        <p><i class="fas fa-map-marker-alt text-danger"></i> @if($listingg->address != null && str_contains($listingg->address, ",")){{$listingq->address}} @else {{$listingg->state.", ".$listingg->city.", ".$listingg->address}}@endif</p>
                                         <p class="font-weight-normal">{{$listingg->listing_title}}</p>
                                     </div>
                                 </div>
