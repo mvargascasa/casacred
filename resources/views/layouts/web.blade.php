@@ -441,7 +441,7 @@ if(strpos($actual_link, 'localhost') === false){
                         
                         {{-- <p class="text-dark-50 mt-2"><i class="fas fa-map-marker-alt text-white"></i><a href="https://g.page/r/CRcVix2z3D8lEAE" style="color: #ffffff" target="_blank"> Av. Fray Vicente Solano 3-54 y Remigio Tamariz Crespo</a></p> --}}
                         
-                        <p class="text-dark-50"><i class="fas fa-map-marker-alt"></i><a target="_blank" style="color: #ffffff" href="https://g.page/r/CV7pH0E3AVo_EBA"> Av. Juan Iñiguez 3-87 y D. Gonzalo Cordero - Edificio Santa Lucia</a></p>                        
+                        <p class="text-dark-50"><i class="fas fa-map-marker-alt"></i><a target="_blank" style="color: #ffffff" href="https://maps.app.goo.gl/dvP54hXNxpVC1Hbz9"> Remigio Tamariz Crespo y Av. Fray Vicente Solano</a></p>                        
                         
                         <p><a href="tel:+593983849073" class="asindeco" style="color: #ffffff !important"><i class="fas fa-phone"></i> 098-384-9073</a>
                         </p>
