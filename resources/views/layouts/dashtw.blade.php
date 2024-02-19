@@ -6,9 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="{{asset('favicon-admin.png')}}" type="image/x-icon" />
     <link rel="stylesheet" href="{{asset('css/app.css?'.uniqid())}}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @yield('firstscript')
 </head>
 <body>
+
+@php
+    $propertiesAt30Days = App\Models\Listing::select('id', 'listing_title', 'product_code', 'images')->whereDate('created_at', '=', Illuminate\Support\Carbon::now()->subDay(30))->get();        
+@endphp
 
 
 <!-- component -->
@@ -201,7 +207,32 @@
                         </div>
                     </div>
     
-                    <div x-data="{ dropdownOpen: false }" class="relative">
+                    <div x-data="{ dropdownOpen: false }" class="relative flex">
+
+                        <div class="flex items-center px-2 cursor-pointer" onclick="openOrCloseNotifications()">
+                            <i class="fa-solid fa-bell  @if(count($propertiesAt30Days)>0) text-red-600 @endif"></i>
+                            <span class="bg-white absolute rounded-full text-xs px-1 top-0 ml-1">1</span>
+                        </div>
+
+                        <div id="notifications" class="absolute mt-8 bg-white w-80 h-64 px-3 rounded py-3 z-10 overflow-y-auto hidden" style="margin-left: -290px !important">
+                            <p class="text-sm font-semibold">Propiedades creadas hace 30 días</p>
+                            <hr class="mt-1">
+                            @foreach ($propertiesAt30Days as $propertie)
+                                <a target="_blank" href="{{ route('admin.show.listing', $propertie->id) }}">
+                                    <div class="flex gap-6 border my-2 p-3">
+                                        <div>
+                                            <span class="text-xs">{{ $propertie->product_code }}</span>
+                                            <p class="text-xs">{{ $propertie->listing_title }}</p>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <img style="" src="{{ asset('uploads/listing/300/'. explode('|', $propertie->images)[0]) }}" alt="">
+                                        </div>
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
+
+
                         <button @click="dropdownOpen = ! dropdownOpen"
                             class="relative block h-8 overflow-hidden focus:outline-none @if(str_contains(Auth::user()->email, "housingrentgroup")) text-white @endif">
                            {{Auth::user()->name}}
@@ -236,6 +267,7 @@
 @yield('endscript')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>
+<script src="{{ asset('js/openNotifications.js') }}" defer></script>
 <script>
     window.addEventListener('load', function(){
         myFunction();
