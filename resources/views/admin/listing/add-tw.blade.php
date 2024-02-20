@@ -236,7 +236,7 @@
                     <div>          
                         {!! Form::label('product_code', 'Codigo',['class' => 'font-semibold']) !!}
                         {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user") --}}
-                        {!! Form::text('product_code', $newcode, ['class' => $inputs.' font-bold', 'disabled']) !!}
+                        {!! Form::text('product_code', $newcode, ['class' => $inputs.' font-bold', 'readonly']) !!}
                         {{-- @else
                         {!! Form::text('product_code', null, ['class' => $inputs.' font-bold']) !!}
                         @endif --}}
