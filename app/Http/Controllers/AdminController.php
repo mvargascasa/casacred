@@ -67,7 +67,7 @@ class AdminController extends Controller
 
         $properties_at_week = Listing::where('user_id', Auth::user()->id)->whereBetween('created_at', [$now->startOfWeek()->format('Y-m-d'), $now->endOfWeek()->format('Y-m-d')])->get();
 
-        $updated_listing = DB::table('updated_listing')->where("created_at", "LIKE", "%".substr(date(now()), 0, 10)."%")->where('available', 1)->where('user_id', Auth::user()->id)->get();
+        $updated_listing = DB::table('updated_listing')->where("created_at", "LIKE", "%".substr(date(now()), 0, 10)."%")->where('user_id', Auth::user()->id)->get();
 
         return view('admin.index', compact('totalproperties', 'totalactivatedproperties', 'totalavailableproperties', 'properties_aux', 'totalcasas', 'totaldepartamentos', 'totalcasascomer', 'totalterrenos', 'totalquintas', 'totalhaciendas', 'totallocalcomer', 'totaloficinas', 'totalsuites', 'properties_at_week', 'properties_today', 'properties_dropped', 'updated_listing', 'now'));
     }     
