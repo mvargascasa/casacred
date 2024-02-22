@@ -11,8 +11,12 @@
                 $createdDay = Illuminate\Support\Carbon::parse($propertie->created_at)->addDays(30);
                 $now = Illuminate\Support\Carbon::now();
 
+                if($now > $createdDay){
+                    $callAt = 0;
+                } else {
+                    $callAt = $createdDay->diffInDays($now);
+                }
                 
-                $callAt = $createdDay->diffInDays($now);
             @endphp
             <div class="rounded overflow-hidden shadow-lg w-full relative mt-4 mb-2 hover-trigger relative pb-2">
                 {{-- web.detail  --}}
@@ -38,7 +42,11 @@
                     @endif
                     @if(Auth::user()->email == "developer2@casacredito.com")
                         <div class="absolute bottom-0 right-0">
-                            <p class="bg-red-500 text-white">Contactar en {{ $callAt }} dias</p>
+                            @if($callAt == 0)
+                                <p class="bg-red-500 text-white px-2"><i class="fa-solid fa-circle-exclamation"></i> Contactar ahora</p>
+                            @else
+                                <p class="bg-yellow-500 text-white px-2">Contactar en {{ $callAt }} dias</p>
+                            @endif
                         </div>
                     @endif
                 </div>
