@@ -40,7 +40,7 @@
                         </div> --}}
                     
                     @endif
-                    @if(Auth::user()->email == "developer2@casacredito.com")
+                    @if(Auth::user()->role == "administrator")
                         <div class="absolute bottom-0 right-0">
                             @if($callAt == 0)
                                 <p class="bg-red-500 text-white px-2"><i class="fa-solid fa-circle-exclamation"></i> Contactar ahora</p>
