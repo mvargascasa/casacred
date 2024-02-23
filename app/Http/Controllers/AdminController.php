@@ -110,6 +110,26 @@ class AdminController extends Controller
         return redirect()->route('home.tw.edit', $listing);
     }
 
+    public function setContactDate(Request $request){
+
+        $now = Carbon::now();
+        
+        $listing = Listing::where('id', $request->product_id)->first();
+        $listing->contact_at = $now;
+        $listing->save();
+
+        Comment::create([
+            'listing_id' => $listing->id,
+            'user_id' => Auth::user()->id,
+            'property_code' => $listing->property_code,
+            'type' => 'Contact',
+            'comment' => $request->comment
+        ]);
+
+
+        return redirect()->route('admin.properties');
+    }
+
     // public function getzones($zona){
     //     $zonas = Sector::where('name', 'LIKE', '%'.$zona.'%')->get();
 

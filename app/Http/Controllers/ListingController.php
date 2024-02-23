@@ -25,8 +25,8 @@ class ListingController extends Controller
 
         $currentRouteName = Route::currentRouteName();
         
-        // $lastcode = Listing::where('product_code','!=','')->orderBy('product_code','desc')->first();
-        $lastcode = Listing::latest()->first();
+        $lastcode = Listing::where('product_code','!=','')->orderBy('product_code','desc')->first();
+        //$lastcode = Listing::latest()->first();
 
         strlen($lastcode->product_code) > 4 ? $lastcode->product_code = substr($lastcode->product_code, 2) : null;
 
@@ -277,6 +277,8 @@ class ListingController extends Controller
             if($request->currentUrl == "admin.housing.property.create") $listing->property_by = 'Housing';
             if($request->currentUrl == "admin.promotora.property.create") $listing->property_by = 'Promotora';
             else $listing->property_by = 'Casa Credito';
+
+            $listing->contact_at = $listing->created_at;
 
             $listing->save();
         }

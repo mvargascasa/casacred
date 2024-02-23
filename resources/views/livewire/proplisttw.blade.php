@@ -8,7 +8,7 @@
                 $dirImg = $firstImg[0]??'';
 
                 //call to customers in X days
-                $createdDay = Illuminate\Support\Carbon::parse($propertie->created_at)->addDays(31);
+                $createdDay = Illuminate\Support\Carbon::parse($propertie->contact_at)->addDays(31);
                 $now = Illuminate\Support\Carbon::now();
 
                 if($now > $createdDay){
@@ -43,12 +43,16 @@
                     @if(Auth::user()->role == "administrator")
                         <div class="absolute bottom-0 right-0">
                             @if($callAt == 0)
-                                <p class="bg-red-500 text-white px-2 pt-1 pb-2" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" onclick="setIdModalContactar('{{$propertie}}')"></i> Contactar ahora</p>
+                                <p class="bg-red-500 text-white px-2 pt-1 pb-2 cursor-pointer" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" onclick="setIdModalContactar('{{$propertie->id}}', '{{ $propertie->owner_name}}', '{{ $propertie->phone_number}}', '{{ $propertie->listing_title}}')"></i> Contactar ahora</p>
                             @else
                                 <p class="bg-yellow-500 text-white px-2 pt-1 pb-2">Contactar en {{ $callAt }} dias</p>
                             @endif
                         </div>
                     @endif
+
+                    {{-- <div>
+                        <p>{{ $propertie->contact_at }}</p>
+                    </div> --}}
                 </div>
 
                 {{-- <div class="absolute left-0" style="top: 30px">
@@ -492,13 +496,27 @@
                 </div>
                 <!-- Modal body -->
                 <div class="p-4 md:p-5">
-                    <form class="space-y-4" action="#">
+                    <form class="space-y-4" action="{{ route('admin.set.contact.date') }}" method="POST">
+                        @csrf
                         <div>
                             <p><span class="font-semibold">Propiedad:</span> <span id="span-id-modal-property"></span></p>
+                            <p><span class="font-semibold">Cliente:</span> <span id="span-name-modal-property"></span></p>
+                            <p><span class="font-semibold">Número de teléfono:</span> <span id="span-phone-modal-property"></span></p>
+                            <p><span class="font-semibold">Titulo:</span> <span id="span-title-modal-property"></span></p>
                         </div>
                         <div>
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
+                            <div>
+                                <input type="hidden" name="product_id" id="product_code_modal_contact">
+                                <label for="comment">Comentario</label> <br>
+                                <input type="text" name="comment" class="bg-gray-200 px-2 py-2 w-full border-none mt-2 mb-2" required>
+                            </div>
+                            <div>
+                                <label for="date">Fecha de contacto</label>
+                                <input type="date" name="date" class="bg-gray-200 px-2 py-2 w-full border-none mt-2" required>
+                            </div>
+                            <div class="mt-5 text-center">
+                                <button class="bg-green-500 text-white px-5 py-2 rounded">GUARDAR</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -524,9 +542,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-const setIdModalContactar = (propertie) => {
-    //let propertie_json = (propertie);
-    console.log(propertie_json);
+const setIdModalContactar = (propertie_id, owner_name, owner_phone, listing_title) => {
+    //let propertie_json = JSON.parse(propertie);
+
+    let span_id_modal_property = document.getElementById('span-id-modal-property');
+    let span_name_modal_property = document.getElementById('span-name-modal-property');
+    let span_phone_modal_property = document.getElementById('span-phone-modal-property');
+    let span_title_modal_property = document.getElementById('span-title-modal-property');
+
+    span_id_modal_property.textContent = propertie_id;
+    span_name_modal_property.textContent = owner_name;
+    span_phone_modal_property.textContent = owner_phone;
+    span_title_modal_property.textContent = listing_title;
+
+    let product_code_modal_contact = document.getElementById('product_code_modal_contact');
+    product_code_modal_contact.value = propertie_id;
     // let spanModalIdPropertie = document.getElementById('span-id-modal-property');
     // spanModalIdPropertie.textContent = propertie_id;
 }
