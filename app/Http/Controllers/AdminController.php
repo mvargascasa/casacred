@@ -114,7 +114,7 @@ class AdminController extends Controller
 
         $now = Carbon::now();
         
-        $listing = Listing::where('id', $request->product_id)->first();
+        $listing = Listing::where('product_code', $request->product_id)->first();
         $listing->contact_at = $now;
         $listing->save();
 

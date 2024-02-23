@@ -43,7 +43,7 @@
                     @if(Auth::user()->role == "administrator")
                         <div class="absolute bottom-0 right-0">
                             @if($callAt == 0)
-                                <p class="bg-red-500 text-white px-2 pt-1 pb-2 cursor-pointer" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" onclick="setIdModalContactar('{{$propertie->id}}', '{{ $propertie->owner_name}}', '{{ $propertie->phone_number}}', '{{ $propertie->listing_title}}')"></i> Contactar ahora</p>
+                                <p class="bg-red-500 text-white px-2 pt-1 pb-2 cursor-pointer" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" onclick="setIdModalContactar('{{$propertie->product_code}}', '{{ $propertie->owner_name}}', '{{ $propertie->phone_number}}', '{{ $propertie->listing_title}}')"></i> Contactar ahora</p>
                             @else
                                 <p class="bg-yellow-500 text-white px-2 pt-1 pb-2">Contactar en {{ $callAt }} dias</p>
                             @endif
@@ -542,7 +542,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-const setIdModalContactar = (propertie_id, owner_name, owner_phone, listing_title) => {
+const setIdModalContactar = (propertie_code, owner_name, owner_phone, listing_title) => {
     //let propertie_json = JSON.parse(propertie);
 
     let span_id_modal_property = document.getElementById('span-id-modal-property');
@@ -550,13 +550,13 @@ const setIdModalContactar = (propertie_id, owner_name, owner_phone, listing_titl
     let span_phone_modal_property = document.getElementById('span-phone-modal-property');
     let span_title_modal_property = document.getElementById('span-title-modal-property');
 
-    span_id_modal_property.textContent = propertie_id;
+    span_id_modal_property.textContent = propertie_code;
     span_name_modal_property.textContent = owner_name;
     span_phone_modal_property.textContent = owner_phone;
     span_title_modal_property.textContent = listing_title;
 
     let product_code_modal_contact = document.getElementById('product_code_modal_contact');
-    product_code_modal_contact.value = propertie_id;
+    product_code_modal_contact.value = propertie_code;
     // let spanModalIdPropertie = document.getElementById('span-id-modal-property');
     // spanModalIdPropertie.textContent = propertie_id;
 }
