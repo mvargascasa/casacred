@@ -8,7 +8,7 @@
                 $dirImg = $firstImg[0]??'';
 
                 //call to customers in X days
-                $createdDay = Illuminate\Support\Carbon::parse($propertie->created_at)->addDays(31);
+                $createdDay = Illuminate\Support\Carbon::parse($propertie->contact_at)->addDays(31);
                 $now = Illuminate\Support\Carbon::now();
 
                 if($now > $createdDay){
