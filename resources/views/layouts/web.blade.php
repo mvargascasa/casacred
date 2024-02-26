@@ -446,7 +446,7 @@ if(strpos($actual_link, 'localhost') === false){
                         <p><a href="tel:+593983849073" class="asindeco" style="color: #ffffff !important"><i class="fas fa-phone"></i> 098-384-9073</a>
                         </p>
                         
-                        <p><a href="mailto:info@casacredito.com" class="asindeco" style="color: #ffffff !important; text-decoration: none"><i class="fas fa-envelope"></i> info@casacredito.com</a></p>
+                        <p><a href="mailto:info@grupohousing.com" class="asindeco" style="color: #ffffff !important; text-decoration: none"><i class="fas fa-envelope"></i> info@grupohousing.com</a></p>
             </div>
             <div class="col-12 col-md-4 p-4">
                     <p style="font-size: 20px; font-weight: 500">New York | EE.UU.</p>
