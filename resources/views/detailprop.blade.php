@@ -655,18 +655,20 @@
                       <span class="font-weight-bold">{{$dets[0]}}</span><br>
                       @endisset
                       <div class="row" style="padding-left: 7px">
-                        <?php unset($dets[0]); $printControl=0; ?>        
-                        @foreach($dets as $det)
+                        <?php unset($dets[0]); $printControl=0; ?>   
+                        {{-- @php dd($dets); @endphp      --}}
+                        {{-- @foreach($dets as $det) --}}
+                        @for ($i = 1; $i < count($dets); $i++)
                           @if($printControl==0)
-                            <?php $printControl=1; ?>                          
+                            <?php $printControl=1; ?>
                             <div class="col-lg-3 col-md-4 col-6 p-1">
-                              {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
-                              <span class="text-muted small">@foreach ($details as $detail) @if($detail->id==$det) {{$detail->charac_titile}} @endif  @endforeach</span>
+                              <span class="text-muted small">@foreach ($details as $detail) @if($detail->id==$dets[$i]) {{$detail->charac_titile}} <span class="bg-danger text-white px-2"> {{ $dets[$i+1]}}</span> @endif  @endforeach</span>
                             </div>
                           @else                
-                            <?php $printControl=0; ?>      
+                            <?php $printControl=0; ?>
                           @endif
-                        @endforeach    
+                        @endfor
+                        {{-- @endforeach     --}}
                       </div> 
                     @endforeach  
                   </div>
