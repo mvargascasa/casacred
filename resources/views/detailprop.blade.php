@@ -662,7 +662,7 @@
                           @if($printControl==0)
                             <?php $printControl=1; ?>
                             <div class="col-lg-3 col-md-4 col-6 p-1">
-                              <span class="text-muted small">@foreach ($details as $detail) @if($detail->id==$dets[$i]) {{$detail->charac_titile}} <span class="bg-danger text-white px-2"> {{ $dets[$i+1]}}</span> @endif  @endforeach</span>
+                              <span class="text-muted small">@foreach ($details as $detail) @if($detail->id==$dets[$i]) {{$detail->charac_titile}}  @if($detail->id==$dets[$i] && $detail->id == 86) <span class="bg-danger text-white px-2"> {{ $dets[$i+1]}}</span> @endif @endif  @endforeach</span>
                             </div>
                           @else                
                             <?php $printControl=0; ?>
