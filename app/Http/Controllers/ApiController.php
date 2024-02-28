@@ -248,4 +248,18 @@ class ApiController extends Controller
             ]);
         }
     }
+
+    public function propertyByCode($code){
+
+        $listing = Listing::where('product_code', 'LIKE', '%' . $code . '%')->first();
+
+        if($listing){
+            return response()->json($listing);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Property ' . $code . ' not found'
+            ]);
+        }
+    }
 }
