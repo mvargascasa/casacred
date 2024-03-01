@@ -34,7 +34,7 @@ class Proplisttw extends Component
     //variables para guardar el dia que se contactan
     public $idContactDay, $commentContactDay, $dateContactDay;
 
-    public bool $show;
+    public $show;
 
     public function storeContactDay(){
 
