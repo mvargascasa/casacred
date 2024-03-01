@@ -2,7 +2,7 @@
 
 @section('firstscript')
 <title>Propiedades</title>
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet"> 
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
 <style>
     .hover-trigger .hover-target {display: none;} 
     .hover-trigger:hover .hover-target {display: block;border-radius: 5px;margin-top: 1px;margin-right: 1px;}
@@ -12,6 +12,16 @@
     #lbl_ftop_category_0, #lbl_ftop_category_1, #lbl_ftop_category_2, #lbl_ftop_category_3{cursor: pointer !important;} 
     .modal {transition: opacity 0.25s ease;}
     body.modal-active {overflow-x: hidden;overflow-y: visible !important;}
+    .popup{
+        position: fixed;
+        width: 500px;
+        height: 300px;
+        padding: 10px;
+        top: 40%;
+        left: 50%;
+        margin-top: -100px;  /* Negative half of height. */
+        margin-left: -250px;  /* Negative half of width. */
+    }
 </style>
 @livewireStyles
 @endsection
@@ -47,14 +57,14 @@
                                         
                                         {{-- <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_1" autocomplete="off" value="alquilar" @if($category === "alquilar") checked @endif onclick="btnradio_search(this);setCategoryOnLoadIfRequestQueryHas(this.value)"> --}}
                                         <input type="radio" style="display: none" name="ftop_category[]" id="b_tipo" autocomplete="off" value="en-venta">
-                                        <label class="bg-gray-100 hover:bg-red-600 text-black hover:text-white pb-1 pt-4 px-5 font-semibold" id="lbl_ftop_category_1" for="ftop_category_1" style="width:auto;font-size: 18px" onclick="changeClassBtnRadio(this)">CASA CREDITO</label>
+                                        <label class="bg-gray-100 hover:bg-red-600 text-black hover:text-white pb-1 pt-4 px-5 font-semibold" id="lbl_ftop_category_1" for="ftop_category_1" style="width:auto;font-size: 18px" onclick="changeClassBtnRadio(this)">GRUPO HOUSING</label>
                                         
                                         {{-- <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_2" autocomplete="off" value="proyectos" @if($category === "proyectos") checked @endif onclick="btnradio_search(this);setCategoryOnLoadIfRequestQueryHas(this.value)"> --}}
                                         <input type="radio" style="display:none" name="ftop_category[]" id="b_tipo" autocomplete="off" value="alquilar">
                                         <label class="bg-gray-100 hover:bg-red-800 text-black hover:text-white pb-1 pt-4 px-5 font-semibold" id="lbl_ftop_category_2" for="ftop_category_2" style="width:auto;font-size: 18px" onclick="changeClassBtnRadio(this)">PROMOTORA</label>
 
                                         <input type="radio" style="display:none" name="ftop_category[]" id="b_tipo" autocomplete="off" value="">
-                                        <label class="bg-gray-100 hover:bg-blue-900 text-black hover:text-white pb-1 pt-4 px-5 font-semibold" id="lbl_ftop_category_3" for="ftop_category_3" style="width:auto;font-size: 18px" onclick="changeClassBtnRadio(this)">HOUSING</label>
+                                        <label class="bg-gray-100 hover:bg-blue-900 text-black hover:text-white pb-1 pt-4 px-5 font-semibold" id="lbl_ftop_category_3" for="ftop_category_3" style="width:auto;font-size: 18px" onclick="changeClassBtnRadio(this)">HOUSING RENT</label>
                                     </div>
                                 </div> 
                                 <div class="flex flex-wrap justify-center">
@@ -123,6 +133,13 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                {{-- <div class="w-auto bg-gray-100 pt-4 pb-8 pl-1 pr-1 text-justify">
+                                    <label class="text-xs text-gray-400">Sector</label>
+                                    <input type="text" class="block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_zona" name="b_zona" placeholder="Ej: Misicata" onkeyup="searchZones()">
+                                    <div id="divaddzones" class="bg-white mt-1 rounded px-2 w-56 absolute z-10 h-56 hidden overflow-y-auto min-h-min">
+                                        
+                                    </div>
+                                </div> --}}
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 pr-1 pl-1 text-justify">
                                     <label class="text-xs text-gray-400">Código</label>
                                     <input class="block w-20 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_code" name="b_code" type="text" placeholder="Ej: 1733">
@@ -847,6 +864,8 @@
             let id = selCity.options[selCity.selectedIndex].dataset.id;
             const response = await fetch("{{url('getsector')}}/"+id);
             const sectores = await response.json();
+
+            console.log(sectores);
             
             let opt = document.createElement('option');
             opt.appendChild( document.createTextNode('Todas') );
@@ -861,11 +880,71 @@
         });
     }
 
+    const searchZones = async () => {
+
+        let inputZonas = document.getElementById('b_zona');
+        let zonas = [];
+
+        if(inputZonas.value.length == 0) {
+            zonas = [];
+        } else {
+            const response = await fetch("{{url('admin/getzones')}}/"+inputZonas.value);
+            zonas = await response.json();
+        }
+
+        let divaddzones = document.getElementById('divaddzones');
+
+        if(zonas.length <= 10){
+            divaddzones.classList.remove('h-56');
+            divaddzones.classList.add('h-auto');
+        } else {
+            divaddzones.classList.remove('h-auto');
+            divaddzones.classList.add('h-56');
+        }
+
+        if(inputZonas.value.length > 0){
+            divaddzones.classList.remove('hidden')
+            divaddzones.innerHTML = '';
+            zonas.forEach(zona => {
+                let text = document.createElement('p');
+                text.textContent = zona.name;
+                text.classList.add("textZonas", "cursor-pointer");
+                text.setAttribute("onclick", `addToInputZona('${zona.name}')`);
+    
+                divaddzones.appendChild(text);
+            });
+        } else {
+            divaddzones.innerHTML = '';
+            divaddzones.classList.add('hidden');
+        }
+
+        // if(inputZonas.value.length > 0){
+        //     let textZonas = document.querySelectorAll('.textZonas');
+        //     textZonas.forEach(element => {
+        //         element.addEventListener('click', testFunction());
+        //     });
+        // }
+
+    }
+
+    const addToInputZona = (zona) => {
+
+        let inputZonas = document.getElementById('b_zona');
+        inputZonas.value = zona;
+
+        let divaddzones = document.getElementById('divaddzones');
+        divaddzones.classList.add('hidden');
+    }
+
+    const showText = () => {
+        console.log('click en el p');
+    }
+
   let openmodal = document.querySelectorAll('.modal-open')
     for (let i = 0; i < openmodal.length; i++) {
       openmodal[i].addEventListener('click', function(event){
     	event.preventDefault()
-    	toggleModal()
+    	toggleModal(openmodal[i].id)
       })
     }
     

@@ -47,7 +47,7 @@
                             @else
                                 <p class="bg-yellow-500 text-white px-2 pt-1 pb-2">Contactar en {{ $callAt }} dias</p>
                             @endif
-                            <div id="popup{{$propertie->id}}" class="absolute top-10 right-0 bg-gray-100 w-80 border hidden" style="z-index: 100 !important">
+                            <div id="popup{{$propertie->id}}" class="bg-gray-100 w-auto lg:w-80 border hidden popup" style="z-index: 100 !important">
                                 <div>
                                     <div class="p-4 md:p-5">
                                         {{-- <form class="space-y-4" action="{{ route('admin.set.contact.date') }}" method="POST"> --}}
