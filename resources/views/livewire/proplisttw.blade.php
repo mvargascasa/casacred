@@ -43,10 +43,39 @@
                     @if(Auth::user()->role == "administrator")
                         <div class="absolute bottom-0 right-0">
                             @if($callAt == 0)
-                                <p class="bg-red-500 text-white px-2 pt-1 pb-2 cursor-pointer" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" onclick="setIdModalContactar('{{$propertie->product_code}}', '{{ $propertie->owner_name}}', '{{ $propertie->phone_number}}', '{{ $propertie->listing_title}}')"></i> Contactar ahora</p>
+                                <p class="bg-red-500 text-white px-2 pt-1 pb-2 cursor-pointer" onclick="setIdModalContactar('{{ $propertie->id }}', '{{$propertie->product_code}}', '{{ $propertie->owner_name}}', '{{ $propertie->phone_number}}', '{{ $propertie->listing_title}}')"></i> Contactar ahora</p>
                             @else
                                 <p class="bg-yellow-500 text-white px-2 pt-1 pb-2">Contactar en {{ $callAt }} dias</p>
                             @endif
+                            <div id="popup{{$propertie->id}}" class="absolute top-10 right-0 bg-gray-100 w-80 border hidden" style="z-index: 100 !important">
+                                <div>
+                                    <div class="p-4 md:p-5">
+                                        {{-- <form class="space-y-4" action="{{ route('admin.set.contact.date') }}" method="POST"> --}}
+                                            {{-- @csrf --}}
+                                            {{-- <div>
+                                                <p><span class="font-semibold">Propiedad:</span> <span id="span-id-modal-property"></span></p>
+                                                <p><span class="font-semibold">Cliente:</span> <span id="span-name-modal-property"></span></p>
+                                                <p><span class="font-semibold">Número de teléfono:</span> <span id="span-phone-modal-property"></span></p>
+                                                <p><span class="font-semibold">Titulo:</span> <span id="span-title-modal-property"></span></p>
+                                            </div> --}}
+                                            <div>
+                                                <div>
+                                                    <input type="hidden" name="product_id" id="product_code_modal_contact">
+                                                    <label for="comment">Comentario</label> <br>
+                                                    <input type="text" name="comment" id="commentContactDay{{$propertie->id}}" class="bg-gray-200 px-2 py-2 w-full border-none mt-2 mb-2">
+                                                </div>
+                                                <div>
+                                                    <label for="date">Fecha de contacto</label>
+                                                    <input type="date" name="date" id="dateContactDay{{$propertie->id}}" class="bg-gray-200 px-2 py-2 w-full border-none mt-2">
+                                                </div>
+                                                <div class="mt-5 text-center">
+                                                    <button class="bg-green-500 text-white px-5 py-2 rounded" onclick="saveContactDay('{{$propertie->id}}')">GUARDAR</button>
+                                                </div>
+                                            </div>
+                                        {{-- </form> --}}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     @endif
 
@@ -474,11 +503,7 @@
         </p>
     </div>
     @endif
-</div>
-
-    <!-- Modal para actualizar la fecha en la que se contacta -->
-    <!--Modal-->
-    <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    {{-- <div id="default" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-md max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -522,7 +547,8 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>  --}}
+</div>
 
 
     
@@ -542,18 +568,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-const setIdModalContactar = (propertie_code, owner_name, owner_phone, listing_title) => {
+const saveContactDay = (id) => {
+
+    let idContactDay = document.getElementById('product_code_modal_contact');
+    let commentContactDay = document.getElementById('commentContactDay'+id);
+    let dateContactDay = document.getElementById('dateContactDay'+id);
+
+    @this.set('idContactDay', idContactDay.value);
+    @this.set('commentContactDay', commentContactDay.value);
+    @this.set('dateContactDay', dateContactDay.value);
+}
+
+const setIdModalContactar = (id, propertie_code, owner_name, owner_phone, listing_title) => {
     //let propertie_json = JSON.parse(propertie);
+    let popup = document.getElementById("popup"+id);
 
-    let span_id_modal_property = document.getElementById('span-id-modal-property');
-    let span_name_modal_property = document.getElementById('span-name-modal-property');
-    let span_phone_modal_property = document.getElementById('span-phone-modal-property');
-    let span_title_modal_property = document.getElementById('span-title-modal-property');
+    popup.classList.contains('hidden') ? popup.classList.remove('hidden') : popup.classList.add('hidden');
 
-    span_id_modal_property.textContent = propertie_code;
-    span_name_modal_property.textContent = owner_name;
-    span_phone_modal_property.textContent = owner_phone;
-    span_title_modal_property.textContent = listing_title;
+    // let span_id_modal_property = document.getElementById('span-id-modal-property');
+    // let span_name_modal_property = document.getElementById('span-name-modal-property');
+    // let span_phone_modal_property = document.getElementById('span-phone-modal-property');
+    // let span_title_modal_property = document.getElementById('span-title-modal-property');
+
+    // span_id_modal_property.textContent = propertie_code;
+    // span_name_modal_property.textContent = owner_name;
+    // span_phone_modal_property.textContent = owner_phone;
+    // span_title_modal_property.textContent = listing_title;
 
     let product_code_modal_contact = document.getElementById('product_code_modal_contact');
     product_code_modal_contact.value = propertie_code;

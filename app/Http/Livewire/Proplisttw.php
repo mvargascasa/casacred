@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Comment;
 use App\Models\Listing;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -29,8 +31,32 @@ class Proplisttw extends Component
     $plusvalia,
     $transaccion;
 
+    //variables para guardar el dia que se contactan
+    public $idContactDay, $commentContactDay, $dateContactDay;
+
+    public bool $show = false;
+
+    public function storeContactDay(){
+
+        $now = Carbon::now();
+        $listing = Listing::where('product_code', 'LIKE',  '%'.$this->idContactDay.'%')->first();
+        $listing->contact_at = $now;
+        $listing->save();
+
+        Comment::create([
+            'listing_id' => $listing->id,
+            'user_id' => Auth::user()->id,
+            'property_code' => $listing->property_code,
+            'type' => 'Contact',
+            'comment' => $this->commentContactDay
+        ]);
+    }
+
     public function render()
     {
+
+        if($this->idContactDay && $this->commentContactDay && $this->dateContactDay) $this->storeContactDay();
+
         if ($this->view=='grid') {
             $viewaux = $this->view;
         } elseif($this->view=='list'){
