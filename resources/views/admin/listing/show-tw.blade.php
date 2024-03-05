@@ -204,7 +204,14 @@
           </section>
           
           @php
-            $propertie->images != null ? $imageVerification = asset('uploads/listing/thumb/600/'.explode('|', $propertie->images)[0]) : $imageVerification = null;    
+            //$propertie->images != null ? $imageVerification = file_exists(asset('uploads/listing/thumb/600/'.explode('|', $propertie->images)[0])) : $imageVerification = null;
+            if($propertie->images != null){
+              if(file_exists(asset('uploads/listing/thumb/600/'.explode('|', $propertie->images)[0]))){
+                $imageVerification = true;
+              } else {
+                $imageVerification = null;
+              }
+            }   
           @endphp
           
           @if ($propertie->images != null)
