@@ -231,6 +231,10 @@
               <p class="text-red-600 text-lg font-semibold">No hemos encontrado imágenes para esta propiedad</p>
             </div>
           @endif
+
+          <div>
+            {{ $imageVerification }}
+          </div>
           
           @php
             $arrayImages = [];
