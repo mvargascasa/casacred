@@ -213,7 +213,7 @@
                 @php $iiListing=0 @endphp
                   @foreach (array_filter(explode("|", $propertie->images)) as $img)
                     <div class="carousel-item @if($iiListing==0) active @endif" data-slide-number="{{ $iiListing }}">
-                      <img style="width: 100%; height: 100%" data-src="@if($imageVerification && !Auth::user()->watermark){{asset('uploads/listing/thumb/'.$img)}} @else {{asset('uploads/listing/'.$img)}} @endif" class="d-block w-100 ccimgpro lazy" alt="..." data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$propertie->listing_title}}-{{$iiListing++}}">
+                      <img style="width: 100%; height: 100%" data-src="@if($imageVerification && !Auth::user()->watermark){{asset('uploads/listing/thumb/'.$img)}} @else {{asset('uploads/listing/'.$img)}} @endif" class="d-block w-100 ccimgpro lazy" alt="{{ $imageVerification }}" data-slide-to="{{ $iiListing }}" style="object-fit: contain" alt="{{$propertie->listing_title}}-{{$iiListing++}}">
                     </div>
                   @endforeach
               </div>
@@ -231,10 +231,6 @@
               <p class="text-red-600 text-lg font-semibold">No hemos encontrado imágenes para esta propiedad</p>
             </div>
           @endif
-
-          <div>
-            {{ $imageVerification }}
-          </div>
           
           @php
             $arrayImages = [];
