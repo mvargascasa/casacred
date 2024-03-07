@@ -91,6 +91,19 @@
 
 @endsection
 
+@php
+    if(isset($listing)){
+        $createdDay = Illuminate\Support\Carbon::parse($listing->contact_at)->addDays(31);
+        $now = Illuminate\Support\Carbon::now();
+    
+        if($now > $createdDay){
+            $callAt = 0;
+        } else {
+            $callAt = $createdDay->diffInDays($now);
+        }
+    }
+@endphp
+
 @section('content')
 
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
@@ -100,17 +113,10 @@
         <div class="loader-text"></div>
       </div>
 
-    @if(isset($isvalid) && !$isvalid)
-        <div class="bg-red-100 border border-red-400 absolute text-red-700 px-2 shadow-lg py-3 mb-2 w-48 right-8 top-16 rounded">
-            <p class="font-semibold text-sm"><i class="fa-solid fa-circle-exclamation"></i> LA PROPIEDAD TIENE CAMPOS VACIOS</p>
-            <p>Completar todos los campos para mejorar la cobertura e indexación de las páginas en Google.</p>
-        </div>
-    @endif
-
  <section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md mt-10">
     
     @if(session('message'))
-        <div class="alert-del bg-green-100 border border-green-400 text-green-700 px-4 py-3 mb-2 rounded relative" role="alert">
+        <div class="alert-del bg-green-100 border border-green-400 text-green-700 px-4 py-3 mb-4 rounded relative" role="alert">
             {{session('message')}}
             <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
             <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
@@ -1485,13 +1491,13 @@
             <div class="gap-4 mt-4 sm:gap-6">
                 <label class="font-semibold">Titulo</label>
                 <div class="flex flex-row mt-2">
-                    <input  class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" type="text" name="details${idUniq}[]" required/>
+                    <input id="details" class="w-full h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" type="text" name="details${idUniq}[]" required/>
                     <button class="w-12 h-10 py-2 @if($currentRouteName == 'admin.housing.property.create' || $currentRouteName == 'admin.housing.property.edit') bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowTitle(this)">X</button>
                 </div>
                 <div class="font-semibold ml-4 mt-4">Detalles</div>
                 <div class="flex flex-row mt-2 ml-4">
                     <select class="w-44 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300 rounded-l" name="details${idUniq}[]">${InsertOptions}</select>
-                    <input  class="w-24 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300" type="number"  name="details${idUniq}[]" pattern="[0-9]+" onkeydown="return false" value="1"/>
+                    <input id="subdetails" class="w-24 h-10 px-4 py-2 text-gray-700 bg-white text-sm border border-gray-300" type="number"  name="details${idUniq}[]" pattern="[0-9]+" onkeydown="return false" value="1"/>
                     <button class="w-12 h-10 py-2 @if($currentRouteName == 'admin.housing.property.create' || $currentRouteName == 'admin.housing.property.edit') bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-700 @endif text-white rounded-r text-sm" type="button" onclick="delrowDetail(this)">X</button>
                 </div>
                 <button type="button" class="px-4 py-2 ml-4 mt-4 text-xl leading-5 text-black bg-green-300 rounded" onclick="addRowDetail(this,${idUniq})">Agregar Detalle</button>
