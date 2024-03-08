@@ -87,7 +87,7 @@ class Proplisttw extends Component
         //if($this->pagActual > 0) dd($this->current_url);//$properties_filter->where('available', 2);
 
         // else $properties_filter->where('available', 1);
-        if(Route::current()->getName() == "admin.properties") $properties_filter->where('available', 1);
+        if(Route::current()->getName() == "admin.properties") $properties_filter->where('available', '==', 1);
         if(Str::contains(URL::previous(), 'admin/properties') && $this->pagActual > 0) $properties_filter->where('available', 1);
 
         $url_current = $this->current_url;
@@ -142,6 +142,7 @@ class Proplisttw extends Component
             $uptoprice_ = filter_var ( $this->uptoprice, FILTER_SANITIZE_NUMBER_INT);
             $properties_filter->where('property_price','<',$uptoprice_);
         }
+
 
         $properties = $properties_filter->paginate(50);
         $this->pagActual = $properties->currentPage();
