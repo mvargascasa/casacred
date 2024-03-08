@@ -642,6 +642,7 @@ function filter_properties(){
     let b_state     = document.getElementById('b_state').value;
     let b_city      = document.getElementById('b_city').value;
     let b_sector    = document.getElementById('b_sector').value;
+    let b_zona      = document.getElementById('b_zona').value;
 
     //variables nuevas para buscar por precio y ordenar asc o desc
     let b_maxprice = document.getElementById('maxprice').value;
@@ -718,6 +719,7 @@ function filter_properties(){
     @this.set('state', b_state);
     @this.set('city', b_city);
     @this.set('sector', b_sector);
+    @this.set('zona', b_zona);
 
     @this.set('fromprice', b_minprice);
     @this.set('uptoprice', b_maxprice);

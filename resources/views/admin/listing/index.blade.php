@@ -133,13 +133,13 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                {{-- <div class="w-auto bg-gray-100 pt-4 pb-8 pl-1 pr-1 text-justify">
+                                <div class="w-auto bg-gray-100 pt-4 pb-8 pl-1 pr-1 text-justify">
                                     <label class="text-xs text-gray-400">Sector</label>
-                                    <input type="text" class="block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_zona" name="b_zona" placeholder="Ej: Misicata" onkeyup="searchZones()">
+                                    <input type="text" class="block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_zona" name="b_zona" placeholder="Ej: Misicata">
                                     <div id="divaddzones" class="bg-white mt-1 rounded px-2 w-56 absolute z-10 h-56 hidden overflow-y-auto min-h-min">
                                         
                                     </div>
-                                </div> --}}
+                                </div>
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 pr-1 pl-1 text-justify">
                                     <label class="text-xs text-gray-400">Código</label>
                                     <input class="block w-20 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_code" name="b_code" type="text" placeholder="Ej: 1733">
