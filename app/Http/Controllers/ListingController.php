@@ -358,8 +358,8 @@ class ListingController extends Controller
         if($request->available != $listing->available) $value_change .= "disponibilidad, ";
         if($request->listing_title != $listing->listing_title) $value_change .= "titulo de propiedad, ";
         if($request->meta_description != $listing->meta_description) $value_change .= "metadescripcion, ";
-        if($request->property_price != $listing->property_price) $value_change .= "precio, ";
-        if($request->property_price_min != $listing->property_price_min) $value_change .= "precio minimo, ";
+        if(isset($request->property_price) && $request->property_price != $listing->property_price) $value_change .= "precio, ";
+        if(isset($request->property_price_min) && $request->property_price_min != $listing->property_price_min) $value_change .= "precio minimo, ";
         if($request->construction_area != $listing->construction_area) $value_change .= "area de construccion, ";
         if($request->land_area != $listing->land_area) $value_change .= "area de terreno, ";
         if($request->Front != $listing->Front) $value_change .= "frente, ";
