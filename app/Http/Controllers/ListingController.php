@@ -424,7 +424,7 @@ class ListingController extends Controller
             $request->merge(['heading_details' => '']);
         }
 
-        if($request->property_price != $listing->property_price && $listing->property_price > 0){
+        if(isset($request->property_price) && $request->property_price != $listing->property_price && $listing->property_price > 0){
             $comment = Comment::create([
                 'listing_id' => $listing->id,
                 'user_id' => Auth::user()->id,
