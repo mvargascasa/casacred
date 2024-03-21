@@ -262,7 +262,7 @@ class ApiController extends Controller
 
     public function getavailableproperties(){
 
-        $properties = Listing::where('available', 1)->get();
+        $properties = Listing::select('id','product_code','slug','listing_title','address','listingtypestatus','listingtype','property_price','images','heading_details','construction_area','land_area', 'available', 'status', 'property_by', 'user_id', 'created_at')->where('available', 1)->get();
         return response()->json($properties);
     }
 }
