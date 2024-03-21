@@ -111,9 +111,6 @@ class ApiController extends Controller
 
         }
 
-           
-
-
         return response()->json($sendprops);
     }
 
@@ -261,5 +258,11 @@ class ApiController extends Controller
                 'message' => 'Property ' . $code . ' not found'
             ]);
         }
+    }
+
+    public function getavailableproperties(){
+
+        $properties = Listing::where('available', 1)->get();
+        return response()->json($properties);
     }
 }

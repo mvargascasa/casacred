@@ -23,6 +23,7 @@ Route::post('/sendlead', [ApiController::class, 'sendlead']);
 Route::get('/listingscsv', [ApiController::class, 'listingscsv']);
 Route::group(["middleware" => "apikey.validate"], function(){
     Route::get('/getproperties', [ApiController::class, 'getproperties']);
+    Route::get('/availableprop', [ApiController::class, 'getavailableproperties']);
     Route::get('/notifications', [ApiController::class, 'getnotifications']);
     Route::get('/projects', [ApiController::class, 'getprojectlistings']);
     Route::get('/project/{slug}', [ApiController::class, 'getlistingbyslug']);
