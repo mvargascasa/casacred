@@ -30,7 +30,7 @@ class ApiController extends Controller
     }
     public function getproperties(Request $req) {
         
-        $properties = Listing::select('id','product_code','slug','listing_title','address','listingtypestatus','listingtype','property_price','images','heading_details','construction_area','land_area', 'available', 'status', 'property_by', 'user_id', 'created_at')->with('user')->orderBy('product_code','DESC');
+        $properties = Listing::select('id','product_code','slug','listing_title','address','listingtypestatus','listingtype','property_price','images','heading_details','construction_area','land_area', 'available', 'status', 'property_by', 'user_id', 'created_at', 'contact_at')->with('user')->orderBy('product_code','DESC');
         
         if(strlen($req->txt)>2){
             $txt = filter_var ( $req->txt, FILTER_SANITIZE_NUMBER_INT);
@@ -262,7 +262,7 @@ class ApiController extends Controller
 
     public function getavailableproperties(){
 
-        $properties = Listing::select('id','product_code','slug','listing_title','address','listingtypestatus','listingtype','property_price','images','heading_details','construction_area','land_area', 'available', 'status', 'property_by', 'user_id', 'created_at')->where('available', 1)->get();
+        $properties = Listing::select('id','product_code','slug','listing_title','address','listingtypestatus','listingtype','property_price','images','heading_details','construction_area','land_area', 'available', 'status', 'property_by', 'user_id', 'created_at', 'contact_at')->where('available', 1)->get();
         return response()->json($properties);
     }
 }
