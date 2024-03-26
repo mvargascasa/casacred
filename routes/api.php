@@ -31,6 +31,8 @@ Route::group(["middleware" => "apikey.validate"], function(){
     Route::get('/property/{id}', [ApiController::class, 'propertyById']);
     Route::get('/propertybycode/{code}', [ApiController::class, 'propertyByCode']);
 
+    Route::get('/updated-property/{property_code}', [ApiController::class, 'updatedPropertie']);
+
     //Route::get('/list-properties', [ApiController::class, 'listPropertiesHousing']);
 });
 

@@ -265,4 +265,9 @@ class ApiController extends Controller
         $properties = Listing::select('id','product_code','slug','listing_title','address','listingtypestatus','listingtype','property_price','images','heading_details','construction_area','land_area', 'available', 'status', 'property_by', 'user_id', 'created_at', 'contact_at')->where('available', 1)->get();
         return response()->json($properties);
     }
+
+    public function updatedPropertie($property_code){
+        $updated_properties = DB::table('updated_listing')->where('property_code', $property_code)->get();
+        return response()->json($updated_properties);
+    }
 }
