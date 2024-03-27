@@ -107,7 +107,13 @@ class Proplisttw extends Component
         if($this->status=='A')                                  $properties_filter->where('status',1); //agregarle || $this->variable == null para muestre por defecto las activas y disponibles
         if($this->status=='D')                                  $properties_filter->where('status',0);        
         if($this->categoria)                                    $properties_filter->where('listingtype',$this->categoria);        
-        if($this->tipo)                                         $properties_filter->where('property_by',$this->tipo);            
+        if($this->tipo){
+            if($this->tipo == "Housing"){
+                $properties_filter->where('listingtypestatus', 'alquilar');
+            } else {
+                $properties_filter->where('property_by',$this->tipo);
+            }
+        }                                           
         //if($this->available=='1' || $this->available == null)                               $properties_filter->where('available', 1); //agregarle || $this->variable == null para muestre por defecto las activas y disponibles
         //if($this->available=='2')                               $properties_filter->where('available', 2);
 
