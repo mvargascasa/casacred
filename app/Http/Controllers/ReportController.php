@@ -11,12 +11,12 @@ class ReportController extends Controller
 {
     public function index(){
 
-        $users = User::where('role', 'ASESOR')->orderBy('created_at', 'asc')->get();
+        $users = User::where('role', 'ASESOR')->where('status', 1)->orderBy('created_at', 'asc')->get();
 
         $now = Carbon::now();
 
         foreach ($users as $user) {
-            $properties_count = Listing::where('user_id', $user->id)->where('status', 1)->whereBetween('created_at', [$now, $now])->count();
+            $properties_count = Listing::where('user_id', $user->id)->whereBetween('created_at', [$now, $now])->count();
             $properties[$user->id] = $properties_count;
         }
 
