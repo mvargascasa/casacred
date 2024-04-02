@@ -16,7 +16,7 @@ class ReportController extends Controller
         $now = Carbon::now();
 
         foreach ($users as $user) {
-            $properties_count = Listing::where('user_id', $user->id)->whereBetween('created_at', [$now, $now])->count();
+            $properties_count = Listing::where('user_id', $user->id)->where('status', 1)->whereBetween('created_at', [$now, $now])->count();
             $properties[$user->id] = $properties_count;
         }
 
