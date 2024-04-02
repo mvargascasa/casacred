@@ -16,6 +16,7 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\Housing\PropertyController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ModalController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WebController::class,'home'])->name('web.index');
@@ -148,6 +149,8 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
 
     //Route::get('getzones/{zona}', [AdminController::class, 'getzones'])->name('admin.get.zones');
     Route::post('set-contact-date', [AdminController::class, 'setContactDate'])->name('admin.set.contact.date');
+
+    Route::get('reports', [ReportController::class, 'index'])->name('admin.reports');
 });
 
 //BLOG

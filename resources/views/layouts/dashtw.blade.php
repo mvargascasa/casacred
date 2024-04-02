@@ -100,6 +100,10 @@
                     </span>
                     <div id="divnotification" style="display: none" class="rounded-md bg-red-500 px-1">0</div>
                 </a>
+
+                <a style="text-decoration: none !important" href="{{route('admin.reports')}}" class="flex items-center @if(Request::is('admin/reports*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/reports*') || (Request::is('admin/reports*') && Str::contains(URL::previous(), 'admin/reports'))) border-l-4 border-white bg-gray-900 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                    <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Reportes</span>
+                </a>
         
                 {{-- <a style="text-decoration: none" href="{{route('admin.contacts')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/contacts*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Contactos</span>
