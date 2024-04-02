@@ -371,7 +371,7 @@
                 <div class="gap-4 mt-4 sm:gap-6">
                         {!! Form::label('listing_title', 'Titulo de Propiedad', ['class' => 'font-semibold']) !!}
                         {{-- {!! Form::text('listing_title', null, ['class' => $inputs, 'pattern' => isset($currentRouteName) && ($currentRouteName != "admin.housing.property.create" || $currentRouteName != "admin.housing.property.edit") ? '.{50,60}' : '.{0,150}', 'onkeyup' => 'countCharsTitle(this);', 'placeholder' => 'Ej: Casa en Venta en Cuenca - Sector...']) !!} --}}
-                        {!! Form::text('listing_title', null, ['class' => $inputs, 'onkeyup' => 'countCharsTitle(this);', 'placeholder' => 'Ej: Casa en Venta en Cuenca - Sector...']) !!}
+                        {!! Form::text('listing_title', null, ['class' => $inputs, 'onkeyup' => 'countCharsTitle(this);setPreviewOnGoogle();', 'placeholder' => 'Ej: Casa en Venta en Cuenca - Sector...']) !!}
                     {{-- @if($currentRouteName != "admin.housing.property.create" && $currentRouteName != "admin.housing.property.edit") --}}
                         <div id="div_info_character" style="background-color: @if(isset($listing) &&  Str::length($listing->listing_title) >= 50 && Str::length($listing->listing_title) <=60) #9AE6B4 @else #FEB2B2 @endif" class="flex p-1 mt-2">
                             <label style="font-weight: 400">
@@ -382,6 +382,27 @@
                     @if(isset($listing->id) && Auth::id()==123)
                         <a href="{{route('admin.reslug',$listing->id)}}" target="_blank">{{$listing->slug}}</a>            
                     @endif
+                </div>
+                <div class="gap-4 mt-4 sm:gap-6">
+                    {!! Form::label('meta_description', 'Meta Descripcion en Google', ['class' => 'font-semibold']) !!}
+                    <br>
+                    <p class="bg-gray-200 px-2 py-1 text-sm">Esta descripcion no será visible para el cliente. Solamente se visualizará para Google y su buscador</p>
+                    {!! Form::textarea('meta_description', 
+                    isset($listing->meta_description) && $listing->meta_description!=null ? $listing->meta_description : '',
+                    ['class' => $inputs,'rows' => '3', 'placeholder' => '', 'maxlength' => '150', 'onkeyup' => 'countCharacterMetaDescription();setPreviewOnGoogle()']) !!}
+                    <div id="div_info_character_meta" style="background-color: @if(isset($listing) &&  Str::length($listing->meta_description) >= 150 && Str::length($listing->meta_description) <=120) #9AE6B4 @else #FEB2B2 @endif" class="flex p-1 mt-2">
+                        <label style="font-weight: 400">
+                            Actual <b id="label_count_metadescription"></b> caracteres. (Mínimo 120 - Máximo 150 caracteres)
+                        </label>
+                    </div>
+                </div>
+                <div class="gap-4 mt-4 sm:gap-6">
+                    <span>Previsualización en Google</span>
+                    <div class="bg-gray-100 p-4">
+                        <h2 id="preview_title" class="text-blue-500" style="font-weight: 500">Casa de Venta en Cuenca - Sector Totoracocha</h2>
+                        <p id="preview_link" class="text-xs text-green-600">https://grupohousing.com/propiedad/casa-de-venta-en-cuenca-sector-totoracocha</p>
+                        <p id="preview_meta" class="text-sm text-gray-600">Este es un ejemplo de una meta description para el titulo de casas de venta en cuenca para probar como funciona</p>
+                    </div>
                 </div>
                 <div class="gap-4 mt-4 sm:gap-6">
                     {!! Form::label('listing_description', 'Descripción de la propiedad', ['class' => 'font-semibold']) !!}
@@ -1163,6 +1184,7 @@
 
                 case "second":  
                     let listing_title = document.getElementById('listing_title').value;
+                    let meta_description = document.getElementById('meta_description').value;
                     let listing_description = document.getElementById('listing_description').value;
                     let state = document.getElementById('state').value;
                     let city = document.getElementById('city').value;
@@ -1209,6 +1231,12 @@
                         console.log('obteniendo valor de planing-license');
                         planing_license = document.getElementsByName('planing_license');
                         console.log(planing_license);
+                    }
+
+                    if(meta_description.length < 120 || meta_description.length > 150){
+                        bandera = false;
+                        alert('La Meta Description debe tener entre 120 y 150 caracteres');
+                        return;
                     }
 
                     if(listing_title.length < 50 || listing_title.length > 60){
@@ -1351,6 +1379,11 @@
         }
 
         window.addEventListener('load', (event) => {
+
+            setPreviewOnGoogle();
+
+            countCharacterMetaDescription();
+
             var range =  document.getElementById('listyears').value;
             //rangeSlide(range);
             //document.getElementById('charcount').innerHTML = document.getElementById('metadescription').value.length;
@@ -1837,6 +1870,43 @@
             });
         }
     });
+
+    const countCharacterMetaDescription = () => {
+        let txtMetaDescription = document.getElementById('meta_description');
+        let label_count_metadescription = document.getElementById('label_count_metadescription');
+        label_count_metadescription.innerHTML = txtMetaDescription.value.length;
+
+        let div_info_character_meta = document.getElementById('div_info_character_meta');
+        if(txtMetaDescription.value.length <= 150 && txtMetaDescription.value.length >= 120){
+            div_info_character_meta.style.backgroundColor = "#9AE6B4";
+        } else {
+            div_info_character_meta.style.backgroundColor = "#FEB2B2";
+        }
+    }
+
+    const setPreviewOnGoogle = () => {
+        let preview_title = document.getElementById('preview_title');
+        let preview_link = document.getElementById('preview_link');
+        let preview_meta = document.getElementById('preview_meta');
+
+        let listing_title = document.getElementById('listing_title');
+        let meta_description = document.getElementById('meta_description');
+        const url = "https://grupohousing.com/propiedad/";
+        
+        listing_title ? preview_link.innerHTML = url+slugify(listing_title.value) : preview_link.innerHTML = url+slugify('Ejemplo de Titulo de Buscador en Google');
+        listing_title ? preview_title.innerHTML = listing_title.value : preview_title.innerHTML = 'Ejemplo de Titulo en Buscador de Google';
+        meta_description ? preview_meta.innerHTML = meta_description.value : preview_meta.innerHTML = 'Ejemplo de Meta Description en Buscador de Google';
+
+    }
+
+    const slugify = str =>
+        str
+            .toString()
+            .toLowerCase()
+            .trim()
+            .replace(/[^\w\s-]/g, '')
+            .replace(/[\s_-]+/g, '-')
+            .replace(/^-+|-+$/g, '');
 
     // checkbox_characteristic.addEventListener('change', () => {
     //     console.log('entra aqui');
