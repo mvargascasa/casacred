@@ -18,7 +18,7 @@ class ReportController extends Controller
         $submonth = $now->subMonth();
 
         foreach ($users as $user) {
-            $properties_count = Listing::where('user_id', $user->id)->whereBetween('created_at', ['2024-04-02', '2024-04-02'])->count();
+            $properties_count = Listing::where('user_id', $user->id)->whereBetween('created_at', ['2024-04-01', '2024-04-02'])->count();
             $properties[$user->id] = $properties_count;
         }
 
