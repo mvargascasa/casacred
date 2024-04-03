@@ -1,6 +1,7 @@
 @extends('layouts.dashtw')
 
 @section('firstscript')
+    <title>Reporte de Propiedades</title>
     @livewireStyles
 @endsection
 
