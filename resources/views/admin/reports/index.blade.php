@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <section>
+    <section class="w-1/3 items-center justify-center">
         @livewire('report-upload-properties')
     </section>
 @endsection

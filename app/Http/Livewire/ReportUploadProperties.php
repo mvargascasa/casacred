@@ -31,9 +31,8 @@ class ReportUploadProperties extends Component
         foreach ($users as $user) {
             $properties_count = Listing::where('user_id', $user->id)->whereBetween('created_at', [$dateTo->format('Y-m-d'), $dateFrom->format('Y-m-d')])->count();
             
-            $properties[$user->id] = $properties_count;
-        }
-        
+            $properties[$user->id] = [$user->name, $properties_count];
+        }        
 
         // dd($properties);
 
