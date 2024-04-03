@@ -17,6 +17,8 @@ class ReportUploadProperties extends Component
 
     public function render()
     {
+        $this->total = 0;
+        
         if($this->dateFilterTo != null || $this->dateFilterFrom != null){
             $dateTo = Carbon::parse($this->dateFilterTo);
             $dateFrom = Carbon::parse($this->dateFilterFrom)->addDay();
