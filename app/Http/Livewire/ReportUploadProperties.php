@@ -11,13 +11,14 @@ use Livewire\Component;
 class ReportUploadProperties extends Component
 {
 
-    public $dateFilter = null;
+    public $dateFilterTo = null;
+    public $dateFilterFrom = null;
 
     public function render()
     {
-        if($this->dateFilter != null){
-            $dateTo = Carbon::parse($this->dateFilter);
-            $dateFrom = Carbon::parse($this->dateFilter)->addDay();
+        if($this->dateFilterTo != null || $this->dateFilterFrom != null){
+            $dateTo = Carbon::parse($this->dateFilterTo);
+            $this->dateFilterTo == $this->dateFilterFrom ? $dateFrom = Carbon::parse($this->dateFilterFrom)->addDay() :  $dateFrom = Carbon::parse($this->dateFilterFrom);
         } else {
             $dateTo = Carbon::now();
             $dateFrom = Carbon::now()->addDay();
