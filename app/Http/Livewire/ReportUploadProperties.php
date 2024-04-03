@@ -30,7 +30,7 @@ class ReportUploadProperties extends Component
         
         // if($this->dateFilter != null ) dd($dateTo->format('Y-m-d'). " | " . $dateFrom->format('Y-m-d'));
 
-        $users = User::where('role', 'ASESOR')->where('status', 1)->orderBy('created_at', 'desc')->get();
+        $users = User::where('role', 'ASESOR')->orWhere('role', 'administrator')->where('status', 1)->orderBy('created_at', 'desc')->get();
 
         foreach ($users as $user) {
             $properties_count = Listing::where('user_id', $user->id)->whereBetween('created_at', [$dateTo->format('Y-m-d'), $dateFrom->format('Y-m-d')])->count();
