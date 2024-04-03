@@ -23,7 +23,7 @@ class ReportUploadProperties extends Component
         $users = User::where('role', 'ASESOR')->where('status', 1)->orderBy('created_at', 'desc')->get();
 
         foreach ($users as $user) {
-            $properties_count = Listing::where('user_id', 898)->whereBetween('created_at', [$date->format('Y-m-d H:m:s'), $date->addDay()->format('Y-m-d H:m:s')])->count();
+            $properties_count = Listing::where('user_id', $user->id)->whereBetween('created_at', [$date->format('Y-m-d H:m:s'), $date->addDay()->format('Y-m-d H:m:s')])->count();
             
             $properties[$user->id] = $properties_count;
         }
