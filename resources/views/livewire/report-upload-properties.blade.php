@@ -1,4 +1,4 @@
-<div class="border mt-5 ml-5">
+<div class="border mt-5 ml-5 w-5/12">
     <section class="p-5">
         <h2 class="text-lg font-semibold">Propiedades subidas por día de cada asesor</h2>
         <p class="mt-1">Filtrar por fecha:</p>  
