@@ -32,6 +32,11 @@
                         <td class="border px-4 py-2">{{ $now->format('Y-m-d') }}</td>
                     </tr>
                 @endforeach
+                    <tr>
+                        <td class="border px-4 py-2 font-semibold">TOTAL</td>
+                        <td class="border px-4 py-2">{{ $total }}</td>
+                        <td class="px-4 py-2"></td>
+                    </tr>
             </tbody>
         </table>
     </section>

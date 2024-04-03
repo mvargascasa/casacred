@@ -13,6 +13,7 @@ class ReportUploadProperties extends Component
 
     public $dateFilterTo = null;
     public $dateFilterFrom = null;
+    public $total = 0;
 
     public function render()
     {
@@ -33,6 +34,8 @@ class ReportUploadProperties extends Component
             $properties_count = Listing::where('user_id', $user->id)->whereBetween('created_at', [$dateTo->format('Y-m-d'), $dateFrom->format('Y-m-d')])->count();
             
             $properties[$user->id] = [$user->name, $properties_count];
+
+            $this->total += $properties_count;
         }        
 
         // dd($properties);
@@ -40,7 +43,8 @@ class ReportUploadProperties extends Component
         return view('livewire.report-upload-properties', [
             'users' => $users,
             'properties' => $properties,
-            'now' => $dateTo
+            'now' => $dateTo,
+            'total' => $this->total
         ]);
     }
 }
