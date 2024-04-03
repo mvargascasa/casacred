@@ -18,7 +18,7 @@ class ReportUploadProperties extends Component
     {
         if($this->dateFilterTo != null || $this->dateFilterFrom != null){
             $dateTo = Carbon::parse($this->dateFilterTo);
-            $this->dateFilterTo == $this->dateFilterFrom ? $dateFrom = Carbon::parse($this->dateFilterFrom)->addDay() :  $dateFrom = Carbon::parse($this->dateFilterFrom);
+            $dateFrom = Carbon::parse($this->dateFilterFrom)->addDay();
         } else {
             $dateTo = Carbon::now();
             $dateFrom = Carbon::now()->addDay();
