@@ -144,12 +144,15 @@
                 <div class="font-bold text-sm">{{ Str::limit($propertie->listing_title, 30, '...')}}</div>
                 @php
                     $address = "";
-                    if($propertie->address) $address = $propertie->address;
-                    if($propertie->sector) $address = $propertie->sector;
+                    if($propertie->address != null && $propertie->sector == null) $address = $propertie->address;
+                    if($propertie->sector != null) $address = $propertie->sector;
                 @endphp
                 <p class="text-gray-700 text-base">
                     @if(Str::contains($address, ',')){{ Str::limit($propertie->address, 30, '...')}} @else {{Str::limit($propertie->state . ', ' . $propertie->city . ', ' . $address, 30, '...') }} @endif
                 </p>
+                @if($propertie->address != null)
+                    <p class="text-gray-600 text-sm"> <span class="font-bold">Sector:</span> {{ $propertie->address }}</p>
+                @endif
                 <p>@if(Auth::id()==123)<span style="font-size: 10px">{{$propertie->slug}}</span> <br>@endif</p>
                 </div>
                 <div class="grid grid-cols-2 px-2 py-2 w-full">
@@ -303,12 +306,12 @@
                 </div>
 
                 <div class="px-2 py-2">
-                <div class="text-xs text-gray-500">{{$s_propertie->created_at->format('d-M-y')}}</div>
-                <div class="font-bold text-sm">{{ Str::limit($s_propertie->listing_title, 30, '...')}}</div>
-                <p class="text-gray-700 text-base">
-                    @if(Str::contains($s_propertie->address, ',')){{ Str::limit($s_propertie->address, 30, '...')}} @else {{Str::limit($s_propertie->state . ', ' . $s_propertie->city . ', ' . $s_propertie->address, 30, '...') }} @endif
-                </p>
-                <p>@if(Auth::id()==123)<span style="font-size: 10px">{{$s_propertie->slug}}</span> <br>@endif</p>
+                    <div class="text-xs text-gray-500">{{$s_propertie->created_at->format('d-M-y')}}</div>
+                    <div class="font-bold text-sm">{{ Str::limit($s_propertie->listing_title, 30, '...')}}</div>
+                    <p class="text-gray-700 text-base">
+                        @if(Str::contains($s_propertie->address, ',')){{ Str::limit($s_propertie->address, 30, '...')}} @else {{Str::limit($s_propertie->state . ', ' . $s_propertie->city . ', ' . $s_propertie->address, 30, '...') }} @endif
+                    </p>
+                    <p>@if(Auth::id()==123)<span style="font-size: 10px">{{$s_propertie->slug}}</span> <br>@endif</p>
                 </div>
                 <div class="grid grid-cols-2 px-2 py-2 w-full">
                     <div>

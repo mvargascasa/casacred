@@ -370,6 +370,8 @@
             <div class="relative border px-5 py-4 mt-10 hover:shadow-md">
                 <div class="gap-4 mt-4 sm:gap-6">
                         {!! Form::label('listing_title', 'Titulo de Propiedad', ['class' => 'font-semibold']) !!}
+                        <br>
+                        <span class="text-gray-500 font-semibold text-sm">Evitar escribir el sector donde se encuentra la propiedad en el título</span>
                         {{-- {!! Form::text('listing_title', null, ['class' => $inputs, 'pattern' => isset($currentRouteName) && ($currentRouteName != "admin.housing.property.create" || $currentRouteName != "admin.housing.property.edit") ? '.{50,60}' : '.{0,150}', 'onkeyup' => 'countCharsTitle(this);', 'placeholder' => 'Ej: Casa en Venta en Cuenca - Sector...']) !!} --}}
                         {!! Form::text('listing_title', null, ['class' => $inputs, 'onkeyup' => 'countCharsTitle(this);setPreviewOnGoogle();', 'placeholder' => 'Ej: Casa en Venta en Cuenca - Sector...']) !!}
                     {{-- @if($currentRouteName != "admin.housing.property.create" && $currentRouteName != "admin.housing.property.edit") --}}
@@ -426,11 +428,23 @@
                         </div>
                     @else
                         <div>
-                            {!! Form::label('sector', 'Sector', ['class' => 'font-semibold']) !!}
+                            {!! Form::label('sector', 'Parroquia', ['class' => 'font-semibold']) !!}
                             {!! Form::select('sector', isset($sectores) ? $sectores->pluck('name', 'name')->toArray() : [''=>'Seleccione'], null, ['id' => 'sector', 'class' => $inputs]) !!}
                         </div>
                     @endif
                 </div>
+
+                @if(!isset($listing) || (isset($listing) && $listing->address == null))
+                    <div class="grid grid-cols-1 gap-4 mt-4">
+                        <div>
+                            {!! Form::label('address', 'Ubicación', ['class' => 'font-semibold']) !!}
+                            <br>
+                            <span class="text-gray-500 text-sm font-semibold">Sector donde se encuentra la propiedad. Por ejemplo: Misicata</span>
+                            {!! Form::text('address', null, ['class' => $inputs]) !!}
+                        </div>
+                    </div>
+                @endif
+
                 <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6 sm:grid-cols-4">
                     <div>          
                         {!! Form::label('construction_area', 'Construcción', ['class' => 'font-semibold']) !!}
