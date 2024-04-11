@@ -421,7 +421,7 @@
                         {!! Form::label('city', 'Ciudad', ['class' => 'font-semibold']) !!}
                         {!! Form::select('city', isset($cities) ? $cities->pluck('name','name')->toArray() : [''=>'Selecione'] , null, ['id'=>'city','class' => $inputs ], $optAttribSector) !!}
                     </div>
-                    @if(isset($listing) && $listing->address != null)
+                    @if(isset($listing) && $listing->address != null && $listing->sector == null)
                         <div>
                             {!! Form::label('address', 'Sector (Ej: Ricaurte) ', ['class' => 'font-semibold']) !!}
                             {!! Form::text('address', null, ['class' => $inputs]) !!}
@@ -434,7 +434,7 @@
                     @endif
                 </div>
 
-                @if(!isset($listing) || (isset($listing) && $listing->address == null))
+                @if(!isset($listing) || (isset($listing) && $listing->address != null))
                     <div class="grid grid-cols-1 gap-4 mt-4">
                         <div>
                             {!! Form::label('address', 'Ubicación', ['class' => 'font-semibold']) !!}
