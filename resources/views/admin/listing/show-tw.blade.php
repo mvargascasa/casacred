@@ -369,9 +369,14 @@
                 <label style="background-color: #dc3545; color: #ffffff; border-radius: 5px;padding: 5px; font-weight: 600">CÓDIGO: {{ $propertie->product_code }}</label>
               </div>
             </div>
-            <div class="d-flex mt-2">
-              <img style="width: 25px; height: 25px" src="{{ asset('img/ubicacion.png') }}" alt="">
-              <p style="font-weight: 400">Sector: @if(Str::contains($propertie->address, ',')) {{$propertie->address}} @else {{ $propertie->state }}, {{$propertie->city}}, {{ $propertie->address ? Str::ucfirst(Str::lower($propertie->address)) : $propertie->sector }} @endif</p>
+            <div class="mt-2">
+              <p class="d-flex fw-bold"><img style="width: 25px; height: 25px" src="{{ asset('img/ubicacion.png') }}" alt=""> Ubicación</p>
+              @if(Str::contains($propertie->address, ','))
+                <p class="mt-2 ml-2" style="font-weight: 400"> {{$propertie->address}}</p>
+              @else
+                <p class="mt-2 ml-2" style="font-weight: 400">{{ $propertie->state }}, {{$propertie->city}}@if($propertie->sector != null), {{ $propertie->sector}} @endif </p>
+                <p class="text-muted fw-bold ml-2" style="font-size: small">Sector: {{ $propertie->address}}</p>
+              @endif
             </div>
             {{-- <div class="mt-4">
               <h5 style="font-weight: 500">Características:</h5>
