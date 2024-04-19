@@ -375,7 +375,7 @@
                 <p class="mt-2 ml-2" style="font-weight: 400"> {{$propertie->address}}</p>
               @else
                 <p class="mt-2 ml-2" style="font-weight: 400">{{ $propertie->state }}, {{$propertie->city}}@if($propertie->sector != null), {{ $propertie->sector}} @endif </p>
-                <p class="text-muted fw-bold ml-2" style="font-size: small">Sector: @if(!Str::contains($propertie->address, ',')) {{ $propertie->address}} @else SIN SECTOR @endif</p>
+                <p class="text-muted fw-bold ml-2" style="font-size: small">Sector: @if($propertie->address != null && !Str::contains($propertie->address, ',')) {{ $propertie->address}} @else SIN SECTOR @endif</p>
               @endif
             </div>
             {{-- <div class="mt-4">
