@@ -554,7 +554,7 @@
                     <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="https://casapromotora.com/uploads/projects/300/img-rubik-64d418d009c2e.png" class="card-img-top" alt="Departamentos de Venta en Cuenca Ecuador">
                   <div class="middle">
                     <div class="link">
-                      <a href="https://casapromotora.com/proyectos/departamentos/rubik">Ver proyecto</a>
+                      <a href="https://casapromotora.com/proyecto/rubik">Ver proyecto</a>
                     </div>
                   </div>
                 </div>
@@ -574,7 +574,7 @@
                     <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="https://casapromotora.com/uploads/projects/300/img-seascape-64b1c3e0c200d.webp" class="card-img-top" alt="Departamentos de Venta en Cuenca Ecuador">
                     <div class="middle">
                       <div class="link">
-                        <a href="https://casapromotora.com/uploads/projects/300/img-seascape-64b1c3e0c200d.webp">Ver proyecto</a>
+                        <a href="https://casapromotora.com/proyecto/seascape">Ver proyecto</a>
                       </div>
                     </div>
                 </div>
@@ -594,7 +594,7 @@
                     <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="https://casapromotora.com/uploads/projects/300/img-zante-64e37ed043357.jpg" class="card-img-top" alt="Condominios, Casas nuevas de venta en Cuenca - Proyecto Toscana">
                     <div class="middle">
                       <div class="link">
-                        <a href="https://casapromotora.com/proyectos/departamentos/zante">Ver proyecto</a>
+                        <a href="https://casapromotora.com/proyecto/monaco">Ver proyecto</a>
                       </div>
                     </div>
                 </div>  
@@ -609,7 +609,7 @@
                 </div>
           </div>
           <div class="d-flex justify-content-center mt-3">
-              <a style="background-color: #182741; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 13px" class="btn" href="https://casacreditopromotora.com/proyectos">VISITE NUESTRO CATÁLOGO DE PROYECTOS EN <b style="color: #fcc62e;">ECUADOR </b><i class="fas fa-long-arrow-alt-right"></i></a>
+              <a style="background-color: #182741; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 13px" class="btn" href="https://casapromotora.com/proyectos/casas">VISITE NUESTRO CATÁLOGO DE PROYECTOS EN <b style="color: #fcc62e;">ECUADOR </b><i class="fas fa-long-arrow-alt-right"></i></a>
           </div>
       </div>
     </div>
