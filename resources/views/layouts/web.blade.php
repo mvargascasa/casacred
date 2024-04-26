@@ -266,12 +266,12 @@ if(strpos($actual_link, 'localhost') === false){
             <div class="d-flex flex-grow-1">
                 <span class="w-100 d-lg-none d-block pl-1">
                     <a class="navbar-brand" href="{{route('web.index')}}">
-                        <img src="{{asset('img/logo-azul-grupo-housing.png')}}" width="110" height="45" alt="casa credito inmobiliaria">
+                        <img src="{{asset('img/logo-azul-grupo-housing.png')}}" width="110" height="45" alt="Grupo Housing">
                     </a>
                 </span>
 
                 <a class="navbar-brand d-none d-lg-inline-block px-4" href="{{route('web.index')}}">
-                    <img src="{{asset('img/logo-azul-grupo-housing.png')}}" width="100" height="50" alt="casa credito inmobiliaria">
+                    <img src="{{asset('img/logo-azul-grupo-housing.png')}}" width="100" height="50" alt="Grupo Housing">
                     </a>
                 <div class="w-100 text-right">
                     {{-- @if(Route::is('web.index') or Route::is('web.detail') ) 
@@ -500,7 +500,7 @@ if(strpos($actual_link, 'localhost') === false){
                   </a>
                 </div>
                 
-                <p id="pLastLabel" style="margin-top: 15px" class="text-dark-50"><i class="text-white">Ahora con <b style="color: #C30000; font-weight: 500">Casa Credito</b> es fácil ser dueño de su propia casa en Ecuador.</i></p>
+                <p id="pLastLabel" style="margin-top: 15px" class="text-dark-50"><i class="text-white">Ahora con <b>Grupo Housing</b> es fácil ser dueño de su propia casa en Ecuador.</i></p>
 
                 
             </div>
@@ -592,23 +592,20 @@ if(strpos($actual_link, 'localhost') === false){
 
   <div class="wsapp">
     <a href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, deseo que me contacten a este número de teléfono y me ayuden con más información" class="asindeco" target="_blank">
-      <img src="{{asset('img/whatsapp-logo.png')}}" alt="Whatsapp Casa Credito" width="50px" height="50px">
+      <img src="{{asset('img/whatsapp-logo.png')}}" alt="Whatsapp Grupo Housing" width="50px" height="50px">
     </a>
   </div>
   <div class="telf d-flex">
     <div id="call-usa-ecu" class="bg-danger text-light d-flex" style="margin-right: -105px">
       <div onclick="openDivCallUsaEcu()" style="cursor: pointer; ">
         <i class="fas fa-phone-alt fa-2x bg-danger p-2 text-light"></i>
-        {{-- <img src="{{asset('img/call-icon.webp')}}" alt="Numero Casa Credito" width="50" height="50"> --}}
       </div>
       <div id="diviconsusaecu" style="margin-left: 15px;">
         <a href="tel:+593983849073">
-          <img width="45px" height="30px" class="mt-2" src="{{asset('img/ECUADOR-04.webp')}}" alt="telefono casa credito ecuador"> 
-          {{-- <img src="{{asset('img/call-icon.webp')}}" alt="Numero Casa Credito" width="50" height="50"> --}}
+          <img width="45px" height="30px" class="mt-2" src="{{asset('img/ECUADOR-04.webp')}}" alt="Telefono Grupo Housing"> 
         </a>
         <a href="tel:+17186903740">
-          <img width="45px" height="30px" class="mt-2 ml-1" src="{{asset('img/USA-05.webp')}}" alt="telefono casa credito estados unidos">
-          {{-- <img src="{{asset('img/call-icon.webp')}}" alt="Numero Casa Credito" width="50" height="50"> --}}
+          <img width="45px" height="30px" class="mt-2 ml-1" src="{{asset('img/USA-05.webp')}}" alt="Telefono Grupo Housing EEUU">
         </a>
       </div>
     </div>
