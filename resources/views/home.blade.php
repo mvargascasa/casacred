@@ -5,7 +5,7 @@
 @endphp
     <title>Grupo Housing - Propiedades en Venta en Ecuador</title>
     <meta name="description" content="Contamos con un amplio directorio de propiedades dentro del territorio ecuatoriano. Casas, Departamentos, Terrenos en Venta @isset($searchtxt) en {{ $searchtxt }}. @else ¡Visítenos! @endif ✅"/>
-    <meta name="keywords" content="inmobiliaria en cuenca, inmobiliarias en cuenca, inmobiliarias cuenca, inmobiliaria en cuenca ecuador, inmobiliarias en cuenca ecuador, casa credito, casa credito inmobiliaria">
+    <meta name="keywords" content="inmobiliaria en cuenca, inmobiliarias en cuenca, inmobiliarias cuenca, inmobiliaria en cuenca ecuador, inmobiliarias en cuenca ecuador, grupo housing, grupo housing inmobiliaria">
 
     <meta property="og:url"                content="{{route('web.index')}}" />
     <meta property="og:type"               content="website" />
@@ -365,36 +365,12 @@
               <a style="color: #000000" href="{{ route('web.detail', $listing->slug) }}">
                 <div class="card h-100" style="border-radius: 25px">
                   <div class="position-relative">
-                    {{-- {{ asset('uploads/listing/600/' . substr($listing1->images, 0, 25) ) }} --}}
                     <img width="100%" height="250px" style="border-radius: 25px 25px 0px 0px; object-fit: cover" src="{{ asset('uploads/listing/600/' . strtok($listing->images, '|') ) }}" class="card-img-top" alt="{{$listing->slug}}-image">
-                    {{-- @php
-                        $type = DB::table('listing_types')->select('type_title')->where('id', $listing->listingtype)->get();
-                    @endphp
-                    <label class="position-absolute" style="top: 10px; left: 10px; background-color: #3377cc; padding: 2px 5px 2px 5px; border-radius: 5px; color: #ffffff; font-weight: 400; font-size: 13px">{{ strtoupper($type[0]->type_title) }}</label> --}}
                   </div>
                   <div class="card-body card-body-listings" style="border-radius: 0px 0px 25px 25px">
                     <h2 style="margin: 0px; font-size: 14px;">{{ $listing->listing_title }}</h2>
-                    {{-- @php
-                        $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
-                        $bathroom=0;
-                        
-                        if(!empty($listing->heading_details)){
-                          $allheadingdeatils=json_decode($listing->heading_details); 
-                          foreach($allheadingdeatils as $singleedetails){ 
-                            unset($singleedetails[0]);								
-                            for($i=1;$i<=count($singleedetails);$i++){ 
-                              if($i%2==0){  
-                                if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
-                                if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];									  
-                              }								   
-                            }								
-                          $i++;
-                          }
-                        }
-                    @endphp --}}
-                    {{-- <p style="font-size: 14px; margin: 0px" class="card-text">@if($bedroom > 0){{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif | @endif @if($bathroom > 0){{ $bathroom }} @if($bathroom > 1) baños @else baño @endif | @endif {{ $listing->construction_area}} m<sup>2</sup></p> --}}
                     <div class="d-flex justify-content-between mt-3">
-                      <p style="font-size: 12px; margin: 0px; font-weight: 500" class="card-text"><i class="fas fa-map-marker-alt"></i>@if($listing->slug == "totoracocha-en-venta-casa-nueva-recien-terminada-75579") {{ str_replace(",", " |", ucwords(strtolower($listing->address))) }} @else {{ str_replace(",", " |", $listing->address) }} @endif</p>
+                      <p style="font-size: 12px; margin: 0px; font-weight: 500" class="card-text"><i class="fas fa-map-marker-alt"></i>{{ $listing->address}}</p>
                       <p style="margin: 0px; font-size: 14px;" class="card-title h5">${{ number_format($listing->property_price) }}</p>                      
                     </div>
                   </div>
