@@ -370,7 +370,7 @@
                   <div class="card-body card-body-listings" style="border-radius: 0px 0px 25px 25px">
                     <h2 style="margin: 0px; font-size: 14px;">{{ $listing->listing_title }}</h2>
                     <div class="d-flex justify-content-between mt-3">
-                      <p style="font-size: 12px; margin: 0px; font-weight: 500" class="card-text"><i class="fas fa-map-marker-alt"></i>{{ $listing->address}}</p>
+                      <p style="font-size: 12px; margin: 0px; font-weight: 500" class="card-text"><i class="fas fa-map-marker-alt"></i> {{ $listing->address}}</p>
                       <p style="margin: 0px; font-size: 14px;" class="card-title h5">${{ number_format($listing->property_price) }}</p>                      
                     </div>
                   </div>
