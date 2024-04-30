@@ -14,8 +14,10 @@
     @endphp
 
     @if(count($listings)>0)
-    @foreach($listings as $listing)
-        @php $ii++; @endphp 
+      @foreach($listings as $listing)
+
+    {{-- Este codigo muestra los banners de creditos y vende con nosotros --}}
+        {{-- @php $ii++; @endphp 
 
         @if($ii==9)
         <div class="card row mb-3" style="border-top:1px #FA7B34 solid">
@@ -34,7 +36,7 @@
             </a>
            </div>
         </div>
-        @endif
+        @endif --}}
 
 
     <div class="card mb-3 shadow-sm card-listing">
@@ -307,7 +309,8 @@
 
 <!--end new design-->
  
- @if($listings->count()<6)
+{{-- Esto muestra los banners si es que existen menos de 6 propiedades --}}
+ {{-- @if($listings->count()<6)
  <div class="card row mb-3 justify-center" style="border-top:1px #FA7B34 solid">
    <div class="row">
      <a data-toggle="modal" data-target="#modalContact" style="font-size:13px;" onclick="setInterest('ANUNCIO CREDITOS EN ECUADOR')">
@@ -324,7 +327,7 @@
    </a>
   </div>
 </div>
-@endif
+@endif --}}
 
  <div class="row pt-4">
   <div class="col">
