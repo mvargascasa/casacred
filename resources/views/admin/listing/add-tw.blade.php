@@ -475,7 +475,7 @@
                         @if(isset($listing) && $listing->locked)
                             {!! Form::text('property_price', null, ['class' => $inputs, 'disabled']) !!}
                         @else
-                            {!! Form::text('property_price', null, ['class' => $inputs]) !!}
+                            {!! Form::text('property_price', null, ['class' => $inputs, 'onblur' => 'validateMinPrice()']) !!}
                         @endif
                     </div>
                     <div>
@@ -541,7 +541,7 @@
                     </div>
                     <div>     
                         {!! Form::label('listingtypestatus', 'Tipo', ['class' => 'font-semibold']) !!}
-                        {!! Form::select('listingtypestatus',$categories->pluck('status_title','slug'),    null,    ['class' => $inputs]) !!}
+                        {!! Form::select('listingtypestatus',$categories->pluck('status_title','slug'),    null,    ['class' => $inputs, 'onchange' => 'validateMinPrice()']) !!}
                     </div>
                     <div>  
                         {!! Form::label('listingtagstatus', 'Etiqueta', ['class' => 'font-semibold']) !!}
@@ -906,7 +906,7 @@
                 <button id="btnSave" type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform @if($currentRouteName == "admin.housing.property.create") bg-blue-900 hover:bg-blue-700 @elseif(Route::currentRouteName() == "admin.promotora.property.create") bg-red-800 hover:bg-red-700 focus:bg-red-700 @else bg-red-700 hover:bg-red-600 focus:bg-red-600 @endif rounded focus:outline-none">GUARDAR</button>
                 @endif
                 @if(Route::current()->getName() == "admin.listings.edit" || Route::current()->getName() == "home.tw.edit" || Route::current()->getName() == "admin.housing.property.edit" || Route::currentRouteName() == "admin.promotora.property.edit")
-                <button onclick="saveandclose(event)" class="px-6 py-2 ml-3 text-xl leading-5 text-white @if($currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-green-500 @endif transition-colors duration-200 transform rounded  focus:outline-none">GUARDAR Y SALIR</button>
+                <button id="btnSave" onclick="saveandclose(event)" class="px-6 py-2 ml-3 text-xl leading-5 text-white @if($currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-green-500 @endif transition-colors duration-200 transform rounded  focus:outline-none">GUARDAR Y SALIR</button>
                 @endif
             {{-- @endif --}}
                 {{-- <button type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform bg-red-700 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600">GUARDAR</button> --}}
@@ -965,6 +965,7 @@
 
 @section('endscript')
     <script src="{{asset('js/sortable.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>let bandera = false;</script>
     @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.promotora.property.create")
         <script>
@@ -1922,10 +1923,30 @@
             .replace(/[\s_-]+/g, '-')
             .replace(/^-+|-+$/g, '');
 
-    // checkbox_characteristic.addEventListener('change', () => {
-    //     console.log('entra aqui');
-    //     if(this.checked) alert(this.value);
-    // });
+    const validateMinPrice = () => {
+
+        let property_price = document.getElementById('property_price');
+        let listingtypestatus = document.getElementById('listingtypestatus');
+
+        if(property_price.value < 400 && listingtypestatus.value == "alquilar"){
+            let steptow = document.getElementById('second');
+            let inputs = steptow.querySelectorAll('input, select, textarea, button');
+            inputs.forEach(element => {
+                element.disabled = true;
+            })
+            let btnSave = document.getElementById('btnSave');
+            btnSave.disabled = true;
+            Swal.fire({
+                title: 'Advertencia',
+                text: 'El sistema no permite propiedades de alquiler menores a $400. Todos los campos se bloquearon para no subir la propiedad',
+                icon: 'warning',
+                iconColor: 'red',
+                confirmButtonText: 'Salir',
+                confirmButtonColor: 'red',
+                allowOutsideClick: false // Evitar que se cierre al hacer clic fuera
+            });
+        }
+    }
 
     </script>
 @endsection
