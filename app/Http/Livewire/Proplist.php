@@ -186,6 +186,14 @@ class Proplist extends Component
 
         if(strlen($this->city)>2 && $this->city != "ecuador") $listings_filter->where('city', 'LIKE',  '%'.$this->city.'%'); 
 
+        if($this->sector){
+            $sector = $this->sector;
+            //$listings_filter->where('sector', 'LIKE', '%'.$this->sector.'%');
+            $listings_filter->where(function ($query) use ($sector){
+                $query->where('sector', 'LIKE', '%'.$sector.'%')
+                    ->orWhere('address', 'LIKE', '%'.$sector.'%');
+            });
+        }
         
         if(strlen($this->fromprice)>1 && filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT)>1){
             $fromprice_ = filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT);
@@ -195,11 +203,6 @@ class Proplist extends Component
         if(strlen($this->uptoprice)>1 && filter_var ( $this->uptoprice, FILTER_SANITIZE_NUMBER_INT)>1){
             $uptoprice_ = filter_var ( $this->uptoprice, FILTER_SANITIZE_NUMBER_INT);
             $listings_filter->where('property_price','<',$uptoprice_);
-        }
-        
-        if($this->sector){
-            $listings_filter->where('sector', 'LIKE', '%'.$this->sector.'%');
-            dd($listings_filter);
         }
 
         $listings = $listings_filter->paginate(20);
