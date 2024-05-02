@@ -98,7 +98,7 @@
       </select>
     </div>
     <div style="width: 40px" class="mb-3">
-      <button class="btn p-0" style="background-color: #BFC5D4; width: 40px; height: 37px; border-radius: 10px" onclick="search()"><img style="filter: invert(100%)" width="30px" src="{{ asset('img/buscar.png') }}" alt=""></button>
+      <button class="btn p-0" style="background-color: #BFC5D4; width: 44px; height: 37px; border-radius: 10px" onclick="search()"><img style="filter: invert(100%)" width="30px" src="{{ asset('img/buscar.png') }}" alt=""></button>
     </div>
     <div style="width: 50px" class="mb-3 ml-2">
       <button class="btn p-0" style="background-color: #182741; width: 45px; height: 37px; border-radius: 10px" onclick="cleanFilters()"><img width="25px" src="{{ asset('img/clear-filters.svg') }}" alt=""></button>
