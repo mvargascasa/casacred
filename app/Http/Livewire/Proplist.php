@@ -188,7 +188,6 @@ class Proplist extends Component
 
         if($this->sector){
             $listings_filter->where('sector', 'LIKE', '%'.$this->sector.'%');
-            dd($listings_filter);
         }
         
         if(strlen($this->fromprice)>1 && filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT)>1){
