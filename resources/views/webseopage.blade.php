@@ -17,6 +17,18 @@
     .items-cards{text-align: center}
     .padding-x-mobile{padding-left: 0px !important; padding-right: 0px !important}
   }
+  .filters-style{
+    height: 35px; border-radius: 10px; border: 1px solid #182741; padding-left: 5%; appearance: none; background-image: url('{{ asset('img/arrow-down.svg') }}'); background-size: 20px; background-position: right 10px center; background-repeat: no-repeat;
+  }
+  .inputs-style{height: 35px; border-radius: 10px; border: 1px solid #182741; padding-left: 5%; width: auto}
+  details {
+    transition: all 2s ease; /* Establece la transición */
+    max-height: 25px;
+    overflow: hidden;
+  }
+  details[open] {
+    max-height: 1000px; /* Altura máxima para abrir lentamente */
+  }
 </style>
 
 <!-- Event snippet for Botón Whatshap Casa credito conversion page
@@ -65,7 +77,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 
       @if($ismobile)
       {{-- <div class="d-flex justify-content-center"> --}}
-        <section id="bgimage" class="d-flex align-items-center justify-content-center py-3" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: @if($ismobile) 0px @else 0px @endif; z-index: 2">
+        <section id="bgimage" class="d-flex align-items-center justify-content-center py-3" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: @if($ismobile) 0px @else 0px @endif; z-index: 2; display:none !important">
           <div class="d-flex justify-content-center searchmobile">
             <button type="button" class="btn text-white" style="background-color: #182741" data-bs-toggle="modal" data-bs-target="#exampleModal">
               FILTROS
@@ -76,7 +88,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
       @endif
     {{-- </section> --}}
     @if(!$ismobile)
-    <section id="bgimage" class="d-flex align-items-center justify-content-center" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: 0; z-index: 1">
+    <section id="bgimage" class="d-flex align-items-center justify-content-center" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: 0; z-index: 1; display: none !important">
       <div class="searchdesktop">
         <div class="d-flex justify-content-center pt-3 px-5 w-100 mb-3">
 
