@@ -249,8 +249,8 @@
                     <p class="h2" style="color: #182741; font-weight: 600">${{ number_format($listing->property_price) }}</p>
                     <p class="m-0" style="color: #182741; font-weight: 400">COD: {{ $listing->product_code }}</p>
                     <p class="m-0" style="color: #182741; font-weight: 500">{{ $listing->listing_title }}</p>
-                    <p style="font-size: small">@if(isset($listing->address) && str_contains($listing->address, ',')) {{ $listing->address }} @else {{ $listing->state}}, {{ $listing->city }}, {{ $listing->address != null ? $listing->address : $listing->sector}} @endif</p>
-                    <p style="font-size: small">{{ Str::limit($listing->listing_description, 120) }} <a href="{{ route('web.detail',$listing->slug) }}" style="color: blue; font-weight: 400">Más info</a></p>
+                    <h2 style="font-size: small; font-weight: 400">@if(isset($listing->address) && str_contains($listing->address, ',')) {{ $listing->address }} @else {{ $listing->state}}, {{ $listing->city }}, {{ $listing->address != null ? $listing->address : $listing->sector}} @endif</h2>
+                    <h3 style="font-size: small; font-weight: 100">{{ Str::limit($listing->listing_description, 120) }} <a href="{{ route('web.detail',$listing->slug) }}" style="color: blue; font-weight: 400">Más info</a></h3>
                     <div class="d-flex" style="gap: 10px">
                       @if($listing->construction_area>0) <div class="items-cards"> <img src="{{asset('img/house.png')}}" width="25">@if($ismobile)<br>@endif<span class="pr-2 items-cards-txt" style="font-weight: 400"> {{$listing->construction_area}} m<sup>2</sup> </span> </div> @endif
                       @if($listing->land_area>0) <div class="items-cards"><img src="{{asset('img/floor.png')}}" width="25"> @if($ismobile)<br>@endif<span class="pr-2 items-cards-txt" style="font-weight: 400"> {{$listing->land_area}} m<sup>2</sup> </span></div> @endif
