@@ -16,7 +16,12 @@ class Proplist extends Component
 
     public $searchtxt,$category,$state,$city,$type,$fromprice,$uptoprice,$pressButtom,$tags,$range, // $tags y $range nueva variable para filtrar
             $tester, $ptype, $pstate,
-            $bedrooms, $bathrooms, $garage;
+            $bedrooms, $bathrooms, $garage,
+            $sector;
+
+    public $states, $cities, $sectores;
+
+    public $stateID, $cityID, $typeID;
 
     // protected $queryString = [  'searchtxt'=> ['except' => ''],
     //                             'category'=> ['except' => ''],
@@ -32,6 +37,37 @@ class Proplist extends Component
     //                             'bedrooms' => ['except' => ''],
     //                             'bathrooms' => ['except' => '']    
     //                         ]; //se agrego en este array
+
+    public function mount(){
+        $this->getStates();
+        $this->cities = DB::table('info_cities')->where('state_id', 1022)->orderBy('name')->get();
+        $this->sectores = DB::table('info_sector')->where('city_id', 15307)->orderBy('name')->get();
+        $this->ptype = $this->type; 
+    }
+
+    public function updated(){
+        $this->getStates();
+        $this->getCities($this->stateID);
+        $this->getSectores($this->cityID);
+    }
+
+    public function getStates(){
+        $this->states = DB::table('info_states')->where('country_id', 63)->orderBy('name')->get();
+    }
+
+    public function getCities($state_id){
+        $this->getStates();
+        $this->stateID = $state_id;
+        $this->sectores = null;
+        $this->cities = DB::table('info_cities')->where('state_id', $state_id)->orderBy('name')->get();
+    }
+
+    public function getSectores($city_id){
+        $this->cityID = $city_id;
+        $state = DB::table('info_cities')->select('state_id')->where('id', $city_id)->first();
+        $this->getCities($this->stateID);
+        $this->sectores = DB::table('info_sector')->where('city_id', $city_id)->orderBy('name')->get();
+    }
 
     public function render(Request $request)
     {
@@ -85,25 +121,29 @@ class Proplist extends Component
             $listings_filter->where('listingtypestatus', 'LIKE', "%$this->category%");
         }
 
-        if(strlen($this->type)>0){
-            if (is_numeric($this->type)){
-                $listings_filter->where('listingtype',$this->type);
-                $this->ptype = null;
-            }else{
-                $findCat = DB::table('listing_types')->where('type_title', 'LIKE', "%$this->type%")->first();
-                if( isset($findCat->id) ) $listings_filter->where('listingtype',$findCat->id);
-            }
-        }
+        // if($this->type){
+        //     $this->ptype = null;
+        //     if (is_numeric($this->type)){
+        //         $listings_filter->where('listingtype',$this->type);
+        //     }else{
+        //         $findCat = DB::table('listing_types')->where('type_title', 'LIKE', "%$this->type%")->first();
+        //         if( isset($findCat->id) ) $listings_filter->where('listingtype',$findCat->id);
+        //         dd($listings_filter);
+        //         $this->typeID = $findCat->id;
+        //     }
+        // }
 
         //buscador para que funcione type desde el search del banner de la nueva pagina home
         if(strlen($this->ptype)>0){
-            $listings_filter->where('listingtype', $this->ptype);
+            //dd($this->ptype);
+            $this->type = null;
+            //$listings_filter->where('listingtype', $this->ptype);
             if(is_numeric($this->ptype)){
                 $listings_filter->where('listingtype', $this->ptype);
-                $this->type = null;
             } else {
                 $findCat = DB::table('listing_types')->where('type_title', $this->ptype)->first();
                 if( isset($findCat->id)) $listings_filter->where('listingtype', $findCat->id);
+                $this->typeID = $findCat->id;
             }
         }
 
@@ -128,18 +168,23 @@ class Proplist extends Component
         // }
 
         if(strlen($this->state)>2){
-            $listings_filter->where('state',$this->state);
+            $listings_filter->where('state', 'LIKE', '%'.$this->state.'%');
             $this->pstate = null;
         }
 
         if(strlen($this->pstate)>2){
-            $listings_filter->where('state',$this->pstate);
+            $listings_filter->where('state', 'LIKE', '%'.$this->pstate.'%');
             $this->state = null;
         }
 
         //dd($this->city);
 
-        if(strlen($this->city)>2 && $this->city != "ecuador") $listings_filter->where('city', $this->city); 
+        if(strlen($this->city)>2 && $this->city != "ecuador") $listings_filter->where('city', 'LIKE',  '%'.$this->city.'%'); 
+
+        if($this->sector){
+            $listings_filter->where('sector', 'LIKE', '%'.$this->sector.'%');
+            dd($listings_filter);
+        }
         
         if(strlen($this->fromprice)>1 && filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT)>1){
             $fromprice_ = filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT);

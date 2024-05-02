@@ -1,4 +1,110 @@
-<div class="col-12 col-sm-10">
+<div class="col-12">
+  @if($mobile)
+    <details>
+      <summary class="mb-3">Filtros de búsqueda</summary>
+  @endif
+  <section class="row" style="flex-wrap: wrap">
+    <div class="col-sm-2 col-6 mb-3">
+      <select id="filterState" class="filters-style w-100" onchange="getCities()">
+        <option value="">PROVINCIA</option>
+        @foreach ($states as $state)
+          <option value="{{ $state->name }}" data-id="{{ $state->id}}">{{ $state->name }}</option>
+        @endforeach
+      </select>
+    </div>
+    <div class="col-sm-2 col-6 mb-3">
+      <select id="filterCity" class="filters-style w-100" onchange="getSectores()">
+        <option value="" selected>CIUDAD</option>
+        @foreach ($cities as $city)
+            <option value="{{$city->name }}" data-id="{{ $city->id }}">{{ $city->name }}</option>
+        @endforeach
+      </select>
+    </div>
+    <div class="col-sm-2 col-6 mb-3">
+      <select id="filterSector" class="filters-style w-100">
+        <option value="" selected>PARROQUIA</option>
+        @if($sectores != null)
+          @foreach ($sectores as $sector)
+              <option value="{{ $sector->name }}">{{ $sector->name }}</option>
+          @endforeach
+        @endif
+      </select>
+    </div>
+    <div class="col-sm-2 col-6 mb-3">
+      <input type="text" class="inputs-style w-100" id="filterAdress" placeholder="SECTOR">
+    </div>
+    <div class="col-sm-2 col-6 mb-3">
+      <input type="text" class="inputs-style w-100" id="filterCode" placeholder="CÓDIGO">
+    </div>
+    <div class="col-sm-2 col-6 mb-3">
+      <select id="filterPropertyType" class="filters-style w-100">
+        <option value="">TIPO DE PROPIEDAD</option>
+        @foreach ($types as $type)
+            <option value="{{ $type->id }}" @if($typeID == $type->id) selected @endif>{{ $type->type_title }}</option>
+        @endforeach
+      </select>
+    </div>
+    <div class="col-sm-2 col-6 mb-3">
+      <select id="filterTransactionType" class="filters-style w-100">
+        <option value="">OPERACION</option>
+        <option value="en-venta">En Venta</option>
+        <option value="alquiler">En Renta</option>
+      </select>
+    </div>
+    <div class="col-sm-2 col-6 mb-3">
+      <select id="filterBedrooms" class="filters-style w-100">
+        <option value="">DORMITORIOS</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
+    </div>
+    <div class="col-sm-2 col-6 mb-3">
+      <select id="filterBathrooms" class="filters-style w-100">
+        <option value="">BAÑOS</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
+    </div>
+    <div class="col-sm-2 col-6 mb-3">
+      <select id="filterGarage" class="filters-style w-100">
+        <option value="">GARAGE</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
+    </div>
+    <div class="col-sm-2 col-6 mb-3">
+      <select id="filterAntiquity" class="filters-style w-100">
+        <option value="">ANTIGUEDAD</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
+    </div>
+    <div style="width: 40px" class="mb-3">
+      <button class="btn p-0" style="background-color: #BFC5D4; width: 40px; height: 37px; border-radius: 10px" onclick="search()"><img style="filter: invert(100%)" width="30px" src="{{ asset('img/buscar.png') }}" alt=""></button>
+    </div>
+    <div style="width: 50px" class="mb-3 ml-2">
+      <button class="btn p-0" style="background-color: #182741; width: 45px; height: 37px; border-radius: 10px" onclick="cleanFilters()"><img width="25px" src="{{ asset('img/clear-filters.svg') }}" alt=""></button>
+    </div>
+  </section>
+  @if($mobile)
+  </details>
+  @endif
   <div class="row pt-4">
     <div class="col">
       <div class="float-right small px-2"></div>
@@ -521,6 +627,72 @@ const upscroll = () => {
 
       //window.location.replace('https://casacredito.com/propiedades?');
       window.location.replace('http://casacredito.test/propiedades?');
+    }
+
+    function search(){
+
+      let filterState = document.getElementById('filterState');
+      let filterCity = document.getElementById('filterCity');
+      let filterSector = document.getElementById('filterSector');
+      let filterAdress = document.getElementById('filterAdress');
+      let filterCode = document.getElementById('filterCode');
+      let filterPropertyType = document.getElementById('filterPropertyType');
+      let filterTransactionType = document.getElementById('filterTransactionType');
+      let filterBedrooms = document.getElementById('filterBedrooms');
+      let filterBathrooms = document.getElementById('filterBathrooms');
+      let filterGarage = document.getElementById('filterGarage');
+      let filterAntiquity = document.getElementById('filterAntiquity');
+
+      @this.set('state', filterState.value);
+      @this.set('city', filterCity.value);
+      @this.set('sector', filterSector.value);
+      @this.set('searchtxt', filterCode.value);
+      @this.set('searchtxt', filterAdress.value);
+      @this.set('ptype', filterPropertyType.value);
+      @this.set('category', filterTransactionType.value);
+      @this.set('bedrooms', filterBedrooms.value);
+      @this.set('bathrooms', filterBathrooms.value);
+      @this.set('garage', filterGarage.value);
+    }
+
+    function cleanFilters(){
+
+      let filterState = document.getElementById('filterState');
+      let filterCity = document.getElementById('filterCity');
+      let filterSector = document.getElementById('filterSector');
+      let filterAdress = document.getElementById('filterAdress');
+      let filterCode = document.getElementById('filterCode');
+      let filterPropertyType = document.getElementById('filterPropertyType');
+      let filterTransactionType = document.getElementById('filterTransactionType');
+      let filterBedrooms = document.getElementById('filterBedrooms');
+      let filterBathrooms = document.getElementById('filterBathrooms');
+      let filterGarage = document.getElementById('filterGarage');
+      let filterAntiquity = document.getElementById('filterAntiquity');
+
+      filterState.value = "";
+      filterCity.value = "";
+      filterSector.value = "";
+      filterAdress.value = "";
+      filterCode.value = "";
+      filterPropertyType.value = "";
+      filterTransactionType.value = "";
+      filterBedrooms.value = "";
+      filterBathrooms.value = "";
+      filterGarage.value = "";
+      filterAntiquity.value = "";
+
+      search();
+      
+    }
+
+    function getCities(){
+      let filterState = document.getElementById('filterState');
+      @this.getCities(filterState.options[filterState.selectedIndex].dataset.id);
+    }
+
+    function getSectores(){
+      let filterCity = document.getElementById('filterCity');
+      @this.getSectores(filterCity.options[filterCity.selectedIndex].dataset.id);
     }
 
 </script>

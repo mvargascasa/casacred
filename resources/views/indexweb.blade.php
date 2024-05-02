@@ -72,6 +72,18 @@
     .items-cards{text-align: center}
     .padding-x-mobile{padding-left: 0px !important; padding-right: 0px !important}
   }
+  .filters-style{
+    height: 35px; border-radius: 10px; border: 1px solid #182741; padding-left: 5%; appearance: none; background-image: url('{{ asset('img/arrow-down.svg') }}'); background-size: 20px; background-position: right 10px center; background-repeat: no-repeat;
+  }
+  .inputs-style{height: 35px; border-radius: 10px; border: 1px solid #182741; padding-left: 5%; width: auto}
+  details {
+    transition: all 2s ease; /* Establece la transición */
+    max-height: 25px;
+    overflow: hidden;
+  }
+  details[open] {
+    max-height: 1000px; /* Altura máxima para abrir lentamente */
+  }
 </style>
 @livewireStyles
 @endsection
@@ -96,71 +108,25 @@
     <div class="loading show">
       <div class="spin"></div>
     </div>
-
-    <section id="prisection" style="background-size: cover;background-position: 0rem 23%; width: 100%; background-repeat: no-repeat;display: none">
-      <div>
-        
-          <div class="row align-items-center d-flex justify-content-center" style="margin: 0; min-height: 450px;">
-    
-              <div class="col-12 text-white text-center p-4" style="width: 600px;background:rgba(2, 2, 2, 0.5)">
-                <p class="font-weight-bold heading-title" style="font-size: 30px; margin: 0px">Su sueño está aquí</p>
-                {{-- <h1 style="font-size: 20px">Compra, Venta y Alquiler de Propiedades</h1> --}}
-
-                <div class="btn-group pb-2">
-                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_0" autocomplete="off" value="en-venta" @if($category === "en-venta") checked @endif onclick="btnradio_search(this);setCategoryOnLoadIfRequestQueryHas(this.value)">
-                  <label class="btn btn-outline-danger" for="ftop_category_0" style="width:100px;font-size: 14px">COMPRAR</label>
-                  
-                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_1" autocomplete="off" value="alquilar" @if($category === "alquilar") checked @endif onclick="btnradio_search(this);setCategoryOnLoadIfRequestQueryHas(this.value)">
-                  <label class="btn btn-outline-danger" for="ftop_category_1" style="width:100px;font-size: 14px">ALQUILAR</label>
-                  
-                  <input type="radio" class="btn-check" name="ftop_category[]" id="ftop_category_2" autocomplete="off" value="proyectos" @if($category === "proyectos") checked @endif onclick="btnradio_search(this);setCategoryOnLoadIfRequestQueryHas(this.value)">
-                  <label class="btn btn-outline-danger" for="ftop_category_2" style="width:100px;font-size: 14px">PROYECTOS</label>
-                </div>
-
-    
-                <div class="input-group mb-3">
-                      <select class="form-select" id="ftop_type" style="max-width:170px;">
-                            <option value="">Todas</option>	
-                            <option value="23" @if($ptype === "23") selected @endif>Casas </option>
-                            <option value="24" @if($ptype === "24") selected @endif>Departamentos </option>
-                            <option value="25" @if($ptype === "25") selected @endif>Casas Comerciales</option>
-                            <option value="26" @if($ptype === "26") selected @endif>Terrenos</option>
-                            <option value="29" @if($ptype === "29") selected @endif>Quintas</option>
-                            <option value="30" @if($ptype === "30") selected @endif>Haciendas</option>
-                            <option value="32" @if($ptype === "32") selected @endif>Locales Comerciales</option>
-                            <option value="35" @if($ptype === "35") selected @endif>Oficinas</option>
-                            <option value="36" @if($ptype === "36") selected @endif>Suites</option>
-                      </select>
-                      <input type="text" id="ftop_txt" style="font-size: 14px" placeholder="INGRESE / UBICACIÓN / CÓDIGO" class="form-control" @if($searchtxt != null) value="{{$searchtxt}}" @endif onkeypress="if(event.keyCode==13)top_search()">
-                      <button type="button" class="btn btn-danger"  onclick="top_search()">BUSCAR</button>
-                </div>       
-
-            </div>
-    
-        </div>
-      </div>
-    </section>
     {{-- new filters --}}
-    {{-- <div class="sticky-top px-5" style="background-color: #bdbdbd"> --}}
-      {{-- <form id="newsearch" action="{{route('web.search', ['category', 'en-venta', 'cuenca'])}}" method="GET" class="sticky-top"> --}}
-        <section id="imgheader" style="background-size: cover;background-position: bottom center; width: 100%; background-repeat: no-repeat;">
-          <div class="d-flex justify-content-center align-items-center pt-5 pb-4 text-center" style="min-height: 200px; height: 200px">
-            <h1 class="h3 @if($ismobile) pt-4 @endif">@if($h1 != null || $h1 != "") {{$h1}} @else Encuentre las mejores Propiedades en Venta o Alquiler en <b class="text-danger font-weight-bold">Casa Crédito</b> @endif</h1>
+        <section>
+          <div class="d-flex justify-content-center align-items-center text-center" style="min-height: 150px; height: 150px">
+            <h1>@if($h1 != null || $h1 != "") {{$h1}} @else Encuentre las mejores Propiedades en Venta o Alquiler en <b class="text-danger font-weight-bold">Grupo Housing</b> @endif</h1>
           </div>
         </section>
 
-      @if($ismobile)
-        <section id="bgimage" class="d-flex align-items-center justify-content-center py-3" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: @if($ismobile) 0px @else 0px @endif; z-index: 2">
+      {{-- @if($ismobile)
+        <section class="d-flex align-items-center justify-content-center py-3" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: @if($ismobile) 0px @else 0px @endif; z-index: 2; background-image: url('{{asset('img/backimagesearch.webp')}}')">
           <div class="d-flex justify-content-center searchmobile">
             <button type="button" class="btn text-white" style="background-color: #182741" data-bs-toggle="modal" data-bs-target="#exampleModal">
               FILTROS <i class="fas fa-search"></i>
             </button>
           </div>
         </section>
-      @endif
+      @endif --}}
 
-      @if(!$ismobile)
-      <section id="bgimage" class="d-flex align-items-center justify-content-center mb-3" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: 0; z-index: 2">
+      {{-- @if(!$ismobile)
+      <section class="d-flex align-items-center justify-content-center mb-3" style="background-size: cover; background-position: left center; width: 100%; background-repeat: no-repeat; height: auto; position: sticky; top: 0; z-index: 2; background-image: url('{{ asset('img/backimagesearch.webp') }}')">
         <div class="d-inline-flex pt-3 px-5 w-100 justify-content-center mb-3">
 
           <div class="mx-1">
@@ -176,11 +142,9 @@
             </div>
             <div id="child1" class="overflow-auto position-absolute bg-white rounded p-1 border mt-1" style="display: none; position: absolute; z-index: 3;">
               @foreach ($states as $state)
-              {{-- <div class="row"> --}}
                 <div>
                   <input class="border-0 inputs-on-hover" type="text" onclick="setValue(this, 'labeldiv1')" value="{{$state->name}}" data-id="{{$state->id}}" readonly>  
                 </div>
-              {{-- </div> --}}
               @endforeach
             </div>
           </div>
@@ -193,7 +157,6 @@
             <div id="child2" class="h-auto bg-white rounded p-1 border mt-1" style="display: none; position: absolute; z-index: 3;">
               <div class="d-flex align-items-center">
                 <div>
-                  {{-- <div style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div>  --}}
                   <label class="ml-1">Ciudad</label>
                 </div>
               </div>
@@ -229,15 +192,6 @@
               <div><input onclick="setValue(this, 'labeldiv8');changeLocationWithSlug(document.getElementById('bform_city').value);" type="text" value="Suites" class="border-0 inputs-on-hover" readonly></div>
             </div>
           </div>
-
-          {{-- <div class="mx-1">
-            <div id="div9" class="pattern bg-white rounded p-1 border">
-              <label for="category" class="d-flex"><div id="labeldiv9back" class="mt-2 mr-1" style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> <div id="labeldiv9">Sector</div></label>
-            </div>
-            <div id="child9" class="bg-white rounded border p-1 w-auto mt-1" style="display: none; position: absolute; z-index: 3; ">
-              <div><input type="text" class="border-0 m-1" onkeyup="setcolortodiv9(this)" placeholder="Ubicación  o Código" id="bform_searchtxt"></div>
-            </div>
-          </div> --}}
   
           <div class="mx-1">
             <div id="div4" class="pattern bg-white rounded p-1 border">
@@ -258,22 +212,6 @@
               </div>
             </div>
           </div>
-  
-          {{-- <div>
-            <select class="form-select form-select-sm" name="" id="bform_province">
-              <option value="">Provincia</option>
-              @foreach ($states as $state)
-                <option value="{{$state->id}}">{{$state->name}}</option>  
-              @endforeach
-            </select>
-          </div>
-  
-          <div class="ml-1">
-            <select class="form-select form-select-sm" name="" id="bform_city">
-              <option value="">Ciudad</option>
-            </select>
-          </div> --}}
-  
           <div class="mx-1">
             <div id="div5" class="pattern bg-white rounded p-1 border">
               <input type="hidden" id="bform_bedrooms">
@@ -314,15 +252,9 @@
               <div><input onclick="setValue(this, 'labeldiv7');filter_search_aux()" type="text" value="4 garage" class="border-0 inputs-on-hover" readonly></div>
             </div>
           </div>
-          
-          {{-- <div class="mb-3 ml-1">
-            <label onclick="filter_search_aux();" class="btn btn-danger px-2 btn-sm rounded-circle"><i class="fas fa-search"></i></label>
-          </div> --}}
         </div>
       </section>
-      @endif
-    {{-- </form> --}}
-    {{-- </div> --}}
+      @endif --}}
     {{-- end new filters --}}
 
     <section class="container">
@@ -410,72 +342,6 @@
                   </div>
                 </div>
               </div>
-              {{-- <div class="col">
-                <h5 class="px-2 text-center">Mas Buscados</h5>
-                <div id="carouselExampleControls2" class="carousel slide card-img-top" data-ride="carousel">
-                    <div class="carousel-inner  text-center" style="max-height: 500px;cursor: pointer;">
-                      <!-- https://casacredito.com/uploads/listing/600/IMG_674-60b94d88c1e28.jpg -->
-
-                        <div class="carousel-item active">                            
-                          <div class="card" > <a href="https://casacredito.com/propiedades?searchtxt=Ricaurte">
-                            <img src="https://casacredito.com/uploads/listing/600/IMG_674-60b94d88c1e28.jpg" class="card-img-top" alt="..."></a>
-                            <div class="card-body text-center">
-                              <h5 class="card-title">Ricaurte</h5>
-                            </div>
-                          </div>
-                        </div>
-                    
-                        <div class="carousel-item">
-                          <div class="card" > <a href="https://casacredito.com/propiedades?searchtxt=Yunguilla">
-                            <img src="https://casacredito.com/uploads/listing/600/IMG_684-60f9cc142c5c2.jpg" class="card-img-top" alt="..."></a>
-                            <div class="card-body text-center">
-                              <h5 class="card-title">Yunguilla</h5>
-                            </div>
-                          </div>
-                        </div>   
-                    
-                        <div class="carousel-item">
-                          <div class="card" > <a href="https://casacredito.com/propiedades?searchtxt=Totoracocha">
-                            <img src="https://casacredito.com/uploads/listing/600/IMG_543-60469a976c4a7.jpg" class="card-img-top" alt="..."></a>
-                            <div class="card-body text-center">
-                              <h5 class="card-title">Totoracocha</h5>
-                            </div>
-                          </div>
-                        </div>   
-                    
-                        <div class="carousel-item">
-                          <div class="card" > <a href="https://casacredito.com/propiedades?searchtxt=Baños">
-                            <img src="https://casacredito.com/uploads/listing/600/IMG_655-60da2fbb14a6a.jpg" class="card-img-top" alt="..."></a>
-                            <div class="card-body text-center">
-                              <h5 class="card-title">Baños</h5>
-                            </div>
-                          </div>
-                        </div>   
-                    
-                        <div class="carousel-item">
-                          <div class="card" > <a href="https://casacredito.com/propiedades?searchtxt=Racar">
-                            <img src="https://casacredito.com/uploads/listing/600/1596045872_gallery.1331.jpg" class="card-img-top" alt="..."></a>
-                            <div class="card-body text-center">
-                              <h5 class="card-title">Racar</h5>
-                            </div>
-                          </div>
-                        </div>   
-                        
-                        
-
-
-
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls2" role="button" data-slide="prev" style="width: 10%;">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls2" role="button" data-slide="next" style="width: 10%;">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
-                    </a>
-                </div>
-              </div> --}}
 
               <div class="col mt-3">
                 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" data-interval="3000">
@@ -1273,8 +1139,8 @@ function search(){
 
   window.addEventListener('load', (event) => {
           //set bgimage in the div search
-          document.getElementById('bgimage').style.backgroundImage = "url({{asset('img/backimagesearch.webp')}})";
-          document.getElementById('imgheader').style.backgroundImage = "url({{asset('img/imgback1.webp')}})";
+          //document.getElementById('bgimage').style.backgroundImage = "url({{asset('img/backimagesearch.webp')}})";
+          //document.getElementById('imgheader').style.backgroundImage = "url({{asset('img/imgback1.webp')}})";
 
           let slug = "{{request()->segment(2)}}";
           if(isNaN(slug)){
