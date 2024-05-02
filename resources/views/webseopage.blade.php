@@ -61,7 +61,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 @section('content')
 
     {{-- <section id="bg-header" style="background: rgba(8, 8, 8, 0.449); background-size: cover;background-position: center; width: 100%; background-repeat: no-repeat; background-blend-mode: darken;"> --}}
-      <section id="imgheader" style="background-size: cover;background-position: center; width: 100%; background-repeat: no-repeat;">
+      <section id="imgheader" style="background-size: cover;background-position: center; width: 100%; background-repeat: no-repeat;" class="mb-5">
         <div class="row justify-content-center pt-5 pb-3">
           <div @if($ismobile) class="pt-5" @endif>
             <h1 class="text-center">{{$seopage->title}}</h1>
