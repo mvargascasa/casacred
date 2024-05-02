@@ -186,9 +186,6 @@ class Proplist extends Component
 
         if(strlen($this->city)>2 && $this->city != "ecuador") $listings_filter->where('city', 'LIKE',  '%'.$this->city.'%'); 
 
-        if($this->sector){
-            $listings_filter->where('sector', 'LIKE', '%'.$this->sector.'%');
-        }
         
         if(strlen($this->fromprice)>1 && filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT)>1){
             $fromprice_ = filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT);
@@ -200,6 +197,11 @@ class Proplist extends Component
             $listings_filter->where('property_price','<',$uptoprice_);
         }
         
+        if($this->sector){
+            $listings_filter->where('sector', 'LIKE', '%'.$this->sector.'%');
+            dd($listings_filter);
+        }
+
         $listings = $listings_filter->paginate(20);
 
         return view('livewire.proplist',compact('listings','types','categories','mobile'));
