@@ -25,6 +25,8 @@ class Proplist extends Component
     public $cityID = 15307; 
     public $typeID;
 
+    public $detailsOpen = false;
+
     // protected $queryString = [  'searchtxt'=> ['except' => ''],
     //                             'category'=> ['except' => ''],
     //                             'type'=> ['except' => ''],
@@ -51,6 +53,10 @@ class Proplist extends Component
         $this->getStates();
         $this->getCities($this->stateID);
         $this->getSectores($this->cityID);
+    }
+
+    public function setStatusDetailTag($value){
+        $this->detailsOpen = $value;
     }
 
     public function getStates(){

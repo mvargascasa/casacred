@@ -1,6 +1,6 @@
 <div class="col-12">
   @if($mobile)
-    <details>
+    <details {{ $detailsOpen ? 'open' : '' }}>
       <summary class="mb-3">Filtros de búsqueda</summary>
   @endif
   <section class="row" style="flex-wrap: wrap">
@@ -655,6 +655,8 @@ const upscroll = () => {
       @this.set('bedrooms', filterBedrooms.value);
       @this.set('bathrooms', filterBathrooms.value);
       @this.set('garage', filterGarage.value);
+
+      @this.setStatusDetailTag(false);
     }
 
     function cleanFilters(){
@@ -690,11 +692,13 @@ const upscroll = () => {
     function getCities(){
       let filterState = document.getElementById('filterState');
       @this.getCities(filterState.options[filterState.selectedIndex].dataset.id);
+      @this.setStatusDetailTag(true);
     }
 
     function getSectores(){
       let filterCity = document.getElementById('filterCity');
       @this.getSectores(filterCity.options[filterCity.selectedIndex].dataset.id);
+      @this.setStatusDetailTag(true);
     }
 
 </script>
