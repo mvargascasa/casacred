@@ -120,7 +120,14 @@ class Proplisttw extends Component
         //if($this->country)              $properties_filter->where('country', $this->country);
         if($this->state)                $properties_filter->where('state', $this->state);
         if($this->city)                 $properties_filter->where('city', $this->city);
-        if($this->sector)               $properties_filter->where('sector', $this->sector)->orWhere('address', $this->sector);
+        if($this->sector){
+            $sector = $this->sector;
+            //$properties_filter->where('sector', $this->sector)->orWhere('address', $this->sector);
+            $properties_filter->where(function ($query) use ($sector){
+                $query->where('sector', 'LIKE', '%'.$sector.'%')
+                    ->orWhere('address', 'LIKE', '%'.$sector.'%');
+            });
+        }          
         if($this->zona)                 $properties_filter->where('address', 'LIKE', '%'.$this->zona.'%');
 
         //buscando por asesor
