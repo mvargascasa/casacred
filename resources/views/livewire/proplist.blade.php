@@ -15,9 +15,11 @@
     <div class="col-sm-2 col-6 mb-3">
       <select id="filterCity" class="filters-style w-100" onchange="getSectores()">
         <option value="" selected>CIUDAD</option>
-        @foreach ($cities as $city)
-            <option value="{{$city->name }}" data-id="{{ $city->id }}">{{ $city->name }}</option>
-        @endforeach
+        @if($cities!= null)
+          @foreach ($cities as $city)
+              <option value="{{$city->name }}" data-id="{{ $city->id }}">{{ $city->name }}</option>
+          @endforeach
+        @endif
       </select>
     </div>
     <div class="col-sm-2 col-6 mb-3">

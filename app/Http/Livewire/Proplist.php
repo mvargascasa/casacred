@@ -21,7 +21,9 @@ class Proplist extends Component
 
     public $states, $cities, $sectores;
 
-    public $stateID, $cityID, $typeID;
+    public $stateID = 1022; 
+    public $cityID = 15307; 
+    public $typeID;
 
     // protected $queryString = [  'searchtxt'=> ['except' => ''],
     //                             'category'=> ['except' => ''],
@@ -40,8 +42,8 @@ class Proplist extends Component
 
     public function mount(){
         $this->getStates();
-        $this->cities = DB::table('info_cities')->where('state_id', 1022)->orderBy('name')->get();
-        $this->sectores = DB::table('info_sector')->where('city_id', 15307)->orderBy('name')->get();
+        //$this->cities = DB::table('info_cities')->where('state_id', $this->stateID)->orderBy('name')->get();
+        //$this->sectores = DB::table('info_sector')->where('city_id', $this->cityID)->orderBy('name')->get();
         $this->ptype = $this->type; 
     }
 
@@ -72,6 +74,9 @@ class Proplist extends Component
     public function render(Request $request)
     {
 
+        $this->getStates();
+        $this->getCities($this->stateID);
+        $this->getSectores($this->cityID);
         //dd($this->searchtxt);
         //dd($this->state);
 
@@ -183,7 +188,6 @@ class Proplist extends Component
 
         if($this->sector){
             $listings_filter->where('sector', 'LIKE', '%'.$this->sector.'%');
-            dd($listings_filter);
         }
         
         if(strlen($this->fromprice)>1 && filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT)>1){
