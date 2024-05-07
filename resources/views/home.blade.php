@@ -382,7 +382,7 @@
       </div>
     @endif
     <div class="d-flex justify-content-center mt-5">
-      <a style="background-color: #182741; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 18px" class="btn" href="{{ route('web.propiedades') }}">Ver todas las propiedades</a>
+      <a style="background-color: #182741; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 18px" class="btn" href="{{ route('web.propiedades', 'casas-en-venta-en-ecuador') }}">Ver todas las propiedades</a>
     </div>
   </div>
 
