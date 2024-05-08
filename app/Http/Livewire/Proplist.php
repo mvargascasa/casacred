@@ -105,7 +105,15 @@ class Proplist extends Component
                 $listings_filter->where('product_code', 'LIKE', '%'.$txt.'%');
                 $this->state = null;
             }else{
-                $listings_filter->where('address','LIKE',"%$this->searchtxt%");
+                $location = $this->searchtxt;
+                $listings_filter->where(function ($query) use ($location) {
+                    $query->where('listing_title', 'LIKE', '%'.$location.'%')
+                        ->orWhere('address', 'LIKE', '%'.$location.'%')
+                        ->orWhere('sector', 'LIKE', '%'.$location.'%')
+                        ->orWhere('city', 'LIKE', '%'.$location.'%')
+                        ->orWhere('state', 'LIKE', '%'.$location.'%');
+                });
+                //$listings_filter->where('address','LIKE',"%$this->searchtxt%");
             }   
             if($listings_filter->count()<1){                
                 $listings_filter = Listing::where('status',1)->latest();
