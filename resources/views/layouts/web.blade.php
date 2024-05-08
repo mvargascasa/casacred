@@ -443,7 +443,8 @@ if(strpos($actual_link, 'localhost') === false){
                         
                         <p class="text-dark-50"><i class="fas fa-map-marker-alt"></i><a target="_blank" style="color: #ffffff" href="https://maps.app.goo.gl/dvP54hXNxpVC1Hbz9"> Remigio Tamariz Crespo y Av. Fray Vicente Solano</a></p>                        
                         
-                        <p><a href="tel:+593983849073" class="asindeco" style="color: #ffffff !important"><i class="fas fa-phone"></i> 098-384-9073</a>
+                        <p><i class="fas fa-phone"></i> <span class="font-weight-bold">Ventas:</span> <a href="tel:+593983849073" class="asindeco" style="color: #ffffff !important"> 098-384-9073</a>
+                        <p><i class="fas fa-phone"></i> <span class="font-weight-bold">Rentas:</span><a href="tel:+593987474637" class="asindeco" style="color: #ffffff !important"> 098-747-4637</a>
                         </p>
                         
                         <p><a href="mailto:info@grupohousing.com" class="asindeco" style="color: #ffffff !important; text-decoration: none"><i class="fas fa-envelope"></i> info@grupohousing.com</a></p>
