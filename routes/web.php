@@ -20,7 +20,8 @@ use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WebController::class,'home'])->name('web.index');
-Route::get('/propiedades/{code?}/{slug?}', [WebController::class,'index'])->name('web.propiedades');
+Route::post('/search-properties', [WebController::class, 'searchHome'])->name('search.home');
+Route::get('/propiedades/{slug?}', [WebController::class,'index'])->name('web.propiedades');
 //NUEVAS RUTAS
 Route::get('/home', [WebController::class, 'home'])->name('web.home');
 Route::get('/creditos', [WebController::class, 'creditos'])->name('web.creditos');
@@ -43,6 +44,7 @@ Route::get('/politicas-de-privacidad', [WebController::class,'politicas'])->name
 
 Route::post('sendlead', [WebController::class,'sendlead'])->name('web.sendlead');
 Route::post('sendcite', [WebController::class, 'sendcite'])->name('web.sendcite');
+Route::post('send-contact-form', [WebController::class, 'sendLeadHome'])->name('send.lead.form.home');
 Route::post('sendleadaval', [WebController::class, 'sendleadaval'])->name('web.sendleadaval');
 Route::post('sendemailinterested', [WebController::class, 'sendemailinterested'])->name('web.send.email.interested');
 Route::get('indextest', [WebController::class,'indextest'])->name('web.indextest');
@@ -188,6 +190,8 @@ Route::post('/landing/leadcredito', [LandingController::class, 'sendleadcredito'
 Route::get('/landing/solicite-su-credito', [LandingController::class, 'credito'])->name('web.landing.credito');
 
 Route::get('/thank', function(){return view('thank');})->name('thank');
+
+Route::get('/properties/category/{type}', [WebController::class, 'getPropertiesByCategory']);
 
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //    return view('dashboard');

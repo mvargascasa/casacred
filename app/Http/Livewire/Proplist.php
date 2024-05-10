@@ -42,7 +42,11 @@ class Proplist extends Component
     //                             'bathrooms' => ['except' => '']    
     //                         ]; //se agrego en este array
 
-    public function mount(){
+    public function mount($category, $type, $searchtxt){
+        $this->category = $category;
+        $this->type = $type;
+        $this->typeID = $type;
+        $this->searchtxt = $searchtxt;
         $this->getStates();
         //$this->cities = DB::table('info_cities')->where('state_id', $this->stateID)->orderBy('name')->get();
         //$this->sectores = DB::table('info_sector')->where('city_id', $this->cityID)->orderBy('name')->get();
@@ -105,20 +109,47 @@ class Proplist extends Component
                 $listings_filter->where('product_code', 'LIKE', '%'.$txt.'%');
                 $this->state = null;
             }else{
-                $location = $this->searchtxt;
-                $listings_filter->where(function ($query) use ($location) {
-                    $query->where('listing_title', 'LIKE', '%'.$location.'%')
-                        ->orWhere('address', 'LIKE', '%'.$location.'%')
-                        ->orWhere('sector', 'LIKE', '%'.$location.'%')
-                        ->orWhere('city', 'LIKE', '%'.$location.'%')
-                        ->orWhere('state', 'LIKE', '%'.$location.'%');
-                });
+                $text = $this->searchtxt;
+                $words = explode(" ", $text);
+                if(count($words)>1){
+                    $listings_filter->where(function ($query) use ($words) {
+                        foreach ($words as $word) {
+                            $query->where(function ($query) use ($word) {
+                                $category = null;
+                                if($word == 'casas' || $word == 'casa') $category = 23;
+                                $query->where('listing_title', 'LIKE', '%' . $word . '%')
+                                      ->orWhere('address', 'LIKE', '%' . $word . '%')
+                                      ->orWhere('sector', 'LIKE', '%' . $word . '%')
+                                      ->orWhere('city', 'LIKE', '%' . $word . '%')
+                                      ->orWhere('state', 'LIKE', '%' . $word . '%')
+                                      ->orWhere('listingtype', $category);
+                            });
+                        }
+                    });
+                    // $listings_filter->where(function ($query) use ($words) {
+                    //     foreach ($words as $word) {
+                    //         $query->where('listing_title', 'LIKE', '%' . $word . '%')
+                    //               ->orWhere('address', 'LIKE', '%' . $word . '%')
+                    //               ->orWhere('sector', 'LIKE', '%' . $word . '%')
+                    //               ->orWhere('city', 'LIKE', '%' . $word . '%')
+                    //               ->orWhere('state', 'LIKE', '%' . $word . '%');
+                    //     }
+                    // });
+                } else {
+                    $listings_filter->where(function ($query) use ($text) {
+                        $query->where('listing_title', 'LIKE', '%'.$text.'%')
+                            ->orWhere('address', 'LIKE', '%'.$text.'%')
+                            ->orWhere('sector', 'LIKE', '%'.$text.'%')
+                            ->orWhere('city', 'LIKE', '%'.$text.'%')
+                            ->orWhere('state', 'LIKE', '%'.$text.'%');
+                    });
+                }
                 //$listings_filter->where('address','LIKE',"%$this->searchtxt%");
             }   
-            if($listings_filter->count()<1){                
-                $listings_filter = Listing::where('status',1)->latest();
-                $listings_filter->where('listing_title','LIKE',"%$this->searchtxt%");
-            }
+            // if($listings_filter->count()<1){                
+            //     $listings_filter = Listing::where('status',1)->latest();
+            //     $listings_filter->where('listing_title','LIKE',"%$this->searchtxt%");
+            // }
         }
 
         //buscando por tags

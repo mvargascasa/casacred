@@ -3,8 +3,11 @@
     <details {{ $detailsOpen ? 'open' : '' }}>
       <summary class="mb-3">Filtros de búsqueda</summary>
   @endif
-  <section class="row" style="flex-wrap: wrap">
-    <div class="col-sm-2 col-6 mb-3">
+  <section class="d-flex justify-content-between border px-5 pt-3 rounded bg-white" style="flex-wrap: wrap; gap: 10px">
+    <div>
+      <input type="text" class="form-control" id="filterSearchTxt" placeholder="Buscar por ubicacion, description, titulo..." @if($searchtxt != null || $searchtxt != "") value="{{$searchtxt}}" @endif>
+    </div>
+    {{-- <div class="col-sm-2 col-6 mb-3">
       <select id="filterState" class="filters-style w-100" onchange="getCities()">
         <option value="">PROVINCIA</option>
         @foreach ($states as $state)
@@ -31,31 +34,44 @@
           @endforeach
         @endif
       </select>
-    </div>
-    <div class="col-sm-2 col-6 mb-3">
+    </div> --}}
+    {{-- <div class="col-sm-2 col-6 mb-3">
       <input type="text" class="inputs-style w-100" id="filterAdress" placeholder="SECTOR">
+    </div> --}}
+    <div class="dropdown">
+      <button class="btn border bg-white dropdown-toggle" type="button" id="dropdownMenuUbicacion" data-bs-toggle="dropdown" aria-expanded="false">
+        Ubicación
+      </button>
+      <ul class="dropdown-menu px-3" aria-labelledby="dropdownMenuUbicacion">
+        <li class="mb-2">
+          <input type="text" class="form-control" placeholder="Provincia" id="filterState">
+        </li>
+        <li class="mb-2">
+          <input type="text" class="form-control" placeholder="Ciudad" id="filterCity">
+        </li>
+        <li>
+          <input type="text" class="form-control" placeholder="Sector" id="filterSector">
+        </li>
+      </ul>
     </div>
-    <div class="col-sm-2 col-6 mb-3">
-      <input type="text" class="inputs-style w-100" id="filterCode" placeholder="CÓDIGO">
-    </div>
-    <div class="col-sm-2 col-6 mb-3">
-      <select id="filterPropertyType" class="filters-style w-100">
-        <option value="">TIPO DE PROPIEDAD</option>
+    <div>
+      <select id="filterPropertyType" class="form-select w-100">
+        <option value="">Tipo de propiedad</option>
         @foreach ($types as $type)
             <option value="{{ $type->id }}" @if($typeID == $type->id) selected @endif>{{ $type->type_title }}</option>
         @endforeach
       </select>
     </div>
-    <div class="col-sm-2 col-6 mb-3">
-      <select id="filterTransactionType" class="filters-style w-100">
-        <option value="">OPERACION</option>
-        <option value="en-venta">En Venta</option>
-        <option value="alquiler">En Renta</option>
+    <div>
+      <select id="filterTransactionType" class="form-select w-100">
+        <option value="" selected>Operación</option>
+        <option value="en-venta" @if($category == 'en-venta') selected @endif>En Venta</option>
+        <option value="alquilar" @if($category == 'alquilar') selected @endif>En Renta</option>
       </select>
     </div>
-    <div class="col-sm-2 col-6 mb-3">
-      <select id="filterBedrooms" class="filters-style w-100">
-        <option value="">DORMITORIOS</option>
+    {{-- <div>
+      <select id="filterBedrooms" class="form-select w-100">
+        <option value="">Dormitorios</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -63,10 +79,10 @@
         <option value="5">5</option>
         <option value="6">6</option>
       </select>
-    </div>
-    <div class="col-sm-2 col-6 mb-3">
-      <select id="filterBathrooms" class="filters-style w-100">
-        <option value="">BAÑOS</option>
+    </div> --}}
+    {{-- <div>
+      <select id="filterBathrooms" class="form-select w-100">
+        <option value="">Baños</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -74,10 +90,35 @@
         <option value="5">5</option>
         <option value="6">6</option>
       </select>
+    </div> --}}
+    <div class="dropdown">
+      <button class="btn border dropdown-toggle bg-white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Características
+      </button>
+      <ul class="dropdown-menu px-3" aria-labelledby="dropdownMenuButton1">
+        <li class="mb-2">
+          <input type="text" class="form-control" placeholder="Dormitorios" id="filterBedrooms">
+        </li>
+        <li class="mb-2">
+          <input type="text" class="form-control" placeholder="Baños" id="filterBathrooms">
+        </li>
+        <li>
+          <input type="text" class="form-control" placeholder="Garage" id="filterGarage">
+        </li>
+      </ul>
+      {{-- <select id="filterGarage" class="form-select w-100">
+        <option value="">Garage</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select> --}}
     </div>
-    <div class="col-sm-2 col-6 mb-3">
-      <select id="filterGarage" class="filters-style w-100">
-        <option value="">GARAGE</option>
+    {{-- <div>
+      <select id="filterAntiquity" class="form-select w-100">
+        <option value="">Antiguedad</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -85,23 +126,12 @@
         <option value="5">5</option>
         <option value="6">6</option>
       </select>
-    </div>
-    <div class="col-sm-2 col-6 mb-3">
-      <select id="filterAntiquity" class="filters-style w-100">
-        <option value="">ANTIGUEDAD</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-      </select>
-    </div>
+    </div> --}}
     <div style="width: 40px" class="mb-3">
-      <button class="btn p-0" style="background-color: #BFC5D4; width: 44px; height: 37px; border-radius: 10px" onclick="search()"><img style="filter: invert(100%)" width="30px" src="{{ asset('img/buscar.png') }}" alt=""></button>
+      <button class="btn p-0 px-2" style="background-color: #BFC5D4; height: 37px; border-radius: 10px; color: #ffffff" onclick="search()">BUSCAR</button>
     </div>
     <div style="width: 50px" class="mb-3 ml-2">
-      <button class="btn p-0" style="background-color: #182741; width: 45px; height: 37px; border-radius: 10px" onclick="cleanFilters()"><img width="25px" src="{{ asset('img/clear-filters.svg') }}" alt=""></button>
+      <button class="btn p-0 px-2" style="background-color: #182741; height: 37px; border-radius: 10px; color: #ffffff" onclick="cleanFilters()">LIMPIAR</button>
     </div>
   </section>
   @if($mobile)
@@ -633,23 +663,25 @@ const upscroll = () => {
 
     function search(){
 
+      let filterSearchTxt = document.getElementById('filterSearchTxt');
       let filterState = document.getElementById('filterState');
       let filterCity = document.getElementById('filterCity');
       let filterSector = document.getElementById('filterSector');
-      let filterAdress = document.getElementById('filterAdress');
-      let filterCode = document.getElementById('filterCode');
+      //let filterAdress = document.getElementById('filterAdress');
+      //let filterCode = document.getElementById('filterCode');
       let filterPropertyType = document.getElementById('filterPropertyType');
       let filterTransactionType = document.getElementById('filterTransactionType');
       let filterBedrooms = document.getElementById('filterBedrooms');
       let filterBathrooms = document.getElementById('filterBathrooms');
       let filterGarage = document.getElementById('filterGarage');
-      let filterAntiquity = document.getElementById('filterAntiquity');
+      //let filterAntiquity = document.getElementById('filterAntiquity');
 
       @this.set('state', filterState.value);
       @this.set('city', filterCity.value);
       @this.set('sector', filterSector.value);
-      @this.set('searchtxt', filterCode.value);
-      @this.set('searchtxt', filterAdress.value);
+      //@this.set('searchtxt', filterCode.value);
+      //@this.set('searchtxt', filterAdress.value);
+      @this.set('searchtxt', filterSearchTxt.value);
       @this.set('ptype', filterPropertyType.value);
       @this.set('category', filterTransactionType.value);
       @this.set('bedrooms', filterBedrooms.value);
@@ -661,29 +693,31 @@ const upscroll = () => {
 
     function cleanFilters(){
 
+      let filterSearchTxt = document.getElementById('filterSearchTxt');
       let filterState = document.getElementById('filterState');
       let filterCity = document.getElementById('filterCity');
       let filterSector = document.getElementById('filterSector');
-      let filterAdress = document.getElementById('filterAdress');
-      let filterCode = document.getElementById('filterCode');
+      //let filterAdress = document.getElementById('filterAdress');
+      //let filterCode = document.getElementById('filterCode');
       let filterPropertyType = document.getElementById('filterPropertyType');
       let filterTransactionType = document.getElementById('filterTransactionType');
       let filterBedrooms = document.getElementById('filterBedrooms');
       let filterBathrooms = document.getElementById('filterBathrooms');
       let filterGarage = document.getElementById('filterGarage');
-      let filterAntiquity = document.getElementById('filterAntiquity');
+      //let filterAntiquity = document.getElementById('filterAntiquity');
 
+      filterSearchTxt.value = "";
       filterState.value = "";
       filterCity.value = "";
       filterSector.value = "";
-      filterAdress.value = "";
-      filterCode.value = "";
+      //filterAdress.value = "";
+      //filterCode.value = "";
       filterPropertyType.value = "";
       filterTransactionType.value = "";
       filterBedrooms.value = "";
       filterBathrooms.value = "";
       filterGarage.value = "";
-      filterAntiquity.value = "";
+      //filterAntiquity.value = "";
 
       search();
       

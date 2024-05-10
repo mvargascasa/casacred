@@ -20,7 +20,45 @@ class WebController extends Controller
 {
     use SendEmailTrait;
 
-    public function index(Request $request, ?string $code = null, ?string $slug = null){
+    public function index(Request $request, ?string $slug = null){
+
+        $operacion = session('operacion');
+        $type = session('tipo');
+        $text = session('text');
+
+        if($operacion == null || $type == null || $text == null){
+
+            $slug = request()->segment(2);
+
+            $segments = explode('-', $slug);
+            if(count($segments)>1){
+                if($segments[0] != "propiedades"){
+                    if($segments[1] == "comerciales"){
+                        $typeSlug = $segments[0] . " " . $segments[1];
+                        $operacionSlug = $segments[3];
+                        if(count($segments)>4) $textSlug = $segments[5]; else $textSlug = null;
+                    } else {
+                        $typeSlug = $segments[0];
+                        $operacionSlug = Str::slug($segments[1] . " " . $segments[2]);
+                        if(count($segments)>3) $textSlug = $segments[4]; else $textSlug = null;
+                    }
+                    $type = DB::table('listing_types')->select('id')->where('type_title', 'LIKE', '%'.$typeSlug.'%')->first();
+                    $type = $type->id;
+                    if($operacionSlug == "alquiler" || $operacionSlug == "renta") $operacion = "alquilar";
+                    else $operacion = $operacionSlug;
+        
+                    $text = $textSlug;
+                }
+            }
+
+        } else {
+            $operacion = session('operacion');
+            $type = session('tipo');
+            $text = session('text');
+        }
+
+
+        return view('indexweb', compact('operacion', 'type', 'text'));
         
         if(isset($_SERVER['HTTP_USER_AGENT'])){
             $useragent= $_SERVER['HTTP_USER_AGENT'];
@@ -61,20 +99,20 @@ class WebController extends Controller
     
             //return "code: ". $code . " - slug: " . $slug . " - ubication: " . $ubication;
     
-            if(!is_numeric($code)) {
-                $ubication = $slug;
-                $slug = $code;
-                if($ubication){
-                    $listings = Listing::filterByListingTitle($ubication)->paginate(20);
-                    //dd($listings);
-                    return view('indexweb',compact('states', 'keywords', 'listings', 'types', 'categories', 'ismobile'));
-                }
-            } else {
-                $listings = Listing::where('product_code', $code)->first();
-                //dd($listings);
-                //dd($listings);
-                return view('indexweb',compact('states', 'keywords', 'listings', 'types', 'categories', 'ismobile'));
-            }
+            // if(!is_numeric($code)) {
+            //     $ubication = $slug;
+            //     $slug = $code;
+            //     if($ubication){
+            //         $listings = Listing::filterByListingTitle($ubication)->paginate(20);
+            //         //dd($listings);
+            //         return view('indexweb',compact('states', 'keywords', 'listings', 'types', 'categories', 'ismobile'));
+            //     }
+            // } else {
+            //     $listings = Listing::where('product_code', $code)->first();
+            //     //dd($listings);
+            //     //dd($listings);
+            //     return view('indexweb',compact('states', 'keywords', 'listings', 'types', 'categories', 'ismobile'));
+            // }
     
             if($slug){
                 $seopage = SeoPage::where('slug', $slug)->first();
@@ -345,7 +383,7 @@ class WebController extends Controller
             $message .= "<br> Ciudad: " . strip_tags($request->city);
         }
 
-        if($request->message == null || $request->message == "") $request->message = "Sin información";
+        //if($request->message == null || $request->message == "") $request->message = "Sin información";
 
         $message .= "<br> Interes: ".strip_tags($request->interest)."
                      <br> Mensaje: ".strip_tags($request->message)."
@@ -649,8 +687,62 @@ class WebController extends Controller
         }
     }
 
-    // public function avaluo(){
-    //     return view('');//crear la vista y retornar
-    // }
+    public function getPropertiesByCategory($type){
+        $properties = Listing::where('listingtype', $type)->where('status', 1)->where('available', 1)->get();
+        return response()->json($properties);
+    }
+
+    public function searchHome(Request $request){
+        //return $request;
+        //$operacion = $request->category;
+        //$tipo = $request->ptype;
+        //$text = $request->searchtxt;
+
+        $request->category ? $operacion = $request->category : $operacion = null;
+        $request->ptype ? $tipo = $request->ptype : $tipo = null;
+        $request->searchtxt ? $text = $request->searchtxt : $text = null;
+
+        session(['operacion' => $operacion]);
+        session(['tipo' => $tipo]);
+        session(['text' => $text]);
+
+        $operacion == "alquilar" ? $operacion = "en-renta" : null;
+
+        if($tipo != null || $tipo != ""){
+            $propertyType = DB::table('listing_types')->where('id', $tipo)->first();  //obtengo el tipo de propiedad
+            $typeName = Str::lower($propertyType->type_title);
+            $slug = Str::slug($typeName . " " . $operacion);
+        } else {
+            $slug = Str::slug('propiedades ' . $operacion);
+        }
+
+
+        if($text != null || $text != ""){
+            return redirect()->route('web.propiedades');
+        } else {
+            return redirect()->route('web.propiedades', ['slug' => $slug]);
+        }
+    }
+
+    public function sendLeadHome(Request $request){
+
+        $message = "<br><strong>Nuevo Lead Grupo Housing</strong>
+                    <br> Nombre: ". strip_tags($request->names)."
+                    <br> Telef: ".  strip_tags($request->phone)."
+                    <br> Mensaje: ".strip_tags($request->message)."
+                    <br> Fuente: Website ";
+                
+        $header='';
+        $header .= 'From: <leads@grupohousing.com>' . "\r\n";
+        $header .= "Reply-To: ".'info@grupohousing.com'."\r\n";
+        $header .= "MIME-Version: 1.0\r\n";
+        $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+        //mail('info@casacredito.com','Lead Grupo Housing: '.strip_tags($request->names), $message, $header);
+        mail('sebas31051999@gmail.com', 'Lead Grupo Housing: ' . strip_tags($request->names), $message, $header);
+
+        return view('thank');
+
+    }
 
 }

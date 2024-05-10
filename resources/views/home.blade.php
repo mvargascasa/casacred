@@ -15,19 +15,28 @@
 
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
+    <link rel="stylesheet" href="{{ asset('css/font-style.css') }}">
+
     <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
 
     <style>
       html, body {
         max-width: 100% !important;
         overflow-x: hidden !important;
+        font-family: 'Sharp Grotesk';
+        background-color: #ffffff;
       }
       @media screen and (max-width: 850px){
         #txttitlebanner{font-size: 12px !important;text-align: center !important;}
         #infolistingbanner{font-size: 10px !important;bottom: 0px !important;right: 5px !important;}
-        #txtserviciosinmo{font-size: 15px !important;}
-        #inforowconstruye1{font-size: 14px !important;}
-        #inforowconstruye2{font-size: 11px !important;}
+        #txtserviciosinmo{font-size: 18px !important;}
+        #inforowconstruye1{font-size: 18px !important;}
+        #inforowconstruye2{font-size: 14px !important;}
+        .video-services{width: 90vw; height: auto !important; margin-bottom: 10% !important}
+        .section-testimonials{padding-left: 0px !important; padding-right: 0px !important}
+        .testimonials-header{margin-left: 0px !important; padding-top: 0px !important; padding-right: 0px !important;}
+        .testimonials-card{margin-left: 0px !important; margin-top: 0px !important; width: 100% !important; height: auto !important; padding-top: 20% !important; padding-bottom: 10% !important}
+        .pattern-testimonials-card{height: auto !important;}
       }
       @media screen and (max-width: 1040px){
         #parentBuscador{
@@ -213,6 +222,17 @@
         outline: 0 !important;
         box-shadow: none !important;
     }
+    .btn-category:hover{
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+    .card:hover .card-body{
+      background-color: #182741;
+      color: #ffffff;
+      border-radius: 0px 0px 20px 20px;
+    }
+    .card:hover .card-body img{
+      filter: invert(100%)
+    }
     </style>
     @livewireStyles
 @endsection
@@ -257,48 +277,11 @@
         </div>
       @endif
       <video class="video-header" style="object-fit:cover; width: 100%; height: 700px;" src="{{ asset('img/video-home.mp4') }}" autoplay muted loop></video>
-      {{-- <div class="w-100 position-absolute" style="top: 35%;"> --}}
         @include('layouts.homesearch')
-      {{-- </div> --}}
-    </div>
+      </div>
   </section>
 
-  {{-- <div class="position-relative">
-    @if(!$ismobile)
-    <a class="text-light" href="tel:+593983849073">
-      <div class="position-absolute mr-2 mt-2 px-1 rounded-pill font-weight-normal" style="top: 0; right: 0; z-index: 3; font-size: 16px;">
-        <img width="20px" height="15px" src="{{asset('img/ECUADOR-04.webp')}}" alt="telefono casa credito inmobiliaria"> 098-384-9073
-      </div>
-    </a>
-    <a class="text-light" href="tel:+17186903740">
-      <div class="position-absolute mr-2 mt-2 px-1 rounded-pill font-weight-normal" style="top: 30px; right: 0; z-index: 3; font-size: 16px">
-        <img width="20px" height="13px" src="{{asset('img/USA-05.webp')}}" alt="telefono casa credito inmobiliaria usa" class="mr-1"> 718-690-3740 
-      </div>
-    </a>
-    @endif
-    <div class="position-relative">
-            <div id="carouselExampleFadeBanner" class="carousel slide carousel-fade"  data-ride="carousel" data-interval="1000">
-              <div class="carousel-inner" style="height: @if($ismobile) auto; @else 36vw; @endif">
-                @php
-                  $count = 0;
-                @endphp
-                @for ($i = 1; $i < 5; $i++)
-                  <div class="carousel-item @if($count == 0) active @endif">
-                    <img class="img-fluid lazyLoad" style="filter: brightness(50%); width: 100%; @if($ismobile) height: auto; margin-top: 60px; @else height: 40vw; @endif" data-src="{{ asset('img/banner'. $i .'.webp') }}" alt="Compra, Venta y Alquiler de Casas, Departamentos y Terrenos en Cuenca Ecuador">   
-                    @php $count++; @endphp
-                  </div>
-                @endfor
-              </div>
-            </div> 
-          </div>
-          <div id="search_lay" style="opacity: 1 !important;">
-            @include('layouts.homesearch')
-          </div>
-        </div>
-      </div>
-  </div> --}}
-
-  <div style="margin-left: auto; margin-right: auto" class="mb-5">
+  {{-- <div style="margin-left: auto; margin-right: auto" class="mb-5">
     <h2 style="font-size: 30px; color: #182741" class="mt-5 mb-5 text-center"><span style="font-weight: 300">PROPIEDADES</span> <span style="font-weight: 600">DESTACADAS</span></h2>
     @if ($ismobile)
       <div id="carouselExampleFade" class="carousel slide carousel-fade ml-3 mr-3 position-relative" data-bs-ride="carousel">
@@ -338,7 +321,6 @@
                       }
                     }
                 @endphp
-                {{-- <p style="margin: 0px">{{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif | {{ $bathroom }} @if($bathroom > 1) baños @else baño @endif | {{ $listing->construction_area}} m<sup>2</sup></p> --}}
                 <div class="text-right">
                   @if($bedroom > 0) <span>{{ $bedroom }} @if($bedroom > 1) dormitorios @else dormitorio @endif</span> | @endif
                   @if($bathroom > 0) <span>{{ $bathroom }} @if($bathroom > 1) baños @else baño @endif</span> | @endif
@@ -349,11 +331,9 @@
           @endforeach
         </div>
         <button style="height: 50px; margin-top: 25%" class="carousel-control-prev btn" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-          {{-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> --}}
           <span class="visually-hidden"><i style="color: #ffffff;font-weight:bold; font-size: 20px" class="far fa-angle-left"></i></span>
         </button>
         <button style="height: 50px; margin-top: 25%" class="carousel-control-next btn" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-          {{-- <span class="carousel-control-next-icon" aria-hidden="true"></span> --}}
           <span class="visually-hidden"><i style="color: #ffffff; font-size: 20px" class="far fa-angle-right"></i></span>
         </button>
       </div>
@@ -384,65 +364,135 @@
     <div class="d-flex justify-content-center mt-5">
       <a style="background-color: #182741; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 18px" class="btn" href="{{ route('web.propiedades', 'casas-en-venta-en-ecuador') }}">Ver todas las propiedades</a>
     </div>
-  </div>
+  </div> --}}
 
-        <div data-aos="zoom-out" class="position-relative d-flex justify-content-center align-items-center mt-4 mb-5">
-          <section id="secondsection" style="@if($ismobile) height: 13rem; @else height: 32rem; @endif background-size: cover;background-position: 10% 40%; width: 100%; background-repeat: no-repeat;">
-          </section>
-          <div class="text-center text-white position-absolute" style="margin-top: 10%">
-            <div>
-              <p id="inforowconstruye1" style="font-weight: 300; margin: 0; font-size: 23px">¿Necesita construir una vivienda propia?</p>
-              <p id="inforowconstruye2" style="font-weight: 600; margin: 0; margin-bottom: 10px; font-size: 19px">Conozca más sobre nuestros servicios</p>
+  <section class="container mt-5">
+    <h2 class="text-center"><span style="font-weight: 200"> EXPLORA NUESTRO CATÁLOGO</span> <br> <span style="font-weight: 600">DE PROPIEDADES</span> </h2>
+      {{-- <section class="d-flex justify-content-center mt-5" style="gap: 10px">
+          <button class="btn border btn-category">Casas</button>
+          <button class="btn border btn-category">Departamentos</button>
+          <button class="btn border btn-category">Casas Comerciales</button>
+          <button class="btn border btn-category">Terrenos</button>
+          <button class="btn border btn-category">Quintas</button>
+      </section> --}}
+      {{-- <section class="row mt-5">
+        @for ($i = 0; $i < 4; $i++)
+        <article class="col-sm-3">
+          <div class="card" style="border-radius: 20px !important">
+            <div class="position-relative">
+              <img class="card-img-top" style="object-fit: cover; height: 300px; border-radius: 20px 20px 0px 0px" src="https://canalhogar.com/wp-content/uploads/2023/10/25-planos-y-Disenos-de-Casas-de-2-Pisos-Modernas-800x600.jpg" alt="Card image cap">
+              <div class="position-absolute" style="top: 8px; right: 0px">
+                <span class="px-2 py-2" style="background-color: #182741; color: #ffffff; border-radius: 0px 20px 0px 0px">COD:1234</span>
+              </div>
             </div>
-            <a href="{{ route('web.servicios', 'construye') }}" class="btn btn-outline-light" style="border-radius: 25px; width: 40%">Leer más</a>
+            <div class="card-body">
+              <span style="font-size: small"><img width="15px" src="{{ asset('img/location-icon.png') }}" alt=""> Cuenca, Azuay</span>
+              <p style="font-size: 17px; font-weight: 500">Departamento por estrenar</p>
+              <div class="d-flex">
+                <div style="width: 65%" class="d-flex justify-content-between">
+                  <div>
+                    <img src="{{ asset('img/bed-black.png') }}" alt="">
+                    <span>2</span>
+                  </div>
+                  <div>
+                    <img src="{{ asset('img/bathroom-black.png') }}" alt="">
+                    <span>2</span>
+                  </div>
+                  <div>
+                    <img src="{{ asset('img/garage-black.png') }}" alt="">
+                    <span>2</span>
+                  </div>
+                </div>
+                <div style="width: 35%" class="d-flex justify-content-end">
+                  <div>
+                    <span style="font-weight: 600">$750</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      {{-- @php
-        $listings = \App\Models\Listing::select('listingtype', 'property_price', 'construction_area', 'heading_details', 'address', 'images', 'slug')->where('product_code', 1661)->orWhere('product_code', 1658)->orWhere('product_code', 1650)->orWhere('product_code', 1621)->get();
-      @endphp --}}
+        </article>
+        @endfor
+      </section> --}}
+      <section class="d-flex justify-content-center mt-5">
+        <a href="{{ route('web.propiedades') }}" class="btn" style="background-color: #182741; color: #ffffff">Ver todas las propiedades</a>
+      </section>
+  </section>
+
+        <section data-aos="zoom-out" class="position-relative d-flex justify-content-center align-items-center pt-5 mb-5">
+          <section style="@if($ismobile) height: 15rem; @else height: 32rem; @endif background-size: cover;background-position: center center; width: 100%; background-repeat: no-repeat; background-image: url('{{ asset('img/venda-con-nosotros.webp') }}')">
+          </section>
+          <div class="text-center text-white position-absolute">
+            <div>
+              <p id="inforowconstruye1" style="font-weight: 300; margin: 0; font-size: 2.5rem; font-family: 'Sharp Grotesk"> <span style="font-weight: 200">¿NECESITAS CONSTRUIR </span> <span style="font-weight: 500"> UNA VIVIENDA PROPIA?</span></p>
+              <p id="inforowconstruye2" style="margin: 0; margin-bottom: 10px; font-size: 1.3rem; font-family: 'Sharp Grotesk'">Conozca más sobre nuestros servicios</p>
+            </div>
+            <a href="{{ route('web.servicios', 'construye') }}" class="btn btn-outline-light">Leer más</a>
+          </div>
+        </section>
 
     <section class="container mt-5 pb-5">
-      <h2 id="txtserviciosinmo" style="font-size: 30px; color: #182741" class="text-center mt-3 @if($ismobile) mb-3 @else mb-5 @endif"> <span style="font-weight: 100">SERVICIOS</span> <span style="font-weight: 700;">INMOBILIARIOS</span></h2>
+      <h2 id="txtserviciosinmo" style="font-size: 30px; color: #182741; font-family: 'Sharp Grotesk'" class="text-center mt-3 @if($ismobile) mb-3 @else mb-5 @endif"> <span style="font-weight: 100">SERVICIOS</span> <span style="font-weight: 700;">INMOBILIARIOS</span></h2>
+      <p class="text-center" style="color: #182741">Descubre nuestro excepcional servicio, donde la atención personalizada y la experiencia se unen para satisfacer todas tus necesidades ya sea que estés buscando comprar, vender o alquilar una propiedad.</p>
+      
+      <section class="row pt-5">
+        <div class="col-sm-1"></div>
+        <article class="col-sm-6">
+          <video class="border video-services" width="650" height="500" controls autoplay controls>
+            <source src="{{ asset('img/video-home.mp4') }}" type="video/mp4">
+          </video>
+        </article>
+        <article class="col-sm-4">
+
+          <article data-aos="fade-up" class="row mb-3">
+            <section class="d-flex justify-content-center">
+              <div class="border py-4" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; width: 300px">
+                <section class="d-flex justify-content-center">
+                  <p class="h5 mr-2" style="font-family: 'Sharp Grotesk'"> <span style="font-weight: 100">TENEMOS LA</span> <br> <span class="h3" style="font-weight: 500">CASA IDEAL</span></p>
+                  <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
+                </section>
+                <section class="d-flex justify-content-end mt-2 pr-5">
+                  <a href="{{route('web.propiedades', 'casas-en-venta-en-cuenca')}}" class="btn btn-sm text-white px-4" style="background-color: #182741; border-radius: 10px">Comprar</a>
+                </section>
+              </div>
+            </section>
+          </article>
+
+          <article data-aos="fade-up" class="row mb-3">
+            <section class="d-flex justify-content-center">
+              <div class="border py-4" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; width: 300px">
+                <section class="d-flex justify-content-center">
+                  <p class="h5 mr-2"> <span style="font-weight: 100">VENDA SU</span> <br> <span class="h3" style="font-weight: 500">PROPIEDAD</span></p>
+                  <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
+                </section>
+                <section class="d-flex justify-content-end mt-2 pr-5">
+                  <button class="btn btn-sm text-white px-4" style="background-color: #182741; border-radius: 10px" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Vender</button>
+                </section>
+              </div>
+            </section>
+          </article>
+
+          <article data-aos="fade-up" class="row mb-3">
+            <section class="d-flex justify-content-center">
+              <div class="border py-4" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; width: 300px">
+                <section class="d-flex justify-content-center">
+                  <p class="h5 mr-2"> <span style="font-weight: 100">ALQUILE CON</span> <br> <span class="h3" style="font-weight: 500">NOSOTROS</span></p>
+                  <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
+                </section>
+                <section class="d-flex justify-content-end mt-2 pr-5">
+                  <button data-bs-toggle="modal" data-bs-target="#modalAlquiler" class="btn btn-sm text-white px-4" style="background-color: #182741; border-radius: 10px">Alquilar</button>
+                </section>
+              </div>
+            </section>
+          </article>
+
+        </article>
+        <div class="col-sm-1"></div>
+      </section>
+      
       <section class="row mr-2 ml-2 pb-5">
-        <article data-aos="fade-up" class="col-lg-4 col-md-6 col-sm-12 col-12 mb-3">
-          <section class="d-flex justify-content-end cards-services">
-            <div class="border p-5" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
-              <section class="d-flex">
-                <p class="h5 mr-2"> <span style="font-weight: 100">TENEMOS LA</span> <br> <span class="h3" style="font-weight: 500">CASA IDEAL</span></p>
-                <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
-              </section>
-              <section class="d-flex justify-content-end mt-2">
-                <a href="{{route('web.propiedades', 'casas-en-venta-en-cuenca')}}" class="btn btn-sm text-white" style="background-color: #182741">Comprar una propiedad</a>
-              </section>
-            </div>
-          </section>
-        </article>
-        <article data-aos="fade-up" class="col-lg-4 col-md-6 col-sm-12 col-12 mb-3">
-          <section class="d-flex justify-content-center">
-            <div class="border p-5" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
-              <section class="d-flex">
-                <p class="h5 mr-2"> <span style="font-weight: 100">VENDA SU</span> <br> <span class="h3" style="font-weight: 500">PROPIEDAD</span></p>
-                <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
-              </section>
-              <section class="d-flex justify-content-end mt-2">
-                <button class="btn btn-sm text-white" style="background-color: #182741" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Vender una propiedad</button>
-              </section>
-            </div>
-          </section>
-        </article>
-        <article data-aos="fade-up" class="col-lg-4 col-md-6 col-sm-12 col-12 mb-3">
-          <section class="d-flex justify-content-start cards-services">
-            <div class="border p-5" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
-              <section class="d-flex">
-                <p class="h5 mr-2"> <span style="font-weight: 100">ALQUILE CON</span> <br> <span class="h3" style="font-weight: 500">NOSOTROS</span></p>
-                <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
-              </section>
-              <section class="d-flex justify-content-end mt-2">
-                <button data-bs-toggle="modal" data-bs-target="#modalAlquiler" class="btn btn-sm text-white" style="background-color: #182741">Alquilar una propiedad</button>
-              </section>
-            </div>
-          </section>
-        </article>
+        
+        
           {{-- <div data-aos="fade-up" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 @if($ismobile) mb-4 @else mb-5 @endif">
             <a href="{{route('web.propiedades', 'casas-en-venta-en-cuenca')}}">
               <div class="position-relative d-flex justify-content-center shadow rounded cursor">
@@ -513,82 +563,75 @@
   </section>
 
 
-    <div data-aos="flip-down" class="row" style="background-color: #182741; padding-top: 2%; padding-bottom: 2%">
+    <section data-aos="flip-down" class="row py-5" style="background-position: center; background-repeat: no-repeat; background-size: cover; background-image: url('{{ asset('img/housing-word.png') }}')">
         <div class="col-sm-12 text-center text-white mt-4 mb-4">
-            <p class="h5">¿Quiere vender o rentar su <b style="color: #fcc62e">Propiedad</b>?</p>
-            <p>Escríbanos y lo asesoramos en el proceso</p>
-            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" class="btn" style="background-color: #fcc62e">INICIAR</button>
+            <p class="h3" style="font-family: 'Sharp Grotesk'"><span style="font-weight: 300">¿QUIERES VENDER O RENTAR </span> <span style="font-weight: 500">UNA PROPIEDAD?</span></p>
+            <p class="text-center" style="font-family: 'Sharp Grotesk'"><span style="font-weight: 300">Nuestro equipo experto esta aquí</span> <span style="font-weight: 500"> para guiarte en cada paso del proceso</span> </p>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" class="btn px-4" style="border-radius: 10px; background-color: #8C98B4; color: #ffffff">Leer más</button>
         </div>
-    </div>
+    </section>
 
-    <div class="container">
-      <div class="row mb-4">
-          <h2 class="text-center mt-5 mb-5 h4" style="font-weight: 400">PROYECTOS NUEVOS EN ECUADOR</h2>
-          <div data-aos="zoom-in-right" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
-              <div id="cardSimilarProject" class="card mb-3 position-relative" style="width: 20rem; height: 21rem">
-                <div class="img-container">
-                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="https://casapromotora.com/uploads/projects/300/img-rubik-64d418d009c2e.png" class="card-img-top" alt="Departamentos de Venta en Cuenca Ecuador">
-                  <div class="middle">
-                    <div class="link">
-                      <a href="https://casapromotora.com/proyecto/rubik">Ver proyecto</a>
+    <section class="container px-5 section-testimonials" style="padding-top: 7%; padding-bottom: 7%">
+      <section class="row">
+        <section class="col-sm-6 d-flex justify-content-end">
+          <article style="width: 500px; height: 500px; background-position: center center; background-repeat: no-repeat; background-size: cover; background-image: url('{{ asset('img/oficinasnuevas.jpg') }}')"></article>
+        </section>
+        <section class="col-sm-6">
+          <div style="height: 300px" class="d-flex justify-content-center align-items-center">
+            <article class="pr-5 pt-5 testimonials-header" style="margin-left: -80px">
+              <h2 class="text-center" style="font-family: 'Sharp Grotesk'">TESTIMONIOS</h2>
+              <p class="text-center" style="font-family: 'Sharp Grotesk'">Descubre lo que dicen nuestros clientes <br> satisfechos</p>
+            </article>
+          </div>
+          <div class="pattern-testimonials-card" style="height: 200px;">
+            <div class="border p-4 bg-white rounded testimonials-card" style="width: 600px; height: 250px; margin-left: -100px; margin-top: 30px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+              <div class="d-flex">
+                <img width="50px" height="50px" style="filter: invert(80%)" src="{{ asset('img/comillas.png') }}" alt="">
+                <div style="height: 250px;" class="d-flex rounded align-items-center">
+                  <div class="px-4 pb-5 pt-4">
+                    <p style="font-family: 'Sharp Grotesk'">El equipo ofrece un servicio confiable y transparente. Su compromiso es encontrar la mejor opción para cada cliente, brindando asesoramiento personalizado en todo momento. ¡Una excelente elección para comprar, vender o alquilar tu propiedad!</p>
+                    <div class="d-flex justify-content-between">
+                      <p style="font-weight: 500; font-family: 'Sharp Grotesk'">Sebastian Velez</p>
+                      <p>@for ($i = 0; $i < 5; $i++)<i class="fas fa-star text-warning"></i>@endfor</p>
                     </div>
                   </div>
                 </div>
-                  <div class="position-absolute" style="top: 5px; left: 5px; background-color: #2c314484; padding: 5px; font-size: 11px; border-radius: 7px; color: #ffffff;">
-                    Departamentos
-                  </div>
-                  <div class="card-body">
-                    <p style="font-size: 12px; margin-bottom: 6px" class="card-text fw-bold">Ordoñez Lasso, Cuenca</p>
-                    <h3 class="h5">Rubik</h3>
-                    <p style="font-size: 13px" class="card-title text-muted">Desde USD 120.000</p>
-                  </div>
-                </div>
+              </div>
+            </div>
           </div>
-          <div data-aos="zoom-in" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
-              <div id="cardSimilarProject" class="card mb-3 position-relative" style="width: 20rem; height: 21rem">
-                <div class="img-container">
-                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="https://casapromotora.com/uploads/projects/300/img-seascape-64b1c3e0c200d.webp" class="card-img-top" alt="Departamentos de Venta en Cuenca Ecuador">
-                    <div class="middle">
-                      <div class="link">
-                        <a href="https://casapromotora.com/proyecto/seascape">Ver proyecto</a>
-                      </div>
-                    </div>
-                </div>
-                  <div class="position-absolute" style="top: 5px; left: 5px; background-color: #2c314484; padding: 5px; font-size: 11px; border-radius: 7px; color: #ffffff;">
-                    Departamentos
-                  </div>
-                  <div class="card-body">
-                    <p style="font-size: 12px; margin-bottom: 6px" class="card-text fw-bold">Punta Barandúa</p>
-                    <h3 class="h5">Seascape</h3>
-                    <p style="font-size: 13px" class="card-title text-muted">Desde USD 125.000</p>
-                  </div>
-                </div>
-          </div>
-          <div data-aos="zoom-in-left" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
-              <div id="cardSimilarProject" class="card mb-2 position-relative" style="width: 20rem; height: 21rem">
-                <div class="img-container">
-                    <img class="img-fluid image lazyLoad" width="100%" height="100%" data-src="https://casapromotora.com/uploads/projects/300/img-zante-64e37ed043357.jpg" class="card-img-top" alt="Condominios, Casas nuevas de venta en Cuenca - Proyecto Toscana">
-                    <div class="middle">
-                      <div class="link">
-                        <a href="https://casapromotora.com/proyecto/monaco">Ver proyecto</a>
-                      </div>
-                    </div>
-                </div>  
-                  <div class="position-absolute" style="top: 5px; left: 5px; background-color: #2c314484; padding: 5px; font-size: 11px; border-radius: 7px; color: #ffffff;">
-                    Departamentos
-                  </div>
-                  <div class="card-body">
-                    <p style="font-size: 12px; margin-bottom: 6px" class="card-text fw-bold">Isla Mocolí</p>
-                    <h3 class="h5">Zante</h3>
-                    <p style="font-size: 13px" class="card-title text-muted">Desde USD 280.000</p>
-                  </div>
-                </div>
-          </div>
-          <div class="d-flex justify-content-center mt-3">
-              <a style="background-color: #182741; color: #ffffff; padding: 15px; border-radius: 10px; font-size: 13px" class="btn" href="https://casapromotora.com/proyectos/casas">VISITE NUESTRO CATÁLOGO DE PROYECTOS EN <b style="color: #fcc62e;">ECUADOR </b><i class="fas fa-long-arrow-alt-right"></i></a>
-          </div>
-      </div>
-    </div>
+        </section>
+      </section>
+    </section>
+
+    <section class="container py-5" style="padding-top: 7%">
+      <section class="row">
+        <section class="col-sm-1"></section>
+        <section class="col-sm-5 pr-5">
+          <h2 style="font-family: 'Sharp Grotesk'; font-weight: 500">Contáctanos</h2>
+          <p class="mt-3">Confía en nosotros para hacer realidad tus sueños inmobiliarios</p>
+          <p style="font-weight: 500">Proporciónanos tus datos y te contactaremos</p>
+          <form action="{{route('send.lead.form.home')}}" method="POST">
+            @csrf
+            <div class="form-group mb-3">
+              <input type="text" class="form-control border-0" name="names" placeholder="Nombre y Apellido*" style="background-color: #EEEEF0" required>
+            </div>
+            <div class="form-group mb-3">
+              <input type="number" class="form-control border-0" name="phone" placeholder="Teléfono*"  style="background-color: #EEEEF0" required>
+            </div>
+            <div class="form-group mb-4">
+              <textarea id="message" rows="3" class="form-control border-0" name="message" placeholder="Mensaje"  style="background-color: #EEEEF0" required></textarea>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn rounded-pill px-4" style="background-color: #182741; color: #ffffff; font-family: 'Sharp Grotesk'; font-weight: 200">ENVIAR</button>
+            </div>
+          </form>
+        </section>
+        <section class="col-sm-5">
+          <div style="height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover; background-image: url('{{ asset('img/departamento.webp') }}')"></div>
+        </section>
+        <section class="col-sm-1"></section>
+      </section>
+    </section>
 
     {{-- DIV MODAL PARA FORMULARIO DE CONTACTO --}}
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -932,13 +975,13 @@
 {{-- <script  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> --}}
 <script  src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
+@stack('scripts')
 <script>
   AOS.init();
 </script>
 <script>
     window.addEventListener('load', (event) => {
-        document.getElementById('secondsection').style.backgroundImage = "url('img/imgbannermiddle.webp')";
+        //document.getElementById('secondsection').style.backgroundImage = "url('img/imgbannermiddle.webp')";
     });
 
     let inpSearchTxt = document.getElementById('ftop_txt');
