@@ -39,7 +39,11 @@ class WebController extends Controller
                         if(count($segments)>4) $textSlug = $segments[5]; else $textSlug = null;
                     } else {
                         $typeSlug = $segments[0];
-                        $operacionSlug = Str::slug($segments[1] . " " . $segments[2]);
+                        if($segments[2] == "renta" || $segments[2] == "alquiler"){
+                            $operacionSlug = "alquilar";
+                        } else {
+                            $operacionSlug = Str::slug($segments[1] . " " . $segments[2]);
+                        }
                         if(count($segments)>3) $textSlug = $segments[4]; else $textSlug = null;
                     }
                     $type = DB::table('listing_types')->select('id')->where('type_title', 'LIKE', '%'.$typeSlug.'%')->first();
@@ -738,7 +742,7 @@ class WebController extends Controller
         $header .= "MIME-Version: 1.0\r\n";
         $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
-        //mail('info@casacredito.com','Lead Grupo Housing: '.strip_tags($request->names), $message, $header);
+        mail('info@casacredito.com','Lead Grupo Housing: '.strip_tags($request->names), $message, $header);
         mail('sebas31051999@gmail.com', 'Lead Grupo Housing: ' . strip_tags($request->names), $message, $header);
 
         return view('thank');
