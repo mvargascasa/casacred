@@ -115,14 +115,14 @@ class Proplist extends Component
                     $listings_filter->where(function ($query) use ($words) {
                         foreach ($words as $word) {
                             $query->where(function ($query) use ($word) {
-                                $category = null;
-                                if($word == 'casas' || $word == 'casa') $category = 23;
+                                $category_aux = null;
+                                if($word == 'casas' || $word == 'casa') $category_aux = 23;
                                 $query->where('listing_title', 'LIKE', '%' . $word . '%')
                                       ->orWhere('address', 'LIKE', '%' . $word . '%')
                                       ->orWhere('sector', 'LIKE', '%' . $word . '%')
                                       ->orWhere('city', 'LIKE', '%' . $word . '%')
                                       ->orWhere('state', 'LIKE', '%' . $word . '%')
-                                      ->orWhere('listingtype', $category);
+                                      ->orWhere('listingtype', $category_aux);
                             });
                         }
                     });
