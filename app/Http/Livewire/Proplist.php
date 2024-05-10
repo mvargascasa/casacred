@@ -114,20 +114,49 @@ class Proplist extends Component
                 if(count($words)>1){
                     $listings_filter->where(function ($query) use ($words) {
                         foreach ($words as $word) {
-                            if($word == "renta" || $word == "alquiler") $this->category = "alquilar";
-                            if($word == "venta") $this->category = "en-venta";
-                            $query->where(function ($query) use ($word) {
+                            if ($word == "renta" || $word == "alquiler") {
+                                $this->category = "alquilar";
+                            }
+                            if ($word == "venta") {
+                                $this->category = "en-venta";
+                            }
+                            $category = $this->category;
+                            $query->where(function ($query) use ($word, $category) {
                                 $category_aux = null;
-                                if($word == 'casas' || $word == 'casa') $category_aux = 23;
-                                if($word == 'departamento' || $word == 'departamentos') $category_aux = 24;
+                                if ($word == 'casas' || $word == 'casa') {
+                                    $category_aux = 23;
+                                }
+                                if ($word == 'departamento' || $word == 'departamentos') {
+                                    $category_aux = 24;
+                                }
                                 $query->where('listing_title', 'LIKE', '%' . $word . '%')
                                       ->orWhere('address', 'LIKE', '%' . $word . '%')
                                       ->orWhere('sector', 'LIKE', '%' . $word . '%')
                                       ->orWhere('city', 'LIKE', '%' . $word . '%')
-                                      ->orWhere('state', 'LIKE', '%' . $word . '%')
-                                      ->orWhere('listingtype', $category_aux);
+                                      ->orWhere('state', 'LIKE', '%' . $word . '%');
+                                if ($category_aux !== null) {
+                                    $query->orWhere('listingtype', $category_aux);
+                                }
+                                if ($category !== null) {
+                                    $query->orWhere('category', $this->category);
+                                }
                             });
                         }
+                        // foreach ($words as $word) {
+                        //     if($word == "renta" || $word == "alquiler") $this->category = "alquilar";
+                        //     if($word == "venta") $this->category = "en-venta";
+                        //     $query->where(function ($query) use ($word) {
+                        //         $category_aux = null;
+                        //         if($word == 'casas' || $word == 'casa') $category_aux = 23;
+                        //         if($word == 'departamento' || $word == 'departamentos') $category_aux = 24;
+                        //         $query->where('listing_title', 'LIKE', '%' . $word . '%')
+                        //               ->orWhere('address', 'LIKE', '%' . $word . '%')
+                        //               ->orWhere('sector', 'LIKE', '%' . $word . '%')
+                        //               ->orWhere('city', 'LIKE', '%' . $word . '%')
+                        //               ->orWhere('state', 'LIKE', '%' . $word . '%')
+                        //               ->orWhere('listingtype', $category_aux);
+                        //     });
+                        // }
                     });
                     // $listings_filter->where(function ($query) use ($words) {
                     //     foreach ($words as $word) {
