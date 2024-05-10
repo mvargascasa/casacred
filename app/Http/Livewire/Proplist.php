@@ -114,6 +114,8 @@ class Proplist extends Component
                 if(count($words)>1){
                     $listings_filter->where(function ($query) use ($words) {
                         foreach ($words as $word) {
+                            if($word == "renta" || $word == "alquiler") $this->category = "alquilar";
+                            if($word == "venta") $this->category = "en-venta";
                             $query->where(function ($query) use ($word) {
                                 $category_aux = null;
                                 if($word == 'casas' || $word == 'casa') $category_aux = 23;
