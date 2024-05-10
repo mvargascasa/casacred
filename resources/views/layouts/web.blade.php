@@ -476,24 +476,23 @@ if(strpos($actual_link, 'localhost') === false){
                 <p style="font-size: 20px; font-weight: 500">Síguenos en:</p>
                 
                 <div class="d-flex mt-3">
-                  <a href="https://www.facebook.com/CasaCreditoInmobiliaria" class="asindeco px-1" target="_blank">
+                  <a href="https://www.facebook.com/profile.php?id=61555792821989" class="asindeco px-1" target="_blank">
                     {{-- <img src="{{asset('img/casacredito-facebook.svg')}}" alt="Facebook Notary Public Near Me" width="40" height="40"> --}}
                     <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 13px; padding-right: 13px; border-radius: 25px" class="fab fa-facebook-f"></i>
                   </a>
                   
-                  <a href="https://www.instagram.com/casacreditoinmobiliaria/" class="asindeco px-1" target="_blank">
+                  <a href="https://www.instagram.com/grupohousingecu/" class="asindeco px-1" target="_blank">
                     {{-- <img src="{{asset('img/casacredito-instagram.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40"> --}}
                     <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 11px; padding-right: 11px; border-radius: 25px" class="fab fa-instagram"></i>
                   </a>
                   
-                  <a href="https://twitter.com/casacreditoinmo" class="asindeco px-1" target="_blank">
-                    {{-- <img src="{{asset('img/casacredito-messenger.svg')}}" alt="Messenger Notary Public Near Me" width="40" height="40"> --}}
+                  {{-- <a href="https://twitter.com/casacreditoinmo" class="asindeco px-1" target="_blank">
                     <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 10px; padding-right: 10px; border-radius: 25px" class="fab fa-twitter"></i>
                   </a>
 
                   <a href="https://www.youtube.com/channel/UCts4TtYN76icfwxH7eRaCEw" class="asindeco px-1" target="_blank">
                     <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 10px; padding-right: 10px; border-radius: 25px" class="fab fa-youtube"></i>
-                  </a>
+                  </a> --}}
                   
                   <a href="https://api.whatsapp.com/send?phone=593983849073" class="asindeco px-1" target="_blank">
                     {{-- <img src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40"> --}}
