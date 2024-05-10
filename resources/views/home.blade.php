@@ -438,8 +438,8 @@
       <section class="row pt-5">
         <div class="col-sm-1"></div>
         <article class="col-sm-6">
-          <video class="border video-services" width="650" height="500" controls autoplay controls>
-            <source src="{{ asset('img/video-home.mp4') }}" type="video/mp4">
+          <video class="border video-services" width="650" height="500" autoplay muted>
+            <source src="{{ asset('img/video-familia.mp4') }}" type="video/mp4">
           </video>
         </article>
         <article class="col-sm-4">
