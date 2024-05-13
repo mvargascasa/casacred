@@ -535,6 +535,16 @@ if(strpos($actual_link, 'localhost') === false){
                                             Cordero-Edificio Santa Lucía</a></span></div>
                             </div>
                         </div>
+                        <div class="row align-items-center mt-2">
+                            <div class="col-2 text-center">
+                                <span style="color: #182741; background-color: #ffffff; border-radius: 50%; width: 35px; height: 35px; display: inline-flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-envelope" style="font-size: 18px;"></i>
+                                </span>
+                            </div>
+                            <div class="col-10">
+                                <div style="color: #ffffff;"><span class="desing-p"><a href="mailto:info@grupohousing.com" style="color: #ffffff">info@grupohousing.com</a></span></div>
+                            </div>
+                        </div>
                         <div class="row align-items-center mt-3">
                             <div class="col-2 text-center">
                                 <span
