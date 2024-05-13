@@ -317,6 +317,38 @@ if(strpos($actual_link, 'localhost') === false){
                     margin-right: -105px
                 }
             }
+
+            .desing-p {
+                font-weight: 100;
+                color: #ffffff;
+            }
+
+            .desing-t {
+                font-weight: 500;
+                color: #ffffff;
+            }
+
+            .grotesk {
+                font-family: 'Sharp Grotesk';
+            }
+
+            .custom-container {
+                width: 100%;
+                max-width: 1500px;
+                /* Ajusta este valor según tus necesidades */
+                padding-right: 15px;
+                padding-left: 15px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            /* Estilos para ajustar el padding interno de cada columna */
+            .column-padding {
+                padding-left: 40px;
+                /* Espacio interno a la izquierda */
+                padding-right: 40px;
+                /* Espacio interno a la derecha */
+            }
     </style>
 </head>
 
@@ -376,7 +408,8 @@ if(strpos($actual_link, 'localhost') === false){
                             href="/propiedades/propiedades-en-renta">Rentar</a> </li>
                     {{-- <li class="nav-item pr-2"> <a class="nav-link @if (Request::is('servicios/creditos-en-ecuador')) active @endif" href="{{route('web.servicios','creditos-en-ecuador')}}">Creditos</a> </li> --}}
                     {{-- <li class="nav-item pr-2"> <a class="nav-link @if (Request::is('servicios/construye')) active @endif" href="{{route('web.servicios','construye')}}">Construye</a> </li> --}}
-                    <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicio/vende-tu-casa')) active @endif" href="{{route('web.servicio','vende-tu-casa')}}">Vende</a> </li>
+                    <li class="nav-item pr-2"> <a class="nav-link @if (Request::is('servicio/vende-tu-casa')) active @endif"
+                            href="{{ route('web.servicio', 'vende-tu-casa') }}">Vende</a> </li>
                     <li class="nav-item pr-2"> <a class="nav-link @if (Request::is('blog')) active @endif"
                             href="{{ route('web.blog') }}">Blog</a></li>
                     <li class="nav-item pr-2"> <a class="nav-link @if (Request::is('servicios/nosotros')) active @endif"
@@ -467,110 +500,195 @@ if(strpos($actual_link, 'localhost') === false){
     {{-- @endif --}}
 
     <footer>
-        <div style="background-color: #182741; color: #ffffff">
-            <div class="container">
+        <div style="background-color: #182741" class="grotesk text-white">
+            <div class="custom-container pt-5">
                 <div class="row">
-                    <div class="col-12 col-md-4 p-4">
-                        <p style="font-size: 20px; font-weight: 500">Cuenca | Ecuador</p>
-
-                        <p class="text-dark-50">Lunes a Viernes 9:00 am&nbsp;a 6:00 pm</p>
-
-                        <p class="text-dark-50">Sábados 9:00 am a 1:00 pm</p>
-
-                        {{-- <p class="text-dark-50 mt-2"><i class="fas fa-map-marker-alt text-white"></i><a href="https://g.page/r/CRcVix2z3D8lEAE" style="color: #ffffff" target="_blank"> Av. Fray Vicente Solano 3-54 y Remigio Tamariz Crespo</a></p> --}}
-
-                        <p class="text-dark-50"><i class="fas fa-map-marker-alt"></i><a target="_blank"
-                                style="color: #ffffff" href="https://maps.app.goo.gl/dvP54hXNxpVC1Hbz9"> Remigio Tamariz
-                                Crespo y Av. Fray Vicente Solano</a></p>
-
-                        <p><i class="fas fa-phone"></i> <span class="font-weight-bold">Ventas:</span> <a
-                                href="tel:+593983849073" class="asindeco" style="color: #ffffff !important">
-                                098-384-9073</a>
-                        <p><i class="fas fa-phone"></i> <span class="font-weight-bold">Rentas:</span><a
-                                href="tel:+593987474637" class="asindeco" style="color: #ffffff !important">
-                                098-747-4637</a>
-                        </p>
-
-                        <p><a href="mailto:info@grupohousing.com" class="asindeco"
-                                style="color: #ffffff !important; text-decoration: none"><i
-                                    class="fas fa-envelope"></i> info@grupohousing.com</a></p>
-                    </div>
-                    <div class="col-12 col-md-4 p-4">
-                        <p style="font-size: 20px; font-weight: 500">New York | EE.UU.</p>
-                        <p class="text-dark-50">Lunes a Viernes 9:00 am a 6:00 pm</p>
-
-                        <p class="text-dark-50">Sábados 9:00 am a 4:00 pm</p>
-
-                        <p class="text-dark-50"><a target="_blank" style="color: #ffffff"
-                                href="https://g.page/r/Cdf-npU-D1gdEAE">
-                                <i class="fas fa-map-marker-alt"></i> 67-03 Roosevelt Avenue<br>
-                                Woodside, NY 11377
-                            </a></p>
-
-                        <p><a style="color: #ffffff !important" href="tel:+17186903740" class="asindeco"><i
-                                    class="fas fa-phone"></i> 718-690-3740</a>&nbsp;</p>
-                        {{-- <p><a href="tel:+13478460067" class="asindeco">347-846-0067</a>&nbsp;</p> --}}
-
-                        <p style="font-size: 20px; font-weight: 500">New Jersey | EE.UU.</p>
-
-                        <p class="text-dark-50"><a target="_blank" style="color: #ffffff"
-                                href="https://g.page/r/CVNRV-zNuJiZEAE">
-                                <i class="fas fa-map-marker-alt"></i> 1146 East Jersey St Elizabeth, NJ 07201
-                            </a></p>
-                        <p><a style="color: #ffffff !important" href="tel:+19083810090" class="asindeco"><i
-                                    class="fas fa-phone"></i> 908-381-0090</a></p>
-
-                        {{-- <p><a style="color: #ffffff !important" href="mailto:info@casacredito.com" class="asindeco"><i class="fas fa-envelope"></i> info@casacredito.com</a></p> --}}
-                    </div>
-                    <div class="col-12 col-md-4 p-4">
-                        <p style="font-size: 20px; font-weight: 500">Síguenos en:</p>
-
-                        <div class="d-flex mt-3">
-                            <a href="https://www.facebook.com/profile.php?id=61555792821989" class="asindeco px-1"
-                                target="_blank">
-                                {{-- <img src="{{asset('img/casacredito-facebook.svg')}}" alt="Facebook Notary Public Near Me" width="40" height="40"> --}}
-                                <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 13px; padding-right: 13px; border-radius: 25px"
-                                    class="fab fa-facebook-f"></i>
-                            </a>
-
-                            <a href="https://www.instagram.com/grupohousingecu/" class="asindeco px-1"
-                                target="_blank">
-                                {{-- <img src="{{asset('img/casacredito-instagram.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40"> --}}
-                                <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 11px; padding-right: 11px; border-radius: 25px"
-                                    class="fab fa-instagram"></i>
-                            </a>
-
-                            {{-- <a href="https://twitter.com/casacreditoinmo" class="asindeco px-1" target="_blank">
-                    <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 10px; padding-right: 10px; border-radius: 25px" class="fab fa-twitter"></i>
-                  </a>
-
-                  <a href="https://www.youtube.com/channel/UCts4TtYN76icfwxH7eRaCEw" class="asindeco px-1" target="_blank">
-                    <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 10px; padding-right: 10px; border-radius: 25px" class="fab fa-youtube"></i>
-                  </a> --}}
-
-                            <a href="https://api.whatsapp.com/send?phone=593983849073" class="asindeco px-1"
-                                target="_blank">
-                                {{-- <img src="{{asset('img/casacredito-whatsapp.svg')}}" alt="Whatsapp Notary Public Near Me" width="40" height="40"> --}}
-                                <i style="background-color: #c30000; color: #ffffff; padding: 10px; padding-left: 11px; padding-right: 11px; border-radius: 25px"
-                                    class="fab fa-whatsapp"></i>
-                            </a>
+                    <div class="col-md-4 column-padding mt-5" style="border-right: 1px solid #ffffff;">
+                        <p class="desing-t" style="font-size: 20px">Cuenca | Ecuador</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <p><strong style="font-size: 16px; text-transform: uppercase; font-weight: 500;">Lunes
+                                        a Viernes</strong>
+                                </p>
+                                <p style="font-weight: 100;">9:00am – 18:00pm</p>
+                            </div>
+                            <div class="col-6">
+                                <p><strong
+                                        style="font-size: 16px; text-transform: uppercase; font-weight: 500;">Sábados</strong>
+                                </p>
+                                <p style="font-weight: 100;">9:00am - 13:00pm</p>
+                            </div>
                         </div>
 
-                        <p id="pLastLabel" style="margin-top: 15px" class="text-dark-50"><i class="text-white">Ahora
-                                con <b>Grupo Housing</b> es fácil ser dueño de su propia casa en Ecuador.</i></p>
+                        <div class="row align-items-center mt-2">
+                            <div class="col-2 text-center">
+                                <span
+                                    style="color: #182741; background-color: #ffffff; border-radius: 50%; width: 35px; height: 35px; display: inline-flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-map-marker-alt" style="font-size: 18px;"></i>
+                                </span>
+                            </div>
+                            <div class="col-10">
+                                <div style="color: #ffffff; text-align: justify;"><span
+                                        class="desing-t">Oficina:</span><span class="desing-p"> <a target="_blank"
+                                            style="color: #ffffff" href="https://maps.app.goo.gl/SUhpWErgoscZV5kd8">
+                                            Av. Juan Iñiguez 3-87 y D. Gonzalo
+                                            Cordero-Edificio Santa Lucía</a></span></div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mt-3">
+                            <div class="col-2 text-center">
+                                <span
+                                    style="color: #182741; background-color: #ffffff; border-radius: 50%; width: 35px; height: 35px; display: inline-flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-phone" style="font-size: 18px;"></i>
+                                </span>
+                            </div>
+                            <div class="col-10">
+                                <div style="color: #ffffff;"><span class="desing-t">Venta:</span><span
+                                        class="desing-p"> <a href="tel:+593983849073" class="asindeco"
+                                            style="color: #ffffff !important">
+                                            098 384 9073</a></span></div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mt-2">
+                            <div class="col-2 text-center">
+                            </div>
+                            <div class="col-10">
+                                <div style="color: #ffffff;"><span class="desing-t">Renta:</span><span
+                                        class="desing-p"> <a href="tel:+593987474637" class="asindeco"
+                                            style="color: #ffffff !important">
+                                            098 747 4637</a></span></div>
+                            </div>
+                        </div>
+                    </div>
 
 
+                    <!-- New York, USA -->
+                    <div class="col-md-4 column-padding mt-5" style="border-right: 1px solid #ffffff;">
+                        <p class="desing-t" style="font-size: 20px">New York | Estados Unidos</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <p><strong style="font-size: 16px; text-transform: uppercase; font-weight: 500;">Lunes
+                                        a Viernes</strong></p>
+                                <p style="font-weight: 100;">9:00am – 18:00pm</p>
+                            </div>
+                            <div class="col-6">
+                                <p><strong
+                                        style="font-size: 16px; text-transform: uppercase; font-weight: 500;">Sábados</strong>
+                                </p>
+                                <p style="font-weight: 100;">9:00am - 13:00pm</p>
+                            </div>
+                        </div>
+                        <!-- Icon Rows -->
+                        <div class="row align-items-center mt-2">
+                            <div class="col-2 text-center">
+                                <span
+                                    style="color: #182741; background-color: #ffffff; border-radius: 50%; width: 35px; height: 35px; display: inline-flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-map-marker-alt" style="font-size: 18px;"></i>
+                                </span>
+                            </div>
+                            <div class="col-10">
+                                <div style="color: #ffffff;"><span class="desing-p"><a target="_blank"
+                                            style="color: #ffffff" href="https://g.page/r/Cdf-npU-D1gdEAE">67-03
+                                            Roosevelt Avenue Woodside, NY 11377
+                                        </a></span></div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mt-2">
+                            <div class="col-2 text-center">
+                                <span
+                                    style="color: #182741; background-color: #ffffff; border-radius: 50%; width: 35px; height: 35px; display: inline-flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-phone" style="font-size: 18px;"></i>
+                                </span>
+                            </div>
+                            <div class="col-10">
+                                <div style="color: #ffffff;"><span class="desing-p"> <a href="tel:+17186903740"
+                                            class="asindeco" style="color: #ffffff !important">
+                                            718 690 3740</a></span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- New Jersey, USA -->
+                    <div class="col-md-4 column-padding mt-5">
+                        <p class="desing-t" style="font-size: 20px">New Jersey | Estados Unidos</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <p><strong style="font-size: 16px; text-transform: uppercase; font-weight: 500;">Lunes
+                                        a Viernes</strong></p>
+                                <p style="font-weight: 100;">9:00am – 18:00pm</p>
+                            </div>
+                            <div class="col-6">
+                                <p><strong
+                                        style="font-size: 16px; text-transform: uppercase; font-weight: 500;">Sábados</strong>
+                                </p>
+                                <p style="font-weight: 100;">9:00am - 13:00pm</p>
+                            </div>
+                        </div>
+                        <!-- Icon Rows -->
+                        <div class="row align-items-center mt-2">
+                            <div class="col-2 text-center">
+                                <span
+                                    style="color: #182741; background-color: #ffffff; border-radius: 50%; width: 35px; height: 35px; display: inline-flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-map-marker-alt" style="font-size: 18px;"></i>
+                                </span>
+                            </div>
+                            <div class="col-10">
+
+                                <div style="color: #ffffff;"><span class="desing-p"><a target="_blank"
+                                            style="color: #ffffff"
+                                            href="https://maps.app.goo.gl/854Wc86FooRbCJZe7">1146 East Jersey St
+                                            Elizabeth, NJ 07201
+                                        </a></span></div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mt-2">
+                            <div class="col-2 text-center">
+                                <span
+                                    style="color: #182741; background-color: #ffffff; border-radius: 50%; width: 35px; height: 35px; display: inline-flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-phone" style="font-size: 18px;"></i>
+                                </span>
+                            </div>
+                            <div class="col-10">
+                                <div style="color: #ffffff;"><span class="desing-p"> <a href="tel:+19083810090"
+                                            class="asindeco" style="color: #ffffff !important">
+                                            908 381 0090</a></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 text-center mt-4">
+                        <a href="https://www.facebook.com/profile.php?id=61555792821989" target="_blank">
+                            <span
+                                style="color: #182741; background-color: #ffffff; width: 50px; height: 50px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">
+                                <i class="fab fa-facebook-f" style="font-size: 24px;"></i>
+                            </span>
+                        </a>
+                        <a href="https://www.instagram.com/grupo_housing" target="_blank">
+                            <span
+                                style="color: #182741; background-color: #ffffff; width: 50px; height: 50px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">
+                                <i class="fab fa-instagram" style="font-size: 24px;"></i>
+                            </span>
+                        </a>
+                        <!--<a href="https://www.youtube.com/" target="_blank">
+                            <span style="color: #182741; background-color: #ffffff; width: 50px; height: 50px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">
+                                <i class="fab fa-youtube" style="font-size: 24px;"></i>
+                            </span>-->
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div style="background-color: #182741" class="text-center navfoot py-3 text-white">Copyright ©2024 . All
-            rights reserved.
+        <div style="background-color: #182741" class="text-center py-3 text-white">
+            Copyright © 2024. All rights reserved.
             <br><a href="{{ route('web.politicas') }}" style="color: #ffffff; font-weight: 500"> Políticas de
                 Privacidad</a> <span style="color: #ffffff">-</span> <a style="color: #ffffff"
                 href="{{ route('web.seo') }}">SEO</a>
         </div>
     </footer>
+
+
 
     {{-- <div style="position: fixed; bottom: 10px; right: 10px; z-index: 1000">
   @livewire('chat-bot')
