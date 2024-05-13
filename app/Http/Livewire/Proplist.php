@@ -282,9 +282,8 @@ class Proplist extends Component
             $listings_filter->where('property_price','<',$uptoprice_);
         }
 
-       // Limpiar la caché de la consulta
-       //$listings_filter->getQuery()->flush(); 
-       //$listings_filter = $listings_filter->getQuery()->withoutStrictFilters()->withoutGlobalScopes()->without('cache');
+       // Desactivar la caché de la consulta
+       $listings_filter = $listings_filter->without('cache');
         
         $listings = $listings_filter->paginate(20);
         
