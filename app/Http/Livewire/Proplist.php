@@ -283,7 +283,7 @@ class Proplist extends Component
         }
 
        // Limpiar la caché de la consulta
-       $listings_filter->getQuery()->flush(); 
+       //$listings_filter->getQuery()->flush(); 
        //$listings_filter = $listings_filter->getQuery()->withoutStrictFilters()->withoutGlobalScopes()->without('cache');
         
         $listings = $listings_filter->paginate(20);
