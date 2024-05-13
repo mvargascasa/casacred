@@ -286,68 +286,11 @@ if(strpos($actual_link, 'localhost') === false){
 
           <div class="collapse navbar-collapse flex-grow-1 text-left" id="myNavbar">
               <ul class="navbar-nav ml-auto flex-nowrap px-4">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Comprar
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle test" href="#">Casas en Venta</a>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'casas-en-venta-en-cuenca')}}">Casas en Venta en Cuenca</a></li>
-                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'casas-en-venta-en-quito')}}">Casas en Venta en Quito</a></li>
-                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'casas-en-venta-en-guayaquil')}}">Casas en Venta en Guayaquil</a></li>
-                      </ul>
-                    </li>
-                    <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Departamentos en Venta</a>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'departamentos-en-venta-en-cuenca')}}">Departamentos en Venta en Cuenca</a></li>
-                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'departamentos-en-venta-en-quito')}}">Departamentos en Venta en Quito</a></li>
-                      </ul>
-                    </li>
-                    <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Terrenos en Venta</a>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'terrenos-en-venta-en-cuenca')}}">Terrenos en Venta en Cuenca</a></li>
-                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'terrenos-en-venta-en-quito')}}">Terrenos en Venta en Quito</a></li>
-                      </ul>
-                    </li>
-                    <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Locales Comerciales en Venta</a>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'locales-comerciales-en-venta-en-cuenca')}}">Locales Comerciales en Venta en Cuenca</a></li>
-                      </ul>
-                    </li>
-                    <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Quintas en Venta</a>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'quintas-en-venta-en-cuenca')}}">Quintas en Venta en Cuenca</a></li>
-                      </ul>
-                    </li>
-                    <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Haciendas en Venta</a>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'haciendas-en-venta-en-cuenca')}}">Haciendas en Venta en Cuenca</a></li>
-                      </ul>
-                    </li>
-                    <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Casas Comerciales en Venta</a>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'casas-comerciales-en-venta-en-cuenca')}}">Casas Comerciales en Venta en Cuenca</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Alquilar
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Departamentos en Alquiler</a>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{route('web.propiedades', 'departamentos-de-alquiler-en-cuenca')}}">Departamentos en Alquiler en Cuenca</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicio/vende-tu-casa')) active @endif" href="{{route('web.servicio','vende-tu-casa')}}">Vende</a> </li>
+                <li class="nav-item pr-2"> <a class="nav-link @if(Route::is('/propiedades/propiedades-en-venta')) active @endif" href="/propiedades/propiedades-en-venta">Comprar</a> </li>
+                <li class="nav-item pr-2"> <a class="nav-link @if(Route::is('/propiedades/propiedades-en-venta')) active @endif" href="/propiedades/propiedades-en-renta">Alquilar</a> </li>
                 {{-- <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/creditos-en-ecuador')) active @endif" href="{{route('web.servicios','creditos-en-ecuador')}}">Creditos</a> </li> --}}
                 {{-- <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/construye')) active @endif" href="{{route('web.servicios','construye')}}">Construye</a> </li> --}}
-                <li class="nav-item pr-2"> <a class="nav-link @if(Route::is('web.notariausa') ) active @endif" href="{{route('web.notariausa')}}">Notaría USA</a> </li>
+
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('blog')) active @endif" href="{{route('web.blog')}}">Blog</a></li>
                 <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicios/nosotros')) active @endif" href="{{route('web.servicios','nosotros')}}">Nosotros</a> </li>          
                         <!-- Authentication Links -->
