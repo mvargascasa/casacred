@@ -373,10 +373,10 @@ if(strpos($actual_link, 'localhost') === false){
                     <li class="nav-item pr-2"> <a class="nav-link @if (Route::is('/propiedades/propiedades-en-venta')) active @endif"
                             href="/propiedades/propiedades-en-venta">Comprar</a> </li>
                     <li class="nav-item pr-2"> <a class="nav-link @if (Route::is('/propiedades/propiedades-en-venta')) active @endif"
-                            href="/propiedades/propiedades-en-renta">Alquilar</a> </li>
+                            href="/propiedades/propiedades-en-renta">Rentar</a> </li>
                     {{-- <li class="nav-item pr-2"> <a class="nav-link @if (Request::is('servicios/creditos-en-ecuador')) active @endif" href="{{route('web.servicios','creditos-en-ecuador')}}">Creditos</a> </li> --}}
                     {{-- <li class="nav-item pr-2"> <a class="nav-link @if (Request::is('servicios/construye')) active @endif" href="{{route('web.servicios','construye')}}">Construye</a> </li> --}}
-
+                    <li class="nav-item pr-2"> <a class="nav-link @if(Request::is('servicio/vende-tu-casa')) active @endif" href="{{route('web.servicio','vende-tu-casa')}}">Vende</a> </li>
                     <li class="nav-item pr-2"> <a class="nav-link @if (Request::is('blog')) active @endif"
                             href="{{ route('web.blog') }}">Blog</a></li>
                     <li class="nav-item pr-2"> <a class="nav-link @if (Request::is('servicios/nosotros')) active @endif"
