@@ -36,11 +36,12 @@ class UserController extends Controller
             $imagen = $request->file("profile_image");
             if($imagen->isValid()){
                 $validate = $imagen->getClientOriginalExtension();
-                if(in_array($validate, ['jpeg', 'jpg', 'png', 'JPG', 'PNG'])){
+                if(in_array($validate, ['jpeg', 'jpg', 'png', 'webp', 'JPG', 'PNG'])){
                     $img = Image::make($imagen);
                     $mime = $img->mime();
                     if($mime == 'image/jpeg') $ext = '.jpg';
                     elseif($mime == 'image/png') $ext = '.png';
+                    elseif($mime == 'image/webp') $ext = '.webp';
                     else $ext = '';
                     if(strlen($ext)>0){
                         $ruta = public_path('uploads/profiles/');
