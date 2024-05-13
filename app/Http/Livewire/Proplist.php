@@ -282,8 +282,14 @@ class Proplist extends Component
             $listings_filter->where('property_price','<',$uptoprice_);
         }
 
+       // Limpiar la caché de la consulta
+       $listings_filter->getQuery()->flush(); 
+       //$listings_filter = $listings_filter->getQuery()->withoutStrictFilters()->withoutGlobalScopes()->without('cache');
+        
         $listings = $listings_filter->paginate(20);
+        
+        $total = $listings->total();
 
-        return view('livewire.proplist',compact('listings','types','categories','mobile'));
+        return view('livewire.proplist',compact('listings','types','categories','mobile', 'total'));
     }
 }

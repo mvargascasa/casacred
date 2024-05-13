@@ -483,6 +483,11 @@ const upscroll = () => {
         window.scrollTo(0,0)
 }
 
+  let title = document.title;
+  let totalProperties = {{$total}};
+  let newTitle = totalProperties + " " + title;
+  document.title = newTitle;
+
   let verified = false;
   let scriptloaded = document.getElementById('scriptjquery');
   if(scriptloaded && scriptloaded.src != "") verified = true;
