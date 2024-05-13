@@ -269,11 +269,11 @@
               <img width="20px" height="15px" src="{{asset('img/ECUADOR-04.webp')}}" alt="telefono casa credito inmobiliaria"> 098-384-9073
             </div>
           </a>
-          <a class="text-light" href="tel:+17186903740">
+          {{-- <a class="text-light" href="tel:+17186903740">
             <div class="mr-2 mt-2 px-1 rounded-pill font-weight-normal" style="top: 30px; right: 0; z-index: 3; font-size: 16px">
               <img width="20px" height="13px" src="{{asset('img/USA-05.webp')}}" alt="telefono casa credito inmobiliaria usa" class="mr-1"> 718-690-3740 
             </div>
-          </a>
+          </a> --}}
         </div>
       @endif
       <video class="video-header" style="object-fit:cover; width: 100%; height: 700px;" src="{{ asset('img/video-home.mp4') }}" autoplay muted loop></video>
