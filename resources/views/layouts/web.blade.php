@@ -15,7 +15,7 @@
         <link rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     </noscript>
-
+    <link rel="stylesheet" href="{{ asset('css/font-style.css') }}">
     <script>
         let stylesheet = document.createElement('link');
         stylesheet.href = "https://pro.fontawesome.com/releases/v5.10.0/css/all.css";
@@ -601,7 +601,7 @@ if(strpos($actual_link, 'localhost') === false){
             <div class="custom-container pt-5">
                 <div class="row">
                     <div class="col-md-4 column-padding mt-5" style="border-right: 1px solid #ffffff;">
-                        <p class="desing-t" style="font-size: 20px">Cuenca | Ecuador</p>
+                        <p class="desing-t" style="font-size: 20px ; font-weight: 500;  font-family: 'Sharp Grotesk';">Cuenca | Ecuador</p>
                         <div class="row">
                             <div class="col-6">
                                 <p><strong style="font-size: 16px; text-transform: uppercase; font-weight: 500;">Lunes
