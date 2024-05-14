@@ -601,7 +601,7 @@
                                 );
                             @endphp
                             <img class="card-img-top lazyLoad" width="100%" height="100%"
-                                src="@if (file_exists($imageVerification)) {{ asset('uploads/listing/thumb/600/' . strtok($listing_s->images, '|')) }} @else {{ asset('uploads/listing/600/' . strtok($listing_s->images, '|')) }} @endif"
+                                data-src="@if (file_exists($imageVerification)) {{ asset('uploads/listing/thumb/600/' . strtok($listing_s->images, '|')) }} @else {{ asset('uploads/listing/600/' . strtok($listing_s->images, '|')) }} @endif"
                                 alt="{{ $listing_s->listing_title }}">
                             <div class="card-body">
                                 <p style="margin: 0px" class="card-title h5">
@@ -734,5 +734,38 @@
                 `<div class="text-center"> <b>Sector donde se encuentra la propiedad:</b> <br> <br> <span> ${title} </span> <br> <br> <img class='w-100' src='/uploads/listing/600/${images}' /></div>`
             )
             .addTo(map);
+    </script>
+    <script>
+        function onScrollEvent(entries, observer) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                var attributes = entry.target.attributes;
+                var src = attributes['data-src'].textContent;
+                entry.target.src = src;
+                entry.target.classList.add('visible');
+            }
+        });
+    }
+    var targets = document.querySelectorAll('.lazyLoad');
+    // Instanciamos un nuevo observador.
+    var observer = new IntersectionObserver(onScrollEvent);
+    // Y se lo aplicamos a cada una de las
+    // imágenes.
+    targets.forEach(function(entry) {
+        observer.observe(entry);
+    });
+
+    //compartir propiedad
+    let shareLink = window.location.href;
+    document.getElementById('shareToFacebook').addEventListener('click', () => {window.open('https://www.facebook.com/sharer/sharer.php?u=' + shareLink, 'facebook-share-dialog', 'width=626, height=436');});
+    //document.getElementById('shareToTwitter').addEventListener('click', () => {window.open('https://twitter.com/intent/tweet?url='+shareLink)});
+    document.getElementById('shareToWpp').addEventListener('click', () => {window.open('https://api.whatsapp.com/send?text='+shareLink, '_blank')});
+
+    const addactive = (id) => {
+      let images = document.querySelectorAll('.active');
+      images.forEach(element => { element.classList.remove('active'); });
+      let image = document.getElementById('img_'+id);
+      image.classList.add('active');
+    }
     </script>
 @endsection
