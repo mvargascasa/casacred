@@ -117,7 +117,7 @@
                     <div class="carousel-inner">
                         @foreach (explode('|', $listing->images) as $image)
                             <div class="carousel-item @if ($loop->index == 0) active @endif">
-                                <img src="{{ $filexists ? url('uploads/listing/thumb/600', $image) : url('uploads/listing/600', $image) }}"
+                                <img src="{{ $filexists ? url('uploads/listing/', $image) : url('uploads/listing/', $image) }}"
                                     class="d-block w-100" style="height: auto; max-height: 600px; border-radius: 15px;">
                             </div>
                         @endforeach
