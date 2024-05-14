@@ -701,6 +701,7 @@ class WebController extends Controller
         //$operacion = $request->category;
         //$tipo = $request->ptype;
         //$text = $request->searchtxt;
+        session()->forget(['operacion', 'tipo', 'text']);
 
         $request->category ? $operacion = $request->category : $operacion = null;
         $request->ptype ? $tipo = $request->ptype : $tipo = null;

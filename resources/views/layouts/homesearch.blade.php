@@ -12,7 +12,7 @@
             <input type="radio" class="btn-check form-control" name="category" id="ftop_category_0" autocomplete="off" value="en-venta" checked>
             <label class="btn btn-outline-danger" for="ftop_category_0" style="width:100px;font-size: 14px">COMPRAR</label>  
             <input type="radio" class="btn-check form-control" name="category" id="ftop_category_1" autocomplete="off" value="alquilar">
-            <label class="btn btn-outline-danger" for="ftop_category_1" style="width:100px;font-size: 14px">ALQUILAR</label>
+            <label class="btn btn-outline-danger" for="ftop_category_1" style="width:100px;font-size: 14px">RENTAR</label>
           </div>
   
           <div class="mb-3 w-100">
