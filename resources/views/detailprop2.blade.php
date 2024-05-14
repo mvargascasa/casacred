@@ -469,40 +469,37 @@
                     </div>
                 </div>
                 @if ($user->profile_photo_path != null && $user->status == 1)
-                    <div class="container">
-                        <div class="text-center border px-3 mt-3 rounded py-3 card-asesor">
-                            <img class="rounded-circle img-profile" width="170px" height="170px"
-                                src="{{ asset('uploads/profiles/' . $user->profile_photo_path) }}"
-                                alt="Imagen de perfil">
-                            <p class="mt-3 mb-0" style="font-weight: 200">{{ $user->name }}</p>
-                            <p class="font-weight-normal m-0" style="font-size: small">
-                                @if ($user->role == 'ASESOR')
-                                    Asesor Inmobiliario
-                                @else
-                                    Gestor Inmobiliario
-                                @endif
-                            </p>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-4 col-4">
-                                    <a href="tel:+593983849073">
-                                        <i class="fas fa-phone-alt text-light p-2 rounded-circle icon-phone border border-white"
-                                            style="background-color: #242B40"></i>
-                                    </a>
-                                </div>
-                                <div class="col-sm-4 col-4">
-                                    <a target="_blank"
-                                        href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *{{ $listing->product_code }}* - *{{ $listing->listing_title }}* y deseo que me contacten. Gracias 😊%0A{{ url()->current() }}">
-                                        <i class="fab fa-whatsapp text-light p-2 rounded-circle border border-white"
-                                            style="background-color: #242B40"></i>
-                                    </a>
-                                </div>
-                                <div class="col-sm-4 col-4">
-                                    <a href="mailto:ventas@casacredito.com">
-                                        <i class="fas fa-envelope text-light p-2 rounded-circle border border-white"
-                                            style="background-color: #242B40"></i>
-                                    </a>
-                                </div>
+                    <div class="text-center border px-3 mt-3 rounded py-3 card-asesor">
+                        <img class="rounded-circle img-profile" width="170px" height="170px"
+                            src="{{ asset('uploads/profiles/' . $user->profile_photo_path) }}" alt="Imagen de perfil">
+                        <p class="mt-3 mb-0" style="font-weight: 200">{{ $user->name }}</p>
+                        <p class="font-weight-normal m-0" style="font-size: small">
+                            @if ($user->role == 'ASESOR')
+                                Asesor Inmobiliario
+                            @else
+                                Gestor Inmobiliario
+                            @endif
+                        </p>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-4 col-4">
+                                <a href="tel:+593983849073">
+                                    <i class="fas fa-phone-alt text-light p-2 rounded-circle icon-phone border border-white"
+                                        style="background-color: #242B40"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-4 col-4">
+                                <a target="_blank"
+                                    href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *{{ $listing->product_code }}* - *{{ $listing->listing_title }}* y deseo que me contacten. Gracias 😊%0A{{ url()->current() }}">
+                                    <i class="fab fa-whatsapp text-light p-2 rounded-circle border border-white"
+                                        style="background-color: #242B40"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-4 col-4">
+                                <a href="mailto:ventas@casacredito.com">
+                                    <i class="fas fa-envelope text-light p-2 rounded-circle border border-white"
+                                        style="background-color: #242B40"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
