@@ -37,12 +37,16 @@
         .testimonials-header{margin-left: 0px !important; padding-top: 0px !important; padding-right: 0px !important;}
         .testimonials-card{margin-left: 0px !important; margin-top: 0px !important; width: 100% !important; height: auto !important; padding-top: 20% !important; padding-bottom: 10% !important}
         .pattern-testimonials-card{height: auto !important;}
+        .filters-block{display: block !important}.filters-block select{width: 100% !important}.filters-block div{width: 100% !important}
+        .rounded-btn-search-mobile{border-radius: 5px 5px 5px 5px !important; margin-top: 15px !important}
+        .rounded-select-search-mobile{border-radius: 5px 5px 5px 5px !important}
+        .rounded-input-search-mobile{border-radius: 5px 5px 5px 5px !important; margin-top: 15px !important}
       }
       @media screen and (max-width: 1040px){
         #parentBuscador{
           position: relative !important;
           top: 0px !important;
-          margin-top: -130px !important;
+          margin-top: -150px !important;
           padding-left: 5px !important;
           padding-right: 5px !important;
 

@@ -16,8 +16,8 @@
           </div>
   
           <div class="mb-3 w-100">
-            <div class="d-flex">
-              <select name="ptype" id="ftop_ptype" class="form-control form-select w-25" style="border-radius: 5px 0px 0px 5px">
+            <div class="d-flex filters-block">
+              <select name="ptype" id="ftop_ptype" class="form-control form-select w-25 rounded-select-search-mobile" style="border-radius: 5px 0px 0px 5px">
                     <option value="">Tipo de propiedad</option>
                     <option value="23">Casas </option>
                     <option value="24">Departamentos </option>
@@ -29,9 +29,9 @@
                     <option value="35">Oficinas</option>
                     <option value="36">Suites</option>
               </select>
-              <div class="d-flex w-75">
-                <input type="text" placeholder="INGRESE / UBICACIÓN / CÓDIGO" id="ftop_txt" name="searchtxt" class="form-control w-100 rounded-0">
-                <button type="submit" class="btn rounded-end font-weight-bold text-white" style="border-radius: 0px 5px 5px 0px; background-color: #8d97b2;">BUSCAR</button>
+              <div class="d-flex w-75 filters-block">
+                <input type="text" placeholder="INGRESE / UBICACIÓN / CÓDIGO" id="ftop_txt" name="searchtxt" class="form-control w-100 rounded-0 rounded-input-search-mobile">
+                <button type="submit" class="btn rounded-end font-weight-bold text-white rounded-btn-search-mobile" style="border-radius: 0px 5px 5px 0px; background-color: #8d97b2;">BUSCAR</button>
               </div>
             </div>
           </div>
