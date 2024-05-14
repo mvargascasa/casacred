@@ -697,36 +697,67 @@ class WebController extends Controller
     }
 
     public function searchHome(Request $request){
-        //return $request;
-        //$operacion = $request->category;
-        //$tipo = $request->ptype;
-        //$text = $request->searchtxt;
+
+        // Olvidar las variables de sesión anteriores
         session()->forget(['operacion', 'tipo', 'text']);
 
-        $request->category ? $operacion = $request->category : $operacion = null;
-        $request->ptype ? $tipo = $request->ptype : $tipo = null;
-        $request->searchtxt ? $text = $request->searchtxt : $text = null;
+        // Obtener valores del request y asignarlos a variables
+        $operacion = $request->has('category') ? $request->category : null;
+        $tipo = $request->has('ptype') ? $request->ptype : null;
+        $text = $request->has('searchtxt') ? $request->searchtxt : null;
 
+        // Guardar los nuevos valores en la sesión
         session(['operacion' => $operacion]);
         session(['tipo' => $tipo]);
         session(['text' => $text]);
 
-        $operacion == "alquilar" ? $operacion = "en-renta" : null;
+        // Ajustar el valor de 'operacion' si es necesario
+        if ($operacion === "alquilar") {
+            $operacion = "en-renta";
+        }
 
-        if($tipo != null || $tipo != ""){
-            $propertyType = DB::table('listing_types')->where('id', $tipo)->first();  //obtengo el tipo de propiedad
+        // Generar el slug en base al tipo y operación
+        if (!empty($tipo)) {
+            $propertyType = DB::table('listing_types')->where('id', $tipo)->first();  // Obtener el tipo de propiedad
             $typeName = Str::lower($propertyType->type_title);
             $slug = Str::slug($typeName . " " . $operacion);
         } else {
             $slug = Str::slug('propiedades ' . $operacion);
         }
 
-
-        if($text != null || $text != ""){
+        // Redirigir a la ruta correspondiente
+        if (!empty($text)) {
             return redirect()->route('web.propiedades');
         } else {
             return redirect()->route('web.propiedades', ['slug' => $slug]);
         }
+
+        // session()->forget(['operacion', 'tipo', 'text']);
+
+        // $request->category ? $operacion = $request->category : $operacion = null;
+        // $request->ptype ? $tipo = $request->ptype : $tipo = null;
+        // $request->searchtxt ? $text = $request->searchtxt : $text = null;
+
+        // session(['operacion' => $operacion]);
+        // session(['tipo' => $tipo]);
+        // session(['text' => $text]);
+
+        // $operacion == "alquilar" ? $operacion = "en-renta" : null;
+
+        // if($tipo != null || $tipo != ""){
+        //     $propertyType = DB::table('listing_types')->where('id', $tipo)->first();  //obtengo el tipo de propiedad
+        //     $typeName = Str::lower($propertyType->type_title);
+        //     $slug = Str::slug($typeName . " " . $operacion);
+        // } else {
+        //     $slug = Str::slug('propiedades ' . $operacion);
+        // }
+
+
+        // if($text != null || $text != ""){
+        //     return redirect()->route('web.propiedades');
+        // } else {
+        //     return redirect()->route('web.propiedades', ['slug' => $slug]);
+        // }
     }
 
     public function sendLeadHome(Request $request){
