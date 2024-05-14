@@ -285,10 +285,12 @@
 
 
                 @if (is_array(json_decode($listing->heading_details)))
-                    <div style="border: none" class="card my-4">
+                    <div style="border: none ;" class="card my-4">
                         <div class="card-body" style="margin: -16px">
-                            <h2 class="card-title h6"
-                                style=" font-size: 23px; font-family: 'Sharp Grotesk'; font-weight: 500;">Detalles</h2>
+                            <h2 class="card-title h6 pb-2" style="font-size: 23px; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom: 1px solid #B0BEC5;">
+                                <i class="fas fa-home" style="font-size: 28px; color: #242B40; margin-right: 10px;"></i>
+                                Detalles
+                            </h2>
                             @foreach (json_decode($listing->heading_details) as $dets)
                                 <div class="row" style="padding-left: 7px">
                                     <?php unset($dets[0]);
@@ -300,7 +302,7 @@
                                             <?php $printControl = 1; ?>
                                             <div class="col-lg-3 col-md-4 col-6 p-1">
                                                 <span class="text-muted small"
-                                                    style="font-family: 'Sharp Grotesk'; font-weight: 100;">
+                                                    style="font-family: 'Sharp Grotesk'; font-weight: 300;">
                                                     @foreach ($details as $detail)
                                                         @if ($detail->id == $dets[$i])
                                                             {{ $detail->charac_titile }} @if ($detail->id == $dets[$i] && $detail->id == 86)
@@ -325,15 +327,17 @@
                 @if (count(array_filter(explode(',', $listing->listinggeneralcharacteristics))) > 0)
                     <div style="border: none" class="card my-4">
                         <div class="card-body" style="margin: -16px">
-                            <h2 class="card-title h6"
-                                style=" font-size: 23px; font-family: 'Sharp Grotesk'; font-weight: 500;">Características
-                                Generales</h2>
+                            <h2 class="card-title h6 pb-2" style="font-size: 23px; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom: 1px solid #B0BEC5;">
+                                <i class="fas fa-home" style="font-size: 28px; color: #242B40; margin-right: 10px;"></i>
+                                Características
+                                Generales
+                            </h2>
                             <div class="row" style="padding-left: 7px">
                                 @foreach (array_filter(explode(',', $listing->listinggeneralcharacteristics)) as $lgc)
                                     <div class="col-lg-3 col-md-4 col-6 p-1">
                                         {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
                                         <span class="text-muted small"
-                                            style="font-family: 'Sharp Grotesk'; font-weight: 100;">
+                                            style="font-family: 'Sharp Grotesk'; font-weight: 300;">
                                             @foreach ($generalcharacteristics as $gc)
                                                 @if ($gc->id == $lgc)
                                                     {{ $gc->title }}
@@ -357,14 +361,16 @@
                 @if (count(array_filter(explode(',', $listing->listingenvironments))) > 0)
                     <div style="border: none" class="card my-4">
                         <div class="card-body" style="margin: -16px">
-                            <h2 class="card-title h6"
-                                style=" font-size: 23px; font-family: 'Sharp Grotesk'; font-weight: 500;">Ambientes</h2>
+                            <h2 class="card-title h6 pb-2" style="font-size: 23px; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom: 1px solid #B0BEC5;">
+                                <i class="fas fa-home" style="font-size: 28px; color: #242B40; margin-right: 10px;"></i>
+                                Ambientes
+                            </h2>
                             <div class="row" style="padding-left: 7px">
                                 @foreach (array_filter(explode(',', $listing->listingenvironments)) as $lenv)
                                     <div class="col-lg-3 col-md-4 col-6 p-1">
                                         {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
                                         <span class="text-muted small"
-                                            style="font-family: 'Sharp Grotesk'; font-weight: 100;">
+                                            style="font-family: 'Sharp Grotesk'; font-weight: 300;">
                                             @foreach ($environments as $environment)
                                                 @if ($environment->id == $lenv)
                                                     {{ $environment->title }}
@@ -393,14 +399,15 @@
                 <h3 class="mt-4" style="font-family: 'Sharp Grotesk'">Ubicación</h3>
                 <div class="d-flex align-items-center mt-3">
                     <i class="fa-solid fa-location-dot fs-5 me-2"></i>
-                    <p class="mb-0 ml-2" style="font-family: 'Sharp Grotesk'">{{ $listing->sector }}, {{ $listing->city }},
+                    <p class="mb-0 ml-2" style="font-family: 'Sharp Grotesk'">{{ $listing->sector }},
+                        {{ $listing->city }},
                         {{ $listing->state }}</p>
                 </div>
                 <div id="map" style="height: 500px;" class="my-3"></div>
             </div>
 
-            <div class="col-md-5 mb-5">
-                <div class="sticky-top px-5" style="top: 0;">
+            <div class="col-md-5 mb-5" >
+                <div class="sticky-top" style="top: 0;">
                     <div class="text-center text-white py-3 shadow"
                         style="background-color: #242B40; border-radius: 25px 25px 0 0;">
                         <div class="row justify-content-center align-items-center">
@@ -475,8 +482,9 @@
                                         style="border: 1px solid #242b40a2; width: 30px; height: 30px">
                                         <i class="fa-solid fa-phone"></i>
                                     </div>
-                                    <a style="text-decoration: none" href="tel:+593987474637"
-                                        class="mt-1 ml-2 text-dark">098-747-4637</a>
+                                    <a style="text-decoration: none"
+                                        href="tel:{{ $listing->listingtypestatus == 'en-venta' ? '+593983849073' : '+593987474637' }}"
+                                        class="mt-1 ml-2 text-dark">{{ $listing->listingtypestatus == 'en-venta' ? '098-384-9073' : '098-747-4637' }}</a>
                                 </div>
 
                                 <div class="d-flex gap-3 ms-4 mt-2">
@@ -485,9 +493,8 @@
                                         <i class="fa-brands fa-whatsapp"></i>
                                     </div>
                                     <a style="text-decoration: none"
-                                        onclick="return gtag_report_conversion('https://api.whatsapp.com/send?phone=593987474637&text=Hola%20*Housing%20Rent%20Group*,%20deseo%20consultar%20por%20esta%20propiedad:%20*{{ $listing->product_code }}*');"
-                                        href="https://api.whatsapp.com/send?phone=593987474637&text=Hola%20*Housing%20Rent%20Group*,%20deseo%20consultar%20por%20esta%20propiedad:%20*{{ $listing->product_code }}*"
-                                        class="mt-1 ml-2 text-dark">098-747-4637</a>
+                                        href="https://api.whatsapp.com/send?phone={{ $listing->listingtypestatus == 'en-venta' ? '593983849073' : '593987474637' }}&text=Hola%20*Housing%20Rent%20Group*,%20deseo%20consultar%20por%20esta%20propiedad:%20*{{ $listing->product_code }}*"
+                                        class="mt-1 ml-2 text-dark">{{ $listing->listingtypestatus == 'en-venta' ? '098-384-9073' : '098-747-4637' }}</a>
                                 </div>
                                 <div class="d-flex gap-3 ms-4 mt-2">
                                     <div class="rounded-circle d-flex justify-content-center align-items-center"
@@ -582,15 +589,8 @@
     @endphp
 
     @if (count($listingsSimilar) > 0)
-        <div class="row mt-5 mx-5justify-content-center" data-aos="zoom-in">
-            <h3 class="text-center mb-5 h5">Propiedades similares</h3>
-            <p>Más {{ $listingtype->type_title }}@if ($listing->listingtypestatus == 'en-venta')
-                    en venta
-                @elseif($listing->listingtypestatus == 'alquilar')
-                    en renta
-                @else
-                    en proyectos
-                @endif en {{ $listing->city }} </p>
+        <div class="row my-5 mx-5 mx-5 justify-content-center" data-aos="zoom-in">
+            <h2 class="text-center mb-5" style="font-family: 'Sharp Grotesk', sans-serif;">Propiedades similares</h2>
             @foreach ($listingsSimilar as $listing_s)
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 mb-2 d-flex justify-content-center text-center">
                     <a style="text-decoration: none; color: #000000" href="{{ route('web.detail', $listing_s->slug) }}">
