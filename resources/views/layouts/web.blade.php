@@ -7,6 +7,7 @@
     <link rel="icon" href="{{ asset('favicon-grupo-housing.png') }}" type="image/x-icon" />
     {{-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">  --}}
     {{-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/> --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/5.0.0/bootstrap.min.css') }}">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -349,6 +350,91 @@ if(strpos($actual_link, 'localhost') === false){
                 padding-right: 40px;
                 /* Espacio interno a la derecha */
             }
+
+            .whatsapp-group {
+                position: fixed;
+                bottom: 62px;
+                right: 5px;
+                z-index: 5000;
+            }
+
+            .whatsapp-float {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #25d366;
+                color: white;
+                font-size: 30px;
+                box-shadow: 2px 2px 5px #666;
+                text-decoration: none;
+                border: none;
+                outline: none;
+                transition: transform 0.3s ease, background-color 0.3s ease;
+            }
+
+            .whatsapp-options {
+                display: none;
+                position: absolute;
+                bottom: 60px;
+                /* Ajuste para que aparezca justo encima del botón */
+                right: 0;
+                flex-direction: column;
+            }
+
+            .whatsapp-link {
+                background-color: white;
+                color: #25d366;
+                text-decoration: none;
+                padding: 8px;
+                border-radius: 10px;
+                box-shadow: 2px 2px 5px #666;
+                margin-top: 5px;
+            }
+
+            .whatsapp-link:hover {
+                color: #23b258;
+            }
+            /* Estilos específicos del botón de WhatsApp para mantener el ícono centrado y con el estilo deseado */
+            .whatsapp-float {
+                background-color: #25d366;
+                color: white;
+                font-size: 30px;
+                /* Tamaño del ícono de WhatsApp */
+                border-radius: 50%;
+                /* Hacer el botón de WhatsApp completamente circular */
+                box-shadow: 2px 2px 5px #666;
+                text-decoration: none;
+                border: none;
+                outline: none;
+            }
+
+            .whatsapp-float i {
+                transition: color 0.3s;
+                /* Suavizar la transición de color del ícono */
+            }
+
+            /* Efectos al pasar el mouse sobre ambos botones */
+            .whatsapp-float:hover {
+                transform: scale(1.5);
+            }
+
+            /* Cambio de color específico al hacer hover en el botón de WhatsApp */
+            .whatsapp-float:hover {
+                background-color: #ffffff;
+                /* Fondo a blanco */
+                color: #25d366;
+                /* Ícono a verde WhatsApp */
+                box-shadow: 0 0 10px #25d366;
+                /* Sombra más pronunciada y de color verde */
+            }
+
+            .whatsapp-float:hover i {
+                color: inherit;
+                /* El ícono hereda el color para mantener consistencia */
+            }
     </style>
 </head>
 
@@ -537,12 +623,15 @@ if(strpos($actual_link, 'localhost') === false){
                         </div>
                         <div class="row align-items-center mt-2">
                             <div class="col-2 text-center">
-                                <span style="color: #182741; background-color: #ffffff; border-radius: 50%; width: 35px; height: 35px; display: inline-flex; align-items: center; justify-content: center;">
+                                <span
+                                    style="color: #182741; background-color: #ffffff; border-radius: 50%; width: 35px; height: 35px; display: inline-flex; align-items: center; justify-content: center;">
                                     <i class="fas fa-envelope" style="font-size: 18px;"></i>
                                 </span>
                             </div>
                             <div class="col-10">
-                                <div style="color: #ffffff;"><span class="desing-p"><a href="mailto:info@grupohousing.com" style="color: #ffffff">info@grupohousing.com</a></span></div>
+                                <div style="color: #ffffff;"><span class="desing-p"><a
+                                            href="mailto:info@grupohousing.com"
+                                            style="color: #ffffff">info@grupohousing.com</a></span></div>
                             </div>
                         </div>
                         <div class="row align-items-center mt-3">
@@ -782,13 +871,18 @@ if(strpos($actual_link, 'localhost') === false){
         </div>
     </div>
 
-    <div class="wsapp">
-        <a href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, deseo que me contacten a este número de teléfono y me ayuden con más información"
-            class="asindeco" target="_blank">
-            <img src="{{ asset('img/whatsapp-logo.png') }}" alt="Whatsapp Grupo Housing" width="50px"
-                height="50px">
+    <div class="whatsapp-group">
+        <a href="#" class="whatsapp-float" onclick="toggleWhatsAppMenu(); return false;">
+            <i class="fab fa-whatsapp"></i>
         </a>
+        <div class="whatsapp-options">
+            <a href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en una propiedad en venta"
+                target="_blank" class="whatsapp-link">Venta</a>
+            <a href="https://api.whatsapp.com/send?phone=593987474637&text=Hola, estoy interesado en rentar una propiedad"
+                target="_blank" class="whatsapp-link">Renta</a>
+        </div>
     </div>
+
     <div class="telf d-flex">
         <div id="call-usa-ecu" class="bg-danger text-light d-flex" style="margin-right: -105px">
             <div onclick="openDivCallUsaEcu()" style="cursor: pointer; ">
@@ -1022,6 +1116,16 @@ if(strpos($actual_link, 'localhost') === false){
                 return false;
             });
         }, 3500);
+    </script>
+    <script>
+        function toggleWhatsAppMenu() {
+            var options = document.querySelector('.whatsapp-options');
+            if (options.style.display === 'flex') {
+                options.style.display = 'none';
+            } else {
+                options.style.display = 'flex';
+            }
+        }
     </script>
 </body>
 
