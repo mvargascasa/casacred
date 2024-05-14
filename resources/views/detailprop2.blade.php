@@ -86,6 +86,57 @@
             white-space: nowrap;
             color: #242B40;
         }
+
+        .card-asesor {
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        }
+
+        .icon-phone,
+        .fa-whatsapp,
+        .fa-envelope,
+        .img-profile {
+            transition: transform 0.3s ease;
+        }
+
+        .icon-phone:hover {
+            transform: scale(1.5);
+        }
+
+        .fa-whatsapp:hover {
+            transform: scale(1.5);
+        }
+
+        .fa-envelope:hover {
+            transform: scale(1.5);
+        }
+
+        .card-asesor:hover {
+            background-color: #242B40;
+            color: #ffffff
+        }
+
+        .card-asesor:hover .img-profile {
+            transform: scale(1.1);
+        }
+
+        #calcularcredmobile {
+            z-index: 4;
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+        }
+
+        .bg-orange {
+            background-color: #dc3545;
+        }
+
+        .tiktok-embed {
+            width: 100% !important
+        }
+
+        .filter-image:hover {
+            filter: brightness(70%)
+        }
     </style>
 @endsection
 
@@ -160,7 +211,7 @@
                 </h1>
                 <div class="d-flex align-items-center mt-3">
                     <i class="fa-solid fa-location-dot fs-5 me-2"></i>
-                    <p class="mb-0 ms-2">{{ $listing->sector }}, {{ $listing->city }}, {{ $listing->state }}</p>
+                    <p class="mb-0 ml-2 ms-2">{{ $listing->sector }}, {{ $listing->city }}, {{ $listing->state }}</p>
                     <span class="ms-2 ml-2 badge"
                         style="background-color: #f9a322; color: #ffffff; border-radius: 5px; font-weight: 500; font-size: 13px; padding: 3px 6px;">
                         {{ $listingtype->type_title }}
@@ -342,7 +393,7 @@
                 <h3 class="mt-4" style="font-family: 'Sharp Grotesk'">Ubicación</h3>
                 <div class="d-flex align-items-center mt-3">
                     <i class="fa-solid fa-location-dot fs-5 me-2"></i>
-                    <p class="mb-0" style="font-family: 'Sharp Grotesk'">{{ $listing->sector }}, {{ $listing->city }},
+                    <p class="mb-0 ml-2" style="font-family: 'Sharp Grotesk'">{{ $listing->sector }}, {{ $listing->city }},
                         {{ $listing->state }}</p>
                 </div>
                 <div id="map" style="height: 500px;" class="my-3"></div>
