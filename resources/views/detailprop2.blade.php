@@ -137,6 +137,16 @@
         .filter-image:hover {
             filter: brightness(70%)
         }
+
+        .custom-container {
+            width: 100%;
+            max-width: 1500px;
+            /* Ajusta este valor según tus necesidades */
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
     </style>
 @endsection
 
@@ -161,7 +171,7 @@
         ->first();
 @endphp
 @section('content')
-    <div class="container mt-5">
+    <div class="custom-container mt-5">
         <div class="row">
             <div class="col-12 position-relative">
                 <div id="carouselImages" class="carousel slide" data-ride="carousel">
@@ -204,7 +214,7 @@
         </div>
     </div>
 
-    <div class="container mt-5">
+    <div class="custom-container mt-5">
         <div class="row">
             <div class="col-md-7">
                 <h1 class="" style="font-family: 'Sharp Grotesk'; font-weight: 500;">{{ $listing->listing_title }}
@@ -285,9 +295,10 @@
 
 
                 @if (is_array(json_decode($listing->heading_details)))
-                    <div style="border: none ;" class="card my-4">
+                    <div style="border: none; background-color: transparent;" class="card my-4">
                         <div class="card-body" style="margin: -16px">
-                            <h2 class="card-title h6 pb-2" style="font-size: 23px; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom: 1px solid #B0BEC5;">
+                            <h2 class="card-title h6 pb-2"
+                                style="font-size: 23px; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom: 1px solid #B0BEC5;">
                                 <i class="fas fa-home" style="font-size: 28px; color: #242B40; margin-right: 10px;"></i>
                                 Detalles
                             </h2>
@@ -325,9 +336,10 @@
                     </div>
                 @endif
                 @if (count(array_filter(explode(',', $listing->listinggeneralcharacteristics))) > 0)
-                    <div style="border: none" class="card my-4">
+                    <div style="border: none; background-color: transparent;" class="card my-4">
                         <div class="card-body" style="margin: -16px">
-                            <h2 class="card-title h6 pb-2" style="font-size: 23px; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom: 1px solid #B0BEC5;">
+                            <h2 class="card-title h6 pb-2"
+                                style="font-size: 23px; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom: 1px solid #B0BEC5;">
                                 <i class="fas fa-home" style="font-size: 28px; color: #242B40; margin-right: 10px;"></i>
                                 Características
                                 Generales
@@ -342,12 +354,14 @@
                                                 @if ($gc->id == $lgc)
                                                     {{ $gc->title }}
                                                     @endif @if ($gc->id == $lgc && $lgc == 8 && $listing->num_pisos > 0)
-                                                        <b class="text-white px-1" style="background-color: #242B40">{{ $listing->num_pisos }}</b>
+                                                        <b class="text-white px-1"
+                                                            style="background-color: #242B40">{{ $listing->num_pisos }}</b>
                                                         @endif @if ($gc->id == $lgc && $lgc == 7 && $listing->niv_constr > 0)
                                                             <b class="text-white px-1" style="background-color: #242B40">
                                                                 {{ $listing->niv_constr }}</b>
                                                             @endif @if ($gc->id == $lgc && $lgc == 15 && $listing->pisos_constr > 0)
-                                                                <b class="text-white px-1" style="background-color: #242B40">
+                                                                <b class="text-white px-1"
+                                                                    style="background-color: #242B40">
                                                                     {{ $listing->pisos_constr }}</b>
                                                             @endif
                                                         @endforeach
@@ -359,9 +373,10 @@
                     </div>
                 @endif
                 @if (count(array_filter(explode(',', $listing->listingenvironments))) > 0)
-                    <div style="border: none" class="card my-4">
+                    <div style="border: none; background-color: transparent;" class="card my-4">
                         <div class="card-body" style="margin: -16px">
-                            <h2 class="card-title h6 pb-2" style="font-size: 23px; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom: 1px solid #B0BEC5;">
+                            <h2 class="card-title h6 pb-2"
+                                style="font-size: 23px; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom: 1px solid #B0BEC5;">
                                 <i class="fas fa-home" style="font-size: 28px; color: #242B40; margin-right: 10px;"></i>
                                 Ambientes
                             </h2>
@@ -406,8 +421,9 @@
                 <div id="map" style="height: 500px;" class="my-3"></div>
             </div>
 
-            <div class="col-md-5 mb-5" >
-                <div class="sticky-top" style="top: 0;">
+            <div class="col-md-5 mb-5">
+                <div class="sticky-top" style="top: 0;padding: 0 30px;">
+
                     <div class="text-center text-white py-3 shadow"
                         style="background-color: #242B40; border-radius: 25px 25px 0 0;">
                         <div class="row justify-content-center align-items-center">
@@ -589,85 +605,88 @@
     @endphp
 
     @if (count($listingsSimilar) > 0)
-        <div class="row my-5 mx-5 mx-5 justify-content-center" data-aos="zoom-in">
-            <h2 class="text-center mb-5" style="font-family: 'Sharp Grotesk', sans-serif;">Propiedades similares</h2>
-            @foreach ($listingsSimilar as $listing_s)
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 mb-2 d-flex justify-content-center text-center">
-                    <a style="text-decoration: none; color: #000000" href="{{ route('web.detail', $listing_s->slug) }}">
-                        <div data-aos="zoom-in" class="card cardsimilarlisting" style="width: 18rem;">
-                            @php
-                                $imageVerification = asset(
-                                    'uploads/listing/thumb/600' . strtok($listing_s->images, '|'),
-                                );
-                            @endphp
-                            <img class="card-img-top lazyLoad" width="100%" height="100%"
-                                data-src="@if (file_exists($imageVerification)) {{ asset('uploads/listing/thumb/600/' . strtok($listing_s->images, '|')) }} @else {{ asset('uploads/listing/600/' . strtok($listing_s->images, '|')) }} @endif"
-                                alt="{{ $listing_s->listing_title }}">
-                            <div class="card-body">
-                                <p style="margin: 0px" class="card-title h5">
-                                    ${{ number_format($listing_s->property_price) }}</p>
+        <div class="custom-container">
+            <div class="row my-5 justify-content-center" data-aos="zoom-in">
+                <h2 class="text-center mb-5" style="font-family: 'Sharp Grotesk', sans-serif;">Propiedades similares</h2>
+                @foreach ($listingsSimilar as $listing_s)
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 mb-2 d-flex justify-content-center text-center">
+                        <a style="text-decoration: none; color: #000000"
+                            href="{{ route('web.detail', $listing_s->slug) }}">
+                            <div data-aos="zoom-in" class="card cardsimilarlisting" style="width: 18rem;">
                                 @php
-                                    $bedroom = 0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
-                                    $bathroom = 0;
-                                    $garage = 0;
-                                    $squarefit = 0;
-                                    if (!empty($listing_s->heading_details)) {
-                                        $allheadingdeatils = json_decode($listing_s->heading_details);
-                                        foreach ($allheadingdeatils as $singleedetails) {
-                                            unset($singleedetails[0]);
-                                            for ($i = 1; $i <= count($singleedetails); $i++) {
-                                                if ($i % 2 == 0) {
-                                                    if (
-                                                        $singleedetails[$i - 1] == 41 ||
-                                                        $singleedetails[$i - 1] == 86 ||
-                                                        $singleedetails[$i - 1] == 49
-                                                    ) {
-                                                        $bedroom += $singleedetails[$i];
-                                                    }
-                                                    if (
-                                                        $singleedetails[$i - 1] == 48 ||
-                                                        $singleedetails[$i - 1] == 76 ||
-                                                        $singleedetails[$i - 1] == 81 ||
-                                                        $singleedetails[$i - 1] == 49
-                                                    ) {
-                                                        $bathroom += $singleedetails[$i];
-                                                    }
-                                                    if ($singleedetails[$i - 1] == 43) {
-                                                        $garage += $singleedetails[$i];
+                                    $imageVerification = asset(
+                                        'uploads/listing/thumb/600' . strtok($listing_s->images, '|'),
+                                    );
+                                @endphp
+                                <img class="card-img-top lazyLoad" width="100%" height="100%"
+                                    data-src="@if (file_exists($imageVerification)) {{ asset('uploads/listing/thumb/600/' . strtok($listing_s->images, '|')) }} @else {{ asset('uploads/listing/600/' . strtok($listing_s->images, '|')) }} @endif"
+                                    alt="{{ $listing_s->listing_title }}">
+                                <div class="card-body">
+                                    <p style="margin: 0px" class="card-title h5">
+                                        ${{ number_format($listing_s->property_price) }}</p>
+                                    @php
+                                        $bedroom = 0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
+                                        $bathroom = 0;
+                                        $garage = 0;
+                                        $squarefit = 0;
+                                        if (!empty($listing_s->heading_details)) {
+                                            $allheadingdeatils = json_decode($listing_s->heading_details);
+                                            foreach ($allheadingdeatils as $singleedetails) {
+                                                unset($singleedetails[0]);
+                                                for ($i = 1; $i <= count($singleedetails); $i++) {
+                                                    if ($i % 2 == 0) {
+                                                        if (
+                                                            $singleedetails[$i - 1] == 41 ||
+                                                            $singleedetails[$i - 1] == 86 ||
+                                                            $singleedetails[$i - 1] == 49
+                                                        ) {
+                                                            $bedroom += $singleedetails[$i];
+                                                        }
+                                                        if (
+                                                            $singleedetails[$i - 1] == 48 ||
+                                                            $singleedetails[$i - 1] == 76 ||
+                                                            $singleedetails[$i - 1] == 81 ||
+                                                            $singleedetails[$i - 1] == 49
+                                                        ) {
+                                                            $bathroom += $singleedetails[$i];
+                                                        }
+                                                        if ($singleedetails[$i - 1] == 43) {
+                                                            $garage += $singleedetails[$i];
+                                                        }
                                                     }
                                                 }
+                                                $i++;
                                             }
-                                            $i++;
                                         }
-                                    }
-                                @endphp
-                                @if ($bedroom > 0 || $bathroom > 0)
-                                    <p style="font-size: 15px; margin: 0px" class="card-text">
-                                        @if ($bedroom > 0)
-                                            {{ $bedroom }} @if ($bedroom > 1)
-                                                habitaciones
-                                            @else
-                                                habitación
-                                            @endif
-                                            @endif @if ($bathroom > 0)
-                                                {{ $bathroom }} @if ($bathroom > 1)
-                                                    baños
+                                    @endphp
+                                    @if ($bedroom > 0 || $bathroom > 0)
+                                        <p style="font-size: 15px; margin: 0px" class="card-text">
+                                            @if ($bedroom > 0)
+                                                {{ $bedroom }} @if ($bedroom > 1)
+                                                    habitaciones
                                                 @else
-                                                    baño
+                                                    habitación
                                                 @endif
-                                            @endif
+                                                @endif @if ($bathroom > 0)
+                                                    {{ $bathroom }} @if ($bathroom > 1)
+                                                        baños
+                                                    @else
+                                                        baño
+                                                    @endif
+                                                @endif
+                                        </p>
+                                    @endif
+                                    <p style="font-size: 15px; margin: 0px" class="card-text">
+                                        @isset($listing_s->country)
+                                            {{ $listing_s->country }} |
+                                        @endisset {{ $listing_s->state }} | {{ $listing_s->city }}
                                     </p>
-                                @endif
-                                <p style="font-size: 15px; margin: 0px" class="card-text">
-                                    @isset($listing_s->country)
-                                        {{ $listing_s->country }} |
-                                    @endisset {{ $listing_s->state }} | {{ $listing_s->city }}
-                                </p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
+                        </a>
+                    </div>
+                @endforeach
+            </div>
         </div>
     @endif
 @endsection
@@ -737,35 +756,42 @@
     </script>
     <script>
         function onScrollEvent(entries, observer) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                var attributes = entry.target.attributes;
-                var src = attributes['data-src'].textContent;
-                entry.target.src = src;
-                entry.target.classList.add('visible');
-            }
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    var attributes = entry.target.attributes;
+                    var src = attributes['data-src'].textContent;
+                    entry.target.src = src;
+                    entry.target.classList.add('visible');
+                }
+            });
+        }
+        var targets = document.querySelectorAll('.lazyLoad');
+        // Instanciamos un nuevo observador.
+        var observer = new IntersectionObserver(onScrollEvent);
+        // Y se lo aplicamos a cada una de las
+        // imágenes.
+        targets.forEach(function(entry) {
+            observer.observe(entry);
         });
-    }
-    var targets = document.querySelectorAll('.lazyLoad');
-    // Instanciamos un nuevo observador.
-    var observer = new IntersectionObserver(onScrollEvent);
-    // Y se lo aplicamos a cada una de las
-    // imágenes.
-    targets.forEach(function(entry) {
-        observer.observe(entry);
-    });
 
-    //compartir propiedad
-    let shareLink = window.location.href;
-    document.getElementById('shareToFacebook').addEventListener('click', () => {window.open('https://www.facebook.com/sharer/sharer.php?u=' + shareLink, 'facebook-share-dialog', 'width=626, height=436');});
-    //document.getElementById('shareToTwitter').addEventListener('click', () => {window.open('https://twitter.com/intent/tweet?url='+shareLink)});
-    document.getElementById('shareToWpp').addEventListener('click', () => {window.open('https://api.whatsapp.com/send?text='+shareLink, '_blank')});
+        //compartir propiedad
+        let shareLink = window.location.href;
+        document.getElementById('shareToFacebook').addEventListener('click', () => {
+            window.open('https://www.facebook.com/sharer/sharer.php?u=' + shareLink, 'facebook-share-dialog',
+                'width=626, height=436');
+        });
+        //document.getElementById('shareToTwitter').addEventListener('click', () => {window.open('https://twitter.com/intent/tweet?url='+shareLink)});
+        document.getElementById('shareToWpp').addEventListener('click', () => {
+            window.open('https://api.whatsapp.com/send?text=' + shareLink, '_blank')
+        });
 
-    const addactive = (id) => {
-      let images = document.querySelectorAll('.active');
-      images.forEach(element => { element.classList.remove('active'); });
-      let image = document.getElementById('img_'+id);
-      image.classList.add('active');
-    }
+        const addactive = (id) => {
+            let images = document.querySelectorAll('.active');
+            images.forEach(element => {
+                element.classList.remove('active');
+            });
+            let image = document.getElementById('img_' + id);
+            image.classList.add('active');
+        }
     </script>
 @endsection
