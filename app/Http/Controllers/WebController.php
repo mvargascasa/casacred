@@ -323,7 +323,7 @@ class WebController extends Controller
         // if($ismobile) return view('detailmobile',compact('listing','details','benefits','services','types'));
         // else
 
-        if($listing->status != 0) return view('detailprop2',compact('listing','details','benefits','services','types','mobile', 'user', 'values', 'generalcharacteristics', 'environments', 'media'));
+        if($listing->status != 0) return view('detailprop',compact('listing','details','benefits','services','types','mobile', 'user', 'values', 'generalcharacteristics', 'environments', 'media'));
         else return redirect()->route('web.propiedades');
     }
 
