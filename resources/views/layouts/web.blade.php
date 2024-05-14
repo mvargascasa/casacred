@@ -397,6 +397,7 @@ if(strpos($actual_link, 'localhost') === false){
             .whatsapp-link:hover {
                 color: #23b258;
             }
+
             /* Estilos específicos del botón de WhatsApp para mantener el ícono centrado y con el estilo deseado */
             .whatsapp-float {
                 background-color: #25d366;
@@ -434,6 +435,16 @@ if(strpos($actual_link, 'localhost') === false){
             .whatsapp-float:hover i {
                 color: inherit;
                 /* El ícono hereda el color para mantener consistencia */
+            }
+
+            .whatsapp-float-active {
+                transform: scale(1.5);
+                background-color: #ffffff;
+                /* Fondo a blanco */
+                color: #25d366;
+                /* Ícono a verde WhatsApp */
+                box-shadow: 0 0 10px #25d366;
+                /* Sombra más pronunciada y de color verde */
             }
     </style>
 </head>
@@ -872,7 +883,7 @@ if(strpos($actual_link, 'localhost') === false){
     </div>
 
     <div class="whatsapp-group">
-        <a href="#" class="whatsapp-float" onclick="toggleWhatsAppMenu(); return false;">
+        <a href="#" class="whatsapp-float" onclick="toggleWhatsAppMenu(event); return false;">
             <i class="fab fa-whatsapp"></i>
         </a>
         <div class="whatsapp-options">
@@ -1118,14 +1129,29 @@ if(strpos($actual_link, 'localhost') === false){
         }, 3500);
     </script>
     <script>
-        function toggleWhatsAppMenu() {
+        function toggleWhatsAppMenu(event) {
+            event.stopPropagation(); // Evitar que el clic se propague a document
             var options = document.querySelector('.whatsapp-options');
+            var button = document.querySelector('.whatsapp-float');
+
             if (options.style.display === 'flex') {
                 options.style.display = 'none';
+                button.classList.remove('whatsapp-float-active');
             } else {
                 options.style.display = 'flex';
+                button.classList.add('whatsapp-float-active');
             }
         }
+
+        // Evento para cerrar el menú si se hace clic fuera de él
+        document.addEventListener('click', function(event) {
+            var options = document.querySelector('.whatsapp-options');
+            var button = document.querySelector('.whatsapp-float');
+            if (event.target.closest('.whatsapp-group') === null) {
+                options.style.display = 'none';
+                button.classList.remove('whatsapp-float-active');
+            }
+        });
     </script>
 </body>
 
