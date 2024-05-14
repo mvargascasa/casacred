@@ -248,7 +248,8 @@
                                         @if ($printControl == 0)
                                             <?php $printControl = 1; ?>
                                             <div class="col-lg-3 col-md-4 col-6 p-1">
-                                                <span class="text-muted small" style="font-family: 'Sharp Grotesk'; font-weight: 100;">
+                                                <span class="text-muted small"
+                                                    style="font-family: 'Sharp Grotesk'; font-weight: 100;">
                                                     @foreach ($details as $detail)
                                                         @if ($detail->id == $dets[$i])
                                                             {{ $detail->charac_titile }} @if ($detail->id == $dets[$i] && $detail->id == 86)
@@ -280,7 +281,8 @@
                                 @foreach (array_filter(explode(',', $listing->listinggeneralcharacteristics)) as $lgc)
                                     <div class="col-lg-3 col-md-4 col-6 p-1">
                                         {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
-                                        <span class="text-muted small" style="font-family: 'Sharp Grotesk'; font-weight: 100;">
+                                        <span class="text-muted small"
+                                            style="font-family: 'Sharp Grotesk'; font-weight: 100;">
                                             @foreach ($generalcharacteristics as $gc)
                                                 @if ($gc->id == $lgc)
                                                     {{ $gc->title }}
@@ -310,7 +312,8 @@
                                 @foreach (array_filter(explode(',', $listing->listingenvironments)) as $lenv)
                                     <div class="col-lg-3 col-md-4 col-6 p-1">
                                         {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
-                                        <span class="text-muted small" style="font-family: 'Sharp Grotesk'; font-weight: 100;">
+                                        <span class="text-muted small"
+                                            style="font-family: 'Sharp Grotesk'; font-weight: 100;">
                                             @foreach ($environments as $environment)
                                                 @if ($environment->id == $lenv)
                                                     {{ $environment->title }}
@@ -351,7 +354,8 @@
                         style="background-color: #242B40; border-radius: 25px 25px 0 0;">
                         <div class="row justify-content-center align-items-center">
                             <div class="col-auto">
-                                <span class="fw-bold" style="font-size: 40px; line-height: 50px; font-family: 'Sharp Grotesk'; font-weight: 500;">
+                                <span class="fw-bold"
+                                    style="font-size: 40px; line-height: 50px; font-family: 'Sharp Grotesk'; font-weight: 500;">
                                     ${{ $listing->property_price }}</span>
                             </div>
                             @if ($listing->aliquot && $listing->aliquot > 0)
@@ -359,10 +363,12 @@
                                 </div>
                                 <div class="col-auto">
                                     <div class="row">
-                                        <span class="fw-bold" style="font-size: 20px; font-family: 'Sharp Grotesk'; font-weight: 500;">Alícuota</span>
+                                        <span class="fw-bold"
+                                            style="font-size: 20px; font-family: 'Sharp Grotesk'; font-weight: 500;">Alícuota</span>
                                     </div>
                                     <div class="row">
-                                        <span class="fw-bold" style="font-size: 20px; font-family: 'Sharp Grotesk'; font-weight: 500;">
+                                        <span class="fw-bold"
+                                            style="font-size: 20px; font-family: 'Sharp Grotesk'; font-weight: 500;">
                                             ${{ $listing->aliquot }}</span>
                                     </div>
                                 </div>
@@ -506,50 +512,112 @@
         </div>
     </div>
     @php
-    $listingsSimilar = \App\Models\Listing::select('listing_title', 'images', 'property_price', 'heading_details', 'city', 'state', 'country', 'slug', 'listingtype')->where('city', $listing->city)->where('status', 1)->where('listingtype', $listing->listingtype)->inRandomOrder()->limit(4)->get();
-@endphp
+        $listingsSimilar = \App\Models\Listing::select(
+            'listing_title',
+            'images',
+            'property_price',
+            'heading_details',
+            'city',
+            'state',
+            'country',
+            'slug',
+            'listingtype',
+        )
+            ->where('city', $listing->city)
+            ->where('status', 1)
+            ->where('listingtype', $listing->listingtype)
+            ->inRandomOrder()
+            ->limit(4)
+            ->get();
+    @endphp
 
-@if(count($listingsSimilar)>0)
-<div class="row mt-5 justify-content-center" data-aos="zoom-in">
-  <h3 class="text-center mb-5 h5">Propiedades similares</h3>
-  <p>Más {{ $listingtype->type_title }}@if($listing->listingtypestatus == "en-venta") en venta @elseif($listing->listingtypestatus == "alquilar") en renta @else en proyectos @endif en {{ $listing->city }} </p>
-  @foreach ($listingsSimilar as $listing_s)
-  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 mb-2 d-flex justify-content-center text-center">
-    <a style="text-decoration: none; color: #000000" href="{{ route('web.detail', $listing_s->slug) }}">
-      <div data-aos="zoom-in" class="card cardsimilarlisting" style="width: 18rem;">
-        @php
-            $imageVerification = asset('uploads/listing/thumb/600'. strtok($listing_s->images, '|'));
-        @endphp
-        <img class="card-img-top lazyLoad" width="100%" height="100%" data-src="@if(file_exists($imageVerification)) {{asset('uploads/listing/thumb/600/'. strtok($listing_s->images, '|')) }} @else {{ asset('uploads/listing/600/'. strtok($listing_s->images, '|')) }} @endif" alt="{{ $listing_s->listing_title}}">
-        <div class="card-body">
-          <p style="margin: 0px" class="card-title h5">${{ number_format($listing_s->property_price) }}</p>
-          @php
-            $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
-            $bathroom=0;$garage=0;$squarefit=0;
-            if(!empty($listing_s->heading_details)){
-              $allheadingdeatils=json_decode($listing_s->heading_details); 
-              foreach($allheadingdeatils as $singleedetails){ 
-                unset($singleedetails[0]);								
-                for($i=1;$i<=count($singleedetails);$i++){ 
-                  if($i%2==0){  
-                    if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
-                    if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];
-                    if($singleedetails[$i-1]==43) $garage+=$singleedetails[$i];									  
-                  }								   
-                }								
-              $i++;
-              }
-            }
-          @endphp
-          @if ($bedroom > 0 || $bathroom > 0)
-          <p style="font-size: 15px; margin: 0px" class="card-text">@if($bedroom > 0){{ $bedroom }} @if($bedroom > 1) habitaciones @else habitación @endif @endif @if($bathroom > 0) {{ $bathroom }} @if($bathroom > 1) baños @else baño @endif @endif</p>
-          @endif
-          <p style="font-size: 15px; margin: 0px" class="card-text">@isset($listing_s->country) {{ $listing_s->country }} | @endisset {{ $listing_s->state }} | {{ $listing_s->city }}</p>
-        </div>
-      </div>
-    </a>
-    </div>
-    @endforeach
+    @if (count($listingsSimilar) > 0)
+        <div class="row mt-5 mx-5 justify-content-center" data-aos="zoom-in">
+            <h3 class="text-center mb-5 h5">Propiedades similares</h3>
+            <p>Más {{ $listingtype->type_title }}@if ($listing->listingtypestatus == 'en-venta')
+                    en venta
+                @elseif($listing->listingtypestatus == 'alquilar')
+                    en renta
+                @else
+                    en proyectos
+                @endif en {{ $listing->city }} </p>
+            @foreach ($listingsSimilar as $listing_s)
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 mb-2 d-flex justify-content-center text-center">
+                    <a style="text-decoration: none; color: #000000" href="{{ route('web.detail', $listing_s->slug) }}">
+                        <div data-aos="zoom-in" class="card cardsimilarlisting" style="width: 18rem;">
+                            @php
+                                $imageVerification = asset(
+                                    'uploads/listing/thumb/600' . strtok($listing_s->images, '|'),
+                                );
+                            @endphp
+                            <img class="card-img-top lazyLoad" width="100%" height="100%"
+                                src="@if (file_exists($imageVerification)) {{ asset('uploads/listing/thumb/600/' . strtok($listing_s->images, '|')) }} @else {{ asset('uploads/listing/600/' . strtok($listing_s->images, '|')) }} @endif"
+                                alt="{{ $listing_s->listing_title }}">
+                            <div class="card-body">
+                                <p style="margin: 0px" class="card-title h5">
+                                    ${{ number_format($listing_s->property_price) }}</p>
+                                @php
+                                    $bedroom = 0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
+                                    $bathroom = 0;
+                                    $garage = 0;
+                                    $squarefit = 0;
+                                    if (!empty($listing_s->heading_details)) {
+                                        $allheadingdeatils = json_decode($listing_s->heading_details);
+                                        foreach ($allheadingdeatils as $singleedetails) {
+                                            unset($singleedetails[0]);
+                                            for ($i = 1; $i <= count($singleedetails); $i++) {
+                                                if ($i % 2 == 0) {
+                                                    if (
+                                                        $singleedetails[$i - 1] == 41 ||
+                                                        $singleedetails[$i - 1] == 86 ||
+                                                        $singleedetails[$i - 1] == 49
+                                                    ) {
+                                                        $bedroom += $singleedetails[$i];
+                                                    }
+                                                    if (
+                                                        $singleedetails[$i - 1] == 48 ||
+                                                        $singleedetails[$i - 1] == 76 ||
+                                                        $singleedetails[$i - 1] == 81 ||
+                                                        $singleedetails[$i - 1] == 49
+                                                    ) {
+                                                        $bathroom += $singleedetails[$i];
+                                                    }
+                                                    if ($singleedetails[$i - 1] == 43) {
+                                                        $garage += $singleedetails[$i];
+                                                    }
+                                                }
+                                            }
+                                            $i++;
+                                        }
+                                    }
+                                @endphp
+                                @if ($bedroom > 0 || $bathroom > 0)
+                                    <p style="font-size: 15px; margin: 0px" class="card-text">
+                                        @if ($bedroom > 0)
+                                            {{ $bedroom }} @if ($bedroom > 1)
+                                                habitaciones
+                                            @else
+                                                habitación
+                                            @endif
+                                            @endif @if ($bathroom > 0)
+                                                {{ $bathroom }} @if ($bathroom > 1)
+                                                    baños
+                                                @else
+                                                    baño
+                                                @endif
+                                            @endif
+                                    </p>
+                                @endif
+                                <p style="font-size: 15px; margin: 0px" class="card-text">
+                                    @isset($listing_s->country)
+                                        {{ $listing_s->country }} |
+                                    @endisset {{ $listing_s->state }} | {{ $listing_s->city }}
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
         </div>
     @endif
 @endsection
