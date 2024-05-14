@@ -342,12 +342,12 @@
                                                 @if ($gc->id == $lgc)
                                                     {{ $gc->title }}
                                                     @endif @if ($gc->id == $lgc && $lgc == 8 && $listing->num_pisos > 0)
-                                                        <b class="bg-orange text-white px-1">{{ $listing->num_pisos }}</b>
+                                                        <b class="text-white px-1" style="background-color: #242B40">{{ $listing->num_pisos }}</b>
                                                         @endif @if ($gc->id == $lgc && $lgc == 7 && $listing->niv_constr > 0)
-                                                            <b class="bg-orange text-white px-1">
+                                                            <b class="text-white px-1" style="background-color: #242B40">
                                                                 {{ $listing->niv_constr }}</b>
                                                             @endif @if ($gc->id == $lgc && $lgc == 15 && $listing->pisos_constr > 0)
-                                                                <b class="bg-orange text-white px-1">
+                                                                <b class="text-white px-1" style="background-color: #242B40">
                                                                     {{ $listing->pisos_constr }}</b>
                                                             @endif
                                                         @endforeach
