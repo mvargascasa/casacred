@@ -38,32 +38,7 @@
             document.getElementsByTagName('head')[0].appendChild(scriptrecaptcha);
         }, 3500);
 
-        document.addEventListener('submit', function(e) {
-            e.preventDefault();
-            if (e.target.id != "formhomesearch" && e.target.id != "newsearch") {
-                grecaptcha.ready(function() {
-                    grecaptcha.execute('6Le1UsshAAAAAL93VxqsJYCa67mrcNIP1q3C99v5', {
-                        action: 'submit'
-                    }).then(function(token) {
 
-                        let form = e.target;
-
-                        let input = document.createElement('input');
-                        input.type = 'hidden';
-                        input.name = 'g-recaptcha-response';
-                        input.value = token;
-
-                        form.appendChild(input);
-
-                        form.submit();
-
-                    });
-                });
-            } else {
-                let form = e.target;
-                form.submit();
-            }
-        });
     </script>
 
     {{-- <link rel="preload" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" as="style" onload="this.rel='stylesheet'"> --}}
@@ -499,10 +474,10 @@ if(strpos($actual_link, 'localhost') === false){
 
             <div class="collapse navbar-collapse flex-grow-1 text-left" id="myNavbar">
                 <ul class="navbar-nav ml-auto flex-nowrap px-4">
-                    <li class="nav-item pr-2"> <a class="nav-link @if (Route::is('/propiedades/propiedades-en-venta')) active @endif"
-                            href="/propiedades/propiedades-en-venta">Comprar</a> </li>
-                    <li class="nav-item pr-2"> <a class="nav-link @if (Route::is('/propiedades/propiedades-en-venta')) active @endif"
-                            href="/propiedades/propiedades-en-renta">Rentar</a> </li>
+                    <li class="nav-item pr-2"> <a class="nav-link @if (Route::is('/propiedades-en-venta')) active @endif"
+                            href="/propiedades-en-venta">Comprar</a> </li>
+                    <li class="nav-item pr-2"> <a class="nav-link @if (Route::is('/propiedades-en-renta')) active @endif"
+                            href="/propiedades-en-renta">Rentar</a> </li>
                     {{-- <li class="nav-item pr-2"> <a class="nav-link @if (Request::is('servicios/creditos-en-ecuador')) active @endif" href="{{route('web.servicios','creditos-en-ecuador')}}">Creditos</a> </li> --}}
                     {{-- <li class="nav-item pr-2"> <a class="nav-link @if (Request::is('servicios/construye')) active @endif" href="{{route('web.servicios','construye')}}">Construye</a> </li> --}}
                     <li class="nav-item pr-2"> <a class="nav-link @if (Request::is('servicio/vende-tu-casa')) active @endif"

@@ -13,15 +13,25 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\HistoryController;
-use App\Http\Controllers\Housing\PropertyController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ModalController;
+use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WebController::class,'home'])->name('web.index');
 Route::post('/search-properties', [WebController::class, 'searchHome'])->name('search.home');
-Route::get('/propiedades/{slug?}', [WebController::class,'index'])->name('web.propiedades');
+
+Route::get('/{type}-en-{status}{details?}', [PropertyController::class, 'view'])
+     ->name('view.property')
+     ->where('type', '[a-zA-Z-]+')
+     ->where('status', 'general|venta|renta|proyectos') // Asegúrate de que 'status' solo puede ser uno de estos valores predefinidos.
+     ->where('details', '(?:-en-.*)?');
+
+
+
+
+//Route::get('/propiedades/{slug?}', [WebController::class,'index'])->name('web.propiedades');
 //NUEVAS RUTAS
 Route::get('/home', [WebController::class, 'home'])->name('web.home');
 Route::get('/creditos', [WebController::class, 'creditos'])->name('web.creditos');
@@ -140,7 +150,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:sanctum', 'verified']],
     //Route::delete('listingdelete/{listing}', [ListingController::class,'delete'])->name('admin.listingdelete');
 
     //HOUSING
-    Route::get('housing', [PropertyController::class, 'index'])->name('housing.index');
+    //Route::get('housing', [PropertyController::class, 'index'])->name('housing.index');
     Route::get('housing/property/create', [ListingController::class, 'create'])->name('admin.housing.property.create');
     Route::get('housing/property/edit/{listing}', [TwController::class, 'edit'])->name('admin.housing.property.edit');
 

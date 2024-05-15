@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\PropertyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,4 +36,6 @@ Route::group(["middleware" => "apikey.validate"], function(){
 
     //Route::get('/list-properties', [ApiController::class, 'listPropertiesHousing']);
 });
+
+Route::get('/propertys/list', [PropertyController::class, 'search'])->name('search.property');
 
