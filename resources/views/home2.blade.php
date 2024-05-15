@@ -272,7 +272,14 @@
         <div class="position-absolute" style="top: 0; right: 0; z-index: 3">
           <a class="text-light" href="tel:+593983849073">
             <div class="mr-2 mt-2 px-1 rounded-pill font-weight-normal" style="top: 0; right: 0; z-index: 3; font-size: 16px;">
-              <img width="20px" height="15px" src="{{ asset('img/ECUADOR-04.webp') }}" alt="telefono casa credito inmobiliaria"> 098-384-9073
+              <img width="20px" height="15px" src="{{ asset('img/ECUADOR-04.webp') }}" alt="telefono casa credito inmobiliaria">Venta: 098-384-9073
+            </div>
+          </a>
+        </div>
+        <div class="position-absolute" style="top: 20px; right: 0; z-index: 3">
+          <a class="text-light" href="tel:+593987474637">
+            <div class="mr-2 mt-2 px-1 rounded-pill font-weight-normal" style="top: 0; right: 0; z-index: 3; font-size: 16px;">
+              <img width="20px" height="15px" src="{{ asset('img/ECUADOR-04.webp') }}" alt="telefono casa credito inmobiliaria"> Renta: 098-747-4637
             </div>
           </a>
         </div>
