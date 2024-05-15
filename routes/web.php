@@ -60,7 +60,17 @@ Route::redirect('/propiedades/departamentos-en-alquiler-en-cuenca', '/departamen
 Route::redirect('/propiedades/locales-comerciales-en-alquiler-en-cuenca', '/locales-comerciales-en-renta-en-cuenca', 301);
 
 
+Route::redirect('/propiedades/casas-comerciales-en-venta-en-ecuador', '/casas-comerciales-en-venta-en-cuenca', 301);
 
+
+Route::redirect('/propiedades/haciendas-en-venta-en-ecuador', '/haciendas-en-venta-en-cuenca', 301);
+
+Route::redirect('/propiedades/quintas-en-venta-en-ecuador', '/quintas-en-venta-en-cuenca', 301);
+
+Route::redirect('/propiedades/departamentos-en-venta-en-ecuador', '/departamentos-en-venta-en-cuenca', 301);
+
+
+Route::redirect('/propiedades', '/propiedades-en-general', 301);
 
 //Route::get('/propiedades/{slug?}', [WebController::class,'index'])->name('web.propiedades');
 //NUEVAS RUTAS
