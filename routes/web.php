@@ -72,6 +72,8 @@ Route::redirect('/propiedades/departamentos-en-venta-en-ecuador', '/departamento
 
 Route::redirect('/propiedades', '/propiedades-en-general', 301);
 
+
+
 //Route::get('/propiedades/{slug?}', [WebController::class,'index'])->name('web.propiedades');
 //NUEVAS RUTAS
 Route::get('/home', [WebController::class, 'home'])->name('web.home');
