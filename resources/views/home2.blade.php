@@ -295,17 +295,15 @@
       </section>
   </section>
 
-        <section data-aos="zoom-out" class="position-relative d-flex justify-content-center align-items-center pt-5 mb-5">
-          <section style="@if ($ismobile) height: 15rem; @else height: 32rem; @endif background-size: cover;background-position: center center; width: 100%; background-repeat: no-repeat; background-image: url('{{ asset('img/venda-con-nosotros.webp') }}')">
-          </section>
-          <div class="text-center text-white position-absolute">
-            <div>
-              <p id="inforowconstruye1" style="font-weight: 300; margin: 0; font-size: 2.5rem; font-family: 'Sharp Grotesk"> <span style="font-weight: 200">¿NECESITAS CONSTRUIR </span> <span style="font-weight: 500"> UNA VIVIENDA PROPIA?</span></p>
-              <p id="inforowconstruye2" style="margin: 0; margin-bottom: 10px; font-size: 1.3rem; font-family: 'Sharp Grotesk'">Conozca más sobre nuestros servicios</p>
-            </div>
-            <a href="{{ route('web.servicios', 'construye') }}" class="btn btn-outline-light">Leer más</a>
-          </div>
-        </section>
+  
+  <section data-aos="flip-down" class="row py-5 mt-5" style="background-position: center; background-repeat: no-repeat; background-size: cover; background-image: url('{{ asset('img/housing-word.png') }}')">
+    <div class="col-sm-12 text-center text-white mt-4 mb-4">
+        <p class="h3" style="font-family: 'Sharp Grotesk'"><span style="font-weight: 300">¿QUIERES VENDER O RENTAR </span> <span style="font-weight: 500">UNA PROPIEDAD?</span></p>
+        <p class="text-center" style="font-family: 'Sharp Grotesk'"><span style="font-weight: 300">Nuestro equipo experto esta aquí</span> <span style="font-weight: 500"> para guiarte en cada paso del proceso</span> </p>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" class="btn px-4" style="border-radius: 10px; background-color: #8C98B4; color: #ffffff">Leer más</button>
+    </div>
+  </section>
+
 
     <section class="container mt-5 pb-5">
       <h2 id="txtserviciosinmo" style="font-size: 30px; color: #182741; font-family: 'Sharp Grotesk'" class="text-center mt-3 @if ($ismobile) mb-3 @else mb-5 @endif"> <span style="font-weight: 100">SERVICIOS</span> <span style="font-weight: 700;">INMOBILIARIOS</span></h2>
@@ -371,13 +369,6 @@
   </section>
 
 
-    <section data-aos="flip-down" class="row py-5" style="background-position: center; background-repeat: no-repeat; background-size: cover; background-image: url('{{ asset('img/housing-word.png') }}')">
-        <div class="col-sm-12 text-center text-white mt-4 mb-4">
-            <p class="h3" style="font-family: 'Sharp Grotesk'"><span style="font-weight: 300">¿QUIERES VENDER O RENTAR </span> <span style="font-weight: 500">UNA PROPIEDAD?</span></p>
-            <p class="text-center" style="font-family: 'Sharp Grotesk'"><span style="font-weight: 300">Nuestro equipo experto esta aquí</span> <span style="font-weight: 500"> para guiarte en cada paso del proceso</span> </p>
-            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" class="btn px-4" style="border-radius: 10px; background-color: #8C98B4; color: #ffffff">Leer más</button>
-        </div>
-    </section>
 
     <section class="container px-5 section-testimonials" style="padding-top: 7%; padding-bottom: 7%">
       <section class="row">
@@ -678,199 +669,199 @@
 @section('script')
     {{-- <script  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> --}}
-        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-        @stack('scripts')
-        <script>
-            AOS.init();
-        </script>
+            <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+            @stack('scripts')
+            <script>
+                AOS.init();
+            </script>
 
-        <script>
-            window.addEventListener('load', (event) => {
-                //document.getElementById('secondsection').style.backgroundImage = "url('img/imgbannermiddle.webp')";
-            });
+            <script>
+                window.addEventListener('load', (event) => {
+                    //document.getElementById('secondsection').style.backgroundImage = "url('img/imgbannermiddle.webp')";
+                });
 
-            let inpSearchTxt = document.getElementById('ftop_txt');
-            if (inpSearchTxt) {
-                inpSearchTxt.addEventListener("keypress", function(event) {
-                    if (event.keyCode == 13) {
-                        search();
-                    }
-                })
-            }
+                let inpSearchTxt = document.getElementById('ftop_txt');
+                if (inpSearchTxt) {
+                    inpSearchTxt.addEventListener("keypress", function(event) {
+                        if (event.keyCode == 13) {
+                            search();
+                        }
+                    })
+                }
 
-            function onSubmit(token) {
-                document.getElementById("demo-form").submit();
-            }
+                function onSubmit(token) {
+                    document.getElementById("demo-form").submit();
+                }
 
-            function limpiarCampos() {
-                document.getElementById('searchtxt').value = "";
-                document.getElementById('order').value = "";
-                document.getElementById('tipobusqueda').value = "";
-                document.getElementById('tipopropiedad').value = "";
-                document.getElementById('preciodesde').value = "";
-                document.getElementById('preciohasta').value = "";
-                document.getElementById('superfdesde').value = "";
-                document.getElementById('superfhasta').value = "";
-            }
+                function limpiarCampos() {
+                    document.getElementById('searchtxt').value = "";
+                    document.getElementById('order').value = "";
+                    document.getElementById('tipobusqueda').value = "";
+                    document.getElementById('tipopropiedad').value = "";
+                    document.getElementById('preciodesde').value = "";
+                    document.getElementById('preciohasta').value = "";
+                    document.getElementById('superfdesde').value = "";
+                    document.getElementById('superfhasta').value = "";
+                }
 
-            // const selProvince = document.getElementById('selProvince');
-            // const selCity = document.getElementById('selCity');
+                // const selProvince = document.getElementById('selProvince');
+                // const selCity = document.getElementById('selCity');
 
-            const selProvincea = document.getElementById('selProvincea');
-            const selCitya = document.getElementById('selCitya');
+                const selProvincea = document.getElementById('selProvincea');
+                const selCitya = document.getElementById('selCitya');
 
-            const selProvinceb = document.getElementById('selProvinceb');
-            const selCityb = document.getElementById('selCityb');
+                const selProvinceb = document.getElementById('selProvinceb');
+                const selCityb = document.getElementById('selCityb');
 
-            const selProvincec = document.getElementById('selProvincec');
-            const selCityc = document.getElementById('selCityc');
+                const selProvincec = document.getElementById('selProvincec');
+                const selCityc = document.getElementById('selCityc');
 
-            //   selProvince.addEventListener("change", async function() {
-            //     selCity.options.length = 0;
-            //   let id = selProvince.options[selProvince.selectedIndex].dataset.id;
-            //   const response = await fetch("{{ url('getcities') }}/"+id );
-            //   const cities = await response.json();
+                //   selProvince.addEventListener("change", async function() {
+                //     selCity.options.length = 0;
+                //   let id = selProvince.options[selProvince.selectedIndex].dataset.id;
+                //   const response = await fetch("{{ url('getcities') }}/"+id );
+                //   const cities = await response.json();
 
-            //   var opt = document.createElement('option');
-            //         opt.appendChild( document.createTextNode('Elige Ciudad') );
-            //         opt.value = '';
-            //         selCity.appendChild(opt);
-            //   cities.forEach(city => {
-            //         var opt = document.createElement('option');
-            //         opt.appendChild( document.createTextNode(city.name) );
-            //         opt.value = city.name;
-            //         selCity.appendChild(opt);
-            //   });
-            // });
+                //   var opt = document.createElement('option');
+                //         opt.appendChild( document.createTextNode('Elige Ciudad') );
+                //         opt.value = '';
+                //         selCity.appendChild(opt);
+                //   cities.forEach(city => {
+                //         var opt = document.createElement('option');
+                //         opt.appendChild( document.createTextNode(city.name) );
+                //         opt.value = city.name;
+                //         selCity.appendChild(opt);
+                //   });
+                // });
 
-            selProvincea.addEventListener("change", async function() {
-                selCitya.options.length = 0;
-                let id = selProvincea.options[selProvincea.selectedIndex].dataset.id;
-                const response = await fetch("{{ url('getcities') }}/" + id);
-                const cities = await response.json();
+                selProvincea.addEventListener("change", async function() {
+                    selCitya.options.length = 0;
+                    let id = selProvincea.options[selProvincea.selectedIndex].dataset.id;
+                    const response = await fetch("{{ url('getcities') }}/" + id);
+                    const cities = await response.json();
 
-                var opt = document.createElement('option');
-                opt.appendChild(document.createTextNode('Ciudad'));
-                opt.value = '';
-                selCitya.appendChild(opt);
-                cities.forEach(city => {
                     var opt = document.createElement('option');
-                    opt.appendChild(document.createTextNode(city.name));
-                    opt.value = city.name;
+                    opt.appendChild(document.createTextNode('Ciudad'));
+                    opt.value = '';
                     selCitya.appendChild(opt);
+                    cities.forEach(city => {
+                        var opt = document.createElement('option');
+                        opt.appendChild(document.createTextNode(city.name));
+                        opt.value = city.name;
+                        selCitya.appendChild(opt);
+                    });
                 });
-            });
 
-            selProvinceb.addEventListener("change", async function() {
-                selCityb.options.length = 0;
-                let id = selProvinceb.options[selProvinceb.selectedIndex].dataset.id;
-                const response = await fetch("{{ url('getcities') }}/" + id);
-                const cities = await response.json();
+                selProvinceb.addEventListener("change", async function() {
+                    selCityb.options.length = 0;
+                    let id = selProvinceb.options[selProvinceb.selectedIndex].dataset.id;
+                    const response = await fetch("{{ url('getcities') }}/" + id);
+                    const cities = await response.json();
 
-                var opt = document.createElement('option');
-                opt.appendChild(document.createTextNode('Elige Ciudad'));
-                opt.value = '';
-                selCityb.appendChild(opt);
-                cities.forEach(city => {
                     var opt = document.createElement('option');
-                    opt.appendChild(document.createTextNode(city.name));
-                    opt.value = city.name;
+                    opt.appendChild(document.createTextNode('Elige Ciudad'));
+                    opt.value = '';
                     selCityb.appendChild(opt);
+                    cities.forEach(city => {
+                        var opt = document.createElement('option');
+                        opt.appendChild(document.createTextNode(city.name));
+                        opt.value = city.name;
+                        selCityb.appendChild(opt);
+                    });
                 });
-            });
 
-            selProvincec.addEventListener("change", async function() {
-                selCityc.options.length = 0;
-                let id = selProvincec.options[selProvincec.selectedIndex].dataset.id;
-                const response = await fetch("{{ url('getcities') }}/" + id);
-                const cities = await response.json();
+                selProvincec.addEventListener("change", async function() {
+                    selCityc.options.length = 0;
+                    let id = selProvincec.options[selProvincec.selectedIndex].dataset.id;
+                    const response = await fetch("{{ url('getcities') }}/" + id);
+                    const cities = await response.json();
 
-                var opt = document.createElement('option');
-                opt.appendChild(document.createTextNode('Elige Ciudad'));
-                opt.value = '';
-                selCityc.appendChild(opt);
-                cities.forEach(city => {
                     var opt = document.createElement('option');
-                    opt.appendChild(document.createTextNode(city.name));
-                    opt.value = city.name;
+                    opt.appendChild(document.createTextNode('Elige Ciudad'));
+                    opt.value = '';
                     selCityc.appendChild(opt);
+                    cities.forEach(city => {
+                        var opt = document.createElement('option');
+                        opt.appendChild(document.createTextNode(city.name));
+                        opt.value = city.name;
+                        selCityc.appendChild(opt);
+                    });
                 });
-            });
 
 
-            function showbuscar(btn) {
-                document.getElementById('body1').style.display = "block";
-                document.getElementById('body2').style.display = "none";
-            }
+                function showbuscar(btn) {
+                    document.getElementById('body1').style.display = "block";
+                    document.getElementById('body2').style.display = "none";
+                }
 
-            function showalquilar(btn) {
-                document.getElementById('body1').style.display = "none";
-                document.getElementById('body2').style.display = "block";
-            }
+                function showalquilar(btn) {
+                    document.getElementById('body1').style.display = "none";
+                    document.getElementById('body2').style.display = "block";
+                }
 
-            function onScrollEvent(entries, observer) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        var attributes = entry.target.attributes;
-                        var src = attributes['data-src'].textContent;
-                        entry.target.src = src;
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }
-
-            // Utilizamos como objetivos todos los
-            // elementos que tengan la clase lazyLoad,
-            // que vimos en el HTML de ejemplo.
-            var targets = document.querySelectorAll('.lazyLoad');
-
-            // Instanciamos un nuevo observador.
-            var observer = new IntersectionObserver(onScrollEvent);
-
-            // Y se lo aplicamos a cada una de las
-            // imágenes.
-            targets.forEach(function(entry) {
-                observer.observe(entry);
-            });
-        </script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const searchForm = document.getElementById('searchForm');
-                if (searchForm) {
-                    searchForm.addEventListener('submit', function(event) {
-                        event.preventDefault(); // Evitar el envío del formulario.
-
-                        // Capturar los elementos del formulario y sus valores.
-                        const typeSelect = document.getElementById('ftop_ptype');
-                        const searchInput = document.getElementById('searchtxt');
-                        const check1 = document.getElementById('ftop_category_0');
-                        const check2 = document.getElementById('ftop_category_1');
-
-                        // Establecer la categoría basada en qué checkbox está seleccionado.
-                        let category = "general"; // Valor por defecto.
-                        if (check1.checked) category = "venta";
-                        if (check2.checked) category = "renta";
-
-                        // Obtener el nombre del tipo de propiedad seleccionado o usar 'propiedades' como valor por defecto.
-                        let typeName = typeSelect.options[typeSelect.selectedIndex].text.toLowerCase().replace(
-                            /\s+/g, '-');
-                        if (!typeSelect.value || typeName === 'tipo-de-propiedad') {
-                            typeName = 'propiedades';
+                function onScrollEvent(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            var attributes = entry.target.attributes;
+                            var src = attributes['data-src'].textContent;
+                            entry.target.src = src;
+                            entry.target.classList.add('visible');
                         }
-
-                        const searchTerm = searchInput.value.trim();
-                        let queryParams = '';
-                        if (searchTerm) {
-                            queryParams = `?searchTerm=${encodeURIComponent(searchTerm)}`;
-                        }
-
-                        // Construir la URL final y redireccionar.
-                        window.location.href = `/${typeName}-en-${category}${queryParams}`;
                     });
                 }
-            });
-        </script>
 
-          {{-- @livewireScripts
+                // Utilizamos como objetivos todos los
+                // elementos que tengan la clase lazyLoad,
+                // que vimos en el HTML de ejemplo.
+                var targets = document.querySelectorAll('.lazyLoad');
+
+                // Instanciamos un nuevo observador.
+                var observer = new IntersectionObserver(onScrollEvent);
+
+                // Y se lo aplicamos a cada una de las
+                // imágenes.
+                targets.forEach(function(entry) {
+                    observer.observe(entry);
+                });
+            </script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const searchForm = document.getElementById('searchForm');
+                    if (searchForm) {
+                        searchForm.addEventListener('submit', function(event) {
+                            event.preventDefault(); // Evitar el envío del formulario.
+
+                            // Capturar los elementos del formulario y sus valores.
+                            const typeSelect = document.getElementById('ftop_ptype');
+                            const searchInput = document.getElementById('searchtxt');
+                            const check1 = document.getElementById('ftop_category_0');
+                            const check2 = document.getElementById('ftop_category_1');
+
+                            // Establecer la categoría basada en qué checkbox está seleccionado.
+                            let category = "general"; // Valor por defecto.
+                            if (check1.checked) category = "venta";
+                            if (check2.checked) category = "renta";
+
+                            // Obtener el nombre del tipo de propiedad seleccionado o usar 'propiedades' como valor por defecto.
+                            let typeName = typeSelect.options[typeSelect.selectedIndex].text.toLowerCase().replace(
+                                /\s+/g, '-');
+                            if (!typeSelect.value || typeName === 'tipo-de-propiedad') {
+                                typeName = 'propiedades';
+                            }
+
+                            const searchTerm = searchInput.value.trim();
+                            let queryParams = '';
+                            if (searchTerm) {
+                                queryParams = `?searchTerm=${encodeURIComponent(searchTerm)}`;
+                            }
+
+                            // Construir la URL final y redireccionar.
+                            window.location.href = `/${typeName}-en-${category}${queryParams}`;
+                        });
+                    }
+                });
+            </script>
+
+              {{-- @livewireScripts
   @stack('scripts') --}}
 @endsection
