@@ -65,7 +65,7 @@ Route::redirect('/propiedades/casas-comerciales-en-venta-en-ecuador', '/casas-co
 
 Route::redirect('/propiedades/haciendas-en-venta-en-ecuador', '/haciendas-en-venta-en-cuenca', 301);
 
-Route::redirect('/propiedades/quintas-en-venta-en-ecuador', '/quintas-en-venta-en-cuenca', 301);
+Route::redirect('/propiedades/quintas-en-venta-en-ecuador', '/quintas-en-venta', 301);
 
 Route::redirect('/propiedades/departamentos-en-venta-en-ecuador', '/departamentos-en-venta-en-cuenca', 301);
 
