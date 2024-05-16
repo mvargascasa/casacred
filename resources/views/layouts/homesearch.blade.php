@@ -1,7 +1,7 @@
 <div id="parentBuscador" class="w-100">
     <div class="row align-items-center d-flex justify-content-center">
         <div class="col-12 text-white text-center p-5">
-            <p class="heading-title mb-3" style="font-size: 32px; margin-bottom: 10px; font-family: 'Sharp grotesk'; font-weight: 500;">
+            <p class="heading-title mb-3" style=" color:#182741; margin-bottom: 10px; font-family: 'Sharp grotesk'; font-weight: 500;">
                 Explora Nuestras Propiedades
             </p>
             <div class="w-100" id="form-inputs">
@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-md-9 p-0 d-flex flex-column flex-md-row filters-block">
                             <input type="text" placeholder="INGRESE / UBICACIÓN / CÓDIGO" id="searchtxt" name="searchtxt" class="form-control rounded-0 rounded-input-search-mobile mb-2 mb-md-0" style="border-radius: 0; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); font-size: 18px;">
-                            <button type="submit" class="btn rounded-all font-weight-bold text-white rounded-btn-search-mobile mt-2 mt-md-0" style="background-color: #8d97b2; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); font-size: 18px;">BUSCAR</button>
+                            <button type="submit" class="btn rounded-all font-weight-bold text-white rounded-btn-search-mobile mt-2 mt-md-0" style="background-color: #182741; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); font-size: 18px;">BUSCAR</button>
                         </div>
                     </div>
                 </form>

@@ -236,13 +236,19 @@
 #parentBuscador .col-12 {
     max-width: 800px;
     padding: 30px;
-    background: transparent; /* Fondo transparente */
+    background: rgba(255, 255, 255, 0.2); /* Fondo blanco con transparencia */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    -webkit-backdrop-filter: blur(10px); /* Soporte para Safari */
+    border-radius: 15px; /* Redondea los bordes */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
 }
 
 #parentBuscador .form-select {
     width: auto;
 }
-
+.heading-title {
+        font-size: 32px; /* Reduce el tamaño del texto en móviles */
+    }
 @media (min-width: 768px) {
     #parentBuscador .form-select {
         width: 100%;
@@ -254,10 +260,9 @@
 }
 
 @media (max-width: 768px) {
-  .section-header {
+    .section-header {
         height: 100vh; /* Ocupa toda la altura de la pantalla en móviles también */
     }
-
 
     .video-header {
         height: 100vh;
@@ -270,6 +275,7 @@
 
     #parentBuscador .filters-block {
         width: 100%;
+        flex-direction: column;
     }
 
     #parentBuscador .rounded-btn-search-mobile {
@@ -288,6 +294,22 @@
         margin: 0 5px;
         flex: 1 1 auto;
     }
+
+    .heading-title {
+        font-size: 20px; /* Reduce el tamaño del texto en móviles */
+    }
+
+    .btn-outline-light {
+        font-size: 16px; /* Reduce el tamaño del texto en móviles */
+    }
+
+    .form-control {
+        font-size: 16px; /* Reduce el tamaño del texto en móviles */
+    }
+
+    .btn {
+        font-size: 16px; /* Reduce el tamaño del texto en móviles */
+    }
 }
 
 .btn-check:active + .btn-outline-light,
@@ -295,16 +317,18 @@
 .btn-outline-light.active,
 .btn-outline-light.dropdown-toggle.show,
 .btn-outline-light:active {
-    color: #0f1929;
+    color: #f8f9fa;
     font-family: 'Sharp grotesk';
     font-weight: 500;
+    background-color: #182741;
 }
 
 .btn-outline-light {
-    color: #f8f9fa;
+    color: #182741;
     border-color: #f8f9fa;
     font-family: 'Sharp grotesk';
     font-weight: 100;
+    background-color: #f8f9fa;
 }
 
 
@@ -337,7 +361,7 @@ $bathroom=0;
 
 <section class="section-header">
   <div class="position-relative">
-      <video class="video-header" src="{{ asset('img/video-home.mp4') }}" alt="Construir" autoplay muted loop playsinline></video>
+      <video class="video-header" src="{{ asset('img/banner-home-video.mp4') }}" alt="Construir" autoplay muted loop playsinline></video>
       <div class="overlay-content text-center text-white">
           <!-- Otros contenidos si es necesario -->
       </div>
