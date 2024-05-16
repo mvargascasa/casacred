@@ -442,7 +442,7 @@ if(strpos($actual_link, 'localhost') === false){
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="navbar">
-            <div class="container">
+            <div class="container" style="font-family: 'Sharp grotesk'; font-weight: 500">
                 <a class="navbar-brand" href="{{ route('web.index') }}">
                     <img src="{{ asset('img/logo-azul-grupo-housing.png') }}" width="110" height="45"
                         alt="Grupo Housing">
