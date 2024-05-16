@@ -113,6 +113,37 @@
             border-color: #161a28 !important;
             /* Color del borde al pasar el mouse */
         }
+
+        @media screen and (max-width: 580px){
+    .redes{display: none !important}
+    .text-title{position: relative !important; height: auto !important}
+    .search{display: inline-block !important;}
+    .rounded-search-mobile{border: 1px solid rgb(195, 195, 195) !important; border-radius: 5% !important; padding: 10px 20px 10px 20px !important}
+    .slash{display: none !important}
+    .section-search{padding-left: 5% !important; padding-right: 5% !important}
+    .margin-bottom-mobile{margin-bottom: 9px !important}
+    .border-tabs-mobile{border-radius: 25px !important; border: .5px solid rgb(202, 202, 202) !important; box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;}
+    .btn-search-mobile{text-align: center !important; margin-top: 20px !important}
+    .label-filter{display: block !important}
+    .img-filters{display: inline-block !important}
+    .logo-housing{width: 250px;}
+    .title{font-size: 35px !important; line-height: 45px !important;}
+    .filters{box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; display: inline !important; width: 100% !important; margin-left: 5% !important; margin-right: 5% !important;}.filters > select, .filters > input, .filters > button {width: 100% !important; margin-top: 2% !important; margin-bottom: 2% !important;}
+    .padding-mobile-0{padding-left: 0px !important; padding-right: 0px !important;}
+    .characteristics{display: block !important; text-align: center !important;}
+    .characteristics > p {padding-top: 0px !important;}
+    .image_thumbnail{height: 250px !important;}
+    .card-body{padding-top: 50px !important; }
+    .card-body > a > h2{padding-right: 0px !important;}
+}
+.border-end {
+    border-right: 1px solid #dee2e6 !important;
+}
+
+.border-end-0 {
+  border-right: 0 !important;
+}
+
     </style>
 @endsection
 
