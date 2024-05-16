@@ -230,8 +230,20 @@
       #parentBuscador .col-12 {
           max-width: 800px; /* Aumentar el tamaño del contenedor */
           padding: 30px; /* Aumentar el padding */
-          background: #0f1929;
+          background: #182741;
       }
+      #parentBuscador .form-select {
+          width: auto; /* Ajustar el ancho en dispositivos de escritorio */
+      }
+      @media (min-width: 768px) {
+        #parentBuscador .form-select {
+            width: 100%; /* Ajustar el ancho a 25% en dispositivos de escritorio */
+        }
+
+        #parentBuscador .filters-block {
+            width: 75%; /* Ajustar el ancho del contenedor de filtros a 75% en dispositivos de escritorio */
+        }
+    }
       @media (max-width: 768px) {
         .video-header {
             max-width: 100%; /* Reducir el ancho del video al 80% del contenedor en pantallas pequeñas */
@@ -251,7 +263,7 @@
         #parentBuscador .rounded-btn-search-mobile {
             border-radius: 0 0 5px 5px; /* Cambiar el borde redondeado para móviles */
         }
-
+        
         .btn-group {
             flex-direction: row; /* Para mantener los botones en una sola fila en móviles */
         }
@@ -283,27 +295,7 @@
 
 @section('content')
 
-  @php
-      $listing = \App\Models\Listing::where('product_code', 1503)->first();
-      $image = explode("|", $listing->images);
 
-      $bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
-      $bathroom=0;
-          
-        if(!empty($listing->heading_details)){
-          $allheadingdeatils=json_decode($listing->heading_details); 
-          foreach($allheadingdeatils as $singleedetails){ 
-            unset($singleedetails[0]);				
-            for($i=1;$i<=count($singleedetails);$i++){ 
-              if($i%2==0){  
-                if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
-                if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];									  
-              }								   
-            }								
-          $i++;
-          }
-        }
-  @endphp
 <section class="section-header">
   <div class="position-relative">
       <video class="video-header"  src="{{ asset('img/banner-video-hd.mp4') }}" alt="Construir" autoplay muted loop></video>
@@ -698,197 +690,197 @@
 
 @section('script')
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-                                                                    @stack('scripts')
-                                                                    <script>
-                                                                        AOS.init();
-                                                                    </script>
+                                                                        @stack('scripts')
+                                                                        <script>
+                                                                            AOS.init();
+                                                                        </script>
 
-                                                                    
+                                                                        
 
-                                                                    <script>
-                                                                        window.addEventListener('load', (event) => {
-                                                                            //document.getElementById('secondsection').style.backgroundImage = "url('img/imgbannermiddle.webp')";
-                                                                        });
+                                                                        <script>
+                                                                            window.addEventListener('load', (event) => {
+                                                                                //document.getElementById('secondsection').style.backgroundImage = "url('img/imgbannermiddle.webp')";
+                                                                            });
 
-                                                                        let inpSearchTxt = document.getElementById('ftop_txt');
-                                                                        if (inpSearchTxt) {
-                                                                            inpSearchTxt.addEventListener("keypress", function(event) {
-                                                                                if (event.keyCode == 13) {
-                                                                                    search();
-                                                                                }
-                                                                            })
-                                                                        }
+                                                                            let inpSearchTxt = document.getElementById('ftop_txt');
+                                                                            if (inpSearchTxt) {
+                                                                                inpSearchTxt.addEventListener("keypress", function(event) {
+                                                                                    if (event.keyCode == 13) {
+                                                                                        search();
+                                                                                    }
+                                                                                })
+                                                                            }
 
-                                                                        function onSubmit(token) {
-                                                                            document.getElementById("demo-form").submit();
-                                                                        }
+                                                                            function onSubmit(token) {
+                                                                                document.getElementById("demo-form").submit();
+                                                                            }
 
-                                                                        function limpiarCampos() {
-                                                                            document.getElementById('searchtxt').value = "";
-                                                                            document.getElementById('order').value = "";
-                                                                            document.getElementById('tipobusqueda').value = "";
-                                                                            document.getElementById('tipopropiedad').value = "";
-                                                                            document.getElementById('preciodesde').value = "";
-                                                                            document.getElementById('preciohasta').value = "";
-                                                                            document.getElementById('superfdesde').value = "";
-                                                                            document.getElementById('superfhasta').value = "";
-                                                                        }
+                                                                            function limpiarCampos() {
+                                                                                document.getElementById('searchtxt').value = "";
+                                                                                document.getElementById('order').value = "";
+                                                                                document.getElementById('tipobusqueda').value = "";
+                                                                                document.getElementById('tipopropiedad').value = "";
+                                                                                document.getElementById('preciodesde').value = "";
+                                                                                document.getElementById('preciohasta').value = "";
+                                                                                document.getElementById('superfdesde').value = "";
+                                                                                document.getElementById('superfhasta').value = "";
+                                                                            }
 
-                                                                        // const selProvince = document.getElementById('selProvince');
-                                                                        // const selCity = document.getElementById('selCity');
+                                                                            // const selProvince = document.getElementById('selProvince');
+                                                                            // const selCity = document.getElementById('selCity');
 
-                                                                        const selProvincea = document.getElementById('selProvincea');
-                                                                        const selCitya = document.getElementById('selCitya');
+                                                                            const selProvincea = document.getElementById('selProvincea');
+                                                                            const selCitya = document.getElementById('selCitya');
 
-                                                                        const selProvinceb = document.getElementById('selProvinceb');
-                                                                        const selCityb = document.getElementById('selCityb');
+                                                                            const selProvinceb = document.getElementById('selProvinceb');
+                                                                            const selCityb = document.getElementById('selCityb');
 
-                                                                        const selProvincec = document.getElementById('selProvincec');
-                                                                        const selCityc = document.getElementById('selCityc');
+                                                                            const selProvincec = document.getElementById('selProvincec');
+                                                                            const selCityc = document.getElementById('selCityc');
 
-                                                                        //   selProvince.addEventListener("change", async function() {
-                                                                        //     selCity.options.length = 0;
-                                                                        //   let id = selProvince.options[selProvince.selectedIndex].dataset.id;
-                                                                        //   const response = await fetch("{{ url('getcities') }}/"+id );
-                                                                        //   const cities = await response.json();
+                                                                            //   selProvince.addEventListener("change", async function() {
+                                                                            //     selCity.options.length = 0;
+                                                                            //   let id = selProvince.options[selProvince.selectedIndex].dataset.id;
+                                                                            //   const response = await fetch("{{ url('getcities') }}/"+id );
+                                                                            //   const cities = await response.json();
 
-                                                                        //   var opt = document.createElement('option');
-                                                                        //         opt.appendChild( document.createTextNode('Elige Ciudad') );
-                                                                        //         opt.value = '';
-                                                                        //         selCity.appendChild(opt);
-                                                                        //   cities.forEach(city => {
-                                                                        //         var opt = document.createElement('option');
-                                                                        //         opt.appendChild( document.createTextNode(city.name) );
-                                                                        //         opt.value = city.name;
-                                                                        //         selCity.appendChild(opt);
-                                                                        //   });
-                                                                        // });
+                                                                            //   var opt = document.createElement('option');
+                                                                            //         opt.appendChild( document.createTextNode('Elige Ciudad') );
+                                                                            //         opt.value = '';
+                                                                            //         selCity.appendChild(opt);
+                                                                            //   cities.forEach(city => {
+                                                                            //         var opt = document.createElement('option');
+                                                                            //         opt.appendChild( document.createTextNode(city.name) );
+                                                                            //         opt.value = city.name;
+                                                                            //         selCity.appendChild(opt);
+                                                                            //   });
+                                                                            // });
 
-                                                                        selProvincea.addEventListener("change", async function() {
-                                                                            selCitya.options.length = 0;
-                                                                            let id = selProvincea.options[selProvincea.selectedIndex].dataset.id;
-                                                                            const response = await fetch("{{ url('getcities') }}/" + id);
-                                                                            const cities = await response.json();
+                                                                            selProvincea.addEventListener("change", async function() {
+                                                                                selCitya.options.length = 0;
+                                                                                let id = selProvincea.options[selProvincea.selectedIndex].dataset.id;
+                                                                                const response = await fetch("{{ url('getcities') }}/" + id);
+                                                                                const cities = await response.json();
 
-                                                                            var opt = document.createElement('option');
-                                                                            opt.appendChild(document.createTextNode('Ciudad'));
-                                                                            opt.value = '';
-                                                                            selCitya.appendChild(opt);
-                                                                            cities.forEach(city => {
                                                                                 var opt = document.createElement('option');
-                                                                                opt.appendChild(document.createTextNode(city.name));
-                                                                                opt.value = city.name;
+                                                                                opt.appendChild(document.createTextNode('Ciudad'));
+                                                                                opt.value = '';
                                                                                 selCitya.appendChild(opt);
+                                                                                cities.forEach(city => {
+                                                                                    var opt = document.createElement('option');
+                                                                                    opt.appendChild(document.createTextNode(city.name));
+                                                                                    opt.value = city.name;
+                                                                                    selCitya.appendChild(opt);
+                                                                                });
                                                                             });
-                                                                        });
 
-                                                                        selProvinceb.addEventListener("change", async function() {
-                                                                            selCityb.options.length = 0;
-                                                                            let id = selProvinceb.options[selProvinceb.selectedIndex].dataset.id;
-                                                                            const response = await fetch("{{ url('getcities') }}/" + id);
-                                                                            const cities = await response.json();
+                                                                            selProvinceb.addEventListener("change", async function() {
+                                                                                selCityb.options.length = 0;
+                                                                                let id = selProvinceb.options[selProvinceb.selectedIndex].dataset.id;
+                                                                                const response = await fetch("{{ url('getcities') }}/" + id);
+                                                                                const cities = await response.json();
 
-                                                                            var opt = document.createElement('option');
-                                                                            opt.appendChild(document.createTextNode('Elige Ciudad'));
-                                                                            opt.value = '';
-                                                                            selCityb.appendChild(opt);
-                                                                            cities.forEach(city => {
                                                                                 var opt = document.createElement('option');
-                                                                                opt.appendChild(document.createTextNode(city.name));
-                                                                                opt.value = city.name;
+                                                                                opt.appendChild(document.createTextNode('Elige Ciudad'));
+                                                                                opt.value = '';
                                                                                 selCityb.appendChild(opt);
+                                                                                cities.forEach(city => {
+                                                                                    var opt = document.createElement('option');
+                                                                                    opt.appendChild(document.createTextNode(city.name));
+                                                                                    opt.value = city.name;
+                                                                                    selCityb.appendChild(opt);
+                                                                                });
                                                                             });
-                                                                        });
 
-                                                                        selProvincec.addEventListener("change", async function() {
-                                                                            selCityc.options.length = 0;
-                                                                            let id = selProvincec.options[selProvincec.selectedIndex].dataset.id;
-                                                                            const response = await fetch("{{ url('getcities') }}/" + id);
-                                                                            const cities = await response.json();
+                                                                            selProvincec.addEventListener("change", async function() {
+                                                                                selCityc.options.length = 0;
+                                                                                let id = selProvincec.options[selProvincec.selectedIndex].dataset.id;
+                                                                                const response = await fetch("{{ url('getcities') }}/" + id);
+                                                                                const cities = await response.json();
 
-                                                                            var opt = document.createElement('option');
-                                                                            opt.appendChild(document.createTextNode('Elige Ciudad'));
-                                                                            opt.value = '';
-                                                                            selCityc.appendChild(opt);
-                                                                            cities.forEach(city => {
                                                                                 var opt = document.createElement('option');
-                                                                                opt.appendChild(document.createTextNode(city.name));
-                                                                                opt.value = city.name;
+                                                                                opt.appendChild(document.createTextNode('Elige Ciudad'));
+                                                                                opt.value = '';
                                                                                 selCityc.appendChild(opt);
+                                                                                cities.forEach(city => {
+                                                                                    var opt = document.createElement('option');
+                                                                                    opt.appendChild(document.createTextNode(city.name));
+                                                                                    opt.value = city.name;
+                                                                                    selCityc.appendChild(opt);
+                                                                                });
                                                                             });
-                                                                        });
 
 
-                                                                        function showbuscar(btn) {
-                                                                            document.getElementById('body1').style.display = "block";
-                                                                            document.getElementById('body2').style.display = "none";
-                                                                        }
+                                                                            function showbuscar(btn) {
+                                                                                document.getElementById('body1').style.display = "block";
+                                                                                document.getElementById('body2').style.display = "none";
+                                                                            }
 
-                                                                        function showalquilar(btn) {
-                                                                            document.getElementById('body1').style.display = "none";
-                                                                            document.getElementById('body2').style.display = "block";
-                                                                        }
+                                                                            function showalquilar(btn) {
+                                                                                document.getElementById('body1').style.display = "none";
+                                                                                document.getElementById('body2').style.display = "block";
+                                                                            }
 
-                                                                        function onScrollEvent(entries, observer) {
-                                                                            entries.forEach(function(entry) {
-                                                                                if (entry.isIntersecting) {
-                                                                                    var attributes = entry.target.attributes;
-                                                                                    var src = attributes['data-src'].textContent;
-                                                                                    entry.target.src = src;
-                                                                                    entry.target.classList.add('visible');
-                                                                                }
-                                                                            });
-                                                                        }
-
-                                                                        // Utilizamos como objetivos todos los
-                                                                        // elementos que tengan la clase lazyLoad,
-                                                                        // que vimos en el HTML de ejemplo.
-                                                                        var targets = document.querySelectorAll('.lazyLoad');
-
-                                                                        // Instanciamos un nuevo observador.
-                                                                        var observer = new IntersectionObserver(onScrollEvent);
-
-                                                                        // Y se lo aplicamos a cada una de las
-                                                                        // imágenes.
-                                                                        targets.forEach(function(entry) {
-                                                                            observer.observe(entry);
-                                                                        });
-                                                                    </script>
-                                                                    <script>
-                                                                        document.addEventListener('DOMContentLoaded', function() {
-                                                                            const searchForm = document.getElementById('searchForm');
-                                                                            if (searchForm) {
-                                                                                searchForm.addEventListener('submit', function(event) {
-                                                                                    event.preventDefault(); // Evitar el envío del formulario.
-
-                                                                                    // Capturar los elementos del formulario y sus valores.
-                                                                                    const typeSelect = document.getElementById('ftop_ptype');
-                                                                                    const searchInput = document.getElementById('searchtxt');
-                                                                                    const check1 = document.getElementById('ftop_category_0');
-                                                                                    const check2 = document.getElementById('ftop_category_1');
-
-                                                                                    // Establecer la categoría basada en qué checkbox está seleccionado.
-                                                                                    let category = "general"; // Valor por defecto.
-                                                                                    if (check1.checked) category = "venta";
-                                                                                    if (check2.checked) category = "renta";
-
-                                                                                    // Obtener el nombre del tipo de propiedad seleccionado o usar 'propiedades' como valor por defecto.
-                                                                                    let typeName = typeSelect.options[typeSelect.selectedIndex].text.toLowerCase().replace(
-                                                                                        /\s+/g, '-');
-                                                                                    if (!typeSelect.value || typeName === 'tipo-de-propiedad') {
-                                                                                        typeName = 'propiedades';
+                                                                            function onScrollEvent(entries, observer) {
+                                                                                entries.forEach(function(entry) {
+                                                                                    if (entry.isIntersecting) {
+                                                                                        var attributes = entry.target.attributes;
+                                                                                        var src = attributes['data-src'].textContent;
+                                                                                        entry.target.src = src;
+                                                                                        entry.target.classList.add('visible');
                                                                                     }
-
-                                                                                    const searchTerm = searchInput.value.trim();
-                                                                                    let queryParams = '';
-                                                                                    if (searchTerm) {
-                                                                                        queryParams = `?searchTerm=${encodeURIComponent(searchTerm)}`;
-                                                                                    }
-
-                                                                                    // Construir la URL final y redireccionar.
-                                                                                    window.location.href = `/${typeName}-en-${category}${queryParams}`;
                                                                                 });
                                                                             }
-                                                                        });
-                                                                    </script>
+
+                                                                            // Utilizamos como objetivos todos los
+                                                                            // elementos que tengan la clase lazyLoad,
+                                                                            // que vimos en el HTML de ejemplo.
+                                                                            var targets = document.querySelectorAll('.lazyLoad');
+
+                                                                            // Instanciamos un nuevo observador.
+                                                                            var observer = new IntersectionObserver(onScrollEvent);
+
+                                                                            // Y se lo aplicamos a cada una de las
+                                                                            // imágenes.
+                                                                            targets.forEach(function(entry) {
+                                                                                observer.observe(entry);
+                                                                            });
+                                                                        </script>
+                                                                        <script>
+                                                                            document.addEventListener('DOMContentLoaded', function() {
+                                                                                const searchForm = document.getElementById('searchForm');
+                                                                                if (searchForm) {
+                                                                                    searchForm.addEventListener('submit', function(event) {
+                                                                                        event.preventDefault(); // Evitar el envío del formulario.
+
+                                                                                        // Capturar los elementos del formulario y sus valores.
+                                                                                        const typeSelect = document.getElementById('ftop_ptype');
+                                                                                        const searchInput = document.getElementById('searchtxt');
+                                                                                        const check1 = document.getElementById('ftop_category_0');
+                                                                                        const check2 = document.getElementById('ftop_category_1');
+
+                                                                                        // Establecer la categoría basada en qué checkbox está seleccionado.
+                                                                                        let category = "general"; // Valor por defecto.
+                                                                                        if (check1.checked) category = "venta";
+                                                                                        if (check2.checked) category = "renta";
+
+                                                                                        // Obtener el nombre del tipo de propiedad seleccionado o usar 'propiedades' como valor por defecto.
+                                                                                        let typeName = typeSelect.options[typeSelect.selectedIndex].text.toLowerCase().replace(
+                                                                                            /\s+/g, '-');
+                                                                                        if (!typeSelect.value || typeName === 'tipo-de-propiedad') {
+                                                                                            typeName = 'propiedades';
+                                                                                        }
+
+                                                                                        const searchTerm = searchInput.value.trim();
+                                                                                        let queryParams = '';
+                                                                                        if (searchTerm) {
+                                                                                            queryParams = `?searchTerm=${encodeURIComponent(searchTerm)}`;
+                                                                                        }
+
+                                                                                        // Construir la URL final y redireccionar.
+                                                                                        window.location.href = `/${typeName}-en-${category}${queryParams}`;
+                                                                                    });
+                                                                                }
+                                                                            });
+                                                                        </script>
 @endsection
