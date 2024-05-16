@@ -1,7 +1,7 @@
 <div id="parentBuscador" class="w-100">
     <div class="row align-items-center d-flex justify-content-center">
         <div class="col-12 text-white text-center p-5">
-            <p class="heading-title mb-3" style=" color:#182741; margin-bottom: 10px; font-family: 'Sharp grotesk'; font-weight: 500;">
+            <p class="heading-title mb-3" style="color:#182741; margin-bottom: 10px; font-family: 'Sharp grotesk'; font-weight: 500;">
                 Explora Nuestras Propiedades
             </p>
             <div class="w-100" id="form-inputs">
@@ -16,7 +16,7 @@
 
                     <div class="mb-3 w-100 d-flex flex-column flex-md-row">
                         <div class="col-md-3 p-0">
-                            <select name="ptype" id="ftop_ptype" class="form-control form-select rounded-select-search-mobile mb-2 mb-md-0" style="box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); font-size: 18px;">
+                            <select name="ptype" id="ftop_ptype" class="elegant-select form-control form-select rounded-select-search-mobile mb-2 mb-md-0">
                                 <option value="">Propiedades</option>
                                 <option data-ids="[23,1]" value="1">Casas</option>
                                 <option data-ids="[24,3]" value="2">Departamentos</option>

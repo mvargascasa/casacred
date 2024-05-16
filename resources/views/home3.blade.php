@@ -198,142 +198,189 @@
 
 
 
-    <style>
-.section-header {
-    position: relative;
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
-    overflow: hidden; /* Asegura que el contenido no se salga de la sección */
-}
-
-.video-header {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-}
-
-.overlay-content {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 3;
-}
-
-#parentBuscador {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    background: rgba(255, 255, 255, 0); /* Fondo transparente */
-    padding: 20px;
-    border-radius: 15px;
-}
-
-#parentBuscador .col-12 {
-    max-width: 800px;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.2); /* Fondo blanco con transparencia */
-    backdrop-filter: blur(10px); /* Efecto de desenfoque */
-    -webkit-backdrop-filter: blur(10px); /* Soporte para Safari */
-    border-radius: 15px; /* Redondea los bordes */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
-}
-
-#parentBuscador .form-select {
-    width: auto;
-}
-.heading-title {
-        font-size: 32px; /* Reduce el tamaño del texto en móviles */
+<style>
+  /* Sección para el encabezado de la sección */
+  .section-header {
+      position: relative;
+      height: 100vh; /* La sección ocupa toda la altura de la ventana */
+      overflow: hidden; /* Esconde cualquier contenido que sobresalga */
+  }
+  
+  /* Estilo para el video de fondo */
+  .video-header {
+      width: 100%; /* Ocupa todo el ancho del contenedor */
+      height: 100%; /* Ocupa toda la altura del contenedor */
+      object-fit: cover; /* Cubre todo el área del contenedor sin distorsión */
+      transform: translate3d(0, 0, 0); /* Mejora el rendimiento de la animación */
+  }
+  
+  /* Contenido superpuesto en el video */
+  .overlay-content {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* Centra el contenido */
+      text-align: center;
+      z-index: 3; /* Asegura que el contenido esté encima del video */
+  }
+  
+  /* Contenedor para el buscador */
+  #parentBuscador {
+      position: absolute;
+      top: 44%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* Centra el contenedor */
+      z-index: 2; /* Asegura que esté encima del video pero debajo del overlay-content */
+      background: rgba(255, 255, 255, 0); /* Fondo transparente */
+      padding: 20px;
+      border-radius: 15px; /* Bordes redondeados */
+  }
+  
+  /* Estilo interno del contenedor del buscador */
+  #parentBuscador .col-12 {
+      max-width: 800px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
+      backdrop-filter: blur(10px); /* Difumina el fondo */
+      -webkit-backdrop-filter: blur(10px); /* Difumina el fondo en navegadores WebKit */
+      border-radius: 15px; /* Bordes redondeados */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  }
+  
+  /* Estilo para el título principal */
+  .heading-title {
+      font-size: 32px; /* Tamaño de fuente grande */
+  }
+  
+  /* Estilo para el select elegante */
+  .elegant-select {
+      background-color: rgba(255, 255, 255, 0); /* Fondo transparente */
+      color: #182741;
+      font-size: 14px;
+      appearance: none; /* Remueve estilos por defecto */
+      position: relative;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Sombra ligera */
+  }
+  
+  /* Estilo para las opciones del select */
+  .elegant-select option {
+      background-color: white; /* Fondo blanco */
+      color: #182741;
+      font-size: 14px;
+  }
+  
+  /* Estilos para pantallas medianas (tablet y superiores) */
+  @media (min-width: 768px) {
+      #parentBuscador .form-select {
+          width: 100%; /* Ancho completo */
+          height: 100%; /* Alto completo */
+      }
+      
+      #parentBuscador .filters-block {
+          width: 75%; /* Ancho de 75% del contenedor padre */
+      }
+  }
+  
+  /* Estilos para pantallas pequeñas (móviles) */
+  @media (max-width: 768px) {
+    #parentBuscador {
+      top: 46%;
+      left: 50%;
     }
-@media (min-width: 768px) {
-    #parentBuscador .form-select {
-        width: 100%;
-    }
-
-    #parentBuscador .filters-block {
-        width: 75%;
-    }
-}
-
-@media (max-width: 768px) {
-    .section-header {
-        height: 100vh; /* Ocupa toda la altura de la pantalla en móviles también */
-    }
-
-    .video-header {
-        height: 100vh;
-    }
-
-    #parentBuscador .form-select {
-        width: 100%;
-        border-radius: 5px 5px 0 0;
-    }
-
-    #parentBuscador .filters-block {
-        width: 100%;
-        flex-direction: column;
-    }
-
-    #parentBuscador .rounded-btn-search-mobile {
-        border-radius: 5px; /* Redondeado en todos los lados */
-    }
-
-    .btn-group {
-        flex-direction: row;
-    }
-
-    .btn-group .btn-check {
-        display: none;
-    }
-
-    .btn-group .btn {
-        margin: 0 5px;
-        flex: 1 1 auto;
-    }
-
-    .heading-title {
-        font-size: 20px; /* Reduce el tamaño del texto en móviles */
-    }
-
-    .btn-outline-light {
-        font-size: 16px; /* Reduce el tamaño del texto en móviles */
-    }
-
-    .form-control {
-        font-size: 16px; /* Reduce el tamaño del texto en móviles */
-    }
-
-    .btn {
-        font-size: 16px; /* Reduce el tamaño del texto en móviles */
-    }
-}
-
-.btn-check:active + .btn-outline-light,
-.btn-check:checked + .btn-outline-light,
-.btn-outline-light.active,
-.btn-outline-light.dropdown-toggle.show,
-.btn-outline-light:active {
-    color: #f8f9fa;
-    font-family: 'Sharp grotesk';
-    font-weight: 500;
-    background-color: #182741;
-}
-
-.btn-outline-light {
-    color: #182741;
-    border-color: #f8f9fa;
-    font-family: 'Sharp grotesk';
-    font-weight: 100;
-    background-color: #f8f9fa;
-}
-
-
-  </style>  
-   
+      .section-header {
+          height: 100vh; /* Altura completa de la pantalla */
+      }
+      
+      .video-header {
+          height: 100vh; /* Altura completa de la pantalla */
+      }
+      
+      #parentBuscador .form-select {
+          width: 100%; /* Ancho completo */
+          height: 100%; /* Alto completo */
+          border-radius: 5px 5px 0 0; /* Bordes superiores redondeados */
+      }
+      
+      #parentBuscador .filters-block {
+          width: 100%; /* Ancho completo */
+          flex-direction: column; /* Dirección de los elementos en columna */
+      }
+      
+      #parentBuscador .rounded-btn-search-mobile {
+          border-radius: 5px; /* Botón con bordes redondeados */
+      }
+      
+      .btn-group {
+          flex-direction: row; /* Dirección de los botones en fila */
+      }
+      
+      .btn-group .btn-check {
+          display: none; /* Oculta el botón de chequeo */
+      }
+      
+      .btn-group .btn {
+          margin: 0 5px; /* Margen entre botones */
+          flex: 1 1 auto; /* Flexibilidad de los botones */
+      }
+      
+      .heading-title {
+          font-size: 20px; /* Tamaño de fuente reducido */
+      }
+      
+      .btn-outline-light {
+          font-size: 16px; /* Tamaño de fuente reducido */
+      }
+      
+      .form-control {
+          font-size: 16px; /* Tamaño de fuente reducido */
+      }
+      
+      .btn {
+          font-size: 16px; /* Tamaño de fuente reducido */
+      }
+  }
+  
+  /* Estilos para pantallas grandes (desktop y superiores) */
+  @media (min-width: 1200px) {
+      #parentBuscador .col-12 {
+          max-width: 1000px; /* Máximo ancho de 1000px */
+          padding: 40px; /* Padding aumentado */
+      }
+      
+      #parentBuscador .heading-title {
+          font-size: 36px; /* Tamaño de fuente aumentado */
+      }
+      
+      #parentBuscador .form-select,
+      #parentBuscador .filters-block input {
+          font-family: 'Sharp grotesk'; /* Fuente personalizada */
+          font-size: 17px; /* Tamaño de fuente aumentado */
+          width: 100%; /* Ancho completo */
+          height: 100%; /* Alto completo */
+      }
+  }
+  
+  /* Estilos para el estado activo de los botones */
+  .btn-check:active + .btn-outline-light,
+  .btn-check:checked + .btn-outline-light,
+  .btn-outline-light.active,
+  .btn-outline-light.dropdown-toggle.show,
+  .btn-outline-light:active {
+      color: #f8f9fa; /* Color de texto claro */
+      font-family: 'Sharp grotesk'; /* Fuente personalizada */
+      font-weight: 500; /* Peso de fuente medio */
+      background-color: #182741; /* Fondo oscuro */
+  }
+  
+  /* Estilos básicos para los botones con borde claro */
+  .btn-outline-light {
+      color: #182741; /* Color de texto oscuro */
+      border-color: #f8f9fa; /* Color de borde claro */
+      font-family: 'Sharp grotesk'; /* Fuente personalizada */
+      font-weight: 100; /* Peso de fuente ligero */
+      background-color: #f8f9fa; /* Fondo claro */
+  }
+</style>
 @endsection
 
 @section('content')
