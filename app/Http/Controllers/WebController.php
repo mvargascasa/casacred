@@ -434,7 +434,7 @@ class WebController extends Controller
 
     public function sendLeadContact(Request $request){
 
-        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+        /*$response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
             'secret' => '6Le1UsshAAAAAInuqh1QQ_C3jCx6YQAn_tDBNnOO',
             'response' => $request->input('g-recaptcha-response')
         ])->object();
@@ -443,7 +443,7 @@ class WebController extends Controller
             $this->sendemail($request);
         } else {
             return "La validación de Recaptcha ha fallado. Por favor inténtelo de nuevo...";
-        }
+        }*/
 
         $ismobile = $this->isMobile();
 
