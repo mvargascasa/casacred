@@ -656,7 +656,7 @@
     <div class="card mb-3 rounded-0">
         <div class="row g-0 d-flex">
             <div class="col-md-4">
-                <a href="/propiedades/${property.slug}" style="text-decoration: none;">
+                <a href="/propiedad/${property.slug}" style="text-decoration: none;">
                     <div class="image_thumbnail" style="height: 325px; background-image: url('${imageUrl}'); background-position: center; background-repeat: no-repeat; background-size: cover;"></div>
                 </a>
             </div>
@@ -665,7 +665,7 @@
                     <p class="m-0 py-3 px-3 h5">Cod: ${property.product_code}</p>
                 </div>
                 <div class="card-body">
-                    <a href="/propiedades/${property.slug}" class="text-dark" style="text-decoration: none;">
+                    <a href="/propiedad/${property.slug}" class="text-dark" style="text-decoration: none;">
                         <h2 class="card-title" style="font-family: 'Sharp Grotesk', sans-serif; font-size: 1.4rem; padding-right: 60px; font-weight: 500;">${property.listing_title}</h2>
                     </a>
                     <h3 class="h5 text-muted" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 300;">${property.sector ? `<span>Sector:</span> ${property.sector},` : ''} ${property.city}, ${property.state}</h3>
