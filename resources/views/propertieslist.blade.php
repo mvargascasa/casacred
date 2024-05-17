@@ -648,7 +648,7 @@
     let phoneNumber = '593983849073'; // Número por defecto para venta
     let transactionType = "venta";
     if (property.listingtypestatus.includes('rent') || property.listingtypestatus.includes('alquilar')) {
-        phoneNumber = '593987474637'; // Cambiar si es renta
+        phoneNumber = '593983849073'; // Cambiar si es renta
         transactionType = "alquiler";
     }
 
