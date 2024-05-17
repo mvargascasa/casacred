@@ -324,102 +324,59 @@ if(strpos($actual_link, 'localhost') === false){
                 padding-right: 40px;
                 /* Espacio interno a la derecha */
             }
-
             .whatsapp-group {
-                position: fixed;
-                bottom: 62px;
-                right: 5px;
-                z-index: 5000;
-            }
+        position: fixed;
+        bottom: 62px;
+        right: 5px;
+        z-index: 5000;
+    }
 
-            .whatsapp-float {
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background-color: #25d366;
-                color: white;
-                font-size: 30px;
-                box-shadow: 2px 2px 5px #666;
-                text-decoration: none;
-                border: none;
-                outline: none;
-                transition: transform 0.3s ease, background-color 0.3s ease;
-            }
+    .whatsapp-float {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #25d366;
+        color: white;
+        font-size: 30px;
+        box-shadow: 2px 2px 5px #666;
+        text-decoration: none;
+        border: none;
+        outline: none;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
 
-            .whatsapp-options {
-                display: none;
-                position: absolute;
-                bottom: 60px;
-                /* Ajuste para que aparezca justo encima del botón */
-                right: 0;
-                flex-direction: column;
-            }
+    .whatsapp-float i {
+        transition: color 0.3s;
+        /* Suavizar la transición de color del ícono */
+    }
 
-            .whatsapp-link {
-                background-color: white;
-                color: #25d366;
-                text-decoration: none;
-                padding: 8px;
-                border-radius: 10px;
-                box-shadow: 2px 2px 5px #666;
-                margin-top: 5px;
-            }
+    .whatsapp-float:hover {
+        transform: scale(1.5);
+        background-color: #ffffff;
+        /* Fondo a blanco */
+        color: #25d366;
+        /* Ícono a verde WhatsApp */
+        box-shadow: 0 0 10px #25d366;
+        /* Sombra más pronunciada y de color verde */
+    }
 
-            .whatsapp-link:hover {
-                color: #23b258;
-            }
+    .whatsapp-float:hover i {
+        color: inherit;
+        /* El ícono hereda el color para mantener consistencia */
+    }
 
-            /* Estilos específicos del botón de WhatsApp para mantener el ícono centrado y con el estilo deseado */
-            .whatsapp-float {
-                background-color: #25d366;
-                color: white;
-                font-size: 30px;
-                /* Tamaño del ícono de WhatsApp */
-                border-radius: 50%;
-                /* Hacer el botón de WhatsApp completamente circular */
-                box-shadow: 2px 2px 5px #666;
-                text-decoration: none;
-                border: none;
-                outline: none;
-            }
-
-            .whatsapp-float i {
-                transition: color 0.3s;
-                /* Suavizar la transición de color del ícono */
-            }
-
-            /* Efectos al pasar el mouse sobre ambos botones */
-            .whatsapp-float:hover {
-                transform: scale(1.5);
-            }
-
-            /* Cambio de color específico al hacer hover en el botón de WhatsApp */
-            .whatsapp-float:hover {
-                background-color: #ffffff;
-                /* Fondo a blanco */
-                color: #25d366;
-                /* Ícono a verde WhatsApp */
-                box-shadow: 0 0 10px #25d366;
-                /* Sombra más pronunciada y de color verde */
-            }
-
-            .whatsapp-float:hover i {
-                color: inherit;
-                /* El ícono hereda el color para mantener consistencia */
-            }
-
-            .whatsapp-float-active {
-                transform: scale(1.5);
-                background-color: #ffffff;
-                /* Fondo a blanco */
-                color: #25d366;
-                /* Ícono a verde WhatsApp */
-                box-shadow: 0 0 10px #25d366;
-                /* Sombra más pronunciada y de color verde */
-            }
+    .whatsapp-float-active {
+        transform: scale(1.5);
+        background-color: #ffffff;
+        /* Fondo a blanco */
+        color: #25d366;
+        /* Ícono a verde WhatsApp */
+        box-shadow: 0 0 10px #25d366;
+        /* Sombra más pronunciada y de color verde */
+    }
     </style>
     <script>
         (function(h,o,t,j,a,r){
@@ -636,20 +593,10 @@ if(strpos($actual_link, 'localhost') === false){
                                 </span>
                             </div>
                             <div class="col-10">
-                                <div style="color: #ffffff;"><span class="desing-t">Venta:</span><span
+                                <div style="color: #ffffff;"><span class="desing-t"></span><span
                                         class="desing-p"> <a href="tel:+593983849073" class="asindeco"
                                             style="color: #ffffff !important">
                                             098 384 9073</a></span></div>
-                            </div>
-                        </div>
-                        <div class="row align-items-center mt-2">
-                            <div class="col-2 text-center">
-                            </div>
-                            <div class="col-10">
-                                <div style="color: #ffffff;"><span class="desing-t">Renta:</span><span
-                                        class="desing-p"> <a href="tel:+593987474637" class="asindeco"
-                                            style="color: #ffffff !important">
-                                            098 747 4637</a></span></div>
                             </div>
                         </div>
                     </div>
@@ -865,16 +812,11 @@ if(strpos($actual_link, 'localhost') === false){
         </div>
     </div>
 
+
     <div class="whatsapp-group">
-        <a href="#" class="whatsapp-float" onclick="toggleWhatsAppMenu(event); return false;">
+        <a href="https://api.whatsapp.com/send?phone=593983849073&text=Hola Grupo Housing, estoy interesado en una propiedad" target="_blank" class="whatsapp-float">
             <i class="fab fa-whatsapp"></i>
         </a>
-        <div class="whatsapp-options">
-            <a href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en una propiedad en venta"
-                target="_blank" class="whatsapp-link">Venta</a>
-            <a href="https://api.whatsapp.com/send?phone=593987474637&text=Hola, estoy interesado en rentar una propiedad"
-                target="_blank" class="whatsapp-link">Renta</a>
-        </div>
     </div>
 
     <div class="telf d-flex">
@@ -1111,31 +1053,7 @@ if(strpos($actual_link, 'localhost') === false){
             });
         }, 3500);
     </script>
-    <script>
-        function toggleWhatsAppMenu(event) {
-            event.stopPropagation(); // Evitar que el clic se propague a document
-            var options = document.querySelector('.whatsapp-options');
-            var button = document.querySelector('.whatsapp-float');
 
-            if (options.style.display === 'flex') {
-                options.style.display = 'none';
-                button.classList.remove('whatsapp-float-active');
-            } else {
-                options.style.display = 'flex';
-                button.classList.add('whatsapp-float-active');
-            }
-        }
-
-        // Evento para cerrar el menú si se hace clic fuera de él
-        document.addEventListener('click', function(event) {
-            var options = document.querySelector('.whatsapp-options');
-            var button = document.querySelector('.whatsapp-float');
-            if (event.target.closest('.whatsapp-group') === null) {
-                options.style.display = 'none';
-                button.classList.remove('whatsapp-float-active');
-            }
-        });
-    </script>
 </body>
 
 </html>

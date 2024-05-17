@@ -147,6 +147,18 @@
             margin-right: auto;
             margin-left: auto;
         }
+
+        .carousel-image {
+            height: 500px;
+            weight: 500px;
+            object-fit: cover;
+        }
+
+        .thumbnail-standard {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+        }
     </style>
 @endsection
 
@@ -171,7 +183,7 @@
         ->first();
 @endphp
 @section('content')
-    <div class="custom-container mt-5">
+    <div class="container mt-5">
         <div class="row">
             <div class="col-12 position-relative">
                 <div id="carouselImages" class="carousel slide" data-ride="carousel">
@@ -179,7 +191,7 @@
                         @foreach (explode('|', $listing->images) as $image)
                             <div class="carousel-item @if ($loop->index == 0) active @endif">
                                 <img src="{{ $filexists ? url('uploads/listing/', $image) : url('uploads/listing/', $image) }}"
-                                    class="d-block w-100" style="height: auto; max-height: 700px; border-radius: 15px;">
+                                    class="d-block w-100 carousel-image" style="border-radius: 15px;">
                             </div>
                         @endforeach
                     </div>
@@ -193,9 +205,8 @@
                     </a>
                 </div>
                 <span class="position-absolute top-0 end-0 p-2 text-white"
-                    style="background-color: #242B40; font-family: 'Sharp Grotesk'; font-weight:500; border-top-right-radius: 10px; border-bottom-left-radius: 10px; right: 12px; top: 0; z-index: 1050;">COD:
+                    style="background-color: #242B40; font-family: 'Sharp Grotesk'; font-weight: 500; border-top-right-radius: 10px; border-bottom-left-radius: 10px; right: 12px; top: 0; z-index: 1050;">COD:
                     {{ $listing->product_code }}</span>
-
             </div>
         </div>
 
@@ -206,7 +217,7 @@
                         @foreach (explode('|', $listing->images) as $index => $image)
                             <img onclick="switchImage({{ $index }})"
                                 src="{{ $filexists ? url('uploads/listing/thumb/600', $image) : url('uploads/listing/600', $image) }}"
-                                class="img-thumbnail m-1" style="width: 100px; cursor: pointer;">
+                                class="img-thumbnail m-1 thumbnail-standard" style="cursor: pointer;">
                         @endforeach
                     </div>
                 </div>
@@ -609,7 +620,8 @@
             <div class="row my-5 justify-content-center" data-aos="zoom-in">
                 <h2 class="text-center mb-5" style="font-family: 'Sharp Grotesk', sans-serif;">Propiedades similares</h2>
                 @foreach ($listingsSimilar as $listing_s)
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 mb-2 d-flex justify-content-center text-center">
+                    <div
+                        class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 mb-2 d-flex justify-content-center text-center">
                         <a style="text-decoration: none; color: #000000"
                             href="{{ route('web.detail', $listing_s->slug) }}">
                             <div data-aos="zoom-in" class="card cardsimilarlisting" style="width: 18rem;">
@@ -697,6 +709,7 @@
     <script>
         AOS.init();
     </script>
+
     <script>
         // Función global para cambiar la imagen del carrusel
         window.switchImage = function(index) {

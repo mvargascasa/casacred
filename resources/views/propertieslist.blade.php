@@ -143,7 +143,11 @@
 .border-end-0 {
   border-right: 0 !important;
 }
-
+.carousel-image {
+        object-fit: cover;
+        width: 100%;
+        height: 300px;
+    }
     </style>
 @endsection
 
@@ -539,7 +543,7 @@
                     if (properties.length > 0) {
                         properties.forEach(property => {
                             let imageUrl = getImageUrl(property);
-                            html += buildPropertyHTML(property, imageUrl);
+                            html += buildPropertyHTML(property);
                         });
                         updateDynamicTitle(response.data.pagination.total, searchParams, isModal);
                     } else {
@@ -637,27 +641,55 @@
         }
 
 
-        function buildPropertyHTML(property, imageUrl) {
-            let aliquotInfo = property.aliquot > 0 ?
-                `<p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Alícuota:</strong> $${property.aliquot}</p>` :
-                '';
-            let phoneNumber = '593983849073'; // Número por defecto para venta
-            let transactionType = "venta";
-            if (property.listingtypestatus.includes('rent') || property.listingtypestatus.includes('alquilar')) {
-                phoneNumber = '593987474637'; // Cambiar si es renta
-                transactionType = "alquiler";
-            }
+        function buildPropertyHTML(property) {
+    let aliquotInfo = property.aliquot > 0 ?
+        `<p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Alícuota:</strong> $${property.aliquot}</p>` :
+        '';
+    let phoneNumber = '593983849073'; // Número por defecto para venta
+    let transactionType = "venta";
+    if (property.listingtypestatus.includes('rent') || property.listingtypestatus.includes('alquilar')) {
+        phoneNumber = '593987474637'; // Cambiar si es renta
+        transactionType = "alquiler";
+    }
 
-            let whatsappMessage = encodeURIComponent(
-                `Hola, Grupo Housing estoy interesado en ${transactionType === "venta" ? "comprar" : "rentar"} esta propiedad: ${property.product_code}`
-            );
+    let whatsappMessage = encodeURIComponent(
+        `Hola, Grupo Housing estoy interesado en ${transactionType === "venta" ? "comprar" : "rentar"} esta propiedad: ${property.product_code}`
+    );
 
-            return `<article class="col-12 my-1" style="padding-left: 0px !important; padding-right: 0px !important;">
+    let images = property.images.split('|');
+    let carouselIndicators = '';
+    let carouselItems = '';
+
+    images.forEach((image, index) => {
+        let activeClass = index === 0 ? 'active' : '';
+        carouselIndicators += `<li data-target="#carousel${property.id}" data-slide-to="${index}" class="${activeClass}"></li>`;
+        carouselItems += `
+            <div class="carousel-item ${activeClass}">
+                <img src="/uploads/listing/${image}" class="d-block w-100 carousel-image">
+            </div>`;
+    });
+
+    return `<article class="col-12 my-1" style="padding-left: 0px !important; padding-right: 0px !important;">
     <div class="card mb-3 rounded-0">
         <div class="row g-0 d-flex">
             <div class="col-md-4">
                 <a href="/propiedad/${property.slug}" style="text-decoration: none;">
-                    <div class="image_thumbnail" style="height: 325px; background-image: url('${imageUrl}'); background-position: center; background-repeat: no-repeat; background-size: cover;"></div>
+                    <div id="carousel${property.id}" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            ${carouselIndicators}
+                        </ol>
+                        <div class="carousel-inner">
+                            ${carouselItems}
+                        </div>
+                        <a class="carousel-control-prev" href="#carousel${property.id}" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Anterior</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel${property.id}" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Siguiente</span>
+                        </a>
+                    </div>
                 </a>
             </div>
             <div class="col-md-8 px-5 py-3 padding-mobile-0 position-relative">
@@ -676,21 +708,21 @@
                     <div class="row align-items-center">
                         <div class="col-sm-8 d-flex justify-content-around">
                             ${property.bedroom > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
-                                                                                                                                                                                                                                                                        <img width="50px" height="50px" src="{{ asset('img/dormitorios.png') }}" alt="">
-                                                                                                                                                                                                                                                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bedroom} Hab.</p>
-                                                                                                                                                                                                                                                                    </div>` : ''}
+                                                                                                                                                                                                                                                                    <img width="50px" height="50px" src="{{ asset('img/dormitorios.png') }}" alt="">
+                                                                                                                                                                                                                                                                    <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bedroom} Hab.</p>
+                                                                                                                                                                                                                                                                </div>` : ''}
                             ${property.bathroom > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
-                                                                                                                                                                                                                                                                        <img width="50px" height="50px" src="{{ asset('img/banio.png') }}" alt="">
-                                                                                                                                                                                                                                                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bathroom} ${property.bathroom > 1 ? 'Baños' : 'Baño'}</p>
-                                                                                                                                                                                                                                                                    </div>` : ''}
+                                                                                                                                                                                                                                                                    <img width="50px" height="50px" src="{{ asset('img/banio.png') }}" alt="">
+                                                                                                                                                                                                                                                                    <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bathroom} ${property.bathroom > 1 ? 'Baños' : 'Baño'}</p>
+                                                                                                                                                                                                                                                                </div>` : ''}
                             ${property.garage > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
-                                                                                                                                                                                                                                                                        <img width="50px" height="50px" src="{{ asset('img/estacionamiento.png') }}" alt="">
-                                                                                                                                                                                                                                                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage} ${property.garage > 1 ? 'Garajes' : 'Garaje'}</p>
-                                                                                                                                                                                                                                                                    </div>` : ''}
+                                                                                                                                                                                                                                                                    <img width="50px" height="50px" src="{{ asset('img/estacionamiento.png') }}" alt="">
+                                                                                                                                                                                                                                                                    <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage} ${property.garage > 1 ? 'Garajes' : 'Garaje'}</p>
+                                                                                                                                                                                                                                                                </div>` : ''}
                             ${property.construction_area > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
-                                                                                                                                                                                                                                                                        <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
-                                                                                                                                                                                                                                                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.construction_area} m<sup>2</sup> </p>
-                                                                                                                                                                                                                                                                    </div>` : ''}
+                                                                                                                                                                                                                                                                    <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
+                                                                                                                                                                                                                                                                    <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.construction_area} m<sup>2</sup> </p>
+                                                                                                                                                                                                                                                                </div>` : ''}
                         </div>
                         <div class="col-sm-4 d-flex gap-3">
                             <div class="w-100 d-flex align-items-center mr-2" style="height: 35px">
@@ -712,9 +744,7 @@
         </div>
     </div>
 </article>`;
-        }
-
-
+}
         function clearSearch(isModal) {
             // Determine whether to clear the modal or desktop forms
             const searchTermId = isModal ? 'searchTermModal' : 'searchTerm';
