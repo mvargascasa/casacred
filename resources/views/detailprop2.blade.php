@@ -141,6 +141,7 @@
         .custom-container {
             width: 100%;
             max-width: 1500px;
+            /* Ajusta este valor según tus necesidades */
             padding-right: 15px;
             padding-left: 15px;
             margin-right: auto;
@@ -148,96 +149,92 @@
         }
 
         .carousel-image {
-            height: 700px;
+            height: 500px;
             object-fit: cover;
-            border-radius: 15px;
-        }
-
-        .thumbnail-full-width {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 5px;
         }
 
         .thumbnail-container {
-            max-height: 700px;
-            /* Ajusta según sea necesario */
-            overflow-y: auto;
-            -ms-overflow-style: none;
-            /* IE and Edge */
-            scrollbar-width: none;
-            /* Firefox */
-        }
-
-        .thumbnail-container::-webkit-scrollbar {
-            display: none;
-            /* Safari and Chrome */
-        }
-
-        .thumbnail-container-horizontal {
-            max-height: 120px;
-            /* Ajusta según sea necesario */
+            width: calc(100% - 80px);
+            white-space: nowrap;
             overflow-x: auto;
-            -ms-overflow-style: none;
-            /* IE and Edge */
-            scrollbar-width: none;
-            /* Firefox */
+            scroll-behavior: smooth;
+            position: relative;
         }
 
-        .thumbnail-container-horizontal::-webkit-scrollbar {
-            display: none;
-            /* Safari and Chrome */
-        }
-
-        .thumbnail-horizontal {
-            width: 120px;
-            height: 90px;
+        .thumbnail-standard {
+            width: 100px;
+            height: 70px;
             object-fit: cover;
-            border-radius: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .carousel-control-prev,
-        .carousel-control-next {
-            width: 5%;
+        .thumbnail-standard:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .custom-code {
-            background-color: #242B40;
-            font-family: 'Sharp Grotesk';
-            font-weight: 500;
-            border-top-right-radius: 10px;
-            border-bottom-left-radius: 10px;
-            right: 12px;
-            top: 0;
-            z-index: 1050;
+        .thumbnail-wrapper {
+            position: relative;
+            display: inline-block;
         }
 
-        /* Ajustes para dispositivos móviles */
+        .thumbnail-icon-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .thumbnail-wrapper:hover .thumbnail-icon-overlay {
+            opacity: 1;
+        }
+
+        @media (min-width: 768px) {
+            .thumbnail-standard {
+                width: 200px;
+                height: 150px;
+            }
+
+        }
         @media (max-width: 768px) {
             .carousel-image {
-                height: 300px;
-            }
-
-            .thumbnail-container-horizontal {
-                max-height: 100px;
-            }
-
-            .thumbnail-horizontal {
-                width: 90px;
-                height: 60px;
-            }
-
-            .thumbnail-container {
-                overflow-y: hidden;
+                height: 400px;
+                object-fit: cover;
             }
         }
 
-        /* Ajustes para escritorio */
-        @media (min-width: 769px) {
-            .thumbnail-container-horizontal {
-                overflow-x: hidden;
-            }
+        .scroll-button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .scroll-button.left {
+            left: -20px;
+            background-color: #242B40;  
+        }
+
+        .scroll-button.right {
+            right: -20px;
+            background-color: #242B40;  
+        }
+
+        .scroll-button i {
+            font-size: 1.5rem;
+            color: #ffffff;
         }
     </style>
 @endsection
@@ -265,13 +262,13 @@
 @section('content')
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-9 position-relative">
+            <div class="col-12 position-relative">
                 <div id="carouselImages" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         @foreach (explode('|', $listing->images) as $image)
                             <div class="carousel-item @if ($loop->index == 0) active @endif">
                                 <img src="{{ $filexists ? url('uploads/listing/', $image) : url('uploads/listing/', $image) }}"
-                                    class="d-block w-100 carousel-image">
+                                    class="d-block w-100 carousel-image" style="border-radius: 15px;">
                             </div>
                         @endforeach
                     </div>
@@ -283,29 +280,26 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Siguiente</span>
                     </a>
-                    <span class="position-absolute top-0 end-0 p-2 text-white custom-code"
-                        style="background-color: #242B40; font-family: 'Sharp Grotesk'; font-weight: 500; border-top-right-radius: 10px; border-bottom-left-radius: 10px; right: 0px; top: 0; z-index: 1050;">COD:
-                        {{ $listing->product_code }}</span>
                 </div>
-            </div>
-            <div class="col-md-3 d-none d-md-flex">
-                <div class="thumbnail-container d-flex flex-column align-items-center">
-                    @foreach (explode('|', $listing->images) as $index => $image)
-                        <img onclick="switchImage({{ $index }})"
-                            src="{{ $filexists ? url('uploads/listing/thumb/600', $image) : url('uploads/listing/600', $image) }}"
-                            class="img-thumbnail m-2 thumbnail-full-width" style="cursor: pointer; background-color: transparent;">
-                    @endforeach
-                </div>
+                <span class="position-absolute top-0 end-0 p-2 text-white"
+                    style="background-color: #242B40; font-family: 'Sharp Grotesk'; font-weight: 500; border-top-right-radius: 10px; border-bottom-left-radius: 10px; right: 12px; top: 0; z-index: 1050;">COD:
+                    {{ $listing->product_code }}</span>
             </div>
         </div>
-        <div class="row d-md-none mt-3">
+
+        <div class="row mt-4 justify-content-center">
             <div class="col-12">
-                <div class="thumbnail-container-horizontal d-flex flex-row overflow-auto">
-                    @foreach (explode('|', $listing->images) as $index => $image)
-                        <img onclick="switchImage({{ $index }})"
-                            src="{{ $filexists ? url('uploads/listing/thumb/600', $image) : url('uploads/listing/600', $image) }}"
-                            class="img-thumbnail m-2 thumbnail-horizontal" style="cursor: pointer; background-color: transparent;">
-                    @endforeach
+                <div class="d-flex justify-content-center position-relative">
+                    <button id="scrollLeft" class="scroll-button left"><i style="text-color:#242B40"
+                            class="fas fa-chevron-left"></i></button>
+                    <div class="d-inline-flex overflow-hidden thumbnail-container">
+                        @foreach (explode('|', $listing->images) as $index => $image)
+                            <img onclick="switchImage({{ $index }})"
+                                src="{{ $filexists ? url('uploads/listing/thumb/600', $image) : url('uploads/listing/600', $image) }}"
+                                class="img-thumbnail m-1 thumbnail-standard" style="cursor: pointer;">
+                        @endforeach
+                    </div>
+                    <button id="scrollRight" class="scroll-button right"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
@@ -790,25 +784,44 @@
 @endsection
 
 @section('script')
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
 
-    <script>
-        // Función global para cambiar la imagen del carrusel
-        window.switchImage = function(index) {
-            var carouselElement = document.querySelector('#carouselImages');
-            var carousel = new bootstrap.Carousel(carouselElement);
-            carousel.to(index); // Mueve el carrusel al índice de imagen especificado
-        };
 
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             var carouselElement = document.querySelector('#carouselImages');
             var carousel = new bootstrap.Carousel(carouselElement);
+
+            window.switchImage = function(index) {
+                carousel.to(index);
+            };
+
+            var scrollLeftButton = document.getElementById('scrollLeft');
+            var scrollRightButton = document.getElementById('scrollRight');
+            var thumbnailContainer = document.querySelector('.thumbnail-container');
+
+            scrollLeftButton.addEventListener('click', function() {
+                thumbnailContainer.scrollBy({
+                    left: -150,
+                    behavior: 'smooth'
+                });
+            });
+
+            scrollRightButton.addEventListener('click', function() {
+                thumbnailContainer.scrollBy({
+                    left: 150,
+                    behavior: 'smooth'
+                });
+            });
         });
     </script>
+
     <script>
         function toggleDescription() {
             const shortDesc = document.getElementById('short-desc');
