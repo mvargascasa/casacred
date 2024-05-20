@@ -8,7 +8,7 @@
                 <form id="searchForm" method="GET">
                     @csrf
                     <div class="btn-group mb-3 w-100 d-flex flex-row flex-wrap justify-content-center">
-                        <input type="radio" class="btn-check" name="category" id="ftop_category_0" autocomplete="off" value="en-venta">
+                        <input type="radio" class="btn-check" name="category" id="ftop_category_0" autocomplete="off" value="en-venta" checked>
                         <label class="btn btn-outline-light mb-2 mb-md-0" for="ftop_category_0" style="width: 120px; font-size: 18px; border-radius: 5px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">COMPRAR</label>
                         <input type="radio" class="btn-check" name="category" id="ftop_category_1" autocomplete="off" value="alquilar">
                         <label class="btn btn-outline-light mb-2 mb-md-0" for="ftop_category_1" style="width: 120px; font-size: 18px; border-radius: 5px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">RENTAR</label>
