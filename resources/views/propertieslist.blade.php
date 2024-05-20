@@ -1,14 +1,17 @@
 @extends('layouts.web')
 @section('header')
     <title>Grupo Housing - Propiedades en Venta en Ecuador</title>
-    <meta name="description" content="@if(request()->segment(2) != null) En Grupo Housing contamos con {{ucwords(str_replace("-", " ", request()->segment(2)))}}. Accede a nuestro Sitio Web y encuentra la propiedad que estás buscando. @else Encuentre la casa de sus sueños, donde los sueños se hacen realidad 😉 Contamos con una gran variedad de propiedades disponibles ¡Contáctenos! @endif">
-<meta name="keywords" content="@isset($meta_seo) {{ $keywords }} @else casas en venta, casas en venta guayaquil, casas en venta en guayaquil, casas en venta quito, casas en venta en quito, casas en venta cuenca, casas en venta en cuenca, casas de venta en guayaquil, casas de venta en quito, casas de venta en cuenca, casas en venta en guayaquil baratas, casas en venta en quito baratas, casas en venta en cuenca baratas, departamentos en venta, departamentos en venta en quito, departamentos en venta quito, departamentos en venta guayaquil, departamentos en venta en guayaquil, departamentos en venta cuenca, departamentos en venta en cuenca, venta casas cuenca, venta casas guayaquil, venta casas quito, departamentos en alquiler, departamentos en alquiler quito, departamentos en alquiler guayaquil, departamentos en alquiler cuenca, departamentos de alquiler en quito, departamentos de alquiler en guayaquil, departamentos de alquiler en cuenca, terrenos en venta, terrenos en venta cuenca, terrenos en venta en cuenca, terrenos de venta en cuenca, terrenos en venta quito, terrenos en venta en quito, terrenos de venta en quito, terrenos en venta guayaquil, terrenos en venta en guayaquil, terrenos de venta en guayaquil, venta terrenos cuenca, venta terrenos guayaquil, venta terrenos quito, lotes en venta, lotes en venta en cuenca, lotes en venta en quito, lotes en venta en guayaquil, apartamentos en venta, apartamentos en venta quito, apartamentos en venta guayaquil, apartamentos en venta cuenca @endif">
+    <meta name="description"
+        content="@if (request()->segment(2) != null) En Grupo Housing contamos con {{ ucwords(str_replace('-', ' ', request()->segment(2))) }}. Accede a nuestro Sitio Web y encuentra la propiedad que estás buscando. @else Encuentre la casa de sus sueños, donde los sueños se hacen realidad 😉 Contamos con una gran variedad de propiedades disponibles ¡Contáctenos! @endif">
+    <meta name="keywords"
+        content="@isset($meta_seo) {{ $keywords }} @else casas en venta, casas en venta guayaquil, casas en venta en guayaquil, casas en venta quito, casas en venta en quito, casas en venta cuenca, casas en venta en cuenca, casas de venta en guayaquil, casas de venta en quito, casas de venta en cuenca, casas en venta en guayaquil baratas, casas en venta en quito baratas, casas en venta en cuenca baratas, departamentos en venta, departamentos en venta en quito, departamentos en venta quito, departamentos en venta guayaquil, departamentos en venta en guayaquil, departamentos en venta cuenca, departamentos en venta en cuenca, venta casas cuenca, venta casas guayaquil, venta casas quito, departamentos en alquiler, departamentos en alquiler quito, departamentos en alquiler guayaquil, departamentos en alquiler cuenca, departamentos de alquiler en quito, departamentos de alquiler en guayaquil, departamentos de alquiler en cuenca, terrenos en venta, terrenos en venta cuenca, terrenos en venta en cuenca, terrenos de venta en cuenca, terrenos en venta quito, terrenos en venta en quito, terrenos de venta en quito, terrenos en venta guayaquil, terrenos en venta en guayaquil, terrenos de venta en guayaquil, venta terrenos cuenca, venta terrenos guayaquil, venta terrenos quito, lotes en venta, lotes en venta en cuenca, lotes en venta en quito, lotes en venta en guayaquil, apartamentos en venta, apartamentos en venta quito, apartamentos en venta guayaquil, apartamentos en venta cuenca @endif">
 
 <meta property="og:url"                content="https://grupohousing.com/propiedades-en-general" />
 <meta property="og:type"               content="website" />
-<meta property="og:title"              content="@isset($meta_seo){{ucfirst(str_replace('-', ' ', $meta_seo))}} - Grupo Housing @else Grupo Housing Encuentra la casa de tus sueños. @endisset" />
-<meta property="og:description"        content="@isset($meta_seo)En Grupo Housing Contamos con {{ucfirst(str_replace('-', ' ', $meta_seo))}}. Accede a nuestro sitio web y encuentra la propiedad que estás buscando. @else Encuentre la casa de sus sueños, donde los sueños se hacen realidad 😉 Contamos con una gran variedad de propiedades disponibles ¡Contáctenos! @endisset" />
-<meta property="og:image"              content="{{asset('img/meta-image-social-cc.jpg')}}" />
+<meta property="og:title"              content="@isset($meta_seo){{ ucfirst(str_replace('-', ' ', $meta_seo)) }} - Grupo Housing @else Grupo Housing Encuentra la casa de tus sueños. @endisset" />
+    <meta property="og:description"
+        content="@isset($meta_seo)En Grupo Housing Contamos con {{ ucfirst(str_replace('-', ' ', $meta_seo)) }}. Accede a nuestro sitio web y encuentra la propiedad que estás buscando. @else Encuentre la casa de sus sueños, donde los sueños se hacen realidad 😉 Contamos con una gran variedad de propiedades disponibles ¡Contáctenos! @endisset" />
+    <meta property="og:image" content="{{ asset('img/meta-image-social-cc.jpg') }}" />
     <style>
         .search-bar-container {
             position: -webkit-sticky;
@@ -114,38 +117,190 @@
             /* Color del borde al pasar el mouse */
         }
 
-        @media screen and (max-width: 580px){
-    .redes{display: none !important}
-    .text-title{position: relative !important; height: auto !important}
-    .search{display: inline-block !important;}
-    .rounded-search-mobile{border: 1px solid rgb(195, 195, 195) !important; border-radius: 5% !important; padding: 10px 20px 10px 20px !important}
-    .slash{display: none !important}
-    .section-search{padding-left: 5% !important; padding-right: 5% !important}
-    .margin-bottom-mobile{margin-bottom: 9px !important}
-    .border-tabs-mobile{border-radius: 25px !important; border: .5px solid rgb(202, 202, 202) !important; box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;}
-    .btn-search-mobile{text-align: center !important; margin-top: 20px !important}
-    .label-filter{display: block !important}
-    .img-filters{display: inline-block !important}
-    .logo-housing{width: 250px;}
-    .title{font-size: 35px !important; line-height: 45px !important;}
-    .filters{box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; display: inline !important; width: 100% !important; margin-left: 5% !important; margin-right: 5% !important;}.filters > select, .filters > input, .filters > button {width: 100% !important; margin-top: 2% !important; margin-bottom: 2% !important;}
-    .padding-mobile-0{padding-left: 0px !important; padding-right: 0px !important;}
-    .characteristics{display: block !important; text-align: center !important;}
-    .characteristics > p {padding-top: 0px !important;}
-    .image_thumbnail{height: 250px !important;}
-    .card-body{padding-top: 50px !important; }
-    .card-body > a > h2{padding-right: 0px !important;}
-}
-.border-end {
-    border-right: 1px solid #dee2e6 !important;
-}
+        @media screen and (max-width: 580px) {
+            .redes {
+                display: none !important
+            }
 
-.border-end-0 {
-  border-right: 0 !important;
-}
-.carousel-image {
-        object-fit: cover;
-        width: 100%;
+            .text-title {
+                position: relative !important;
+                height: auto !important
+            }
+
+            .search {
+                display: inline-block !important;
+            }
+
+            .rounded-search-mobile {
+                border: 1px solid rgb(195, 195, 195) !important;
+                border-radius: 5% !important;
+                padding: 10px 20px 10px 20px !important
+            }
+
+            .slash {
+                display: none !important
+            }
+
+            .section-search {
+                padding-left: 5% !important;
+                padding-right: 5% !important
+            }
+
+            .margin-bottom-mobile {
+                margin-bottom: 9px !important
+            }
+
+            .border-tabs-mobile {
+                border-radius: 25px !important;
+                border: .5px solid rgb(202, 202, 202) !important;
+                box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+            }
+
+            .btn-search-mobile {
+                text-align: center !important;
+                margin-top: 20px !important
+            }
+
+            .label-filter {
+                display: block !important
+            }
+
+            .img-filters {
+                display: inline-block !important
+            }
+
+            .logo-housing {
+                width: 250px;
+            }
+
+            .title {
+                font-size: 35px !important;
+                line-height: 45px !important;
+            }
+
+            .filters {
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+                display: inline !important;
+                width: 100% !important;
+                margin-left: 5% !important;
+                margin-right: 5% !important;
+            }
+
+            .filters>select,
+            .filters>input,
+            .filters>button {
+                width: 100% !important;
+                margin-top: 2% !important;
+                margin-bottom: 2% !important;
+            }
+
+            .padding-mobile-0 {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+
+            .characteristics {
+                display: block !important;
+                text-align: center !important;
+            }
+
+            .characteristics>p {
+                padding-top: 0px !important;
+            }
+
+            .image_thumbnail {
+                height: 250px !important;
+            }
+
+            .card-body {
+                padding-top: 50px !important;
+            }
+
+            .card-body>a>h2 {
+                padding-right: 0px !important;
+            }
+        }
+
+        .border-end {
+            border-right: 1px solid #dee2e6 !important;
+        }
+
+        .border-end-0 {
+            border-right: 0 !important;
+        }
+
+        .carousel-image {
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .property-item {
+            transition: transform 0.3s ease;
+        }
+
+        .property-item:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-outline-primary {
+            color: #242B40;
+            border-color: #242B40;
+        }
+        .btn-outline-primary:hover {
+            color: #ffffff;
+            border-color: #242B40;
+            background-color: #242B40;
+        }
+
+        .switch-container {
+            display: inline-block;
+            position: relative;
+        }
+
+        .switch-input {
+            display: none;
+        }
+
+    .switch-label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 60px;
+        height: 30px;
+        background-color: #ccc;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .switch-input:checked + .switch-label {
+        background-color: #007bff;
+    }
+
+    .switch-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        background-color: #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+    }
+
+    .switch-input:checked + .switch-label .switch-icon:first-child {
+        transform: translateX(30px);
+    }
+
+    .switch-input:checked + .switch-label .switch-icon:last-child {
+        transform: translateX(-30px);
+    }
+
+    @media (max-width: 767.98px) {
+        .switch-container {
+            display: none;
+        }
     }
     </style>
 @endsection
@@ -159,12 +314,20 @@
         </section>
     </section>
 
-    <div class="container">
+    <div class="container d-flex justify-content-between align-items-center">
         <h1 style="font-family: 'Sharp Grotesk'; text-align: left;" class="h3 fw-bold">
             <span style="font-weight: 500">Total</span>
             <span style="font-weight: 100"> propiedades</span>
         </h1>
+        <div class="switch-container">
+            <input type="checkbox" id="toggleViewBtn" class="switch-input">
+            <label for="toggleViewBtn" class="switch-label">
+                <span class="switch-icon"><i id="toggleIcon" class="fas fa-th-large"></i></span>
+                <span class="switch-icon"><i id="toggleIcon" class="fas fa-bars"></i></span>
+            </label>
+        </div>
     </div>
+
 
     <section class="container-fluid text-center search-bar-container">
 
@@ -360,6 +523,12 @@
     <script>
         var typeIdsArray = [];
         var typeIdsArrayModal = [];
+        let useCardView = false;
+        let pagegobal=1;
+        document.getElementById('toggleViewBtn').addEventListener('change', function() {
+            useCardView = this.checked;
+            searchProperties(pagegobal, false); // Recargar las propiedades con la nueva vista
+        });
         document.addEventListener('DOMContentLoaded', function() {
             // Valores iniciales recibidos del servidor
             const initialState = '{{ $state ?? '' }}';
@@ -542,7 +711,8 @@
                     if (properties.length > 0) {
                         properties.forEach(property => {
                             let imageUrl = getImageUrl(property);
-                            html += buildPropertyHTML(property);
+                            html += useCardView ? buildCardPropertyHTML(property) :
+                                buildHorizontalPropertyHTML(property);
                         });
                         updateDynamicTitle(response.data.pagination.total, searchParams, isModal);
                     } else {
@@ -589,8 +759,8 @@
                 titleSuffix += ` en ${locationDetails.join(", ")}`;
             }
 
-           
-            let titleComponents=`${total} ${titleSuffix} en Ecuador - Grupo Housing`;
+
+            let titleComponents = `${total} ${titleSuffix} en Ecuador - Grupo Housing`;
             document.title = `${titleComponents}`;
             document.querySelector('h1').innerHTML =
                 `<span style="font-weight: 500">${total}</span><span style="font-weight: 100"> ${titleSuffix}</span>`;
@@ -637,113 +807,215 @@
             }
             paginationHtml += '</ul></nav>';
             document.getElementById('pagination').innerHTML = paginationHtml;
+
+            pagegobal=pagination.current_page;
         }
 
 
-        function buildPropertyHTML(property) {
-    let aliquotInfo = property.aliquot > 0 ?
-        `<p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Alícuota:</strong> $${property.aliquot}</p>` :
-        '';
-    let phoneNumber = '593983849073'; // Número por defecto para venta
-    let transactionType = "venta";
-    if (property.listingtypestatus.includes('rent') || property.listingtypestatus.includes('alquilar')) {
-        phoneNumber = '593983849073'; // Cambiar si es renta
-        transactionType = "alquiler";
-    }
+        function buildHorizontalPropertyHTML(property) {
+            let aliquotInfo = property.aliquot > 0 ?
+                `<p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Alícuota:</strong> $${property.aliquot}</p>` :
+                '';
+            let phoneNumber = '593983849073'; // Número por defecto para venta
+            let transactionType = "venta";
+            if (property.listingtypestatus.includes('rent') || property.listingtypestatus.includes('alquilar')) {
+                phoneNumber = '593983849073'; // Cambiar si es renta
+                transactionType = "alquiler";
+            }
 
-    let whatsappMessage = encodeURIComponent(
-        `Hola, Grupo Housing estoy interesado en ${transactionType === "venta" ? "comprar" : "rentar"} esta propiedad: ${property.product_code}`
-    );
+            let whatsappMessage = encodeURIComponent(
+                `Hola, Grupo Housing estoy interesado en ${transactionType === "venta" ? "comprar" : "rentar"} esta propiedad: ${property.product_code}`
+            );
 
-    let images = property.images.split('|');
-    let carouselIndicators = '';
-    let carouselItems = '';
+            let images = property.images.split('|');
+            let carouselIndicators = '';
+            let carouselItems = '';
 
-    images.forEach((image, index) => {
-        let activeClass = index === 0 ? 'active' : '';
-        carouselIndicators += `<li data-target="#carousel${property.id}" data-slide-to="${index}" class="${activeClass}"></li>`;
-        carouselItems += `
-            <div class="carousel-item ${activeClass}">
-                <img src="/uploads/listing/thumb/${image}" class="d-block w-100 carousel-image" style="height:330px" loading="lazy">
-            </div>`;
-    });
+            images.forEach((image, index) => {
+                let activeClass = index === 0 ? 'active' : '';
+                carouselIndicators +=
+                    `<li data-target="#carousel${property.id}" data-slide-to="${index}" class="${activeClass}"></li>`;
+                carouselItems += `
+        <div class="carousel-item ${activeClass}">
+            <img src="/uploads/listing/thumb/${image}" class="d-block w-100 carousel-image" style="height:330px" loading="lazy">
+        </div>`;
+            });
 
-    return `<article class="col-12 my-1" style="padding-left: 0px !important; padding-right: 0px !important;">
-    <div class="card mb-3 rounded-0">
-        <div class="row g-0 d-flex">
-            <div class="col-md-4">
-                <a href="/propiedad/${property.slug}" style="text-decoration: none;">
-                    <div id="carousel${property.id}" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            ${carouselIndicators}
-                        </ol>
-                        <div class="carousel-inner">
-                            ${carouselItems}
-                        </div>
-                        <a class="carousel-control-prev" href="#carousel${property.id}" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Anterior</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carousel${property.id}" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Siguiente</span>
-                        </a>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-8 px-5 py-3 padding-mobile-0 position-relative">
-                <div class="position-absolute" style="font-family: 'Sharp Grotesk', sans-serif;top: 0px; right: 0px; background-color: #242B40; color: #ffffff; border-radius: 0px 0px 0px 25px !important;">
-                    <p class="m-0 py-3 px-3 h5">Cod: ${property.product_code}</p>
-                </div>
-                <div class="card-body">
-                    <a href="/propiedad/${property.slug}" class="text-dark" style="text-decoration: none;">
-                        <h2 class="card-title" style="font-family: 'Sharp Grotesk', sans-serif; font-size: 1.4rem; padding-right: 60px; font-weight: 500;">${property.listing_title}</h2>
-                    </a>
-                    <h3 class="h5 text-muted" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 300;">${property.sector ? `<span>Sector:</span> ${property.sector},` : ''} ${property.city}, ${property.state}</h3>
-                    <p class="card-text" style="font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">$${property.property_price}</p>
-                    ${aliquotInfo}
-                    <h4 class="h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100;">${property.listing_description ? property.listing_description.substring(0, 150) + '...' : 'Descripción no disponible.'}</h4>
-                    <hr>
-                    <div class="row align-items-center">
-                        <div class="col-sm-8 d-flex justify-content-around">
-                            ${property.bedroom > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
-                                                                                                                                                                                                                                                                    <img width="50px" height="50px" src="{{ asset('img/dormitorios.png') }}" alt="">
-                                                                                                                                                                                                                                                                    <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bedroom} Hab.</p>
-                                                                                                                                                                                                                                                                </div>` : ''}
-                            ${property.bathroom > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
-                                                                                                                                                                                                                                                                    <img width="50px" height="50px" src="{{ asset('img/banio.png') }}" alt="">
-                                                                                                                                                                                                                                                                    <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bathroom} ${property.bathroom > 1 ? 'Baños' : 'Baño'}</p>
-                                                                                                                                                                                                                                                                </div>` : ''}
-                            ${property.garage > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
-                                                                                                                                                                                                                                                                    <img width="50px" height="50px" src="{{ asset('img/estacionamiento.png') }}" alt="">
-                                                                                                                                                                                                                                                                    <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage} ${property.garage > 1 ? 'Garajes' : 'Garaje'}</p>
-                                                                                                                                                                                                                                                                </div>` : ''}
-                            ${property.construction_area > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
-                                                                                                                                                                                                                                                                    <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
-                                                                                                                                                                                                                                                                    <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.construction_area} m<sup>2</sup> </p>
-                                                                                                                                                                                                                                                                </div>` : ''}
-                        </div>
-                        <div class="col-sm-4 d-flex gap-3">
-                            <div class="w-100 d-flex align-items-center mr-2" style="height: 35px">
-                                <a href="tel:${phoneNumber}" class="btn rounded-pill w-100 ps-4 pe-4 d-flex align-items-center" style="font-size: smaller; border: 0.5px #242B40 solid; height: 25px">Llamar</a>
-                                <div style="margin-left: -23px; background-color: #242B40; width: 35px; height: 30px" class="rounded-circle d-flex align-items-center justify-content-center">
-                                    <a href="tel:${phoneNumber}"><img width="15px" style="filter: invert(1);" src="{{ asset('img/phone-icon.png') }}" alt=""></a>
-                                </div>
+            return `<article class="col-12 my-1 property-item" style="padding-left: 0px !important; padding-right: 0px !important;">
+        <div class="card mb-3 rounded-0">
+            <div class="row g-0 d-flex">
+                <div class="col-md-4">
+                    <a href="/propiedad/${property.slug}" style="text-decoration: none;">
+                        <div id="carousel${property.id}" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                ${carouselIndicators}
+                            </ol>
+                            <div class="carousel-inner">
+                                ${carouselItems}
                             </div>
-                            <div class="w-100 d-flex align-items-center" style="height: 35px">
-                                <a href="https://wa.me/${phoneNumber}?text=${whatsappMessage}" class="btn rounded-pill w-100 ps-4 pe-4 d-flex align-items-center" style="font-size: smaller; border: 0.5px green solid; height: 25px; color: green">WhatsApp</a>
-                                <div style="margin-left: -23px; padding-top: 2px; background-color: green; width: 35px; height: 30px" class="rounded-circle d-flex justify-content-center">
-                                    <a href="https://wa.me/${phoneNumber}?text=${whatsappMessage}"><img width="20px" style="filter: invert(1)" src="{{ asset('img/whatsapp-icon.png') }}" alt=""></a>
-                                </div>
+                            <a class="carousel-control-prev" href="#carousel${property.id}" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Anterior</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carousel${property.id}" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Siguiente</span>
+                            </a>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-8 px-5 py-3 padding-mobile-0 position-relative">
+                    <div class="position-absolute" style="font-family: 'Sharp Grotesk', sans-serif;top: 0px; right: 0px; background-color: #242B40; color: #ffffff; border-radius: 0px 0px 0px 25px !important;">
+                        <p class="m-0 py-3 px-3 h5">Cod: ${property.product_code}</p>
+                    </div>
+                    <div class="card-body">
+                        <a href="/propiedad/${property.slug}" class="text-dark" style="text-decoration: none;">
+                            <h2 class="card-title" style="font-family: 'Sharp Grotesk', sans-serif; font-size: 1.4rem; padding-right: 60px; font-weight: 500;">${property.listing_title}</h2>
+                        </a>
+                        <h3 class="h5 text-muted" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 300;">${property.sector ? `<span>Sector:</span> ${property.sector},` : ''} ${property.city}, ${property.state}</h3>
+                        <p class="card-text" style="font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">$${property.property_price}</p>
+                        ${aliquotInfo}
+                        <h4 class="h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100;">${property.listing_description ? property.listing_description.substring(0, 150) + '...' : 'Descripción no disponible.'}</h4>
+                        <hr>
+                        <div class="row align-items-center">
+                            <div class="col-sm-8 d-flex justify-content-around">
+                                ${property.bedroom > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
+                                        <img width="50px" height="50px" src="{{ asset('img/dormitorios.png') }}" alt="">
+                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bedroom} Hab.</p>
+                                    </div>` : ''}
+                                ${property.bathroom > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
+                                        <img width="50px" height="50px" src="{{ asset('img/banio.png') }}" alt="">
+                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bathroom} ${property.bathroom > 1 ? 'Baños' : 'Baño'}</p>
+                                    </div>` : ''}
+                                ${property.garage > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
+                                        <img width="50px" height="50px" src="{{ asset('img/estacionamiento.png') }}" alt="">
+                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage} ${property.garage > 1 ? 'Garajes' : 'Garaje'}</p>
+                                    </div>` : ''}
+                                ${property.construction_area > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
+                                        <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
+                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.construction_area} m<sup>2</sup></p>
+                                    </div>` : ''}
+                            </div>
+                            <div class="col-sm-4 d-flex gap-3">
+                                <div class="w-100 d-flex align-items-center">
+                                <a href="tel:${phoneNumber}" class="btn btn-outline-primary rounded-pill w-100 d-flex align-items-center">
+                                    <i class="fas fa-phone-alt me-2"></i>Llamar
+                                </a>
+                            </div>
+                            <div class="w-100 d-flex align-items-center ml-2">
+                                <a href="https://wa.me/${phoneNumber}?text=${whatsappMessage}" class="btn btn-outline-success rounded-pill w-100 d-flex align-items-center">
+                                    <i class="fab fa-whatsapp me-2"></i> WhatsApp
+                                </a>
+                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</article>`;
-}
+    </article>`;
+        }
+
+
+        function buildCardPropertyHTML(property) {
+            let aliquotInfo = property.aliquot > 0 ?
+                `<p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Alícuota:</strong> $${property.aliquot}</p>` :
+                '';
+            let phoneNumber = '593983849073'; // Número por defecto para venta
+            let transactionType = "venta";
+            if (property.listingtypestatus.includes('rent') || property.listingtypestatus.includes('alquilar')) {
+                phoneNumber = '593983849073'; // Cambiar si es renta
+                transactionType = "alquiler";
+            }
+
+            let whatsappMessage = encodeURIComponent(
+                `Hola, Grupo Housing estoy interesado en ${transactionType === "venta" ? "comprar" : "rentar"} esta propiedad: ${property.product_code}`
+            );
+
+            let images = property.images.split('|');
+            let carouselIndicators = '';
+            let carouselItems = '';
+
+            images.forEach((image, index) => {
+                let activeClass = index === 0 ? 'active' : '';
+                carouselIndicators +=
+                    `<li data-target="#carousel${property.id}" data-slide-to="${index}" class="${activeClass}"></li>`;
+                carouselItems += `
+                    <div class="carousel-item ${activeClass}">
+                        <img src="/uploads/listing/thumb/${image}" class="d-block w-100 carousel-image" style="height:330px" loading="lazy">
+                    </div>`;
+            });
+
+            return `
+            <article class="col-12 col-md-4 mb-4 property-item">
+                <div class="card h-100">
+                    <a href="/propiedad/${property.slug}" style="text-decoration: none;">
+                        <div id="carousel${property.id}" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                ${carouselIndicators}
+                            </ol>
+                            <div class="carousel-inner">
+                                ${carouselItems}
+                            </div>
+                            <a class="carousel-control-prev" href="#carousel${property.id}" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Anterior</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carousel${property.id}" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Siguiente</span>
+                            </a>
+                        </div>
+                    </a>
+                    <div class="card-body flex-grow-1 d-flex flex-column">
+                        <div class="position-absolute" style="top: 0px; right: 0px; background-color: #242B40; color: #ffffff; border-radius: 0px 0px 0px 25px;">
+                            <p class="m-0 py-3 px-3 h5" style="font-family: 'Sharp Grotesk', sans-serif;">Cod: ${property.product_code}</p>
+                        </div>
+                        <a href="/propiedad/${property.slug}" class="text-dark" style="text-decoration: none;">
+                            <h2 class="card-title" style="font-family: 'Sharp Grotesk', sans-serif; font-size: 1.4rem; font-weight: 500;">${property.listing_title}</h2>
+                        </a>
+                        <h3 class="h5 text-muted" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 300;">${property.sector ? `<span>Sector:</span> ${property.sector},` : ''} ${property.city}, ${property.state}</h3>
+                        <p class="card-text" style="font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">$${property.property_price}</p>
+                        ${aliquotInfo}
+                        <h4 class="h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100;">${property.listing_description ? property.listing_description.substring(0, 150) + '...' : 'Descripción no disponible.'}</h4>
+                        <div class="d-flex justify-content-around">
+                            ${property.bedroom > 0 ? `<div class="d-flex align-items-center characteristics">
+                                    <img width="50px" height="50px" src="{{ asset('img/dormitorios.png') }}" alt="">
+                                    <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bedroom} Hab.</p>
+                                </div>` : ''}
+                            ${property.bathroom > 0 ? `<div class="d-flex align-items-center characteristics">
+                                    <img width="50px" height="50px" src="{{ asset('img/banio.png') }}" alt="">
+                                    <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bathroom} ${property.bathroom > 1 ? 'Baños' : 'Baño'}</p>
+                                </div>` : ''}
+                            ${property.garage > 0 ? `<div class="d-flex align-items-center characteristics">
+                                    <img width="50px" height="50px" src="{{ asset('img/estacionamiento.png') }}" alt="">
+                                    <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage} ${property.garage > 1 ? 'Garajes' : 'Garaje'}</p>
+                                </div>` : ''}
+                            ${property.construction_area > 0 ? `<div class="d-flex align-items-center characteristics">
+                                    <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
+                                    <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.construction_area} m<sup>2</sup></p>
+                                </div>` : ''}
+                        </div>
+                        <div class="mt-auto">
+                            <div class="d-flex gap-3 mt-3">
+                                <div class="w-100 d-flex align-items-center">
+                                    <a href="tel:${phoneNumber}" class="btn btn-outline-primary rounded-pill w-100 d-flex align-items-center">
+                                        <i class="fas fa-phone-alt me-2"></i>Llamar
+                                    </a>
+                                </div>
+                                <div class="w-100 d-flex align-items-center">
+                                    <a href="https://wa.me/${phoneNumber}?text=${whatsappMessage}" class="btn btn-outline-success rounded-pill w-100 d-flex align-items-center">
+                                        <i class="fab fa-whatsapp me-2"></i> WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>`;
+        }
+
+
         function clearSearch(isModal) {
             // Determine whether to clear the modal or desktop forms
             const searchTermId = isModal ? 'searchTermModal' : 'searchTerm';
