@@ -149,8 +149,7 @@
         }
 
         .carousel-image {
-            height: 500px;
-            object-fit: cover;
+            height: 600px;
         }
 
         .thumbnail-container {
@@ -194,7 +193,7 @@
 
         @media (min-width: 768px) {
             .thumbnail-standard {
-                width: 200px;
+                width:  180px;
                 height: 150px;
             }
 
@@ -202,7 +201,6 @@
         @media (max-width: 768px) {
             .carousel-image {
                 height: 400px;
-                object-fit: cover;
             }
         }
 
