@@ -268,6 +268,12 @@
       color: #182741;
       font-size: 14px;
   }
+
+  .btn-all {
+    padding: 25px;
+    font-size: 18px;
+    border-radius: 15px;   
+  }
   
   /* Estilos para pantallas medianas (tablet y superiores) */
   @media (min-width: 768px) {
@@ -337,6 +343,10 @@
       
       .btn {
           font-size: 16px; /* Tamaño de fuente reducido */
+      }
+      .btn-all {
+        padding: 15px;
+        font-size: 14px; 
       }
   }
   
@@ -413,6 +423,7 @@ $bathroom=0;
           <!-- Otros contenidos si es necesario -->
       </div>
       @include('layouts.homesearch')
+      
   </div>
 </section>
 
@@ -421,105 +432,97 @@ $bathroom=0;
 
 
 
+
+
+
+
+<div class="container mt-5" data-aos="zoom-in">
+  <h2 id="txtserviciosinmo" style="font-size: 30px; color: #182741; font-family: 'Sharp Grotesk'" class="text-center mt-3 @if ($ismobile) mb-3 @else mb-5 @endif"> <span style="font-weight: 100">SERVICIOS</span> <span style="font-weight: 700;">INMOBILIARIOS</span></h2>
+  <p class="text-center" style="color: #182741">Descubre nuestro excepcional servicio, donde la atención personalizada y la experiencia se unen para satisfacer todas tus necesidades ya sea que estés buscando comprar, vender o alquilar una propiedad.</p>
   <section class="container" data-aos="zoom-in">
-      <section class="d-flex justify-content-center mt-5">
-        <a href="/propiedades-en-general" class="btn" style="background-color: #182741; color: #ffffff">Ver todas las propiedades</a>
-      </section>
-  </section>
-
-
-    <section class="container mt-5 pb-5" data-aos="zoom-in">
-      <h2 id="txtserviciosinmo" style="font-size: 30px; color: #182741; font-family: 'Sharp Grotesk'" class="text-center mt-3 @if ($ismobile) mb-3 @else mb-5 @endif"> <span style="font-weight: 100">SERVICIOS</span> <span style="font-weight: 700;">INMOBILIARIOS</span></h2>
-      <p class="text-center" style="color: #182741">Descubre nuestro excepcional servicio, donde la atención personalizada y la experiencia se unen para satisfacer todas tus necesidades ya sea que estés buscando comprar, vender o alquilar una propiedad.</p>
-      
-      <section class="row pt-5">
-        <div class="col-sm-1"></div>
-        <article class="col-sm-6">
-          <video class="border video-services" width="650" height="500" autoplay muted>
-            <source src="{{ asset('img/video-familia.mp4') }}" type="video/mp4">
-          </video>
-        </article>
-        <article class="col-sm-4">
-
-          <article data-aos="fade-up" class="row mb-3">
-            <section class="d-flex justify-content-center">
-              <div class="border py-4" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; width: 300px">
-                <section class="d-flex justify-content-center">
-                  <p class="h5 mr-2" style="font-family: 'Sharp Grotesk'"> <span style="font-weight: 100">TENEMOS LA</span> <br> <span class="h3" style="font-weight: 500">CASA IDEAL</span></p>
-                  <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
-                </section>
-                <section class="d-flex justify-content-end mt-2 pr-5">
-                  <a href="/casas-en-venta-en-cuenca" class="btn btn-sm text-white px-4" style="background-color: #182741; border-radius: 10px">Comprar</a>
-                </section>
-              </div>
-            </section>
-          </article>
-
-          <article data-aos="fade-up" class="row mb-3">
-            <section class="d-flex justify-content-center">
-              <div class="border py-4" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; width: 300px">
-                <section class="d-flex justify-content-center">
-                  <p class="h5 mr-2"> <span style="font-weight: 100">VENDA SU</span> <br> <span class="h3" style="font-weight: 500">PROPIEDAD</span></p>
-                  <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
-                </section>
-                <section class="d-flex justify-content-end mt-2 pr-5">
-                  <button class="btn btn-sm text-white px-4" style="background-color: #182741; border-radius: 10px" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Vender</button>
-                </section>
-              </div>
-            </section>
-          </article>
-
-          <article data-aos="fade-up" class="row mb-3">
-            <section class="d-flex justify-content-center">
-              <div class="border py-4" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; width: 300px">
-                <section class="d-flex justify-content-center">
-                  <p class="h5 mr-2"> <span style="font-weight: 100">ALQUILE CON</span> <br> <span class="h3" style="font-weight: 500">NOSOTROS</span></p>
-                  <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
-                </section>
-                <section class="d-flex justify-content-end mt-2 pr-5">
-                  <button data-bs-toggle="modal" data-bs-target="#modalAlquiler" class="btn btn-sm text-white px-4" style="background-color: #182741; border-radius: 10px">Alquilar</button>
-                </section>
-              </div>
-            </section>
-          </article>
-
-        </article>
-        <div class="col-sm-1"></div>
-      </section>
-      
-      <section class="row mr-2 ml-2 pb-5">
-      </section>
-  </section>
-
-  <section class="container py-5" style="padding-top: 7%">
-    <section class="row">
-      <section class="col-sm-1"></section>
-      <section class="col-sm-5 pr-5">
-        <h2 style="font-family: 'Sharp Grotesk'; font-weight: 500">Contáctanos</h2>
-        <p class="mt-3">Confía en nosotros para hacer realidad tus sueños inmobiliarios</p>
-        <p style="font-weight: 500">Proporciónanos tus datos y te contactaremos</p>
-        <form action="{{ route('send.lead.form.home') }}" method="POST">
-          @csrf
-          <div class="form-group mb-3">
-            <input type="text" class="form-control border-0" name="names" placeholder="Nombre y Apellido*" style="background-color: #EEEEF0" required>
-          </div>
-          <div class="form-group mb-3">
-            <input type="number" class="form-control border-0" name="phone" placeholder="Teléfono*"  style="background-color: #EEEEF0" required>
-          </div>
-          <div class="form-group mb-4">
-            <textarea id="message" rows="3" class="form-control border-0" name="message" placeholder="Mensaje"  style="background-color: #EEEEF0" required></textarea>
-          </div>
-          <div class="d-flex justify-content-center">
-            <button type="submit" class="btn rounded-pill px-4" style="background-color: #182741; color: #ffffff; font-family: 'Sharp Grotesk'; font-weight: 200">ENVIAR</button>
-          </div>
-        </form>
-      </section>
-      <section class="col-sm-5">
-        <div style="height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover; background-image: url('{{ asset('img/departamento.webp') }}')"></div>
-      </section>
-      <section class="col-sm-1"></section>
+    <section class="d-flex justify-content-center mt-5">
+      <a href="/propiedades-en-general" class="btn btn-all" style="background-color: #182741; color: #ffffff">Ver todas las propiedades</a>
     </section>
   </section>
+  <div class="row mt-5 justify-content-center">
+
+    <div class="col-md-4">
+      <article data-aos="fade-up" class="mb-3">
+        <section class="d-flex justify-content-center">
+          <div class="border py-4" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; width: 300px">
+            <section class="d-flex justify-content-center">
+              <p class="h5 mr-2"> <span style="font-weight: 100">VENDA SU</span> <br> <span class="h3" style="font-weight: 500">PROPIEDAD</span></p>
+              <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
+            </section>
+            <section class="d-flex justify-content-end mt-2 pr-5">
+              <button class="btn btn-sm text-white px-4" style="background-color: #182741; border-radius: 10px" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Vender</button>
+            </section>
+          </div>
+        </section>
+      </article>
+    </div>
+    <div class="col-md-4">
+      <article data-aos="fade-up" class="mb-3">
+        <section class="d-flex justify-content-center">
+          <div class="border py-4" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; width: 300px">
+            <section class="d-flex justify-content-center">
+              <p class="h5 mr-2"> <span style="font-weight: 100">ALQUILA CON</span> <br> <span class="h3" style="font-weight: 500">NOSOTROS</span></p>
+              <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
+            </section>
+            <section class="d-flex justify-content-end mt-2 pr-5">
+              <button data-bs-toggle="modal" data-bs-target="#modalAlquiler" class="btn btn-sm text-white px-4" style="background-color: #182741; border-radius: 10px">Alquilar</button>
+            </section>
+          </div>
+        </section>
+      </article>
+    </div>
+    <div class="col-md-4 d-flex justify-content-center">
+      <article data-aos="fade-up" class="mb-3">
+        <section class="d-flex justify-content-center">
+          <div class="border py-4" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; width: 300px">
+            <section class="d-flex justify-content-center">
+              <p class="h5 mr-2"> <span style="font-weight: 100">CONSTRUYE CON</span> <br> <span class="h3" style="font-weight: 500">NOSOTROS</span></p>
+              <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
+            </section>
+            <section class="d-flex justify-content-end mt-2 pr-5">
+              <a href="{{ route('web.servicios', 'construye') }}" class="btn btn-sm text-white px-4" style="background-color: #182741; border-radius: 10px">Construye</a>
+            </section>
+          </div>
+        </section>
+      </article>
+    </div>
+    <!-- Agrega más columnas según sea necesario -->
+  </div>
+</div>
+
+
+<section class="container py-5" style="padding-top: 7%">
+  <section class="row justify-content-center">
+    <section class="col-12 col-md-5 mb-4 mb-md-0" data-aos="fade-down-right">
+      <h2 style="font-family: 'Sharp Grotesk'; font-weight: 500">Contáctanos</h2>
+      <p class="mt-3">Confía en nosotros para hacer realidad tus sueños inmobiliarios</p>
+      <p style="font-weight: 500">Proporciónanos tus datos y te contactaremos</p>
+      <form action="{{ route('send.lead.form.home') }}" method="POST">
+        @csrf
+        <div class="form-group mb-3">
+          <input type="text" class="form-control border-0" name="names" placeholder="Nombre y Apellido*" style="background-color: #EEEEF0" required>
+        </div>
+        <div class="form-group mb-3">
+          <input type="number" class="form-control border-0" name="phone" placeholder="Teléfono*" style="background-color: #EEEEF0" required>
+        </div>
+        <div class="form-group mb-4">
+          <textarea id="message" rows="3" class="form-control border-0" name="message" placeholder="Mensaje" style="background-color: #EEEEF0" required></textarea>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn rounded-pill px-4" style="background-color: #182741; color: #ffffff; font-family: 'Sharp Grotesk'; font-weight: 200">ENVIAR</button>
+        </div>
+      </form>
+    </section>
+    <section class="col-12 col-md-5" data-aos="fade-down-left">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d418.8387504677744!2d-79.00756951531508!3d-2.905844540079929!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91cd19a25164240f%3A0x4f30ec335c0d9314!2sGrupo%20Housing!5e0!3m2!1ses!2sec!4v1716215971719!5m2!1ses!2sec" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+  </section>
+</section>
 
 
 
@@ -533,17 +536,17 @@ $bathroom=0;
 
     <section class="container px-5 section-testimonials" style="padding-top: 7%; padding-bottom: 7%">
       <section class="row">
-        <section class="col-sm-6 d-flex justify-content-end">
+        <section class="col-sm-6 d-flex justify-content-end" data-aos="fade-down-right">
           <article style="width: 500px; height: 500px; background-position: center center; background-repeat: no-repeat; background-size: cover; background-image: url('{{ asset('img/oficinasnuevas.jpg') }}')"></article>
         </section>
         <section class="col-sm-6">
-          <div style="height: 300px" class="d-flex justify-content-center align-items-center">
+          <div style="height: 300px" class="d-flex justify-content-center align-items-center" data-aos="fade-down-right">
             <article class="pr-5 pt-5 testimonials-header" style="margin-left: -80px">
               <h2 class="text-center" style="font-family: 'Sharp Grotesk'">TESTIMONIOS</h2>
               <p class="text-center" style="font-family: 'Sharp Grotesk'">Descubre lo que dicen nuestros clientes <br> satisfechos</p>
             </article>
           </div>
-          <div class="pattern-testimonials-card" style="height: 200px;">
+          <div class="pattern-testimonials-card" style="height: 200px;" data-aos="fade-up-left">
             <div class="border p-4 bg-white rounded testimonials-card" style="width: 600px; height: 250px; margin-left: -100px; margin-top: 30px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
               <div class="d-flex">
                 <img width="50px" height="50px" style="filter: invert(80%)" src="{{ asset('img/comillas.png') }}" alt="">

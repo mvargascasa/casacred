@@ -510,8 +510,8 @@
                                         <i class="fa-solid fa-phone"></i>
                                     </div>
                                     <a style="text-decoration: none"
-                                        href="tel:{{ $listing->listingtypestatus == 'en-venta' ? '+593983849073' : '+593987474637' }}"
-                                        class="mt-1 ml-2 text-dark">{{ $listing->listingtypestatus == 'en-venta' ? '098-384-9073' : '098-747-4637' }}</a>
+                                        href="tel:{{ $listing->listingtypestatus == 'en-venta' ? '+593983849073' : '+593983849073' }}"
+                                        class="mt-1 ml-2 text-dark">{{ $listing->listingtypestatus == 'en-venta' ? '098-384-9073' : '098-384-9073' }}</a>
                                 </div>
 
                                 <div class="d-flex gap-3 ms-4 mt-2">
@@ -520,8 +520,8 @@
                                         <i class="fa-brands fa-whatsapp"></i>
                                     </div>
                                     <a style="text-decoration: none"
-                                        href="https://api.whatsapp.com/send?phone={{ $listing->listingtypestatus == 'en-venta' ? '593983849073' : '593987474637' }}&text=Hola%20*Housing%20Rent%20Group*,%20deseo%20consultar%20por%20esta%20propiedad:%20*{{ $listing->product_code }}*"
-                                        class="mt-1 ml-2 text-dark">{{ $listing->listingtypestatus == 'en-venta' ? '098-384-9073' : '098-747-4637' }}</a>
+                                        href="https://api.whatsapp.com/send?phone={{ $listing->listingtypestatus == 'en-venta' ? '593983849073' : '593983849073' }}&text=Hola%20*Grupo%20Housing*,%20deseo%20consultar%20por%20esta%20propiedad:%20*{{ $listing->product_code }}*"
+                                        class="mt-1 ml-2 text-dark">{{ $listing->listingtypestatus == 'en-venta' ? '098-384-9073' : '098-384-9073' }}</a>
                                 </div>
                                 <div class="d-flex gap-3 ms-4 mt-2">
                                     <div class="rounded-circle d-flex justify-content-center align-items-center"

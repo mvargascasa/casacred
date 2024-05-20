@@ -146,7 +146,6 @@
 .carousel-image {
         object-fit: cover;
         width: 100%;
-        height: 300px;
     }
     </style>
 @endsection
@@ -665,7 +664,7 @@
         carouselIndicators += `<li data-target="#carousel${property.id}" data-slide-to="${index}" class="${activeClass}"></li>`;
         carouselItems += `
             <div class="carousel-item ${activeClass}">
-                <img src="/uploads/listing/${image}" class="d-block w-100 carousel-image">
+                <img src="/uploads/listing/thumb/${image}" class="d-block w-100 carousel-image" style="height:330px">
             </div>`;
     });
 
