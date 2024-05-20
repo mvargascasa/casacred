@@ -141,7 +141,6 @@
         .custom-container {
             width: 100%;
             max-width: 1500px;
-            /* Ajusta este valor según tus necesidades */
             padding-right: 15px;
             padding-left: 15px;
             margin-right: auto;
@@ -149,15 +148,96 @@
         }
 
         .carousel-image {
-            height: 500px;
-            weight: 500px;
+            height: 700px;
             object-fit: cover;
+            border-radius: 15px;
         }
 
-        .thumbnail-standard {
-            width: 100px;
-            height: 70px;
+        .thumbnail-full-width {
+            width: 100%;
+            height: auto;
             object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .thumbnail-container {
+            max-height: 700px;
+            /* Ajusta según sea necesario */
+            overflow-y: auto;
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        .thumbnail-container::-webkit-scrollbar {
+            display: none;
+            /* Safari and Chrome */
+        }
+
+        .thumbnail-container-horizontal {
+            max-height: 120px;
+            /* Ajusta según sea necesario */
+            overflow-x: auto;
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        .thumbnail-container-horizontal::-webkit-scrollbar {
+            display: none;
+            /* Safari and Chrome */
+        }
+
+        .thumbnail-horizontal {
+            width: 120px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 5%;
+        }
+
+        .custom-code {
+            background-color: #242B40;
+            font-family: 'Sharp Grotesk';
+            font-weight: 500;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            right: 12px;
+            top: 0;
+            z-index: 1050;
+        }
+
+        /* Ajustes para dispositivos móviles */
+        @media (max-width: 768px) {
+            .carousel-image {
+                height: 300px;
+            }
+
+            .thumbnail-container-horizontal {
+                max-height: 100px;
+            }
+
+            .thumbnail-horizontal {
+                width: 90px;
+                height: 60px;
+            }
+
+            .thumbnail-container {
+                overflow-y: hidden;
+            }
+        }
+
+        /* Ajustes para escritorio */
+        @media (min-width: 769px) {
+            .thumbnail-container-horizontal {
+                overflow-x: hidden;
+            }
         }
     </style>
 @endsection
@@ -185,13 +265,13 @@
 @section('content')
     <div class="container mt-5">
         <div class="row">
-            <div class="col-12 position-relative">
+            <div class="col-md-9 position-relative">
                 <div id="carouselImages" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         @foreach (explode('|', $listing->images) as $image)
                             <div class="carousel-item @if ($loop->index == 0) active @endif">
                                 <img src="{{ $filexists ? url('uploads/listing/', $image) : url('uploads/listing/', $image) }}"
-                                    class="d-block w-100 carousel-image" style="border-radius: 15px;">
+                                    class="d-block w-100 carousel-image">
                             </div>
                         @endforeach
                     </div>
@@ -203,23 +283,29 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Siguiente</span>
                     </a>
+                    <span class="position-absolute top-0 end-0 p-2 text-white custom-code"
+                        style="background-color: #242B40; font-family: 'Sharp Grotesk'; font-weight: 500; border-top-right-radius: 10px; border-bottom-left-radius: 10px; right: 0px; top: 0; z-index: 1050;">COD:
+                        {{ $listing->product_code }}</span>
                 </div>
-                <span class="position-absolute top-0 end-0 p-2 text-white"
-                    style="background-color: #242B40; font-family: 'Sharp Grotesk'; font-weight: 500; border-top-right-radius: 10px; border-bottom-left-radius: 10px; right: 12px; top: 0; z-index: 1050;">COD:
-                    {{ $listing->product_code }}</span>
+            </div>
+            <div class="col-md-3 d-none d-md-flex">
+                <div class="thumbnail-container d-flex flex-column align-items-center">
+                    @foreach (explode('|', $listing->images) as $index => $image)
+                        <img onclick="switchImage({{ $index }})"
+                            src="{{ $filexists ? url('uploads/listing/thumb/600', $image) : url('uploads/listing/600', $image) }}"
+                            class="img-thumbnail m-2 thumbnail-full-width" style="cursor: pointer; background-color: transparent;">
+                    @endforeach
+                </div>
             </div>
         </div>
-
-        <div class="row mt-4 justify-content-center">
+        <div class="row d-md-none mt-3">
             <div class="col-12">
-                <div class="d-flex justify-content-center overflow-auto">
-                    <div class="d-inline-flex">
-                        @foreach (explode('|', $listing->images) as $index => $image)
-                            <img onclick="switchImage({{ $index }})"
-                                src="{{ $filexists ? url('uploads/listing/thumb/600', $image) : url('uploads/listing/600', $image) }}"
-                                class="img-thumbnail m-1 thumbnail-standard" style="cursor: pointer;">
-                        @endforeach
-                    </div>
+                <div class="thumbnail-container-horizontal d-flex flex-row overflow-auto">
+                    @foreach (explode('|', $listing->images) as $index => $image)
+                        <img onclick="switchImage({{ $index }})"
+                            src="{{ $filexists ? url('uploads/listing/thumb/600', $image) : url('uploads/listing/600', $image) }}"
+                            class="img-thumbnail m-2 thumbnail-horizontal" style="cursor: pointer; background-color: transparent;">
+                    @endforeach
                 </div>
             </div>
         </div>
