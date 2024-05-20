@@ -94,6 +94,7 @@ class PropertyController extends Controller
                 'listings.bathroom',
                 'listings.garage',
                 'listings.construction_area',
+                'listings.land_area',
                 'listings.property_price',
                 'listings.state',
                 'listings.city',

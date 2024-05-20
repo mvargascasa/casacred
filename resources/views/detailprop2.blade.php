@@ -306,7 +306,7 @@
     <div class="custom-container mt-5">
         <div class="row">
             <div class="col-md-7">
-                <h1 class="" style="font-family: 'Sharp Grotesk'; font-weight: 500;">{{ $listing->listing_title }}
+                <h1 class="" style="font-family: 'Sharp Grotesk'; font-weight: 500;" id="listing-title">{{ $listing->listing_title }}</h1>
                 </h1>
                 <div class="d-flex align-items-center mt-3">
                     <i class="fa-solid fa-location-dot fs-5 me-2"></i>
@@ -352,14 +352,19 @@
                                 {{ $listing->garage > 1 ? 'Garajes' : 'Garaje' }}</p>
                         </div>
                     @endif
-                    @if (isset($listing->construction_area) && $listing->construction_area != 0)
+                    @if ((isset($listing->construction_area) && !empty($listing->construction_area)) || (isset($listing->land_area) && !empty($listing->land_area)))
                         <div class="d-flex align-items-center justify-content-center flex-column text-center p-2">
-                            <img src="{{ asset('img/area.png') }}" alt="Área de construcción" width="50px"
-                                height="50px">
-                            <p class="pt-2 fw-bold">{{ $listing->construction_area }} m<sup>2</sup></p>
+                            <img src="{{ asset('img/area.png') }}" alt="Área de construcción" width="50px" height="50px">
+                            <p class="pt-2 fw-bold">
+                                @if (isset($listing->construction_area) && !empty($listing->construction_area))
+                                    {{ $listing->construction_area }}
+                                @elseif (isset($listing->land_area) && !empty($listing->land_area))
+                                    {{ $listing->land_area }}
+                                @endif
+                            </p>
                         </div>
                     @endif
-                </div>
+                                </div>
                 <h2 style="font-family: 'Sharp Grotesk', sans-serif;">Acerca de esta propiedad</h2>
                 <p style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Sector:</strong> {{ $listing->sector }}</p>
                 <p style="font-family: 'Sharp Grotesk', sans-serif; text-align: justify;" id="description">
@@ -789,7 +794,25 @@
     <script>
         AOS.init();
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let title = document.getElementById('listing-title').textContent;
+            document.getElementById('listing-title').textContent = capitalizeSentences(title);
+        });
+    </script>
+    <script>
+        function capitalizeSentences(text) {
+            return text.toLowerCase().replace(/(^\w{1}|\.\s*\w{1})/g, letter => letter.toUpperCase());
+        }
 
+        document.addEventListener('DOMContentLoaded', function() {
+            let shortDesc = document.getElementById('short-desc').textContent;
+            let fullDesc = document.getElementById('full-desc').textContent;
+
+            document.getElementById('short-desc').textContent = capitalizeSentences(shortDesc);
+            document.getElementById('full-desc').textContent = capitalizeSentences(fullDesc);
+        });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

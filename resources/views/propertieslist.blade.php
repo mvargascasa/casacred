@@ -840,6 +840,12 @@
             <img src="/uploads/listing/thumb/${image}" class="d-block w-100 carousel-image" style="height:330px" loading="lazy">
         </div>`;
             });
+            let areaInfo = '';
+            if (property.construction_area > 0) {
+                areaInfo = `${property.construction_area} m<sup>2</sup>`;
+            } else if (property.land_area > 0) {
+                areaInfo = `${property.land_area} m<sup>2</sup>`;
+            }
 
             return `<article class="col-12 my-1 property-item" style="padding-left: 0px !important; padding-right: 0px !important;">
         <div class="card mb-3 rounded-0">
@@ -891,9 +897,9 @@
                                         <img width="50px" height="50px" src="{{ asset('img/estacionamiento.png') }}" alt="">
                                         <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage} ${property.garage > 1 ? 'Garajes' : 'Garaje'}</p>
                                     </div>` : ''}
-                                ${property.construction_area > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
+                                    ${areaInfo ? `<div class="d-flex align-items-center characteristics">
                                         <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
-                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.construction_area} m<sup>2</sup></p>
+                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${areaInfo}</p>
                                     </div>` : ''}
                             </div>
                             <div class="col-sm-4 d-flex gap-3">
@@ -946,6 +952,15 @@
                     </div>`;
             });
 
+            let areaInfo = '';
+            if (property.construction_area > 0) {
+                areaInfo = `${property.construction_area} m<sup>2</sup>`;
+            } else if (property.land_area > 0) {
+                areaInfo = `${property.land_area} m<sup>2</sup>`;
+            }
+            let formattedDescription = property.listing_description
+            ? property.listing_description.toLowerCase().replace(/(^\w{1})|(\.\s*\w{1})/g, letter => letter.toUpperCase()).substring(0, 100) + '...'
+            : 'Descripción no disponible.';
             return `
             <article class="col-12 col-md-4 mb-4 property-item">
                 <div class="card h-100">
@@ -977,7 +992,7 @@
                         <h3 class="h5 text-muted" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 300;">${property.sector ? `<span>Sector:</span> ${property.sector},` : ''} ${property.city}, ${property.state}</h3>
                         <p class="card-text" style="font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">$${property.property_price}</p>
                         ${aliquotInfo}
-                        <h4 class="h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100;">${property.listing_description ? property.listing_description.substring(0, 150) + '...' : 'Descripción no disponible.'}</h4>
+                        <h4 class="h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100;">${formattedDescription}</h4>
                         <div class="d-flex justify-content-around">
                             ${property.bedroom > 0 ? `<div class="d-flex align-items-center characteristics">
                                     <img width="50px" height="50px" src="{{ asset('img/dormitorios.png') }}" alt="">
@@ -991,9 +1006,9 @@
                                     <img width="50px" height="50px" src="{{ asset('img/estacionamiento.png') }}" alt="">
                                     <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage} ${property.garage > 1 ? 'Garajes' : 'Garaje'}</p>
                                 </div>` : ''}
-                            ${property.construction_area > 0 ? `<div class="d-flex align-items-center characteristics">
+                            ${areaInfo ? `<div class="d-flex align-items-center characteristics">
                                     <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
-                                    <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.construction_area} m<sup>2</sup></p>
+                                    <p class="pt-3" style="font-weight: 600; font-size: 15px">${areaInfo}</p>
                                 </div>` : ''}
                         </div>
                         <div class="mt-auto">
