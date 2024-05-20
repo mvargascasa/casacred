@@ -1312,9 +1312,9 @@
                 case "third":
                     if("{{Route::current()->getName() == 'admin.listings.create' || Route::current()->getName() == 'home.tw.create' || Route::current()->getName() == 'admin.housing.property.create' || Route::current()->getName() == 'admin.promotora.property.create'}}"){
                         let galleryImages = document.getElementById('galleryImages');
-                        if(galleryImages.files.length < 5){
+                        if(galleryImages.files.length < 8){
                             bandera = false;
-                            alert('Es necesario subir 5 imágenes o más')
+                            alert('Es necesario subir 8 imágenes o más')
                             return;
     
                         }
