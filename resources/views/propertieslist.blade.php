@@ -1013,7 +1013,7 @@
                     </h2>
                 </a>
                 ${aliquotInfo}
-                <p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100; font-size: 15px">${formattedDescription}</p>
+                <p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100; font-size: 15px; text-align: justify">${formattedDescription}</p>
                 <div class="mt-auto">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div class="d-flex flex-wrap">
