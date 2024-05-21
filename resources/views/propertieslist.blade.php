@@ -1021,27 +1021,28 @@
                 </a>
                 ${aliquotInfo}
                 <p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100; font-size: 15px">${formattedDescription}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex">
-                        ${property.bedroom > 0 ? `<div class="d-flex align-items-center characteristics pl-2">
-                                        <img width="30px" height="30px" src="{{ asset('img/dormitorios.png') }}" alt="">
-                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bedroom}</p>
-                                    </div>` : ''}
-                        ${property.bathroom > 0 ? `<div class="d-flex align-items-center characteristics pl-2">
-                                        <img width="30px" height="30px" src="{{ asset('img/banio.png') }}" alt="">
-                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bathroom}</p>
-                                    </div>` : ''}
-                        ${property.garage > 0 ? `<div class="d-flex align-items-center characteristics pl-2">
-                                        <img width="30px" height="30px" src="{{ asset('img/estacionamiento.png') }}" alt="">
-                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage}</p>
-                                    </div>` : ''}
-                        ${areaInfo ? `<div class="d-flex align-items-center characteristics pl-2">
-                                        <img width="30px" height="30px" src="{{ asset('img/area.png') }}" alt="">
-                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${areaInfo}</p>
-                                    </div>` : ''}
+                <div class="mt-auto">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex flex-wrap">
+                            ${property.bedroom > 0 ? `<div class="d-flex align-items-center characteristics pl-2">
+                                <img width="30px" height="30px" src="{{ asset('img/dormitorios.png') }}" alt="">
+                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bedroom}</p>
+                            </div>` : ''}
+                            ${property.bathroom > 0 ? `<div class="d-flex align-items-center characteristics pl-2">
+                                <img width="30px" height="30px" src="{{ asset('img/banio.png') }}" alt="">
+                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bathroom}</p>
+                            </div>` : ''}
+                            ${property.garage > 0 ? `<div class="d-flex align-items-center characteristics pl-2">
+                                <img width="30px" height="30px" src="{{ asset('img/estacionamiento.png') }}" alt="">
+                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage}</p>
+                            </div>` : ''}
+                            ${areaInfo ? `<div class="d-flex align-items-center characteristics pl-2">
+                                <img width="30px" height="30px" src="{{ asset('img/area.png') }}" alt="">
+                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${areaInfo}</p>
+                            </div>` : ''}
+                        </div>
+                        <p class="card-text" style="font-weight: 500; font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">${formattedPrice}</p>
                     </div>
-                    <p class="card-text" style="font-weight:500;font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">${formattedPrice}</p>
-                </div>
                 <div class="mt-auto">
                     <div class="d-flex gap-3 mt-3">
                         <div class="w-100 d-flex align-items-center">
