@@ -412,6 +412,18 @@ if(strpos($actual_link, 'localhost') === false){
             background-color: white !important;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
+    .btn-primary {
+        color: #fff;
+        background-color: #182741;
+        border-color: #182741;
+    }
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #0d1524;
+        border-color: #0d1524;
+    }
     </style>
     <script>
         (function(h,o,t,j,a,r){
