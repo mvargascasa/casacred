@@ -532,6 +532,10 @@
             searchProperties(pagegobal, false); // Recargar las propiedades con la nueva vista
         });
         document.addEventListener('DOMContentLoaded', function() {
+            if (window.innerWidth <= 767) {
+                document.getElementById('toggleViewBtn').checked = true;
+                useCardView = true;
+            }
             // Valores iniciales recibidos del servidor
             const initialState = '{{ $state ?? '' }}';
             const initialStatus = '{{ $status ?? '' }}';
@@ -627,6 +631,9 @@
 
         window.searchProperties = function(page = 1, isModal = false) {
             console.log(isModal);
+
+            
+
             page = parseInt(page);
             var currentTypeIds = isModal ? typeIdsArrayModal : typeIdsArray;
             var selectElement = isModal ? document.getElementById('propertyTypeModal') : document.getElementById(
@@ -867,9 +874,7 @@
                 <div class="col-md-4">
                     <a href="/propiedad/${property.slug}" style="text-decoration: none;">
                         <div id="carousel${property.id}" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                ${carouselIndicators}
-                            </ol>
+
                             <div class="carousel-inner">
                                 ${carouselItems}
                             </div>
@@ -990,9 +995,7 @@
         <div class="card h-100">
             <a href="/propiedad/${property.slug}" style="text-decoration: none;">
                 <div id="carousel${property.id}" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        ${carouselIndicators}
-                    </ol>
+
                     <div class="carousel-inner">
                         ${carouselItems}
                     </div>
