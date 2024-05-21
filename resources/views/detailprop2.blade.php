@@ -357,9 +357,9 @@
                             <img src="{{ asset('img/area.png') }}" alt="Área de construcción" width="50px" height="50px">
                             <p class="pt-2 fw-bold">
                                 @if (isset($listing->construction_area) && !empty($listing->construction_area))
-                                    {{ $listing->construction_area }}
+                                    {{ $listing->construction_area }} m<sup>2</sup></p>
                                 @elseif (isset($listing->land_area) && !empty($listing->land_area))
-                                    {{ $listing->land_area }}
+                                    {{ $listing->land_area }} m<sup>2</sup></p>
                                 @endif
                             </p>
                         </div>

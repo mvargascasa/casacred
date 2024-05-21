@@ -246,6 +246,7 @@
             color: #242B40;
             border-color: #242B40;
         }
+
         .btn-outline-primary:hover {
             color: #ffffff;
             border-color: #242B40;
@@ -261,47 +262,47 @@
             display: none;
         }
 
-    .switch-label {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 60px;
-        height: 30px;
-        background-color: #ccc;
-        border-radius: 30px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .switch-input:checked + .switch-label {
-        background-color: #007bff;
-    }
-
-    .switch-icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 30px;
-        height: 30px;
-        background-color: #fff;
-        border-radius: 50%;
-        box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s ease;
-    }
-
-    .switch-input:checked + .switch-label .switch-icon:first-child {
-        transform: translateX(30px);
-    }
-
-    .switch-input:checked + .switch-label .switch-icon:last-child {
-        transform: translateX(-30px);
-    }
-
-    @media (max-width: 767.98px) {
-        .switch-container {
-            display: none;
+        .switch-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 60px;
+            height: 30px;
+            background-color: #ccc;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
-    }
+
+        .switch-input:checked+.switch-label {
+            background-color: #007bff;
+        }
+
+        .switch-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .switch-input:checked+.switch-label .switch-icon:first-child {
+            transform: translateX(30px);
+        }
+
+        .switch-input:checked+.switch-label .switch-icon:last-child {
+            transform: translateX(-30px);
+        }
+
+        @media (max-width: 767.98px) {
+            .switch-container {
+                display: none;
+            }
+        }
     </style>
 @endsection
 
@@ -379,7 +380,8 @@
                                 Precio
                             </button>
                             <div class="dropdown-menu p-2" aria-labelledby="priceInput">
-                                <input type="number" id="minPrice" class="form-control mb-2" placeholder="Precio mínimo">
+                                <input type="number" id="minPrice" class="form-control mb-2"
+                                    placeholder="Precio mínimo">
                                 <input type="number" id="maxPrice" class="form-control" placeholder="Precio máximo">
                             </div>
                         </div>
@@ -524,7 +526,7 @@
         var typeIdsArray = [];
         var typeIdsArrayModal = [];
         let useCardView = false;
-        let pagegobal=1;
+        let pagegobal = 1;
         document.getElementById('toggleViewBtn').addEventListener('change', function() {
             useCardView = this.checked;
             searchProperties(pagegobal, false); // Recargar las propiedades con la nueva vista
@@ -808,7 +810,7 @@
             paginationHtml += '</ul></nav>';
             document.getElementById('pagination').innerHTML = paginationHtml;
 
-            pagegobal=pagination.current_page;
+            pagegobal = pagination.current_page;
         }
 
 
@@ -847,6 +849,18 @@
                 areaInfo = `${property.land_area} m<sup>2</sup>`;
             }
 
+            let formattedDescription = property.listing_description ?
+                property.listing_description.toLowerCase().replace(/(^\w{1})|(\.\s*\w{1})/g, letter => letter.toUpperCase())
+                .substring(0, 120) + '...' :
+                'Descripción no disponible.';
+
+            let formattedPrice = new Intl.NumberFormat('es-EC', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(property.property_price);
+
             return `<article class="col-12 my-1 property-item" style="padding-left: 0px !important; padding-right: 0px !important;">
         <div class="card mb-3 rounded-0">
             <div class="row g-0 d-flex">
@@ -876,41 +890,41 @@
                     </div>
                     <div class="card-body">
                         <a href="/propiedad/${property.slug}" class="text-dark" style="text-decoration: none;">
-                            <h2 class="card-title" style="font-family: 'Sharp Grotesk', sans-serif; font-size: 1.4rem; padding-right: 60px; font-weight: 500;">${property.listing_title}</h2>
+                            <h2 class="card-title" style="font-family: 'Sharp Grotesk', sans-serif; font-size: 1.4rem; padding-right: 60px; font-weight: 500;">${property.listing_title.charAt(0).toUpperCase() + property.listing_title.slice(1).toLowerCase()}</h2>
                         </a>
                         <h3 class="h5 text-muted" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 300;">${property.sector ? `<span>Sector:</span> ${property.sector},` : ''} ${property.city}, ${property.state}</h3>
-                        <p class="card-text" style="font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">$${property.property_price}</p>
+                        <p class="card-text" style="font-weight:500; font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">${formattedPrice}</p>
                         ${aliquotInfo}
-                        <h4 class="h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100;">${property.listing_description ? property.listing_description.substring(0, 150) + '...' : 'Descripción no disponible.'}</h4>
+                        <h4 class="h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100;">${formattedDescription}</h4>
                         <hr>
                         <div class="row align-items-center">
                             <div class="col-sm-8 d-flex justify-content-around">
                                 ${property.bedroom > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
-                                        <img width="50px" height="50px" src="{{ asset('img/dormitorios.png') }}" alt="">
-                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bedroom} Hab.</p>
-                                    </div>` : ''}
+                                                <img width="50px" height="50px" src="{{ asset('img/dormitorios.png') }}" alt="">
+                                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bedroom} Hab.</p>
+                                            </div>` : ''}
                                 ${property.bathroom > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
-                                        <img width="50px" height="50px" src="{{ asset('img/banio.png') }}" alt="">
-                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bathroom} ${property.bathroom > 1 ? 'Baños' : 'Baño'}</p>
-                                    </div>` : ''}
+                                                <img width="50px" height="50px" src="{{ asset('img/banio.png') }}" alt="">
+                                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bathroom} ${property.bathroom > 1 ? 'Baños' : 'Baño'}</p>
+                                            </div>` : ''}
                                 ${property.garage > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
-                                        <img width="50px" height="50px" src="{{ asset('img/estacionamiento.png') }}" alt="">
-                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage} ${property.garage > 1 ? 'Garajes' : 'Garaje'}</p>
-                                    </div>` : ''}
+                                                <img width="50px" height="50px" src="{{ asset('img/estacionamiento.png') }}" alt="">
+                                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage} ${property.garage > 1 ? 'Garajes' : 'Garaje'}</p>
+                                            </div>` : ''}
                                     ${areaInfo ? `<div class="d-flex align-items-center characteristics">
-                                        <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
-                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${areaInfo}</p>
-                                    </div>` : ''}
+                                                <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
+                                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${areaInfo}</p>
+                                            </div>` : ''}
                             </div>
                             <div class="col-sm-4 d-flex gap-3">
                                 <div class="w-100 d-flex align-items-center">
                                 <a href="tel:${phoneNumber}" class="btn btn-outline-primary rounded-pill w-100 d-flex align-items-center">
-                                    <i class="fas fa-phone-alt me-2"></i>Llamar
+                                    <i class="fas fa-phone-alt me-2 mr-1"></i>Llamar
                                 </a>
                             </div>
                             <div class="w-100 d-flex align-items-center ml-2">
                                 <a href="https://wa.me/${phoneNumber}?text=${whatsappMessage}" class="btn btn-outline-success rounded-pill w-100 d-flex align-items-center">
-                                    <i class="fab fa-whatsapp me-2"></i> WhatsApp
+                                    <i class="fab fa-whatsapp me-2 mr-1"></i> WhatsApp
                                 </a>
                             </div>
                             </div>
@@ -927,6 +941,7 @@
             let aliquotInfo = property.aliquot > 0 ?
                 `<p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Alícuota:</strong> $${property.aliquot}</p>` :
                 '';
+
             let phoneNumber = '593983849073'; // Número por defecto para venta
             let transactionType = "venta";
             if (property.listingtypestatus.includes('rent') || property.listingtypestatus.includes('alquilar')) {
@@ -947,9 +962,9 @@
                 carouselIndicators +=
                     `<li data-target="#carousel${property.id}" data-slide-to="${index}" class="${activeClass}"></li>`;
                 carouselItems += `
-                    <div class="carousel-item ${activeClass}">
-                        <img src="/uploads/listing/thumb/${image}" class="d-block w-100 carousel-image" style="height:330px" loading="lazy">
-                    </div>`;
+            <div class="carousel-item ${activeClass}">
+                <img src="/uploads/listing/thumb/${image}" class="d-block w-100 carousel-image" style="height:330px" loading="lazy">
+            </div>`;
             });
 
             let areaInfo = '';
@@ -958,78 +973,93 @@
             } else if (property.land_area > 0) {
                 areaInfo = `${property.land_area} m<sup>2</sup>`;
             }
-            let formattedDescription = property.listing_description
-            ? property.listing_description.toLowerCase().replace(/(^\w{1})|(\.\s*\w{1})/g, letter => letter.toUpperCase()).substring(0, 100) + '...'
-            : 'Descripción no disponible.';
+            let formattedDescription = property.listing_description ?
+                property.listing_description.toLowerCase().replace(/(^\w{1})|(\.\s*\w{1})/g, letter => letter.toUpperCase())
+                .substring(0, 120) + '...' :
+                'Descripción no disponible.';
+
+            let formattedPrice = new Intl.NumberFormat('es-EC', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(property.property_price);
+            
             return `
-            <article class="col-12 col-md-4 mb-4 property-item">
-                <div class="card h-100">
-                    <a href="/propiedad/${property.slug}" style="text-decoration: none;">
-                        <div id="carousel${property.id}" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                ${carouselIndicators}
-                            </ol>
-                            <div class="carousel-inner">
-                                ${carouselItems}
-                            </div>
-                            <a class="carousel-control-prev" href="#carousel${property.id}" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Anterior</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carousel${property.id}" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Siguiente</span>
-                            </a>
-                        </div>
+    <article class="col-12 col-md-4 mb-4 property-item">
+        <div class="card h-100">
+            <a href="/propiedad/${property.slug}" style="text-decoration: none;">
+                <div id="carousel${property.id}" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        ${carouselIndicators}
+                    </ol>
+                    <div class="carousel-inner">
+                        ${carouselItems}
+                    </div>
+                    <a class="carousel-control-prev" href="#carousel${property.id}" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Anterior</span>
                     </a>
-                    <div class="card-body flex-grow-1 d-flex flex-column">
-                        <div class="position-absolute" style="top: 0px; right: 0px; background-color: #242B40; color: #ffffff; border-radius: 0px 0px 0px 25px;">
-                            <p class="m-0 py-3 px-3 h5" style="font-family: 'Sharp Grotesk', sans-serif;">Cod: ${property.product_code}</p>
+                    <a class="carousel-control-next" href="#carousel${property.id}" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Siguiente</span>
+                    </a>
+                </div>
+            </a>
+            <div class="card-body flex-grow-1 d-flex flex-column">
+                <div class="position-absolute" style="top: 0px; right: 0px; background-color: #242B40; color: #ffffff; border-radius: 0px 0px 0px 25px;">
+                    <p class="m-0 py-2 px-2 h6" style="font-family: 'Sharp Grotesk', sans-serif;">Cod: ${property.product_code}</p>
+                </div>
+                
+                <h3 class="h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 300;">
+                    <i class="fas fa-map-marker-alt"></i> ${property.sector ? `${property.sector},` : ''} ${property.city}, ${property.state}
+                </h3>
+                <a href="/propiedad/${property.slug}" class="text-dark" style="text-decoration: none;">
+                    <h2 class="card-title" style="font-family: 'Sharp Grotesk', sans-serif; font-size: 1.2rem; font-weight: 500;">
+                        ${property.listing_title.charAt(0).toUpperCase() + property.listing_title.slice(1).toLowerCase()}
+                    </h2>
+                </a>
+                ${aliquotInfo}
+                <p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100; font-size: 15px">${formattedDescription}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex">
+                        ${property.bedroom > 0 ? `<div class="d-flex align-items-center characteristics pl-2">
+                                        <img width="30px" height="30px" src="{{ asset('img/dormitorios.png') }}" alt="">
+                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bedroom}</p>
+                                    </div>` : ''}
+                        ${property.bathroom > 0 ? `<div class="d-flex align-items-center characteristics pl-2">
+                                        <img width="30px" height="30px" src="{{ asset('img/banio.png') }}" alt="">
+                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bathroom}</p>
+                                    </div>` : ''}
+                        ${property.garage > 0 ? `<div class="d-flex align-items-center characteristics pl-2">
+                                        <img width="30px" height="30px" src="{{ asset('img/estacionamiento.png') }}" alt="">
+                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage}</p>
+                                    </div>` : ''}
+                        ${areaInfo ? `<div class="d-flex align-items-center characteristics pl-2">
+                                        <img width="30px" height="30px" src="{{ asset('img/area.png') }}" alt="">
+                                        <p class="pt-3" style="font-weight: 600; font-size: 15px">${areaInfo}</p>
+                                    </div>` : ''}
+                    </div>
+                    <p class="card-text" style="font-weight:500;font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">${formattedPrice}</p>
+                </div>
+                <div class="mt-auto">
+                    <div class="d-flex gap-3 mt-3">
+                        <div class="w-100 d-flex align-items-center">
+                            <a href="tel:${phoneNumber}" class="btn btn-outline-primary rounded-pill w-100 d-flex align-items-center">
+                                <i class="fas fa-phone-alt me-2 mr-1"></i>Llamar
+                            </a>
                         </div>
-                        <a href="/propiedad/${property.slug}" class="text-dark" style="text-decoration: none;">
-                            <h2 class="card-title" style="font-family: 'Sharp Grotesk', sans-serif; font-size: 1.4rem; font-weight: 500;">${property.listing_title}</h2>
-                        </a>
-                        <h3 class="h5 text-muted" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 300;">${property.sector ? `<span>Sector:</span> ${property.sector},` : ''} ${property.city}, ${property.state}</h3>
-                        <p class="card-text" style="font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">$${property.property_price}</p>
-                        ${aliquotInfo}
-                        <h4 class="h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100;">${formattedDescription}</h4>
-                        <div class="d-flex justify-content-around">
-                            ${property.bedroom > 0 ? `<div class="d-flex align-items-center characteristics">
-                                    <img width="50px" height="50px" src="{{ asset('img/dormitorios.png') }}" alt="">
-                                    <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bedroom} Hab.</p>
-                                </div>` : ''}
-                            ${property.bathroom > 0 ? `<div class="d-flex align-items-center characteristics">
-                                    <img width="50px" height="50px" src="{{ asset('img/banio.png') }}" alt="">
-                                    <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bathroom} ${property.bathroom > 1 ? 'Baños' : 'Baño'}</p>
-                                </div>` : ''}
-                            ${property.garage > 0 ? `<div class="d-flex align-items-center characteristics">
-                                    <img width="50px" height="50px" src="{{ asset('img/estacionamiento.png') }}" alt="">
-                                    <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage} ${property.garage > 1 ? 'Garajes' : 'Garaje'}</p>
-                                </div>` : ''}
-                            ${areaInfo ? `<div class="d-flex align-items-center characteristics">
-                                    <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
-                                    <p class="pt-3" style="font-weight: 600; font-size: 15px">${areaInfo}</p>
-                                </div>` : ''}
-                        </div>
-                        <div class="mt-auto">
-                            <div class="d-flex gap-3 mt-3">
-                                <div class="w-100 d-flex align-items-center">
-                                    <a href="tel:${phoneNumber}" class="btn btn-outline-primary rounded-pill w-100 d-flex align-items-center">
-                                        <i class="fas fa-phone-alt me-2"></i>Llamar
-                                    </a>
-                                </div>
-                                <div class="w-100 d-flex align-items-center">
-                                    <a href="https://wa.me/${phoneNumber}?text=${whatsappMessage}" class="btn btn-outline-success rounded-pill w-100 d-flex align-items-center">
-                                        <i class="fab fa-whatsapp me-2"></i> WhatsApp
-                                    </a>
-                                </div>
-                            </div>
+                        <div class="w-100 d-flex align-items-center">
+                            <a href="https://wa.me/${phoneNumber}?text=${whatsappMessage}" class="btn btn-outline-success rounded-pill w-100 d-flex align-items-center">
+                                <i class="fab fa-whatsapp me-2 mr-1"></i> WhatsApp
+                            </a>
                         </div>
                     </div>
                 </div>
-            </article>`;
+            </div>
+        </div>
+    </article>`;
         }
-
 
         function clearSearch(isModal) {
             // Determine whether to clear the modal or desktop forms
