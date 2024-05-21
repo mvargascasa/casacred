@@ -331,79 +331,74 @@
 
 
     <section class="container-fluid text-center search-bar-container">
-
         <!-- Contenido para desktop -->
         <div class="container d-none d-md-block mx-auto">
             <div class="card search-bar">
-                <form id="searchFormDesktop" class="row g-3 align-items-end justify-content-center">
-                    <form id="searchForm" class="row g-3 align-items-end">
-                        <div class="col-4">
-                            <input type="text" id="searchTerm" class="form-control"
-                                placeholder="Buscar por ubicación, codígo, tipo...">
+                <form id="searchFormDesktop" class="row g-2 align-items-center justify-content-center">
+                    <div class="col-3">
+                        <input type="text" id="searchTerm" class="form-control form-control-sm"
+                            placeholder="Buscar por ubicación, tipo de propiedad, codígo">
+                    </div>
+                    <div class="col-auto">
+                        <select class="form-control form-control-sm" id="propertyType">
+                            <option value="">Tipo de Propiedad</option>
+                            <option data-ids="[23,1]" value="1">Casas</option>
+                            <option data-ids="[24,3]" value="2">Departamentos</option>
+                            <option data-ids="[25,5]" value="3">Casas Comerciales</option>
+                            <option data-ids="[32,6]" value="4">Locales Comerciales</option>
+                            <option data-ids="[35,7]" value="5">Oficinas</option>
+                            <option data-ids="[36,8]" value="6">Suites</option>
+                            <option data-ids="[29,9]" value="7">Quintas</option>
+                            <option data-ids="[30,30]" value="8">Haciendas</option>
+                            <option data-ids="[26,10]" value="8">Terrenos</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <select class="form-control form-control-sm" id="propertyStatus">
+                            <option data-ids="general" value="general">Todas</option>
+                            <option data-ids="venta" value="venta">Venta</option>
+                            <option data-ids="renta" value="renta">Renta</option>
+                            <option data-ids="proyectos" value="proyectos">Proyectos</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="locationInput"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Ubicación
+                        </button>
+                        <div class="dropdown-menu p-2" aria-labelledby="locationInput">
+                            <input type="text" id="sector" class="form-control mb-2 form-control-sm" placeholder="Sector">
+                            <input type="text" id="city" class="form-control mb-2 form-control-sm" placeholder="Ciudad">
+                            <input type="text" id="state" class="form-control form-control-sm" placeholder="Provincia">
                         </div>
-                        <div class="col-auto dropdown">
-                            <select class="form-control" id="propertyType">
-                                <option value="">Tipo de Propiedad</option>
-                                <option data-ids="[23,1]" value="1">Casas</option>
-                                <option data-ids="[24,3]" value="2">Departamentos</option>
-                                <option data-ids="[25,5]" value="3">Casas Comerciales</option>
-                                <option data-ids="[32,6]" value="4">Locales Comerciales</option>
-                                <option data-ids="[35,7]" value="5">Oficinas</option>
-                                <option data-ids="[36,8]" value="6">Suites</option>
-                                <option data-ids="[29,9]" value="7">Quintas</option>
-                                <option data-ids="[30,30]" value="8">Haciendas</option>
-                                <option data-ids="[26,10]" value="8">Terrenos</option>
-                            </select>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="priceInput"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Precio
+                        </button>
+                        <div class="dropdown-menu p-2" aria-labelledby="priceInput">
+                            <input type="number" id="minPrice" class="form-control mb-2 form-control-sm"
+                                placeholder="Mínimo">
+                            <input type="number" id="maxPrice" class="form-control form-control-sm" placeholder="Máximo">
                         </div>
-                        <div class="col-auto dropdown">
-                            <select class="form-control" id="propertyStatus">
-                                <option data-ids="general" value="general">Todas</option>
-                                <option data-ids="venta" value="venta">Venta</option>
-                                <option data-ids="renta" value="renta">Renta</option>
-                                <option data-ids="proyectos" value="proyectos">Proyectos</option>
-                            </select>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="featuresInput"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Características
+                        </button>
+                        <div class="dropdown-menu p-2" aria-labelledby="featuresInput">
+                            <input type="number" id="bedrooms" class="form-control mb-2 form-control-sm"
+                                placeholder="Hab.">
+                            <input type="number" id="bathrooms" class="form-control mb-2 form-control-sm" placeholder="Baños">
+                            <input type="number" id="garage" class="form-control form-control-sm" placeholder="Garajes">
                         </div>
-                        <div class="col-auto dropdown">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="locationInput"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Ubicación
-                            </button>
-                            <div class="dropdown-menu p-2" aria-labelledby="locationInput">
-                                <input type="text" id="sector" class="form-control mb-2" placeholder="Sector">
-                                <input type="text" id="city" class="form-control mb-2" placeholder="Ciudad">
-                                <input type="text" id="state" class="form-control" placeholder="Provincia">
-                            </div>
-                        </div>
-                        <div class="col-auto dropdown">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="priceInput"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Precio
-                            </button>
-                            <div class="dropdown-menu p-2" aria-labelledby="priceInput">
-                                <input type="number" id="minPrice" class="form-control mb-2"
-                                    placeholder="Precio mínimo">
-                                <input type="number" id="maxPrice" class="form-control" placeholder="Precio máximo">
-                            </div>
-                        </div>
-                        <div class="col-auto dropdown">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="featuresInput"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Características
-                            </button>
-                            <div class="dropdown-menu p-2" aria-labelledby="featuresInput">
-                                <input type="number" id="bedrooms" class="form-control mb-2"
-                                    placeholder="Habitaciones">
-                                <input type="number" id="bathrooms" class="form-control mb-2" placeholder="Baños">
-                                <input type="number" id="garage" class="form-control" placeholder="Garajes">
-                            </div>
-                        </div>
-
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-primary">Buscar</button>
-                            <button type="button" class="btn btn-secondary"
-                                onclick="clearSearch(false)">Limpiar</button>
-                        </div>
-                    </form>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary btn-sm">Buscar</button>
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="clearSearch(false)">Limpiar</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -542,7 +537,6 @@
             const initialCity = '{{ $city ?? '' }}';
             const initialParish = '{{ $parish ?? '' }}';
             const initialTypeIds = JSON.parse('{{ json_encode($typeId) }}' || '[]');
-            console.log(initialTypeIds);
             const searchTerm = new URLSearchParams(window.location.search).get('searchTerm') || '';
 
             // Configuración inicial para el formulario de desktop
@@ -630,7 +624,6 @@
 
 
         window.searchProperties = function(page = 1, isModal = false) {
-            console.log(isModal);
 
             
 
@@ -710,12 +703,9 @@
                 path: urlSlug
             }, '', urlSlug);
 
-            console.log("Current Type IDs:", currentTypeIds);
-            console.log("Query String:", queryString);
             axios.get('/api/propertys/list?' + queryString)
                 .then(function(response) {
                     const properties = response.data.properties;
-                    console.log(response.data.properties);
                     let html = '';
                     if (properties.length > 0) {
                         properties.forEach(property => {
