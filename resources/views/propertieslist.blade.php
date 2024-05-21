@@ -918,11 +918,8 @@
                                 </a>
                             </div>
                             <div class="w-100 d-flex align-items-center ml-2">
-                                <a href="https://wa.me/${phoneNumber}?text=${whatsappMessage}" 
-                                    onclick="return gtag_report_conversion('https://wa.me/${phoneNumber}?text=${whatsappMessage}');" 
-                                    class="btn btn-outline-success rounded-pill w-100 d-flex align-items-center" 
-                                    target="_blank">
-                                        <i class="fab fa-whatsapp me-2 mr-1"></i> WhatsApp
+                                <a href="https://wa.me/${phoneNumber}?text=${whatsappMessage}" class="btn btn-outline-success rounded-pill w-100 d-flex align-items-center">
+                                    <i class="fab fa-whatsapp me-2 mr-1"></i> WhatsApp
                                 </a>
                             </div>
                             </div>
@@ -1047,11 +1044,8 @@
                             </a>
                         </div>
                         <div class="w-100 d-flex align-items-center">
-                            <a href="https://wa.me/${phoneNumber}?text=${whatsappMessage}" 
-                                    onclick="return gtag_report_conversion('https://wa.me/${phoneNumber}?text=${whatsappMessage}');" 
-                                    class="btn btn-outline-success rounded-pill w-100 d-flex align-items-center" 
-                                    target="_blank">
-                                        <i class="fab fa-whatsapp me-2 mr-1"></i> WhatsApp
+                            <a href="https://wa.me/${phoneNumber}?text=${whatsappMessage}" class="btn btn-outline-success rounded-pill w-100 d-flex align-items-center">
+                                <i class="fab fa-whatsapp me-2 mr-1"></i> WhatsApp
                             </a>
                         </div>
                     </div>

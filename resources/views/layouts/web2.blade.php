@@ -68,8 +68,6 @@ if(strpos($actual_link, 'localhost') === false){
     <!-- End Google Tag Manager -->
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11250334200"></script> 
-    <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-11250334200'); </script>
 
 
     <!-- Facebook Pixel Code -->
