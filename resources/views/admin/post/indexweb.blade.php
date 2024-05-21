@@ -30,7 +30,7 @@
                             </div>
                             <div class="card-footer border-0 bg-white">
                                 <div class="text-center" style="margin-bottom: 0px">
-                                    <a href="{{route('web.show.post', $post->slug)}}" class="btn btn-danger">Ver publicacion</a>
+                                    <a href="{{route('web.show.post', $post->slug)}}" class="btn btn-primary">Ver publicacion</a>
                                 </div>
                             </div>
                         </div>
