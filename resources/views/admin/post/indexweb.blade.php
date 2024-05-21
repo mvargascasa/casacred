@@ -12,7 +12,7 @@
     <section id="prisection" style="background-size: cover; background-position: left top; background-repeat: no-repeat">
         <div>
             <div class="row p-4 p-md-5 align-items-center text-light text-center" style="min-height: 450px; background: rgba(2,2,2,0.5)">
-                <h1>Blog Casa Crédito Inmobiliaria</h1>
+                <h1>Blog Grupo Housing Inmobiliaria</h1>
             </div>
         </div>
     </section>
