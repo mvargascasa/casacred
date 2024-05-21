@@ -1036,20 +1036,20 @@
                         </div>
                         <p class="card-text" style="font-weight: 500; font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">${formattedPrice}</p>
                     </div>
-                <div class="mt-auto">
-                    <div class="d-flex gap-3 mt-3">
-                        <div class="w-100 d-flex align-items-center">
-                            <a href="tel:${phoneNumber}" class="btn btn-outline-primary rounded-pill w-100 d-flex align-items-center">
-                                <i class="fas fa-phone-alt me-2 mr-1"></i>Llamar
-                            </a>
-                        </div>
-                        <div class="w-100 d-flex align-items-center">
-                            <a href="https://wa.me/${phoneNumber}?text=${whatsappMessage}" class="btn btn-outline-success rounded-pill w-100 d-flex align-items-center">
-                                <i class="fab fa-whatsapp me-2 mr-1"></i> WhatsApp
-                            </a>
+                    <div class="mt-auto">
+                        <div class="d-flex justify-content-center gap-3 mt-3">
+                            <div class="w-100 d-flex justify-content-center">
+                                <a href="tel:${phoneNumber}" class="btn btn-outline-primary rounded-pill w-75 d-flex justify-content-center align-items-center">
+                                    <i class="fas fa-phone-alt me-2 mr-1"></i>Llamar
+                                </a>
+                            </div>
+                            <div class="w-100 d-flex justify-content-center">
+                                <a href="https://wa.me/${phoneNumber}?text=${whatsappMessage}" class="btn btn-outline-success rounded-pill w-75 d-flex justify-content-center align-items-center">
+                                    <i class="fab fa-whatsapp me-2 mr-1"></i> WhatsApp
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </article>`;
