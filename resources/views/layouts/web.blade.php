@@ -85,6 +85,23 @@ if(strpos($actual_link, 'localhost') === false){
     <!-- End Google Tag Manager -->
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script id="script_analytics" async></script>
+    <script>
+        setTimeout(() => {
+            document.getElementById('script_analytics').src =
+                'https://www.googletagmanager.com/gtag/js?id=UA-124437679-1';
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'AW-806267889'); //    Adwords
+            gtag('config', 'UA-124437679-1'); //  Analytics 
+
+        }, 3500);
+    </script>
 
     <!-- Facebook Pixel Code -->
     <script>
@@ -119,7 +136,6 @@ if(strpos($actual_link, 'localhost') === false){
 
 
     <?php };// fin de if url localhost ?>
-    <script> function gtag_report_conversion(url) { var callback = function () { if (typeof(url) != 'undefined') { window.location = url; } }; gtag('event', 'conversion', { 'send_to': 'AW-11250334200/PlHOCOfbo7IZEPjzyfQp', 'event_callback': callback }); return false; } </script>
 
     @yield('header')
     {{-- <meta name="keywords" content="casas en venta en cuenca, departamentos en venta en cuenca, terrenos en venta en cuenta, lotes en venta en cuenca" /> --}}
@@ -798,11 +814,7 @@ if(strpos($actual_link, 'localhost') === false){
 
 
     <div class="whatsapp-group">
-        <a 
-            onclick="return gtag_report_conversion('https://api.whatsapp.com/send?phone=593983849073&text=Hola Grupo Housing, estoy interesado en una propiedad');" 
-            href="https://api.whatsapp.com/send?phone=593983849073&text=Hola Grupo Housing, estoy interesado en una propiedad" 
-            target="_blank" 
-            class="whatsapp-float">
+        <a href="https://api.whatsapp.com/send?phone=593983849073&text=Hola Grupo Housing, estoy interesado en una propiedad" target="_blank" class="whatsapp-float">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
