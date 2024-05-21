@@ -465,7 +465,7 @@ $bathroom=0;
         <section class="d-flex justify-content-center">
           <div class="border py-4" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; width: 300px">
             <section class="d-flex justify-content-center">
-              <p class="h5 mr-2"> <span style="font-weight: 100">ALQUILA CON</span> <br> <span class="h3" style="font-weight: 500">NOSOTROS</span></p>
+              <p class="h5 mr-2"> <span style="font-weight: 100">RENTE CON</span> <br> <span class="h3" style="font-weight: 500">NOSOTROS</span></p>
               <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
             </section>
             <section class="d-flex justify-content-end mt-2 pr-5">

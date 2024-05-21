@@ -538,7 +538,7 @@ class WebController extends Controller
 			
 			foreach($listings as $li){	
 
-				$imgcover="https://casacredito.com/uploads/listing/";	
+				$imgcover="https://grupohousing.com/uploads/listing/";	
 				$imgpri = array_filter(explode("|", $li->images));
 
 				if(isset($imgpri[0]))
@@ -557,7 +557,7 @@ class WebController extends Controller
 									'Casa Credito Inmobiliaria',
 									'in stock',
 									'new',
-									'https://casacredito.com/propiedad/'.$li->slug,
+									'https://grupohousing.com/propiedad/'.$li->slug,
 									$imgpri,
 									$li->images,
 									ucwords(strtolower($li->listing_title)), 
