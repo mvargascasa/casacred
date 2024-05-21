@@ -234,6 +234,33 @@
             font-size: 1.5rem;
             color: #ffffff;
         }
+
+
+
+        .text-center.text-white.py-3.shadow {
+            background-color: #242B40;
+            border-radius: 25px 25px 0 0;
+        }
+
+        @media (max-width: 767.98px) {
+            .text-center.text-white.py-3.shadow .row .col-12 {
+                margin-bottom: 1rem;
+            }
+            .text-center.text-white.py-3.shadow .row .col-12.mb-2.mb-md-0 {
+                margin-bottom: 0;
+            }
+        }
+
+        .divider-desktop {
+            border-left: 2px solid white;
+            height: 50px;
+            margin: 0 10px;
+        }
+
+        .divider-mobile {
+            border-top: 2px solid white;
+            width: 75%;
+        }
     </style>
 @endsection
 
@@ -521,15 +548,15 @@
                     <div class="text-center text-white py-3 shadow"
                         style="background-color: #242B40; border-radius: 25px 25px 0 0;">
                         <div class="row justify-content-center align-items-center">
-                            <div class="col-auto">
+                            <div class="col-12 col-md-auto mb-2 mb-md-0">
                                 <span class="fw-bold"
                                     style="font-size: 40px; line-height: 50px; font-family: 'Sharp Grotesk'; font-weight: 500;">
                                     ${{ $listing->property_price }}</span>
                             </div>
                             @if ($listing->aliquot && $listing->aliquot > 0)
-                                <div class="col-auto" style="border-left: 2px solid white; height: 50px; margin: 0 10px;">
-                                </div>
-                                <div class="col-auto">
+                                <div class="col-12 d-md-none my-2 divider-mobile"></div> <!-- Spacer for mobile -->
+                                <div class="col-auto d-none d-md-block divider-desktop"></div> <!-- Divider for desktop -->
+                                <div class="col-12 col-md-auto">
                                     <div class="row">
                                         <span class="fw-bold"
                                             style="font-size: 20px; font-family: 'Sharp Grotesk'; font-weight: 500;">Alícuota</span>
@@ -543,6 +570,7 @@
                             @endif
                         </div>
                     </div>
+
                     <div class="bg-white pt-4 pb-5 shadow px-5" style="border-radius: 0 0 25px 25px;">
                         <p class="text-center" style="font-size: x-large; font-weight: 600; ">¿Te interesa esta propiedad?
                         </p>
