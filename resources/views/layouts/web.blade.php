@@ -378,6 +378,41 @@ if(strpos($actual_link, 'localhost') === false){
         /* Sombra más pronunciada y de color verde */
     }
     </style>
+
+
+    <style>
+         #navbar {
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: #182741;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+
+
+        .navbar-light.scrolled .navbar-nav .nav-link {
+            color: #182741;
+        }
+
+        .navbar-light.scrolled .navbar-nav .nav-link:hover {
+            background-color: #182741;
+            color: #182741 !important;
+        }
+
+        .navbar-light .navbar-nav .nav-link:hover {
+            background-color: #182741;
+            color: white;
+        }
+
+
+
+        .navbar-light.scrolled {
+            background-color: white !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
     <script>
         (function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -412,77 +447,69 @@ if(strpos($actual_link, 'localhost') === false){
         //dd($array);
     @endphp
 
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light navbar-cc bg-white shadow-sm" style="z-index: 100;">
-
-            <div class="d-flex flex-grow-1">
-                <span class="w-100 d-lg-none d-block pl-1">
-                    <a class="navbar-brand" href="{{ route('web.index') }}">
-                        <img src="{{ asset('img/logo-azul-grupo-housing.png') }}" width="110" height="45"
-                            alt="Grupo Housing">
-                    </a>
-                </span>
-
-                <a class="navbar-brand d-none d-lg-inline-block px-4" href="{{ route('web.index') }}">
-                    <img src="{{ asset('img/logo-azul-grupo-housing.png') }}" width="100" height="50"
-                        alt="Grupo Housing">
-                </a>
-                <div class="w-100 text-right">
-                    {{-- @if (Route::is('web.index') or Route::is('web.detail')) 
-                        <button type="button"  data-toggle="modal" data-target="#modalSearch" class="btn btn-sm btn-outline-secondary d-sm-block d-md-none">
-                            Busqueda</button> 
-                    @endif --}}
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="collapse navbar-collapse flex-grow-1 text-left" id="myNavbar">
-                <ul class="navbar-nav ml-auto flex-nowrap px-4">
-                    <li class="nav-item pr-2"> <a class="nav-link @if (Route::is('/propiedades-en-venta')) active @endif"
-                            href="/propiedades-en-venta">Comprar</a> </li>
-                    <li class="nav-item pr-2"> <a class="nav-link @if (Route::is('/propiedades-en-renta')) active @endif"
-                            href="/propiedades-en-renta">Rentar</a> </li>
-                    {{-- <li class="nav-item pr-2"> <a class="nav-link @if (Request::is('servicios/creditos-en-ecuador')) active @endif" href="{{route('web.servicios','creditos-en-ecuador')}}">Creditos</a> </li> --}}
-                    {{-- <li class="nav-item pr-2"> <a class="nav-link @if (Request::is('servicios/construye')) active @endif" href="{{route('web.servicios','construye')}}">Construye</a> </li> --}}
-                    <li class="nav-item pr-2"> <a class="nav-link @if (Request::is('servicio/vende-tu-casa')) active @endif"
-                            href="{{ route('web.servicio', 'vende-tu-casa') }}">Vende</a> </li>
-                    <li class="nav-item pr-2"> <a class="nav-link @if (Request::is('blog')) active @endif"
-                            href="{{ route('web.blog') }}">Blog</a></li>
-                    <li class="nav-item pr-2"> <a class="nav-link @if (Request::is('servicios/nosotros')) active @endif"
-                            href="{{ route('web.servicios', 'nosotros') }}">Nosotros</a> </li>
-                    <!-- Authentication Links -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm" style="z-index: 100;">
+        <div class="container" style="font-family: 'Sharp grotesk'; font-weight: 500">
+            <a class="navbar-brand" href="{{ route('web.index') }}">
+                <img src="{{ asset('img/logo-azul-grupo-housing.png') }}" width="110" height="45" alt="Grupo Housing">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item pr-2">
+                        <a class="nav-link @if (Route::is('home')) active @endif" href="{{ route('web.home') }}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @if (Route::is('/propiedades-en-venta')) active @endif"
+                            href="/propiedades-en-venta">Comprar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @if (Route::is('/propiedades-en-renta')) active @endif"
+                            href="/propiedades-en-renta">Rentar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @if (Request::is('servicio/vende-tu-casa')) active @endif"
+                            href="{{ route('web.servicio', 'vende-tu-casa') }}">Vende</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @if (Request::is('blog')) active @endif"
+                            href="{{ route('web.blog') }}">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @if (Request::is('servicios/nosotros')) active @endif"
+                            href="{{ route('web.servicios', 'nosotros') }}">Nosotros</a>
+                    </li>
                     @guest
-                        <li class="nav-item"> <a class="nav-link mr-6"
-                                href="{{ route('login') }}">{{ __('INGRESAR') }}</a> </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('INGRESAR') }}</a>
+                        </li>
                     @else
-                        <li class="nav-item dropdown" style="z-index: 999">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                                 aria-expanded="false">
                                 {{ Auth::user()->name }}
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{ route('admin.index') }}">Dashboard</a>
-                                    <div class="dropdown-divider"></div>
-                                </li>
-                                <li><a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault(); 
-                                       document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }} </a></li>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    style="display: none;">
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('admin.index') }}">Dashboard</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
-                            </ul>
+                            </div>
                         </li>
-
                     @endguest
-
                 </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
 
     @yield('content')
 

@@ -420,6 +420,8 @@ if(strpos($actual_link, 'localhost') === false){
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item pr-2"> <a class="nav-link @if (Route::is('home')) active @endif"
+                            href="{{ route('web.home') }}">Inicio</a> </li>
                         <li class="nav-item">
                             <a class="nav-link @if (Route::is('/propiedades-en-venta')) active @endif"
                                 href="/propiedades-en-venta">Comprar</a>
