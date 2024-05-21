@@ -21,12 +21,12 @@ class ApiController extends Controller
                     <br> Fuente: Website Movil";
                 
         $header='';
-        $header .= 'From: <leads@casacredito.com>' . "\r\n";
-        $header .= "Reply-To: ".'info@casacredito.com'."\r\n";
+        $header .= 'From: <leads@grupohousing.com>' . "\r\n";
+        $header .= "Reply-To: ".'info@grupohousing.com'."\r\n";
         $header .= "MIME-Version: 1.0\r\n";
         $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-        mail('mvargas@casacredito.com,info@casacredito.com','Lead CasaCredito: '.strip_tags($req->leadName), $message, $header);
-        mail('sebas31051999@gmail.com', 'Lead CasaCredito: ' . strip_tags($req->leadName), $message, $header);
+        mail('mvargas@casacredito.com,info@casacredito.com','Lead Grupo Housing: '.strip_tags($req->leadName), $message, $header);
+        mail('sebas31051999@gmail.com', 'Lead Grupo Housing: ' . strip_tags($req->leadName), $message, $header);
     }
     public function getproperties(Request $req) {
         
@@ -155,7 +155,7 @@ class ApiController extends Controller
             
             foreach($listings as $li){	
     
-                $imgcover="https://casacredito.com/uploads/listing/";	
+                $imgcover="https://grupohousing.com/uploads/listing/";	
                 $imgpri = explode("|", $li->images);
     
                 if(isset($imgpri[0]))
@@ -174,7 +174,7 @@ class ApiController extends Controller
                                     'Casa Credito Inmobiliaria',
                                     'in stock',
                                     'new',
-                                    'https://casacredito.com/propiedad/'.$li->slug,
+                                    'https://grupohousing.com/propiedad/'.$li->slug,
                                     $imgpri,
                                     $li->images,
                                     ucwords(strtolower($li->listing_title)), 
