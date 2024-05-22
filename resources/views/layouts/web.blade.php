@@ -397,8 +397,8 @@ if(strpos($actual_link, 'localhost') === false){
 
     .btn-primary {
         color: #fff;
-        background-color: #182741;
-        border-color: #182741;
+        background-color: #1b3460;
+        border-color: #1b3460;
     }
 
     .btn-primary:hover {

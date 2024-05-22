@@ -367,7 +367,7 @@
 <div class="modal fade" id="modalVende" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header" style="background-color: #8B0000">
+      <div class="modal-header" style="background-color: #1b3460">
         <h4 class="modal-title text-white" id="exampleModalLongTitle" style="font-size: 17px">Complete el siguiente formulario y en breve será contactado</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -447,7 +447,7 @@
             </div>
             
             <div class="form-group">
-                {!! Form::submit('Enviar',  ['class' => 'btn btn-lg btn-danger btn-block mt-4','style'=>'background-color:darkred']) !!}
+                {!! Form::submit('Enviar',  ['class' => 'btn btn-lg btn-primary btn-block mt-4']) !!}
             </div> 
           </div>
         </form>
