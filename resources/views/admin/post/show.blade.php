@@ -24,10 +24,10 @@
     <div class="container mt-5 mb-5">
         <div class="row justify-content-center text-center border-bottom pb-3 mb-4">
             <div class="col-sm-6 col-6 border-right">
-                <label><i class="fas fa-calendar text-danger"></i> <b>Fecha Publicado:</b> {{date('d-M-Y', strtotime($post->created_at))}}</label>
+                <label><i class="fas fa-calendar text-primary"></i> <b>Fecha Publicado:</b> {{date('d-M-Y', strtotime($post->created_at))}}</label>
             </div>
             <div class="col-sm-6 col-6 border-left">
-                <label><i class="fas fa-clock text-danger"></i> <b>Tiempo de Lectura:</b> {{$post->reading_time}} min.</label>
+                <label><i class="fas fa-clock text-primary"></i> <b>Tiempo de Lectura:</b> {{$post->reading_time}} min.</label>
             </div>
         </div>
         <div class="row">

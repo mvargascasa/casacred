@@ -403,9 +403,13 @@ if(strpos($actual_link, 'localhost') === false){
 
     .btn-primary:hover {
         color: #fff;
-        background-color: #0d1524;
-        border-color: #0d1524;
+        background-color: #182741;
+        border-color: #182741;
     }
+    .text-primary {
+        color: #1b3460 !important;
+    }
+    
     </style>
     <script>
         (function(h,o,t,j,a,r){
