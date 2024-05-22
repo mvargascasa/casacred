@@ -906,7 +906,7 @@
                                                 <img width="50px" height="50px" src="{{ asset('img/estacionamiento.png') }}" alt="">
                                                 <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage} ${property.garage > 1 ? 'Garajes' : 'Garaje'}</p>
                                             </div>` : ''}
-                                    ${areaInfo ? `<div class="d-flex align-items-center characteristics">
+                                    ${areaInfo ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
                                                 <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
                                                 <p class="pt-3" style="font-weight: 600; font-size: 15px">${areaInfo}</p>
                                             </div>` : ''}
