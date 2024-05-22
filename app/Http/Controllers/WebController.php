@@ -550,12 +550,20 @@ class WebController extends Controller
 				$condition = 'Nueva';
 				if($li->listingtagstatus==6) $condition = 'Usada';
 
+                $listingtypestatus = "";
+                if($li->listingtypestatus == "en-venta") {
+                    $listingtypestatus = "for_sale";
+                } else {
+                    $listingtypestatus = "for_rent";
+                }
+
                 $description = strip_tags($li->listing_description);
 
 				$lineData = array(	$li->id,	
 									$li->product_code, 
-									'Casa Credito Inmobiliaria',
-									'in stock',
+									'Grupo Housing',
+									// 'in stock',
+                                    $listingtypestatus,
 									'new',
 									'https://grupohousing.com/propiedad/'.$li->slug,
 									$imgpri,
