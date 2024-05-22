@@ -677,7 +677,7 @@ class WebController extends Controller
     }
 
     public function blog(){
-        $posts = Post::where('status', 1)->orderBy('created_at','desc')->get();
+        $posts = Post::where('status', 1)->orderBy('created_at', 'desc')->paginate(10);
         return view('admin.post.indexweb', compact('posts'));
     }
 
