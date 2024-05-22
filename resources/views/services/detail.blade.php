@@ -123,7 +123,7 @@
                 </div>
                 
                 <div class="form-group">
-                    {!! Form::submit('Enviar',  ['class' => 'btn btn-lg btn-danger btn-block mt-4','style'=>'background-color:darkred']) !!}
+                    {!! Form::submit('Enviar',  ['class' => 'btn btn-lg btn-primary btn-block mt-4']) !!}
                 </div> 
               </div>
             </form>
@@ -143,7 +143,7 @@
           <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
             <div class="card my-4">
                 <div class="card-body">
-                  <h2 class="card-title text-danger text-uppercase" style="font-size: 16px">{{$service->page_title}}</h2> <hr>
+                  <h2 class="card-title text-primary text-uppercase" style="font-size: 16px">{{$service->page_title}}</h2> <hr>
                   <p class="card-text">{!!$service->description!!}</p>
                 </div>
             </div>
@@ -151,13 +151,13 @@
         <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
             <div class="card my-4">
                 <div class="card-body">
-                  <h3 class="card-title text-danger text-uppercase" style="font-size: 16px">Links</h3> <hr>
+                  <h3 class="card-title text-primary text-uppercase" style="font-size: 16px">Links</h3> <hr>
                   @foreach ($otros as $otro)
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item" style="border-bottom: 1px #eeeeee  solid;">
                         <div class="d-flex flex-row">
                           <div class="px-1"><img src="{{url('uploads/services',$otro->image)}}"width="30" alt=""></div>
-                          <div><a class="link-dark" href="{{url('servicio/'.$otro->slug)}}" style="text-decoration: none;">{{$otro->title}}</a></div>
+                          <div><a class="btn btn-primary" href="{{url('servicio/'.$otro->slug)}}" style="text-decoration: none;">{{$otro->title}}</a></div>
                         </div>                            
                       </li>
                     </ul>
@@ -207,7 +207,7 @@
               </div>
               <p class="description">Venda su casa con la ayuda de profesionales en el sector inmobiliario que le darán la accesoría que necesita
                 para ahorrar tiempo y dinero.</p>
-              <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modalVende">Vender Casa</a>
+              <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalVende">Vender Casa</a>
             </div>
           </div>   
           <div class="col-12 col-sm-12 col-md-4 py-2">
@@ -223,7 +223,7 @@
                 </div>
                 <p class="description">Venda su departamento en tiempo record con la inmobiliaria lider en Cuenca, Infórmese con los mejores
                   asesores inmobiliarios del país.</p>
-                <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modalVende">Vender Departamento</a>
+                <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalVende">Vender Departamento</a>
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-4 py-2">
@@ -240,7 +240,7 @@
                 <p class="description"> Vender un terreno nunca habia sido tan fácil, recibimos todos los días cientos de clientes que buscan terrenos en venta para
                   construir sus viviendas o proyectos comerciales.
                 </p>
-                <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modalVende">Vender Terreno</a>
+                <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalVende">Vender Terreno</a>
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-4 py-2">
@@ -256,7 +256,7 @@
                 </div>
                 <p class="description"> ¿Tiene un local comercial que quiere vender al precio previsto y sin complicaciones? Ahora es el mejor momento, registre su local comercial 
                   y lo mostraremos a una amplia lista de interesados, para que su venta sea rápida y efectiva. </p>
-                <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modalVende">Vender Local</a>
+                <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalVende">Vender Local</a>
             </div>
           </div>   
           <div class="col-12 col-sm-12 col-md-4 py-2">
@@ -273,7 +273,7 @@
                 <p class="description">¿Quiere vender una quinta? Ha llegado al mejor lugar, no dude en registrar su quinta en Casa Crédito y aumentar el número de interesados
                   y de oferta con un par de clics.
                 </p>
-              <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modalVende">Vender Quinta</a>
+              <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalVende">Vender Quinta</a>
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-4 py-2">
@@ -289,7 +289,7 @@
                 </div>
                 <p class="description"> Venda su casa comercial con la Inmobiliaria que si hace que las cosas sucedan. Regístrela hoy y empiece a recibir 
                   interesados día tras día. </p>
-                <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modalVende">Vender Casa Comercial</a>
+                <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalVende">Vender Casa Comercial</a>
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-4 py-2">
@@ -304,7 +304,7 @@
                 </figure>
               </div>
               <p class="description"> Vender una Hacienda en Casa Crédito es la mejor iniciativa que puede tomar, haremos que su venta sea rápida y segura . ¡Venda su hacienda hoy!</p>
-              <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modalVende">Vender Hacienda</a>
+              <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalVende">Vender Hacienda</a>
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-4 py-2">
@@ -320,7 +320,7 @@
               </div>
               <p class="description">Venda su oficina con nosotros, y consiga el cliente ideal.
               </p>
-              <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modalVende">Vender Oficina</a>
+              <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalVende">Vender Oficina</a>
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-4 py-2">
@@ -335,7 +335,7 @@
                 </figure>
               </div>
               <p class="description"> ¿Quiere vender una suite? Tenemos los clientes interesados en ese tipo de propiedad, registre su suite con nosotros y vendala fácil y rápido. </p>
-              <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modalVende">Vender Suites</a>
+              <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalVende">Vender Suites</a>
             </div>
           </div>
           @endif
@@ -352,12 +352,12 @@
       Beneficios de vender con Casa Cr&eacute;dito Inmobiliaria
     </h2>
     <div class="row mt-4">
-      <div class="col-sm-6 col-12 my-2"><i class="fad fa-file-chart-line text-danger" style="font-size: 23px"></i> Recibirá Informes Mensuales</div>
-      <div class="col-sm-6 col-12 my-2"><i class="fas fa-user-lock text-danger" style="font-size: 23px"></i> Mantenemos Total Confidencialidad del Trámite</div>
-      <div class="col-sm-6 col-12 my-2"><i class="fal fa-images text-danger" style="font-size: 23px"></i> Publicamos su propiedad en Ecuador y en Estados Unidos</div>
-      <div class="col-sm-6 col-12 my-2"><i class="fas fa-users text-danger" style="font-size: 23px"></i> Única empresa que genera sus propios clientes potenciales</div>
-      <div class="col-sm-6 col-12 my-2"><i class="fad fa-browser text-danger" style="font-size: 23px"></i> Sus propiedades se muestran exclusivamente en nuestra plataforma</div>
-      <div class="col-sm-6 col-12 my-2"><i class="far fa-calendar-day text-danger" style="font-size: 23px"></i> Mostramos su propiedad a cientos de clientes potenciales todos los días</div>
+      <div class="col-sm-6 col-12 my-2"><i class="fad fa-file-chart-line text-primary" style="font-size: 23px"></i> Recibirá Informes Mensuales</div>
+      <div class="col-sm-6 col-12 my-2"><i class="fas fa-user-lock text-primary" style="font-size: 23px"></i> Mantenemos Total Confidencialidad del Trámite</div>
+      <div class="col-sm-6 col-12 my-2"><i class="fal fa-images text-primary" style="font-size: 23px"></i> Publicamos su propiedad en Ecuador y en Estados Unidos</div>
+      <div class="col-sm-6 col-12 my-2"><i class="fas fa-users text-primary" style="font-size: 23px"></i> Única empresa que genera sus propios clientes potenciales</div>
+      <div class="col-sm-6 col-12 my-2"><i class="fad fa-browser text-primary" style="font-size: 23px"></i> Sus propiedades se muestran exclusivamente en nuestra plataforma</div>
+      <div class="col-sm-6 col-12 my-2"><i class="far fa-calendar-day text-primary" style="font-size: 23px"></i> Mostramos su propiedad a cientos de clientes potenciales todos los días</div>
     </div>
 </div>
 @endif
@@ -367,7 +367,7 @@
 <div class="modal fade" id="modalVende" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header" style="background-color: #8B0000">
+      <div class="modal-header" style="background-color: #1b3460">
         <h4 class="modal-title text-white" id="exampleModalLongTitle" style="font-size: 17px">Complete el siguiente formulario y en breve será contactado</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -447,7 +447,7 @@
             </div>
             
             <div class="form-group">
-                {!! Form::submit('Enviar',  ['class' => 'btn btn-lg btn-danger btn-block mt-4','style'=>'background-color:darkred']) !!}
+                {!! Form::submit('Enviar',  ['class' => 'btn btn-lg btn-primary btn-block mt-4']) !!}
             </div> 
           </div>
         </form>

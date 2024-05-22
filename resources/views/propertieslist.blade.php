@@ -836,7 +836,7 @@
                     `<li data-target="#carousel${property.id}" data-slide-to="${index}" class="${activeClass}"></li>`;
                 carouselItems += `
         <div class="carousel-item ${activeClass}">
-            <img src="/uploads/listing/thumb/${image}" class="d-block w-100 carousel-image" style="height:330px" loading="lazy">
+            <img src="/uploads/listing/600/${image}" class="d-block w-100 carousel-image" style="height:330px" loading="lazy">
         </div>`;
             });
             let areaInfo = '';
@@ -887,7 +887,7 @@
                         <a href="/propiedad/${property.slug}" class="text-dark" style="text-decoration: none;">
                             <h2 class="card-title" style="font-family: 'Sharp Grotesk', sans-serif; font-size: 1.4rem; padding-right: 60px; font-weight: 500;">${property.listing_title.charAt(0).toUpperCase() + property.listing_title.slice(1).toLowerCase()}</h2>
                         </a>
-                        <h3 class="h5 text-muted" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 300;">${property.sector ? `<span>Sector:</span> ${property.sector},` : ''} ${property.city}, ${property.state}</h3>
+                        <h3 class="h5 text-muted" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 300;"><i class="fas fa-map-marker-alt"></i> ${property.sector ? ` ${property.sector},` : ''} ${property.city}, ${property.state}</h3>
                         <p class="card-text" style="font-weight:500; font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">${formattedPrice}</p>
                         ${aliquotInfo}
                         <h4 class="h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100;">${formattedDescription}</h4>
@@ -906,7 +906,7 @@
                                                 <img width="50px" height="50px" src="{{ asset('img/estacionamiento.png') }}" alt="">
                                                 <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage} ${property.garage > 1 ? 'Garajes' : 'Garaje'}</p>
                                             </div>` : ''}
-                                    ${areaInfo ? `<div class="d-flex align-items-center characteristics">
+                                    ${areaInfo ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
                                                 <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
                                                 <p class="pt-3" style="font-weight: 600; font-size: 15px">${areaInfo}</p>
                                             </div>` : ''}
@@ -958,7 +958,7 @@
                     `<li data-target="#carousel${property.id}" data-slide-to="${index}" class="${activeClass}"></li>`;
                 carouselItems += `
             <div class="carousel-item ${activeClass}">
-                <img src="/uploads/listing/thumb/${image}" class="d-block w-100 carousel-image" style="height:330px" loading="lazy">
+                <img src="/uploads/listing/600/${image}" class="d-block w-100 carousel-image" style="height:330px" loading="lazy">
             </div>`;
             });
 

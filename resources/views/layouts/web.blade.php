@@ -390,28 +390,26 @@ if(strpos($actual_link, 'localhost') === false){
             transition: background-color 0.3s, color 0.3s;
         }
 
-
-
-        .navbar-light.scrolled .navbar-nav .nav-link {
-            color: #182741;
-        }
-
-        .navbar-light.scrolled .navbar-nav .nav-link:hover {
-            background-color: #182741;
-            color: #182741 !important;
-        }
-
         .navbar-light .navbar-nav .nav-link:hover {
             background-color: #182741;
             color: white;
         }
 
+    .btn-primary {
+        color: #fff;
+        background-color: #1b3460;
+        border-color: #1b3460;
+    }
 
-
-        .navbar-light.scrolled {
-            background-color: white !important;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #182741;
+        border-color: #182741;
+    }
+    .text-primary {
+        color: #1b3460 !important;
+    }
+    
     </style>
     <script>
         (function(h,o,t,j,a,r){
@@ -460,26 +458,26 @@ if(strpos($actual_link, 'localhost') === false){
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item pr-2">
-                        <a class="nav-link @if (Route::is('home')) active @endif" href="{{ route('web.home') }}">Inicio</a>
+                        <a href="{{ route('web.home') }}" class="nav-link">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if (Route::is('/propiedades-en-venta')) active @endif"
+                        <a class="nav-link"
                             href="/propiedades-en-venta">Comprar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if (Route::is('/propiedades-en-renta')) active @endif"
+                        <a class="nav-link"
                             href="/propiedades-en-renta">Rentar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if (Request::is('servicio/vende-tu-casa')) active @endif"
+                        <a class="nav-link"
                             href="{{ route('web.servicio', 'vende-tu-casa') }}">Vende</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if (Request::is('blog')) active @endif"
+                        <a class="nav-link"
                             href="{{ route('web.blog') }}">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if (Request::is('servicios/nosotros')) active @endif"
+                        <a class="nav-link"
                             href="{{ route('web.servicios', 'nosotros') }}">Nosotros</a>
                     </li>
                     @guest
