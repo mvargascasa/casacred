@@ -309,9 +309,9 @@
 @section('content')
     <section class="container">
         <section class="p-5">
-            <h2 style="font-family: 'Sharp Grotesk'" class="text-center display-6 fw-bold"><span
+            <p style="font-family: 'Sharp Grotesk'" class="text-center display-6 fw-bold"><span
                     style="font-weight: 100">Prueba nuestro</span> <span style="font-weight: 500">buscador avanzado</span>
-            </h2>
+            </p>
         </section>
     </section>
 
@@ -420,7 +420,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="filtersModalLabel">Filtros de Búsqueda</h5>
+                        <p class="modal-title h5" id="filtersModalLabel">Filtros de Búsqueda</p>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -1003,17 +1003,17 @@
                 <div class="position-absolute" style="top: 0px; right: 0px; background-color: #242B40; color: #ffffff; border-radius: 0px 0px 0px 25px;">
                     <p class="m-0 py-2 px-2 h6" style="font-family: 'Sharp Grotesk', sans-serif;">Cod: ${property.product_code}</p>
                 </div>
-                
-                <h3 class="h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 300;">
-                    <i class="fas fa-map-marker-alt"></i> ${property.sector ? `${property.sector},` : ''} ${property.city}, ${property.state}
-                </h3>
                 <a href="/propiedad/${property.slug}" class="text-dark" style="text-decoration: none;">
                     <h2 class="card-title" style="font-family: 'Sharp Grotesk', sans-serif; font-size: 1.2rem; font-weight: 500;">
                         ${property.listing_title.charAt(0).toUpperCase() + property.listing_title.slice(1).toLowerCase()}
                     </h2>
                 </a>
+                <h3 class="h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 300;">
+                    <i class="fas fa-map-marker-alt"></i> ${property.sector ? `${property.sector},` : ''} ${property.city}, ${property.state}
+                </h3>
+                
                 ${aliquotInfo}
-                <p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100; font-size: 15px; text-align: justify">${formattedDescription}</p>
+                <h4 class="card-text h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100; font-size: 15px; text-align: justify">${formattedDescription}</h4>
                 <div class="mt-auto">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div class="d-flex flex-wrap">
