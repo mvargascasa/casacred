@@ -193,11 +193,12 @@
 
         @media (min-width: 768px) {
             .thumbnail-standard {
-                width:  180px;
+                width: 180px;
                 height: 150px;
             }
 
         }
+
         @media (max-width: 768px) {
             .carousel-image {
                 height: 400px;
@@ -222,12 +223,12 @@
 
         .scroll-button.left {
             left: -20px;
-            background-color: #242B40;  
+            background-color: #242B40;
         }
 
         .scroll-button.right {
             right: -20px;
-            background-color: #242B40;  
+            background-color: #242B40;
         }
 
         .scroll-button i {
@@ -246,6 +247,7 @@
             .text-center.text-white.py-3.shadow .row .col-12 {
                 margin-bottom: 1rem;
             }
+
             .text-center.text-white.py-3.shadow .row .col-12.mb-2.mb-md-0 {
                 margin-bottom: 0;
             }
@@ -329,12 +331,15 @@
             </div>
         </div>
     </div>
-
+    
     <div class="custom-container mt-5">
         <div class="row">
             <div class="col-md-7">
-                <h1 class="" style="font-family: 'Sharp Grotesk'; font-weight: 500;" id="listing-title">{{ $listing->listing_title }}</h1>
+                <h1 class="" style="font-family: 'Sharp Grotesk'; font-weight: 500;" id="listing-title">
+                    {{ $listing->listing_title }}</h1>
                 </h1>
+                <p class="h3 font-weigth:100">Precio: ${{ number_format($listing->property_price, 0, ',', '.') }}</p>
+
                 <div class="d-flex align-items-center mt-3">
                     <i class="fa-solid fa-location-dot fs-5 me-2"></i>
                     <p class="mb-0 ml-2 ms-2">{{ $listing->sector }}, {{ $listing->city }}, {{ $listing->state }}</p>
@@ -357,8 +362,10 @@
                                 Proyectos
                         @endswitch
                     </span>
+                    
                 </div>
                 <div class="d-flex justify-content-around flex-wrap mt-4">
+
                     @if ($listing->bedroom > 0)
                         <div class="d-flex align-items-center justify-content-center flex-column text-center p-2">
                             <img src="{{ asset('img/dormitorios.png') }}" alt="Habitaciones" width="50px" height="50px">
@@ -379,332 +386,336 @@
                                 {{ $listing->garage > 1 ? 'Garajes' : 'Garaje' }}</p>
                         </div>
                     @endif
-                    @if ((isset($listing->construction_area) && !empty($listing->construction_area)) || (isset($listing->land_area) && !empty($listing->land_area)))
+                    @if (
+                        (isset($listing->construction_area) && !empty($listing->construction_area)) ||
+                            (isset($listing->land_area) && !empty($listing->land_area)))
                         <div class="d-flex align-items-center justify-content-center flex-column text-center p-2">
-                            <img src="{{ asset('img/area.png') }}" alt="Área de construcción" width="50px" height="50px">
+                            <img src="{{ asset('img/area.png') }}" alt="Área de construcción" width="50px"
+                                height="50px">
                             <p class="pt-2 fw-bold">
                                 @if (isset($listing->construction_area) && !empty($listing->construction_area))
-                                    {{ $listing->construction_area }} m<sup>2</sup></p>
-                                @elseif (isset($listing->land_area) && !empty($listing->land_area))
-                                    {{ $listing->land_area }} m<sup>2</sup></p>
-                                @endif
+                                    {{ $listing->construction_area }} m<sup>2</sup>
                             </p>
-                        </div>
+                        @elseif (isset($listing->land_area) && !empty($listing->land_area))
+                            {{ $listing->land_area }} m<sup>2</sup></p>
                     @endif
-                                </div>
-                <h2 style="font-family: 'Sharp Grotesk', sans-serif;">Acerca de esta propiedad</h2>
-                <p style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Sector:</strong> {{ $listing->sector }}</p>
-                <p style="font-family: 'Sharp Grotesk', sans-serif; text-align: justify;" id="description">
-                    <strong>Descripción:</strong>
-                    <span id="short-desc">{{ Str::limit($listing->listing_description, 200, '...') }}</span>
-                    <span id="full-desc" style="display: none;">{{ $listing->listing_description }}</span>
-                    @if (strlen($listing->listing_description) > 200)
-                        <a href="#" onclick="toggleDescription(); return false;" id="desc-toggle"
-                            style="color: gray; text-decoration: underline; cursor: pointer;">Ver más</a>
-                    @endif
-                </p>
-                @if (isset($listing->land_area) && $listing->land_area != 0)
-                    <p style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Metros de terreno:</strong>
-                        {{ $listing->land_area }} m<sup>2</sup></p>
+                    </p>
+                </div>
                 @endif
-                @if (isset($listing->construction_area) && $listing->construction_area != 0)
-                    <p style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Metros de construcción:</strong>
-                        {{ $listing->construction_area }} m<sup>2</sup></p>
+            </div>
+            <h2 style="font-family: 'Sharp Grotesk', sans-serif;">Acerca de esta propiedad</h2>
+
+            <p style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Sector:</strong> {{ $listing->sector }}</p>
+            <p style="font-family: 'Sharp Grotesk', sans-serif; text-align: justify;" id="description">
+                <strong>Descripción:</strong>
+                <span id="short-desc">{{ Str::limit($listing->listing_description, 200, '...') }}</span>
+                <span id="full-desc" style="display: none;">{{ $listing->listing_description }}</span>
+                @if (strlen($listing->listing_description) > 200)
+                    <a href="#" onclick="toggleDescription(); return false;" id="desc-toggle"
+                        style="color: gray; text-decoration: underline; cursor: pointer;">Ver más</a>
                 @endif
+            </p>
+            @if (isset($listing->land_area) && $listing->land_area != 0)
+                <p style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Metros de terreno:</strong>
+                    {{ $listing->land_area }} m<sup>2</sup></p>
+            @endif
+            @if (isset($listing->construction_area) && $listing->construction_area != 0)
+                <p style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Metros de construcción:</strong>
+                    {{ $listing->construction_area }} m<sup>2</sup></p>
+            @endif
 
 
 
 
-                @if (is_array(json_decode($listing->heading_details)))
-                    <div style="border: none; background-color: transparent;" class="card my-4">
-                        <div class="card-body" style="margin: -16px">
-                            <h2 class="card-title h6 pb-2"
-                                style="font-size: 23px; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom: 1px solid #B0BEC5;">
-                                <i class="fas fa-home" style="font-size: 28px; color: #242B40; margin-right: 10px;"></i>
-                                Detalles
-                            </h2>
-                            @foreach (json_decode($listing->heading_details) as $dets)
-                                <div class="row" style="padding-left: 7px">
-                                    <?php unset($dets[0]);
-                                    $printControl = 0; ?>
-                                    {{-- @php dd($dets); @endphp      --}}
-                                    {{-- @foreach ($dets as $det) --}}
-                                    @for ($i = 1; $i < count($dets); $i++)
-                                        @if ($printControl == 0)
-                                            <?php $printControl = 1; ?>
-                                            <div class="col-lg-3 col-md-4 col-6 p-1">
-                                                <span class="text-muted small"
-                                                    style="font-family: 'Sharp Grotesk'; font-weight: 300;">
-                                                    @foreach ($details as $detail)
-                                                        @if ($detail->id == $dets[$i])
-                                                            {{ $detail->charac_titile }} @if ($detail->id == $dets[$i] && $detail->id == 86)
-                                                                <span style="background-color: #242B40"
-                                                                    class="text-white px-2">
-                                                                    {{ $dets[$i + 1] }}</span>
-                                                            @endif
+            @if (is_array(json_decode($listing->heading_details)))
+                <div style="border: none; background-color: transparent;" class="card my-4">
+                    <div class="card-body" style="margin: -16px">
+                        <h2 class="card-title h6 pb-2"
+                            style="font-size: 23px; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom: 1px solid #B0BEC5;">
+                            <i class="fas fa-home" style="font-size: 28px; color: #242B40; margin-right: 10px;"></i>
+                            Detalles
+                        </h2>
+                        @foreach (json_decode($listing->heading_details) as $dets)
+                            <div class="row" style="padding-left: 7px">
+                                <?php unset($dets[0]);
+                                $printControl = 0; ?>
+                                {{-- @php dd($dets); @endphp      --}}
+                                {{-- @foreach ($dets as $det) --}}
+                                @for ($i = 1; $i < count($dets); $i++)
+                                    @if ($printControl == 0)
+                                        <?php $printControl = 1; ?>
+                                        <div class="col-lg-3 col-md-4 col-6 p-1">
+                                            <span class="text-muted small"
+                                                style="font-family: 'Sharp Grotesk'; font-weight: 300;">
+                                                @foreach ($details as $detail)
+                                                    @if ($detail->id == $dets[$i])
+                                                        {{ $detail->charac_titile }} @if ($detail->id == $dets[$i] && $detail->id == 86)
+                                                            <span style="background-color: #242B40"
+                                                                class="text-white px-2">
+                                                                {{ $dets[$i + 1] }}</span>
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+                                            </span>
+                                        </div>
+                                    @else
+                                        <?php $printControl = 0; ?>
+                                    @endif
+                                @endfor
+                                {{-- @endforeach     --}}
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+            @if (count(array_filter(explode(',', $listing->listinggeneralcharacteristics))) > 0)
+                <div style="border: none; background-color: transparent;" class="card my-4">
+                    <div class="card-body" style="margin: -16px">
+                        <h2 class="card-title h6 pb-2"
+                            style="font-size: 23px; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom: 1px solid #B0BEC5;">
+                            <i class="fas fa-home" style="font-size: 28px; color: #242B40; margin-right: 10px;"></i>
+                            Características
+                            Generales
+                        </h2>
+                        <div class="row" style="padding-left: 7px">
+                            @foreach (array_filter(explode(',', $listing->listinggeneralcharacteristics)) as $lgc)
+                                <div class="col-lg-3 col-md-4 col-6 p-1">
+                                    {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
+                                    <span class="text-muted small"
+                                        style="font-family: 'Sharp Grotesk'; font-weight: 300;">
+                                        @foreach ($generalcharacteristics as $gc)
+                                            @if ($gc->id == $lgc)
+                                                {{ $gc->title }}
+                                                @endif @if ($gc->id == $lgc && $lgc == 8 && $listing->num_pisos > 0)
+                                                    <b class="text-white px-1"
+                                                        style="background-color: #242B40">{{ $listing->num_pisos }}</b>
+                                                    @endif @if ($gc->id == $lgc && $lgc == 7 && $listing->niv_constr > 0)
+                                                        <b class="text-white px-1" style="background-color: #242B40">
+                                                            {{ $listing->niv_constr }}</b>
+                                                        @endif @if ($gc->id == $lgc && $lgc == 15 && $listing->pisos_constr > 0)
+                                                            <b class="text-white px-1" style="background-color: #242B40">
+                                                                {{ $listing->pisos_constr }}</b>
                                                         @endif
                                                     @endforeach
-                                                </span>
-                                            </div>
-                                        @else
-                                            <?php $printControl = 0; ?>
-                                        @endif
-                                    @endfor
-                                    {{-- @endforeach     --}}
+                                    </span>
                                 </div>
                             @endforeach
                         </div>
                     </div>
-                @endif
-                @if (count(array_filter(explode(',', $listing->listinggeneralcharacteristics))) > 0)
-                    <div style="border: none; background-color: transparent;" class="card my-4">
-                        <div class="card-body" style="margin: -16px">
-                            <h2 class="card-title h6 pb-2"
-                                style="font-size: 23px; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom: 1px solid #B0BEC5;">
-                                <i class="fas fa-home" style="font-size: 28px; color: #242B40; margin-right: 10px;"></i>
-                                Características
-                                Generales
-                            </h2>
-                            <div class="row" style="padding-left: 7px">
-                                @foreach (array_filter(explode(',', $listing->listinggeneralcharacteristics)) as $lgc)
-                                    <div class="col-lg-3 col-md-4 col-6 p-1">
-                                        {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
-                                        <span class="text-muted small"
-                                            style="font-family: 'Sharp Grotesk'; font-weight: 300;">
-                                            @foreach ($generalcharacteristics as $gc)
-                                                @if ($gc->id == $lgc)
-                                                    {{ $gc->title }}
-                                                    @endif @if ($gc->id == $lgc && $lgc == 8 && $listing->num_pisos > 0)
-                                                        <b class="text-white px-1"
-                                                            style="background-color: #242B40">{{ $listing->num_pisos }}</b>
-                                                        @endif @if ($gc->id == $lgc && $lgc == 7 && $listing->niv_constr > 0)
-                                                            <b class="text-white px-1" style="background-color: #242B40">
-                                                                {{ $listing->niv_constr }}</b>
-                                                            @endif @if ($gc->id == $lgc && $lgc == 15 && $listing->pisos_constr > 0)
-                                                                <b class="text-white px-1"
-                                                                    style="background-color: #242B40">
-                                                                    {{ $listing->pisos_constr }}</b>
-                                                            @endif
-                                                        @endforeach
-                                        </span>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                @endif
-                @if (count(array_filter(explode(',', $listing->listingenvironments))) > 0)
-                    <div style="border: none; background-color: transparent;" class="card my-4">
-                        <div class="card-body" style="margin: -16px">
-                            <h2 class="card-title h6 pb-2"
-                                style="font-size: 23px; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom: 1px solid #B0BEC5;">
-                                <i class="fas fa-home" style="font-size: 28px; color: #242B40; margin-right: 10px;"></i>
-                                Ambientes
-                            </h2>
-                            <div class="row" style="padding-left: 7px">
-                                @foreach (array_filter(explode(',', $listing->listingenvironments)) as $lenv)
-                                    <div class="col-lg-3 col-md-4 col-6 p-1">
-                                        {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
-                                        <span class="text-muted small"
-                                            style="font-family: 'Sharp Grotesk'; font-weight: 300;">
-                                            @foreach ($environments as $environment)
-                                                @if ($environment->id == $lenv)
-                                                    {{ $environment->title }}
-                                                @endif
-                                            @endforeach
-                                        </span>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                @endif
-                @if ($listing->status)
-                    <div class="container">
-                        <p class="text-center" style="font-weight: 400; font-size:20px">Compartir</p>
-                        <div class="d-flex justify-content-center">
-                            <p title="Compartir en Facebook" style="cursor: pointer" id="shareToFacebook"><i
-                                    class="fab fa-facebook" style="color: #0165E1;font-size:30px"></i></p>
-                            {{-- <p title="Compartir en Twitter" id="shareToTwitter" style="cursor: pointer"><i class="fab fa-twitter ml-3" style="color: #1DA1F2;font-size:30px"></i></p> --}}
-                            <p title="Compartir por WhatsApp" id="shareToWpp" style="cursor: pointer"><i
-                                    class="fab fa-whatsapp ml-3" style="color: #25D366;font-size:30px"></i></p>
-                        </div>
-                    </div>
-                @endif
-
-                <h3 class="mt-4" style="font-family: 'Sharp Grotesk'">Ubicación</h3>
-                <div class="d-flex align-items-center mt-3">
-                    <i class="fa-solid fa-location-dot fs-5 me-2"></i>
-                    <p class="mb-0 ml-2" style="font-family: 'Sharp Grotesk'">{{ $listing->sector }},
-                        {{ $listing->city }},
-                        {{ $listing->state }}</p>
                 </div>
-                <div id="map" style="height: 500px;" class="my-3"></div>
+            @endif
+            @if (count(array_filter(explode(',', $listing->listingenvironments))) > 0)
+                <div style="border: none; background-color: transparent;" class="card my-4">
+                    <div class="card-body" style="margin: -16px">
+                        <h2 class="card-title h6 pb-2"
+                            style="font-size: 23px; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom: 1px solid #B0BEC5;">
+                            <i class="fas fa-home" style="font-size: 28px; color: #242B40; margin-right: 10px;"></i>
+                            Ambientes
+                        </h2>
+                        <div class="row" style="padding-left: 7px">
+                            @foreach (array_filter(explode(',', $listing->listingenvironments)) as $lenv)
+                                <div class="col-lg-3 col-md-4 col-6 p-1">
+                                    {{-- <i class="fas fa-check px-2 text-muted"></i> --}}
+                                    <span class="text-muted small"
+                                        style="font-family: 'Sharp Grotesk'; font-weight: 300;">
+                                        @foreach ($environments as $environment)
+                                            @if ($environment->id == $lenv)
+                                                {{ $environment->title }}
+                                            @endif
+                                        @endforeach
+                                    </span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            @endif
+            @if ($listing->status)
+                <div class="container">
+                    <p class="text-center" style="font-weight: 400; font-size:20px">Compartir</p>
+                    <div class="d-flex justify-content-center">
+                        <p title="Compartir en Facebook" style="cursor: pointer" id="shareToFacebook"><i
+                                class="fab fa-facebook" style="color: #0165E1;font-size:30px"></i></p>
+                        {{-- <p title="Compartir en Twitter" id="shareToTwitter" style="cursor: pointer"><i class="fab fa-twitter ml-3" style="color: #1DA1F2;font-size:30px"></i></p> --}}
+                        <p title="Compartir por WhatsApp" id="shareToWpp" style="cursor: pointer"><i
+                                class="fab fa-whatsapp ml-3" style="color: #25D366;font-size:30px"></i></p>
+                    </div>
+                </div>
+            @endif
+
+            <h2 class="mt-4" style="font-family: 'Sharp Grotesk'">Ubicación</h2>
+            <div class="d-flex align-items-center mt-3">
+                <i class="fa-solid fa-location-dot fs-5 me-2"></i>
+                <p class="mb-0 ml-2" style="font-family: 'Sharp Grotesk'">{{ $listing->sector }},
+                    {{ $listing->city }},
+                    {{ $listing->state }}</p>
             </div>
+            <div id="map" style="height: 500px;" class="my-3"></div>
+        </div>
 
-            <div class="col-md-5 mb-5">
-                <div class="sticky-top" style="top: 0;padding: 0 30px;">
+        <div class="col-md-5 mb-5">
+            <div class="sticky-top" style="top: 0;padding: 0 30px;">
 
-                    <div class="text-center text-white py-3 shadow"
-                        style="background-color: #242B40; border-radius: 25px 25px 0 0;">
-                        <div class="row justify-content-center align-items-center">
-                            <div class="col-12 col-md-auto mb-2 mb-md-0">
-                                <span class="fw-bold"
-                                    style="font-size: 40px; line-height: 50px; font-family: 'Sharp Grotesk'; font-weight: 500;">
-                                    ${{ $listing->property_price }}</span>
-                            </div>
-                            @if ($listing->aliquot && $listing->aliquot > 0)
-                                <div class="col-12 d-md-none my-2 divider-mobile"></div> <!-- Spacer for mobile -->
-                                <div class="col-auto d-none d-md-block divider-desktop"></div> <!-- Divider for desktop -->
-                                <div class="col-12 col-md-auto">
-                                    <div class="row">
-                                        <span class="fw-bold"
-                                            style="font-size: 20px; font-family: 'Sharp Grotesk'; font-weight: 500;">Alícuota</span>
-                                    </div>
-                                    <div class="row">
-                                        <span class="fw-bold"
-                                            style="font-size: 20px; font-family: 'Sharp Grotesk'; font-weight: 500;">
-                                            ${{ $listing->aliquot }}</span>
-                                    </div>
-                                </div>
-                            @endif
+                <div class="text-center text-white py-3 shadow"
+                    style="background-color: #242B40; border-radius: 25px 25px 0 0;">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-12 col-md-auto mb-2 mb-md-0">
+                            <span class="fw-bold"
+                                style="font-size: 40px; line-height: 50px; font-family: 'Sharp Grotesk'; font-weight: 500;">
+                                ${{ number_format($listing->property_price, 0, ',', '.') }}</span>
                         </div>
-                    </div>
-
-                    <div class="bg-white pt-4 pb-5 shadow px-5" style="border-radius: 0 0 25px 25px;">
-                        <p class="text-center" style="font-size: x-large; font-weight: 600; ">¿Te interesa esta propiedad?
-                        </p>
-                        <p class="text-center">Proporciónanos tus datos y te contactaremos</p>
-                        <div class="d-flex justify-content-center">
-                            <form action="{{ route('web.sendlead') }}" method="POST" id="formDetailProp">
-
-                                @csrf
-
-                                <div class="form-group">
-                                    <input type="text" id="fname" name="fname" placeholder="Nombre"
-                                        class="w-100" style="border: none; border-bottom: 1px solid #242B40" required>
-                                    <input type="text" id="flastname" name="flastname" placeholder="Apellido"
-                                        class="w-100 mt-4" style="border: none; border-bottom: 1px solid #242B40"
-                                        required>
-                                    <input type="hidden" id="interestDetail" name="interest">
-                                </div>
-
-                                <div class="form-group mt-4 w-100">
-                                    <input type="number" id="tlf" name="tlf" placeholder="Teléfono"
-                                        class="w-100" style="border: none; border-bottom: 1px solid #242B40" required>
-                                </div>
-
-                                <div class="form-group mt-4 w-100">
-                                    <input type="email" id="email" name="email" placeholder="Correo electrónico"
-                                        class="w-100" style="border: none; border-bottom: 1px solid #242B40" required>
-                                </div>
-
-                                <div class="form-group mt-4 w-100">
-                                    <textarea name="message" id="message" rows="3" placeholder="Mensaje" class="w-100"
-                                        style="border: none; border-bottom: 1px solid #242B40" required>Hola, me interesa este inmueble y quiero que me contacten. Gracias</textarea>
-                                </div>
-
-                                <input type="hidden" name="interest" value="{{ $listing->product_code }}">
-
-                                <div class="form-group mt-4 w-100 d-flex justify-content-center">
-                                    <button id="btnEnviar" type="button" class="btn text-white rounded-pill"
-                                        style="background-color: #242B40;"
-                                        onclick="sendFormDetail({{ $listing->product_code }}, event)">ENVIAR</button>
-                                </div>
-
-                                <p class="text-center mt-4" style="font-size: x-large; font-weight: 600">Nuestros datos de
-                                    contacto</p>
-
-                                <div class="d-flex gap-3 ms-4">
-                                    <div class="rounded-circle d-flex justify-content-center align-items-center"
-                                        style="border: 1px solid #242b40a2; width: 30px; height: 30px">
-                                        <i class="fa-solid fa-phone"></i>
-                                    </div>
-                                    <a style="text-decoration: none"
-                                        href="tel:{{ $listing->listingtypestatus == 'en-venta' ? '+593983849073' : '+593983849073' }}"
-                                        class="mt-1 ml-2 text-dark">{{ $listing->listingtypestatus == 'en-venta' ? '098-384-9073' : '098-384-9073' }}</a>
-                                </div>
-
-                                <div class="d-flex gap-3 ms-4 mt-2">
-                                    <div class="rounded-circle d-flex justify-content-center align-items-center"
-                                        style="border: 1px solid #242b40a2; width: 30px; height: 30px">
-                                        <i class="fa-brands fa-whatsapp"></i>
-                                    </div>
-                                    <a style="text-decoration: none"
-                                        href="https://api.whatsapp.com/send?phone={{ $listing->listingtypestatus == 'en-venta' ? '593983849073' : '593983849073' }}&text=Hola%20*Grupo%20Housing*,%20deseo%20consultar%20por%20esta%20propiedad:%20*{{ $listing->product_code }}*"
-                                        class="mt-1 ml-2 text-dark">{{ $listing->listingtypestatus == 'en-venta' ? '098-384-9073' : '098-384-9073' }}</a>
-                                </div>
-                                <div class="d-flex gap-3 ms-4 mt-2">
-                                    <div class="rounded-circle d-flex justify-content-center align-items-center"
-                                        style="border: 1px solid #242b40a2; width: 30px; height: 30px">
-                                        <img width="15px" src="{{ asset('img/email-icon.png') }}" alt="">
-                                    </div>
-                                    <a style="text-decoration: none" href="mailto:info@housingrentgroup.com"
-                                        class="mt-2 text-dark ml-2">info@housingrentgroup.com</a>
-                                </div>
-
-                                <div class="d-flex gap-3 ms-4 mt-2">
-                                    <div class="rounded-circle d-flex justify-content-center align-items-center"
-                                        style="border: 1px solid #242b40a2; width: 30px; height: 30px">
-                                        <img width="15px" src="{{ asset('img/location-icon.png') }}" alt="">
-                                    </div>
-                                    <a style="text-decoration: none" class="mt-1 text-dark ml-2"
-                                        href="https://maps.app.goo.gl/g4G5hBDe9doEPJvx7">Remigio Tamariz Crespo y Av.
-                                        Solano</a>
-                                </div>
-
-                                <div class="form-group mb-2">
-                                    <input type="hidden" name="g-recaptcha-response" id="recaptchaToken">
-
-                                    @error('captcha')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    @if ($user->profile_photo_path != null && $user->status == 1)
-                        <div class="container">
-                            <div class="text-center border px-3 mt-3 rounded py-3 card-asesor">
-                                <img class="rounded-circle img-profile" width="170px" height="170px"
-                                    src="{{ asset('uploads/profiles/' . $user->profile_photo_path) }}"
-                                    alt="Imagen de perfil">
-                                <p class="mt-3 mb-0" style="font-weight: 200">{{ $user->name }}</p>
-                                <p class="font-weight-normal m-0" style="font-size: small">
-                                    @if ($user->role == 'ASESOR')
-                                        Asesor Inmobiliario
-                                    @else
-                                        Gestor Inmobiliario
-                                    @endif
-                                </p>
-                                <hr>
+                        @if ($listing->aliquot && $listing->aliquot > 0)
+                            <div class="col-12 d-md-none my-2 divider-mobile"></div> <!-- Spacer for mobile -->
+                            <div class="col-auto d-none d-md-block divider-desktop"></div> <!-- Divider for desktop -->
+                            <div class="col-12 col-md-auto">
                                 <div class="row">
-                                    <div class="col-sm-4 col-4">
-                                        <a href="tel:+593983849073">
-                                            <i class="fas fa-phone-alt text-light p-2 rounded-circle icon-phone border border-white"
-                                                style="background-color: #242B40"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-sm-4 col-4">
-                                        <a target="_blank"
-                                            href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *{{ $listing->product_code }}* - *{{ $listing->listing_title }}* y deseo que me contacten. Gracias 😊%0A{{ url()->current() }}">
-                                            <i class="fab fa-whatsapp text-light p-2 rounded-circle border border-white"
-                                                style="background-color: #242B40"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-sm-4 col-4">
-                                        <a href="mailto:ventas@casacredito.com">
-                                            <i class="fas fa-envelope text-light p-2 rounded-circle border border-white"
-                                                style="background-color: #242B40"></i>
-                                        </a>
-                                    </div>
+                                    <span class="fw-bold"
+                                        style="font-size: 20px; font-family: 'Sharp Grotesk'; font-weight: 500;">Alícuota</span>
+                                </div>
+                                <div class="row">
+                                    <span class="fw-bold"
+                                        style="font-size: 20px; font-family: 'Sharp Grotesk'; font-weight: 500;">
+                                        ${{ number_format($listing->aliquot, 0, ',', '.') }}</span>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+
+
+                <div class="bg-white pt-4 pb-5 shadow px-5" style="border-radius: 0 0 25px 25px;">
+                    <p class="text-center" style="font-size: x-large; font-weight: 600; ">¿Te interesa esta propiedad?
+                    </p>
+                    <p class="text-center">Proporciónanos tus datos y te contactaremos</p>
+                    <div class="d-flex justify-content-center">
+                        <form action="{{ route('web.sendlead') }}" method="POST" id="formDetailProp">
+
+                            @csrf
+
+                            <div class="form-group">
+                                <input type="text" id="fname" name="fname" placeholder="Nombre" class="w-100"
+                                    style="border: none; border-bottom: 1px solid #242B40" required>
+                                <input type="text" id="flastname" name="flastname" placeholder="Apellido"
+                                    class="w-100 mt-4" style="border: none; border-bottom: 1px solid #242B40" required>
+                                <input type="hidden" id="interestDetail" name="interest">
+                            </div>
+
+                            <div class="form-group mt-4 w-100">
+                                <input type="number" id="tlf" name="tlf" placeholder="Teléfono"
+                                    class="w-100" style="border: none; border-bottom: 1px solid #242B40" required>
+                            </div>
+
+                            <div class="form-group mt-4 w-100">
+                                <input type="email" id="email" name="email" placeholder="Correo electrónico"
+                                    class="w-100" style="border: none; border-bottom: 1px solid #242B40" required>
+                            </div>
+
+                            <div class="form-group mt-4 w-100">
+                                <textarea name="message" id="message" rows="3" placeholder="Mensaje" class="w-100"
+                                    style="border: none; border-bottom: 1px solid #242B40" required>Hola, me interesa este inmueble y quiero que me contacten. Gracias</textarea>
+                            </div>
+
+                            <input type="hidden" name="interest" value="{{ $listing->product_code }}">
+
+                            <div class="form-group mt-4 w-100 d-flex justify-content-center">
+                                <button id="btnEnviar" type="button" class="btn text-white rounded-pill"
+                                    style="background-color: #242B40;"
+                                    onclick="sendFormDetail({{ $listing->product_code }}, event)">ENVIAR</button>
+                            </div>
+
+                            <p class="text-center mt-4" style="font-size: x-large; font-weight: 600">Nuestros datos de
+                                contacto</p>
+
+                            <div class="d-flex gap-3 ms-4">
+                                <div class="rounded-circle d-flex justify-content-center align-items-center"
+                                    style="border: 1px solid #242b40a2; width: 30px; height: 30px">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <a style="text-decoration: none"
+                                    href="tel:{{ $listing->listingtypestatus == 'en-venta' ? '+593983849073' : '+593983849073' }}"
+                                    class="mt-1 ml-2 text-dark">{{ $listing->listingtypestatus == 'en-venta' ? '098-384-9073' : '098-384-9073' }}</a>
+                            </div>
+
+                            <div class="d-flex gap-3 ms-4 mt-2">
+                                <div class="rounded-circle d-flex justify-content-center align-items-center"
+                                    style="border: 1px solid #242b40a2; width: 30px; height: 30px">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <a style="text-decoration: none"
+                                    href="https://api.whatsapp.com/send?phone={{ $listing->listingtypestatus == 'en-venta' ? '593983849073' : '593983849073' }}&text=Hola%20*Grupo%20Housing*,%20deseo%20consultar%20por%20esta%20propiedad:%20*{{ $listing->product_code }}*"
+                                    class="mt-1 ml-2 text-dark">{{ $listing->listingtypestatus == 'en-venta' ? '098-384-9073' : '098-384-9073' }}</a>
+                            </div>
+                            <div class="d-flex gap-3 ms-4 mt-2">
+                                <div class="rounded-circle d-flex justify-content-center align-items-center"
+                                    style="border: 1px solid #242b40a2; width: 30px; height: 30px">
+                                    <img width="15px" src="{{ asset('img/email-icon.png') }}" alt="">
+                                </div>
+                                <a style="text-decoration: none" href="mailto:info@housingrentgroup.com"
+                                    class="mt-2 text-dark ml-2">info@housingrentgroup.com</a>
+                            </div>
+
+                            <div class="d-flex gap-3 ms-4 mt-2">
+                                <div class="rounded-circle d-flex justify-content-center align-items-center"
+                                    style="border: 1px solid #242b40a2; width: 30px; height: 30px">
+                                    <img width="15px" src="{{ asset('img/location-icon.png') }}" alt="">
+                                </div>
+                                <a style="text-decoration: none" class="mt-1 text-dark ml-2"
+                                    href="https://maps.app.goo.gl/g4G5hBDe9doEPJvx7">Remigio Tamariz Crespo y Av.
+                                    Solano</a>
+                            </div>
+
+                            <div class="form-group mb-2">
+                                <input type="hidden" name="g-recaptcha-response" id="recaptchaToken">
+
+                                @error('captcha')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                @if ($user->profile_photo_path != null && $user->status == 1)
+                    <div class="container">
+                        <div class="text-center border px-3 mt-3 rounded py-3 card-asesor">
+                            <img class="rounded-circle img-profile" width="170px" height="170px"
+                                src="{{ asset('uploads/profiles/' . $user->profile_photo_path) }}"
+                                alt="Imagen de perfil">
+                            <p class="mt-3 mb-0" style="font-weight: 200">{{ $user->name }}</p>
+                            <p class="font-weight-normal m-0" style="font-size: small">
+                                @if ($user->role == 'ASESOR')
+                                    Asesor Inmobiliario
+                                @else
+                                    Gestor Inmobiliario
+                                @endif
+                            </p>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4 col-4">
+                                    <a href="tel:+593983849073">
+                                        <i class="fas fa-phone-alt text-light p-2 rounded-circle icon-phone border border-white"
+                                            style="background-color: #242B40"></i>
+                                    </a>
+                                </div>
+                                <div class="col-sm-4 col-4">
+                                    <a target="_blank"
+                                        href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *{{ $listing->product_code }}* - *{{ $listing->listing_title }}* y deseo que me contacten. Gracias 😊%0A{{ url()->current() }}">
+                                        <i class="fab fa-whatsapp text-light p-2 rounded-circle border border-white"
+                                            style="background-color: #242B40"></i>
+                                    </a>
+                                </div>
+                                <div class="col-sm-4 col-4">
+                                    <a href="mailto:ventas@casacredito.com">
+                                        <i class="fas fa-envelope text-light p-2 rounded-circle border border-white"
+                                            style="background-color: #242B40"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                    @endif
-                </div>
+                    </div>
+                @endif
             </div>
         </div>
+    </div>
     </div>
     @php
         $listingsSimilar = \App\Models\Listing::select(
