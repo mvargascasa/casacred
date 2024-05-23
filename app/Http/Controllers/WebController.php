@@ -520,10 +520,10 @@ class WebController extends Controller
 								'additional_image_link',
 								'title',
 								'description',
-								'address',
-								// 'address.region',
-								// 'address.country',
-								// 'address.postal_code',
+								'address.city',
+								'address.region',
+								'address.country',
+								'address.postal_code',
 								'listing_type',
 								'num_baths',
 								'num_beds',
@@ -557,11 +557,6 @@ class WebController extends Controller
                     $listingtypestatus = "for_rent";
                 }
 
-                $address = "Sin informacion";
-                if($li->city != null){
-                    $address = $li->city;
-                }
-
                 $description = strip_tags($li->listing_description);
 
 				$lineData = array(	$li->id,	
@@ -575,11 +570,10 @@ class WebController extends Controller
 									$li->images,
 									ucwords(strtolower($li->listing_title)), 
 									ucwords(strtolower($description)), 
-                                    $address,
-									//'Cuenca',
-									// 'Azuay',
-									// 'Ecuador',
-									// '010202',
+									'Cuenca',
+									'Azuay',
+									'Ecuador',
+									'010202',
 									'new_listing',
 									'1',
 									'1',
