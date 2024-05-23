@@ -24,9 +24,6 @@ class DownloadController extends Controller
             
             // Reducir la opacidad de la marca de agua al 50%
             $watermark->opacity(50);
-
-            // Redimensionar la marca de agua al doble de su tamaño original
-            $watermark->resize($watermark->width() / 2, $watermark->height() / 2);
     
             foreach ($images as $image) {
                 $imagePath = public_path() . "/uploads/listing/" . $image;
@@ -43,12 +40,12 @@ class DownloadController extends Controller
                     return "Fuente de imagen no legible: " . $image;
                 }
     
-                // $imageWidth = $img->width();
+                $imageWidth = $img->width();
     
-                // $watermarkSize = round(10 * $imageWidth / 40);
-                // $watermark->resize($watermarkSize, null, function($constraint) {
-                //     $constraint->aspectRatio();
-                // });
+                $watermarkSize = round(10 * $imageWidth / 40);
+                $watermark->resize($watermarkSize, null, function($constraint) {
+                    $constraint->aspectRatio();
+                });
     
                 $img->insert($watermark, 'center', 0, 0);
     
