@@ -218,7 +218,7 @@ Route::get('/blog', [WebController::class, 'blog'])->name('web.blog');
 Route::get('/post/{slug}', [WebController::class, 'showpost'])->name('web.show.post');
 
 
-Route::get('/crm/getlistingscsv', [WebController::class, 'listingscsv'])->name('web.listingscsv');
+Route::get('/crm/getlistingscsvnew', [WebController::class, 'listingscsv'])->name('web.listingscsv');
 
 //   SEO
 Route::get('/seo', [WebController::class, 'seo'])->name('web.seo');
