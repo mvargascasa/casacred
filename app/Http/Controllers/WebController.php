@@ -516,7 +516,7 @@ class WebController extends Controller
 								'availability',
 								'condition',
 								'link',
-								'image_link',
+								'image[0].url',
 								'additional_image_link',
 								'title',
 								'description',
