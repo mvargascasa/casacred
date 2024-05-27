@@ -650,8 +650,8 @@
                                     style="border: 1px solid #242b40a2; width: 30px; height: 30px">
                                     <img width="15px" src="{{ asset('img/email-icon.png') }}" alt="">
                                 </div>
-                                <a style="text-decoration: none" href="mailto:info@housingrentgroup.com"
-                                    class="mt-2 text-dark ml-2">info@housingrentgroup.com</a>
+                                <a style="text-decoration: none" href="mailto:info@grupohousing.com"
+                                    class="mt-2 text-dark ml-2">info@grupohousing.com</a>
                             </div>
 
                             <div class="d-flex gap-3 ms-4 mt-2">
