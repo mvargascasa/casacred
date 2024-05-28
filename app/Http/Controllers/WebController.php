@@ -324,7 +324,7 @@ class WebController extends Controller
         // else
 
         if($listing->status != 0) return view('detailprop2',compact('listing','details','benefits','services','types','mobile', 'user', 'values', 'generalcharacteristics', 'environments', 'media'));
-        else return redirect()->route('web.propiedades');
+        else return redirect('/propiedades-en-general');
     }
 
     public function getstates($id){
