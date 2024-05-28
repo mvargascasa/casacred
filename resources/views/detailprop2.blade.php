@@ -199,6 +199,9 @@
             .section-interest{
                 display: none !important;
             }
+            #map{
+                height: 500px !important;
+            }
         }
 
         @media (max-width: 768px) {
@@ -213,6 +216,9 @@
             }
             .section-interest{
                 display: block !important;
+            }
+            #map{
+                height: 400px !important
             }
         }
 
@@ -561,7 +567,7 @@
                     {{ $listing->city }},
                     {{ $listing->state }}</p>
             </div>
-            <div id="map" style="height: 500px;" class="my-3"></div>
+            <div id="map" style="height: 400px;" class="my-3"></div>
         </div>
 
         <div class="col-md-5 mb-5">
@@ -927,7 +933,7 @@
         const lat = {{ $listing->lat }};
         const lng = {{ $listing->lng }};
 
-        let map = L.map('map').setView([lat, lng], 15);
+        let map = L.map('map').setView([lat + 0.003, lng], 15);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -946,7 +952,7 @@
         let popup = L.popup()
             .setLatLng([lat + 0.004, lng])
             .setContent(
-                `<div class="text-center"> <b>Sector donde se encuentra la propiedad:</b> <br> <br> <span> ${title} </span> <br> <br> <img class='w-100' src='/uploads/listing/600/${images}' /></div>`
+                `<div class="text-center w-auto"> <b style='font-weight: 700'>Sector donde se encuentra la propiedad:</b> <br> <span> ${title} </span> <br> <img width='100px' src='/uploads/listing/600/${images}' /></div>`
             )
             .addTo(map);
     </script>
