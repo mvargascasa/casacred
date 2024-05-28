@@ -156,7 +156,7 @@ if(strpos($actual_link, 'localhost') === false){
         }
 
         .telf {
-            z-index: 3;
+            z-index: 100000 !important;
             position: fixed;
             bottom: 10px;
             right: 0px;
@@ -845,7 +845,7 @@ if(strpos($actual_link, 'localhost') === false){
     </div>
 
     <div class="telf d-flex">
-        <div id="call-usa-ecu" class="bg-danger text-light d-flex" style="margin-right: -105px">
+        <div id="call-usa-ecu" class="bg-danger text-light d-flex" style="margin-right: -105px;">
             <div onclick="openDivCallUsaEcu()" style="cursor: pointer; ">
                 <i class="fas fa-phone-alt fa-2x bg-danger p-2 text-light"></i>
             </div>
