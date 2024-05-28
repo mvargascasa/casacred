@@ -202,6 +202,9 @@
             #map{
                 height: 500px !important;
             }
+            .form-contact{
+                padding: 0px 30px !important;
+            }
         }
 
         @media (max-width: 768px) {
@@ -219,6 +222,9 @@
             }
             #map{
                 height: 400px !important
+            }
+            .form-contact{
+                padding: 0px 0px !important;
             }
         }
 
@@ -571,7 +577,7 @@
         </div>
 
         <div class="col-md-5 mb-5">
-            <div class="sticky-top" style="top: 0;padding: 0 30px;">
+            <div class="sticky-top form-contact" style="top: 0;">
 
                 <div class="text-center text-white py-3 shadow"
                     style="background-color: #242B40; border-radius: 25px 25px 0 0;">
