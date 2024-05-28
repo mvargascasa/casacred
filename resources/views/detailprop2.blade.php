@@ -196,12 +196,23 @@
                 width: 180px;
                 height: 150px;
             }
-
+            .section-interest{
+                display: none !important;
+            }
         }
 
         @media (max-width: 768px) {
             .carousel-image {
                 height: 400px;
+            }
+            .telf{
+                display: none !important;
+            }
+            .whatsapp-group{
+                display: none !important;
+            }
+            .section-interest{
+                display: block !important;
             }
         }
 
@@ -823,6 +834,19 @@
             </div>
         </div>
     @endif
+
+    <section class="w-100 py-2 px-3 section-interest" style="position: fixed; bottom: 0px; background-color: #242B40; z-index: 10000">
+        <p style="font-size: medium" class="text-white m-0 p-0">¿Te interesa esta propiedad? <span style="font-weight: 700;">¡Contáctanos!</span></p>
+        <div class="d-flex justify-content-center align-items-center mt-1" style="gap: 10px">
+            <div class="w-100">
+                <a class="btn btn-sm btn-outline-light rounded-pill w-100" href="https://api.whatsapp.com/send?phone=593983849073&text=Hola%20Grupo%20Housing,%20estoy%20interesado/a%20en%20esta%20propiedad:%20*{{$listing->product_code}}*%0A%0A{{Request::url()}}">WhatsApp</a>
+            </div>
+            <div class="w-100">
+                <a class="btn btn-sm btn-outline-light rounded-pill w-100" href="tel:+593983849073">Llamar</a>
+            </div>
+        </div>
+    </section>
+
 @endsection
 
 @section('script')
