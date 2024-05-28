@@ -839,7 +839,7 @@
         <p style="font-size: medium" class="text-white m-0 p-0">¿Te interesa esta propiedad? <span style="font-weight: 700;">¡Contáctanos!</span></p>
         <div class="d-flex justify-content-center align-items-center mt-1" style="gap: 10px">
             <div class="w-100">
-                <a class="btn btn-outline-light rounded-pill w-100" href="https://api.whatsapp.com/send?phone=593983849073&text=Hola%20Grupo%20Housing,%20estoy%20interesado/a%20en%20esta%20propiedad:%20*{{$listing->product_code}}*%0A%0A{{Request::url()}}">WhatsApp</a>
+                <a class="btn btn-outline-light rounded-pill w-100" href="https://api.whatsapp.com/send?phone=593983849073&text=Hola%20Grupo%20Housing,%20estoy%20interesado/a%20en%20esta%20propiedad:%20*{{$listing->product_code}}*%0A{{Request::url()}}">WhatsApp</a>
             </div>
             <div class="w-100">
                 <a class="btn btn-outline-light rounded-pill w-100" href="tel:+593983849073">Llamar</a>
