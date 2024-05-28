@@ -884,10 +884,10 @@
                         <p class="m-0 py-3 px-3 h5">Cod: ${property.product_code}</p>
                     </div>
                     <div class="card-body">
-                        <a href="/propiedad/${property.slug}" class="text-dark" style="text-decoration: none;">
-                            <h2 class="card-title" style="font-family: 'Sharp Grotesk', sans-serif; font-size: 1.4rem; padding-right: 60px; font-weight: 500;">${property.listing_title.charAt(0).toUpperCase() + property.listing_title.slice(1).toLowerCase()}</h2>
+                        <h2 class="h5 text-muted order-2" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 300;"><i class="fas fa-map-marker-alt"></i> ${property.sector ? ` ${property.sector},` : ''} ${property.city}, ${property.state}</h2>
+                        <a href="/propiedad/${property.slug}" class="text-dark order-1" style="text-decoration: none;">
+                            <h3 class="card-title" style="font-family: 'Sharp Grotesk', sans-serif; font-size: 1.4rem; padding-right: 60px; font-weight: 500;">${property.listing_title.charAt(0).toUpperCase() + property.listing_title.slice(1).toLowerCase()}</h3>
                         </a>
-                        <h3 class="h5 text-muted" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 300;"><i class="fas fa-map-marker-alt"></i> ${property.sector ? ` ${property.sector},` : ''} ${property.city}, ${property.state}</h3>
                         <p class="card-text" style="font-weight:500; font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">${formattedPrice}</p>
                         ${aliquotInfo}
                         <h4 class="h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100;">${formattedDescription}</h4>
@@ -1003,14 +1003,14 @@
                 <div class="position-absolute" style="top: 0px; right: 0px; background-color: #242B40; color: #ffffff; border-radius: 0px 0px 0px 25px;">
                     <p class="m-0 py-2 px-2 h6" style="font-family: 'Sharp Grotesk', sans-serif;">Cod: ${property.product_code}</p>
                 </div>
-                <a href="/propiedad/${property.slug}" class="text-dark" style="text-decoration: none;">
-                    <h2 class="card-title" style="font-family: 'Sharp Grotesk', sans-serif; font-size: 1.2rem; font-weight: 500;">
-                        ${property.listing_title.charAt(0).toUpperCase() + property.listing_title.slice(1).toLowerCase()}
-                    </h2>
-                </a>
-                <h3 class="h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 300;">
+                <h2 class="h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 300;">
                     <i class="fas fa-map-marker-alt"></i> ${property.sector ? `${property.sector},` : ''} ${property.city}, ${property.state}
-                </h3>
+                </h2>
+                <a href="/propiedad/${property.slug}" class="text-dark" style="text-decoration: none;">
+                    <h3 class="card-title" style="font-family: 'Sharp Grotesk', sans-serif; font-size: 1.2rem; font-weight: 500;">
+                        ${property.listing_title.charAt(0).toUpperCase() + property.listing_title.slice(1).toLowerCase()}
+                    </h3>
+                </a>
                 
                 ${aliquotInfo}
                 <h4 class="card-text h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100; font-size: 15px; text-align: justify">${formattedDescription}</h4>
