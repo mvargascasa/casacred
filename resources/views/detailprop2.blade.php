@@ -566,14 +566,14 @@
                 </div>
             @endif
 
-            <h2 class="mt-4" style="font-family: 'Sharp Grotesk'">Ubicación</h2>
+            {{-- <h2 class="mt-4" style="font-family: 'Sharp Grotesk'">Ubicación</h2>
             <div class="d-flex align-items-center mt-3">
                 <i class="fa-solid fa-location-dot fs-5 me-2"></i>
                 <p class="mb-0 ml-2" style="font-family: 'Sharp Grotesk'">{{ $listing->sector }},
                     {{ $listing->city }},
                     {{ $listing->state }}</p>
-            </div>
-            <div id="map" style="height: 400px;" class="my-3"></div>
+            </div> --}}
+            {{-- <div id="map" style="height: 400px;" class="my-3"></div> --}}
         </div>
 
         <div class="col-md-5 mb-5">
@@ -935,7 +935,7 @@
             }
         }
     </script>
-    <script>
+    {{-- <script>
         const lat = {{ $listing->lat }};
         const lng = {{ $listing->lng }};
 
@@ -961,7 +961,7 @@
                 `<div class="text-center w-auto"> <b style='font-weight: 700'>Sector donde se encuentra la propiedad:</b> <br> <span> ${title} </span> <br> <img width='100px' src='/uploads/listing/600/${images}' /></div>`
             )
             .addTo(map);
-    </script>
+    </script> --}}
     <script>
         function onScrollEvent(entries, observer) {
             entries.forEach(function(entry) {
