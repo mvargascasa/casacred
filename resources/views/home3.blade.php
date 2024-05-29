@@ -8,7 +8,7 @@
     <meta property="og:type"               content="website" />
     <meta property="og:title"              content="Propiedades en Venta en Ecuador - Grupo Housing" />
     <meta property="og:description"        content="Contamos con un amplio directorio de propiedades dentro del territorio ecuatoriano. Casas, Departamentos, Terrenos en Venta @isset($searchtxt) en {{ $searchtxt }}. @else ¡Visítenos! @endif ✅" />
-    <meta property="og:image"              content="{{ asset('img/meta-image-social-cc.jpg') }}" />
+    <meta property="og:image"              content="{{ asset('img/grupo-housing-og.png') }}" />
 
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
