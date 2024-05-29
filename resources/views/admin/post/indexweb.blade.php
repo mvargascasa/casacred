@@ -1,7 +1,7 @@
 @extends('layouts.web')
 
 @section('header')
-    <title>Blog Casa Crédito Inmobiliaria</title>
+    <title>Descubre las últimas noticias del Sector Inmobiliario - Grupo Housing</title>
     {{-- metaetiquetas --}}
     <style>
         .card {
