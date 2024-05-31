@@ -154,7 +154,10 @@ class PropertyController extends Controller
 
         if ($sector) {
             $properties_filter->where('sector', 'LIKE', "%{$sector}%");
+            $properties_filter->where('address', 'LIKE', "%{$sector}%");
         }
+
+
         if (count($typeIds) >= 2) {
             $listingTypeId = $typeIds[0];
 
@@ -183,6 +186,7 @@ class PropertyController extends Controller
                     ->orWhere('city', 'LIKE', "%{$word}%")
                     ->orWhere('state', 'LIKE', "%{$word}%")
                     ->orWhere('sector', 'LIKE', "%{$word}%")
+                    ->orWhere('address', 'LIKE', "%{$word}%")
                     ->orWhere('product_code', 'LIKE', "%{$word}%")
                     ->orWhere('type_title', 'LIKE', "%{$word}%");
             });
@@ -230,6 +234,7 @@ class PropertyController extends Controller
 
         return response()->json($responseData);
     }
+
     private function getStatusVariants()
     {
         return [
