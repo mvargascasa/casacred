@@ -758,6 +758,21 @@
                 titleSuffix += ` en ${locationDetails.join(", ")}`;
             }
 
+            let metaDescripcion = document.querySelector('meta[name="description"]');
+            
+            if (metaDescripcion) {
+                
+                let contentMetaDescription = "";
+
+                if(total < 1){
+                    contentMetaDescription = 'Encuentre la casa de sus sueños, donde los sueños se hacen realidad 😉 Contamos con una gran variedad de propiedades disponibles ¡Contáctenos!';
+                } else{
+                    contentMetaDescription = `Encontramos ${total} opciones de ${strTitle(titleSuffix)} disponibles. ¡Solicita ahora una visita y descubre tu nuevo hogar ideal!`;
+                }
+                
+                // Cambia el atributo content de la meta descripción
+                metaDescripcion.setAttribute('content', contentMetaDescription);
+            }
 
             let titleComponents = `${total} ${titleSuffix} en Ecuador - Grupo Housing`;
             document.title = `${titleComponents}`;
@@ -808,6 +823,13 @@
             document.getElementById('pagination').innerHTML = paginationHtml;
 
             pagegobal = pagination.current_page;
+        }
+
+        // Convertir los primeras letras de cada palabra en mayusculas para la metadescription
+        function strTitle(cadena) {
+            return cadena.split(' ').map(function(palabra) {
+                return palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase();
+            }).join(' ');
         }
 
 
