@@ -1,7 +1,7 @@
 @extends('layouts.web2')
 @section('header')
     <title>Grupo Housing - Propiedades en Venta en Ecuador</title>
-    <meta name="description" content="Contamos con un amplio directorio de propiedades dentro del territorio ecuatoriano. Casas, Departamentos, Terrenos en Venta @isset($searchtxt) en {{ $searchtxt }}. @else ¡Visítenos! @endif ✅"/>
+    <meta name="description" content="Inmobiliaria en Cuenca especializada en la venta de Casas, Departamentos, Terrenos y más propiedades. @isset($searchtxt) en {{ $searchtxt }}. @else ¡Visítanos y conoce todo nuestro catálogo! @endif ✅"/>
     <meta name="keywords" content="inmobiliaria en cuenca, inmobiliarias en cuenca, inmobiliarias cuenca, inmobiliaria en cuenca ecuador, inmobiliarias en cuenca ecuador, grupo housing, grupo housing inmobiliaria">
 
     <meta property="og:url"                content="{{ route('web.index') }}" />
@@ -570,7 +570,7 @@ $bathroom=0;
   <section class="row justify-content-center">
     <section class="col-12 col-md-5 mb-4 mb-md-0" data-aos="fade-down-right">
       <h2 style="font-family: 'Sharp Grotesk'; font-weight: 500">Contáctanos</h2>
-      <p class="mt-3">Confía en nosotros para hacer realidad tus sueños inmobiliarios</p>
+      <p class="mt-3">Confía en nosotros para hacer realidad tus sueños inmobiliarios. <span style="font-weight: 500">Grupo Housing</span> es una Inmobiliaria en Cuenca especializada en la venta de propiedades.</p>
       <p style="font-weight: 500">Proporciónanos tus datos y te contactaremos</p>
       <form action="{{ route('send.lead.form.home') }}" method="POST">
         @csrf
