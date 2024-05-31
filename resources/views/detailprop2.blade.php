@@ -199,7 +199,7 @@
             .section-interest{
                 display: none !important;
             }
-            #map{
+            #map, #absolutemap{
                 height: 500px !important;
             }
             .form-contact{
@@ -221,8 +221,8 @@
             .section-interest{
                 display: block !important;
             }
-            #map{
-                height: 400px !important
+            #map, #absolutemap{
+                height: 450px !important
             }
             .form-contact{
                 padding: 0px 0px !important;
@@ -286,6 +286,20 @@
         .divider-mobile {
             border-top: 2px solid white;
             width: 75%;
+        }
+        @keyframes slideInFromRight {
+            0% {
+                transform: translateX(50%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .slide-in {
+            animation: slideInFromRight 500ms ease-out;
         }
     </style>
 @endsection
@@ -574,7 +588,60 @@
                     {{ $listing->city }},
                     {{ $listing->state }}</p>
             </div> --}}
-            {{-- <div id="map" style="height: 400px;" class="my-3"></div> --}}
+            <div class="position-relative">
+                <div id="map" style="height: 400px;" class="my-3"></div>
+                <div id="absolutemap" class="position-absolute d-flex justify-content-center align-items-center px-2" style="height: 400px; width: 100%; top: 0px; right: 0px; z-index: 1000; background-color: #6464643d; backdrop-filter: blur(4px)">
+                    <div id="buttonOpenForm" class="bg-white rounded p-4 text-center shadow">
+                        <p style="font-weight: 600">¿Deseas visitar esta propiedad?</p>
+                        <button class="btn text-white rounded-pill" style="background-color: #242B40" onclick="openFormAgendarCita()">Agenda tu cita aquí</button>
+                    </div>
+                    <div id="formAgendarCita" class="p-4 bg-white rounded d-none slide-in">
+                        <div class="d-flex justify-content-end">
+                           <span style="font-size: small; cursor: pointer;" onclick="openFormAgendarCita()">Cancelar</span>
+                        </div>
+                        <p style="font-weight: 500">Ingresa tu información y agendaremos una cita</p>
+                        <form action="{{ route('web.sendlead') }}" method="POST">
+                            @csrf
+                            <div class="row">
+                                <div class="col-sm-6 col-6">
+                                    <div class="form-group">
+                                        <label for="name">Nombre:</label>
+                                        <input type="text" class="form-control" name="fname" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-6">
+                                    <div class="form-group">
+                                        <label for="lastname">Apellido:</label>
+                                        <input type="text" class="form-control" name="flastname" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 col-md-12">
+                                    <div class="form-group mt-2">
+                                        <label for="phone">Teléfono:</label>
+                                        <input type="number" class="form-control" name="tlf" required>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-12">
+                                    <div class="form-group mt-2">
+                                        <label for="email">Corre Electrónico:</label>
+                                        <input type="email" class="form-control" name="email" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label for="message">Mensaje:</label>
+                                <textarea name="message" rows="2" class="form-control" required>Deseo agendar una cita para esta propiedad</textarea>
+                            </div>
+                            <input type="hidden" name="interest" value="{{ $listing->product_code }}">
+                            <div class="d-flex justify-content-center mt-4">
+                                <button class="btn btn-primary rounded-pill">Agendar mi cita</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-5 mb-5">
@@ -936,7 +1003,7 @@
             }
         }
     </script>
-    {{-- <script>
+    <script>
         const lat = {{ $listing->lat }};
         const lng = {{ $listing->lng }};
 
@@ -962,7 +1029,7 @@
                 `<div class="text-center w-auto"> <b style='font-weight: 700'>Sector donde se encuentra la propiedad:</b> <br> <span> ${title} </span> <br> <img width='100px' src='/uploads/listing/600/${images}' /></div>`
             )
             .addTo(map);
-    </script> --}}
+    </script>
     <script>
         function onScrollEvent(entries, observer) {
             entries.forEach(function(entry) {
@@ -1001,6 +1068,14 @@
             });
             let image = document.getElementById('img_' + id);
             image.classList.add('active');
+        }
+
+        const openFormAgendarCita = () => {
+            let form = document.getElementById('formAgendarCita');
+            form.classList.contains('d-none') ? form.classList.remove('d-none') : form.classList.add('d-none');
+
+            let object = document.getElementById('buttonOpenForm');
+            object.classList.contains('d-none') ? object.classList.remove('d-none') : object.classList.add('d-none');
         }
     </script>
 @endsection
