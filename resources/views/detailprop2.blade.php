@@ -599,7 +599,7 @@
                         <div class="d-flex justify-content-end">
                            <span style="font-size: small; cursor: pointer;" onclick="openFormAgendarCita()">Cancelar</span>
                         </div>
-                        <p style="font-weight: 500">Ingresa tu información y agendaremos una cita</p>
+                        <p style="font-weight: 500">Ingresa tu información y agendaremos tu cita</p>
                         <form action="{{ route('web.sendlead') }}" method="POST">
                             @csrf
                             <div class="row">
@@ -625,7 +625,7 @@
                                 </div>
                                 <div class="col-6 col-md-12">
                                     <div class="form-group mt-2">
-                                        <label for="email">Corre Electrónico:</label>
+                                        <label for="email">Email:</label>
                                         <input type="email" class="form-control" name="email" required>
                                     </div>
                                 </div>
