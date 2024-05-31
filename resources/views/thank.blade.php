@@ -48,13 +48,13 @@
     <section class="row py-5">
         <div class="col-sm-12">
             <div class="d-flex justify-content-center align-items-center gap-3">
-                <a target="_blank" class="mr-2" href="https://facebook.com/casacreditoinmobiliaria">
+                <a target="_blank" class="mr-2" href="https://www.facebook.com/profile.php?id=61558563860180">
                     <img src="{{ asset('img/facebook_5968764.png') }}" alt="">
                 </a>
-                <a target="_blank" class="ml-2 mr-2" href="https://www.instagram.com/casacreditoinmobiliaria/">
+                <a target="_blank" class="ml-2 mr-2" href="https://www.instagram.com/grupo_housing/">
                     <img src="{{ asset('img/instagram_3955024.png') }}" alt="">
                 </a>
-                <a target="_blank" class="ml-2 mr-2" href="https://www.tiktok.com/@casacreditoinmobiliaria">
+                <a target="_blank" class="ml-2 mr-2" href="https://www.tiktok.com/@grupo.housing?lang=es">
                     <img src="{{ asset('img/tiktok_3116491.png') }}" alt="">
                 </a>
                 <a target="_blank" class="ml-2" href="https://api.whatsapp.com/send?phone=593983849073&text=Hola,%20deseo%20que%20me%20contacten%20a%20este%20n%C3%BAmero%20de%20tel%C3%A9fono%20y%20me%20ayuden%20con%20m%C3%A1s%20informaci%C3%B3n">
