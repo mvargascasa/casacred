@@ -128,7 +128,7 @@ class ListingController extends Controller
                             //agregando marca de agua
                             $folder_1 = 'uploads/listing/thumb/';
                             //$namefile = "THUMB_IMG_$listing->id-".uniqid().$ext;
-                            $watermark = Image::make(public_path('img/logo-watermark.png'));
+                            $watermark = Image::make(public_path('img/MARCADEAGUA.png'));
                             $imageWidth = $img->width();
 
                             $watermarkSize = round(10 * $imageWidth / 40);
@@ -532,7 +532,7 @@ class ListingController extends Controller
                             //agregando marca de agua
                             $folder_1 = 'uploads/listing/thumb/';
                             //$namefile = "THUMB_IMG_$listing->id-".uniqid().$ext;
-                            $watermark = Image::make(public_path('img/logo-watermark.png'));
+                            $watermark = Image::make(public_path('img/MARCADEAGUA.png'));
                             $imageWidth = $img->width();
 
                             $watermarkSize = round(10 * $imageWidth / 40);
