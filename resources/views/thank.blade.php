@@ -66,7 +66,7 @@
     <hr>
     <section class="row py-5 mb-3">
         <div class="col-sm-12 d-flex justify-content-center">
-            <a class="btn btn-danger rounded-pill py-2" style="font-size: large" href="{{ route('web.servicios', 'nosotros') }}">Más información sobre Casa Crédito</a>
+            <a class="btn btn-danger rounded-pill py-2" style="font-size: large" href="{{ route('web.servicios', 'nosotros') }}">Más información sobre Grupo Housing</a>
         </div>
     </section>
 </section>
