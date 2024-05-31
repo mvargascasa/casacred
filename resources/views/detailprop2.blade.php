@@ -210,6 +210,7 @@
         @media (max-width: 768px) {
             .carousel-image {
                 height: 400px;
+                object-fit: contain !important;
             }
             .telf{
                 display: none !important;
