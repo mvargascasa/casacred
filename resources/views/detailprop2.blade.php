@@ -360,7 +360,7 @@
         <div class="row">
             <div class="col-md-7">
                 <h1 class="" style="font-family: 'Sharp Grotesk'; font-weight: 500;" id="listing-title">
-                    {{ $listing->listing_title }}</h1>
+                    {{ Str::title($listing->listing_title) }}</h1>
                 </h1>
                 <p class="h3 font-weigth:100">Precio: ${{ number_format($listing->property_price, 0, ',', '.') }}</p>
 
@@ -872,8 +872,8 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            let title = document.getElementById('listing-title').textContent;
-            document.getElementById('listing-title').textContent = capitalizeSentences(title);
+            // let title = document.getElementById('listing-title').textContent;
+            // document.getElementById('listing-title').textContent = capitalizeSentences(title);
         });
     </script>
     <script>
