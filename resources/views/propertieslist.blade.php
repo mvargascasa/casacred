@@ -708,10 +708,10 @@
                     const properties = response.data.properties;
                     let html = '';
                     if (properties.length > 0) {
-                        properties.forEach(property => {
+                        properties.forEach((property, index) => {
                             let imageUrl = getImageUrl(property);
-                            html += useCardView ? buildCardPropertyHTML(property) :
-                                buildHorizontalPropertyHTML(property);
+                            html += useCardView ? buildCardPropertyHTML(property, index) :
+                                buildHorizontalPropertyHTML(property, index);
                         });
                         updateDynamicTitle(response.data.pagination.total, searchParams, isModal);
                     } else {
@@ -835,7 +835,8 @@
         }
 
 
-        function buildHorizontalPropertyHTML(property) {
+        function buildHorizontalPropertyHTML(property, indexProperty) {
+            console.log(indexProperty);
             let aliquotInfo = property.aliquot > 0 ?
                 `<p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Alícuota:</strong> $${property.aliquot}</p>` :
                 '';
@@ -860,7 +861,7 @@
                     `<li data-target="#carousel${property.id}" data-slide-to="${index}" class="${activeClass}"></li>`;
                 carouselItems += `
                 <div class="carousel-item ${activeClass}">
-                    <img src="/uploads/listing/600/${image}" class="d-block w-100 carousel-image" style="height:330px" ${index != 0 ? "loading='lazy'":""} alt="${property.listing_title} - img ${index+1}">
+                    <img src="/uploads/listing/600/${image}" class="d-block w-100 carousel-image" style="height:330px" ${indexProperty > 0 ? "loading='lazy'":""} alt="${property.listing_title} - img ${index+1}">
                 </div>`;
             });
             let areaInfo = '';
@@ -956,7 +957,7 @@
         }
 
 
-        function buildCardPropertyHTML(property) {
+        function buildCardPropertyHTML(property, indexProperty) {
             let aliquotInfo = property.aliquot > 0 ?
                 `<p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Alícuota:</strong> $${property.aliquot}</p>` :
                 '';
@@ -982,7 +983,7 @@
                     `<li data-target="#carousel${property.id}" data-slide-to="${index}" class="${activeClass}"></li>`;
                 carouselItems += `
             <div class="carousel-item ${activeClass}">
-                <img src="/uploads/listing/600/${image}" class="d-block w-100 carousel-image" style="height:330px" ${index > 0 ? "loading='lazy'":""}>
+                <img src="/uploads/listing/600/${image}" class="d-block w-100 carousel-image" style="height:330px" ${indexProperty > 0 ? "loading='lazy'":""}>
             </div>`;
             });
 
