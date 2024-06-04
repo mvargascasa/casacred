@@ -859,9 +859,9 @@
                 carouselIndicators +=
                     `<li data-target="#carousel${property.id}" data-slide-to="${index}" class="${activeClass}"></li>`;
                 carouselItems += `
-        <div class="carousel-item ${activeClass}">
-            <img src="/uploads/listing/600/${image}" class="d-block w-100 carousel-image" style="height:330px" alt="${property.listing_title} - img ${index+1}">
-        </div>`;
+                <div class="carousel-item ${activeClass}">
+                    <img src="/uploads/listing/600/${image}" class="d-block w-100 carousel-image" style="height:330px" loading="lazy" alt="${property.listing_title} - img ${index+1}">
+                </div>`;
             });
             let areaInfo = '';
             if (property.construction_area > 0) {
@@ -982,7 +982,7 @@
                     `<li data-target="#carousel${property.id}" data-slide-to="${index}" class="${activeClass}"></li>`;
                 carouselItems += `
             <div class="carousel-item ${activeClass}">
-                <img src="/uploads/listing/600/${image}" class="d-block w-100 carousel-image" style="height:330px">
+                <img src="/uploads/listing/600/${image}" class="d-block w-100 carousel-image" style="height:330px" loading="lazy">
             </div>`;
             });
 
