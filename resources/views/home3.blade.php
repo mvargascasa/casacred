@@ -507,7 +507,7 @@ $bathroom=0;
 
 
 <div class="container mt-5" data-aos="zoom-in">
-  <h2 id="txtserviciosinmo" style="font-size: 30px; color: #182741; font-family: 'Sharp Grotesk'" class="text-center mt-3 @if ($ismobile) mb-3 @else mb-5 @endif"> <span style="font-weight: 100">SERVICIOS</span> <span style="font-weight: 700;">INMOBILIARIOS</span></h2>
+  <h1 id="txtserviciosinmo" style="font-size: 30px; color: #182741; font-family: 'Sharp Grotesk'" class="text-center mt-3 @if ($ismobile) mb-3 @else mb-5 @endif"> <span style="font-weight: 100">INMOBILIARIA EN</span> <span style="font-weight: 700;">CUENCA</span></h1>
   <p class="text-center" style="color: #182741">Descubre nuestro excepcional servicio, donde la atención personalizada y la experiencia se unen para satisfacer todas tus necesidades ya sea que estés buscando comprar, vender o alquilar una propiedad.</p>
   <section class="container" data-aos="zoom-in">
     <section class="d-flex justify-content-center mt-5">

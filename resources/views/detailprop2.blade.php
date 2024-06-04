@@ -331,9 +331,9 @@
                 <div id="carouselImages" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         @foreach (explode('|', $listing->images) as $image)
-                            <div class="carousel-item @if ($loop->index == 0) active @endif">
+                            <div class="carousel-item @if ($loop->index == 0) active @endif" style="background-color: rgb(202, 202, 202)">
                                 <img src="{{ $filexists ? url('uploads/listing/', $image) : url('uploads/listing/', $image) }}"
-                                    class="d-block w-100 carousel-image" style="border-radius: 15px;">
+                                    class="d-block w-100 carousel-image" style="border-radius: 15px; object-fit: contain !important">
                             </div>
                         @endforeach
                     </div>
@@ -347,7 +347,7 @@
                     </a>
                 </div>
                 <span class="position-absolute top-0 end-0 p-2 text-white"
-                    style="background-color: #242B40; font-family: 'Sharp Grotesk'; font-weight: 500; border-top-right-radius: 10px; border-bottom-left-radius: 10px; right: 12px; top: 0; z-index: 1050;">COD:
+                    style="background-color: #242B40; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom-left-radius: 10px; right: 12px; top: 0; z-index: 1050;">COD:
                     {{ $listing->product_code }}</span>
             </div>
         </div>
