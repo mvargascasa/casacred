@@ -14,6 +14,7 @@
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     </noscript>
     <link rel="stylesheet" href="{{ asset('css/font-style.css') }}">
+    <link rel="canonical" href="https://grupohousing.com/" />
     <script>
         let stylesheet = document.createElement('link');
         stylesheet.href = "https://pro.fontawesome.com/releases/v5.10.0/css/all.css";
@@ -354,6 +355,16 @@ if(strpos($actual_link, 'localhost') === false){
         box-shadow: 0 0 10px #25d366;
         /* Sombra más pronunciada y de color verde */
     }
+    /* Enlace del número de teléfono */
+    .phone-number {
+        background-color: #182741;
+        color: white !important; /* Color del texto */
+        font-size: 17px; /* Tamaño de la fuente */
+        font-weight: 500; /* Grosor de la fuente */
+        text-decoration: none; /* Sin subrayado */
+        z-index: 8000000; /* Asegura que esté encima del video */
+        padding:7px;
+    }
     </style>
 
     <style>
@@ -466,6 +477,9 @@ if(strpos($actual_link, 'localhost') === false){
                                 </div>
                             </li>
                         @endguest
+                        <li class="nav-item">
+                            <a class="nav-link phone-number" href="tel:+593983849073">098-384-9073</a>
+                        </li>
                     </ul>
                 </div>
             </div>

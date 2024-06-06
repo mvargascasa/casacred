@@ -389,29 +389,6 @@
     font-weight: 100; /* Peso de fuente ligero */
     background-color: #f8f9fa; /* Fondo claro */
 }
-/* Enlace del número de teléfono */
-.phone-number {
-    position: absolute;
-    top: 15px; /* Ajusta según sea necesario */
-    right: 20px; /* Ajusta según sea necesario */
-    color: white; /* Color del texto */
-    font-size: 17px; /* Tamaño de la fuente */
-    font-weight: 500; /* Grosor de la fuente */
-    text-decoration: none; /* Sin subrayado */
-    z-index: 8000000; /* Asegura que esté encima del video */
-    padding:7px;
-}
-.phone-number:hover {
-  background-color: #182741;
-  color: white !important;
-}
-
-/* Estilos para pantallas pequeñas (móviles) */
-@media (max-width: 768px) {
-    .phone-number {
-        display: none; /* Oculta el número de teléfono en dispositivos móviles */
-    }
-}
 @keyframes fadeInOut {
     0%, 100% { opacity: 0; }
     50% { opacity: 1; }
@@ -451,7 +428,6 @@ $bathroom=0;
 <section class="section-header">
   <div class="position-relative">
       <video class="video-header" src="{{ asset('img/banner-home-video.mp4') }}" alt="Construir" autoplay muted loop playsinline></video>
-      <a href="tel:+593983849073" class="phone-number">098-384-9073</a>
       <div class="overlay-content text-center text-white">
           <!-- Otros contenidos si es necesario -->
       </div>
