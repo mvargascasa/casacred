@@ -1395,6 +1395,8 @@
 
         window.addEventListener('load', (event) => {
 
+            createProductCode();
+
             setPreviewOnGoogle();
 
             countCharacterMetaDescription();
@@ -1469,6 +1471,32 @@
                 divcomment.style.display = "none";
                 document.querySelector("[name='comment']").required = false;
                 return false;
+            }
+        }
+
+        //esta funcion crea un codigo cuando se carga la pagina para que no se crucen
+        async function createProductCode(){
+            
+            const productCode = document.getElementById('product_code').value;
+
+            try {
+                const response = await fetch("{{ route('admin.listings.create_code') }}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({ product_code: productCode })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data);
+                } else {
+                    console.error('Error en la solicitud:', response.status);
+                }
+            } catch (error) {
+                console.error('Error al procesar la solicitud:', error);
             }
         }
 

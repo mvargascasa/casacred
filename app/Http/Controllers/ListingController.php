@@ -631,6 +631,25 @@ class ListingController extends Controller
                     'tags','details','states','optAttrib','cities'));
 
     }
+
+    public function create_code(Request $request){
+
+        $validateCode = Listing::where('product_code', $request->product_code)->first();
+
+        if($validateCode){
+            return response()->json([
+                'msg' => "Editando la propiedad"
+            ]);
+        }
+        
+        $listing = Listing::create([
+            'product_code' => $request->product_code
+        ]);
+
+        return response()->json([
+            'msg' => "Se creo el codigo $listing->product_code"
+        ]);
+    }
     
     public function seo(Listing $listing){
         $data['listings'] = Listing::selectRaw('count(*) as total,state,address')->where('status',1)->where('state','Azuay')->orderBy('total','desc')->groupBy('address')->get();

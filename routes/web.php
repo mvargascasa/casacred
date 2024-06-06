@@ -89,6 +89,9 @@ Route::get('/getsector/{city_id}', [WebController::class, 'getsector'])->name('w
 Route::get('/getstate/{city}', [WebController::class, 'getstatebycity'])->name('web.getstate');
 Route::get('/getstates/{idCountry}', [WebController::class, 'getstates'])->name('web.states');
 Route::get('/nuestros-servicios', [WebController::class, 'serviciosall'])->name('web.nuestros-servicios');
+// Route::get('servicios', function(){
+//     return view('services');
+// });
 Route::get('/servicios/notaria-queens-new-york', [WebController::class, 'notariausa'])->name('web.notariausa');
 Route::get('/servicios/{service:slug}', [WebController::class, 'servicios'])->name('web.servicios');
 Route::get('/servicio/{service:slug}', [WebController::class, 'servicio'])->name('web.servicio');
@@ -110,6 +113,7 @@ Route::get('/test88', function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::resource('listings', ListingController::class, ['as' => 'admin']);
+    Route::post('/listings/create_code', [ListingController::class, 'create_code'])->name('admin.listings.create_code');
     Route::post('unlocked/{id}', [ListingController::class, 'unlocked'])->name('admin.listings.unlocked');
     //Route::post('delete/{listing_id}', [ListingController::class, 'delete'])->name('admin.listings.delete');    
     Route::post('posted-on-facebook/{listing_id}', [ListingController::class, 'postedfacebook'])->name('admin.listing.posted.facebook');

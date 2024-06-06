@@ -106,7 +106,7 @@ class Proplist extends Component
         if(strlen($this->searchtxt)>2){
             $txt = filter_var ( $this->searchtxt, FILTER_SANITIZE_NUMBER_INT);
             if($txt>999){
-                $listings_filter->where('product_code', 'LIKE', '%'.$txt.'%');
+                $listings_filter->where('product_code', $txt);
                 $this->state = null;
             }else{
                 $text = $this->searchtxt;
