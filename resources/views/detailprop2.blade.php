@@ -301,6 +301,14 @@
         .slide-in {
             animation: slideInFromRight 500ms ease-out;
         }
+        .carousel-control-next,
+        .carousel-control-prev /*, .carousel-indicators */ {
+            filter: invert(100%);
+        }
+        /* Estilo predeterminado para la imagen */
+        .zoom-img {
+            transition: transform 0.3s; /* Agrega una transición suave al efecto de zoom */
+        }
     </style>
 @endsection
 
@@ -331,7 +339,7 @@
                 <div id="carouselImages" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         @foreach (explode('|', $listing->images) as $image)
-                            <div class="carousel-item @if ($loop->index == 0) active @endif" style="background-color: rgb(202, 202, 202)">
+                            <div class="carousel-item @if ($loop->index == 0) active @endif" style="background-color: transparent; backdrop-filter: blur(20px)">
                                 <img src="{{ $filexists ? url('uploads/listing/', $image) : url('uploads/listing/', $image) }}"
                                     class="d-block w-100 carousel-image" style="border-radius: 15px; object-fit: contain !important">
                             </div>
