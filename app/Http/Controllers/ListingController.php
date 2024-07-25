@@ -416,7 +416,7 @@ class ListingController extends Controller
             foreach ($result as $r) {
                 for ($i=0; $i < count($r); $i++) { 
                     if($r[$i] == 49 || $r[$i] == 86 || $r[$i] == 41 || $r[$i] == 115) $bedrooms = $bedrooms + $r[$i+1];
-                    if($r[$i] == 48 || $r[$i] == 76 || $r[$i] == 81) $bathrooms = $bathrooms + $r[$i+1];
+                    if($r[$i] == 48 || $r[$i] == 76 || $r[$i] == 81 || $r[$i] == 49) $bathrooms = $bathrooms + $r[$i+1];
                     if($r[$i] == 43) $garage = $garage + $r[$i+1];
                 }
             }
