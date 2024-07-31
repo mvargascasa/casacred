@@ -87,6 +87,9 @@ class ListingController extends Controller
             //return count($result);
             foreach ($result as $r) {
                 for ($i=0; $i < count($r); $i++) { 
+                    if($r[$i] == 109) $bedrooms = $bedrooms + $r[$i+1];
+                    if($r[$i] == 110) $bedrooms = $bedrooms + $r[$i+2];
+                    if($r[$i] == 111) $bedrooms = $bedrooms + $r[$i+3];
                     if($r[$i] == 49 || $r[$i] == 86 || $r[$i] == 41 || $r[$i] == 115) $bedrooms = $bedrooms + $r[$i+1];
                     if($r[$i] == 48 || $r[$i] == 76 || $r[$i] == 81 || $r[$i] == 49) $bathrooms = $bathrooms + $r[$i+1];
                     if($r[$i] == 43) $garage = $garage + $r[$i+1];
@@ -414,7 +417,10 @@ class ListingController extends Controller
         if(count($result)>0){
             $request->merge(['heading_details' => json_encode($result)]);
             foreach ($result as $r) {
-                for ($i=0; $i < count($r); $i++) { 
+                for ($i=0; $i < count($r); $i++) {
+                    if($r[$i] == 109) $bedrooms = $bedrooms + $r[$i+1]*1;
+                    if($r[$i] == 110) $bedrooms = $bedrooms + $r[$i+1]*2;
+                    if($r[$i] == 111) $bedrooms = $bedrooms + $r[$i+1]*3;
                     if($r[$i] == 49 || $r[$i] == 86 || $r[$i] == 41 || $r[$i] == 115) $bedrooms = $bedrooms + $r[$i+1];
                     if($r[$i] == 48 || $r[$i] == 76 || $r[$i] == 81 || $r[$i] == 49) $bathrooms = $bathrooms + $r[$i+1];
                     if($r[$i] == 43) $garage = $garage + $r[$i+1];
