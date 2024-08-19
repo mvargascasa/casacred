@@ -12,6 +12,12 @@
             </div>
         @endif
 
+        @if(isset($error))
+            <div class="text-center font-weight-bold" style="color: red;">
+                {{ $error }}
+            </div>
+        @endif
+
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
