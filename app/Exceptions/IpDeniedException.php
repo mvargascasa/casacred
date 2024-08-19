@@ -17,7 +17,7 @@ class IpDeniedException extends Exception
     public function render($request)
     {
         // Puedes devolver una vista específica o la vista de inicio de sesión con el mensaje de error
-        return response()->view('auth.login', ['error' => 'Acceso Denegado: '.$this->clientIp], 403);
+        return response()->view('auth.login', ['error' => 'Acceso Denegado Fuera de Oficina'], 403);
     }
 }
 
