@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\info_city;
 use App\Models\info_parishes;
 use App\Models\info_state;
+use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -57,7 +58,9 @@ class PropertyController extends Controller
         }
         //dd($state, $city, $parish);
 
-        return view('propertieslist', compact('type', 'typeId', 'status', 'state', 'city', 'parish'));
+        $featured_property = Listing::where('product_code', '2442')->first();
+
+        return view('propertieslist', compact('type', 'typeId', 'status', 'state', 'city', 'parish', 'featured_property'));
     }
 
     public function search(Request $request)
