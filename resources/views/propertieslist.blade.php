@@ -543,7 +543,7 @@
                                             <h3 class="card-title" style="font-family: 'Sharp Grotesk', sans-serif; font-size: 1.4rem; padding-right: 60px; font-weight: 500;">{{ $featured_property->listing_title }}</h3>
                                         </a>
                                         <p class="card-text" style="font-weight:500; font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">${{ number_format($featured_property->property_price) }}</p>
-                                        <h4 class="h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100;">{{ $featured_property->listing_description }}</h4>
+                                        <h4 class="h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100;">{{ Str::limit($featured_property->listing_description, 100) }}</h4>
                                         <hr>
                                         <div class="row align-items-center">
                                             <div class="col-sm-8 d-flex justify-content-around">
