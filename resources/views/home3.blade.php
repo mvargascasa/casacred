@@ -189,7 +189,7 @@
     .card:hover .card-body{
       background-color: #182741;
       color: #ffffff;
-      border-radius: 0px 0px 20px 20px;
+      /* border-radius: 0px 0px 20px 20px; */
     }
     .card:hover .card-body img{
       filter: invert(100%)
@@ -381,6 +381,11 @@
     background-color: #182741; /* Fondo oscuro */
 }
 
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 /* Estilos básicos para los botones con borde claro */
 .btn-outline-light {
     color: #182741; /* Color de texto oscuro */
@@ -475,23 +480,86 @@ $bathroom=0;
   </div>
 </section>
 
-
-
-
-
-
-
-
-<div class="container mt-5" data-aos="zoom-in">
-  <h1 id="txtserviciosinmo" style="font-size: 30px; color: #182741; font-family: 'Sharp Grotesk'" class="text-center mt-3 @if ($ismobile) mb-3 @else mb-5 @endif"> <span style="font-weight: 100">INMOBILIARIA EN</span> <span style="font-weight: 700;">CUENCA</span></h1>
+<section class="container mt-5" data-aos="zoom-in">
+  <h1 id="txtserviciosinmo" style="font-size: 30px; color: #182741;" class="text-center mt-3 @if ($ismobile) mb-3 @else mb-5 @endif"> <span style="font-weight: 100">INMOBILIARIA EN</span> <span style="font-weight: 700;">CUENCA</span></h1>
   <p class="text-center" style="color: #182741">Descubre nuestro excepcional servicio, donde la atención personalizada y la experiencia se unen para satisfacer todas tus necesidades ya sea que estés buscando comprar, vender o alquilar una propiedad.</p>
-  <section class="container" data-aos="zoom-in">
+  <div class="d-flex justify-content-center mt-4">
+    <a href="/servicios/nosotros" class="btn" style="background-color: #182741; color: #ffffff">Conoce más sobre nosotros</a>
+  </div>
+</section>
+
+<section style="background-color: #182741" class="mt-5">
+  <section class="py-5 container">
+    <h2 style="color: #ffffff" class="text-center"> <span style="font-weight: 200">PROPIEDADES</span> <span style="font-weight: 600">DEL MES</span></h2>
+    <p class="text-center" style="color: #ffffff">Descubra nuestras propiedades destacadas</p>
+    <section class="row mt-5">
+      @foreach ($properties_of_the_month as $propertie)
+        @php
+          $imagesPropertie = explode('|', $propertie->images);
+        @endphp
+        <article class="col-sm-4 rounded-0 mb-3">
+          <div class="card h-100 border-0" data-aos="flip-left">
+            <div id="carouselExampleControls{{$loop->index}}" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                @foreach ($imagesPropertie as $image)
+                  <div class="carousel-item @if($loop->index == 0) active @endif">
+                    <img @if($loop->index > 0) loading="lazy" @endif src="{{ asset('uploads/listing/thumb/600/'.$image) }}" class="d-block w-100 card-img-top" alt="">
+                  </div>
+                @endforeach
+              </div>
+             <button class="carousel-control-prev btn" type="button" data-target="#carouselExampleControls{{ $loop->index }}" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </button>
+              <button class="carousel-control-next btn" type="button" data-target="#carouselExampleControls{{$loop->index}}" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </button>
+            </div>
+            <div class="card-body h-full">
+              <p class="text-muted m-0">Ubicación</p>
+              <p>{{ $propertie->state . ' | ' ?? '' }} {{ $propertie->city . ' | ' ?? '' }} {{ $propertie->address ?? ''}}</p>
+              <h5 class="card-title">{{ $propertie->listing_title }}</h5>
+              <div class="row justify-content-center mt-4 h-full align-items-center">
+                @if($propertie->bedroom > 0)
+                  <div class="col-sm-4 col-4 text-center">
+                    <img src="{{ asset('img/bed-black.png') }}" alt="{{ $propertie->listing_title}} de {{$propertie->bedroom}} dormitorios">
+                    <p>{{ $propertie->bedroom > 1 ? $propertie->bedroom . ' dormitorios' : $propertie->bedroom . ' dormitorio'}}</p>
+                  </div>
+                @endif
+                @if($propertie->bathroom >0)
+                  <div class="col-sm-4 col-4 text-center">
+                    <img src="{{ asset('img/bathroom-black.png') }}" alt="{{ $propertie->listing_title}} de {{$propertie->bathroom}} baños">
+                    <p>{{ $propertie->bathroom > 1 ? $propertie->bathroom . ' baños' : $propertie->bathroom . ' baño'}}</p>
+                  </div>
+                @endif
+                @if($propertie->garage > 0)
+                  <div class="col-sm-4 col-4 text-center">
+                    <img src="{{ asset('img/garage-black.png') }}" alt="{{ $propertie->listing_title}} con {{$propertie->garage}} parqueadero">
+                    <p>{{ $propertie->garage > 1 ? $propertie->garage . ' garage' : $propertie->garage . ' garage'}}</p>
+                  </div>
+                @endif
+              </div>
+              <div class="d-flex justify-content-end align-items-end" style="height: fit-content !important">
+                <a href="/propiedad/{{$propertie->slug}}" class="btn btn-outline-light" style="font-weight: 400">Ver propiedad</a>
+              </div>
+            </div>
+           </div>
+        </article>
+      @endforeach
+    </section>
+
     <section class="d-flex justify-content-center mt-5">
-      <a href="/propiedades-en-general" class="btn btn-all" style="background-color: #182741; color: #ffffff">Ver todas las propiedades</a>
+      <a class="btn btn-light btn-lg" href="/propiedades-en-general">Ver todas las propiedades</a>
     </section>
   </section>
-  <div class="row mt-5 justify-content-center">
+</section>
 
+<div class="container mt-5" data-aos="zoom-in">
+  
+  <div class="row mt-5 justify-content-center">
+    <h2 class="text-center" style="color: #182741"><span style="font-weight: 200">NUESTROS</span> <span style="font-weight: 600">SERVICIOS</span></h2>
+    <p class="text-center mb-5" style="color: #182741">Conozca todos los servicios que nuestra inmobiliaria ofrece</p>
     <div class="col-md-4">
       <article data-aos="fade-up" class="mb-3">
         <section class="d-flex justify-content-center">
@@ -542,7 +610,7 @@ $bathroom=0;
 </div>
 
 
-<section class="container py-5" style="padding-top: 7%">
+<section class="container py-5" style="padding-top: 50%">
   <section class="row justify-content-center">
     <section class="col-12 col-md-5 mb-4 mb-md-0" data-aos="fade-down-right">
       <h2 style="font-family: 'Sharp Grotesk'; font-weight: 500">Contáctanos</h2>

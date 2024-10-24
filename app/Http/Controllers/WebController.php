@@ -228,6 +228,8 @@ class WebController extends Controller
     }
 
     public function home(){
+
+        $properties_of_the_month = Listing::select('listing_title', 'product_code', 'slug', 'state', 'city', 'address', 'sector', 'property_price', 'images', 'bedroom', 'bathroom', 'garage', 'land_area')->where('product_code', '2442')->orWhere('product_code', '2472')->orWhere('product_code', '2485')->get();
         $states = DB::table('info_states')->where('country_id',63)->orderBy('name')->get();
         if(isset($_SERVER['HTTP_USER_AGENT'])){
             $useragent= $_SERVER['HTTP_USER_AGENT'];
@@ -236,7 +238,7 @@ class WebController extends Controller
         // if($ismobile) return view('indexmobile', compact('states'));
         // else 
         $listings_outstanding = Listing::where('status', 1)->where('available', 1)->where('outstanding', 1)->take(4)->inRandomOrder()->get();
-        return view('home3', compact('ismobile', 'listings_outstanding'));
+        return view('home3', compact('ismobile', 'listings_outstanding', 'properties_of_the_month'));
     }
 
     public function creditos(){
