@@ -856,7 +856,7 @@
                 if(total < 1){
                     contentMetaDescription = 'Encuentre la casa de sus sueños, donde los sueños se hacen realidad 😉 Contamos con una gran variedad de propiedades disponibles ¡Contáctenos!';
                 } else{
-                    contentMetaDescription = `Encontramos ${total} opciones de ${strTitle(titleSuffix)} disponibles. ¡Solicita ahora una visita y descubre tu opción ideal!`;
+                    contentMetaDescription = `Encontramos ${total} ${strTitle(titleSuffix)} disponibles. ¡Solicita ahora una visita y descubre tu opción ideal! Clic aquí para más información`;
                 }
                 
                 // Cambia el atributo content de la meta descripción

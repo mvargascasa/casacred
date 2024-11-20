@@ -78,7 +78,7 @@ class PropertyController extends Controller
         $state = $request->input('state');
         $sector = $request->input('sector');
         $page = $request->input('page', 1);
-        $perPage = $request->input('per_page', 10);
+        $perPage = $request->input('per_page', 20);
 
 
 
@@ -197,7 +197,7 @@ class PropertyController extends Controller
 
         $properties = $properties_filter->get();
 
-        $perPage = $request->query('per_page', 10);
+        $perPage = $request->query('per_page', 20);
         $page = $request->query('page', 1);
 
         // Calcular el índice de inicio
