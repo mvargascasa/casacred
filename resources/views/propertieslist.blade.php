@@ -6,6 +6,10 @@
     <meta name="keywords"
         content="">
 
+    <link rel="canonical" href="">
+
+    <meta name="robots" content="index,follow,snippet">
+
 <meta property="og:url"                content="https://grupohousing.com/propiedades-en-general" />
 <meta property="og:type"               content="website" />
 <meta property="og:title"              content="@isset($meta_seo){{ ucfirst(str_replace('-', ' ', $meta_seo)) }} - Grupo Housing @else Grupo Housing Encuentra la casa de tus sueños. @endisset" />
@@ -787,9 +791,13 @@
                 queryString += `&type_ids[]=${encodeURIComponent(id)}`;
             });
 
+            let canonical = document.querySelector("link[rel='canonical']");
+
             window.history.pushState({
                 path: urlSlug
             }, '', urlSlug);
+
+            canonical.href = urlSlug;
 
             axios.get('/api/propertys/list?' + queryString)
                 .then(function(response) {
