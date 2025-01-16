@@ -475,7 +475,7 @@
                         @if(isset($listing) && $listing->locked)
                             {!! Form::text('property_price', null, ['class' => $inputs, 'disabled']) !!}
                         @else
-                            {!! Form::text('property_price', null, ['class' => $inputs, 'onblur' => 'validateMinPrice()']) !!}
+                            {!! Form::text('property_price', null, ['class' => $inputs]) !!}
                         @endif
                     </div>
                     <div>
@@ -541,7 +541,7 @@
                     </div>
                     <div>     
                         {!! Form::label('listingtypestatus', 'Tipo', ['class' => 'font-semibold']) !!}
-                        {!! Form::select('listingtypestatus',$categories->pluck('status_title','slug'),    null,    ['class' => $inputs, 'onchange' => 'validateMinPrice()']) !!}
+                        {!! Form::select('listingtypestatus',$categories->pluck('status_title','slug'),    null,    ['class' => $inputs]) !!}
                     </div>
                     <div>  
                         {!! Form::label('listingtagstatus', 'Etiqueta', ['class' => 'font-semibold']) !!}
