@@ -518,11 +518,14 @@ if(strpos($actual_link, 'localhost') === false){
                                 </span>
                             </div>
                             <div class="col-10">
-                                <div style="color: #ffffff; text-align: justify;"><span
-                                        class="desing-t">Oficina:</span><span class="desing-p"> <a target="_blank"
-                                            style="color: #ffffff" href="https://maps.app.goo.gl/SUhpWErgoscZV5kd8">
-                                            Av. Juan Iñiguez 3-87 y D. Gonzalo
-                                            Cordero-Edificio Santa Lucía</a></span></div>
+                                <div style="color: #ffffff; text-align: justify;">
+                                    <span class="desing-t">Oficina:</span><span class="desing-p"> 
+                                        <a target="_blank"
+                                            style="color: #ffffff" href="https://maps.app.goo.gl/yu5AWKv2u3tfVSq38">
+                                            Remigio Tamariz Crespo y Av. Fray Vicente Solano
+                                        </a>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div class="row align-items-center mt-2">
