@@ -10,9 +10,9 @@
 
     <meta name="robots" content="index,follow,snippet">
 
-<meta property="og:url"                content="https://grupohousing.com/propiedades-en-general" />
-<meta property="og:type"               content="website" />
-<meta property="og:title"              content="@isset($meta_seo){{ ucfirst(str_replace('-', ' ', $meta_seo)) }} - Grupo Housing @else Grupo Housing Encuentra la casa de tus sueños. @endisset" />
+    <meta property="og:url"                content="https://grupohousing.com/propiedades-en-general" />
+    <meta property="og:type"               content="website" />
+    <meta property="og:title"              content="@isset($meta_seo){{ ucfirst(str_replace('-', ' ', $meta_seo)) }} - Grupo Housing @else Grupo Housing Encuentra la casa de tus sueños. @endisset" />
     <meta property="og:description"
         content="@isset($meta_seo)En Grupo Housing Contamos con {{ ucfirst(str_replace('-', ' ', $meta_seo)) }}. Accede a nuestro sitio web y encuentra la propiedad que estás buscando. @else Encuentre la casa de sus sueños, donde los sueños se hacen realidad 😉 Contamos con una gran variedad de propiedades disponibles ¡Contáctenos! @endisset" />
     <meta property="og:image" content="{{ asset('img/meta-image-social-cc.jpg') }}" />
@@ -578,12 +578,12 @@
                                             </div>
                                             <div class="col-sm-4 d-flex gap-3">
                                                 <div class="w-100 d-flex align-items-center">
-                                                <a href="tel:+593983849073" class="btn btn-light rounded-pill w-100 d-flex align-items-center">
+                                                <a href="tel:+593964034035" class="btn btn-light rounded-pill w-100 d-flex align-items-center">
                                                     <i class="fas fa-phone-alt me-2 mr-1"></i>Llamar
                                                 </a>
                                             </div>
                                             <div class="w-100 d-flex align-items-center ml-2">
-                                                <a href="https://wa.me/593983849073?text=Hola Grupo Housing, estoy interesado en esta propiedad: *{{ $featured_property->product_code }}* y deseo que me contacten" class="btn btn-success rounded-pill w-100 d-flex align-items-center">
+                                                <a href="https://wa.me/593967867998?text=Hola Grupo Housing, estoy interesado en esta propiedad: *{{ $featured_property->product_code }}* y deseo que me contacten" class="btn btn-success rounded-pill w-100 d-flex align-items-center">
                                                     <i class="fab fa-whatsapp me-2 mr-1"></i> WhatsApp
                                                 </a>
                                             </div>
@@ -935,10 +935,11 @@
             let aliquotInfo = property.aliquot > 0 ?
                 `<p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Alícuota:</strong> $${property.aliquot}</p>` :
                 '';
-            let phoneNumber = '593983849073'; // Número por defecto para venta
+            let phoneNumber = '593964034035'; // Número por defecto para venta
+            let phoneNumberWhatsapp = '593967867998'; //Numero de venta que tiene whatsapp
             let transactionType = "venta";
             if (property.listingtypestatus.includes('rent') || property.listingtypestatus.includes('alquilar')) {
-                phoneNumber = '593983849073'; // Cambiar si es renta
+                phoneNumber = '593964034035'; // Cambiar si es renta
                 transactionType = "alquiler";
             }
 
@@ -1038,7 +1039,7 @@
                                 </a>
                             </div>
                             <div class="w-100 d-flex align-items-center ml-2">
-                                <a href="https://wa.me/${phoneNumber}?text=${whatsappMessage}" class="btn btn-outline-success rounded-pill w-100 d-flex align-items-center">
+                                <a href="https://wa.me/${phoneNumberWhatsapp}?text=${whatsappMessage}" class="btn btn-outline-success rounded-pill w-100 d-flex align-items-center">
                                     <i class="fab fa-whatsapp me-2 mr-1"></i> WhatsApp
                                 </a>
                             </div>
@@ -1057,10 +1058,11 @@
                 `<p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Alícuota:</strong> $${property.aliquot}</p>` :
                 '';
 
-            let phoneNumber = '593983849073'; // Número por defecto para venta
+            let phoneNumber = '593964034035'; // Número por defecto para venta
+            let phoneNumberWhatsapp = '593967867998';
             let transactionType = "venta";
             if (property.listingtypestatus.includes('rent') || property.listingtypestatus.includes('alquilar')) {
-                phoneNumber = '593983849073'; // Cambiar si es renta
+                phoneNumber = '593964034035'; // Cambiar si es renta
                 transactionType = "alquiler";
             }
 
@@ -1164,7 +1166,7 @@
                                 </a>
                             </div>
                             <div class="w-100 d-flex justify-content-center">
-                                <a href="https://wa.me/${phoneNumber}?text=${whatsappMessage}" class="btn btn-outline-success rounded-pill w-75 d-flex justify-content-center align-items-center">
+                                <a href="https://wa.me/${phoneNumberWhatsapp}?text=${whatsappMessage}" class="btn btn-outline-success rounded-pill w-75 d-flex justify-content-center align-items-center">
                                     <i class="fab fa-whatsapp me-2 mr-1"></i> WhatsApp
                                 </a>
                             </div>

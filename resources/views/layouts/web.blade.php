@@ -620,9 +620,9 @@ if(strpos($actual_link, 'localhost') === false){
                             </div>
                             <div class="col-10">
                                 <div style="color: #ffffff;"><span class="desing-t"></span><span
-                                        class="desing-p"> <a href="tel:+593983849073" class="asindeco"
+                                        class="desing-p"> <a href="tel:+593964034035" class="asindeco"
                                             style="color: #ffffff !important">
-                                            098 384 9073</a></span></div>
+                                            096-403-4035</a></span></div>
                             </div>
                         </div>
                     </div>
@@ -840,7 +840,7 @@ if(strpos($actual_link, 'localhost') === false){
 
 
     <div class="whatsapp-group">
-        <a href="https://api.whatsapp.com/send?phone=593983849073&text=Hola Grupo Housing, estoy interesado en una propiedad" target="_blank" class="whatsapp-float">
+        <a href="https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en una propiedad" target="_blank" class="whatsapp-float">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
@@ -851,7 +851,7 @@ if(strpos($actual_link, 'localhost') === false){
                 <i class="fas fa-phone-alt fa-2x bg-danger p-2 text-light"></i>
             </div>
             <div id="diviconsusaecu" style="margin-left: 15px;">
-                <a href="tel:+593983849073">
+                <a href="tel:+593964034035">
                     <img width="45px" height="30px" class="mt-2" src="{{ asset('img/ECUADOR-04.webp') }}"
                         alt="Telefono Grupo Housing">
                 </a>
