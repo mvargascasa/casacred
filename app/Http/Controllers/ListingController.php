@@ -671,11 +671,30 @@ class ListingController extends Controller
 
     public function show_listing($id){
         $propertie = Listing::where('id', $id)->first();
-        //$similarProperties = Listing::where('available', 1);
 
-        $similarProperties = []; $nearbyproperties = []; $nearbyproperties_aux = [];
+        $similarProperties = []; 
+        $nearbyproperties = []; 
+        $nearbyproperties_aux = [];
+
         if($propertie){
-            $similarProperties = Listing::where('state', 'LIKE', "%$propertie->state%")->where('city', 'LIKE', "%$propertie->city%")->where('address', 'LIKE', "%$propertie->address%")->where('listingtype', 'LIKE', "%$propertie->listingtype%")->where('listingtypestatus', 'LIKE', "%$propertie->listingtypestatus%")->where('available', 1)->where("product_code", "!=", $propertie->product_code)->latest()->take(10)->get();
+            
+            $priceDifference = ($propertie->listingtypestatus === 'en-venta') ? 20000 : 100;
+
+            $minPrice = $propertie->property_price - $priceDifference;
+            $maxPrice = $propertie->property_price + $priceDifference;
+
+            $similarProperties = Listing::where('state', 'LIKE', "%$propertie->state%")
+                                        ->where('city', 'LIKE', "%$propertie->city%")
+                                        ->where('address', 'LIKE', "%$propertie->address%")
+                                        ->where('listingtype', 'LIKE', "%$propertie->listingtype%")
+                                        ->where('listingtypestatus', 'LIKE', "%$propertie->listingtypestatus%")
+                                        ->where('available', 1)
+                                        ->where("product_code", "!=", $propertie->product_code)
+                                        ->whereBetween('property_price', [$minPrice, $maxPrice])
+                                        ->latest()
+                                        ->take(10)
+                                        ->get();
+
             $nearbyproperties = Listing::select('product_code', 'lat', 'lng', 'listing_title', 'id', 'address')
                                         ->where('address', 'LIKE', "%$propertie->address%")
                                         ->where('listingtype', 'LIKE', "%$propertie->listingtype%")
