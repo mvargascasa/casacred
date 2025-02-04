@@ -686,15 +686,18 @@ class ListingController extends Controller
             $similarProperties = Listing::where('state', 'LIKE', "%$propertie->state%")
                                         ->where('city', 'LIKE', "%$propertie->city%")
                                         ->where(function ($query) use ($propertie) {
-                                            $query->where('address', 'LIKE', "%$propertie->address%")
-                                                  ->orWhere('sector', 'LIKE', "%$propertie->sector%");
+                                            $query->where('address', $propertie->address) // Coincidencia exacta en la dirección
+                                                ->orWhere(function ($q) use ($propertie) {
+                                                    $q->where('address', 'LIKE', "%$propertie->address%") // Coincidencia parcial en la dirección
+                                                        ->orWhere('sector', 'LIKE', "%$propertie->sector%"); // Coincidencia en el sector
+                                                });
                                         })
                                         ->where('listingtype', 'LIKE', "%$propertie->listingtype%")
                                         ->where('listingtypestatus', 'LIKE', "%$propertie->listingtypestatus%")
                                         ->where('available', 1)
                                         ->where("product_code", "!=", $propertie->product_code)
                                         ->whereBetween('property_price', [$minPrice, $maxPrice])
-                                        ->latest()
+                                        ->orderByRaw("CASE WHEN address = ? THEN 0 ELSE 1 END, address LIKE ?, sector LIKE ?", [$propertie->address, "%$propertie->address%", "%$propertie->sector%"]) // Ordenar por prioridad
                                         ->take(10)
                                         ->get();
 
