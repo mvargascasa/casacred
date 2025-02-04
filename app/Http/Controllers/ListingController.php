@@ -674,8 +674,8 @@ class ListingController extends Controller
         //$similarProperties = Listing::where('available', 1);
 
         $similarProperties = []; $nearbyproperties = []; $nearbyproperties_aux = [];
-;        if($propertie){
-            $similarProperties = Listing::where('state', 'LIKE', "%$propertie->state%")->where('city', 'LIKE', "%$propertie->city%")->where('address', 'LIKE', "%$propertie->address%")->where('listingtype', 'LIKE', "%$propertie->listingtype%")->where('available', 1)->where("product_code", "!=", $propertie->product_code)->latest()->take(10)->get();
+        if($propertie){
+            $similarProperties = Listing::where('state', 'LIKE', "%$propertie->state%")->where('city', 'LIKE', "%$propertie->city%")->where('address', 'LIKE', "%$propertie->address%")->where('listingtype', 'LIKE', "%$propertie->listingtype%")->where('listingtypestatus', 'LIKE', "%$propertie->listingtypestatus%")->where('available', 1)->where("product_code", "!=", $propertie->product_code)->latest()->take(10)->get();
             $nearbyproperties = Listing::select('product_code', 'lat', 'lng', 'listing_title', 'id', 'address')
                                         ->where('address', 'LIKE', "%$propertie->address%")
                                         ->where('listingtype', 'LIKE', "%$propertie->listingtype%")
