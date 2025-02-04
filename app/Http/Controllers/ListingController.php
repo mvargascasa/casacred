@@ -672,8 +672,6 @@ class ListingController extends Controller
     public function show_listing($id){
         $propertie = Listing::where('id', $id)->first();
 
-        return $propertie;
-
         $similarProperties = []; 
         $nearbyproperties = []; 
         $nearbyproperties_aux = [];
