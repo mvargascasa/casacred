@@ -672,6 +672,8 @@ class ListingController extends Controller
     public function show_listing($id){
         $propertie = Listing::where('id', $id)->first();
 
+        return $propertie;
+
         $similarProperties = []; 
         $nearbyproperties = []; 
         $nearbyproperties_aux = [];
@@ -685,7 +687,10 @@ class ListingController extends Controller
 
             $similarProperties = Listing::where('state', 'LIKE', "%$propertie->state%")
                                         ->where('city', 'LIKE', "%$propertie->city%")
-                                        ->where('address', 'LIKE', "%$propertie->address%")
+                                        ->where(function ($query) use ($propertie) {
+                                            $query->where('address', 'LIKE', "%$propertie->address%")
+                                                  ->orWhere('sector', 'LIKE', "%$propertie->sector%");
+                                        })
                                         ->where('listingtype', 'LIKE', "%$propertie->listingtype%")
                                         ->where('listingtypestatus', 'LIKE', "%$propertie->listingtypestatus%")
                                         ->where('available', 1)
