@@ -514,7 +514,7 @@
                         <div class="card mb-3 rounded-0">
                             <div class="row g-0 d-flex">
                                 <div class="col-md-4">
-                                    <a href="/propiedad/${property.slug}" style="text-decoration: none;">
+                                    <a href="{{ route('web.detail', $featured_property->slug) }}" style="text-decoration: none;">
                                         <div id="carouselFeatured" class="carousel slide position-relative" data-ride="carousel">
                                             <div style="position:absolute; top: 8px; right: 0; z-index: 10">
                                                 <span class="bg-warning text-white px-3 py-2">Propiedad destacada</span>
