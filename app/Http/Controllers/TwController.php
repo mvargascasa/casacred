@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Models\Contactos;
 use App\Models\Listing;
 use App\Models\Oportunidades;
+use App\Models\Parish;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -117,7 +118,7 @@ class TwController extends Controller
     public function properties(){
         $states = DB::table('info_states')->where('country_id',63)->orderBy('name')->get();
         $cities = DB::table('info_cities')->where('state_id', 1022)->orderBy('name')->get();
-        $sectores = DB::table('info_sector')->where('city_id', 15307)->orderBy('name')->get();
+        $sectores = DB::table('info_parishes')->where('city_id', 15307)->orderBy('name')->get();
         $users = DB::select("select id, name from users where (role = 'ASESOR' and status = 1) or (role = 'administrator' and name = 'KAREN' or role = 'administrator' and name = 'SILVANA' or role = 'administrator' and name = 'MARIELA' or role = 'administrator' and name = 'MICHELLE' or role = 'administrator' and name = 'FERNANDA')");
         $ismobile = $this->isMobile();
         return view('admin.listing.index', compact('states', 'users', 'ismobile', 'cities', 'sectores'));
@@ -197,4 +198,29 @@ class TwController extends Controller
 
         return $isvalid;
     }
+
+    public function getNearbyProperties(Request $request, $id)
+    {
+        // Obtener la propiedad central
+        $property = Listing::findOrFail($id);
+
+        // Convertir radio a metros (3.5 km = 3500 metros)
+        $radius = 2000;
+
+        // Obtener las coordenadas de la propiedad
+        $latitude = $property->lat;
+        $longitude = $property->lng;
+
+        // Consulta para encontrar propiedades dentro del radio
+        $properties = Listing::selectRaw("*, 
+            (6371000 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) - radians(?)) + sin(radians(?)) * sin(radians(lat)))) AS distance", 
+            [$latitude, $longitude, $latitude])
+            ->having("distance", "<=", $radius)
+            ->orderBy("distance")
+            ->get();
+
+        // Retornar las propiedades en formato JSON
+        return response()->json($properties);
+    }
+    
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\TwController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,4 +48,6 @@ Route::group(["middleware" => "apikey.validate"], function(){
 });
 
 Route::get('/propertys/list', [PropertyController::class, 'search'])->name('search.property');
+
+Route::get('/properties/nearby/{id}', [TwController::class, 'getNearbyProperties']);
 
