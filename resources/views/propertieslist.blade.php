@@ -875,8 +875,10 @@
             let areaInfo = '';
             if (property.construction_area > 0) {
                 areaInfo = `${property.construction_area} m<sup>2</sup>`;
-            } else if (property.land_area > 0) {
-                areaInfo = `${property.land_area} m<sup>2</sup>`;
+            }
+            let landArea = '';
+            if (property.land_area > 0) {
+                landArea = `${property.land_area} m<sup>2</sup>`;
             }
 
             let formattedDescription = property.listing_description ?
@@ -939,9 +941,13 @@
                                                 <img width="50px" height="50px" src="{{ asset('img/estacionamiento.png') }}" alt="">
                                                 <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage} ${property.garage > 1 ? 'Garajes' : 'Garaje'}</p>
                                             </div>` : ''}
-                                    ${areaInfo ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
+                                ${areaInfo ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
                                                 <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
                                                 <p class="pt-3" style="font-weight: 600; font-size: 15px">${areaInfo}</p>
+                                            </div>` : ''}
+                                ${landArea ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
+                                                <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
+                                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${landArea}</p>
                                             </div>` : ''}
                             </div>
                             <div class="col-sm-4 d-flex gap-3">
