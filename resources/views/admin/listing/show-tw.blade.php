@@ -751,6 +751,23 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script>
 
+    function formatCurrency(number, currencySymbol = '$', decimalSeparator = '.', thousandsSeparator = ',') {
+      const options = {
+        style: 'currency',
+        currency: 'USD', // Puedes cambiar esto a la moneda que necesites
+        currencyDisplay: 'symbol', // Puedes cambiar esto a 'code' o 'name'
+      };
+
+      const formatter = new Intl.NumberFormat('en-US', options); // Puedes cambiar 'en-US' a la configuración regional que necesites
+
+      let formattedNumber = formatter.format(number);
+
+      // Reemplazar separadores de miles y decimales
+      formattedNumber = formattedNumber.replace(/\./g, '#TEMP#').replace(/,/g, '.').replace(/#TEMP#/g, ',');
+
+      return formattedNumber.replace('USD', currencySymbol); // Reemplazar el símbolo de moneda USD con el deseado
+    }
+
     // 1️⃣ Inicializar el mapa en una ubicación por defecto
     let map = L.map("mapleaflet").setView(['{{$propertie->lat}}', '{{$propertie->lng}}'], 14); // Latitud y longitud de Nueva York como ejemplo
 
@@ -802,8 +819,8 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
         <div>
           <a style='color:#000' href='/admin/show-listing/${similarPropertie.id}'>
             <b>COD: ${similarPropertie.product_code}</b>
-            <br>
-            <p class='m-0'>${similarPropertie.listing_title}</p>  
+            <p class='m-0 mt-1 mb-1'>${similarPropertie.listing_title}</p>
+            <span class='text-muted fw-bold'>${formatCurrency(similarPropertie.property_price)}</span>
           </a>
         </div>
       </div>
