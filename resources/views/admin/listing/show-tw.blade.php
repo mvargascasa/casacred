@@ -834,6 +834,7 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
             clearInterval(checkModal);
             setTimeout(() => {
                 map.invalidateSize();
+                marker.openPopup();
             }, 100);
         }
     }, 100);
