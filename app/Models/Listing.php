@@ -66,4 +66,40 @@ class Listing extends Model
             return $query->where('listing_title', 'LIKE', "%$ubication%");
         }
     }
+
+    public function isValidCoordinates()
+    {
+        if (is_null($this->lat) || is_null($this->lng)) {
+            return false; // Latitud o longitud nula
+        }
+    
+        if (!is_numeric($this->lat) || !is_numeric($this->lng)) {
+            return false; // Latitud o longitud no numérica
+        }
+    
+        // Puedes agregar más validaciones aquí, como rangos de latitud y longitud
+        // para asegurar que estén dentro de los límites geográficos
+        if ($this->lat < -90 || $this->lat > 90 || $this->lng < -180 || $this->lng > 180) {
+            return false; // Latitud o longitud fuera de rango
+        }
+    
+        // Verificar si lng es una URL (opcional, pero recomendado)
+        if (filter_var($this->lng, FILTER_VALIDATE_URL)) {
+            return false; // Longitud es una URL
+        }
+    
+        return true; // Coordenadas válidas
+    }
+
+    public function distance($lat1, $long1, $lat2, $long2){
+        $radioTierra = 6371;
+        $dLat = deg2rad($lat2 - $lat1);
+        $dLon = deg2rad($long2 - $lat2);
+        $a = sin($dLat/2) * sin($dLat/2) +
+        cos(deg2rad($lat1)) * cos(deg2rad($lat2)) *
+        sin($dLon/2) * sin($dLon/2);
+        $c = 2 * atan2(sqrt($a), sqrt(1-$a));
+        $distancia = $radioTierra * $c;
+        return $distancia;
+    }
 }

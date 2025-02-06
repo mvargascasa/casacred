@@ -670,11 +670,17 @@ class ListingController extends Controller
     }
 
     public function show_listing($id){
+
+        $radius = 2000;
+
         $propertie = Listing::where('id', $id)->first();
 
         $similarProperties = []; 
         $nearbyproperties = []; 
         $nearbyproperties_aux = [];
+
+        $latitude = $propertie->lat;
+        $longitude = $propertie->lng;
 
         if($propertie){
             
@@ -683,21 +689,12 @@ class ListingController extends Controller
             $minPrice = $propertie->property_price - $priceDifference;
             $maxPrice = $propertie->property_price + $priceDifference;
 
-            $similarProperties = Listing::where('state', 'LIKE', "%$propertie->state%")
-                                        ->where('city', 'LIKE', "%$propertie->city%")
-                                        ->where(function ($query) use ($propertie) {
-                                            $query->where('address', $propertie->address) // Coincidencia exacta en la dirección
-                                                ->orWhere(function ($q) use ($propertie) {
-                                                    $q->where('address', 'LIKE', "%$propertie->address%") // Coincidencia parcial en la dirección
-                                                        ->orWhere('sector', 'LIKE', "%$propertie->sector%"); // Coincidencia en el sector
-                                                });
-                                        })
+            $similarProperties = Listing::selectRaw("*, (6371000 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) - radians(?)) + sin(radians(?)) * sin(radians(lat)))) AS distance", [$latitude, $longitude, $latitude])
                                         ->where('listingtype', 'LIKE', "%$propertie->listingtype%")
                                         ->where('listingtypestatus', 'LIKE', "%$propertie->listingtypestatus%")
                                         ->where('available', 1)
                                         ->where("product_code", "!=", $propertie->product_code)
                                         ->whereBetween('property_price', [$minPrice, $maxPrice])
-                                        ->orderByRaw("CASE WHEN address = ? THEN 0 ELSE 1 END, address LIKE ?, sector LIKE ?", [$propertie->address, "%$propertie->address%", "%$propertie->sector%"]) // Ordenar por prioridad
                                         ->take(10)
                                         ->get();
 
