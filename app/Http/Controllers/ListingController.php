@@ -695,6 +695,7 @@ class ListingController extends Controller
                                         ->where('available', 1)
                                         ->where("product_code", "!=", $propertie->product_code)
                                         ->whereBetween('property_price', [$minPrice, $maxPrice])
+                                        ->having("distance", "<=", $radius)
                                         ->take(10)
                                         ->get();
 
