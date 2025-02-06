@@ -25,118 +25,8 @@
       #map{width: 100%; height: 100%}
     </style>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA9HaUDMtwi6jqW1M8avBHmOpspAUFto4"></script>
-    <script>
-    var newarray = [];
-    function initMap() {
-      var map;
-      var bounds = new google.maps.LatLngBounds();
-      var mapOptions = {
-          mapTypeId: 'roadmap'
-      };
-                      
-      // Display a map on the web page
-      map = new google.maps.Map(document.getElementById("map"), mapOptions);
-      map.setTilt(50);
-          
-      // Multiple markers location, latitude, and longitude
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
-      newarray = @json($nearbyproperties_aux);
-      var markers_aux = [];
-      var infoWindowContent_aux = [];
-      for(let i = 0; i < newarray.length; i++){
-        //if(newarray[i]['lat'].includes('-') && newarray[i]['lng'].includes('-')){
-          markers_aux[i] = new Array(newarray[i]['listing_title'] + ", EC", newarray[i]['lat'], newarray[i]['lng']);
-          infoWindowContent_aux[i] = new Array("<div>Código "+newarray[i]['product_code']+"<p><a target='_blank' href='https://casacredito.com/admin/show-listing/"+newarray[i]['id']+"'>"+newarray[i]['listing_title']+"</a></p><p><a target='_blank' href='https://api.whatsapp.com/send?text=https://maps.google.com/?q="+newarray[i]['lat']+","+newarray[i]['lng']+"'>Enviar Ubicación</a></p></div>");
-        //}
-      }
-
-    var propertyCoordIsValid = false;
-    if("{{$propertie->lat}}".includes('-') && "{{$propertie->lat}}".includes('.') && "{{$propertie->lng}}".includes('-') && "{{$propertie->lng}}".includes('.')){
-      markers_aux.unshift(new Array("{{$propertie->listing_title}}, EC", "{{$propertie->lat}}", "{{$propertie->lng}}"));
-      infoWindowContent_aux.unshift(new Array("<div>Código {{$propertie->product_code}}<p><a href='https://casacredito.com/admin/show-listing/{{$propertie->id}}'>{{$propertie->listing_title}}</a></p><p><a target='_blank' href='https://api.whatsapp.com/send?text=https://maps.google.com/?q={{$propertie->lat}},{{$propertie->lng}}'>Enviar Ubicación</a></p></div>"));
-      propertyCoordIsValid = true;
-    }
-
-      //console.log("---------markers aux --------------------");
-      //console.log(markers_aux);
-
-      var markers = [
-          ['{{$propertie->listing_title}}, EC', '{{$propertie->lat}}', '{{$propertie->lng}}']
-          //['Brooklyn Public Library, NY', 40.672587, -73.968146],
-          //['Prospect Park Zoo, NY', 40.665588, -73.965336]
-      ];
-      //console.log("-------------MARKERS--------------");
-      //console.log(markers);
-                          
-      // Info window content
-      var infoWindowContent = [
-          ['<div class="info_content">' +
-          '<h3>{{$propertie->listing_title}}</h3>' +
-          '</div>'],
-          // ['<div class="info_content">' +
-          // '<h3>Brooklyn Public Library</h3>' +
-          // '<p>The Brooklyn Public Library (BPL) is the public library system of the borough of Brooklyn, in New York City.</p>' +
-          // '</div>'],
-          // ['<div class="info_content">' +
-          // '<h3>Prospect Park Zoo</h3>' +
-          // '<p>The Prospect Park Zoo is a 12-acre (4.9 ha) zoo located off Flatbush Avenue on the eastern side of Prospect Park, Brooklyn, New York City.</p>' +
-          // '</div>']
-      ];
-
-      //console.log("-----------------infoWindowContent-------------------");
-      //console.log(infoWindowContent);
-
-
-      //console.log("---------------infoWindowContentAux-------------------")
-      //console.log(infoWindowContent_aux);
-          
-      // Add multiple markers to map
-      var infoWindow = new google.maps.InfoWindow(), marker, i;
-      
-      var icon = {
-          url: "https://cdn1.iconfinder.com/data/icons/real-estate-building-flat-vol-3/104/house__location__home__map__Pin-512.png", // url
-          scaledSize: new google.maps.Size(40, 40), // scaled size
-          origin: new google.maps.Point(0,0), // origin
-          anchor: new google.maps.Point(0, 0) // anchor
-      };
-      // Place each marker on the map  
-      for( i = 0; i < markers_aux.length; i++ ) {
-          if(i == 0 && propertyCoordIsValid){icon.scaledSize = new google.maps.Size(60, 60);}
-          else {icon.scaledSize = new google.maps.Size(40, 40);}
-          var position = new google.maps.LatLng(markers_aux[i][1], markers_aux[i][2]);
-          bounds.extend(position);
-          marker = new google.maps.Marker({
-              position: position,
-              map: map,
-              icon: icon,
-              title: markers_aux[i][0]
-          });
-          
-          // Add info window to marker    
-          google.maps.event.addListener(marker, 'click', (function(marker, i) {
-              return function() {
-                  infoWindow.setContent(infoWindowContent_aux[i][0]);
-                  infoWindow.open(map, marker);
-              }
-          })(marker, i));
-
-          // Center the map to fit all markers on the screen
-          map.fitBounds(bounds);
-      }
-
-      // Set zoom level
-      var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-          this.setZoom(16);
-          google.maps.event.removeListener(boundsListener);
-      });
-      
-  }
-  //if(){
-    google.maps.event.addDomListener(window, 'load', initMap);
-  //}
-  
-    </script>
 @endsection
 
 @section('content')
@@ -486,46 +376,41 @@
         <div class="card border-light shadow-sm mb-3 mt-4">
           <div class="card-header text-white" style="background-color: @if($propertie->property_by == "Casa Credito") #DC3545 @elseif($propertie->property_by == "Housing") #1C2444 @elseif($propertie->property_by == "Promotora") #AC3837 @endif">Información</div>
           <div class="card-body">
-            <div class="row mb-3">
-              <p class="h6 d-flex gap-2 align-items-center">Esta propiedad pertenece a <img width="100px" src="@if($propertie->property_by == "Housing") {{ asset('img/logo-housing-rent.png') }} @elseif($propertie->property_by == "Promotora") {{ asset('img/logo-rojo-promotora.png') }} @elseif($propertie->property_by == "Casa Credito") {{ asset('img/LOGO CASA CREDITO_Mesa de trabajo 1.png') }} @endif" alt=""></p>
-            </div>
             @if($user)
-              <div class="row mb-3">
-                <p class="text-muted"><i class="fas fa-info-circle"></i> Subido por <b>{{$user->name}}</b> el <b>{{$propertie->created_at->format('d-M-y')}}</b></p>
+              <div class="row mb-2">
+                <p class="text-muted m-0"><i class="fas fa-info-circle"></i> Subido por <b>{{$user->name}}</b> el <b>{{$propertie->created_at->format('d-M-y')}}</b></p>
               </div>
             @endif
-            <div class="row mb-3">
-              <div class="col-sm-6">
-                <p><span style="font-weight: 500">Tipo:</span> @if($propertie->listingtypestatus == "en-venta") Venta @elseif($propertie->listingtypestatus == "alquilar") Alquilar @else Proyectos @endif</p>
+            <div class="row">
+              <h5 class="card-title" style="font-weight: 900">Características</h5>
+              <div class="col-sm-6 mb-2">
+                <p class="m-0"><span style="font-weight: 500">Tipo:</span> @if($propertie->listingtypestatus == "en-venta") Venta @elseif($propertie->listingtypestatus == "alquilar") Alquilar @else Proyectos @endif</p>
               </div>
-              <div class="col-sm-6">
-                <p><span style="font-weight: 500">Categoría:</span> {{ $listingtype->type_title}}</p>
+              <div class="col-sm-6 mb-2">
+                <p class="m-0"><span style="font-weight: 500">Categoría:</span> {{ $listingtype->type_title}}</p>
               </div>
-            </div>
-            <div class="row mt-2">
-              <h5 class="card-title fw-bold">Características</h5>
               @if($propertie->land_area > 0)
-                <div class="col-sm-6 d-flex mt-2 mb-3">
+                <div class="col-sm-6 d-flex mt-2">
                   <i style="font-size: 20px; margin-right: 5px" class="fas fa-compress-arrows-alt"></i>
-                  <p> Área Terreno: {{ $propertie->land_area}} m<sup>2</sup></p>
+                  <p class="m-0"><span style="font-weight: 500">Área del Terreno:</span> {{ $propertie->land_area}} m<sup>2</sup></p>
                 </div>
               @endif
               @if($propertie->construction_area > 0)
-                <div class="col-sm-6 d-flex mt-3 mb-3">
+                <div class="col-sm-6 d-flex mt-2">
                   <i style="font-size: 20px; margin-right: 5px" class="fas fa-expand-arrows-alt"></i>
-                  <p>Área Construcción: {{ $propertie->construction_area}} m<sup>2</sup></p>
+                  <p class="m-0" style="font-weight: 500">Área de Construcción: {{ $propertie->construction_area}} m<sup>2</sup></p>
                 </div>
               @endif
               @if($propertie->Front > 0)
-                <div class="col-sm-6 d-flex mt-3 mb-3">
+                <div class="col-sm-6 d-flex mt-3">
                   <i style="font-size: 20px; margin-right: 5px" class="fas fa-expand-alt"></i>
-                  <p> Frente: {{ $propertie->Front}} m<sup>2</sup></p>
+                  <p class="m-0"> <span style="font-weight: 500">Frente:</span> {{ $propertie->Front}} m<sup>2</sup></p>
                 </div>
               @endif
               @if($propertie->Fund > 0)
-                <div class="col-sm-6 d-flex mt-3 mb-3">
+                <div class="col-sm-6 d-flex mt-3">
                   <i style="font-size: 20px; margin-right: 5px" class="fas fa-expand-alt"></i>
-                  <p> Fondo: {{ $propertie->Fund}} m<sup>2</sup></p>
+                  <p class="m-0"> <span style="font-weight: 500">Fondo:</span> {{ $propertie->Fund}} m<sup>2</sup></p>
                 </div>
               @endif
               @if ($bedroom > 0)
@@ -558,15 +443,7 @@
                 <h5 class="card-title fw-bold">Alicuota</h5>
                 <p>${{ $propertie->aliquot }}</p>
               </div>
-            @endif
-            @if($propertie->property_by == "Casa Credito" || $propertie->property_by == "Promotora")
-              @if($propertie->cadastral_key != null)
-                <div class="row mb-3">
-                  <h5 class="card-title fw-bold">Clave Catastral</h5>
-                  <p>{{ $propertie->cadastral_key }}</p>
-                </div>
-              @endif
-            @endif
+            @endif            
           </div>
           <div class="row">
           </div>
@@ -578,6 +455,10 @@
           @endif
           <button type="button" class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" data-bs-toggle="modal" data-bs-target="#modalSendEmail">Compartir</button>
           <button type="button" class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" data-bs-toggle="modal" data-bs-target="#modalMap">Mapa</button>
+        </div>
+
+        <div>
+          
         </div>
       </div>
     </div>
@@ -799,7 +680,7 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
         </p>
         <div class="mt-2">
           <img class="w-full h-60" src="{{asset('/uploads/listing/600/'. strtok($propertie->images, '|'))}}" alt="cargando imagen...">
-          <p class="text-blue-700 mt-2">https://casacredito.com/propiedad/{{$propertie->slug}}</p>
+          <p class="text-blue-700 mt-2">https://grupohousing.com/propiedad/{{$propertie->slug}}</p>
           <p class="text-sm font-semibold">{{$propertie->listing_title}}</p>
         </div>
       </div>
@@ -855,7 +736,7 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
   <p class="text-red-600">La propiedad <b>{{$propertie->product_code}}</b> no tiene una ubicación válida.</p>
 </div>
 @endif
-<div id="map" class="flex text-center justify-center items-center modal-body relative p-4" style="height: 400px"></div>
+<div id="mapleaflet" style="height: 400px; width: 100%"></div>
 <div
   class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-center p-4 border-t border-gray-200 rounded-b-md">
   <button type="button" class="px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-dismiss="modal">Cerrar</button>
@@ -866,8 +747,79 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
 @endsection
 
 @section('endscript')
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script>
+
+    // 1️⃣ Inicializar el mapa en una ubicación por defecto
+    let map = L.map("mapleaflet").setView(['{{$propertie->lat}}', '{{$propertie->lng}}'], 14); // Latitud y longitud de Nueva York como ejemplo
+
+    // 2️⃣ Agregar el mapa base de OpenStreetMap
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    let iconoPersonalizado = L.icon({
+      iconUrl: "/img/icon-house.png", // Reemplaza con tu icono
+      iconSize: [32, 32],
+    });
+
+    let marker = L.marker(['{{$propertie->lat}}', '{{$propertie->lng}}'], { icon: iconoPersonalizado }).addTo(map);
+    marker.bindPopup(`
+      <div style='display:flex; gap:10px; align-items:center'>
+        <div>
+          <img src='/uploads/listing/300/{{ explode('|', $propertie->images)[0] }}'>
+        </div>
+        <div>
+          <a style='color:#000' href='/admin/show-listing/{{ $propertie->id}}'>
+            <b>COD: {{$propertie->product_code}}</b>
+            <br>
+            <p class='m-0'>{{ $propertie->listing_title}}</p>  
+          </a>
+          <a target='_blank' href='https://api.whatsapp.com/send?text=Ubicación de propiedad *{{ $propertie->product_code }}* %0A https://maps.google.com/?q={{$propertie->lat}},{{$propertie->lng}}' class='btn btn-success btn-sm text-white mt-2'>
+            Compartir ubicación
+          </a>
+        </div>
+      </div>
+      `);
+
+      let circle = L.circle(['{{$propertie->lat}}', '{{$propertie->lng}}'], {
+          color: '#182741',
+          fillColor: '#182741',
+          fillOpacity: 0.3,
+          radius: 2000
+      }).addTo(map);
+
+    let arraySimilarProperties = @json($similarProperties);
+
+    arraySimilarProperties.forEach(similarPropertie => {
+      let markerSimilar = L.marker([similarPropertie.lat, similarPropertie.lng]).addTo(map);
+      markerSimilar.bindPopup(`
+      <div style='display:flex; gap:10px; align-items:center'>
+        <div>
+          <img src='/uploads/listing/300/${similarPropertie.images.split('|')[0]}'>
+        </div>
+        <div>
+          <a style='color:#000' href='/admin/show-listing/${similarPropertie.id}'>
+            <b>COD: ${similarPropertie.product_code}</b>
+            <br>
+            <p class='m-0'>${similarPropertie.listing_title}</p>  
+          </a>
+        </div>
+      </div>
+      `);
+    })
+
+    let checkModal = setInterval(() => {
+        let modal = document.getElementById('modalMap');
+        if (modal && modal.style.display !== 'none' && modal.clientHeight > 0) {
+            console.log('Modal detectado abierto');
+            clearInterval(checkModal);
+            setTimeout(() => {
+                map.invalidateSize();
+            }, 100);
+        }
+    }, 100);
 
   var openmodal = document.querySelectorAll('.modal-open')
     for (var i = 0; i < openmodal.length; i++) {
