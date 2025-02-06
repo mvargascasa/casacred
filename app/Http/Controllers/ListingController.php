@@ -693,6 +693,7 @@ class ListingController extends Controller
                                         ->where('listingtype', 'LIKE', "%$propertie->listingtype%")
                                         ->where('listingtypestatus', 'LIKE', "%$propertie->listingtypestatus%")
                                         ->where('available', 1)
+                                        ->where('status', 1)
                                         ->where("product_code", "!=", $propertie->product_code)
                                         ->whereBetween('property_price', [$minPrice, $maxPrice])
                                         ->having("distance", "<=", $radius)
