@@ -880,6 +880,14 @@
             if (property.land_area > 0) {
                 landArea = `${property.land_area} m<sup>2</sup>`;
             }
+            let frontArea = '';
+            if (property.Front > 0) {
+                frontArea = `${property.Front} m<sup>2</sup>`;
+            }
+            let fundArea = '';
+            if (property.Fund > 0) {
+                fundArea = `${property.Fund} m<sup>2</sup>`;
+            }
 
             let formattedDescription = property.listing_description ?
                 property.listing_description.toLowerCase().replace(/(^\w{1})|(\.\s*\w{1})/g, letter => letter.toUpperCase())
@@ -948,6 +956,14 @@
                                 ${landArea ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
                                                 <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
                                                 <p class="pt-3" style="font-weight: 600; font-size: 15px">${landArea}</p>
+                                            </div>` : ''}
+                                ${frontArea ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
+                                                <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
+                                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${frontArea}</p>
+                                            </div>` : ''}
+                                ${fundArea ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
+                                                <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
+                                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${fundArea}</p>
                                             </div>` : ''}
                             </div>
                             <div class="col-sm-4 d-flex gap-3">
