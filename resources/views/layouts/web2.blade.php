@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="{{ asset('favicon-grupo-housing.png') }}" type="image/x-icon" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    {{-- <link href="" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{ asset('css/5.0.0/bootstrap.min.css') }}">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -14,32 +14,10 @@
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     </noscript>
     <link rel="stylesheet" href="{{ asset('css/font-style.css') }}">
-    <link rel="canonical" href="https://grupohousing.com/" />
-    <script>
-        let stylesheet = document.createElement('link');
-        stylesheet.href = "https://pro.fontawesome.com/releases/v5.10.0/css/all.css";
-        stylesheet.rel = 'stylesheet';
-        setTimeout(function() {
-            document.getElementsByTagName('head')[0].appendChild(stylesheet);
-        }, 3500);
-    </script>
-
-    {{-- SCRIPT DE RECAPTCHA V3 --}}
-    {{-- <script id="recaptcha"></script> --}}
-
-    <script>
-        setTimeout(() => {
-            // let scriptrecaptcha = document.getElementById('recaptcha');
-            // scriptrecaptcha.src = "https://www.google.com/recaptcha/api.js?render=6Le1UsshAAAAAL93VxqsJYCa67mrcNIP1q3C99v5";
-            let scriptrecaptcha = document.createElement('script');
-            scriptrecaptcha.src =
-                "https://www.google.com/recaptcha/api.js?render=6Le1UsshAAAAAL93VxqsJYCa67mrcNIP1q3C99v5";
-            document.getElementsByTagName('head')[0].appendChild(scriptrecaptcha);
-        }, 3500);
-    </script>
+    <link rel="canonical" href="{{ Request::url() }}" />
 
 
-    <link rel="stylesheet" href="{{ asset('css/style.css?x=6') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.min.css?v=1') }}">
     <meta name="facebook-domain-verification" content="st7nmy30bjdubvp2cuvvhwuk6n2syf" />
     <?php
 $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -801,19 +779,30 @@ if(strpos($actual_link, 'localhost') === false){
                 }
             });
         });
-
-        // Otros scripts...
     </script>
-    {{-- @livewireScripts --}}
+
+    <script>
+        let stylesheet = document.createElement('link');
+        stylesheet.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css";
+        stylesheet.rel = 'stylesheet';
+        setTimeout(function() {
+            document.getElementsByTagName('head')[0].appendChild(stylesheet);
+        }, 3500);
+    </script>
+
+    <script>
+        setTimeout(() => {
+            // let scriptrecaptcha = document.getElementById('recaptcha');
+            // scriptrecaptcha.src = "https://www.google.com/recaptcha/api.js?render=6Le1UsshAAAAAL93VxqsJYCa67mrcNIP1q3C99v5";
+            let scriptrecaptcha = document.createElement('script');
+            scriptrecaptcha.src =
+                "https://www.google.com/recaptcha/api.js?render=6Le1UsshAAAAAL93VxqsJYCa67mrcNIP1q3C99v5";
+            document.getElementsByTagName('head')[0].appendChild(scriptrecaptcha);
+        }, 3500);
+    </script>
+    
     <script>
         let loaded = false;
-
-
-        window.addEventListener('load', () => {
-            //loadscript();
-
-        })
-
         function openDivCallUsaEcu() {
             let div = document.getElementById('call-usa-ecu');
             if (div.style.marginRight < "0px") {

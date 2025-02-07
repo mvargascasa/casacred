@@ -934,9 +934,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </script>
 <script>
-    window.addEventListener('load', (event) => {
-        //document.getElementById('secondsection').style.backgroundImage = "url('img/imgbannermiddle.webp')";
-    });
 
     let inpSearchTxt = document.getElementById('ftop_txt');
     if (inpSearchTxt) {
