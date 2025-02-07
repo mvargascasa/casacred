@@ -685,7 +685,7 @@ function filter_properties(){
 
     let b_bathrooms = "";
     let elementsBath = document.getElementsByName('bathrooms');
-    for (let i = 0; index < elementsBath.length; index++) {
+    for (let i = 0; i < elementsBath.length; i++) {
         if(elementsBath[i].checked) b_bathrooms = elementsBath[i].value;
     }
 
