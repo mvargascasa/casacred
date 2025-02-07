@@ -113,21 +113,37 @@ class Proplisttw extends Component
             } else {
                 $properties_filter->where('property_by',$this->tipo);
             }
-        }                                           
-        //if($this->available=='1' || $this->available == null)                               $properties_filter->where('available', 1); //agregarle || $this->variable == null para muestre por defecto las activas y disponibles
-        //if($this->available=='2')                               $properties_filter->where('available', 2);
+        }
 
-        //if($this->country)              $properties_filter->where('country', $this->country);
-        if($this->state)                $properties_filter->where('state', $this->state);
-        if($this->city)                 $properties_filter->where('city', $this->city);
-        if($this->sector){
-            $sector = $this->sector;
-            //$properties_filter->where('sector', $this->sector)->orWhere('address', $this->sector);
-            $properties_filter->where(function ($query) use ($sector){
-                $query->where('sector', 'LIKE', '%'.$sector.'%')
-                    ->orWhere('address', 'LIKE', '%'.$sector.'%');
+        if ($this->state || $this->city || $this->sector) {
+            $properties_filter->where(function ($query) {
+                if ($this->state) {
+                    $query->where('state', $this->state);
+                }
+                if ($this->city) {
+                    $query->where('city', $this->city);
+                }
+                if ($this->sector) {
+                    $sector = $this->sector;
+                    $query->where(function ($q) use ($sector) {
+                        $q->where('sector', 'LIKE', '%'.$sector.'%')
+                          ->orWhere('address', 'LIKE', '%'.$sector.'%');
+                    });
+                }
             });
-        }          
+        }
+
+        // if($this->state)                $properties_filter->where('state', $this->state);
+        // if($this->city)                 $properties_filter->where('city', $this->city);
+        // if($this->sector){
+        //     $sector = $this->sector;
+            
+        //     $properties_filter->where(function ($query) use ($sector){
+        //         $query->where('sector', 'LIKE', '%'.$sector.'%')
+        //             ->orWhere('address', 'LIKE', '%'.$sector.'%');
+        //     });
+        // }
+
         if($this->zona)                 $properties_filter->where('address', 'LIKE', '%'.$this->zona.'%');
 
         //buscando por asesor
