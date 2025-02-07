@@ -115,21 +115,22 @@ class Proplisttw extends Component
             }
         }
 
-        if ($this->state || $this->city || $this->sector) {
-            $properties_filter->where(function ($query) {
-                if ($this->state) {
-                    $query->where('state', $this->state);
-                }
-                if ($this->city) {
-                    $query->where('city', $this->city);
-                }
-                if ($this->sector) {
-                    $sector = $this->sector;
-                    $query->where(function ($q) use ($sector) {
-                        $q->where('sector', 'LIKE', '%'.$sector.'%')
-                          ->orWhere('address', 'LIKE', '%'.$sector.'%');
-                    });
-                }
+        if ($this->state) {
+            $properties_filter->where('state', $this->state);
+        }
+        
+        if ($this->city) {
+            $properties_filter->where('city', $this->city);
+        }
+        
+        if ($this->sector) {
+            $sector = $this->sector;
+        
+            $properties_filter->where(function ($query) use ($sector) {
+                $query->where('state', 'LIKE', '%'.$sector.'%')
+                      ->orWhere('city', 'LIKE', '%'.$sector.'%')
+                      ->orWhere('sector', 'LIKE', '%'.$sector.'%')
+                      ->orWhere('address', 'LIKE', '%'.$sector.'%');
             });
         }
 
