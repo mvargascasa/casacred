@@ -408,31 +408,10 @@
 @endsection
 
 @section('content')
-@php
-$listing = \App\Models\Listing::where('product_code', 1503)->first();
-$image = explode("|", $listing->images);
-
-$bedroom=0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
-$bathroom=0;
-   
- if(!empty($listing->heading_details)){
-   $allheadingdeatils=json_decode($listing->heading_details); 
-   foreach($allheadingdeatils as $singleedetails){ 
-     unset($singleedetails[0]);				
-     for($i=1;$i<=count($singleedetails);$i++){ 
-       if($i%2==0){  
-         if($singleedetails[$i-1]==41 || $singleedetails[$i-1]==86 || $singleedetails[$i-1]==49) $bedroom+=$singleedetails[$i];
-         if($singleedetails[$i-1]==48 || $singleedetails[$i-1]==76 || $singleedetails[$i-1]==81 || $singleedetails[$i-1]==49) $bathroom+=$singleedetails[$i];									  
-       }								   
-     }								
-   $i++;
-   }
- }
-@endphp
 
 <section class="section-header">
   <div class="position-relative">
-      <video class="video-header" src="{{ asset('img/banner-home-video.mp4') }}" alt="Construir" autoplay muted loop playsinline></video>
+      <video class="video-header" src="{{ asset('img/banner-grupo-housing.mp4') }}" alt="Construir" autoplay muted loop playsinline></video>
       <div class="overlay-content text-center text-white">
           <!-- Otros contenidos si es necesario -->
       </div>
@@ -923,7 +902,7 @@ $bathroom=0;
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var video = document.querySelector('.video-header');
+        let video = document.querySelector('.video-header');
         if (video) {
             video.play().catch(function(error) {
                 console.log('Auto-play was prevented: ', error);
