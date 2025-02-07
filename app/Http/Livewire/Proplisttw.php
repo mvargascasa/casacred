@@ -127,12 +127,23 @@ class Proplisttw extends Component
             $sector = $this->sector;
         
             $properties_filter->where(function ($query) use ($sector) {
-                $query->where('state', 'LIKE', '%'.$sector.'%')
-                      ->orWhere('city', 'LIKE', '%'.$sector.'%')
-                      ->orWhere('sector', 'LIKE', '%'.$sector.'%')
+                $query->where('sector', 'LIKE', '%'.$sector.'%')
                       ->orWhere('address', 'LIKE', '%'.$sector.'%');
             });
         }
+
+        if ($this->zona) {
+            $zona = $this->zona;
+        
+            $properties_filter->where(function ($query) use ($zona) {
+                $query->where('state', 'LIKE', '%'.$zona.'%')
+                      ->orWhere('city', 'LIKE', '%'.$zona.'%')
+                      ->orWhere('sector', 'LIKE', '%'.$zona.'%')
+                      ->orWhere('address', 'LIKE', '%'.$zona.'%');
+            });
+        }
+
+        //if($this->zona)                 $properties_filter->where('address', 'LIKE', '%'.$this->zona.'%');
 
         // if($this->state)                $properties_filter->where('state', $this->state);
         // if($this->city)                 $properties_filter->where('city', $this->city);
@@ -144,8 +155,6 @@ class Proplisttw extends Component
         //             ->orWhere('address', 'LIKE', '%'.$sector.'%');
         //     });
         // }
-
-        if($this->zona)                 $properties_filter->where('address', 'LIKE', '%'.$this->zona.'%');
 
         //buscando por asesor
         if($this->asesor)               $properties_filter->where('user_id', $this->asesor);
