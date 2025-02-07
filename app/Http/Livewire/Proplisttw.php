@@ -28,6 +28,7 @@ class Proplisttw extends Component
     $fromdate, $untildate,
     $credit_vip,
     $bedrooms,
+    $bathrooms,
     $plusvalia,
     $transaccion;
 
@@ -165,6 +166,8 @@ class Proplisttw extends Component
         if($this->credit_vip)           $properties_filter->where('vip', $this->credit_vip);
 
         if($this->bedrooms)     $properties_filter->where('bedroom', $this->bedrooms);
+
+        if($this->bathrooms)    $properties_filter->where('bathroom', $this->bathrooms);
 
         if($this->plusvalia)  $properties_filter->where('plusvalia', $this->plusvalia);
 

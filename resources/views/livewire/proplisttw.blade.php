@@ -671,16 +671,22 @@ function filter_properties(){
 
     let order_aux;
 
-    let b_plusvalia = document.getElementById('b_plusvalia');
+    // let b_plusvalia = document.getElementById('b_plusvalia');
 
-    if(b_plusvalia.checked) @this.set('plusvalia', 1);
-    else @this.set('plusvalia', '');
+    // if(b_plusvalia.checked) @this.set('plusvalia', 1);
+    // else @this.set('plusvalia', '');
 
     let b_bedrooms = "";
 
     let ele = document.getElementsByName('bedrooms');
     for (let i = 0; i < ele.length; i++) {
         if(ele[i].checked) b_bedrooms = ele[i].value;
+    }
+
+    let b_bathrooms = "";
+    let elementsBath = document.getElementsByName('bathrooms');
+    for (let i = 0; index < elementsBath.length; index++) {
+        if(elementsBath[i].checked) b_bathrooms = elementsBath[i].value;
     }
 
     // console.log("Codigo " + b_code);
@@ -737,6 +743,7 @@ function filter_properties(){
     @this.set('credit_vip', b_credit_vip);
 
     @this.set('bedrooms', b_bedrooms);
+    @this.set('bathrooms', b_bathrooms);
 
     //document.getElementById('pricemaxmin').style.display = "none";
     //document.getElementById('datefilter').style.display = "none";

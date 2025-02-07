@@ -46,7 +46,7 @@
                         <div class="overflow-x-auto rounded-md">
                             {{-- background: rgba(8, 8, 8, 0.319); --}}
                         @if(!$ismobile)
-                        <section id="bgimage" class="h-64" style="background-size: cover;background-position: left center; width: 100%; background-repeat: no-repeat;">
+                        <section id="bgimage" class="h-64 relative" style="background-size: cover;background-position: left center; width: 100%; background-repeat: no-repeat;">
                             <div class="text-center h-64">
                                 <div class="flex justify-center pt-8 sticky top-0">
                                     <input type="hidden" id="b_tipo">
@@ -68,31 +68,6 @@
                                     </div>
                                 </div> 
                                 <div class="flex flex-wrap justify-center">
-{{-- <div class="w-auto bg-gray-100 py-8 pl-6 pr-1">
-                                    <select class="block w-auto pl-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_country">
-                                        <option value="">Pais</option>
-                                        <option value="Argentina" data-id="233">Argentina</option>
-                                        <option value="Colombia" data-id="47">Colombia</option>
-                                        <option value="Ecuador" data-id="63">Ecuador</option>
-                                        <option value="El Salvador" data-id="65">El Salvador</option>
-                                        <option value="Guatemala" data-id="232">Guatemala</option>
-                                    </select>
-                                </div> --}}
-                                {{-- <div class="w-auto relative bg-gray-100 py-8 pl-6 pr-1">
-                                    <div id="div1" class="pattern block w-32 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
-                                        <input type="hidden" id="b_state">
-                                        <label id="labeldiv1" for="state">Provincia</label>
-                                    </div>
-                                    <div class="overflow-y-scroll w-40 h-64 rounded-md mt-1 p-1 div-selects" id="child1" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
-                                        <div class="flex items-center">
-                                            <div style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> 
-                                            <label class="text-xs ml-1 text-gray-500">Provincia</label>
-                                        </div>
-                                        @foreach ($states as $state)
-                                            <input id="selState" onclick="setValue(this, 'labeldiv1')" type="text" class="w-full m-0 rounded pl-1" data-id="{{$state->id}}" value="{{$state->name}}" readonly>
-                                        @endforeach
-                                    </div>
-                                </div> --}}
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 pl-6 text-justify">
                                     <label class="text-xs text-gray-400">Provincia</label>
                                     <select class="block w-32 pl-2 border-gray-300 hover:border-gray-400 focus:outline-none shadow-md" id="b_state">
@@ -102,18 +77,6 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                {{-- <div class="w-auto relative bg-gray-100 py-8 pl-1 pr-1">
-                                    <div id="div2" class="pattern block w-32 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
-                                        <input type="hidden" id="b_city">
-                                        <label id="labeldiv2" for="state">Ciudad</label>
-                                    </div>
-                                    <div class="w-40 h-auto rounded-md mt-1 p-1 div-selects" id="child2" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
-                                        <div class="flex items-center">
-                                            <div style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> 
-                                            <label class="text-xs ml-1 text-gray-500">Ciudad</label>
-                                        </div>
-                                    </div>
-                                </div> --}}
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 pl-2 pr-1 text-justify">
                                     <label class="text-xs text-gray-400">Ciudad</label>
                                     <select class="block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_city">
@@ -125,7 +88,6 @@
                                 </div>
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 pl-1 pr-1 text-justify">
                                     <label class="text-xs text-gray-400">Sector</label>
-                                    {{-- <input class="block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_detalle" name="b_detalle" type="text" placeholder="Ej: Ricaurte"> --}}
                                     <select class="block w-32 pl-2 border-gray-300 hover:border-gray-400 focus:outline-none shadow-md" id="b_sector">
                                         <option value="">Todas</option>
                                         @foreach ($sectores as $sector)
@@ -144,48 +106,6 @@
                                     <label class="text-xs text-gray-400">Código</label>
                                     <input class="block w-20 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none" id="b_code" name="b_code" type="text" placeholder="Ej: 1733">
                                 </div>
-                                {{-- <div class="w-auto bg-gray-100 py-8 pr-1 pl-1 relative">
-                                    <div id="div3" class="pattern block w-24 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
-                                        <input type="hidden" id="b_tipo">
-                                        <label id="labeldiv3">Categoría</label>
-                                    </div>
-                                    <div class="w-24 h-auto rounded-md mt-1 p-1 div-selects" id="child3" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
-                                        <div class="flex items-center">
-                                            <div style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> 
-                                            <label class="text-xs ml-1 text-gray-500">Categoría</label>
-                                        </div>
-                                        <input onclick="setValue(this, 'labeldiv3')" type="text" class="w-full m-0 rounded pl-1" value="Venta" readonly>
-                                        <input onclick="setValue(this, 'labeldiv3')" type="text" class="w-full m-0 rounded pl-1" value="Alquiler" readonly>
-                                    </div>
-                                </div> --}}
-                                {{-- <div class="w-auto bg-gray-100 py-8 pl-2">
-                                    <select class="block w-32 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md leading-tight focus:outline-none" id="b_tipo">
-                                        <option value="" selected>Categoría</option>
-                                        <option value="en-venta">Venta</option>
-                                        <option value="alquilar">Alquiler</option>
-                                    </select>
-                                </div> --}}
-                                {{-- <div class="w-auto bg-gray-100 py-8 pl-1 pr-1 relative">
-                                    <div id="div4" class="pattern block w-40 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
-                                        <input type="hidden" id="b_categoria">
-                                        <label id="labeldiv4">Tipo de Propiedad</label>
-                                    </div>
-                                    <div class="w-40 h-auto rounded-md mt-1 p-1 div-selects" id="child4" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
-                                        <div class="flex items-center">
-                                            <div style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> 
-                                            <label class="text-xs ml-1 text-gray-500">Tipo de propiedad</label>
-                                        </div>
-                                        <input onclick="setValue(this, 'labeldiv4')" type="text" class="w-full m-0 rounded pl-1" value="Casas" readonly>
-                                        <input onclick="setValue(this, 'labeldiv4')" type="text" class="w-full m-0 rounded pl-1" value="Departamentos" readonly>
-                                        <input onclick="setValue(this, 'labeldiv4')" type="text" class="w-full m-0 rounded pl-1" value="Casas Comerciales" readonly>
-                                        <input onclick="setValue(this, 'labeldiv4')" type="text" class="w-full m-0 rounded pl-1" value="Terrenos" readonly>
-                                        <input onclick="setValue(this, 'labeldiv4')" type="text" class="w-full m-0 rounded pl-1" value="Quintas" readonly>
-                                        <input onclick="setValue(this, 'labeldiv4')" type="text" class="w-full m-0 rounded pl-1" value="Haciendas" readonly>
-                                        <input onclick="setValue(this, 'labeldiv4')" type="text" class="w-full m-0 rounded pl-1" value="Locales Comerciales" readonly>
-                                        <input onclick="setValue(this, 'labeldiv4')" type="text" class="w-full m-0 rounded pl-1" value="Oficinas" readonly>
-                                        <input onclick="setValue(this, 'labeldiv4')" type="text" class="w-full m-0 rounded pl-1" value="Suites" readonly>
-                                    </div>
-                                </div> --}}
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 pl-2 text-justify">
                                     <label class="text-xs text-gray-400">Tipo de propiedad</label>
                                     <select class="block w-auto pl-2 border-gray-300 hover:border-gray-400 shadow-md leading-tight focus:outline-none" id="b_categoria">
@@ -209,20 +129,6 @@
                                         <option value="alquilar">Renta </option>
                                     </select>
                                 </div>
-                                {{-- <div class="w-auto bg-gray-100 py-8 relative pl-1 pr-1">
-                                    <div id="div5" class="pattern block w-24 pl-2 rounded-md border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
-                                        <input type="hidden" id="b_status">
-                                        <label id="labeldiv5">Estado</label>
-                                    </div>
-                                    <div class="w-24 h-auto rounded-md mt-1 p-1 div-selects" id="child5" style="display: none; position:absolute; z-index: 3;border: 1px solid #cfd1d5; background-color: #ffffff">
-                                        <div class="flex items-center">
-                                            <div style="width: 8px; height: 8px; background-color: #EF4444; border-radius: 25px"></div> 
-                                            <label class="text-xs ml-1 text-gray-500">Estado</label>
-                                        </div>
-                                        <input onclick="setValue(this, 'labeldiv5')" type="text" class="w-full m-0 rounded pl-1" value="ON" readonly>
-                                        <input onclick="setValue(this, 'labeldiv5')" type="text" class="w-full m-0 rounded pl-1" value="OFF" readonly>
-                                    </div>
-                                </div> --}}
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 pl-2 text-justify">
                                     <label class="text-xs text-gray-400">Estado</label>
                                     <select class="block w-24 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none"id="b_status" name="b_status">
@@ -231,20 +137,6 @@
                                         <option value="D">OFF</option>
                                     </select>
                                 </div>
-                                {{-- <div class="w-auto pr-2 pb-2">
-                                    <select class="w-auto block w-20 py-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline"id="b_available" name="b_available"  class="w-20">
-                                        <option value="" selected>Disponibilidad</option>
-                                        <option value="1">Disponibles</option>
-                                        <option value="2">No disponibles</option>
-                                    </select>
-                                </div> --}}
-                                {{-- <div class="w-full pr-2 pb-2">
-                                    <select class="w-auto block w-32 py-2 border rounded-md border-gray-400 hover:border-gray-500 shadow focus:outline-none focus:shadow-outline" id="b_price" name="b_price"  class="w-20">
-                                        <option value="" selected>Precio</option>
-                                        <option value="ASC">Ascendente</option>
-                                        <option value="DESC">Descendente</option>
-                                    </select>
-                                </div> --}}
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 relative pr-1 pl-1 text-justify">
                                     <label class="text-xs text-gray-400">Precio</label>
                                     <div id="div6" class="pattern block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
@@ -276,53 +168,60 @@
                                 </div>
 
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 relative pr-1 pl-1 text-justify">
-                                    <label class="text-xs text-gray-400">Avanzado</label>
+                                    <label class="text-xs text-gray-400">Habitaciones</label>
                                     <div id="div9" class="pattern block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
                                                 {{-- onclick="openDateFilter();" --}}
                                         <label for="">Seleccione</label>
                                     </div>
                                     <div class="block w-full p-1 text-justify" id="child9" style="display: none; position:absolute; z-index: 3;border: 1px solid #000000; background-color: #ffffff">
                                         <div>
-                                            <div style="background-color: #EF4444; color: #ffffff">
-                                                <p class="ml-2 text-xs"># habitaciones</p>
-                                            </div>
                                             <div>
                                                 <div class="flex mt-1">
-                                                    <div class="mx-1">
+                                                    <div class="mx-1 flex items-center justify-center gap-2">
                                                         <input type="radio" id="b_bedrooms" name="bedrooms" value="1">
                                                         <label for="">1</label>
                                                     </div>
-                                                    <div class="mx-1">
+                                                    <div class="mx-1 flex items-center justify-center gap-2">
                                                         <input type="radio" id="b_bedrooms" name="bedrooms" value="2">
                                                         <label for="">2</label>
                                                     </div>
-                                                    <div class="mx-1">
+                                                    <div class="mx-1 flex items-center justify-center gap-2">
                                                         <input type="radio" id="b_bedrooms" name="bedrooms" value="3">
                                                         <label for="">3</label>
                                                     </div>
                                                     {{-- <input type="radio" id="" class="block m-2 shadow appearance-none border rounded py-1 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"> --}}
                                                 </div>
                                                 <div class="flex mt-1">
-                                                    <div class="mx-1">
+                                                    <div class="mx-1 flex items-center justify-center gap-2">
                                                         <input type="radio" id="b_bedrooms" name="bedrooms" value="4">
                                                         <label for="">4</label>
                                                     </div>
-                                                    <div class="mx-1">
+                                                    <div class="mx-1 flex items-center justify-center gap-2">
                                                         <input type="radio" id="b_bedrooms" name="bedrooms" value="5">
                                                         <label for="">5</label>
                                                     </div>
-                                                    <div class="mx-1">
+                                                    <div class="mx-1 flex items-center justify-center gap-2">
                                                         <input type="radio" id="b_bedrooms" name="bedrooms" value="6">
                                                         <label for="">6</label>
+                                                    </div>
+                                                </div>
+                                                <div class="flex mt-1">
+                                                    <div class="mx-1 flex items-center justify-center gap-2">
+                                                        <input type="radio" id="b_bedrooms" name="bedrooms" value="7">
+                                                        <label for="">7</label>
+                                                    </div>
+                                                    <div class="mx-1 flex items-center justify-center gap-2">
+                                                        <input type="radio" id="b_bedrooms" name="bedrooms" value="8">
+                                                        <label for="">8</label>
+                                                    </div>
+                                                    <div class="mx-1 flex items-center justify-center gap-2">
+                                                        <input type="radio" id="b_bedrooms" name="bedrooms" value="9">
+                                                        <label for="">9</label>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div>
-                                            <div class="flex" style="background-color: #EF4444; color: #ffffff">
-                                                <p class="ml-2 text-xs">¿Está en Plusvalia?</p>
-                                                <input class="ml-1" type="checkbox" name="plusvalia" id="b_plusvalia">
-                                            </div>
                                             {{-- <div>
                                                 <div class="flex mt-1">
                                                     <div class="mx-1">
@@ -335,6 +234,63 @@
                                                     </div>
                                                 </div>
                                             </div> --}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="w-auto bg-gray-100 pt-4 pb-8 relative pr-1 pl-1 text-justify">
+                                    <label class="text-xs text-gray-400">Baños</label>
+                                    <div id="div10" class="pattern block w-32 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none flex" style="background-color: white">
+                                                {{-- onclick="openDateFilter();" --}}
+                                        <label for="">Seleccione</label>
+                                    </div>
+                                    <div class="block w-full p-1 text-justify" id="child10" style="display: none; position:absolute; z-index: 3;border: 1px solid #000000; background-color: #ffffff">
+                                        <div>
+                                            <div>
+                                                <div class="flex mt-1">
+                                                    <div class="mx-1 flex items-center justify-center gap-2">
+                                                        <input type="radio" id="b_bathrooms" name="bathrooms" value="1">
+                                                        <label for="">1</label>
+                                                    </div>
+                                                    <div class="mx-1 flex items-center justify-center gap-2">
+                                                        <input type="radio" id="b_bathrooms" name="bathrooms" value="2">
+                                                        <label for="">2</label>
+                                                    </div>
+                                                    <div class="mx-1 flex items-center justify-center gap-2">
+                                                        <input type="radio" id="b_bathrooms" name="bathrooms" value="3">
+                                                        <label for="">3</label>
+                                                    </div>
+                                                    {{-- <input type="radio" id="" class="block m-2 shadow appearance-none border rounded py-1 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"> --}}
+                                                </div>
+                                                <div class="flex mt-1">
+                                                    <div class="mx-1 flex items-center justify-center gap-2">
+                                                        <input type="radio" id="b_bathrooms" name="bathrooms" value="4">
+                                                        <label for="">4</label>
+                                                    </div>
+                                                    <div class="mx-1 flex items-center justify-center gap-2">
+                                                        <input type="radio" id="b_bathrooms" name="bathrooms" value="5">
+                                                        <label for="">5</label>
+                                                    </div>
+                                                    <div class="mx-1 flex items-center justify-center gap-2">
+                                                        <input type="radio" id="b_bathrooms" name="bathrooms" value="6">
+                                                        <label for="">6</label>
+                                                    </div>
+                                                </div>
+                                                <div class="flex mt-1">
+                                                    <div class="mx-1 flex items-center justify-center gap-2">
+                                                        <input type="radio" id="b_bathrooms" name="bathrooms" value="7">
+                                                        <label for="">7</label>
+                                                    </div>
+                                                    <div class="mx-1 flex items-center justify-center gap-2">
+                                                        <input type="radio" id="b_bathrooms" name="bathrooms" value="8">
+                                                        <label for="">8</label>
+                                                    </div>
+                                                    <div class="mx-1 flex items-center justify-center gap-2">
+                                                        <input type="radio" id="b_bathrooms" name="bathrooms" value="9">
+                                                        <label for="">9</label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -387,13 +343,16 @@
                                     <button class="bg-red-600 text-white rounded-md px-4 hover:bg-red-500" onclick="location.reload()">LIMPIAR</button>
                                 </div>
 
-                                <div style="display:none" class="w-auto flex justify-end pb-2">
-                                    <div class="block w-full rounded-md mr-1">
-                                        <input type="hidden" id="view" value="grid">
-                                        <div style="cursor: pointer;" onclick="document.getElementById('view').value='grid';filter_properties();" class="float-right pr-1"><img src="{{ asset('img/grid.png') }}" alt=""></div>
-                                        <div style="cursor: pointer;" onclick="document.getElementById('view').value='list';filter_properties();" class="float-right pr-2"><img src="{{ asset('img/list.png') }}" alt=""></div>
+                                    <div class="absolute hidden top-0 right-0 pb-2 bg-gray-100">
+                                        <div class="block w-full rounded-md mr-1 px-4">
+                                            <p class="text-xs text-left">Ver por:</p>
+                                            <input type="hidden" id="view" value="grid">
+                                            <div>
+                                                <div style="cursor: pointer;" onclick="document.getElementById('view').value='grid';filter_properties();" class="float-right pr-1" title="Lista"><img src="{{ asset('img/grid.png') }}" alt=""></div>
+                                                <div style="cursor: pointer;" onclick="document.getElementById('view').value='list';filter_properties();" class="float-right pr-2" title="Tarjetas"><img src="{{ asset('img/list.png') }}" alt=""></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                             </div>
                         </section>
