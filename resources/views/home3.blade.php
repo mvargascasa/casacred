@@ -496,9 +496,9 @@
               </button>
             </div>
             <div class="card-body h-full">
+              <h3 style="font-size: 18px">{{ $propertie->listing_title }}</h3>
               <p class="text-muted m-0">Ubicación</p>
-              <p>{{ $propertie->state . ' | ' ?? '' }} {{ $propertie->city . ' | ' ?? '' }} {{ $propertie->address ?? ''}}</p>
-              <h5 class="card-title">{{ $propertie->listing_title }}</h5>
+              <h4 style="font-size: 16px; font-weight: 300">{{ $propertie->state . ' | ' ?? '' }} {{ $propertie->city . ' | ' ?? '' }} {{ $propertie->address ?? ''}}</h4>
               <div class="row justify-content-center mt-4 h-full align-items-center">
                 @if($propertie->bedroom > 0)
                   <div class="col-sm-4 col-4 text-center">
@@ -544,7 +544,7 @@
         <section class="d-flex justify-content-center">
           <div class="border py-4" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; width: 300px">
             <section class="d-flex justify-content-center">
-              <p class="h5 mr-2"> <span style="font-weight: 100">VENDA SU</span> <br> <span class="h3" style="font-weight: 500">PROPIEDAD</span></p>
+              <h3 class="h5 mr-2"> <span style="font-weight: 100">VENDA SU</span> <br> <span class="h3" style="font-weight: 500">PROPIEDAD</span></h3>
               <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
             </section>
             <section class="d-flex justify-content-end mt-2 pr-5">
@@ -559,7 +559,7 @@
         <section class="d-flex justify-content-center">
           <div class="border py-4" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; width: 300px">
             <section class="d-flex justify-content-center">
-              <p class="h5 mr-2"> <span style="font-weight: 100">RENTE CON</span> <br> <span class="h3" style="font-weight: 500">NOSOTROS</span></p>
+              <h3 class="h5 mr-2"> <span style="font-weight: 100">RENTE CON</span> <br> <span class="h3" style="font-weight: 500">NOSOTROS</span></h3>
               <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
             </section>
             <section class="d-flex justify-content-end mt-2 pr-5">
@@ -574,7 +574,7 @@
         <section class="d-flex justify-content-center">
           <div class="border py-4" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; width: 300px">
             <section class="d-flex justify-content-center">
-              <p class="h5 mr-2"> <span style="font-weight: 100">CONSTRUYE CON</span> <br> <span class="h3" style="font-weight: 500">NOSOTROS</span></p>
+              <h3 class="h5 mr-2"> <span style="font-weight: 100">CONSTRUYE CON</span> <br> <span class="h3" style="font-weight: 500">NOSOTROS</span></h3>
               <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
             </section>
             <section class="d-flex justify-content-end mt-2 pr-5">
@@ -594,7 +594,7 @@
     <section class="col-12 col-md-5 mb-4 mb-md-0" data-aos="fade-down-right">
       <h2 style="font-family: 'Sharp Grotesk'; font-weight: 500">Contáctanos</h2>
       <p class="mt-3">Confía en nosotros para hacer realidad tus sueños inmobiliarios. <span style="font-weight: 500">Grupo Housing</span> es una Inmobiliaria en Cuenca especializada en la venta de propiedades.</p>
-      <p style="font-weight: 500">Proporciónanos tus datos y te contactaremos</p>
+      <h3 style="font-weight: 500; font-size: 17px">Proporciónanos tus datos y te contactaremos</h3>
       <form action="{{ route('send.lead.form.home') }}" method="POST">
         @csrf
         <div class="form-group mb-3">
