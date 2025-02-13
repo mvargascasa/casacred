@@ -384,7 +384,17 @@
                 <h1 class="" style="font-family: 'Sharp Grotesk'; font-weight: 500;" id="listing-title">
                     {{ Str::title($listing->listing_title) }}</h1>
                 </h1>
-                <p class="h3 font-weigth:100">Precio: ${{ number_format($listing->property_price, 0, ',', '.') }}</p>
+                <div class="d-flex align-items-center px-2 py-1 rounded" style="gap: 10px; background-color: #242B40; color: #fff; width: fit-content">
+                    <div>
+                        <span class="h3" style="font-weight: 100">Precio: ${{ number_format($listing->property_price, 0, ',', '.') }}</span>
+                    </div>
+                    @if($listing->aliquot && $listing->aliquot > 0)
+                        <div class="d-flex align-items-center" style="gap: 10px; font-weight: 500">
+                            <span>+</span>
+                            <span class="text-center">Alicuota <br> ${{ number_format($listing->aliquot)}}</span>
+                        </div>
+                    @endif
+                </div>
 
                 <div class="d-flex align-items-center mt-3">
                     <i class="fa-solid fa-location-dot fs-5 me-2"></i>
@@ -661,7 +671,8 @@
                         <div class="col-12 col-md-auto mb-2 mb-md-0">
                             <span class="fw-bold"
                                 style="font-size: 40px; line-height: 50px; font-family: 'Sharp Grotesk'; font-weight: 500;">
-                                ${{ number_format($listing->property_price, 0, ',', '.') }}</span>
+                                ${{ number_format($listing->property_price, 0, ',', '.') }}
+                            </span>
                         </div>
                         @if ($listing->aliquot && $listing->aliquot > 0)
                             <div class="col-12 d-md-none my-2 divider-mobile"></div> <!-- Spacer for mobile -->
