@@ -105,44 +105,41 @@
             {{-- <h3 class="text-gray-700 text-3xl font-medium">Bienvenido</h3>   --}}
             <div class="flex">
                 <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
-                    <p>Total de Propiedades: <b>{{$totalproperties}}</b></p>
+                    <p>Total de Propiedades Disponibles: <b>{{$totalavailableproperties}}</b></p>
                 </div>
                 <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
-                    <p>Propiedades Activadas: <b>{{$totalactivatedproperties}}</b></p>
-                </div>
-                <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
-                    <p>Propiedades Disponibles: <b>{{$totalavailableproperties}}</b></p>
+                    <p>Total de Propiedades Activas: <b>{{$totalactivatedproperties}}</b></p>
                 </div>
             </div>
         </div>
         <div class="mx-auto my-2">
             <div class="flex text-sm">
                 <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
-                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Total Casas: <b>{{$totalcasas}}</b></p>
+                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Casas: <b>{{$totalcasas}}</b></p>
                 </div>
                 <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
-                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Total Departamentos: <b>{{$totaldepartamentos}}</b></p>
+                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Departamentos: <b>{{$totaldepartamentos}}</b></p>
                 </div>
                 <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
-                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Total Casas Comerciales: <b>{{$totalcasascomer}}</b></p>
+                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Casas Comerciales: <b>{{$totalcasascomer}}</b></p>
                 </div>
                 <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
-                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Total Terrenos: <b>{{$totalterrenos}}</b></p>
+                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Terrenos: <b>{{$totalterrenos}}</b></p>
                 </div>
                 <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
-                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Total Quintas: <b>{{$totalquintas}}</b></p>
+                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Quintas: <b>{{$totalquintas}}</b></p>
                 </div>
                 <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
-                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Total Haciendas: <b>{{$totalhaciendas}}</b></p>
+                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Haciendas: <b>{{$totalhaciendas}}</b></p>
                 </div>
                 <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
-                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Total Locales Comerciales: <b>{{$totallocalcomer}}</b></p>
+                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Locales Comerciales: <b>{{$totallocalcomer}}</b></p>
                 </div>
                 <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
-                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Total Oficinas: <b>{{$totaloficinas}}</b></p>
+                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Oficinas: <b>{{$totaloficinas}}</b></p>
                 </div>
                 <div class="mx-1 border p-2 rounded hover:bg-gray-800 hover:text-white">
-                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Total Suites: <b>{{$totalsuites}}</b></p>
+                    <p><i class="fa-sharp fa-solid fa-circle text-gray-500"></i> Suites: <b>{{$totalsuites}}</b></p>
                 </div>
             </div>
         </div>

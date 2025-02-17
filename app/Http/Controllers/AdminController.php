@@ -44,7 +44,6 @@ class AdminController extends Controller
         $totaloficinas = Listing::where('listingtype', 35)->where('available', 1)->count();
         $totalsuites = Listing::where('listingtype', 36)->where('available', 1)->count();
 
-        $totalproperties= Listing::all()->count();
         $totalactivatedproperties = Listing::where('status', 1)->count();
         $totalavailableproperties = Listing::where('available', 1)->count();
 
@@ -56,6 +55,7 @@ class AdminController extends Controller
                                 ->where(DB::raw('LENGTH(lat)'), '>', 5)
                                 ->where(DB::raw('LENGTH(lng)'), '>', 5)
                                 //->latest()->take(20)->get();
+                                ->orderBy('product_code', 'desc')
                                 ->get();
         foreach ($properties as $p) {
             if(Str::startsWith($p->lat, '-') && Str::startsWith($p->lng, '-') && Str::contains($p->lat, '.') && Str::contains($p->lng, '.')){
@@ -69,7 +69,7 @@ class AdminController extends Controller
 
         $updated_listing = DB::table('updated_listing')->where("created_at", "LIKE", "%".substr(date(now()), 0, 10)."%")->where('user_id', Auth::user()->id)->get();
 
-        return view('admin.index', compact('totalproperties', 'totalactivatedproperties', 'totalavailableproperties', 'properties_aux', 'totalcasas', 'totaldepartamentos', 'totalcasascomer', 'totalterrenos', 'totalquintas', 'totalhaciendas', 'totallocalcomer', 'totaloficinas', 'totalsuites', 'properties_at_week', 'properties_today', 'properties_dropped', 'updated_listing', 'now'));
+        return view('admin.index', compact('totalactivatedproperties', 'totalavailableproperties', 'properties_aux', 'totalcasas', 'totaldepartamentos', 'totalcasascomer', 'totalterrenos', 'totalquintas', 'totalhaciendas', 'totallocalcomer', 'totaloficinas', 'totalsuites', 'properties_at_week', 'properties_today', 'properties_dropped', 'updated_listing', 'now'));
     }     
     public function test(){
         return view('admin.test');
@@ -130,10 +130,10 @@ class AdminController extends Controller
         return redirect()->route('admin.properties');
     }
 
-    // public function getzones($zona){
-    //     $zonas = Sector::where('name', 'LIKE', '%'.$zona.'%')->get();
+    public function getzones($zona){
+        $zonas = Sector::where('name', 'LIKE', '%'.$zona.'%')->get();
 
-    //     return response()->json($zonas);
-    // }
+        return response()->json($zonas);
+    }
 
 }
