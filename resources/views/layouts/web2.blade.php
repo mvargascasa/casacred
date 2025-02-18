@@ -499,8 +499,8 @@ if(strpos($actual_link, 'localhost') === false){
                                 <div style="color: #ffffff; text-align: justify;">
                                     <span class="desing-t">Oficina:</span><span class="desing-p"> 
                                         <a target="_blank"
-                                            style="color: #ffffff" href="https://maps.app.goo.gl/yu5AWKv2u3tfVSq38">
-                                            Remigio Tamariz Crespo y Av. Fray Vicente Solano
+                                            style="color: #ffffff" href="https://maps.app.goo.gl/w1S3qxfWQ5LBob9a9">
+                                            Juan Iñiguez 3-87 y Gonzalo Cordero
                                         </a>
                                     </span>
                                 </div>
