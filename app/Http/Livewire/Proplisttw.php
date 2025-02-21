@@ -144,19 +144,6 @@ class Proplisttw extends Component
             });
         }
 
-        //if($this->zona)                 $properties_filter->where('address', 'LIKE', '%'.$this->zona.'%');
-
-        // if($this->state)                $properties_filter->where('state', $this->state);
-        // if($this->city)                 $properties_filter->where('city', $this->city);
-        // if($this->sector){
-        //     $sector = $this->sector;
-            
-        //     $properties_filter->where(function ($query) use ($sector){
-        //         $query->where('sector', 'LIKE', '%'.$sector.'%')
-        //             ->orWhere('address', 'LIKE', '%'.$sector.'%');
-        //     });
-        // }
-
         //buscando por asesor
         if($this->asesor)               $properties_filter->where('user_id', $this->asesor);
 
@@ -191,37 +178,45 @@ class Proplisttw extends Component
         $this->firstItem = $properties->firstItem();
         $this->totalProperties = $properties->total();
 
-        // if(count($properties) > 1){
-        //     foreach ($properties as $propertie) {
-        //         printf($propertie->listing_title);
-        //     }
-        // } else {
-        //     printf($properties->listing_title);
-        // }
-
         $similarProperties = Listing::where('available', 1);
 
         $similar_properties = [];
         if($this->code){
             $propertie_to_similar = Listing::where('product_code', 'LIKE', "%$this->code%")->first();
             if($propertie_to_similar){
-                $address = "";
-                if($propertie_to_similar->address != null) $address = $propertie_to_similar->address;
-                if($propertie_to_similar->sector != null) $address = $propertie_to_similar->sector;
-                if(str_contains($address, ",")){
-                    $separate_address = explode(",", $address);
-                    $address = end($separate_address);
-                    $address = str_replace(" ", "", $address);
-                }
-                $similarProperties->where('address', 'LIKE', "%$address%");
-                $similarProperties->where('state', $propertie_to_similar->state);
-                $similarProperties->where('city', $propertie_to_similar->city);
-                $similarProperties->where('listingtype', $propertie_to_similar->listingtype);
-                $similar_properties = $similarProperties->where('product_code', '!=', $this->code)->latest()->take(8)->get();
+
+                $radius = 2000;
+
+                $priceDifference = ($propertie_to_similar->listingtypestatus === 'en-venta') ? 20000 : 100;
+
+                $minPrice = $propertie_to_similar->property_price - $priceDifference;
+                $maxPrice = $propertie_to_similar->property_price + $priceDifference;
+
+                $similarProperties->selectRaw("*, (6371000 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) - radians(?)) + sin(radians(?)) * sin(radians(lat)))) AS distance", [$propertie_to_similar->lat, $propertie_to_similar->lng, $propertie_to_similar->lat])
+                                            ->where('listingtype', 'LIKE', "%$propertie_to_similar->listingtype%")
+                                            ->where('listingtypestatus', 'LIKE', "%$propertie_to_similar->listingtypestatus%")
+                                            ->where('available', 1)
+                                            //->where('status', 1)
+                                            ->where("product_code", "!=", $propertie_to_similar->product_code)
+                                            ->whereBetween('property_price', [$minPrice, $maxPrice])
+                                            ->having("distance", "<=", $radius);
+                                            //->take(10)
+                
+                // $address = "";
+                // if($propertie_to_similar->address != null) $address = $propertie_to_similar->address;
+                // if($propertie_to_similar->sector != null) $address = $propertie_to_similar->sector;
+                // if(str_contains($address, ",")){
+                //     $separate_address = explode(",", $address);
+                //     $address = end($separate_address);
+                //     $address = str_replace(" ", "", $address);
+                // }
+                // $similarProperties->where('address', 'LIKE', "%$address%");
+                // $similarProperties->where('state', $propertie_to_similar->state);
+                // $similarProperties->where('city', $propertie_to_similar->city);
+                // $similarProperties->where('listingtype', $propertie_to_similar->listingtype);
+                $similar_properties = $similarProperties->get();
             }
         }
-
-        //dd($similarProperties);
 
         $types = DB::table('listing_types')->get(); 
         $categories = DB::table('listing_status')->get(); 
