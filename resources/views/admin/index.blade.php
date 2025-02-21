@@ -13,88 +13,7 @@
 <!-- Load Esri Leaflet Geocoder from CDN -->
 <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.css" crossorigin="" />
 <script src="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.js" crossorigin=""></script>
-{{-- <script>
-    var newarray = [];
-    function initMap() {
-      var map;
-      var bounds = new google.maps.LatLngBounds();
-      var mapOptions = {
-          mapTypeId: 'roadmap'
-      };
-                      
-      // Display a map on the web page
-      map = new google.maps.Map(document.getElementById("map"), mapOptions);
-      map.setTilt(50);
-          
-      // Multiple markers location, latitude, and longitude
 
-      newarray = @json($properties_aux);
-      var markers_aux = [];
-      var infoWindowContent_aux = [];
-      for(let i = 0; i < newarray.length; i++){
-        //if(newarray[i]['lat'].includes('-') && newarray[i]['lng'].includes('-')){
-          markers_aux[i] = new Array(newarray[i]['listing_title'] + ", EC", newarray[i]['lat'], newarray[i]['lng']);
-          infoWindowContent_aux[i] = new Array("<div>Código "+newarray[i]['product_code']+"<p><a target='_blank' href='https://casacredito.com/admin/show-listing/"+newarray[i]['id']+"'>"+newarray[i]['listing_title']+"</a></p><p><a target='_blank' href='https://api.whatsapp.com/send?text=https://maps.google.com/?q="+newarray[i]['lat']+","+newarray[i]['lng']+"'>Enviar Ubicación</a></p></div>");
-        //}
-      }
-
-      //console.log("---------markers aux --------------------");
-      //console.log(markers_aux);
-
-      var markers = [
-          ['Brooklyn Public Library, NY', 40.672587, -73.968146]
-          //['Brooklyn Public Library, NY', 40.672587, -73.968146],
-          //['Prospect Park Zoo, NY', 40.665588, -73.965336]
-      ];
-                          
-      // Info window content
-      var infoWindowContent = [
-          ['<div class="info_content">' +
-          '<h3>Brooklyn Public Library</h3>' +
-          '<p>The Brooklyn Public Library (BPL) is the public library system of the borough of Brooklyn, in New York City.</p>' + '</div>'],
-      ];
-          
-      // Add multiple markers to map
-      var infoWindow = new google.maps.InfoWindow(), marker, i;
-      
-      var icon = {
-          url: "https://cdn1.iconfinder.com/data/icons/real-estate-building-flat-vol-3/104/house__location__home__map__Pin-512.png", // url
-          scaledSize: new google.maps.Size(40, 40), // scaled size
-          origin: new google.maps.Point(0,0), // origin
-          anchor: new google.maps.Point(0, 0) // anchor
-      };
-      // Place each marker on the map  
-      for( i = 0; i < markers_aux.length; i++ ) {
-          var position = new google.maps.LatLng(markers_aux[i][1], markers_aux[i][2]);
-          bounds.extend(position);
-          marker = new google.maps.Marker({
-              position: position,
-              map: map,
-              icon: icon,
-              title: markers_aux[i][0]
-          });
-          
-          // Add info window to marker    
-          google.maps.event.addListener(marker, 'click', (function(marker, i) {
-              return function() {
-                  infoWindow.setContent(infoWindowContent_aux[i][0]);
-                  infoWindow.open(map, marker);
-              }
-          })(marker, i));
-          // Center the map to fit all markers on the screen
-          map.fitBounds(bounds);
-      }
-      // Set zoom level
-      var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
-          this.setZoom(13);
-          google.maps.event.removeListener(boundsListener);
-      });
-      
-  }
-  //if(){
-    google.maps.event.addDomListener(window, 'load', initMap);
-  //}  
-</script> --}}
 @endsection
 
 @section('content')
@@ -336,9 +255,19 @@
     newarray = @json($properties_aux);
 
     for(let i = 0; i < newarray.length; i++){
-        let images = newarray[i]['images'].split('|');
+        let images = newarray[i]['images'] ? newarray[i]['images'].split('|') : [];
+        //let images = newarray[i]['images'].split('|');
+        let imageUrl = images.length > 0 ? `https://grupohousing.com/uploads/listing/600/${images[0]}` : 'https://grupohousing.com/img/logo-azul-grupo-housing.png';
         let marker = L.marker([newarray[i]['lat'], newarray[i]['lng']]).addTo(map)
-            .bindPopup(`<div style='display: flex; gap: 5px; align-items: center'><div><span style='font-weight: bold'>Propiedad ${newarray[i]['product_code']}</span><br><span>${newarray[i]['listing_title']}</span><br><a target='blank' href='https://api.whatsapp.com/send?text=https://maps.google.com/?q=${newarray[i]['lat']},${newarray[i]['lng']}'>Compartir Ubicación</a><br><a href="https://grupohousing.com/admin/show-listing/${newarray[i]['id']}">Ver propiedad</a></div><div><img width='200px' src='https://grupohousing.com/uploads/listing/600/${images[0]}'></div></div>`)
+            .bindPopup(`<div style='display: flex; gap: 5px; align-items: center'>
+                <div>
+                    <span style='font-weight: bold'>Propiedad ${newarray[i]['product_code']}</span><br>
+                    <span>${newarray[i]['listing_title']}</span><br>
+                    <a target='blank' href='https://api.whatsapp.com/send?text=https://maps.google.com/?q=${newarray[i]['lat']},${newarray[i]['lng']}'>Compartir Ubicación</a><br>
+                    <a href="https://grupohousing.com/admin/show-listing/${newarray[i]['id']}">Ver propiedad</a>
+                </div>
+                <div><img width='200px' src='${imageUrl}'></div>
+            </div>`)
             .openPopup();
     }
 </script>
