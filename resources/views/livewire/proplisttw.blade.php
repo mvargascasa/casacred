@@ -344,7 +344,7 @@
                 @endif
                 <div class="flex justify-center">
                     <a target="_blank" class="btn-edit ml-1 p-1 rounded" style="background-color: #c6f6d5" href="{{ route('home.tw.edit', $s_propertie) }}" style="text-decoration: none">
-                        <p class="text-black text-sm" style="font-weight: 500">Editar propiedad x</p>
+                        <p class="text-black text-sm" style="font-weight: 500">Editar propiedad</p>
                     </a>
                 </div>
                 @endif
