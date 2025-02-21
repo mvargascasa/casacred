@@ -48,15 +48,10 @@
                             @endif
                             <div id="popup{{$propertie->id}}" class="bg-gray-100 w-auto lg:w-80 border hidden popup" style="z-index: 100 !important">
                                 <div>
+                                    <div class="flex justify-end" onclick="closeModalContact('{{$propertie->id}}')">
+                                        <span class="text-white cursor-pointer bg-red-700 px-3 rounded">X</span>
+                                    </div>
                                     <div class="p-4 md:p-5">
-                                        {{-- <form class="space-y-4" action="{{ route('admin.set.contact.date') }}" method="POST"> --}}
-                                            {{-- @csrf --}}
-                                            {{-- <div>
-                                                <p><span class="font-semibold">Propiedad:</span> <span id="span-id-modal-property"></span></p>
-                                                <p><span class="font-semibold">Cliente:</span> <span id="span-name-modal-property"></span></p>
-                                                <p><span class="font-semibold">Número de teléfono:</span> <span id="span-phone-modal-property"></span></p>
-                                                <p><span class="font-semibold">Titulo:</span> <span id="span-title-modal-property"></span></p>
-                                            </div> --}}
                                             <div>
                                                 <div>
                                                     <input type="hidden" name="product_id" id="product_code_modal_contact">
@@ -77,21 +72,7 @@
                             </div>
                         </div>
                     @endif
-
-                    {{-- <div>
-                        <p>{{ $propertie->contact_at }}</p>
-                    </div> --}}
                 </div>
-
-                {{-- <div class="absolute left-0" style="top: 30px">
-                    @if($propertie->available != null)
-                        @if($propertie->available == 2)
-                            <div class="text-xs font-semibold" style="margin-top: 5px; margin-left:5px; background-color: #b11213; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">NO DISPONIBLE</div>
-                        @else
-                            <div class="text-xs font-semibold" style="margin-top: 5px; margin-left:5px; background-color: #01842a; color: #ffffff; padding: 3px 10px 3px 10px; border-radius: 10px">DISPONIBLE</div>
-                        @endif
-                    @endif
-                </div> --}}
 
                 <div class="absolute left-0 top-0">
                     @if($propertie->status == 1)
@@ -582,25 +563,23 @@ const saveContactDay = (id) => {
 }
 
 const setIdModalContactar = (id, propertie_code, owner_name, owner_phone, listing_title) => {
-    //let propertie_json = JSON.parse(propertie);
+    
     let popup = document.getElementById("popup"+id);
 
     popup.classList.contains('hidden') ? popup.classList.remove('hidden') : popup.classList.add('hidden');
 
-    // let span_id_modal_property = document.getElementById('span-id-modal-property');
-    // let span_name_modal_property = document.getElementById('span-name-modal-property');
-    // let span_phone_modal_property = document.getElementById('span-phone-modal-property');
-    // let span_title_modal_property = document.getElementById('span-title-modal-property');
-
-    // span_id_modal_property.textContent = propertie_code;
-    // span_name_modal_property.textContent = owner_name;
-    // span_phone_modal_property.textContent = owner_phone;
-    // span_title_modal_property.textContent = listing_title;
 
     let product_code_modal_contact = document.getElementById('product_code_modal_contact');
     product_code_modal_contact.value = propertie_code;
-    // let spanModalIdPropertie = document.getElementById('span-id-modal-property');
-    // spanModalIdPropertie.textContent = propertie_id;
+    
+}
+
+const closeModalContact = (id) => {
+
+    let popup = document.getElementById('popup'+id);
+
+    popup.classList.contains('hidden') ? popup.classList.remove('hidden') : popup.classList.add('hidden');
+
 }
 
 function clear_filters(){
@@ -689,23 +668,6 @@ function filter_properties(){
         if(elementsBath[i].checked) b_bathrooms = elementsBath[i].value;
     }
 
-    // console.log("Codigo " + b_code);
-    // console.log("Status " + b_status);
-    // console.log("Detalle " + b_detalle);
-    // console.log("Categoria " + b_categoria);
-    // console.log("Tipo " + b_tipo);
-    // console.log("View " + b_view);
-    // console.log("Current URL " + b_current_url);
-    // console.log("Estado " + b_state);
-    // console.log("Ciudad " + b_city);
-    // console.log("Precio maximo " + b_maxprice);
-    // console.log("Precio minimo " + b_minprice);
-    // console.log("Order 1 "+b_order_asc);
-    // console.log("Order 2" + b_order_desc);
-    // console.log("Asesor " + b_asesor);
-    // console.log("From date " + b_fromdate);
-    // console.log("Until date " + b_untildate);
-
     if(b_order_asc.checked){
         @this.set('price', b_order_asc.value);
     } else if(b_order_desc.checked){
@@ -724,7 +686,6 @@ function filter_properties(){
     //@this.set('available', b_available); //buscar por disponibilidad
     @this.set('current_url', b_current_url); //mandar la actual url -> si es myproperties
 
-    //@this.set('country', b_country);
     @this.set('state', b_state);
     @this.set('city', b_city);
     @this.set('sector', b_sector);
@@ -735,18 +696,11 @@ function filter_properties(){
 
     @this.set('transaccion', b_transaccion);
 
-    // @this.set('asesor', b_asesor);
-
-    // @this.set('fromdate', b_fromdate);
-    // @this.set('untildate', b_untildate);
-
     @this.set('credit_vip', b_credit_vip);
 
     @this.set('bedrooms', b_bedrooms);
     @this.set('bathrooms', b_bathrooms);
 
-    //document.getElementById('pricemaxmin').style.display = "none";
-    //document.getElementById('datefilter').style.display = "none";
 }
 
     
