@@ -676,8 +676,8 @@ class ListingController extends Controller
         $propertie = Listing::where('id', $id)->first();
 
         $similarProperties = []; 
-        $nearbyproperties = []; 
-        $nearbyproperties_aux = [];
+        //$nearbyproperties = []; 
+        //$nearbyproperties_aux = [];
 
         $latitude = $propertie->lat;
         $longitude = $propertie->lng;
@@ -693,27 +693,27 @@ class ListingController extends Controller
                                         ->where('listingtype', 'LIKE', "%$propertie->listingtype%")
                                         ->where('listingtypestatus', 'LIKE', "%$propertie->listingtypestatus%")
                                         ->where('available', 1)
-                                        ->where('status', 1)
+                                        //->where('status', 1)
                                         ->where("product_code", "!=", $propertie->product_code)
                                         ->whereBetween('property_price', [$minPrice, $maxPrice])
                                         ->having("distance", "<=", $radius)
-                                        ->take(10)
+                                        //->take(10)
                                         ->get();
 
-            $nearbyproperties = Listing::select('product_code', 'lat', 'lng', 'listing_title', 'id', 'address')
-                                        ->where('address', 'LIKE', "%$propertie->address%")
-                                        ->where('listingtype', 'LIKE', "%$propertie->listingtype%")
-                                        ->where('available', 1)->where('product_code', '!=', $propertie->product_code)
-                                        ->where(DB::raw('LENGTH(lat)'), '>', 5)
-                                        ->where(DB::raw('LENGTH(lng)'), '>', 5)
-                                        ->latest()->take(10)->get();
+            // $nearbyproperties = Listing::select('product_code', 'lat', 'lng', 'listing_title', 'id', 'address')
+            //                             ->where('address', 'LIKE', "%$propertie->address%")
+            //                             ->where('listingtype', 'LIKE', "%$propertie->listingtype%")
+            //                             ->where('available', 1)->where('product_code', '!=', $propertie->product_code)
+            //                             ->where(DB::raw('LENGTH(lat)'), '>', 5)
+            //                             ->where(DB::raw('LENGTH(lng)'), '>', 5)
+            //                             ->latest()->take(10)->get();
         }
 
-        foreach ($nearbyproperties as $nb) {
-            if(Str::startsWith($nb->lat, '-') && Str::startsWith($nb->lng, '-') && Str::contains($nb->lat, '.') && Str::contains($nb->lng, '.')){
-                array_push($nearbyproperties_aux, $nb);
-            }
-        }
+        // foreach ($nearbyproperties as $nb) {
+        //     if(Str::startsWith($nb->lat, '-') && Str::startsWith($nb->lng, '-') && Str::contains($nb->lat, '.') && Str::contains($nb->lng, '.')){
+        //         array_push($nearbyproperties_aux, $nb);
+        //     }
+        // }
         //dd($nearbyproperties_aux);
         
         $comments = DB::table('comments')->where('type', '!=', 'price')->where('listing_id', $id)->orderBy('created_at', 'desc')->get();
@@ -722,7 +722,7 @@ class ListingController extends Controller
         $details = DB::table('listing_characteristics')->get();
         $general_characteristics = DB::table('listing_general_characteristics')->get();
         $environments = DB::table('listing_environments')->get();
-        return view('admin.listing.show-tw', compact('propertie', 'benefits', 'services', 'details', 'comments', 'similarProperties', 'nearbyproperties_aux', 'general_characteristics', 'environments'));
+        return view('admin.listing.show-tw', compact('propertie', 'benefits', 'services', 'details', 'comments', 'similarProperties', 'general_characteristics', 'environments'));
     }
 
     public function unlocked($id){
