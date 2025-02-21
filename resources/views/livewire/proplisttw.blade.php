@@ -192,7 +192,6 @@
                     </a>
                 @endif
 
-                @if(Auth::user()->role == 'administrator')
                 @if(Auth::user()->email == "developer2@casacredito.com")
                     <div class="flex ml-3">
                         <p>h-{{$propertie->bedroom}}</p>
@@ -202,13 +201,9 @@
                     <div class="mx-3">
                         <p>{{$propertie->slug}}</p>
                     </div>
-                    {{-- @if($propertie->delete_at != null && $propertie->delete_at < Illuminate\Support\Carbon::now())
-                    <form action="{{ route('admin.listings.delete', $propertie->id) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="bg-red-500 text-white ml-3 px-2 rounded shadow w-full">Eliminar</button>
-                    </form>
-                    @endif --}}
                 @endif
+
+                @if(Auth::user()->role == 'administrator' || $propertie->user_id == Auth::user()->id)
                 <div>
                     <div class="flex justify-center">
                         <a target="_blank" class="btn-edit ml-1 p-1 rounded" style="background-color: #c6f6d5" href="@if($propertie->property_by == 'Housing') {{ route('admin.housing.property.edit', $propertie) }} @elseif($propertie->property_by == 'Casa Credito' || $propertie->property_by == null || $propertie->property_by == ""){{ route('home.tw.edit', $propertie) }} @elseif($propertie->property_by == "Promotora") {{ route('admin.promotora.property.edit', $propertie) }} @endif" style="text-decoration: none">
@@ -218,19 +213,15 @@
                 </div>
                 @endif
                 <div class="flex float-right mr-2">
-                    {{-- <button onclick="setLinkToShare('{{$propertie->slug}}')">
-                        <img width="25px" src="{{asset('img/wpp_logo.png')}}" alt="">
-                    </button> --}}
-                    {{-- @if(Auth::user()->email == "developer2@casacredito.com" || Auth::user()->email == "info@casacredito.com" || Auth::user()->email == "seo@casacredito.com") --}}
                     @if($propertie->status && (Auth::user()->email == "marketing@casacredito.com" || Auth::user()->email == "developer2@casacredito.com") && $propertie->slug != null)
                         <a target="_blank" href="{{ route('web.detail', $propertie->slug) }}">
                             <img width="20px" title="Visualizar en el sitio web" src="{{ asset('img/redireccionar.png') }}" alt="">
                         </a>
                     @endif
                     @if($propertie->plusvalia)
-                            <div>
-                                <img width="12" height="12" src="{{asset('img/plusvalia.png')}}" alt="">
-                            </div>
+                        <div>
+                            <img width="12" height="12" src="{{asset('img/plusvalia.png')}}" alt="">
+                        </div>
                         @endif
                         @if(Auth::user()->email == "marketing@casacredito.com" || Auth::user()->email == "developer2@casacredito.com")
                             <form action="{{ route('admin.listing.posted.facebook', $propertie->id) }}" method="POST">
@@ -238,7 +229,6 @@
                                 <button type="submit" class="@if($propertie->posted_on_facebook) bg-blue-500 @else bg-gray-500 @endif text-white px-2 rounded shadow ml-2">f</button>
                             </form>
                         @endif
-                        {{-- @endif --}}
                         <div class="ml-2">
                             <input type="checkbox" value="{{$propertie->listing_title.'|'.$propertie->slug}}" name="propertiestoshare[]" class="checktoshare" onclick="share()">
                         </div>
@@ -261,7 +251,7 @@
                 $firstImg = array_filter(explode("|", $s_propertie->images)) ;
                 $dirImg = $firstImg[0]??'';
             @endphp
-            <div class="rounded overflow-hidden shadow-lg w-full relative mt-4 mb-2 hover-trigger relative pb-2">
+            <div class="rounded overflow-hidden shadow-lg w-full relative mt-4 mb-2 hover-trigger pb-2">
                 @if(Auth::user()->role == "user" || Auth::user()->role == "ASESOR")
                     <a href="@if($url_current == "admin.myproperties" || Route::current()->getName() == "admin.myproperties"){{ route('admin.listings.edit', $s_propertie->id) }} @else {{route('admin.show.listing', $s_propertie->id)}}@endif" target="_blank">
                 @endif
@@ -334,7 +324,7 @@
                     </a>
                 @endif
 
-                @if(Auth::user()->role == 'administrator')
+
                 @if(Auth::user()->email == "developer2@casacredito.com")
                     <div class="flex ml-3">
                         <p>h-{{$s_propertie->bedroom}}</p>
@@ -342,11 +332,12 @@
                         <p>g-{{$s_propertie->garage}}</p>
                     </div>
                 @endif
-                <div class="flex justify-center">
-                    <a target="_blank" class="btn-edit ml-1 p-1 rounded" style="background-color: #c6f6d5" href="{{ route('home.tw.edit', $s_propertie) }}" style="text-decoration: none">
-                        <p class="text-black text-sm" style="font-weight: 500">Editar propiedad</p>
-                    </a>
-                </div>
+                @if(Auth::user()->role == 'administrator' || $s_propertie->user_id == Auth::user()->id)
+                    <div class="flex justify-center">
+                        <a target="_blank" class="btn-edit ml-1 p-1 rounded" style="background-color: #c6f6d5" href="{{ route('home.tw.edit', $s_propertie) }}" style="text-decoration: none">
+                            <p class="text-black text-sm" style="font-weight: 500">Editar propiedad</p>
+                        </a>
+                    </div>
                 @endif
                 <div class="flex float-right mr-2">
                     {{-- <button onclick="setLinkToShare('{{$propertie->slug}}')">
