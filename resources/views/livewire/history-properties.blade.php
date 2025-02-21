@@ -28,7 +28,19 @@
                 @foreach ($updated_listings as $updated_listing)
                     <tr class="border-b dark:border-neutral-500">
                       <td class="whitespace-nowrap px-6 py-4">{{ $updated_listing->property_code}}</td>
-                      <td class="whitespace-nowrap px-6 py-4">{{ $updated_listing->value_change}}</td>
+                      <td class="whitespace-nowrap px-6 py-4">
+                        {{-- {{ $updated_listing->value_change}} --}}
+                        @php
+                            $valueChange = $updated_listing->value_change;
+                            $decodedValue = json_decode($valueChange, true);
+
+                            if (json_last_error() === JSON_ERROR_NONE && is_array($decodedValue)) {
+                                echo implode(', ', $decodedValue);
+                            } else {
+                                echo e($valueChange);
+                            }
+                        @endphp
+                      </td>
                       <td class="whitespace-nowrap px-6 py-4">
                         @foreach ($users as $user)
                           @if($user->id == $updated_listing->user_id)

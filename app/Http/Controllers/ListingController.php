@@ -351,40 +351,88 @@ class ListingController extends Controller
 
     public function update(Request $request, Listing $listing){
 
-        $value_change = "";
-        if($request->listing_type != $listing->listing_type) $value_change .= "plan,";
-        //if($request->status != $listing->status) $value_change .= "estado,";
-        if(isset($request->owner_name) && $request->owner_name != $listing->owner_name) $value_change .= "nombre de propietario, ";
-        if(isset($request->identification) && $request->identification != $listing->identification) $value_change .= "identificación, ";
-        if(isset($request->phone_number) && $request->phone_number != $listing->phone_number) $value_change .= "telefono, ";
-        if(isset($request->owner_email) && $request->owner_email != $listing->owner_email) $value_change .= "email, ";
-        if($request->available != $listing->available) $value_change .= "disponibilidad, ";
-        if($request->listing_title != $listing->listing_title) $value_change .= "titulo de propiedad, ";
-        if($request->meta_description != $listing->meta_description) $value_change .= "metadescripcion, ";
-        if(isset($request->property_price) && $request->property_price != $listing->property_price) $value_change .= "precio, ";
-        if(isset($request->property_price_min) && $request->property_price_min != $listing->property_price_min) $value_change .= "precio minimo, ";
-        if($request->construction_area != $listing->construction_area) $value_change .= "area de construccion, ";
-        if($request->land_area != $listing->land_area) $value_change .= "area de terreno, ";
-        if($request->Front != $listing->Front) $value_change .= "frente, ";
-        if($request->Fund != $listing->Fund) $value_change .= "fondo, ";
-        if($request->listyears != $listing->listyears) $value_change .= "años de construccion, ";
-        if($request->aval != $listing->aval) $value_change .= "avaluo de la propiedad, ";
-        if($request->state != $listing->state) $value_change .= "provincia, ";
-        if($request->city != $listing->city) $value_change .= "ciudad, ";
-        if($request->address != $listing->address) $value_change .= "direccion, ";
-        if($request->lat != $listing->lat) $value_change .= "latitud, ";
-        if($request->lng != $listing->lng) $value_change .= "longitud, ";
-        if($request->listingtype != $listing->listingtype) $value_change .= "categoria, ";
-        if($request->listingtypestatus != $listing->listingtypestatus) $value_change .= "tipo, ";
-        if($request->listingtagstatus != $listing->listingtagstatus) $value_change .= "etiquetas, ";
-        if($request->listing_description != $listing->listing_description) $value_change .= "descripcion";
+        // $value_change = "";
+        // if($request->listing_type != $listing->listing_type) $value_change .= "plan,";
+        // if($request->status != $listing->status) $value_change .= "estado,";
+        // if(isset($request->owner_name) && $request->owner_name != $listing->owner_name) $value_change .= "nombre de propietario, ";
+        // if(isset($request->identification) && $request->identification != $listing->identification) $value_change .= "identificación, ";
+        // if(isset($request->phone_number) && $request->phone_number != $listing->phone_number) $value_change .= "telefono, ";
+        // if(isset($request->owner_email) && $request->owner_email != $listing->owner_email) $value_change .= "email, ";
+        // if($request->available != $listing->available) $value_change .= "disponibilidad, ";
+        // if($request->listing_title != $listing->listing_title) $value_change .= "titulo de propiedad, ";
+        // if($request->meta_description != $listing->meta_description) $value_change .= "metadescripcion, ";
+        // if(isset($request->property_price) && $request->property_price != $listing->property_price) $value_change .= "precio, ";
+        // if(isset($request->property_price_min) && $request->property_price_min != $listing->property_price_min) $value_change .= "precio minimo, ";
+        // if($request->construction_area != $listing->construction_area) $value_change .= "area de construccion, ";
+        // if($request->land_area != $listing->land_area) $value_change .= "area de terreno, ";
+        // if($request->Front != $listing->Front) $value_change .= "frente, ";
+        // if($request->Fund != $listing->Fund) $value_change .= "fondo, ";
+        // if($request->listyears != $listing->listyears) $value_change .= "años de construccion, ";
+        // if($request->aval != $listing->aval) $value_change .= "avaluo de la propiedad, ";
+        // if($request->state != $listing->state) $value_change .= "provincia, ";
+        // if($request->city != $listing->city) $value_change .= "ciudad, ";
+        // if($request->address != $listing->address) $value_change .= "direccion, ";
+        // if($request->lat != $listing->lat) $value_change .= "latitud, ";
+        // if($request->lng != $listing->lng) $value_change .= "longitud, ";
+        // if($request->listingtype != $listing->listingtype) $value_change .= "categoria, ";
+        // if($request->listingtypestatus != $listing->listingtypestatus) $value_change .= "tipo, ";
+        // if($request->listingtagstatus != $listing->listingtagstatus) $value_change .= "etiquetas, ";
+        // if($request->listing_description != $listing->listing_description) $value_change .= "descripcion";
 
-        if($value_change != ""){
+        // if($value_change != ""){
+        //     DB::table('updated_listing')->insert([
+        //         'listing_id' => $listing->id,
+        //         'property_code' => $listing->product_code,
+        //         'value_change' => $value_change,
+        //         'user_id' => Auth::user()->id,
+        //     ]);
+        // }
+
+        $fields = [
+            'listing_type' => 'plan',
+            'status' => 'estado',
+            'owner_name' => 'nombre de propietario',
+            'identification' => 'identificación',
+            'phone_number' => 'telefono',
+            'owner_email' => 'email',
+            'available' => 'disponibilidad',
+            'listing_title' => 'titulo de propiedad',
+            'meta_description' => 'metadescripcion',
+            'property_price' => 'precio',
+            'property_price_min' => 'precio minimo',
+            'construction_area' => 'area de construccion',
+            'land_area' => 'area de terreno',
+            'Front' => 'frente',
+            'Fund' => 'fondo',
+            'listyears' => 'años de construccion',
+            'aval' => 'avaluo de la propiedad',
+            'state' => 'provincia',
+            'city' => 'ciudad',
+            'address' => 'direccion',
+            'lat' => 'latitud',
+            'lng' => 'longitud',
+            'listingtype' => 'categoria',
+            'listingtypestatus' => 'tipo',
+            'listingtagstatus' => 'etiquetas',
+            'listing_description' => 'descripcion'
+        ];
+        
+        $changes = [];
+        
+        foreach ($fields as $field => $label) {
+            if (isset($request->$field) && $request->$field != $listing->$field) {
+                $changes[] = $label; // Solo guarda el nombre del campo
+            }
+        }
+        
+        if (!empty($changes)) {
             DB::table('updated_listing')->insert([
                 'listing_id' => $listing->id,
                 'property_code' => $listing->product_code,
-                'value_change' => $value_change,
+                'value_change' => json_encode($changes),
                 'user_id' => Auth::user()->id,
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
         }
 
@@ -699,22 +747,7 @@ class ListingController extends Controller
                                         ->having("distance", "<=", $radius)
                                         //->take(10)
                                         ->get();
-
-            // $nearbyproperties = Listing::select('product_code', 'lat', 'lng', 'listing_title', 'id', 'address')
-            //                             ->where('address', 'LIKE', "%$propertie->address%")
-            //                             ->where('listingtype', 'LIKE', "%$propertie->listingtype%")
-            //                             ->where('available', 1)->where('product_code', '!=', $propertie->product_code)
-            //                             ->where(DB::raw('LENGTH(lat)'), '>', 5)
-            //                             ->where(DB::raw('LENGTH(lng)'), '>', 5)
-            //                             ->latest()->take(10)->get();
         }
-
-        // foreach ($nearbyproperties as $nb) {
-        //     if(Str::startsWith($nb->lat, '-') && Str::startsWith($nb->lng, '-') && Str::contains($nb->lat, '.') && Str::contains($nb->lng, '.')){
-        //         array_push($nearbyproperties_aux, $nb);
-        //     }
-        // }
-        //dd($nearbyproperties_aux);
         
         $comments = DB::table('comments')->where('type', '!=', 'price')->where('listing_id', $id)->orderBy('created_at', 'desc')->get();
         $benefits = DB::table('listing_benefits')->get();
