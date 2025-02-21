@@ -823,19 +823,29 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
 
     arraySimilarProperties.forEach(similarPropertie => {
       let markerSimilar = L.marker([similarPropertie.lat, similarPropertie.lng]).addTo(map);
+
+      let imageUrl = 'https://grupohousing.com/img/logo-azul-grupo-housing.png';
+
+      if (similarPropertie.images) {
+        let imageArray = similarPropertie.images.split('|');
+        if (imageArray.length > 0 && imageArray[0] !== '') {
+          imageUrl = `/uploads/listing/300/${imageArray[0]}`;
+        }
+      }
+
       markerSimilar.bindPopup(`
-      <div style='display:flex; gap:10px; align-items:center'>
-        <div>
-          <img src='/uploads/listing/300/${similarPropertie.images.split('|')[0]}'>
+        <div style='display:flex; gap:10px; align-items:center'>
+          <div>
+            <img src='${imageUrl}' alt='Imagen propiedad' width='100'>
+          </div>
+          <div>
+            <a style='color:#000' href='/admin/show-listing/${similarPropertie.id}'>
+              <b>COD: ${similarPropertie.product_code}</b>
+              <p class='m-0 mt-1 mb-1'>${similarPropertie.listing_title}</p>
+              <span class='text-muted fw-bold'>${formatCurrency(similarPropertie.property_price)}</span>
+            </a>
+          </div>
         </div>
-        <div>
-          <a style='color:#000' href='/admin/show-listing/${similarPropertie.id}'>
-            <b>COD: ${similarPropertie.product_code}</b>
-            <p class='m-0 mt-1 mb-1'>${similarPropertie.listing_title}</p>
-            <span class='text-muted fw-bold'>${formatCurrency(similarPropertie.property_price)}</span>
-          </a>
-        </div>
-      </div>
       `);
     })
 
