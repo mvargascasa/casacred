@@ -56,11 +56,8 @@ class PropertyController extends Controller
                 $parish = $parishMatch->name;
             }
         }
-        //dd($state, $city, $parish);
 
-        $featured_property = Listing::where('product_code', '2442')->first();
-
-        return view('propertieslist', compact('type', 'typeId', 'status', 'state', 'city', 'parish', 'featured_property'));
+        return view('propertieslist', compact('type', 'typeId', 'status', 'state', 'city', 'parish'));
     }
 
     public function search(Request $request)

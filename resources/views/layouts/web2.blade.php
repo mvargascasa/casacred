@@ -499,7 +499,7 @@ if(strpos($actual_link, 'localhost') === false){
                                 <div style="color: #ffffff; text-align: justify;">
                                     <span class="desing-t">Oficina:</span><span class="desing-p"> 
                                         <a target="_blank"
-                                            style="color: #ffffff" href="https://maps.app.goo.gl/w1S3qxfWQ5LBob9a9">
+                                            style="color: #ffffff" href="https://maps.app.goo.gl/4siW17wsJEnHBZV6A">
                                             Juan Iñiguez 3-87 y Gonzalo Cordero
                                         </a>
                                     </span>
