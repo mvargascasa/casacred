@@ -173,7 +173,7 @@
         @if(isset($listing->status) && $listing->status == "0")
             <div class="bg-green-300 rounded mt-2 mb-2 p-2"><i class="fa-solid fa-circle-info"></i> El Administrador activará la propiedad una vez los campos hayan sido completados.</div>
         @elseif(isset($listing->status) && $listing->status == "1")
-            <div class="bg-green-300 rounded mt-2 mb-2 p-2"><i class="fa-solid fa-circle-info"></i> Si necesita desactivar la propiedad, por favor <a style="color: blue; text-decoration: blue" href="https://crm.notarialatina.com/properties/{{$listing->id}}" target="_blank">comunicarse</a> con el Administrador indicando la razón.</div>
+            <div class="bg-green-300 rounded mt-2 mb-2 p-2"><i class="fa-solid fa-circle-info"></i> Si necesita desactivar la propiedad, por favor <a style="color: blue; text-decoration: blue" href="https://grouphomeroserrano.com/properties/{{$listing->id}}" target="_blank">comunicarse</a> con el Administrador indicando la razón.</div>
         @elseif(!isset($listing))
             <div class="bg-green-300 rounded mt-2 mb-2 p-2"><i class="fa-solid fa-circle-info"></i> Completar todos los campos para que el Administrador active la nueva propiedad.</div>
         @endif
@@ -371,7 +371,6 @@
                 <div class="gap-4 mt-4 sm:gap-6">
                         {!! Form::label('listing_title', 'Titulo de Propiedad', ['class' => 'font-semibold']) !!}
                         <br>
-                        <span class="text-gray-500 font-semibold text-sm">Evitar escribir el sector donde se encuentra la propiedad en el título</span>
                         {{-- {!! Form::text('listing_title', null, ['class' => $inputs, 'pattern' => isset($currentRouteName) && ($currentRouteName != "admin.housing.property.create" || $currentRouteName != "admin.housing.property.edit") ? '.{50,60}' : '.{0,150}', 'onkeyup' => 'countCharsTitle(this);', 'placeholder' => 'Ej: Casa en Venta en Cuenca - Sector...']) !!} --}}
                         {!! Form::text('listing_title', null, ['class' => $inputs, 'onkeyup' => 'countCharsTitle(this);setPreviewOnGoogle();', 'placeholder' => 'Ej: Casa en Venta en Cuenca - Sector...']) !!}
                     {{-- @if($currentRouteName != "admin.housing.property.create" && $currentRouteName != "admin.housing.property.edit") --}}
@@ -966,6 +965,7 @@
 @section('endscript')
     <script src="{{asset('js/sortable.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/listings/validate.min.js') }}" defer></script>
     <script>let bandera = false;</script>
     @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.promotora.property.create")
         <script>
@@ -1150,190 +1150,6 @@
                 removeelement();
                 save(event);
             });
-        }
-
-        const validate = () => {
-
-            let fragment = "";
-            let bandera = false;
-            let banderaChecks = true;
-
-            const form = document.getElementById('formsave');
-
-            const formElements = Array.from(form.elements);
-
-            formElements.forEach(element => {
-                if(element.name == "fragment") fragment = element.value;
-            });
-
-            switch(fragment){
-                case "first": 
-                    let listing_type = document.getElementById('listing_type');
-                    let num_factura = document.getElementById('num_factura');
-                    let owner_name = document.getElementById('owner_name');
-                    let identification = document.getElementById('identification');
-                    let phone_number = document.getElementById('phone_number');
-                    let owner_email = document.getElementById('owner_email');
-                    let owner_address = document.getElementById('owner_address');
-
-
-                    if(listing_type){
-                        if(listing_type.value != "" && owner_name.value != "" && identification.value != "" && phone_number.value != "" && owner_email.value != "" && owner_address.value != ""){
-                            bandera = true;
-                            if(listing_type.value == 2 && num_factura.value == ""){
-                                bandera = false;
-                            } else if(listing_type.value == 1) {
-                                bandera = true;
-                            }
-                        } else {
-                            bandera = false;
-                        }
-                    } else {
-                        if(owner_name.value != "" && identification.value != "" && phone_number.value != "" && owner_email.value != "" && owner_address.value != ""){
-                            bandera = true;
-                        } else {
-                            bandera = false;
-                        }
-                    }
-                break;
-
-                case "second":  
-                    let listing_title = document.getElementById('listing_title').value;
-                    let meta_description = document.getElementById('meta_description').value;
-                    let listing_description = document.getElementById('listing_description').value;
-                    let state = document.getElementById('state').value;
-                    let city = document.getElementById('city').value;
-                    let address = "";
-                    let address_aux = document.getElementById('address');
-                    let sector_aux = document.getElementById('sector');
-                    if(address_aux) address = address_aux.value;
-                    else if(sector_aux) address = sector_aux.value;
-                    let construction_area = document.getElementById('construction_area').value;
-                    let land_area = document.getElementById('land_area').value;
-                    let Front = document.getElementById('Front').value;
-                    let Fund = document.getElementById('Fund').value;
-                    let property_price = document.getElementById('property_price').value;
-                    let property_price_min = document.getElementById('property_price_min').value;
-                    let lat = document.getElementById('lat').value;
-                    let lng = document.getElementById('lng').value;
-                    let cadastral_key = document.getElementById('cadastral_key');
-                    let listingtype = document.getElementById('listingtype').value;
-                    let listingtypestatus = document.getElementById('listingtypestatus').value;
-                    let listingtagstatus = document.getElementById('listingtagstatus').value;
-                    let listyears = document.getElementById('listyears').value;
-                    let aliquot = document.getElementById('aliquot').value;
-                    let observations_type_property = document.getElementById('observations_type_property').value;
-                    let details = document.getElementById('details').value;
-                    let subdetails = document.getElementById('subdetails').value;
-
-                    let checkboxesServ = document.querySelectorAll("input[name='checkServ[]']:checked");
-                    let checkboxesGeneralCharacteristic = document.querySelectorAll("input[name='checkgc[]']:checked");
-                    let checkboxesEnvir = document.querySelectorAll("input[name='checkEnvir[]']:checked");
-                    let checkboxesBene = document.querySelectorAll("input[name='checkBene[]']:checked");
-
-                    //variables que eran del paso 3
-                    //if("{{$currentRouteName != 'admin.housing.property.create' && $currentRouteName != 'admin.housing.property.edit'}}"){
-                        let mortgaged = document.getElementById('check_mortgage');
-                        let mount_mortgaged = document.getElementById('mount_mortgaged');
-                        let entity_mortgaged = document.getElementById('entity_mortgaged');
-                        let warranty = document.getElementById('warranty');
-                        let aval = document.getElementById('aval');
-                    //}
-
-                    let planing_license = "";
-
-                    if(listingtype == 26){
-                        console.log('obteniendo valor de planing-license');
-                        planing_license = document.getElementsByName('planing_license');
-                        console.log(planing_license);
-                    }
-
-                    if(meta_description.length < 120 || meta_description.length > 150){
-                        bandera = false;
-                        alert('La Meta Description debe tener entre 120 y 150 caracteres');
-                        return;
-                    }
-
-                    if(listing_title.length < 50 || listing_title.length > 60){
-                        bandera = false;
-                        alert('El título debe tener una longitud entre 50 a 60 caracteres');
-                        return;
-                    }
-
-                    if(listing_title != "" && listing_description != "" && state != "" && city != "" && address != "" && construction_area != "" && land_area != "" && Front != "" && Fund != "" && property_price != "" && property_price_min != "" && lat != "" && lng != "" && listingtype != "" && listingtypestatus != "" && listingtagstatus != "" && listyears != "" && aliquot != "" && observations_type_property != "" && details != "" && subdetails != ""){
-                        bandera = true;
-                        if(checkboxesServ.length > 0 && checkboxesGeneralCharacteristic.length > 0 && checkboxesEnvir.length > 0 && checkboxesBene.length > 0){
-                            banderaChecks = true;
-                        } else {
-                            banderaChecks = false;
-                            alert('Seleccione al menos 1 campo');
-                            return;
-                        }
-                    } else {
-                        bandera = false;
-                        alert('Complete todos los campos');
-                        return;
-                    }
-
-                    if(cadastral_key){
-                        if(cadastral_key.value != ""){
-                            bandera = true;
-                        } else {
-                            bandera = false;
-                            alert('La clave catastral es obligatoria para subir la propiedad');
-                            return;
-                        }
-                    }
-
-                        if(aval){
-                            if(aval.value != "") {
-                                bandera = true;
-                            } else { 
-                                bandera = false;
-                                alert('El avaluo de la propiedad es necesario');
-                                return;
-                            };
-                        }
-
-                        if(mortgaged){
-                            if(mortgaged.checked){
-                                if(mount_mortgaged.value != "" && entity_mortgaged.value != "" && warranty.value != ""){
-                                    bandera = true;
-                                } else {
-                                    bandera = false;
-                                    alert('Complete los campos para ');
-                                    return;
-                                }
-                            }
-                        }
-                    //}
-
-                break;
-                case "third":
-                    if("{{Route::current()->getName() == 'admin.listings.create' || Route::current()->getName() == 'home.tw.create' || Route::current()->getName() == 'admin.housing.property.create' || Route::current()->getName() == 'admin.promotora.property.create'}}"){
-                        let galleryImages = document.getElementById('galleryImages');
-                        if(galleryImages.files.length < 8){
-                            bandera = false;
-                            alert('Es necesario subir 8 imágenes o más')
-                            return;
-    
-                        }
-                    }
-                    bandera = true;
-                    banderaChecks = true;
-                break;
-                case "fourth": 
-                
-                break;
-            }
-
-            if(!bandera && banderaChecks) alert('Complete los campos para continuar');
-            if(bandera && !banderaChecks) alert('Seleccione al menos un campo')
-
-            if(!banderaChecks || !bandera) bandera = false;
-            else bandera = true;
-            
-            return bandera;
         }
 
         const savelisting = async() => {
