@@ -965,7 +965,10 @@
 @section('endscript')
     <script src="{{asset('js/sortable.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('js/listings/validate.min.js') }}" defer></script>
+    <script>
+        let currentRoute = @json(Route::current()->getName());
+    </script>
+    <script src="{{ asset('js/listings/validate.min.js?v=1') }}" defer></script>
     <script>let bandera = false;</script>
     @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.promotora.property.create")
         <script>
