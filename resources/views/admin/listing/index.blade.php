@@ -137,6 +137,9 @@
                                         <option value="5">En Proyecto</option>
                                         <option value="6">Usada </option>
                                         <option value="7">Colonial</option>
+                                        <option value="9">Remodelada</option>
+                                        <option value="10">En Preventa</option>
+                                        <option value="11">En Construcción</option>
                                         <option value="8">No Aplica</option>
                                     </select>
                                 </div>
