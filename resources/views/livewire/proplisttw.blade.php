@@ -627,6 +627,8 @@ function filter_properties(){
     //filtro por venta o renta
     let b_transaccion = document.getElementById('b_transaccion').value;
 
+    let b_tagstatus = document.getElementById('b_tagstatus').value;
+
     //filtrar por asesor
     // let b_asesor = document.getElementById('b_asesor').value;
 
@@ -686,6 +688,7 @@ function filter_properties(){
     @this.set('uptoprice', b_maxprice);
 
     @this.set('transaccion', b_transaccion);
+    @this.set('tagstatus', b_tagstatus);
 
     @this.set('credit_vip', b_credit_vip);
 

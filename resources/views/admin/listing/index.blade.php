@@ -130,6 +130,17 @@
                                     </select>
                                 </div>
                                 <div class="w-auto bg-gray-100 pt-4 pb-8 pl-2 text-justify">
+                                    <label class="text-xs text-gray-400">Etiqueta</label>
+                                    <select class="block w-full pl-2 border-gray-300 hover:border-gray-400 shadow-md leading-tight focus:outline-none" id="b_tagstatus">
+                                        <option value="">Todas</option>	
+                                        <option value="2">Nueva </option>
+                                        <option value="5">En Proyecto</option>
+                                        <option value="6">Usada </option>
+                                        <option value="7">Colonial</option>
+                                        <option value="8">No Aplica</option>
+                                    </select>
+                                </div>
+                                <div class="w-auto bg-gray-100 pt-4 pb-8 pl-2 text-justify">
                                     <label class="text-xs text-gray-400">Estado</label>
                                     <select class="block w-24 pl-2 border-gray-300 hover:border-gray-400 shadow-md focus:outline-none"id="b_status" name="b_status">
                                         <option value="" selected>Todos</option>
@@ -222,18 +233,6 @@
                                             </div>
                                         </div>
                                         <div>
-                                            {{-- <div>
-                                                <div class="flex mt-1">
-                                                    <div class="mx-1">
-                                                        <input type="radio" id="b_plusvalia" name="plusvalia" value="1">
-                                                        <label for="">SI</label>
-                                                    </div>
-                                                    <div class="mx-1">
-                                                        <input type="radio" id="b_plusvalia" name="plusvalia" value="0">
-                                                        <label for="">NO</label>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>

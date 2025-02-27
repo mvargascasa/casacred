@@ -30,7 +30,8 @@ class Proplisttw extends Component
     $bedrooms,
     $bathrooms,
     $plusvalia,
-    $transaccion;
+    $transaccion,
+    $tagstatus;
 
     //variables para guardar el dia que se contactan
     public $idContactDay, $commentContactDay, $dateContactDay;
@@ -160,6 +161,7 @@ class Proplisttw extends Component
 
         if($this->transaccion)          $properties_filter->where('listingtypestatus', 'LIKE', "%".$this->transaccion."%");
         
+        if($this->tagstatus)            $properties_filter->where('listingtagstatus', 'LIKE', "%".$this->tagstatus."%");
 
         //buscando por precio strlen($this->fromprice)>1   strlen($this->uptoprice)>1 
         if($this->fromprice && filter_var ( $this->fromprice, FILTER_SANITIZE_NUMBER_INT)>1){
