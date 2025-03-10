@@ -13,9 +13,17 @@
     </div>
     <div class="grid grid-cols-1">
         <table class="table-auto shadow">
-            <tr class="border"><th class="px-4 py-2">Estatus</th><th class="px-4 py-2">Principal</th><th class="px-4 py-2">Sub-Servicio</th></tr>
+            <tr class="border">
+                <th class="px-4 py-2">Estatus</th>
+                <th class="px-4 py-2">Principal</th>
+                <th class="px-4 py-2">Sub-Servicio</th>
+            </tr>
             @foreach ($services->where('parent',0) as $parent)
-            <tr class="text-center border"><td class="font-bold border px-4 py-2 @if($parent->status==0) text-red-500 @else text-green-500 @endif">{{$parent->status==1?'Activo':'Desactivado'}}</td><td>{{$parent->title}} </td>
+            <tr class="text-center border">
+                <td class="font-bold border px-4 py-2 @if($parent->status==0) text-red-500 @else text-green-500 @endif">{{$parent->status==1?'Activo':'Desactivado'}}</td>
+                <td>
+                    <a href="{{ Route('admin.services.edit', $parent) }}">{{$parent->title}}</a>
+                </td>
                 <td class="border px-4 py-2">
                     @foreach ($services->where('parent',$parent->id) as $serv)
                         <a style="color: blue" href="{{route('admin.services.edit',$serv)}}">{{$serv->title}}</a> {{$serv->status==0 ? '(Desac)' : ''}} <br>
