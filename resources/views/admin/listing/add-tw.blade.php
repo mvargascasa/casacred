@@ -317,9 +317,9 @@
                 <div>      
                     {!! Form::label('owner_name', 'Nombre de Propietario', ['class' => 'font-semibold']) !!}
                     @if(isset($listing) && $listing->locked)
-                        {!! Form::text('owner_name', null, ['class' =>  $inputs, 'readonly']) !!}
+                        {!! Form::text('owner_name', null, ['class' =>  $inputs, 'placeholder' => 'JUAN PEREZ', 'readonly']) !!}
                     @else
-                        {!! Form::text('owner_name', null, ['class' =>  $inputs]) !!}
+                        {!! Form::text('owner_name', null, ['class' =>  $inputs, 'placeholder' => 'JUAN PEREZ']) !!}
                     @endif
                 </div>
                 <div>
@@ -327,9 +327,9 @@
                     @if(isset($listing) && $listing->locked)
                     {!! Form::text('identification', null, ['class' => $inputs, 'readonly']) !!}
                     @elseif(Auth::user()->email == "developer2@casacredito.com")
-                    {!! Form::text('identification', null, ['class' => $inputs, 'minlength' => 10, 'maxlength' => 10, 'pattern' => '[0-9]+']) !!}
+                    {!! Form::text('identification', null, ['class' => $inputs, 'placeholder' => '0147859032', 'minlength' => 10, 'maxlength' => 10, 'pattern' => '[0-9]+']) !!}
                     @else
-                    {!! Form::text('identification', null, ['class' => $inputs, 'minlength' => 10, 'maxlength' => 10, 'pattern' => '[0-9]+']) !!}
+                    {!! Form::text('identification', null, ['class' => $inputs, 'placeholder' => '0147859032', 'minlength' => 10, 'maxlength' => 10, 'pattern' => '[0-9]+']) !!}
                     @endif
                 </div>
                 <div>
@@ -337,27 +337,27 @@
                     @if(isset($listing) && $listing->locked)
                     {!! Form::text('phone_number', null, ['class' => $inputs, 'readonly']) !!}
                     @elseif(Auth::user()->email == "developer2@casacredito.com")
-                    {!! Form::text('phone_number', null, ['class' => $inputs, 'minlength' => 7, 'maxlength' => 10, 'pattern' => '[0-9]+']) !!}
+                    {!! Form::text('phone_number', null, ['class' => $inputs, 'placeholder' => '098-467-1223', 'pattern' => '[0-9]+']) !!}
                     @else
-                    {!! Form::text('phone_number', null, ['class' => $inputs, 'minlength' => 7, 'maxlength' => 10, 'pattern' => '[0-9]+']) !!}
+                    {!! Form::text('phone_number', null, ['class' => $inputs, 'placeholder' => '098-467-1223', 'pattern' => '[0-9]+']) !!}
                     @endif
                 </div>
                 <div>
                     {!! Form::label('owner_email', 'Email del Propietario', ['class' => 'font-semibold']) !!}
                     @if(isset($listing) && $listing->locked)
-                    {!! Form::email('owner_email', null, ['class' => $inputs, 'readonly']) !!}
+                    {!! Form::email('owner_email', null, ['class' => $inputs, 'placeholder' => 'juanperez@gmail.com', 'readonly']) !!}
                     @elseif(Auth::user()->email == "developer2@casacredito.com")
-                    {!! Form::email('owner_email', null, ['class' => $inputs]) !!}
+                    {!! Form::email('owner_email', null, ['class' => $inputs, 'placeholder' => 'juanperez@gmail.com']) !!}
                     @else
-                    {!! Form::email('owner_email', null, ['class' => $inputs]) !!}
+                    {!! Form::email('owner_email', null, ['class' => $inputs, 'placeholder' => 'juanperez@gmail.com']) !!}
                     @endif
                 </div>
                 <div>
                     {!! Form::label('owner_address', 'Dirección del propietario', ['class' => 'font-semibold']) !!}
                     @if(isset($listing) && $listing->locked)
-                    {!! Form::text('owner_address', null, ['class' => $inputs, 'readonly']) !!}
+                    {!! Form::text('owner_address', null, ['class' => $inputs, 'placeholder' => 'Calle primaria y secundaria', 'readonly']) !!}
                     @else
-                    {!! Form::text('owner_address', null, ['class' => $inputs]) !!}
+                    {!! Form::text('owner_address', null, ['class' => $inputs, 'placeholder' => 'Calle primaria y secundaria']) !!}
                     @endif
                 </div>
                 <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center ml-3" style="margin-top: -13px; letter-spacing: 1px">DATOS DEL PROPIETARIO</p>
@@ -968,7 +968,7 @@
     <script>
         let currentRoute = @json(Route::current()->getName());
     </script>
-    <script src="{{ asset('js/listings/validate.min.js?v=1') }}" defer></script>
+    <script src="{{ asset('js/listings/validate.min.js?v=2') }}" defer></script>
     <script>let bandera = false;</script>
     @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.promotora.property.create")
         <script>
