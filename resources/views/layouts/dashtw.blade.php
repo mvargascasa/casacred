@@ -7,7 +7,7 @@
     <link rel="icon" href="{{asset('favicon-grupo-housing.png')}}" type="image/x-icon" />
     <link rel="stylesheet" href="{{asset('css/app.css?'.uniqid())}}">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
     @yield('firstscript')
 </head>
 <body>
@@ -118,7 +118,12 @@
     
                 <a style="text-decoration: none" href="{{route('users.index')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/users*')) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Usuarios</span>
-                </a>           
+                </a>
+                
+                <a style="text-decoration: none" href="{{ Route('updated.properties') }}" class="flex items-center px-4 text-sm text-white hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                    <span class="mx-3 py-3 font-semibold">Actualización de propiedades</span>
+                </a>
+                
             @endif
             @if(Auth::user()->id == 148 || Auth::user()->email == "developer2@casacredito.com" || Auth::user()->id == 929)
             <a style="text-decoration: none" href="{{route('admin.seo.index')}}" class="flex items-center @if(Request::is('admin/seo*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/seo*')) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">

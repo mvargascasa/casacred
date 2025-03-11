@@ -17,6 +17,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ModalController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\UpdatedPropertiesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WebController::class, 'home'])->name('web.index');
@@ -216,6 +217,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']]
 
     Route::get('reports', [ReportController::class, 'index'])->name('admin.reports');
 
+    Route::get('/updated-properties', [UpdatedPropertiesController::class, 'index'])->name('updated.properties');
     Route::post('/update-contact-date', [ListingController::class, 'updateContactDate'])->name('update.contact.date');
 });
 
