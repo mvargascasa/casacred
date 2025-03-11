@@ -26,11 +26,17 @@
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Dirección
                         </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Fecha de último contacto
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Acciones
+                        </th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     @foreach ($properties as $propertie)
-                        <tr>
+                        <tr class="hover:bg-gray-200">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 {{ $propertie->images != null ? explode('|', $propertie->images)[0] : 'Sin imagenes' }}
                             </td>
@@ -42,6 +48,12 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 {{ $propertie->address }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                {!! $propertie->contact_at ? $propertie->contact_at : '<span class="text-sm font-semibold">Sin fecha de contacto</span>' !!}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <a class="font-semibold bg-red-600 text-white rounded px-2 pb-1 hover:bg-red-700" href="{{ Route('home.tw.edit', $propertie) }}">Actualizar</a>
                             </td>
                         </tr>
                     @endforeach
