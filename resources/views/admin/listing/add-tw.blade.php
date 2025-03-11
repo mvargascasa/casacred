@@ -339,9 +339,9 @@
                     @if(isset($listing) && $listing->locked)
                     {!! Form::text('phone_number', null, ['class' => $inputs, 'readonly']) !!}
                     @elseif(Auth::user()->email == "developer2@casacredito.com")
-                    {!! Form::text('phone_number', null, ['class' => $inputs, 'placeholder' => '098-467-1223', 'pattern' => '[0-9]+']) !!}
+                    {!! Form::text('phone_number', null, ['class' => $inputs, 'placeholder' => '098-467-1223']) !!}
                     @else
-                    {!! Form::text('phone_number', null, ['class' => $inputs, 'placeholder' => '098-467-1223', 'pattern' => '[0-9]+']) !!}
+                    {!! Form::text('phone_number', null, ['class' => $inputs, 'placeholder' => '098-467-1223']) !!}
                     @endif
                 </div>
                 <div>
