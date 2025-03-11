@@ -201,14 +201,14 @@
 <style>
 .section-header {
     position: relative;
-    height: 75vh; /* La sección ocupa el 75% de la altura de la ventana */
+    height: 90vh; /* La sección ocupa el 75% de la altura de la ventana */
     overflow: hidden; /* Esconde cualquier contenido que sobresalga */
 }
 
 /* Estilo para el video de fondo */
 .video-header {
     width: 100%; /* Ocupa todo el ancho del contenedor */
-    height: 75vh; /* Ocupa el 75% de la altura del contenedor */
+    height: 90vh; /* Ocupa el 75% de la altura del contenedor */
     object-fit: cover; /* Cubre todo el área del contenedor sin distorsión */
     transform: translate3d(0, 0, 0); /* Mejora el rendimiento de la animación */
 }

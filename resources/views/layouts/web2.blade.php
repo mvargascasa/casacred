@@ -337,12 +337,11 @@ if(strpos($actual_link, 'localhost') === false){
     .phone-number {
         background-color: #182741;
         color: white !important; /* Color del texto */
-        font-size: 17px; /* Tamaño de la fuente */
         font-weight: 500; /* Grosor de la fuente */
         text-decoration: none; /* Sin subrayado */
         z-index: 8000000; /* Asegura que esté encima del video */
-        padding:7px;
     }
+
     </style>
 
     <style>
@@ -350,13 +349,13 @@ if(strpos($actual_link, 'localhost') === false){
             transition: background-color 0.3s, color 0.3s;
         }
 
-        .navbar-light .navbar-nav .nav-link {
-            color: white;
-            transition: background-color 0.3s, color 0.3s;
+        .navbar-light{
+            background-color: #ffffff;
         }
 
-        .navbar-light .navbar-brand img {
-            filter: brightness(0) invert(1);
+        .navbar-light .navbar-nav .nav-link {
+            color: #182741;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .navbar-light.scrolled .navbar-nav .nav-link {
@@ -452,10 +451,13 @@ if(strpos($actual_link, 'localhost') === false){
                             <a class="nav-link @if (Request::is('blog')) active @endif"
                                 href="{{ route('web.blog') }}">Blog</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link phone-number" href="tel:+593964034035">096-403-4035</a>
+                        </li>
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">
-                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-user-circle"></i>
                                 </a>
                             </li>
                         @else
@@ -478,9 +480,6 @@ if(strpos($actual_link, 'localhost') === false){
                                 </div>
                             </li>
                         @endguest
-                        <li class="nav-item">
-                            <a class="nav-link phone-number" href="tel:+593964034035">096-403-4035</a>
-                        </li>
                     </ul>
                 </div>
             </div>
