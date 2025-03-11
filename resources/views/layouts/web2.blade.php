@@ -409,31 +409,54 @@ if(strpos($actual_link, 'localhost') === false){
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item pr-2"> <a class="nav-link @if (Route::is('home')) active @endif"
-                            href="{{ route('web.home') }}">Inicio</a> </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item pr-2"> <a class="nav-link @if (Route::is('home')) active @endif"
+                            href="{{ route('web.home') }}">Inicio</a> 
+                        </li> --}}
+                        {{-- <li class="nav-item">
                             <a class="nav-link @if (Route::is('/propiedades-en-venta')) active @endif"
                                 href="/propiedades-en-venta">Comprar</a>
-                        </li>
-                        <li class="nav-item">
+                        </li> --}}
+                        {{-- <li class="nav-item">
                             <a class="nav-link @if (Route::is('/propiedades-en-renta')) active @endif"
                                 href="/propiedades-en-renta">Rentar</a>
+                        </li> --}}
+                        <li class="nav-item">
+                            <a class="nav-link @if (Request::is('propiedades/*')) active @endif"
+                                href="/propiedades-en-general">Propiedades</a>
+                        </li>
+                        {{-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Propiedades
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/propiedades-en-venta">En Venta</a>
+                                <a class="dropdown-item" href="/propiedades-en-renta">En Renta</a>
+                            </div>
+                        </li> --}}
+                        <li class="nav-item">
+                            <a class="nav-link @if(Request::is('servicios/construye')) active @endif"
+                                href="{{ Route('web.servicios', 'construye') }}"
+                            >
+                            Servicios
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link @if (Request::is('servicio/vende-tu-casa')) active @endif"
-                                href="{{ route('web.servicio', 'vende-tu-casa') }}">Vende</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @if (Request::is('blog')) active @endif"
-                                href="{{ route('web.blog') }}">Blog</a>
+                                href="{{ route('web.servicio', 'vende-tu-casa') }}">Vende tu propiedad</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link @if (Request::is('servicios/nosotros')) active @endif"
                                 href="{{ route('web.servicios', 'nosotros') }}">Nosotros</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if (Request::is('blog')) active @endif"
+                                href="{{ route('web.blog') }}">Blog</a>
+                        </li>
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('INGRESAR') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">
+                                    <i class="fas fa-user"></i>
+                                </a>
                             </li>
                         @else
                             <li class="nav-item dropdown">
