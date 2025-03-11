@@ -810,9 +810,24 @@ class ListingController extends Controller
         return redirect()->back();
     }
 
-    // public function delete($listing_id){
-    //     $listing = Listing::where('id', $listing_id)->first();
-    //     $listing->delete();
-    //     return redirect()->route('admin.properties');
-    // }
+    public function updateContactDate(Request $request){
+
+        $product_code = $request->input('product_code');
+        $comment = $request->input('comentario');
+        $updatedDate = $request->input('fecha_contacto');
+
+        $propertie = Listing::where('product_code', $product_code)->first();
+        $propertie->contact_at = $updatedDate;
+        $propertie->save();
+
+        Comment::create([
+            'listing_id' => $propertie->id,
+            'user_id' => Auth::user()->id,
+            'property_code' => $propertie->product_code,
+            'type' => 'Contact',
+            'comment' => $comment
+        ]);
+
+        return response()->json(['success' => true]);
+    }
 }

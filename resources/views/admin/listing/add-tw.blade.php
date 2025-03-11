@@ -134,30 +134,30 @@
     
     @if(isset($listing->id))
     <div>
-        <div class="flex">
-            <h2 class="text-lg font-semibold @if($currentRouteName == "admin.housing.property.edit") text-blue-900 @else text-red-700 @endif">EDITAR PROPIEDAD <span style="color:darkgray"> Creado: {{$listing->created_at->format('d M y')}} ({{$listing->user->name??'User'}})</span></h2>
-            @if(Auth::user()->role == "administrator" && $listing->locked)
-                <form action="{{route('admin.listings.unlocked', $listing->id)}}" method="POST">
+        <div class="flex justify-between">
+            <div class="flex">
+                <h2 class="text-lg font-semibold @if($currentRouteName == "admin.housing.property.edit") text-blue-900 @else text-red-700 @endif">EDITAR PROPIEDAD <span style="color:darkgray"> Creado: {{$listing->created_at->format('d M y')}} ({{$listing->user->name??'User'}})</span></h2>
+                @if(Auth::user()->role == "administrator" && $listing->locked)
+                    <form action="{{route('admin.listings.unlocked', $listing->id)}}" method="POST" class="flex justify-center items-center">
+                        @csrf
+                        <button type="submit" class="bg-gray-300 pl-1 pr-1 rounded font-semibold ml-2">Desbloquear</button>
+                    </form>
+                @endif
+            </div>
+            <div class="flex">
+                <div>
+                    <button onclick="abrirModal()" class="text-white text-center bg-red-600 rounded px-2 mr-2">
+                        <span class="text-sm text-white font-semibold">Actualizar fecha de contacto</span>
+                    </button>
+                </div>
+                <form action="{{ route('home.tw.setoutstanding') }}" method="POST">
                     @csrf
-                    <button type="submit" class="bg-gray-300 pl-1 pr-1 rounded">Desbloquear</button>
+                    <input type="hidden" id="outstanding" name="outstanding" value="{{$listing->id}}">
+                    <button type="submit" style="outline: none">
+                        <i onclick="setoutstanding()" class="fas fa-star @if($listing->outstanding) text-yellow-400 @else text-gray-400 @endif"></i>
+                    </button>
                 </form>
-            @endif
-        </div>
-        <div class="float-right flex" style="margin-top: -30px">
-            <form action="{{ route('home.tw.setisinplusvalia') }}" method="POST" class="mr-2">
-                @csrf
-                <input type="hidden" name="plusvalia" value="{{$listing->id}}">
-                <button type="submit" style="outline: none">
-                    <i class="fas fa-parking @if(isset($listing) && $listing->plusvalia) text-green-600 @else text-red-600 @endif"></i>
-                </button>
-            </form>
-            <form action="{{ route('home.tw.setoutstanding') }}" method="POST">
-                @csrf
-                <input type="hidden" id="outstanding" name="outstanding" value="{{$listing->id}}">
-                <button type="submit" style="outline: none">
-                    <i onclick="setoutstanding()" class="fas fa-star @if($listing->outstanding) text-yellow-400 @else text-gray-400 @endif"></i>
-                </button>
-            </form>
+            </div>
         </div>
     </div>
 
@@ -957,6 +957,8 @@
       </div>
 
 </section>
+
+<x-modal-update-contact-date></x-modal-update-contact-date>
 
 </main>
 @endsection
