@@ -38,7 +38,8 @@
                     @foreach ($properties as $propertie)
                         <tr class="hover:bg-gray-200">
                             <td class="px-6 py-4 whitespace-nowrap">
-                                {{ $propertie->images != null ? explode('|', $propertie->images)[0] : 'Sin imagenes' }}
+                                <img width="75px" src="{{ asset('uploads/listing/thumb/600/'. explode('|', $propertie->images)[0]) }}">
+                                {{-- {{ $propertie->images != null ? explode('|', $propertie->images)[0] : 'Sin imagenes' }} --}}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 {{ $propertie->product_code }}
@@ -53,7 +54,19 @@
                                 {!! $propertie->contact_at ? $propertie->contact_at : '<span class="text-sm font-semibold">Sin fecha de contacto</span>' !!}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <a class="font-semibold bg-red-600 text-white rounded px-2 pb-1 hover:bg-red-700" href="{{ Route('home.tw.edit', $propertie) }}">Actualizar</a>
+                                {{-- <a class="font-semibold bg-red-600 text-white rounded px-2 pb-1 hover:bg-red-700" href="{{ Route('home.tw.edit', $propertie) }}">Actualizar</a> --}}
+                                @if ($propertie->showUpdateButton)
+                                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                        Actualizar
+                                    </button>
+                                @else
+                                    @if($propertie->nextContactDate)
+                                        Próximo contacto: <br>
+                                        <span class="font-semibold text-sm">{{ $propertie->nextContactDate }}</span>
+                                    @else
+                                        Sin fecha de próximo contacto.
+                                    @endif
+                                @endif
                             </td>
                         </tr>
                     @endforeach
