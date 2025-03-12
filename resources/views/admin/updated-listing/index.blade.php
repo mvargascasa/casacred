@@ -56,9 +56,9 @@
                             <td class="px-6 py-4 whitespace-nowrap">
                                 {{-- <a class="font-semibold bg-red-600 text-white rounded px-2 pb-1 hover:bg-red-700" href="{{ Route('home.tw.edit', $propertie) }}">Actualizar</a> --}}
                                 @if ($propertie->showUpdateButton)
-                                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                    <a href="{{ Route('home.tw.edit', $propertie) }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                         Actualizar
-                                    </button>
+                                    </a>
                                 @else
                                     @if($propertie->nextContactDate)
                                         Próximo contacto: <br>
