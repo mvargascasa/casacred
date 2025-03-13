@@ -3,8 +3,9 @@
 namespace App\View\Components\Reports;
 
 use App\Models\Comment;
-use Illuminate\Http\Client\Request;
+use App\Models\User;
 use Illuminate\View\Component;
+use Carbon\Carbon;
 
 class UpdatedPropertieComponent extends Component
 {
@@ -12,6 +13,7 @@ class UpdatedPropertieComponent extends Component
     public $comments;
     public $filter;
     public $totalComments;
+    protected $users;
     /**
      * Create a new component instance.
      *
@@ -32,8 +34,20 @@ class UpdatedPropertieComponent extends Component
         }
 
         $this->totalComments = $query->count();
+        $this->comments = $query->orderBy('created_at', 'desc')->paginate(10);
 
-        $this->comments = $query->paginate(10);
+        $this->users = User::all()->keyBy('id');
+        $this->mapCommentsWithUserNames();
+    }
+
+    protected function mapCommentsWithUserNames()
+    {
+        $this->comments->getCollection()->transform(function ($comment) {
+            $comment['user_name'] = $this->users->get($comment['user_id'])->name ?? 'Usuario no encontrado';
+            // Formatea la hora a Ecuador
+            $comment['created_at_ec'] = Carbon::parse($comment['created_at'])->setTimezone('America/Guayaquil')->format('Y-m-d H:i:s');
+            return $comment;
+        });
     }
 
     /**

@@ -21,19 +21,19 @@
         <thead class="bg-gray-50">
             <tr>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    User ID
+                    Usuario
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Listing ID
+                    Código de propiedad
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Type
+                    Tipo de comentario
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Comment
+                    Comentario
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Created At
+                    Fecha de creación
                 </th>
             </tr>
         </thead>
@@ -41,10 +41,10 @@
             @foreach ($comments as $comment)
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{ $comment['user_id'] }}</div>
+                        <div class="text-sm text-gray-900">{{ $comment['user_name'] }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{ $comment['listing_id'] }}</div>
+                        <div class="text-sm text-gray-900">{{ $comment['property_code'] }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm text-gray-900">{{ $comment['type'] }}</div>
@@ -53,7 +53,7 @@
                         <div class="text-sm text-gray-900">{{ $comment['comment'] }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{ $comment['created_at'] }}</div>
+                        <div class="text-sm text-gray-900">{{ $comment['created_at_ec'] }}</div>
                     </td>
                 </tr>
             @endforeach
