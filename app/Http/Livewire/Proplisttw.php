@@ -48,7 +48,7 @@ class Proplisttw extends Component
         Comment::create([
             'listing_id' => $listing->id,
             'user_id' => Auth::user()->id,
-            'property_code' => $listing->property_code,
+            'property_code' => $listing->product_code,
             'type' => 'Contact',
             'comment' => $this->commentContactDay
         ]);
