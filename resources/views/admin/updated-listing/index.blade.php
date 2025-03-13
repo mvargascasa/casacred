@@ -1,16 +1,19 @@
 @extends('layouts.dashtw')
 
 @section('firstscript')
-    
+    <title>Propiedades por actualizar | Grupo Housing</title>
 @endsection
 
 @section('content')
 
     <div class="overflow-y-auto py-4">
         
-        <h1 class="font-semibold text-2xl text-gray-700 px-3">Propiedades Actualizadas</h1>
+        <div class="flex justify-between">
+            <h1 class="font-semibold text-2xl text-gray-700 px-3">Propiedades Actualizadas</h1>
+            <a class="bg-blue-800 text-white p-2 rounded hover:bg-blue-700 text-sm font-semibold" href="{{ Route('reports.updated.properties') }}">Reporte de propiedades actualizadas</a>
+        </div>
 
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto mt-4">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>

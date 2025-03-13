@@ -224,15 +224,7 @@ class ListingController extends Controller
             $listing->listingtype = $request->listingtype;
 
             if($request->listingtype == 26) $listing->planing_license = $request->planing_license;
-            // if($request->listingtype != null && $request->fragment == "second"){
-            //     $codeCategory = DB::table('listing_types')->select('code')->where('id', $request->listingtype)->first();
-            //     if($codeCategory != null){
-            //         $listing->product_code = $codeCategory->code.$listing->product_code;
-            //     }
-            // }
-
-            //$listing->mortgaged = $request->mortgaged;
-
+        
             if($request->mortgaged == "on"){
                 $listing->entity_mortgaged = $request->entity_mortgaged;
                 $listing->mount_mortgaged = $request->mount_mortgaged;
@@ -269,12 +261,7 @@ class ListingController extends Controller
             if($request->num_pisos <= 0) $listing->num_pisos = null; else $listing->num_pisos = $request->num_pisos;
             if($request->pisos_constr <= 0) $listing->pisos_constr = null; else $listing->pisos_constr = $request->pisos_constr;
 
-            $tiktok_html = str_replace('max-width: 605px;min-width: 325px;', 'min-width: 100%;', $request->tiktokcode);
-            if($tiktok_html) $listing->tiktokcode = $tiktok_html;
 
-            //$listing->credit_vip = $request->credit_vip;
-            //bloqueando la propiedad una vez creada
-            //$listing->locked = true;
             if(!$listing->locked && ($listing->owner_name != null || $request->owner_name != null) && ($listing->identification != null || $request->identification != null) && ($listing->phone_number != null || $request->phone_number != null) && ($listing->owner_email != null || $request->owner_email != null) && ($listing->owner_address != null || $request->owner_address != null)) $listing->locked = true;
             
             if($request->currentUrl == "admin.housing.property.create") $listing->property_by = 'Housing';
@@ -350,43 +337,6 @@ class ListingController extends Controller
     } 
 
     public function update(Request $request, Listing $listing){
-
-        // $value_change = "";
-        // if($request->listing_type != $listing->listing_type) $value_change .= "plan,";
-        // if($request->status != $listing->status) $value_change .= "estado,";
-        // if(isset($request->owner_name) && $request->owner_name != $listing->owner_name) $value_change .= "nombre de propietario, ";
-        // if(isset($request->identification) && $request->identification != $listing->identification) $value_change .= "identificación, ";
-        // if(isset($request->phone_number) && $request->phone_number != $listing->phone_number) $value_change .= "telefono, ";
-        // if(isset($request->owner_email) && $request->owner_email != $listing->owner_email) $value_change .= "email, ";
-        // if($request->available != $listing->available) $value_change .= "disponibilidad, ";
-        // if($request->listing_title != $listing->listing_title) $value_change .= "titulo de propiedad, ";
-        // if($request->meta_description != $listing->meta_description) $value_change .= "metadescripcion, ";
-        // if(isset($request->property_price) && $request->property_price != $listing->property_price) $value_change .= "precio, ";
-        // if(isset($request->property_price_min) && $request->property_price_min != $listing->property_price_min) $value_change .= "precio minimo, ";
-        // if($request->construction_area != $listing->construction_area) $value_change .= "area de construccion, ";
-        // if($request->land_area != $listing->land_area) $value_change .= "area de terreno, ";
-        // if($request->Front != $listing->Front) $value_change .= "frente, ";
-        // if($request->Fund != $listing->Fund) $value_change .= "fondo, ";
-        // if($request->listyears != $listing->listyears) $value_change .= "años de construccion, ";
-        // if($request->aval != $listing->aval) $value_change .= "avaluo de la propiedad, ";
-        // if($request->state != $listing->state) $value_change .= "provincia, ";
-        // if($request->city != $listing->city) $value_change .= "ciudad, ";
-        // if($request->address != $listing->address) $value_change .= "direccion, ";
-        // if($request->lat != $listing->lat) $value_change .= "latitud, ";
-        // if($request->lng != $listing->lng) $value_change .= "longitud, ";
-        // if($request->listingtype != $listing->listingtype) $value_change .= "categoria, ";
-        // if($request->listingtypestatus != $listing->listingtypestatus) $value_change .= "tipo, ";
-        // if($request->listingtagstatus != $listing->listingtagstatus) $value_change .= "etiquetas, ";
-        // if($request->listing_description != $listing->listing_description) $value_change .= "descripcion";
-
-        // if($value_change != ""){
-        //     DB::table('updated_listing')->insert([
-        //         'listing_id' => $listing->id,
-        //         'property_code' => $listing->product_code,
-        //         'value_change' => $value_change,
-        //         'user_id' => Auth::user()->id,
-        //     ]);
-        // }
 
         $fields = [
             'listing_type' => 'plan',
@@ -506,11 +456,6 @@ class ListingController extends Controller
         }
 
         $listing->fill($request->all());
-
-        if($request->tiktokcode){
-            $tiktok_html = str_replace('max-width: 605px;min-width: 325px;', 'min-width: 100%;', $request->tiktokcode);
-            $listing->tiktokcode = $tiktok_html;
-        }
         
         //set variables bedroom bathroom y garage
         $listing->bedroom = $bedrooms;

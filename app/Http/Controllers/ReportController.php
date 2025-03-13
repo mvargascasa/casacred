@@ -12,4 +12,8 @@ class ReportController extends Controller
     public function index(){
         return view('admin.reports.index');
     }
+
+    public function updatedProperties(){
+        return view('admin.updated-listing.report-updated-properties');
+    }
 }

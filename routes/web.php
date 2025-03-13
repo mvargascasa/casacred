@@ -216,6 +216,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']]
     Route::post('set-contact-date', [AdminController::class, 'setContactDate'])->name('admin.set.contact.date');
 
     Route::get('reports', [ReportController::class, 'index'])->name('admin.reports');
+    Route::get('reports/updated-properties', [ReportController::class, 'updatedProperties'])->name('reports.updated.properties');
 
     Route::get('/updated-properties', [UpdatedPropertiesController::class, 'index'])->name('updated.properties');
     Route::post('/update-contact-date', [ListingController::class, 'updateContactDate'])->name('update.contact.date');
