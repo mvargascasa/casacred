@@ -1,13 +1,13 @@
 @extends('layouts.web')
 @section('header')
-<title>Casa Credito - {{$service->page_title}}</title>
+<title>{{$service->page_title}} | Grupo Housing</title>
 <link rel="stylesheet" href="{{asset('css/style-not.css?4')}}">
 <meta name="description" content="{{$service->page_seocescription}}"/>
 <meta name="keywords"    content="{{$service->page_metatags}}">
 
 <meta property="og:url"                content="{{url('servicios/'.$service->slug)}}" />
 <meta property="og:type"               content="website" />
-<meta property="og:title"              content="Casa Credito - {{$service->page_title}}" />
+<meta property="og:title"              content="{{$service->page_title}} | Grupo Housing" />
 <meta property="og:description"        content="{{$service->page_seocescription}}" />
 <meta property="og:image"              content="{{asset('img/meta-image-social-cc.jpg')}}" />
 
@@ -270,7 +270,7 @@
                     <img class="img-fluid rounded-circle" width="50%" src="{{asset('img/quinta.webp')}}" alt="Vender quinta">
                   </figure>
                 </div>
-                <p class="description">¿Quiere vender una quinta? Ha llegado al mejor lugar, no dude en registrar su quinta en Casa Crédito y aumentar el número de interesados
+                <p class="description">¿Quiere vender una quinta? Ha llegado al mejor lugar, no dude en registrar su quinta en Grupo Housing y aumentar el número de interesados
                   y de oferta con un par de clics.
                 </p>
               <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalVende">Vender Quinta</a>
@@ -303,7 +303,7 @@
                   <img class="img-fluid rounded-circle" width="50%" src="{{asset('img/hacienda.webp')}}" alt="Vender hacienda">
                 </figure>
               </div>
-              <p class="description"> Vender una Hacienda en Casa Crédito es la mejor iniciativa que puede tomar, haremos que su venta sea rápida y segura . ¡Venda su hacienda hoy!</p>
+              <p class="description"> Vender una Hacienda en Grupo Housing es la mejor iniciativa que puede tomar, haremos que su venta sea rápida y segura . ¡Venda su hacienda hoy!</p>
               <a href="javascript:void(0)" onclick="setInterest('Venta de propiedad')" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalVende">Vender Hacienda</a>
             </div>
           </div>
@@ -349,7 +349,7 @@
 <div class="container mb-5">
   <p>
     <h2>
-      Beneficios de vender con Casa Cr&eacute;dito Inmobiliaria
+      Beneficios de vender con Grupo Housing
     </h2>
     <div class="row mt-4">
       <div class="col-sm-6 col-12 my-2"><i class="fad fa-file-chart-line text-primary" style="font-size: 23px"></i> Recibirá Informes Mensuales</div>
