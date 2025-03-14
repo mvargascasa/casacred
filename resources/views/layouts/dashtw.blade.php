@@ -76,22 +76,11 @@
                 <a style="text-decoration: none !important" href="{{route('admin.history')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/history*') || (Request::is('admin/history*') && Str::contains(URL::previous(), 'admin/properties'))) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Historial</span>
                 </a>
-                <div class="relative">
-                    <a style="text-decoration: none !important" href="{{route('admin.api.projects.index')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/projects*') || (Request::is('admin/projects*') && Str::contains(URL::previous(), 'admin/properties'))) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
-                        <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Proyectos <br> <span class="text-white text-xs font-semibold">Promotora</span> </span>
-                    </a>
-                    <div class="font-semibold absolute bg-white rounded px-2 text-xs" style="right: 7px; top: 40%">
-                        <span>Nuevo</span>
-                    </div>
-                </div>
             @if(Auth::user()->role!="administrator")
                 <a style="text-decoration: none !important" href="{{ route('admin.myproperties') }}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/my-properties*') || (Request::is('admin/listings/*/edit') && Str::contains(URL::previous(), 'admin/my-properties'))) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Mis Propiedades</span>
                 </a> 
             @endif         
-                <a style="text-decoration: none !important" href="{{route('admin.soldout')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/sold-out*') || (Request::is('admin/show-listing*') && Str::contains(URL::previous(), 'admin/sold-out'))) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
-                    <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Archivadas</span>
-                </a>
                 <a style="text-decoration: none !important" href="{{route('admin.reports')}}" class="flex items-center @if(Request::is('admin/reports*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/reports*') || (Request::is('admin/reports*') && Str::contains(URL::previous(), 'admin/reports'))) border-l-4 border-white bg-gray-900 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Reportes</span>
                 </a>
@@ -106,21 +95,16 @@
                     </span>
                     <div id="divnotification" style="display: none" class="rounded-md bg-red-500 px-1">0</div>
                 </a>
-        
-                {{-- <a style="text-decoration: none" href="{{route('admin.contacts')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/contacts*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
-                    <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Contactos</span>
-                </a> --}}
-    
-                {{-- <a style="text-decoration: none" href="{{route('admin.opports')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/opports*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
-                    <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Oportunidades</span>
-                </a>      --}}
-    
+            
                 <a style="text-decoration: none" href="{{route('admin.services.index')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/service*')) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Servicios</span>
                 </a>        
     
                 <a style="text-decoration: none" href="{{route('users.index')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/users*')) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                     <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Usuarios</span>
+                </a>
+                <a style="text-decoration: none !important" href="{{route('admin.soldout')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/sold-out*') || (Request::is('admin/show-listing*') && Str::contains(URL::previous(), 'admin/sold-out'))) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                    <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Archivadas</span>
                 </a>
                 
             @endif
@@ -131,16 +115,14 @@
             <a style="text-decoration: none" href="{{route('admin.post.index')}}" class="flex items-center @if(Request::is('admin/post*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/post*')) border-l-4 border-white bg-gray-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
                 <span class="mx-3 @if(Request::is('admin/blog*')) py-3 @else py-4 @endif">Blog</span>
             </a>
-            {{-- <a style="text-decoration: none" href="{{route('admin.modals.index')}}" class="flex items-center @if(Request::is('admin/modals*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('admin/modals*')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
-                <span class="mx-3 @if(Request::is('admin/modals*')) py-3 @else py-4 @endif">Modals</span>
-            </a>  --}}
+
             @endif
-                @if (Auth::id()==123)
-                <a style="text-decoration: none !important" href="{{route('profile.show')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('user/profile')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
-                    <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Perfil</span>
-                </a>
-                @endif
-    
+
+            @if (Auth::id()==123)
+            <a style="text-decoration: none !important" href="{{route('profile.show')}}" class="flex items-center @if(Request::is('admin/show-listing*')) px-2 @else px-4 @endif text-sm text-white @if(Request::is('user/profile')) border-l-4 border-white bg-red-800 @endif hover:bg-gray-700 hover:bg-opacity-25 hover:text-white">
+                <span class="mx-3 @if(Request::is('admin/show-listing*')) py-3 @else py-4 @endif">Perfil</span>
+            </a>
+            @endif
                 
             </nav>
         </div>
