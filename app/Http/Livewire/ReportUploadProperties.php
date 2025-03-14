@@ -26,11 +26,11 @@ class ReportUploadProperties extends Component
             $dateTo = Carbon::now();
             $dateFrom = Carbon::now()->addDay();
         }
-        //$this->dateFilter ? $date = Carbon::parse($this->dateFilter) : $date = Carbon::now();
-        
-        // if($this->dateFilter != null ) dd($dateTo->format('Y-m-d'). " | " . $dateFrom->format('Y-m-d'));
 
-        $users = User::where('role', 'ASESOR')->orWhere('role', 'administrator')->where('status', 1)->orderBy('created_at', 'desc')->get();
+        $users = User::where(function ($query) {
+            $query->where('role', 'ASESOR')
+                  ->orWhere('role', 'administrator');
+        })->where('status', 1)->orderBy('created_at', 'desc')->get();
 
         foreach ($users as $user) {
             $properties_count = Listing::where('user_id', $user->id)->whereBetween('created_at', [$dateTo->format('Y-m-d'), $dateFrom->format('Y-m-d')])->count();
