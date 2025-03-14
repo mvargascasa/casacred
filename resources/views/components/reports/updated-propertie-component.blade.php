@@ -62,7 +62,13 @@
                         </td>
                     @endif
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{ $comment['property_code'] }}</div>
+                        <div class="text-sm text-gray-900">
+                            @isset($comment['property_code'])
+                                <a href="{{ Route('redirect.by.product.code', $comment['property_code']) }}">{{ $comment['property_code'] }}</a>
+                            @else
+                                <p>Sin codigo</p>
+                            @endisset
+                        </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm text-gray-900">{{ $comment['type'] }}</div>

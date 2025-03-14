@@ -130,6 +130,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']]
     Route::get('tw/edit/{listing}', [TwController::class, 'edit'])->name('home.tw.edit');
     Route::get('tw/show/{id}', [TwController::class, 'show'])->name('home.tw.show');
 
+    Route::get('redirect-by-product-code/{product_code}', [TwController::class, 'redirectByProductCode'])->name('redirect.by.product.code');
+
     Route::post('setcomment', [TwController::class, 'setcomment'])->name('home.tw.setcomment');
     Route::post('setoutstanding', [AdminController::class, 'setoutstanding'])->name('home.tw.setoutstanding');
     Route::post('setisinplusvalia', [AdminController::class, 'setisinplusvalia'])->name('home.tw.setisinplusvalia');

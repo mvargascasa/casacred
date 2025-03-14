@@ -222,5 +222,10 @@ class TwController extends Controller
         // Retornar las propiedades en formato JSON
         return response()->json($properties);
     }
+
+    public function redirectByProductCode($product_code){
+        $propertie = Listing::where('product_code', $product_code)->first();
+        return redirect()->route('home.tw.edit', $propertie);
+    }
     
 }
