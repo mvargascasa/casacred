@@ -12,16 +12,14 @@
                 <input type="date" wire:model="dateFilterFrom" class="bg-gray-100 px-5 py-2 shadow-md">
             </div>
         </div>
-        {{-- @foreach ($users as $user)
-            <p>El usuario {{ $user->name}}-{{ $user->id }} tiene {{ $properties[$user->id]}} propiedades creadas durante la fecha {{ $now->format('Y-m-d') }}</p>
-        @endforeach --}}
 
         <table class="table-auto">
             <thead>
                 <tr>
                     <th class="px-4 py-2">Usuario</th>
                     <th class="px-4 py-2">Cantidad</th>
-                    <th class="px-4 py-2">Fecha</th>
+                    <th class="px-4 py-2">Fecha Desde</th>
+                    <th class="px-4 py-2">Fecha Hasta</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,6 +28,7 @@
                         <td class="border px-4 py-2">{{ $propertie[0] }}</td>
                         <td class="border px-4 py-2">{{ $propertie[1] }}</td>
                         <td class="border px-4 py-2">{{ $now->format('Y-m-d') }}</td>
+                        <td class="border px-4 py-2">{{ $dateAux->format('Y-m-d') }}</td>
                     </tr>
                 @endforeach
                     <tr>

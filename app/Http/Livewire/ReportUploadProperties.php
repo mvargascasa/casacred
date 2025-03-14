@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use App\Models\Listing;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class ReportUploadProperties extends Component
@@ -14,6 +13,7 @@ class ReportUploadProperties extends Component
     public $dateFilterTo = null;
     public $dateFilterFrom = null;
     public $total = 0;
+    public $dateFromAux = null;
 
     public function render()
     {
@@ -22,9 +22,11 @@ class ReportUploadProperties extends Component
         if($this->dateFilterTo != null || $this->dateFilterFrom != null){
             $dateTo = Carbon::parse($this->dateFilterTo);
             $dateFrom = Carbon::parse($this->dateFilterFrom)->addDay();
+            $dateFromAux = Carbon::parse($this->dateFilterFrom);
         } else {
             $dateTo = Carbon::now();
             $dateFrom = Carbon::now()->addDay();
+            $dateFromAux = Carbon::now();
         }
 
         $users = User::where(function ($query) {
@@ -46,6 +48,7 @@ class ReportUploadProperties extends Component
             'users' => $users,
             'properties' => $properties,
             'now' => $dateTo,
+            'dateAux' => $dateFromAux,
             'total' => $this->total
         ]);
     }
