@@ -14,6 +14,7 @@ class UpdatedPropertieComponent extends Component
     public $filter;
     public $totalComments;
     protected $users;
+    public $typesFilter; // Nueva propiedad para los tipos de filtro
     /**
      * Create a new component instance.
      *
@@ -22,8 +23,9 @@ class UpdatedPropertieComponent extends Component
     public function __construct()
     {
         $this->filter = request()->query('filter');
+        $this->typesFilter = request()->query('types', ['Contact', 'price']); // Obtener los tipos de filtro del request, por defecto ambos
 
-        $query = Comment::where('type', 'Contact');
+        $query = Comment::whereIn('type', $this->typesFilter); // Aplicar el filtro de tipos
 
         if ($this->filter === 'day') {
             $query->whereDate('created_at', now()->toDateString());

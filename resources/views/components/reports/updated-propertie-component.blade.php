@@ -1,20 +1,28 @@
 <div>
     <div class="px-4 py-5">
-        <h1 class="text-gray-500 font-semibold text-xl mb-4">Ver reporte por fecha:</h1>
-        <div class="flex gap-2">
-            <a href="{{ route('reports.updated.properties') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                Todos
-            </a>
-            <a href="{{ route('reports.updated.properties', ['filter' => 'day']) }}" class="bg-blue-800 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
-                Día
-            </a>
-            <a href="{{ route('reports.updated.properties', ['filter' => 'week']) }}" class="bg-blue-800 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
-                Semana
-            </a>
-            <a href="{{ route('reports.updated.properties', ['filter' => 'month']) }}" class="bg-blue-800 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
-                Mes
-            </a>
-        </div>
+        <h1 class="text-gray-500 font-semibold text-xl mb-4">Filtrar por:</h1>
+        <form action="{{ route('reports.updated.properties') }}" method="GET" class="flex gap-4">
+            <div>
+                <h2 class="text-gray-500 font-semibold text-md mb-2">Fecha:</h2>
+                <select name="filter" class="border rounded px-4 py-2">
+                    <option value="" {{ request()->query('filter') == '' ? 'selected' : '' }}>Todos</option>
+                    <option value="day" {{ request()->query('filter') == 'day' ? 'selected' : '' }}>Día</option>
+                    <option value="week" {{ request()->query('filter') == 'week' ? 'selected' : '' }}>Semana</option>
+                    <option value="month" {{ request()->query('filter') == 'month' ? 'selected' : '' }}>Mes</option>
+                </select>
+            </div>
+    
+            <div>
+                <h2 class="text-gray-500 font-semibold text-md mb-2">Tipo:</h2>
+                <label>
+                    <input type="checkbox" name="types[]" value="Contact" {{ in_array('Contact', request()->query('types', ['Contact', 'price'])) ? 'checked' : '' }}> Contacto
+                </label>
+                <label>
+                    <input type="checkbox" name="types[]" value="price" {{ in_array('price', request()->query('types', ['Contact', 'price'])) ? 'checked' : '' }}> Precio
+                </label>
+                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded ml-2">Filtrar</button>
+            </div>
+        </form>
     </div>
 
     <table class="min-w-full divide-y divide-gray-200">
@@ -76,7 +84,7 @@
     </table>
 
     <div class="mt-4 mb-4 p-4">
-        {{ $comments->appends(['filter' => request()->query('filter')])->links('pagination::tailwind') }}
+        {{ $comments->appends(['filter' => request()->query('filter'), 'types' => request()->query('types')])->links('pagination::tailwind') }}
     </div>
 
 </div>
