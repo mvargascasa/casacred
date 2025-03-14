@@ -41,7 +41,7 @@
                     @foreach ($properties as $propertie)
                         <tr class="hover:bg-gray-200">
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <img width="75px" src="{{ asset('uploads/listing/thumb/600/'. explode('|', $propertie->images)[0]) }}">
+                                <img width="75px" src="{{ asset('uploads/listing/600/'. explode('|', $propertie->images)[0]) }}">
                                 {{-- {{ $propertie->images != null ? explode('|', $propertie->images)[0] : 'Sin imagenes' }} --}}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
