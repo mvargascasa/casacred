@@ -847,11 +847,11 @@
             let aliquotInfo = property.aliquot > 0 ?
                 `<p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Alícuota:</strong> $${property.aliquot}</p>` :
                 '';
-            let phoneNumber = '593964034035'; // Número por defecto para venta
-            let phoneNumberWhatsapp = '593967867998'; //Numero de venta que tiene whatsapp
+            let phoneNumber = '593964034037'; // Número por defecto para venta
+            let phoneNumberWhatsapp = '593987595789'; //Numero de venta que tiene whatsapp
             let transactionType = "venta";
             if (property.listingtypestatus.includes('rent') || property.listingtypestatus.includes('alquilar')) {
-                phoneNumber = '593964034035'; // Cambiar si es renta
+                phoneNumber = '593964034037'; // Cambiar si es renta
                 transactionType = "alquiler";
             }
 
@@ -992,11 +992,11 @@
                 `<p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Alícuota:</strong> $${property.aliquot}</p>` :
                 '';
 
-            let phoneNumber = '593964034035'; // Número por defecto para venta
-            let phoneNumberWhatsapp = '593967867998';
+            let phoneNumber = '593964034037'; // Número por defecto para venta
+            let phoneNumberWhatsapp = '593987595789';
             let transactionType = "venta";
             if (property.listingtypestatus.includes('rent') || property.listingtypestatus.includes('alquilar')) {
-                phoneNumber = '593964034035'; // Cambiar si es renta
+                phoneNumber = '593964034037'; // Cambiar si es renta
                 transactionType = "alquiler";
             }
 
