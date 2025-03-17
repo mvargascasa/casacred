@@ -23,7 +23,7 @@
         }
 
         .property-title {
-            color: #007bff;
+            color: #000000;
             font-size: 24px;
             margin-bottom: 10px;
             border-bottom: 2px solid #eee;
@@ -32,6 +32,12 @@
 
         .property-description-title {
             font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .property-description-title span {
+            font-weight: 100;
             margin-bottom: 5px;
             color: #555;
         }
@@ -68,6 +74,8 @@
         @isset($listing)
             <div>
                 <h2 class="property-description-title">Código de propiedad {{ $listing->product_code  }}</h2>
+
+                <h2 class="property-description-title">Creado por: <span>{{ $uploadUser->name }}</span></h2>
 
                 <h2 class="property-description-title">Titulo de propiedad:</h2>
                 <p class="property-description">{{ $listing->listing_title ?? 'No hay descripción disponible.' }}</p>

@@ -381,7 +381,9 @@ class ListingController extends Controller
         //Funcion para crear 
         if($listing->available == 1 && $listing->status == 0 && $request->status == 1){
 
-            $notificationHTML = view('notifications.index', compact('listing'))->render();
+            $uploadUser = User::select('name')->where('id', $listing->user_id)->first();
+
+            $notificationHTML = view('notifications.index', compact('listing', 'uploadUser'))->render();
 
             $users = User::select('id', 'user_second_id', 'name')
                             ->where('status', 1)
