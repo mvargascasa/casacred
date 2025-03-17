@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\NotificationType;
 use App\Models\Comment;
 use App\Models\Sector;
 use App\Models\Listing;
+use App\Models\Notification;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -32,8 +35,8 @@ class ListingController extends Controller
 
         //dd($lastcode->product_code);
 
-        $benefits = DB::table('listing_benefits')->get();  
-        $services = DB::table('listing_services')->get();  
+        $benefits = DB::table('listing_benefits')->get();
+        $services = DB::table('listing_services')->get();
 
         //new data to db
         $environments = DB::table('listing_environments')->get();
@@ -273,25 +276,12 @@ class ListingController extends Controller
             $listing->save();
         }
 
-        // $isvalid = $this->iscomplete($listing);
-        // if(!$isvalid){
-        //     $delete_at = Carbon::parse($listing->created_at)->addDay();
-        //     $listing->delete_at = $delete_at;
-        // } else {
-        //     $listing->delete_at = null;
-        // } 
-        // $listing->save();
-
-        // if($request->fragment == "first" || $request->fragment == "second" || $request->fragment == "third"){
         return response()->json([
             'success' => true,
             'fragment' => $request->fragment,
             'productcode' => $listing->product_code
         ]);
-        // } else if($request->fragment == "fourth") {
-        //     return redirect()->route('admin.listings.edit',compact('listing'))->with('status','Propiedad Creada');
-        // }
-
+        
     }
     
     public function edit(Listing $listing){
@@ -337,6 +327,8 @@ class ListingController extends Controller
     } 
 
     public function update(Request $request, Listing $listing){
+
+        //return "entra aqui al actualizar";
 
         $fields = [
             'listing_type' => 'plan',
@@ -384,6 +376,36 @@ class ListingController extends Controller
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
+        }
+
+        //Funcion para crear 
+        if($listing->available == 1 && $listing->status == 0 && $request->status == 1){
+
+            $notificationHTML = view('notifications.index', compact('listing'))->render();
+
+            $users = User::select('id', 'user_second_id', 'name')
+                            ->where('status', 1)
+                            ->where(function ($query) {
+                                $query->where('role', 'administrator')
+                                    ->orWhere('role', 'ASESOR');
+                            })
+                            ->get();
+
+            $user_ids = $users->pluck('user_second_id')->toArray();
+
+            $notificationData = [
+                'type' => NotificationType::INFORMATION,
+                'title' => 'Nueva propiedad creada',
+                'content' => $notificationHTML,
+                'user_ids' => $user_ids,
+                'viewed_by' => [],
+                'is_read' =>false
+            ];
+
+            $notificationData['type'] = NotificationType::INFORMATION;
+
+            $notification = Notification::create($notificationData);
+
         }
 
         if(isset($request->listing_title) && !isset($listing->slug)){
