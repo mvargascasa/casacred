@@ -385,6 +385,7 @@ class ListingController extends Controller
 
             $users = User::select('id', 'user_second_id', 'name')
                             ->where('status', 1)
+                            ->whereNotNull('user_second_id')
                             ->where(function ($query) {
                                 $query->where('role', 'administrator')
                                     ->orWhere('role', 'ASESOR');
