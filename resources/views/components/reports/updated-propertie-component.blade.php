@@ -1,26 +1,32 @@
 <div>
     <div class="px-4 py-5">
         <h1 class="text-gray-500 font-semibold text-xl mb-4">Filtrar por:</h1>
-        <form action="{{ route('reports.updated.properties') }}" method="GET" class="flex gap-4">
-            <div>
-                <h2 class="text-gray-500 font-semibold text-md mb-2">Fecha:</h2>
-                <select name="filter" class="border rounded px-4 py-2">
-                    <option value="" {{ request()->query('filter') == '' ? 'selected' : '' }}>Todos</option>
-                    <option value="day" {{ request()->query('filter') == 'day' ? 'selected' : '' }}>Día</option>
-                    <option value="week" {{ request()->query('filter') == 'week' ? 'selected' : '' }}>Semana</option>
-                    <option value="month" {{ request()->query('filter') == 'month' ? 'selected' : '' }}>Mes</option>
-                </select>
+        <form action="{{ route('reports.updated.properties') }}" method="GET" class="flex flex-col md:flex-row gap-4">
+            <div class="mb-2 md:mb-0">
+                <h2 class="text-gray-500 font-semibold text-md mb-2">Rango de Fechas:</h2>
+                <div class="flex gap-2">
+                    <input type="date" name="start_date" class="border rounded px-3 py-2 text-sm" value="{{ request()->query('start_date') }}">
+                    <input type="date" name="end_date" class="border rounded px-3 py-2 text-sm" value="{{ request()->query('end_date') }}">
+                </div>
+                <p class="text-gray-400 text-xs mt-1">Si selecciona ambas fechas, se filtrará en ese rango.</p>
+                <p class="text-gray-400 text-xs">Si selecciona solo una, se filtrará por ese día.</p>
             </div>
-    
-            <div>
-                <h2 class="text-gray-500 font-semibold text-md mb-2">Tipo:</h2>
-                <label>
+
+            <div class="mb-2 md:mb-0">
+                <h2 class="text-gray-500 font-semibold text-md mb-2">Tipo de actualización:</h2>
+                <label class="block text-sm text-gray-700">
                     <input type="checkbox" name="types[]" value="Contact" {{ in_array('Contact', request()->query('types', ['Contact', 'price'])) ? 'checked' : '' }}> Contacto
                 </label>
-                <label>
+                <label class="block text-sm text-gray-700">
                     <input type="checkbox" name="types[]" value="price" {{ in_array('price', request()->query('types', ['Contact', 'price'])) ? 'checked' : '' }}> Precio
                 </label>
-                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded ml-2">Filtrar</button>
+            </div>
+
+            <div class="mt-auto">
+                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded">Filtrar</button>
+                @if(request()->hasAny(['start_date', 'end_date', 'types']))
+                    <a href="{{ route('reports.updated.properties') }}" class="inline-block ml-2 text-white bg-red-700 py-2 px-4 rounded hover:bg-red-800">Limpiar Filtros</a>
+                @endif
             </div>
         </form>
     </div>
@@ -51,7 +57,7 @@
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-            @foreach ($comments as $comment)
+            @forelse ($comments as $comment)
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm text-gray-900">{{ $comment['user_name'] }}</div>
@@ -80,17 +86,23 @@
                         <div class="text-sm text-gray-900">{{ $comment['created_at_ec'] }}</div>
                     </td>
                 </tr>
-            @endforeach
-            <tr>
-                <td colspan="5" class="px-6 py-4 text-center font-semibold">
-                    Total de propiedades actualizadas: {{ $totalComments }}
-                </td>
-            </tr>
+            @empty
+                <tr>
+                    <td colspan="6" class="px-6 py-4 text-center">No se encontraron comentarios con los filtros aplicados.</td>
+                </tr>
+            @endforelse
+            @if ($comments->isNotEmpty())
+                <tr>
+                    <td colspan="6" class="px-6 py-4 text-center font-semibold">
+                        Total de propiedades actualizadas: {{ $totalComments }}
+                    </td>
+                </tr>
+            @endif
         </tbody>
     </table>
 
     <div class="mt-4 mb-4 p-4">
-        {{ $comments->appends(['filter' => request()->query('filter'), 'types' => request()->query('types')])->links('pagination::tailwind') }}
+        {{ $comments->appends(request()->except('page'))->links('pagination::tailwind') }}
     </div>
 
 </div>

@@ -6,15 +6,15 @@ use App\Models\Comment;
 use App\Models\User;
 use Illuminate\View\Component;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class UpdatedPropertieComponent extends Component
 {
 
     public $comments;
-    public $filter;
     public $totalComments;
     protected $users;
-    public $typesFilter; // Nueva propiedad para los tipos de filtro
+
     /**
      * Create a new component instance.
      *
@@ -22,17 +22,16 @@ class UpdatedPropertieComponent extends Component
      */
     public function __construct()
     {
-        $this->filter = request()->query('filter');
-        $this->typesFilter = request()->query('types', ['Contact', 'price']); // Obtener los tipos de filtro del request, por defecto ambos
+        $startDate = request()->query('start_date');
+        $endDate = request()->query('end_date');
+        $typesFilter = request()->query('types', ['Contact', 'price']);
 
-        $query = Comment::whereIn('type', $this->typesFilter); // Aplicar el filtro de tipos
+        $query = Comment::query()->whereIn('type', $typesFilter);
 
-        if ($this->filter === 'day') {
-            $query->whereDate('created_at', now()->toDateString());
-        } elseif ($this->filter === 'week') {
-            $query->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]);
-        } elseif ($this->filter === 'month') {
-            $query->whereMonth('created_at', now()->month);
+        if ($startDate && $endDate) {
+            $query->whereDate('created_at', '>=', $startDate)->whereDate('created_at', '<=', $endDate);
+        } elseif ($startDate) {
+            $query->whereDate('created_at', $startDate);
         }
 
         $this->totalComments = $query->count();
