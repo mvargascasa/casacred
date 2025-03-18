@@ -629,9 +629,9 @@ if(strpos($actual_link, 'localhost') === false){
                             </div>
                             <div class="col-10">
                                 <div style="color: #ffffff;"><span class="desing-t"></span><span
-                                        class="desing-p"> <a href="tel:+593964034037" class="asindeco"
+                                        class="desing-p"> <a href="tel:+593967867998" class="asindeco"
                                             style="color: #ffffff !important">
-                                            096-403-4037</a></span></div>
+                                            096-786-7998</a></span></div>
                             </div>
                         </div>
                     </div>
@@ -860,7 +860,7 @@ if(strpos($actual_link, 'localhost') === false){
                 <i class="fas fa-phone-alt fa-2x bg-danger p-2 text-light"></i>
             </div>
             <div id="diviconsusaecu" style="margin-left: 15px;">
-                <a href="tel:+593964034037">
+                <a href="tel:+593967867998">
                     <img width="45px" height="30px" class="mt-2" src="{{ asset('img/ECUADOR-04.webp') }}"
                         alt="Telefono Grupo Housing">
                 </a>
