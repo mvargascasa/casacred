@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <link rel="stylesheet" href="{{ asset('css/font-style.css') }}">
+    <meta name="robots" content="index,follow,snippet">
 
     <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
 
@@ -385,7 +386,7 @@
           <div class="pattern-testimonials-card" style="height: 200px;">
             <div class="border p-4 bg-white rounded testimonials-card" style="width: 600px; height: 250px; margin-left: -100px; margin-top: 30px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
               <div class="d-flex">
-                <img width="50px" height="50px" style="filter: invert(80%)" src="{{ asset('img/comillas.png') }}" alt="">
+                <img width="50px" height="50px" style="filter: invert(80%)" src="{{ asset('img/comillas.webp') }}" alt="">
                 <div style="height: 250px;" class="d-flex rounded align-items-center">
                   <div class="px-4 pb-5 pt-4">
                     <p style="font-family: 'Sharp Grotesk'">El equipo ofrece un servicio confiable y transparente. Su compromiso es encontrar la mejor opción para cada cliente, brindando asesoramiento personalizado en todo momento. ¡Una excelente elección para comprar, vender o alquilar tu propiedad!</p>

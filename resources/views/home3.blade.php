@@ -472,10 +472,10 @@
 
 <section style="background-color: #182741" class="mt-5">
   <section class="py-5 container">
-    <h2 style="color: #ffffff" class="text-center"> <span style="font-weight: 200">PROPIEDADES</span> <span style="font-weight: 600">DEL MES</span></h2>
-    <p class="text-center" style="color: #ffffff">Descubra nuestras propiedades destacadas</p>
+    <h2 style="color: #ffffff" class="text-center"> <span style="font-weight: 100">NUESTRAS</span> <span style="font-weight: 600">PROPIEDADES</span></h2>
+    <p class="text-center" style="color: #ffffff">Conoce las propiedades que nuestra inmobiliaria tiene para ti</p>
     <section class="row mt-5">
-      @foreach ($properties_of_the_month as $propertie)
+      @foreach ($properties as $propertie)
         @php
           $imagesPropertie = explode('|', $propertie->images);
         @endphp
