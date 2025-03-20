@@ -69,7 +69,7 @@
 <body>
 
     <div class="property-container">
-        <h1 class="property-title">Nueva Propiedad Creada</h1>
+        <h1 class="property-title">Nueva Propiedad Activada</h1>
 
         @isset($listing)
             <div>
