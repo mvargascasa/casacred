@@ -890,6 +890,76 @@
       </div>
     </div>
 
+    <div class="container pt-1 pb-5">
+      <h2 class="pb-4" style="color: #182741">Preguntas Frecuentes</h2>
+      <div class="accordion" id="accordionExample">
+        <div class="row">
+          <div class="col-sm-12 mb-3">
+            <div class="accordion-item border">
+              <h3 class="accordion-header" id="headingOne">
+                <button class="accordion-button btn font-weight-bold bg-light w-100 text-left" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  1. ¿Cómo puedo encontrar una inmobiliaria cerca de mi?
+                </button>
+              </h3>
+              <div id="collapseOne" class="accordion-collapse collapse show p-4" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <h4 style="font-size: 17px; font-weight: 100">
+                    Busca en línea <strong>"inmobiliaria cerca de mi en Cuenca"</strong> y explora las opciones con buenas reseñas y especialización en tu área de interés. Nuestra inmobiliaria destaca por su conocimiento local y servicio personalizado.
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 mb-3">
+            <div class="accordion-item border">
+              <h3 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed btn w-100 bg-light font-weight-bold text-left" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  2. ¿Qué servicios ofrecen las inmobiliarias en Cuenca?
+                </button>
+              </h3>
+              <div id="collapseTwo" class="accordion-collapse collapse p-4" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <h4 style="font-size: 17px; font-weight: 100">Ofrecen servicios como compra, venta, alquiler y asesoría en propiedades residenciales y comerciales en Cuenca y en otras ciudades del país.</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 mb-3">
+            <div class="accordion-item border">
+              <h3 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed btn font-weight-bold bg-light w-100 text-left" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  3. ¿Cómo puedo contactarme con un agente inmobiliario?
+                </button>
+              </h3>
+              <div id="collapseThree" class="accordion-collapse collapse p-4" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <h4 style="font-size: 17px; font-weight: 100">
+                    Puedes contactarnos a través de nuestro sitio web, por <a href="https://api.whatsapp.com/send?phone=593987595789&text=Hola%20Grupo%20Housing,%20estoy%20interesado%20en%20uno%20de%20sus%20servicios">teléfono</a> o visitando nuestras oficinas en Cuenca. Nos encontramos ubicados en la Juan Iñiguez 3-87 y Gonzalo Cordero.
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 mb-3">
+            <div class="accordion-item border">
+              <h3 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed btn font-weight-bold bg-light w-100 text-left" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  4. ¿Trabajan con propiedades en todas las áreas de Cuenca?
+                </button>
+              </h3>
+              <div id="collapseFour" class="accordion-collapse collapse p-4" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <h4 style="font-size: 17px; font-weight: 100">
+                    Sí, manejamos propiedades en todas las áreas de Cuenca, desde el centro histórico hasta las zonas residenciales y rurales.
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     @if (session('emailsend'))
       @php
         echo "
