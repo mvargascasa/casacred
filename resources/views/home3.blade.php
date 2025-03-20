@@ -542,52 +542,58 @@
   <div class="row mt-5 justify-content-center">
     <h2 class="text-center" style="color: #182741"><span style="font-weight: 200">NUESTROS</span> <span style="font-weight: 600">SERVICIOS</span></h2>
     <p class="text-center mb-5" style="color: #182741">Conozca todos los servicios que nuestra inmobiliaria ofrece</p>
-    <div class="col-md-4">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
       <article data-aos="fade-up" class="mb-3">
         <section class="d-flex justify-content-center">
-          <div class="border py-4" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; width: 300px">
+          <div class="border py-5 w-100" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
             <section class="d-flex justify-content-center">
-              <h3 class="h5 mr-2"> <span style="font-weight: 100">VENDA SU</span> <br> <span class="h3" style="font-weight: 500">PROPIEDAD</span></h3>
-              <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
+              <div class="d-flex align-items-center">
+                <h3 class="h5 mr-2"> <span style="font-weight: 100">VENDE TU</span> <br> <span class="h3" style="font-weight: 500">PROPIEDAD</span> <br> <span style="font-weight: 100">CON NOSOTROS</span></h3>
+                <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
+              </div>
             </section>
-            <section class="d-flex justify-content-end mt-2 pr-5">
-              <button class="btn btn-sm text-white px-4" style="background-color: #182741; border-radius: 10px" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Vender</button>
+            <section class="d-flex justify-content-center mt-2">
+              <button class="btn text-white px-4" style="background-color: #182741; border-radius: 10px" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Solicitar más información</button>
             </section>
           </div>
         </section>
       </article>
     </div>
-    <div class="col-md-4">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
       <article data-aos="fade-up" class="mb-3">
         <section class="d-flex justify-content-center">
-          <div class="border py-4" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; width: 300px">
-            <section class="d-flex justify-content-center">
-              <h3 class="h5 mr-2"> <span style="font-weight: 100">RENTE CON</span> <br> <span class="h3" style="font-weight: 500">NOSOTROS</span></h3>
+          <div class="border py-5 w-100" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+            <section class="d-flex justify-content-center align-items-center">
+              <h3 class="h5 mr-2"> <span style="font-weight: 100">RENTA CON</span> <br> <span class="h3" style="font-weight: 500">NOSOTROS</span> <br> <span style="font-weight: 100">TU PROPIEDAD</span></h3>
               <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
             </section>
-            <section class="d-flex justify-content-end mt-2 pr-5">
-              <button data-bs-toggle="modal" data-bs-target="#modalAlquiler" class="btn btn-sm text-white px-4" style="background-color: #182741; border-radius: 10px">Alquilar</button>
+            <section class="d-flex justify-content-center mt-2">
+              <button data-bs-toggle="modal" data-bs-target="#modalAlquiler" class="btn text-white px-4" style="background-color: #182741; border-radius: 10px">Solicitar más información</button>
             </section>
           </div>
         </section>
       </article>
     </div>
-    <div class="col-md-4 d-flex justify-content-center">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
       <article data-aos="fade-up" class="mb-3">
         <section class="d-flex justify-content-center">
-          <div class="border py-4" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; width: 300px">
-            <section class="d-flex justify-content-center">
-              <h3 class="h5 mr-2"> <span style="font-weight: 100">CONSTRUYE CON</span> <br> <span class="h3" style="font-weight: 500">NOSOTROS</span></h3>
+          <div class="border py-5 w-100" style="border-radius: 25px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+            <section class="d-flex justify-content-center align-items-center">
+              <h3 class="h5 mr-2"> <span style="font-weight: 100">CONSTRUYE CON</span> <br> <span class="h3" style="font-weight: 500">NOSOTROS</span> <br> <span style="font-weight: 100">TU PROPIEDAD</span></h3>
               <img width="50px" height="50px" class="ml-2" src="{{ asset('img/comprar.png') }}" alt="Casas de Venta en Cuenca">
             </section>
-            <section class="d-flex justify-content-end mt-2 pr-5">
-              <a href="{{ route('web.servicios', 'construye') }}" class="btn btn-sm text-white px-4" style="background-color: #182741; border-radius: 10px">Construye</a>
+            <section class="d-flex justify-content-center mt-2">
+              <a href="{{ route('web.servicios', 'construye') }}" class="btn text-white px-4" style="background-color: #182741; border-radius: 10px">Solicitar más información</a>
             </section>
           </div>
         </section>
       </article>
     </div>
     <!-- Agrega más columnas según sea necesario -->
+  </div>
+
+  <div class="d-flex justify-content-center mt-4">
+    <a href="/servicios/construye" class="btn rounded-pill" style="background-color: #182741; color: #fff">Ver todos los servicios</a>
   </div>
 </div>
 
