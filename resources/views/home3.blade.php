@@ -1,14 +1,17 @@
 @extends('layouts.web2')
 @section('header')
-    <title>Grupo Housing - Propiedades en Venta en Ecuador</title>
-    <meta name="description" content="Inmobiliaria en Cuenca especializada en la venta de Casas, Departamentos, Terrenos y más propiedades. @isset($searchtxt) en {{ $searchtxt }}. @else ¡Visítanos y conoce todo nuestro catálogo! @endif ✅"/>
+    <title>Descubre nuestra Inmobiliaria en Cuenca | Grupo Housing</title>
+    <meta name="description" content="Conoce nuestras propiedades disponibles en Cuenca. La mejor inmobiliaria para comprar, vender o rentar con confianza. ¡Contáctanos hoy!"/>
     <meta name="keywords" content="inmobiliaria en cuenca, inmobiliarias en cuenca, inmobiliarias cuenca, inmobiliaria en cuenca ecuador, inmobiliarias en cuenca ecuador, grupo housing, grupo housing inmobiliaria">
 
-    <meta property="og:url"                content="{{ route('web.index') }}" />
+    <meta property="og:url"                content="{{ Request::url() }}" />
     <meta property="og:type"               content="website" />
-    <meta property="og:title"              content="Propiedades en Venta en Ecuador - Grupo Housing" />
-    <meta property="og:description"        content="Contamos con un amplio directorio de propiedades dentro del territorio ecuatoriano. Casas, Departamentos, Terrenos en Venta @isset($searchtxt) en {{ $searchtxt }}. @else ¡Visítenos! @endif ✅" />
+    <meta property="og:title"              content="Descubre nuestra Inmobiliaria en Cuenca | Grupo Housing" />
+    <meta property="og:description"        content="Conoce nuestras propiedades disponibles en Cuenca. La mejor inmobiliaria para comprar, vender o rentar con confianza. ¡Contáctanos hoy!" />
     <meta property="og:image"              content="{{ asset('img/grupo-housing-og.png') }}" />
+
+    <meta name="robots" content="index,follow,snippet">
+    <meta name="author" content="Grupo Housing">
 
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
