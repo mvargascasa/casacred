@@ -56,7 +56,36 @@ class ListingController extends Controller
         $optAttribSector = []; 
 
         return view('admin.listing.add-tw',compact('benefits','services','types','categories','tags','details','states','optAttrib','lastcode', 'environments', 'general_characteristics', 'optAttribSector', 'currentRouteName'));
-    }   
+    }
+
+    public function storing_property(Request $request){
+
+        $propertie = null;
+
+        if (!empty($request->dbID)) {
+            // Actualización
+            $propertie = Listing::find($request->dbID);
+
+            if (!$propertie) {
+                return response()->json(['error' => 'Registro no encontrado'], 404);
+            }
+
+            $propertie->fill($request->all());
+        } else {
+            // Creación
+            $propertie = new Listing();
+            $propertie->fill($request->all());
+        }
+
+        $propertie->save();
+
+        return response()->json([
+            'databaseID' => $propertie->id,
+            'message' => 'Registro guardado exitosamente'
+        ], 200);
+
+    }
+
     public function store(Request $request){
 
         $listing = Listing::where('product_code', $request->product_code)->first();
@@ -328,8 +357,6 @@ class ListingController extends Controller
 
     public function update(Request $request, Listing $listing){
 
-        //return "entra aqui al actualizar";
-
         $fields = [
             'listing_type' => 'plan',
             'status' => 'estado',
@@ -398,7 +425,7 @@ class ListingController extends Controller
 
             $notificationData = [
                 'type' => NotificationType::INFORMATION,
-                'title' => 'Nueva propiedad creada',
+                'title' => 'Nueva propiedad activada',
                 'content' => $notificationHTML,
                 'user_ids' => $user_ids,
                 'viewed_by' => [],
