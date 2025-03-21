@@ -742,8 +742,8 @@
                                     <i class="fa-solid fa-phone"></i>
                                 </div>
                                 <a style="text-decoration: none"
-                                    href="tel:{{ $listing->listingtypestatus == 'en-venta' ? '+593964034037' : '+593964034037' }}"
-                                    class="mt-1 ml-2 text-dark">{{ $listing->listingtypestatus == 'en-venta' ? '096-403-4037' : '096-403-4037' }}</a>
+                                    href="tel:{{ $listing->listingtypestatus == 'en-venta' ? '+593967867998' : '+593967867998' }}"
+                                    class="mt-1 ml-2 text-dark">{{ $listing->listingtypestatus == 'en-venta' ? '096-786-7998' : '096-786-7998' }}</a>
                             </div>
 
                             <div class="d-flex gap-3 ms-4 mt-2">
@@ -802,7 +802,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-4 col-4">
-                                    <a href="tel:+593964034037">
+                                    <a href="tel:+593967867998">
                                         <i class="fas fa-phone-alt text-light p-2 rounded-circle icon-phone border border-white"
                                             style="background-color: #242B40"></i>
                                     </a>
@@ -942,7 +942,7 @@
                 <a class="btn btn-outline-light rounded-pill w-100" href="https://api.whatsapp.com/send?phone=593987595789&text=Hola%20Grupo%20Housing,%20estoy%20interesado/a%20en%20esta%20propiedad:%20*{{$listing->product_code}}*%0A{{Request::url()}}">WhatsApp</a>
             </div>
             <div class="w-100">
-                <a class="btn btn-outline-light rounded-pill w-100" href="tel:+593964034037">Llamar</a>
+                <a class="btn btn-outline-light rounded-pill w-100" href="tel:+593967867998">Llamar</a>
             </div>
         </div>
     </section>
