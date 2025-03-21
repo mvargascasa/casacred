@@ -1,13 +1,13 @@
 @extends('layouts.web2')
 @section('header')
-    <title>Descubre nuestra Inmobiliaria en Cuenca | Grupo Housing</title>
-    <meta name="description" content="Conoce nuestras propiedades disponibles en Cuenca. La mejor inmobiliaria para comprar, vender o rentar con confianza. ¡Contáctanos hoy!"/>
+    <title>Inmobiliaria en Cuenca | Grupo Housing</title>
+    <meta name="description" content="Conoce nuestras propiedades disponibles. La mejor inmobiliaria en Cuenca para comprar, vender o rentar con confianza. ¡Contáctanos hoy!"/>
     <meta name="keywords" content="inmobiliaria en cuenca, inmobiliarias en cuenca, inmobiliarias cuenca, inmobiliaria en cuenca ecuador, inmobiliarias en cuenca ecuador, grupo housing, grupo housing inmobiliaria">
 
     <meta property="og:url"                content="{{ Request::url() }}" />
     <meta property="og:type"               content="website" />
-    <meta property="og:title"              content="Descubre nuestra Inmobiliaria en Cuenca | Grupo Housing" />
-    <meta property="og:description"        content="Conoce nuestras propiedades disponibles en Cuenca. La mejor inmobiliaria para comprar, vender o rentar con confianza. ¡Contáctanos hoy!" />
+    <meta property="og:title"              content="Inmobiliaria en Cuenca | Grupo Housing" />
+    <meta property="og:description"        content="Conoce nuestras propiedades disponibles. La mejor inmobiliaria en Cuenca para comprar, vender o rentar con confianza. ¡Contáctanos hoy!" />
     <meta property="og:image"              content="{{ asset('img/grupo-housing-og.png') }}" />
 
     <meta name="robots" content="index,follow,snippet">
