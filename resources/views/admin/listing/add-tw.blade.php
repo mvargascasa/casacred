@@ -1350,13 +1350,7 @@
     //                 formData.append('dbID', dbID); // Agrega dbID a FormData si existe
     //             }
 
-    //             const respuesta = await fetch("{{ Route('admin.storing.property') }}", {
-    //                 method: 'POST',
-    //                 body: formData,
-    //                 headers: {
-    //                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
-    //                 }
-    //             });
+    //            
 
     //             if (respuesta.ok) {
     //                 const data = await respuesta.json();
