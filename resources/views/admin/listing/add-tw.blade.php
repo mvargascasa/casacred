@@ -239,12 +239,12 @@
                 {!! Form::hidden('edit', 1) !!}
             @endif
             <div class="border px-5 py-4 shadow-sm hover:shadow-md">
-                {{-- <div class="grid grid-cols-3 gap-4 sm:gap-6">
+                <div class="grid grid-cols-3 gap-4 sm:gap-6">
                     <div>          
                         {!! Form::label('product_code', 'Codigo',['class' => 'font-semibold']) !!}
                         {!! Form::text('product_code', $newcode, ['class' => $inputs.' font-bold', 'readonly']) !!}
                     </div>
-                </div> --}}
+                </div>
                 <div class="grid grid-cols-3 gap-6 mt-4">
                     <div>
                         {!! Form::label('available', 'Disponibilidad', ['class' => 'font-semibold']) !!}
