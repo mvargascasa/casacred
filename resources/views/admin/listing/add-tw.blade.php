@@ -8,9 +8,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
 
-{{-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.js" crossorigin=""></script> --}}
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
@@ -145,7 +142,7 @@
                 @endif
             </div>
             <div class="flex">
-                @if(Auth::user()->id == 922)
+                @if(Auth::user()->id == 934 || Auth::user()->id == 935 || Auth::user()->id == 147)
                     <div>
                         <button onclick="abrirModal()" class="text-white text-center bg-red-600 rounded px-2 mr-2">
                             <span class="text-sm text-white font-semibold">Actualizar fecha de contacto</span>
@@ -167,6 +164,8 @@
     @else
     <h2 class="text-lg font-semibold @if($currentRouteName == "admin.housing.property.create") text-blue-800 @else text-red-700 @endif">NUEVA PROPIEDAD EN @if($currentRouteName == "admin.housing.property.create") HOUSING RENT @elseif(Route::currentRouteName() == "admin.promotora.property.create") CASA PROMOTORA @else CASA CREDITO @endif</h2>
     {!! Form::open(['route' => 'admin.listings.store','enctype' => 'multipart/form-data', 'id' => 'formsave']) !!}
+
+    <input type="hidden" id="dbID" name="dbID" value="">
     @endif
 
     {!! Form::hidden('currentUrl', $currentRouteName) !!}
@@ -240,16 +239,12 @@
                 {!! Form::hidden('edit', 1) !!}
             @endif
             <div class="border px-5 py-4 shadow-sm hover:shadow-md">
-                <div class="grid grid-cols-3 gap-4 sm:gap-6">
+                {{-- <div class="grid grid-cols-3 gap-4 sm:gap-6">
                     <div>          
                         {!! Form::label('product_code', 'Codigo',['class' => 'font-semibold']) !!}
-                        {{-- @if(isset($listing) && $listing->user_id != Auth::user()->id && Auth::user()->role == "user") --}}
                         {!! Form::text('product_code', $newcode, ['class' => $inputs.' font-bold', 'readonly']) !!}
-                        {{-- @else
-                        {!! Form::text('product_code', null, ['class' => $inputs.' font-bold']) !!}
-                        @endif --}}
                     </div>
-                </div>
+                </div> --}}
                 <div class="grid grid-cols-3 gap-6 mt-4">
                     <div>
                         {!! Form::label('available', 'Disponibilidad', ['class' => 'font-semibold']) !!}
@@ -760,105 +755,11 @@
             @endif
         </div>
 
-        {{-- <div id="third" style="display: none" class="fragment3">
-            
-        </div> --}}
-
-
-        {{-- <div class="gap-4 mt-4 sm:gap-6">
-            <div class="flex">
-                {!! Form::label('meta_description', 'Meta Descripcion en Google', ['class' => 'font-semibold']) !!} <div onmouseover="openHelpDescription();" onmouseout="openHelpDescription();" class="pr-1 rounded ml-1" style="padding-left: 3px; cursor: pointer; background-color: #e8eeec">?</div>
-            </div>
-            <div id="div_help_desc" style="display: none;" class="relative">
-                <div class="absolute p-1 rounded" style="font-size: 14px; font-weight: 400; background-color: #e8eeec">La metadescription ayuda a que la publicación sea óptima para Google. La primera letra debe ser en mayúscula y las demás en minúsculas. Es recomendable poner al inicio las mismas palabras del titulo. Ej: Departamento de venta en Sector, Ciudad, Provincia...</div>
-            </div>
-            {!! Form::text('meta_description', null, ['class' => $inputs, 'pattern' => '.{130,160}', 'onkeyup' => 'countCharsDesc(this);', 'required']) !!}
-            <div id="div_info_character_desc" style="background-color: @if(isset($listing) &&  Str::length($listing->meta_description) >= 130 && Str::length($listing->meta_description) <= 160) #9AE6B4 @else #FEB2B2 @endif" class="flex p-1 mt-2 rounded">
-                <label style="font-weight: 400">
-                    Actual <b id="label_count_desc"></b> caracteres. (Mínimo 130 - Máximo 160 caracteres)
-                </label>
-            </div>
-        </div> --}}
-
-        {{-- @if(Auth::user()->id == 15 || Auth::user()->id == 147)
-            <div class="gap-4 mt-4 sm:gap-6">
-                {!! Form::label('keywords', 'Keywords', ['class' => 'font-semibold']) !!}
-                @if(isset($listing) && $listing->locked)
-                {!! Form::textarea('keywords', null, ['class' => $inputs, 'rows' => '3', 'disabled']) !!}
-                @else
-                {!! Form::textarea('keywords', null, ['class' => $inputs, 'rows' => '3']) !!}
-                @endif
-            </div>
-        @endif
-
-        @isset($listing)
-        <div class="gap-4 mt-4 sm:gap-6 bg-gray-200 border rounded px-4 py-2">
-            <div class="text-gray-700 text-xs">Vista Previa en Buscador Google</div>
-            <div class="font-semibold text-blue-800">{{$listing->listing_title}}</div>
-            <div>{{$listing->meta_description}}</div>
-        </div>
-        @endisset --}}
-
-        {{-- nuevo div para guardar los años de construccion --}}
-        {{-- <div class="grid grid-cols-3 gap-4 mt-4"> --}}
-            {{-- <div>
-                {!! Form::label('listyears', 'Años de construcción', ['class' => 'font-semibold']) !!} <br>
-                <span id="rangeValue">Entre 0 a 5 años</span><br>
-                {!! Form::range('listyears', null,  ['class' => 'form-range', 'min' => '0', 'max' => '4', 'step' => '1', 'onchange' => 'rangeSlide(this.value)', 'onmousemove' => 'rangeSlide(this.value)']) !!}       
-            </div> --}}
-            {{-- <div>
-                {!! Form::label('credit', '¿Aplica Crédito VIP?', ['class' => 'font-semibold']) !!}
-                <div class="flex">
-                    <div class="form-check form-check-inline">
-                        {!! Form::radio('credit_vip', '1', null, ['class' => 'form-check-input']) !!}
-                        {!! Form::label('inlineRadio1', 'SI', ['class' => 'form-check-label']) !!}
-                    </div>
-                    <div class="form-check form-check-inline ml-5">
-                        {!! Form::radio('credit_vip', '0', null, ['class' => 'form-check-input']) !!}
-                        {!! Form::label('inlineRadio2', 'NO', ['class' => 'form-check-label']) !!}
-                    </div>
-                </div>
-            </div> --}}
-        {{-- </div> --}}
-        {{-- termina div --}}
-
-        {{-- <div class="grid grid-cols-1 gap-4 mt-4 sm:gap-6 border">
-            <div class="flex content-center px-4 pt-4 pb-4">
-                <div>
-                    <i class="fas fa-money-check-alt"></i> {!! Form::label('mortgaged', '¿El bien inmueble se encuentra hipotecado?', ['class' => 'font-semibold mr-4']) !!}
-                </div>
-                <div class="form-check form-check-inline">
-                    {!! Form::radio('mortgaged', '1', null, ['class' => 'form-check-input', 'onclick' => 'showinfoentitymortgaged(this)']) !!}
-                    {!! Form::label('inlineRadiomortgaged', 'SI', ['class' => 'form-check-label']) !!}
-                </div>
-                <div class="form-check form-check-inline ml-5">
-                    {!! Form::radio('mortgaged', '0', null, ['class' => 'form-check-input', 'onclick' => 'showinfoentitymortgaged(this)']) !!}
-                    {!! Form::label('inlineRadiomortgaged', 'NO', ['class' => 'form-check-label']) !!}
-                </div>
-            </div>
-            <div class="px-4 flex w-full mb-3 @if(isset($listing->mortgaged) && $listing->mortgaged == 1) block @else hidden @endif" id="divinfoentitymortgaged">
-                <div class="form-group w-full mr-1">
-                    <i class="fas fa-building"></i>{!! Form::label('entity_mortgaged', 'Entidad con la que tiene la hipoteca', ['class' => 'font-semibold ml-1 w-full']) !!}
-                    {!! Form::text('entity_mortgaged', null, ['class' => $inputs]) !!}
-                </div>
-                <div class="form-group w-full ml-1">
-                    <i class="fas fa-file-invoice-dollar"></i> {!! Form::label('mount_mortgaged', 'Monto de la hipoteca', ['class' => 'font-semibold ml-1 w-full']) !!}
-                    {!! Form::text('mount_mortgaged', null, ['class' => $inputs]) !!}
-                </div>
-            </div>
-        </div> --}}
-
         <div id="third" style="display: none" class="fragment3">
             <div class="gap-4 mt-4 sm:gap-6">
                 <label class="font-semibold">Galeria de Imagenes</label>
                 <div>
-                    {{-- @if(isset($listing) && $listing->locked)
-                    <input type="file" class="px-4 py-2 border border-gray-300 rounded-md" name="galleryImages[]" id="galleryImages" accept=".jpg, .jpeg, .png" multiple onchange="changetxtgallery(this)" disabled>
-                    @elseif(isset($listing))
-                    <input type="file" class="px-4 py-2 border border-gray-300 rounded-md" name="galleryImages[]" id="galleryImages" accept=".jpg, .jpeg, .png" multiple onchange="changetxtgallery(this)">
-                    @else --}}
                     <input type="file" class="px-4 py-2 border border-gray-300 rounded-md" name="galleryImages[]" id="galleryImages" accept=".jpg, .jpeg, .png, .mp4" multiple>
-                    {{-- @endif --}}
                 </div>      
                 <ul id="gridImages" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 px-4 py-2 border @if(isset($listing) && $listing->images == null) border-red-500 @else border-gray-300 @endif rounded-md">
                     @isset($listing)
@@ -866,11 +767,7 @@
                         @foreach(array_filter(explode("|", $listing->images)) as $img)
                             @php $ii++; $imageVerification = asset('uploads/listing/thumb/300/'.$img); @endphp
                             <li class="relative"  id="imageUpload{{$ii}}"> 
-                                {{-- @if(isset($listing) && $listing->locked)
-                                <button type="button" onclick="delImageUpload({{$ii}})" class="absolute right-0 px-2 rounded bg-red-800 text-white font-bold" disabled>X</button>
-                                @else --}}
                                 <button type="button" onclick="delImageUpload({{$ii}})" class="absolute right-0 px-2 rounded @if($listing->property_by == "Housing") bg-blue-800 @elseif($listing->property_by == "Promotora") bg-red-700 @else bg-red-800 @endif text-white font-bold">X</button>
-                                {{-- @endif --}}
                                 <img class="rounded" src="@if(@getimagesize($imageVerification)){{url('uploads/listing/thumb/300', $img)}} @else {{url('uploads/listing/300',$img)}} @endif">
                                 <input type="hidden" value="{{$img}}" name="updatedImages[]">
                             </li>
@@ -889,28 +786,18 @@
                         </ul>
                     </div>
                 @endif
-                {{-- <section class="mt-3">
-                    {!! Form::label('tiktokcode', 'Código de TikTok', ['class' => 'font-semibold']) !!}
-                    {!! Form::textarea('tiktokcode', null, ['class' => $inputs, 'rows' => 5]) !!}
-                </section> --}}
             </div>          
         </div>
         
-        {{-- @endif --}}
 
         <hr class="mt-4">
         <div class="flex justify-center mt-6">
-            {{-- @if(isset($listing) && $listing->locked)
-                <button type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform bg-red-700 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600" disabled>GUARDAR</button>
-            @else --}}
                 @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "home.tw.create" ||  Route::current()->getName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.promotora.property.create")
                 <button id="btnSave" type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform @if($currentRouteName == "admin.housing.property.create") bg-blue-900 hover:bg-blue-700 @elseif(Route::currentRouteName() == "admin.promotora.property.create") bg-red-800 hover:bg-red-700 focus:bg-red-700 @else bg-red-700 hover:bg-red-600 focus:bg-red-600 @endif rounded focus:outline-none">GUARDAR</button>
                 @endif
                 @if(Route::current()->getName() == "admin.listings.edit" || Route::current()->getName() == "home.tw.edit" || Route::current()->getName() == "admin.housing.property.edit" || Route::currentRouteName() == "admin.promotora.property.edit")
                 <button onclick="saveandclose(event)" class="px-6 py-2 ml-3 text-xl leading-5 text-white @if($currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-green-500 @endif transition-colors duration-200 transform rounded  focus:outline-none">GUARDAR Y SALIR</button>
                 @endif
-            {{-- @endif --}}
-                {{-- <button type="submit" class="px-6 py-2 text-xl leading-5 text-white transition-colors duration-200 transform bg-red-700 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600">GUARDAR</button> --}}
         </div>
     </form>
 
@@ -1043,7 +930,7 @@
                         document.getElementById('third').style.display="block";
                         setfragmentvalue('third');
                         //cambiando value de input product_code con el nuevo codigo con letras
-                        document.getElementById('product_code').value = mensaje.productcode;
+                        //document.getElementById('product_code').value = mensaje.productcode;
                         if(document.getElementById('paso2')){document.getElementById('paso2').classList.remove('bg-red-500');if("{{ $currentRouteName == 'admin.housing.property.create'}}") {document.getElementById('paso2').classList.add('bg-blue-900');} else {document.getElementById('paso2').classList.add('bg-green-500');}; if(document.getElementById('paso3')){document.getElementById('paso3').classList.remove('bg-gray-500'); document.getElementById('paso3').classList.add('bg-red-500')}}}
                     //if(mensaje.success && mensaje.fragment == "third"){ document.getElementById('third').style.display="none";document.getElementById('fourth').style.display="block";setfragmentvalue('fourth'); if(document.getElementById('paso3')){document.getElementById('paso3').classList.remove('bg-red-500');if("{{ $currentRouteName == 'admin.housing.property.create'}}") {document.getElementById('paso3').classList.add('bg-blue-900');} else {document.getElementById('paso3').classList.add('bg-green-500');}; if(document.getElementById('paso4')){document.getElementById('paso4').classList.remove('bg-gray-500'); document.getElementById('paso4').classList.add('bg-red-500')}}}
                     if(mensaje.success && mensaje.fragment == "third" && !ischangestatus && !ischangeplan && !ischangeavailable){window.location.replace("{{route('admin.properties')}}"); if(document.getElementById('paso4')){document.getElementById('paso4').classList.remove('bg-red-500');document.getElementById('paso4').classList.add('bg-green-500');}}
@@ -1101,22 +988,6 @@
                 divlicenciaurbanistica.classList.add('hidden');
             }   
         });
-
-        //let valueStatus;
-
-        // if(window.location.toString().includes("edit")) {
-        //     if(selstatus){
-        //         selstatus.addEventListener('change', showDivStatusComment);
-        //         valueStatus = document.querySelector("select[name='status']").value;
-        //     }
-        // }
-
-        //funcion para abrir el modal si el valor del status al inicio es activado y cambia de estado a desactivado
-        // function showDivStatusComment(){
-        //     if(selstatus.value == 0 && valueStatus == 1){
-        //         toggleModal();
-        //     }
-        // }
 
         let ischangestatus = false;
         let ischangeplan = false;
@@ -1218,7 +1089,7 @@
 
         window.addEventListener('load', (event) => {
 
-            createProductCode();
+            //createProductCode();
 
             setPreviewOnGoogle();
 
@@ -1231,12 +1102,6 @@
                 if(input_listing_title.value.length > 0) label_count_title.innerHTML = input_listing_title.value.length;
                 else label_count_title.innerHTML = "0";
             }
-
-            // if(input_meta_description.value.length > 0) label_count_desc.innerHTML = input_meta_description.value.length;
-            // else label_count_desc.innerHTML = "0";
-
-            // if('{{isset($listing->id)}}') document.getElementById("mortgaged").required = false;
-            // else document.getElementById("mortgaged").required = true;
 
             let checkbox_characteristics = document.querySelectorAll(".checkbox-characteristic");
     
@@ -1267,12 +1132,8 @@
             label_count_desc.innerHTML = object.value.length;
         }
 
-        //mostrando input de comentario si el precio cambia de valor
         let input_price = document.querySelector("[name='property_price']");
         let price = input_price.value;
-        // input_price.addEventListener('change', () => {
-        //     validateCommentChangePrice();
-        // });
 
         function validateCommentChangePrice(){
             let divcomment = document.getElementById('divcomment');
@@ -1322,13 +1183,6 @@
                 console.error('Error al procesar la solicitud:', error);
             }
         }
-
-        //alert(document.querySelector("[name='property_price']").value);
-        //alert(document.querySelector("[name='property_price_min']").value);
-
-        // function getLength(input){
-        //     document.getElementById('charcount').innerHTML = input.value.length;
-        // }
 
         const gridImages = document.getElementById('gridImages');
         new Sortable(gridImages, {
@@ -1431,30 +1285,11 @@
         document.getElementById(idDiv).remove();
     }
 
-    // const rangeSlide = (value) => {
-    //     let stringyearsconstruction;
-    //     switch (value) {
-    //         case "0":stringyearsconstruction = "Entre 0 a 5 años";break;
-    //         case "1":stringyearsconstruction = "Entre 5 a 10 años";break;
-    //         case "2":stringyearsconstruction = "Entre 10 a 15 años";break;
-    //         case "3":stringyearsconstruction = "Entre 15 a 20 años";break;
-    //         case "4":stringyearsconstruction = "Más de 20 años";break;
-    //         default:break;
-    //     }
-    //     document.getElementById('rangeValue').innerHTML = stringyearsconstruction;
-    // }
-
     const openHelpDescription = () => {
         const div_help_desc = document.getElementById('div_help_desc');
         if(div_help_desc.style.display == "none") div_help_desc.style.display = "block";
         else if(div_help_desc.style.display == "block") div_help_desc.style.display = "none";
     }
-
-    // form.addEventListener('submit', (event) => {
-    //     let text = "¿Esta seguro de guardar los cambios?";
-    //     if(confirm(text) == true){return true}
-    //     else {event.preventDefault();}
-    // });
 
     var alert_del = document.querySelectorAll('.alert-del');
     alert_del.forEach((x) =>
@@ -1463,9 +1298,6 @@
     })
   );
 
-//   document.querySelector("select[name='available']").addEventListener('change', () => {
-//       console.log('prueba');
-//   });
 
     function requiredFalse(available_value){
         if(available_value == 2){
@@ -1480,34 +1312,11 @@
             }
         }
 
-    // let openmodal = document.querySelectorAll('.modal-open')
-    // for (let i = 0; i < openmodal.length; i++) {
-    //   openmodal[i].addEventListener('click', function(event){
-    // 	event.preventDefault()
-    // 	toggleModal()
-    //   })
-    // }
-    
-    // const overlay = document.querySelector('.modal-overlay')
-    // overlay.addEventListener('click', toggleModal)
     
     let closemodal = document.querySelectorAll('.modal-close')
     for (let i = 0; i < closemodal.length; i++) {
       closemodal[i].addEventListener('click', toggleModalStatus)
     }
-    
-    // document.onkeydown = function(evt) {
-    //   evt = evt || window.event
-    //   let isEscape = false
-    //   if ("key" in evt) {
-    // 	isEscape = (evt.key === "Escape" || evt.key === "Esc")
-    //   } else {
-    // 	isEscape = (evt.keyCode === 27)
-    //   }
-    //   if (isEscape && document.body.classList.contains('modal-active')) {
-    // 	toggleModal()
-    //   }
-    // };
     
     
     function toggleModalStatus (selectchange) {
@@ -1528,6 +1337,43 @@
         //saveandclose();
     }
 
+    function storingProperty(){
+        const inputs = document.querySelectorAll('#formsave input, #formsave select, #formsave textarea');
+        const form = document.getElementById('formsave');
+
+        inputs.forEach(input => {
+            input.addEventListener('change', async function () {
+                const formData = new FormData(form);
+                const dbID = document.getElementById('dbID').value; // Obtén el dbID del campo oculto
+
+                if (dbID) {
+                    formData.append('dbID', dbID); // Agrega dbID a FormData si existe
+                }
+
+                const respuesta = await fetch("{{ Route('admin.storing.property') }}", {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                });
+
+                if (respuesta.ok) {
+                    const data = await respuesta.json();
+                    document.getElementById('dbID').value = data.databaseID; // Actualiza el campo oculto con el nuevo dbID
+                    console.log(data);
+                } else {
+                    console.error('Error al enviar los datos:', respuesta.status);
+                    const errorData = await respuesta.json();
+                    console.error('Detalles del error:', errorData);
+                    alert('Error al enviar los datos.');
+                }
+            });
+        });
+    }
+
+    storingProperty();
+
     function toggleModalSuccess(){
         const body = document.querySelector('body')
         const modal = document.querySelector('.modalSuccess')
@@ -1536,19 +1382,6 @@
         body.classList.toggle('modal-active')
     }
 
-    // function showinfoentitymortgaged(checkbox){
-    //     if(checkbox.value == 1){
-    //         document.getElementById('divinfoentitymortgaged').classList.remove('hidden');
-    //         document.getElementById('divinfoentitymortgaged').classList.add('block');
-    //         document.getElementById('entity_mortgaged').required = true;
-    //         document.getElementById('mount_mortgaged').required = true;
-    //     } else if(checkbox.value == 0){
-    //         document.getElementById('divinfoentitymortgaged').classList.remove('block');
-    //         document.getElementById('divinfoentitymortgaged').classList.add('hidden');
-    //         document.getElementById('entity_mortgaged').required = false;
-    //         document.getElementById('mount_mortgaged').required = false;
-    //     } 
-    // }
 
     let sellistingtype = document.querySelector("select[name='listing_type']");
     let divnumfactura = document.getElementById('numfactura');
