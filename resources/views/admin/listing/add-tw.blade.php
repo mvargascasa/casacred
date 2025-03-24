@@ -1337,42 +1337,42 @@
         //saveandclose();
     }
 
-    function storingProperty(){
-        const inputs = document.querySelectorAll('#formsave input, #formsave select, #formsave textarea');
-        const form = document.getElementById('formsave');
+    // function storingProperty(){
+    //     const inputs = document.querySelectorAll('#formsave input, #formsave select, #formsave textarea');
+    //     const form = document.getElementById('formsave');
 
-        inputs.forEach(input => {
-            input.addEventListener('change', async function () {
-                const formData = new FormData(form);
-                const dbID = document.getElementById('dbID').value; // Obtén el dbID del campo oculto
+    //     inputs.forEach(input => {
+    //         input.addEventListener('change', async function () {
+    //             const formData = new FormData(form);
+    //             const dbID = document.getElementById('dbID').value; // Obtén el dbID del campo oculto
 
-                if (dbID) {
-                    formData.append('dbID', dbID); // Agrega dbID a FormData si existe
-                }
+    //             if (dbID) {
+    //                 formData.append('dbID', dbID); // Agrega dbID a FormData si existe
+    //             }
 
-                const respuesta = await fetch("{{ Route('admin.storing.property') }}", {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    }
-                });
+    //             const respuesta = await fetch("{{ Route('admin.storing.property') }}", {
+    //                 method: 'POST',
+    //                 body: formData,
+    //                 headers: {
+    //                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    //                 }
+    //             });
 
-                if (respuesta.ok) {
-                    const data = await respuesta.json();
-                    document.getElementById('dbID').value = data.databaseID; // Actualiza el campo oculto con el nuevo dbID
-                    console.log(data);
-                } else {
-                    console.error('Error al enviar los datos:', respuesta.status);
-                    const errorData = await respuesta.json();
-                    console.error('Detalles del error:', errorData);
-                    alert('Error al enviar los datos.');
-                }
-            });
-        });
-    }
+    //             if (respuesta.ok) {
+    //                 const data = await respuesta.json();
+    //                 document.getElementById('dbID').value = data.databaseID; // Actualiza el campo oculto con el nuevo dbID
+    //                 console.log(data);
+    //             } else {
+    //                 console.error('Error al enviar los datos:', respuesta.status);
+    //                 const errorData = await respuesta.json();
+    //                 console.error('Detalles del error:', errorData);
+    //                 alert('Error al enviar los datos.');
+    //             }
+    //         });
+    //     });
+    // }
 
-    storingProperty();
+    // storingProperty();
 
     function toggleModalSuccess(){
         const body = document.querySelector('body')
