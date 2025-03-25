@@ -7,10 +7,21 @@
 @section('content')
 
     <div class="overflow-y-auto py-4">
-        
-        <div class="flex justify-between">
+        <div class="flex justify-between items-center mb-4">
             <h1 class="font-semibold text-2xl text-gray-700 px-3">Propiedades Actualizadas</h1>
             <a class="bg-blue-800 text-white p-2 rounded hover:bg-blue-700 text-sm font-semibold" href="{{ Route('reports.updated.properties') }}">Reporte de propiedades actualizadas</a>
+        </div>
+
+        <div class="px-3 mb-4">
+            <form action="{{ route('updated.properties') }}" method="GET">
+                <label for="listingtypestatus" class="block text-gray-700 text-sm font-bold mb-2">Filtrar por tipo:</label>
+                <select name="listingtypestatus" style="width: 150px" id="listingtypestatus" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-select">
+                    <option value="">Todos</option>
+                    <option value="en-venta" {{ request('listingtypestatus') === 'en-venta' ? 'selected' : '' }}>En Venta</option>
+                    <option value="alquilar" {{ request('listingtypestatus') === 'alquilar' ? 'selected' : '' }}>Alquilar</option>
+                    </select>
+                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2">Filtrar</button>
+            </form>
         </div>
 
         <div class="overflow-x-auto mt-4">
@@ -78,12 +89,12 @@
         </div>
 
         <div class="py-3">
-            {{ $properties->links('pagination::tailwind')}}
+            {{ $properties->appends(['listingtypestatus' => request('listingtypestatus')])->links('pagination::tailwind')}}
         </div>
 
     </div>
 @endsection
 
 @section('endscript')
-    
+
 @endsection

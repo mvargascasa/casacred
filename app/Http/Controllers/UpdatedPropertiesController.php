@@ -8,10 +8,17 @@ use Illuminate\Http\Request;
 
 class UpdatedPropertiesController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
-        $properties = Listing::where('available', 1)->orderBy('contact_at', 'asc')->paginate(10);
-
+        $listingTypeStatus = $request->input('listingtypestatus');
+    
+        $properties = Listing::where('available', 1)
+            ->when($listingTypeStatus, function ($query, $listingTypeStatus) {
+                return $query->where('listingtypestatus', $listingTypeStatus);
+            })
+            ->orderBy('contact_at', 'asc')
+            ->paginate(10);
+    
         foreach ($properties as $property) {
             if ($property->contact_at === null) {
                 // Si contact_at es nulo, mostrar el botón de actualización
@@ -27,8 +34,8 @@ class UpdatedPropertiesController extends Controller
                 $property->nextContactDate = $nextContactDate->format('Y-m-d H:i:s');
             }
         }
-
+    
         return view('admin.updated-listing.index', compact('properties'));
-
+    
     }
 }
