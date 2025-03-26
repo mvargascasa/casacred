@@ -770,8 +770,8 @@
                                     <img width="15px" src="{{ asset('img/location-icon.png') }}" alt="">
                                 </div>
                                 <a style="text-decoration: none" class="mt-1 text-dark ml-2"
-                                    href="https://maps.app.goo.gl/w1S3qxfWQ5LBob9a9">
-                                    Juan Iñiguez 3-87 y Gonzalo Cordero
+                                    href="https://maps.app.goo.gl/WctLFek7TAYvaQ2V9">
+                                    Remigio Tamariz Crespo y Av. Fray Vicente Solano
                                 </a>
                             </div>
 
@@ -809,13 +809,13 @@
                                 </div>
                                 <div class="col-sm-4 col-4">
                                     <a target="_blank"
-                                        href="https://api.whatsapp.com/send?phone=593987595789&text=Hola, estoy interesado en la propiedad *{{ $listing->product_code }}* - *{{ $listing->listing_title }}* y deseo que me contacten. Gracias 😊%0A{{ url()->current() }}">
+                                        href="https://api.whatsapp.com/send?phone=593967867998&text=Hola, estoy interesado en la propiedad *{{ $listing->product_code }}* - *{{ $listing->listing_title }}* y deseo que me contacten. Gracias 😊%0A{{ url()->current() }}">
                                         <i class="fab fa-whatsapp text-light p-2 rounded-circle border border-white"
                                             style="background-color: #242B40"></i>
                                     </a>
                                 </div>
                                 <div class="col-sm-4 col-4">
-                                    <a href="mailto:ventas@casacredito.com">
+                                    <a href="mailto:info@grupohousing.com">
                                         <i class="fas fa-envelope text-light p-2 rounded-circle border border-white"
                                             style="background-color: #242B40"></i>
                                     </a>
