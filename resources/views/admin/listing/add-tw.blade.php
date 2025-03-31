@@ -1089,7 +1089,7 @@
 
         window.addEventListener('load', (event) => {
 
-            //createProductCode();
+            createProductCode();
 
             setPreviewOnGoogle();
 
