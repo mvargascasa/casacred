@@ -36,8 +36,8 @@ class Listing extends Model
         'cavity_error',
         'warranty',
         'plusvalia',
-        'tiktokcode',
         'niv_constr', 'num_pisos', 'pisos_constr', // nuevas variables para las caracteristicas generales
+        'land_appraisal', 'construction_appraisal',
         'delete_at',
         'posted_on_facebook',
         'date_posted_facebook',
