@@ -433,9 +433,9 @@
                 @if(!isset($listing) || (isset($listing) && $listing->address != null))
                     <div class="grid grid-cols-1 gap-4 mt-4">
                         <div>
-                            {!! Form::label('address', 'Ubicación', ['class' => 'font-semibold']) !!}
+                            {!! Form::label('address', 'Sector', ['class' => 'font-semibold']) !!}
                             <br>
-                            <span class="text-gray-500 text-sm font-semibold">Sector donde se encuentra la propiedad. Por ejemplo: Misicata</span>
+                            <span class="text-gray-500 text-sm font-semibold">Zona donde se encuentra la propiedad. Por ejemplo: Misicata</span>
                             {!! Form::text('address', null, ['class' => $inputs]) !!}
                         </div>
                     </div>
@@ -692,7 +692,7 @@
             </div>
 
             @if($currentRouteName != "admin.housing.property.create" && $currentRouteName != "admin.housing.property.edit")
-                <div class="gap-4 mt-4 sm:gap-6 border relative px-5 py-4 mt-10 hover:shadow-md">
+                <div id="div_additional_data" class="gap-4 mt-4 sm:gap-6 border relative px-5 py-4 hover:shadow-md">
                     <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3 px-4 py-2">
                         <div>
                             <div>
