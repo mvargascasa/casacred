@@ -162,7 +162,7 @@
 
     {!! Form::model($listing, ['route' => ['admin.listings.update',$listing->id],'method' => 'PUT', 'enctype' => 'multipart/form-data', 'id' => 'formsave']) !!}
     @else
-    <h2 class="text-lg font-semibold @if($currentRouteName == "admin.housing.property.create") text-blue-800 @else text-red-700 @endif">NUEVA PROPIEDAD EN @if($currentRouteName == "admin.housing.property.create") HOUSING RENT @elseif(Route::currentRouteName() == "admin.promotora.property.create") CASA PROMOTORA @else CASA CREDITO @endif</h2>
+    <h2 class="text-lg font-semibold @if($currentRouteName == "admin.housing.property.create") text-blue-800 @else text-red-700 @endif">NUEVA PROPIEDAD EN @if($currentRouteName == "admin.housing.property.create") HOUSING RENT @elseif(Route::currentRouteName() == "admin.promotora.property.create") CASA PROMOTORA @else GRUPO HOUSING @endif</h2>
     {!! Form::open(['route' => 'admin.listings.store','enctype' => 'multipart/form-data', 'id' => 'formsave']) !!}
 
     <input type="hidden" id="dbID" name="dbID" value="">
@@ -239,13 +239,13 @@
                 {!! Form::hidden('edit', 1) !!}
             @endif
             <div class="border px-5 py-4 shadow-sm hover:shadow-md">
-                <div class="grid grid-cols-3 gap-4 sm:gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
                     <div>          
                         {!! Form::label('product_code', 'Codigo',['class' => 'font-semibold']) !!}
                         {!! Form::text('product_code', $newcode, ['class' => $inputs.' font-bold', 'readonly']) !!}
                     </div>
                 </div>
-                <div class="grid grid-cols-3 gap-6 mt-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
                     <div>
                         {!! Form::label('available', 'Disponibilidad', ['class' => 'font-semibold']) !!}
                         {!! Form::select('available', ['1' => 'DISPONIBLE', '2' => 'NO DISPONIBLE'], null, ['class' => $inputs, 'onchange' => 'requiredFalse(this.value);', 'required']) !!}
@@ -388,9 +388,9 @@
                     {!! Form::textarea('meta_description', 
                     isset($listing->meta_description) && $listing->meta_description!=null ? $listing->meta_description : '',
                     ['class' => $inputs,'rows' => '3', 'placeholder' => '', 'maxlength' => '150', 'onkeyup' => 'countCharacterMetaDescription();setPreviewOnGoogle()']) !!}
-                    <div id="div_info_character_meta" style="background-color: @if(isset($listing) &&  Str::length($listing->meta_description) >= 150 && Str::length($listing->meta_description) <=120) #9AE6B4 @else #FEB2B2 @endif" class="flex p-1 mt-2">
+                    <div id="div_info_character_meta" style="background-color: @if(isset($listing) &&  Str::length($listing->meta_description) >= 150 && Str::length($listing->meta_description) <=140) #9AE6B4 @else #FEB2B2 @endif" class="flex p-1 mt-2">
                         <label style="font-weight: 400">
-                            Actual <b id="label_count_metadescription"></b> caracteres. (Mínimo 120 - Máximo 150 caracteres)
+                            Actual <b id="label_count_metadescription"></b> caracteres. (Mínimo 140 - Máximo 150 caracteres)
                         </label>
                     </div>
                 </div>
@@ -517,13 +517,6 @@
                         @endif
                     </div>
                 </div>
-        
-                @if($currentRouteName != "admin.housing.property.create" && $currentRouteName != "admin.housing.property.edit")
-                    <div class="grid grid-cols-1 mt-4">
-                        {!! Form::label('cadastral_key', 'Clave Catastral', ['class' => 'font-semibold']) !!}
-                        {!! Form::text('cadastral_key', null, ['class' => $inputs]) !!}
-                    </div>
-                @endif
     
                 <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">DATOS DEL INMUEBLE</p>
             </div>
@@ -712,7 +705,7 @@
                             </div>
                             <div>
                                 <label class="inline-flex items-center mt-3">  
-                                    <span class="ml-2 text-gray-700 mr-2">VIP</span>
+                                    <span class="ml-2 text-gray-700 mr-2">Aplica Crédito VIP</span>
                                     {!! Form::checkbox("vip", null, 
                                     isset($listing->vip) && $listing->vip ? true : false,
                                     ['class' => 'form-checkbox h-5 w-5 '.$bgcheckbox, 'type'=>'checkbox']) !!}
@@ -722,7 +715,7 @@
                         <div>
                             <div>
                                 <label class="inline-flex items-center mt-3">  
-                                    <span class="ml-2 text-gray-700 mr-2">Hipoteca</span>
+                                    <span class="ml-2 text-gray-700 mr-2">¿Está Hipotecada?</span>
                                     {!! Form::checkbox("mortgaged", null, 
                                     isset($listing->mortgaged) && $listing->mortgaged ? true : false,
                                     ['class' => 'form-checkbox h-5 w-5 '.$bgcheckbox, 'type'=>'checkbox', 'id'=>"check_mortgage"]) !!}
@@ -742,13 +735,33 @@
                         </div>
                     </div>   
                     <div>
-                        <div class="mt-3">
-                            {!! Form::label('aval', 'Avaluo de la propiedad', ['class' => 'font-semibold']) !!}
-                            {!! Form::number('aval', null, ['class' => $inputs, 'placeholder' => 'Ej: 100000']) !!}
-                            <div class="text-xs bg-gray-100 mt-2 p-1 rounded">
-                                <i class="fa-solid fa-circle-info"></i> Si necesita obtener el avaluo de la propiedad, puede ingresar al <a target="_blank" class="text-blue-500" href="https://enlinea.cuenca.gob.ec/#/informe-predial">siguiente enlace</a> y consultar por el número de cédula.
+
+                        @if($currentRouteName != "admin.housing.property.create" && $currentRouteName != "admin.housing.property.edit")
+                            <div class="grid grid-cols-1 mt-4">
+                                {!! Form::label('cadastral_key', 'Clave Catastral', ['class' => 'font-semibold']) !!}
+                                {!! Form::text('cadastral_key', null, ['class' => $inputs]) !!}
                             </div>
-                        </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="mt-3">
+                                    {!! Form::label('land_appraisal', 'Avaluo del terreno', ['class' => 'font-semibold']) !!}
+                                    {!! Form::number('land_appraisal', null, ['class' => $inputs, 'placeholder' => 'Ej: 61388.77']) !!}
+                                </div>
+                                <div class="mt-3">
+                                    {!! Form::label('construction_appraisal', 'Avaluo de construcción', ['class' => 'font-semibold']) !!}
+                                    {!! Form::number('construction_appraisal', null, ['class' => $inputs, 'placeholder' => 'Ej: 61388.77']) !!}
+                                </div>
+                                <div class="mt-3">
+                                    {!! Form::label('aval', 'Avaluo de la propiedad', ['class' => 'font-semibold']) !!}
+                                    {!! Form::number('aval', null, ['class' => $inputs, 'placeholder' => 'Ej: 100000']) !!}
+                                </div>
+                            </div>
+                            <div class="bg-gray-100 mt-3 p-2 rounded-lg">
+                                <i class="fa-solid fa-circle-info"></i> Para obtener el avaluo de la propiedad, puede ingresar al <strong><a target="_blank" class="text-blue-500" href="https://enlinea.cuenca.gob.ec/#/informe-predial">siguiente enlace</a></strong>  y consultar por la <strong>clave catastral</strong>.
+                            </div>
+
+                        @endif
+
                     </div> 
                     <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0 shadow-lg" style="margin-top: -13px; letter-spacing: 1px">DATOS ADICIONALES</p>
                 </div>
@@ -859,7 +872,7 @@
     <script>
         let currentRoute = @json(Route::current()->getName());
     </script>
-    <script src="{{ asset('js/listings/validate.min.js?v=3') }}" defer></script>
+    <script src="{{ asset('js/listings/validate.min.js?v=4') }}" defer></script>
     <script>let bandera = false;</script>
     @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.promotora.property.create")
         <script>
@@ -1298,6 +1311,32 @@
     })
   );
 
+  function getTotalAppraisal() {
+    let inp_land_appraisal = document.getElementById('land_appraisal');
+    let inp_construction_appraisal = document.getElementById('construction_appraisal');
+    let inp_aval = document.getElementById('aval');
+
+    // Función para calcular y actualizar el aval
+    const actualizarAval = () => {
+        const landValue = parseFloat(inp_land_appraisal.value) || 0;
+        const constructionValue = parseFloat(inp_construction_appraisal.value) || 0;
+        const total = landValue + constructionValue;
+        inp_aval.value = total;
+    };
+
+    // Adjunta los event listeners a los inputs
+    if (inp_land_appraisal && inp_construction_appraisal && inp_aval) {
+        inp_land_appraisal.addEventListener('keyup', actualizarAval);
+        inp_construction_appraisal.addEventListener('keyup', actualizarAval);
+
+        // También puedes llamar a actualizarAval() inicialmente si quieres un valor inicial en 'aval'
+        // actualizarAval();
+    }
+}
+
+// Asegúrate de llamar a getTotalAppraisal() después de que el DOM esté completamente cargado
+document.addEventListener('DOMContentLoaded', getTotalAppraisal);
+
 
     function requiredFalse(available_value){
         if(available_value == 2){
@@ -1570,7 +1609,7 @@
         label_count_metadescription.innerHTML = txtMetaDescription.value.length;
 
         let div_info_character_meta = document.getElementById('div_info_character_meta');
-        if(txtMetaDescription.value.length <= 150 && txtMetaDescription.value.length >= 120){
+        if(txtMetaDescription.value.length <= 150 && txtMetaDescription.value.length >= 140){
             div_info_character_meta.style.backgroundColor = "#9AE6B4";
         } else {
             div_info_character_meta.style.backgroundColor = "#FEB2B2";
