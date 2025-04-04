@@ -441,10 +441,25 @@
                     </div>
                 @endif
 
+                <div class="grid grid-cols-3 gap-4 mt-5">
+                    <div> 
+                        {!! Form::label('listingtype', 'Categoría', ['class' => 'font-semibold']) !!}
+                        {!! Form::select('listingtype',$types->pluck('type_title','id'),    null,    ['class' => $inputs]) !!}
+                    </div>
+                    <div>     
+                        {!! Form::label('listingtypestatus', 'Tipo', ['class' => 'font-semibold']) !!}
+                        {!! Form::select('listingtypestatus',$categories->pluck('status_title','slug'),    null,    ['class' => $inputs]) !!}
+                    </div>
+                    <div>  
+                        {!! Form::label('listingtagstatus', 'Etiqueta', ['class' => 'font-semibold']) !!}
+                        {!! Form::select('listingtagstatus',$tags->pluck('tags_title','id'),    null,    ['class' => $inputs]) !!}
+                    </div>
+                </div>
+
                 <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6 sm:grid-cols-4">
-                    <div>          
+                    <div id="construction_area_container">          
                         {!! Form::label('construction_area', 'Construcción', ['class' => 'font-semibold']) !!}
-                            {!! Form::text('construction_area', null, ['class' => $inputs]) !!}
+                        {!! Form::text('construction_area', null, ['class' => $inputs]) !!}
                     </div>
                     <div>          
                         {!! Form::label('land_area', 'Superficie', ['class' => 'font-semibold']) !!}
@@ -523,20 +538,6 @@
             <!--termina div datos del inmueble-->
     
             <div class="relative border px-5 py-4 mt-10 hover:shadow-md">
-                <div class="grid grid-cols-3 gap-4">
-                    <div> 
-                        {!! Form::label('listingtype', 'Categoría', ['class' => 'font-semibold']) !!}
-                        {!! Form::select('listingtype',$types->pluck('type_title','id'),    null,    ['class' => $inputs]) !!}
-                    </div>
-                    <div>     
-                        {!! Form::label('listingtypestatus', 'Tipo', ['class' => 'font-semibold']) !!}
-                        {!! Form::select('listingtypestatus',$categories->pluck('status_title','slug'),    null,    ['class' => $inputs]) !!}
-                    </div>
-                    <div>  
-                        {!! Form::label('listingtagstatus', 'Etiqueta', ['class' => 'font-semibold']) !!}
-                        {!! Form::select('listingtagstatus',$tags->pluck('tags_title','id'),    null,    ['class' => $inputs]) !!}
-                    </div>
-                </div>
                 <div id="divlicenciaurbanistica" class="grid grid-cols-1 @if(isset($listing) && $listing->listingtype == 26) block @else hidden @endif mt-5">
                     <div class="flex content-center border p-4">
                         <div>
@@ -553,7 +554,7 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-3 gap-4 mt-4 sm:gap-6">
-                    <div>
+                    <div id="listyears_container">
                         {!! Form::label('listyears', 'Antiguedad', ['class' => 'font-semibold']) !!}
                         {!! Form::number('listyears',null, ['class' => $inputs]) !!}
                     </div>
@@ -563,10 +564,10 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-1 mt-4">
-                    {!! Form::label('observations_type_property', 'Observaciones', ['class' => 'font-semibold']) !!}
+                    {!! Form::label('observations_type_property', '¿La propiedad tiene alguna observación?', ['class' => 'font-semibold']) !!}
                     {!! Form::textarea('observations_type_property', null, ['class' => $inputs, 'rows' => 4]) !!}
                 </div>
-                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">TIPO DE INMUEBLE</p>
+                <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">OBSERVACIONES</p>
             </div>
     
             <div class="border relative px-5 py-4 mt-10 hover:shadow-md">
@@ -662,7 +663,7 @@
                 <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">CARACTERISTICAS GENERALES</p>
             </div>
     
-            <div class="border relative px-5 py-4 mt-10 hover:shadow-md">
+            <div id="environments_container" class="border relative px-5 py-4 mt-10 hover:shadow-md">
                 <div class="gap-4 mt-4 sm:gap-6">
                     <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-3 border-gray-300 rounded-md px-4 py-2">
                         @foreach ($environments as $envir)
@@ -872,7 +873,7 @@
     <script>
         let currentRoute = @json(Route::current()->getName());
     </script>
-    <script src="{{ asset('js/listings/validate.min.js?v=4') }}" defer></script>
+    <script src="{{ asset('js/listings/validate.min.js?v=5') }}" defer></script>
     <script>let bandera = false;</script>
     @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.promotora.property.create")
         <script>
