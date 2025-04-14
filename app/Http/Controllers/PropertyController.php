@@ -194,7 +194,7 @@ class PropertyController extends Controller
 
         $properties = $properties_filter->get();
 
-        $perPage = $request->query('per_page', 20);
+        $perPage = $request->query('per_page', 30);
         $page = $request->query('page', 1);
 
         // Calcular el índice de inicio
