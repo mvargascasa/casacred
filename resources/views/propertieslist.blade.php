@@ -294,6 +294,11 @@
             transition: transform 0.3s ease;
         }
 
+        #dynamic_content h3{
+            font-size: 18px;
+            font-weight: 200;
+        }
+
         .switch-input:checked+.switch-label .switch-icon:first-child {
             transform: translateX(30px);
         }
@@ -516,6 +521,11 @@
         <div class="row justify-content-center">
             <div id="pagination" class="mt-4"></div>
         </div>
+
+        <div id="dynamic_content" class="row justify-content-center align-items-center mb-4">
+
+        </div>
+
     </section>
 @endsection
 
@@ -681,6 +691,9 @@
             if (statusValue) {
                 urlSlug += `-en-${statusValue}`;
             }
+
+            console.log('typeName: ' + typeName, 'statusValue: ' + statusValue);
+
             let titleComponents = [typeName.charAt(0).toUpperCase() + typeName.slice(1)];
             if (searchParams.get('sector')) {
                 urlSlug += `-en-${searchParams.get('sector').toLowerCase().replace(/\s+/g, '-')}`;
@@ -708,6 +721,8 @@
             window.history.pushState({
                 path: urlSlug
             }, '', urlSlug);
+
+            generateDynamicContent(typeName, statusValue, searchParams.get('city'));
 
             canonical.href = urlSlug;
 
@@ -787,7 +802,7 @@
             let titleComponents = `${total} ${titleSuffix} en Ecuador - Grupo Housing`;
             document.title = `${titleComponents}`;
             document.querySelector('h1').innerHTML =
-                `<span style="font-weight: 500">${total}</span><span style="font-weight: 100"> ${titleSuffix}</span>`;
+                `<span style="font-weight: 500">${total}</span><span style="font-weight: 100"> ${titleSuffix}</span>`;        
         }
 
         function getImageUrl(property) {
@@ -1159,5 +1174,46 @@
         document.addEventListener('DOMContentLoaded', function() {
             searchProperties(1, false);
         });
+
+        function generateDynamicContent(property_type, operation, location) 
+        {
+            let content = '';
+            let qaPairs = [];
+
+            if (property_type && operation) {
+                let propertyTypeDisplay = property_type.replace(/[-_]/g, ' ');
+                let operationDisplay = (operation === 'venta' || operation === 'renta') ? operation : 'general';
+                let locationDisplay = location ? location.replace(/[-_]/g, ' ') : 'Ecuador';
+
+                qaPairs.push({
+                    question: `¿Por qué ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'buscar'} ${propertyTypeDisplay} en ${operationDisplay} en ${locationDisplay}?`,
+                    answer: `Encontrar ${propertyTypeDisplay} en ${operationDisplay} en ${locationDisplay} ofrece diversas ventajas. Se presenta como una opción inmobiliaria atractiva debido a su notable crecimiento turístico, lo que impulsa una economía local en expansión y ofrece oportunidades de inversión con potencial de valorización.`
+                });
+
+                qaPairs.push({
+                    question: `¿Dónde puedo ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'encontrar'} ${propertyTypeDisplay} en ${operationDisplay} en ${locationDisplay}?`,
+                    answer: `Puedes encontrar una amplia variedad de ${propertyTypeDisplay} en ${operationDisplay} en ${locationDisplay} en nuestra inmobiliaria. En Grupo Housing, comprendemos la importancia de esta decisión y nos comprometemos a brindarte un servicio integral y personalizado. Nuestro equipo de profesionales te acompañará en cada paso.`
+                });
+
+                qaPairs.push({
+                    question: `¿Cómo puedo ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'buscar'} ${propertyTypeDisplay} en ${operationDisplay} en ${locationDisplay}?`,
+                    answer: `Para ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'buscar'} ${propertyTypeDisplay} en ${operationDisplay} en ${locationDisplay}, puedes definir tu presupuesto y necesidades, explorar opciones en línea mediante nuestro sitio web o contáctarnos directamente en Grupo Housing por teléfono, WhatsApp o redes sociales. Te brindaremos asesoramiento profesional, gestionaremos trámites y te guiaremos en todo el proceso.`
+                });
+            }
+
+            qaPairs.forEach(qa => {
+                content += `
+                    <section class="mt-4">
+                        <h2>${qa.question}</h2>
+                        <h3>${qa.answer}</h3>
+                    </section>
+                `;
+            });
+
+            let containerDynamicContent = document.getElementById('dynamic_content');
+            if (containerDynamicContent) {
+                containerDynamicContent.innerHTML = content;
+            }
+        }
     </script>
 @endsection
