@@ -325,10 +325,13 @@
     </section>
 
     <div class="container d-flex justify-content-between align-items-center">
-        <h1 style="font-family: 'Sharp Grotesk'; text-align: left;" class="h3 fw-bold">
-            <span style="font-weight: 500">Total</span>
-            <span style="font-weight: 100"> propiedades</span>
-        </h1>
+        <div>
+            <h1 style="font-family: 'Sharp Grotesk'; text-align: left;" class="h3 fw-bold">
+                <span style="font-weight: 500">Total</span>
+                <span style="font-weight: 100"> propiedades</span>
+            </h1>
+            <p id="description_banner"></p>
+        </div>
         <div class="switch-container">
             <input type="checkbox" id="toggleViewBtn" class="switch-input">
             <label for="toggleViewBtn" class="switch-label">
@@ -783,20 +786,25 @@
 
             let metaDescripcion = document.querySelector('meta[name="description"]');
             let keywords = document.querySelector('meta[name="keywords"]')
+            let description_banner = document.getElementById('description_banner');
             
             if (metaDescripcion) {
                 
                 let contentMetaDescription = "";
+                let contentBannerDescription = "";
 
                 if(total < 1){
                     contentMetaDescription = 'Encuentre la casa de sus sueños, donde los sueños se hacen realidad 😉 Contamos con una gran variedad de propiedades disponibles ¡Contáctenos!';
+                    contentBannerDescription = 'Descubre todas las propiedades en venta y renta que Grupo Housing tiene para ti';
                 } else{
                     contentMetaDescription = `Encontramos ${total} ${strTitle(titleSuffix)} disponibles. ¡Solicita ahora una visita y descubre tu opción ideal! Clic aquí para más información`;
+                    contentBannerDescription = `Hemos encontrado ${total} ${replaceFirstEnWithDe(titleSuffix)} disponibles.`;
                 }
                 
                 // Cambia el atributo content de la meta descripción
                 metaDescripcion.setAttribute('content', contentMetaDescription);
                 keywords.setAttribute('content', titleSuffix);
+                description_banner.innerHTML = contentBannerDescription;
             }
 
             let titleComponents = `${total} ${titleSuffix} en Ecuador - Grupo Housing`;
@@ -810,6 +818,10 @@
             if (imageList.length > 0 && imageList[0]) {
                 return `/uploads/listing/${imageList[0]}`;
             }
+        }
+
+        function replaceFirstEnWithDe(titleSuffix) {
+            return titleSuffix.replace(/\ben\b/i, 'de');
         }
 
         function updatePagination(pagination, isModal) {
@@ -953,32 +965,46 @@
                         <div class="row align-items-center">
                             <div class="col-sm-8 d-flex justify-content-around">
                                 ${property.bedroom > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
-                                                <img width="50px" height="50px" src="{{ asset('img/dormitorios.png') }}" alt="">
-                                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bedroom} Hab.</p>
+                                                <div>
+                                                    <img width="50px" height="50px" src="{{ asset('img/dormitorios.png') }}" alt="Icono dormitorios de propiedad ${property.product_code}">
+                                                    <p class="p-0 m-0" style="font-weight: 600; font-size: 15px">${property.bedroom} Hab.</p>
+                                                </div>
                                             </div>` : ''}
                                 ${property.bathroom > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
-                                                <img width="50px" height="50px" src="{{ asset('img/banio.png') }}" alt="">
-                                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bathroom} ${property.bathroom > 1 ? 'Baños' : 'Baño'}</p>
+                                                <div>
+                                                    <img width="50px" height="50px" src="{{ asset('img/banio.png') }}" alt="Icono de baños de propiedad ${property.product_code}">
+                                                    <p class="p-0 m-0" style="font-weight: 600; font-size: 15px">${property.bathroom} ${property.bathroom > 1 ? 'Baños' : 'Baño'}</p>
+                                                </div>
                                             </div>` : ''}
                                 ${property.garage > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
-                                                <img width="50px" height="50px" src="{{ asset('img/estacionamiento.png') }}" alt="">
-                                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage} ${property.garage > 1 ? 'Garajes' : 'Garaje'}</p>
+                                                <div>
+                                                    <img width="50px" height="50px" src="{{ asset('img/estacionamiento.png') }}" alt="">
+                                                    <p class="p-0 m-0" style="font-weight: 600; font-size: 15px">${property.garage} ${property.garage > 1 ? 'Garajes' : 'Garaje'}</p>
+                                                </div>
                                             </div>` : ''}
                                 ${areaInfo ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
-                                                <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
-                                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${areaInfo}</p>
+                                                <div>
+                                                    <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
+                                                    <p class="p-0 m-0" style="font-weight: 600; font-size: 15px">${areaInfo}</p>
+                                                </div>
                                             </div>` : ''}
                                 ${landArea ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
-                                                <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
-                                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${landArea}</p>
+                                                <div>
+                                                    <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
+                                                    <p class="p-0 m-0" style="font-weight: 600; font-size: 15px">${landArea}</p>
+                                                </div>
                                             </div>` : ''}
                                 ${frontArea ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
-                                                <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
-                                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${frontArea}</p>
+                                                <div>
+                                                    <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
+                                                    <p class="p-0 m-0" style="font-weight: 600; font-size: 15px">${frontArea}</p>
+                                                </div>
                                             </div>` : ''}
                                 ${fundArea ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
-                                                <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
-                                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${fundArea}</p>
+                                                <div>
+                                                    <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
+                                                    <p class="p-0 m-0" style="font-weight: 600; font-size: 15px">${fundArea}</p>
+                                                </div>
                                             </div>` : ''}
                             </div>
                             <div class="col-sm-4 d-flex gap-3">
