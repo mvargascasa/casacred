@@ -188,7 +188,7 @@ class TwController extends Controller
             $isvalid = false;
         }
         
-        if($listing->property_by != "Housing"){
+        if($listing->listingtypestatus != "alquilar"){
             if($listing->cadastral_key == null) $isvalid = false;
             if($listing->mortgaged && ($listing->entity_mortgaged == null || $listing->mount_mortgaged == null || $listing->warranty == null)) $isvalid = false;
             //if($listing->aval == null) $isvalid = false;
