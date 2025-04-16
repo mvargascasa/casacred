@@ -293,6 +293,8 @@ class ListingController extends Controller
             if($request->num_pisos <= 0) $listing->num_pisos = null; else $listing->num_pisos = $request->num_pisos;
             if($request->pisos_constr <= 0) $listing->pisos_constr = null; else $listing->pisos_constr = $request->pisos_constr;
 
+            $request->land_appraisal <= 0 ? $listing->land_appraisal = null : $listing->land_appraisal = $request->land_appraisal;
+            $request->construction_appraisal <= 0 ? $listing->construction_appraisal = null : $listing->construction_appraisal = $request->construction_appraisal;
 
             if(!$listing->locked && ($listing->owner_name != null || $request->owner_name != null) && ($listing->identification != null || $request->identification != null) && ($listing->phone_number != null || $request->phone_number != null) && ($listing->owner_email != null || $request->owner_email != null) && ($listing->owner_address != null || $request->owner_address != null)) $listing->locked = true;
             
@@ -770,7 +772,7 @@ class ListingController extends Controller
         if($listing->address) $address = $listing->address;
         if($listing->sector) $address = $listing->sector;
 
-        if($listing->listing_type == null || $listing->owner_name == null || $listing->identification == null || $listing->phone_number == null || $listing->owner_email == null || $listing->owner_address == null || $listing->listing_title == null || $listing->listing_description == null || $listing->state == null || $listing->city == null || $address == null || $listing->construction_area == null || $listing->land_area == null || $listing->Front == null || $listing->Fund == null || $listing->property_price == null || $listing->property_price_min == null || $listing->lat == null || $listing->lng == null || $listing->listyears === null || $listing->listinglistservices == "" || $listing->listinggeneralcharacteristics == "" || $listing->listingenvironments == "" || $listing->listingcharacteristic == "" || $listing->aval == null || $listing->images == "") $isvalid = false;    
+        if($listing->listing_type == null || $listing->owner_name == null || $listing->identification == null || $listing->phone_number == null || $listing->owner_email == null || $listing->owner_address == null || $listing->listing_title == null || $listing->listing_description == null || $listing->state == null || $listing->city == null || $address == null || $listing->construction_area == null || $listing->land_area == null || $listing->Front == null || $listing->Fund == null || $listing->property_price == null || $listing->property_price_min == null || $listing->lat == null || $listing->lng == null || $listing->listyears === null || $listing->listinglistservices == "" || $listing->listinggeneralcharacteristics == "" || $listing->listingenvironments == "" || $listing->listingcharacteristic == "" || $listing->images == "") $isvalid = false;    
         $aux_heading_details = json_decode($listing->heading_details);
         if($aux_heading_details[0][0] == null || count($aux_heading_details[0]) <= 1) $isvalid = false;
         
