@@ -972,8 +972,8 @@
             let shortDesc = document.getElementById('short-desc').textContent;
             let fullDesc = document.getElementById('full-desc').textContent;
 
-            document.getElementById('short-desc').textContent = capitalizeSentences(shortDesc);
-            document.getElementById('full-desc').textContent = capitalizeSentences(fullDesc);
+            //document.getElementById('short-desc').textContent = capitalizeSentences(shortDesc);
+            //document.getElementById('full-desc').textContent = capitalizeSentences(fullDesc);
         });
     </script>
 
