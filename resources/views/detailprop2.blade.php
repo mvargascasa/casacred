@@ -1,7 +1,6 @@
 @extends('layouts.web')
 @section('header')
-    <title>
-        {{ $listing->product_code }} {{ $listing->listing_title }}</title>
+    <title>{{ Str::ucfirst(Str::lower($listing->listing_title)) }}</title>
     @php
         $type = DB::table('listing_types')
             ->select('type_title')
@@ -26,16 +25,18 @@
                 break;
         }
     @endphp
-    <meta name="description"
-        content="@isset($listing->meta_description){{ $listing->meta_description }} @else {{ mb_substr(trim(strip_tags($listing->listing_description)), 0, 180) }}... @endif"/>
-<meta name="keywords" content="@isset($listing->keywords) {{ $listing->keywords }} @else Casas en venta en cuenca ecuador, Apartamentos en venta en cuenca ecuador, terrenos en venta en cuenca ecuador, lotes en venta en cuenca ecuador, {{ Str::lower($type->type_title) }} en {{ $status }} en {{ strtolower($listing->city . ' ' . $listing->state) }} @endisset">
-    <meta name="robots" content="@if ($listing->status) index @else noindex @endif">
+    <meta name="description" content="@isset($listing->meta_description){{ Str::ucfirst(Str::lower($listing->meta_description)) }} @else {{ mb_substr(trim(strip_tags($listing->listing_description)), 0, 150) }} @endif"/>
+
+    <meta name="keywords" content="@isset($listing->keywords) {{ $listing->keywords }} @else Casas en venta en cuenca ecuador, Apartamentos en venta en cuenca ecuador, terrenos en venta en cuenca ecuador, lotes en venta en cuenca ecuador, {{ Str::lower($type->type_title) }} en {{ $status }} en {{ strtolower($listing->city . ' ' . $listing->state) }} @endisset">
+
+    <meta name="robots" content="index,follow,snippet">
+    <link rel="canonical" href="{{ Request::url() }}">
 
     <meta property="og:url" content="{{ route('web.detail', $listing->slug) }}" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{{ $listing->listing_title }}" />
     <meta property="og:description"
-        content="{{ mb_substr(trim(strip_tags($listing->listing_description)), 0, 180) }}..." />
+        content="{{ mb_substr(trim(strip_tags($listing->listing_description)), 0, 150) }}" />
 
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
