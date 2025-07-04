@@ -12,7 +12,7 @@
 
     <meta property="og:url"                content="https://grupohousing.com/propiedades-en-general" />
     <meta property="og:type"               content="website" />
-    <meta property="og:title"              content="@isset($meta_seo){{ ucfirst(str_replace('-', ' ', $meta_seo)) }} - Grupo Housing @else Grupo Housing Encuentra la casa de tus sueños. @endisset" />
+    <meta property="og:title"              content="@isset($meta_seo){{ ucfirst(str_replace('-', ' ', $meta_seo)) }} @else Grupo Housing Encuentra la casa de tus sueños. @endisset" />
     <meta property="og:description"
         content="@isset($meta_seo)En Grupo Housing Contamos con {{ ucfirst(str_replace('-', ' ', $meta_seo)) }}. Accede a nuestro sitio web y encuentra la propiedad que estás buscando. @else Encuentre la casa de sus sueños, donde los sueños se hacen realidad 😉 Contamos con una gran variedad de propiedades disponibles ¡Contáctenos! @endisset" />
     <meta property="og:image" content="{{ asset('img/meta-image-social-cc.jpg') }}" />
@@ -807,7 +807,7 @@
                 description_banner.innerHTML = contentBannerDescription;
             }
 
-            let titleComponents = `${total} ${titleSuffix} en Ecuador - Grupo Housing`;
+            let titleComponents = `${total} ${titleSuffix} en Ecuador`;
             document.title = `${titleComponents}`;
             document.querySelector('h1').innerHTML =
                 `<span style="font-weight: 500">${total}</span><span style="font-weight: 100"> ${titleSuffix}</span>`;        
