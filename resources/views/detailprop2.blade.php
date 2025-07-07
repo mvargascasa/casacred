@@ -421,6 +421,20 @@
                     </span>
                     
                 </div>
+
+                @if($listing->is_dual_operation)
+                    <div class="row mt-3 ml-1">
+                        <div class="w-auto rounded py-1 font-weight-bold" style="background-color: #242B40; color: #ffffff">
+                            <i class="fas fa-info-circle"></i>
+                            @if($listing->listingtypestatus == "en-venta")
+                                <span>Esta propiedad también está en renta</span>
+                            @else
+                                <span>Esta propiedad también está a la venta</span>
+                            @endif
+                        </div>
+                    </div>
+                @endif
+
                 <div class="d-flex justify-content-around flex-wrap mt-4">
 
                     @if ($listing->bedroom > 0)

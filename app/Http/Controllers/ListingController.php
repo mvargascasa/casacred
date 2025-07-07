@@ -304,6 +304,8 @@ class ListingController extends Controller
 
             $listing->contact_at = $listing->created_at;
 
+            $listing->is_dual_operation = $request->is_dual_operation;
+
             $listing->save();
         }
 
@@ -549,6 +551,8 @@ class ListingController extends Controller
 
         //set if listing credit vip
         //$listing->credit_vip = $request->credit_vip;
+
+        $listing->is_dual_operation = $request->is_dual_operation;
 
         if(!$listing->locked && ($listing->owner_name != null || $request->owner_name != null) && ($listing->identification != null || $request->identification != null) && ($listing->phone_number != null || $request->phone_number != null) && ($listing->owner_email != null || $request->owner_email != null) && ($listing->owner_address != null || $request->owner_address != null)) $listing->locked = true;
 

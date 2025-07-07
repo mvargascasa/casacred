@@ -448,11 +448,28 @@
                     </div>
                     <div>     
                         {!! Form::label('listingtypestatus', 'Tipo', ['class' => 'font-semibold']) !!}
-                        {!! Form::select('listingtypestatus',$categories->pluck('status_title','slug'),    null,    ['class' => $inputs]) !!}
+                        {!! Form::select('listingtypestatus',$categories->pluck('status_title','slug'),    null,    ['class' => $inputs, 'id' => 'listingtypestatus']) !!}
                     </div>
                     <div>  
                         {!! Form::label('listingtagstatus', 'Etiqueta', ['class' => 'font-semibold']) !!}
                         {!! Form::select('listingtagstatus',$tags->pluck('tags_title','id'),    null,    ['class' => $inputs]) !!}
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 mt-5">
+                    <div>
+                        {!! Form::label('is_dual_operation', '¿La propiedad también está a la renta?', ['class' => 'font-semibold', 'id' => 'dual-operation-label']) !!}
+                        <div class="mt-2 space-x-4">
+                            <label class="inline-flex items-center">
+                                {!! Form::radio('is_dual_operation', 1, old('is_dual_operation', isset($property) ? $property->is_dual_operation : false) == 1) !!}
+                                <span class="ml-2">Sí</span>
+                            </label>
+                
+                            <label class="inline-flex items-center">
+                                {!! Form::radio('is_dual_operation', 0, old('is_dual_operation', isset($property) ? $property->is_dual_operation : false) == 0) !!}
+                                <span class="ml-2">No</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
 
@@ -1338,6 +1355,29 @@
 // Asegúrate de llamar a getTotalAppraisal() después de que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', getTotalAppraisal);
 
+document.addEventListener('DOMContentLoaded', function(){
+    const select = document.getElementById('listingtypestatus');
+    const label = document.getElementById('dual-operation-label');
+
+    if (!select || !label) return; // protección extra por si acaso
+
+    function updateLabel() {
+        const selected = select.value;
+
+        if (selected === 'en-venta') {
+            label.textContent = '¿La propiedad también está a la renta?';
+        } else if (selected === 'alquilar') {
+            label.textContent = '¿La propiedad también está a la venta?';
+        } else {
+            label.textContent = '¿La propiedad también tiene otro tipo de operación?';
+        }
+    }
+
+    updateLabel();
+    select.addEventListener('change', updateLabel);
+
+})
+
 
     function requiredFalse(available_value){
         if(available_value == 2){
@@ -1377,36 +1417,7 @@ document.addEventListener('DOMContentLoaded', getTotalAppraisal);
         //saveandclose();
     }
 
-    // function storingProperty(){
-    //     const inputs = document.querySelectorAll('#formsave input, #formsave select, #formsave textarea');
-    //     const form = document.getElementById('formsave');
-
-    //     inputs.forEach(input => {
-    //         input.addEventListener('change', async function () {
-    //             const formData = new FormData(form);
-    //             const dbID = document.getElementById('dbID').value; // Obtén el dbID del campo oculto
-
-    //             if (dbID) {
-    //                 formData.append('dbID', dbID); // Agrega dbID a FormData si existe
-    //             }
-
-    //            
-
-    //             if (respuesta.ok) {
-    //                 const data = await respuesta.json();
-    //                 document.getElementById('dbID').value = data.databaseID; // Actualiza el campo oculto con el nuevo dbID
-    //                 console.log(data);
-    //             } else {
-    //                 console.error('Error al enviar los datos:', respuesta.status);
-    //                 const errorData = await respuesta.json();
-    //                 console.error('Detalles del error:', errorData);
-    //                 alert('Error al enviar los datos.');
-    //             }
-    //         });
-    //     });
-    // }
-
-    // storingProperty();
+   
 
     function toggleModalSuccess(){
         const body = document.querySelector('body')

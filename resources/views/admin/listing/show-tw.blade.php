@@ -443,7 +443,20 @@
                 <h5 class="card-title fw-bold">Alicuota</h5>
                 <p>${{ $propertie->aliquot }}</p>
               </div>
-            @endif            
+            @endif   
+
+          @if($propertie->is_dual_operation)
+            <div class="row mt-4">
+              <div class="bg-danger rounded text-white fw-bold w-auto ml-3 py-1">
+                @if($propertie->listingtypestatus == "en-venta")
+                  <span>Esta propiedad también está en renta</span>
+                @else
+                  <span>Esta propiedad también está a la venta</span>
+                @endif
+              </div>
+            </div>
+          @endif
+
           </div>
           <div class="row">
           </div>
