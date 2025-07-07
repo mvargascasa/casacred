@@ -41,7 +41,8 @@ class Listing extends Model
         'delete_at',
         'posted_on_facebook',
         'date_posted_facebook',
-        'contact_at'
+        'contact_at',
+        'is_dual_operation'
     ];   
     
     public function user()
