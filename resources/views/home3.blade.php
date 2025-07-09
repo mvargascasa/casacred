@@ -19,6 +19,33 @@
 
     <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
 
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Grupo Housing - Inmobiliaria en Cuenca",
+        "image": "{{ asset('img/grupo-housing-og.png') }}",
+        "url": "{{ Request::url() }}",
+        "telephone": "+593987595789",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Remigio Tamariz Crespo",
+          "addressLocality": "Cuenca",
+          "addressRegion": "Azuay",
+          "postalCode": "010107",
+          "addressCountry": "EC"
+        },
+        "openingHours": [
+          "Mo-Fr 09:00-18:00",
+          "Sa 09:00-13:00"
+        ],
+        "sameAs": [
+          "https://www.facebook.com/p/Grupo-Housing-61558563860180/",
+          "https://maps.app.goo.gl/S5jpovAAPAQP4No17"
+        ]
+      }
+      </script>
+
     
     <style>
       @media screen and (max-width: 850px){
