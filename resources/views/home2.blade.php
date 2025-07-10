@@ -17,7 +17,6 @@
 
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-    <link rel="stylesheet" href="{{ asset('css/font-style.css') }}">
     <meta name="robots" content="index,follow,snippet">
 
     <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
