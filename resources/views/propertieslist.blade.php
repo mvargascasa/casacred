@@ -425,6 +425,8 @@
         </div>
     </div>
 
+    <p id="dynamic-description-paragraph" class="container"></p>
+
 
     <section class="container-fluid text-center">
         <!-- Botón para abrir modal en dispositivos móviles -->
@@ -735,6 +737,8 @@
             }, '', urlSlug);
 
             generateDynamicContent(typeName, statusValue, searchParams.get('city'));
+
+            generateDynamicDescriptionParagraph(typeName, statusValue, searchParams.get('city'));
 
             canonical.href = urlSlug;
 
@@ -1248,6 +1252,54 @@
             let containerDynamicContent = document.getElementById('dynamic_content');
             if (containerDynamicContent) {
                 containerDynamicContent.innerHTML = content;
+            }
+        }
+
+        /**
+         * Genera un párrafo descriptivo dinámico basado en los filtros de búsqueda.
+         *
+         * @param {string} property_type - Tipo de propiedad (ej: 'casas', 'apartamentos').
+         * @param {string} operation - Tipo de operación (ej: 'venta', 'renta').
+         * @param {string} location - Ubicación de la búsqueda (ej: 'cuenca', 'tarqui').
+         */
+        function generateDynamicDescriptionParagraph(property_type, operation, location) {
+            let descriptionText = '';
+
+            // Limpieza y formateo de los parámetros para una mejor lectura
+            const formattedPropertyType = property_type ? property_type.replace(/[-_]/g, ' ').toLowerCase() : '';
+            const formattedOperation = operation ? (operation === 'venta' ? 'venta' : 'renta') : '';
+            const formattedLocation = location ? location.replace(/[-_]/g, ' ').toLowerCase() : '';
+
+            // Variables para el texto dinámico
+            let propertyTypeText = formattedPropertyType || 'propiedades';
+            let operationText = formattedOperation ? `en ${formattedOperation}` : '';
+            let locationText = formattedLocation ? `en ${formattedLocation}` : 'en Ecuador'; // Default si no hay ubicación
+
+            // === Lógica para construir el párrafo dinámico ===
+
+            // Caso más específico: Tipo de propiedad, Operación y Ubicación
+            if (formattedPropertyType && formattedOperation && formattedLocation) {
+                descriptionText = `En Grupo Housing, te ofrecemos una selecta variedad de <b>${propertyTypeText} ${operationText} en ${formattedLocation}</b>. Desde acogedoras viviendas hasta exclusivas <b>${propertyTypeText} ${operationText} en ${formattedLocation} nuevas</b> y atractivas de <strong>oportunidad</strong>, nuestro catálogo está diseñado para satisfacer tus necesidades en ${formattedLocation}.`;
+            }
+            // Tipo de propiedad y Operación (sin ubicación específica)
+            else if (formattedPropertyType && formattedOperation) {
+                descriptionText = `Explora nuestra amplia oferta de <b>${propertyTypeText} ${operationText}</b> en diversas ubicaciones ${locationText}. En Grupo Housing, encontrarás desde <b>${propertyTypeText} ${operationText} baratas</b> hasta opciones de lujo, todas con el respaldo y asesoramiento que mereces.`;
+            }
+            // Solo Ubicación (para cualquier tipo de propiedad u operación)
+            else if (formattedLocation) {
+                descriptionText = `Descubre las mejores <b>propiedades de venta en ${formattedLocation}</b> con Grupo Housing. Si buscas <b>casas de venta en ${formattedLocation} de oportunidad</b> o cualquier otro tipo de inmueble, somos tu mejor opción para encontrar tu nuevo hogar o inversión en ${formattedLocation}, Azuay.`;
+            }
+            // Caso general (sin filtros específicos, o solo Cuenca/Ecuador por defecto)
+            else {
+                // Este sería el texto si la búsqueda es muy general, o si por defecto es "casas de venta en Cuenca"
+                // Puedes combinar algunas de las keywords generales aquí.
+                descriptionText = `Bienvenido al catálogo de Grupo Housing, donde encontrarás una extensa selección de <b>casas de venta en Cuenca</b>. Explora nuestras <b>propiedades de venta en Cuenca</b>, incluyendo opciones <b>nuevas</b> y de <b>oportunidad</b> en Cuenca, Azuay, Ecuador.`;
+            }
+
+            // === Inyectar el contenido en el DOM ===
+            const paragraphContainer = document.getElementById('dynamic-description-paragraph');
+            if (paragraphContainer) {
+                paragraphContainer.innerHTML = descriptionText;
             }
         }
     </script>
