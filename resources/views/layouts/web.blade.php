@@ -13,7 +13,6 @@
         <link rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     </noscript>
-    <link rel="stylesheet" href="{{ asset('css/font-style.css') }}">
     <script>
         let stylesheet = document.createElement('link');
         stylesheet.href = "https://pro.fontawesome.com/releases/v5.10.0/css/all.css";
