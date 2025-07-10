@@ -312,11 +312,20 @@
                 display: none;
             }
         }
+        .description-clamp {
+            overflow: hidden; /* Oculta el contenido que se desborda */
+            display: -webkit-box; /* Habilita el modelo de caja flexible de Webkit */
+            -webkit-line-clamp: 1; /* Define el número de líneas a mostrar. Puedes cambiarlo a 2, 4, etc. */
+            -webkit-box-orient: vertical; /* Asegura la orientación vertical del contenido */
+
+            font-family: 'Sharp Grotesk', sans-serif;
+            font-weight: 100;
+        }
     </style>
 @endsection
 
 @section('content')
-    <section class="container">
+    <section class="container d-none">
         <section class="p-5">
             <p style="font-family: 'Sharp Grotesk'" class="text-center display-6 fw-bold"><span
                     style="font-weight: 100">Prueba nuestro</span> <span style="font-weight: 500">buscador avanzado</span>
@@ -324,28 +333,11 @@
         </section>
     </section>
 
-    <div class="container d-flex justify-content-between align-items-center">
-        <div>
-            <h1 style="font-family: 'Sharp Grotesk'; text-align: left;" class="h3 fw-bold">
-                <span style="font-weight: 500">Total</span>
-                <span style="font-weight: 100"> propiedades</span>
-            </h1>
-            <p id="description_banner"></p>
-        </div>
-        <div class="switch-container">
-            <input type="checkbox" id="toggleViewBtn" class="switch-input">
-            <label for="toggleViewBtn" class="switch-label">
-                <span class="switch-icon"><i id="toggleIcon" class="fas fa-th-large"></i></span>
-                <span class="switch-icon"><i id="toggleIcon" class="fas fa-bars"></i></span>
-            </label>
-        </div>
-    </div>
-
 
     <section class="container-fluid text-center search-bar-container">
         <!-- Contenido para desktop -->
-        <div class="container d-none d-md-block mx-auto">
-            <div class="card search-bar">
+        <div class="d-none d-md-block mx-auto">
+            <div class="card search-bar rounded-0">
                 <form id="searchFormDesktop" class="row g-2 align-items-center justify-content-center">
                     <div class="col-3">
                         <input type="text" id="searchTerm" class="form-control form-control-sm"
@@ -415,6 +407,23 @@
             </div>
         </div>
     </section>
+
+    <div class="container d-flex justify-content-between align-items-center mt-5">
+        <div>
+            <h1 style="font-family: 'Sharp Grotesk'; text-align: left;" class="h3 fw-bold">
+                <span style="font-weight: 500">Total</span>
+                <span style="font-weight: 100"> propiedades</span>
+            </h1>
+            <p id="description_banner"></p>
+        </div>
+        <div class="switch-container">
+            <input type="checkbox" id="toggleViewBtn" class="switch-input">
+            <label for="toggleViewBtn" class="switch-label">
+                <span class="switch-icon"><i id="toggleIcon" class="fas fa-th-large"></i></span>
+                <span class="switch-icon"><i id="toggleIcon" class="fas fa-bars"></i></span>
+            </label>
+        </div>
+    </div>
 
 
     <section class="container-fluid text-center">
@@ -960,50 +969,50 @@
                         </a>
                         <p class="card-text" style="font-weight:500; font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">${formattedPrice}</p>
                         ${aliquotInfo}
-                        <h4 class="h6" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 100;">${formattedDescription}</h4>
+                        <h4 class="h6 description-clamp">${property.listing_description}</h4>
                         <hr>
                         <div class="row align-items-center">
                             <div class="col-sm-8 d-flex justify-content-around">
                                 ${property.bedroom > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
                                                 <div>
                                                     <img width="50px" height="50px" src="{{ asset('img/dormitorios.png') }}" alt="Icono dormitorios de propiedad ${property.product_code}">
-                                                    <p class="p-0 m-0" style="font-weight: 600; font-size: 15px">${property.bedroom} Hab.</p>
+                                                    <h4 class="p-0 m-0" style="font-weight: 600; font-size: 15px">${property.bedroom} hab.</h4>
                                                 </div>
                                             </div>` : ''}
                                 ${property.bathroom > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
                                                 <div>
                                                     <img width="50px" height="50px" src="{{ asset('img/banio.png') }}" alt="Icono de baños de propiedad ${property.product_code}">
-                                                    <p class="p-0 m-0" style="font-weight: 600; font-size: 15px">${property.bathroom} ${property.bathroom > 1 ? 'Baños' : 'Baño'}</p>
+                                                    <h4 class="p-0 m-0" style="font-weight: 600; font-size: 15px">${property.bathroom} bañ.</h4>
                                                 </div>
                                             </div>` : ''}
                                 ${property.garage > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
                                                 <div>
                                                     <img width="50px" height="50px" src="{{ asset('img/estacionamiento.png') }}" alt="">
-                                                    <p class="p-0 m-0" style="font-weight: 600; font-size: 15px">${property.garage} ${property.garage > 1 ? 'Garajes' : 'Garaje'}</p>
+                                                    <h4 class="p-0 m-0" style="font-weight: 600; font-size: 15px">${property.garage} estac.</h4>
                                                 </div>
                                             </div>` : ''}
                                 ${areaInfo ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
                                                 <div>
                                                     <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
-                                                    <p class="p-0 m-0" style="font-weight: 600; font-size: 15px">${areaInfo}</p>
+                                                    <h4 class="p-0 m-0" style="font-weight: 600; font-size: 15px">${areaInfo}</h4>
                                                 </div>
                                             </div>` : ''}
                                 ${landArea ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
                                                 <div>
                                                     <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
-                                                    <p class="p-0 m-0" style="font-weight: 600; font-size: 15px">${landArea}</p>
+                                                    <h4 class="p-0 m-0" style="font-weight: 600; font-size: 15px">${landArea}</h4>
                                                 </div>
                                             </div>` : ''}
                                 ${frontArea ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
                                                 <div>
                                                     <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
-                                                    <p class="p-0 m-0" style="font-weight: 600; font-size: 15px">${frontArea}</p>
+                                                    <h4 class="p-0 m-0" style="font-weight: 600; font-size: 15px">${frontArea}</h4>
                                                 </div>
                                             </div>` : ''}
                                 ${fundArea ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
                                                 <div>
                                                     <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
-                                                    <p class="p-0 m-0" style="font-weight: 600; font-size: 15px">${fundArea}</p>
+                                                    <h4 class="p-0 m-0" style="font-weight: 600; font-size: 15px">${fundArea}</h4>
                                                 </div>
                                             </div>` : ''}
                             </div>
