@@ -50,7 +50,7 @@
                     {!!$post->content!!}
                 </div>
 
-                <div>
+                <div class="mt-3">
                     <div class="bg-white rounded p-4 shadow-sm">
                         <h2>Descubre <span id="dynamic-text">las propiedades</span> en venta que Grupo Housing tiene para ti</h2>
                         <p>Entra y encuentra la propiedad que buscas: casas, departamentos, terrenos y más. ¡Tu espacio ideal a solo un clic!</p>
