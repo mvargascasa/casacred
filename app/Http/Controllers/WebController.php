@@ -694,7 +694,7 @@ class WebController extends Controller
     public function showpost($slug){
         $post = Post::where('slug', $slug)->where('status', 1)->first();
         if($post){
-            $related_post = Post::where('slug', '!=', $slug)->where('status', 1)->get();
+            $related_post = Post::where('slug', '!=', $slug)->where('status', 1)->latest()->take(3)->get();
             return view('admin.post.show', compact('post', 'related_post'));
         } else {
             return redirect()->route('web.blog');
