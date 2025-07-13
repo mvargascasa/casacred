@@ -6,6 +6,10 @@
     <meta property="og:title" content="{{$post->title_google}}">
     <meta property="og:description" content="{{$post->metadescription}}">
     <meta property="og:image" content="{{asset('uploads/posts/'.$post->first_image)}}">
+
+    <link rel="canonical" href="{{ Request::url() }}" />
+    <meta name="robots" content="INDEX, FOLLOW, SNIPPET" />
+
     <style> 
         .card-related-posts{box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;}
         .card-related-posts:hover{box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;}
@@ -27,10 +31,13 @@
 @endsection
 
 @section('content')
-    <section id="prisection" style="background-size: cover; background-position: left center; background-repeat: no-repeat">
+    <section style="background-size: cover; background-position: left center; background-repeat: no-repeat; background-image: url('{{ asset('uploads/posts/'.$post->first_image) }}')">
         <div>
-            <div class="row p-4 p-md-5 align-items-center text-light text-center" style="min-height: 500px; background: rgba(2,2,2,0.5)">
-                <h1>{{$post->publication_title}}</h1>
+            <div class="row p-4 p-md-5 align-items-center text-light text-center" style="min-height: 700px; background: rgba(2,2,2,0.5)">
+                <div>
+                    <h1>{{$post->publication_title}}</h1>
+                    <p>{{ $post->metadescription }}</p>
+                </div>
             </div>
         </div>
     </section>
@@ -113,9 +120,6 @@
 
 @section('script')
     <script>
-        window.addEventListener('load', (event) => {
-            document.getElementById('prisection').style.backgroundImage = "url('{{asset('uploads/posts/'.$post->first_image)}}')";
-        });
 
         document.addEventListener('DOMContentLoaded', function() {
             const dynamicTextSpan = document.getElementById('dynamic-text');
