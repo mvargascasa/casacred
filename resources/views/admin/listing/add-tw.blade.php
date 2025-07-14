@@ -456,6 +456,13 @@
                     </div>
                 </div>
 
+                <div id="container-btn-create-unit" class="grid grid-cols-1 mt-4" style="display: none">
+                    <button type="button" id="create-unit-btn"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                        Crear Unidad
+                    </button>
+                </div>
+
                 <div class="grid grid-cols-1 mt-5">
                     <div>
                         {!! Form::label('is_dual_operation', '¿La propiedad también está a la renta?', ['class' => 'font-semibold', 'id' => 'dual-operation-label']) !!}
@@ -472,6 +479,74 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="gap-4 mt-4 w-100">
+                    <div id="create-unit-container" class="mt-8 p-6 bg-white rounded-lg shadow-md w-100" style="display: none">
+                        <h4 class="font-semibold text-2xl mb-6 text-gray-800">Crear Unidad</h4>
+                        <div class="mb-4">
+                            <label for="unit_name" class="block text-gray-700 text-sm font-bold mb-2">Nombre de la Unidad</label>
+                            <input type="text" id="unit_name" name="unit_name"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                            <div>
+                                <label for="unit_number" class="block text-gray-700 text-sm font-bold mb-2">Número</label>
+                                <input type="text" id="unit_number" name="unit_number"
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                
+                            <div>
+                                <label for="unit_floor" class="block text-gray-700 text-sm font-bold mb-2">Piso</label>
+                                <input type="number" id="unit_floor" name="unit_floor"
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                
+                            <div>
+                                <label for="unit_area" class="block text-gray-700 text-sm font-bold mb-2">Área m2</label>
+                                <input type="number" id="unit_area" name="unit_area" step="0.01"
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                
+                            <div>
+                                <label for="unit_rooms" class="block text-gray-700 text-sm font-bold mb-2">Habitaciones</label>
+                                <input type="number" id="unit_rooms" name="unit_rooms"
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                
+                            <div>
+                                <label for="unit_bathrooms" class="block text-gray-700 text-sm font-bold mb-2">Baños</label>
+                                <input type="number" id="unit_bathrooms" name="unit_bathrooms"
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                
+                            <div>
+                                <label for="unit_price" class="block text-gray-700 text-sm font-bold mb-2">Precio</label>
+                                <input type="number" id="unit_price" name="unit_price" step="0.01"
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                
+                            <div>
+                                <label for="unit_min_price" class="block text-gray-700 text-sm font-bold mb-2">Precio Mínimo</label>
+                                <input type="number" id="unit_min_price" name="unit_min_price" step="0.01"
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                
+                        <div class="flex flex-col sm:flex-row justify-end gap-3 mt-6">
+                            <button type="button" id="cancel-unit-btn"
+                                class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                                Cancelar
+                            </button>
+                            <button type="button" id="save-unit-btn"
+                                class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                                Guardar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
 
                 <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6 sm:grid-cols-4">
                     <div id="construction_area_container">          
@@ -1375,6 +1450,91 @@ document.addEventListener('DOMContentLoaded', function(){
 
     updateLabel();
     select.addEventListener('change', updateLabel);
+
+    const selectListingType = document.querySelector('[name="listingtype"]');
+    const btnContainer = document.getElementById('container-btn-create-unit');
+    const unitContainer = document.getElementById('create-unit-container');
+    const cancelBtn = document.getElementById('cancel-unit-btn');
+    const saveBtn = document.getElementById('save-unit-btn');
+    const createBtn = document.getElementById('create-unit-btn');
+
+    selectListingType.addEventListener('change', showBtnCreateUnit);
+
+    function showBtnCreateUnit(){
+        if (parseInt(this.value) === 40) {
+            btnContainer.style.display = 'block';
+        } else {
+            btnContainer.style.display = 'none';
+        }
+    }
+
+    function showContainerCreateUnit(){
+        if(unitContainer.style.display === "none"){
+            unitContainer.style.display = "block";
+        } else {
+            unitContainer.style.display = "none";
+        }
+    }
+
+    cancelBtn.addEventListener('click', function () {
+        unitContainer.style.display = 'none';
+    });
+
+    saveBtn.addEventListener('click', function () {
+        createUnit();
+    });
+
+    createBtn.addEventListener('click', function () {
+        showContainerCreateUnit();
+    });
+
+    function createUnit() {
+        const data = {
+            listing_id: 1504, // O el ID real de tu proyecto
+            name: document.getElementById('unit_name').value,
+            unit_number: document.getElementById('unit_number').value,
+            floor: document.getElementById('unit_floor').value,
+            area_m2: document.getElementById('unit_area').value,
+            bedrooms: document.getElementById('unit_rooms').value,
+            bathrooms: document.getElementById('unit_bathrooms').value,
+            price: document.getElementById('unit_price').value,
+            min_price: document.getElementById('unit_min_price').value
+        };
+
+        fetch("{{ route('units.store') }}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(error => {
+                    console.log(error);
+                    throw new Error('Error al guardar la unidad: ' + JSON.stringify(error));
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert('✅ Unidad creada correctamente');
+            document.getElementById('unit_name').value = "";
+            document.getElementById('unit_number').value = "";
+            document.getElementById('unit_floor').value = "";
+            document.getElementById('unit_area').value = "";
+            document.getElementById('unit_rooms').value = "";
+            document.getElementById('unit_bathrooms').value = "";
+            document.getElementById('unit_price').value = "";
+            document.getElementById('unit_min_price').value = "";
+        })
+        .catch(error => {
+            console.error(error);
+            alert('❌ Ocurrió un error al crear la unidad');
+        });
+    }
 
 })
 

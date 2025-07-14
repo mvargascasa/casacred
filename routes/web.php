@@ -17,6 +17,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ModalController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UpdatedPropertiesController;
 use Illuminate\Support\Facades\Route;
 
@@ -114,6 +115,7 @@ Route::get('/test88', function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::resource('listings', ListingController::class, ['as' => 'admin']);
+    Route::post('storing-property', [ListingController::class, 'storing_property'])->name('admin.storing.property');
     Route::post('/listings/create_code', [ListingController::class, 'create_code'])->name('admin.listings.create_code');
     Route::post('unlocked/{id}', [ListingController::class, 'unlocked'])->name('admin.listings.unlocked');
     //Route::post('delete/{listing_id}', [ListingController::class, 'delete'])->name('admin.listings.delete');    
@@ -121,6 +123,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']]
     Route::get('reslug/{listing}', [ListingController::class, 'reslug'])->name('admin.reslug');
     Route::get('seo', [ListingController::class, 'seo'])->name('admin.seo');
     Route::get('/show-listing/{listing}', [ListingController::class, 'show_listing'])->name('admin.show.listing');
+
+    //Ruta para crear una unidad dentro de una propiedad (EN PROYECTO)
+    Route::post('/unit/create', [UnitController::class, 'store'])->name('units.store');
 
     Route::resource('services', ServiceController::class, ['as' => 'admin']);
     Route::get('/words', [AdminController::class, 'words'])->name('admin.words');
