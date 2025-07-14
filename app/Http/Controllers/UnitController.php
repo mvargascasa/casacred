@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\UnitStatus;
+use App\Models\Listing;
 use App\Models\Unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -12,7 +13,7 @@ class UnitController extends Controller
     public function store(Request $request){
         
         $validator = Validator::make($request->all(), [
-            'listing_id' => 'required|exists:listings,id',
+            'listing_id' => 'required',
             'name' => 'required|string|max:255',
             'unit_number' => 'nullable|string|max:255',
             'floor' => 'nullable|integer',
@@ -34,7 +35,10 @@ class UnitController extends Controller
         $validated = $validator->validated();
     
         $unit = new Unit();
-        $unit->listing_id = $validated['listing_id'];
+
+        $listing = Listing::where('product_code', $validated['listing_id'])->first();
+
+        $unit->listing_id = $listing->id;
         $unit->name = $validated['name'];
         $unit->unit_number = $validated['unit_number'] ?? null;
         $unit->floor = $validated['floor'] ?? null;

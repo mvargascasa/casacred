@@ -1461,7 +1461,7 @@ document.addEventListener('DOMContentLoaded', function(){
     selectListingType.addEventListener('change', showBtnCreateUnit);
 
     function showBtnCreateUnit(){
-        if (parseInt(this.value) === 40) {
+        if (parseInt(this.value) === 41) {
             btnContainer.style.display = 'block';
         } else {
             btnContainer.style.display = 'none';
@@ -1489,8 +1489,11 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 
     function createUnit() {
+
+        let product_code = document.getElementById('product_code').value;
+
         const data = {
-            listing_id: 1504, // O el ID real de tu proyecto
+            listing_id: product_code, // O el ID real de tu proyecto
             name: document.getElementById('unit_name').value,
             unit_number: document.getElementById('unit_number').value,
             floor: document.getElementById('unit_floor').value,
