@@ -149,6 +149,13 @@
                         </button>
                     </div>
                 @endif
+                @if(count($units) > 0)
+                    <div>
+                        <button onclick="abrirModalUnits()" class="text-white text-center bg-red-600 rounded px-2 mr-2">
+                            <span class="text-sm text-white font-semibold">Ver Unidades</span>
+                        </button>
+                    </div>
+                @endif
                 <form action="{{ route('home.tw.setoutstanding') }}" method="POST">
                     @csrf
                     <input type="hidden" id="outstanding" name="outstanding" value="{{$listing->id}}">
@@ -954,6 +961,10 @@
 </section>
 
 <x-modal-update-contact-date></x-modal-update-contact-date>
+
+@if(count($units) > 0)
+    <x-modal-units :units="$units"></x-modal-units>
+@endif
 
 </main>
 @endsection
