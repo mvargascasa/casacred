@@ -7,6 +7,7 @@ use App\Models\Contactos;
 use App\Models\Listing;
 use App\Models\Oportunidades;
 use App\Models\Parish;
+use App\Models\Unit;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -68,6 +69,8 @@ class TwController extends Controller
             $optAttrib[$state->name] = ['data-id' => $state->id];
         }
         $cities = DB::table('info_cities')->where('state_id',$getCities)->get(); 
+        
+        $units = Unit::where('listing_id', $listing->id)->get();
 
         $optAttribSector = [];
         $cityID = 0;
@@ -79,7 +82,7 @@ class TwController extends Controller
         $sectores = DB::table('info_sector')->where('city_id', $cityID)->get();
 
         return view('admin.listing.add-tw',compact('listing','benefits','services','types','categories',
-                    'tags','details','states','optAttrib','cities', 'isvalid', 'general_characteristics', 'environments', 'sectores', 'optAttribSector', 'currentRouteName'));
+                    'tags','details','states','optAttrib','cities', 'isvalid', 'general_characteristics', 'environments', 'sectores', 'optAttribSector', 'currentRouteName', 'units'));
     } 
 
     

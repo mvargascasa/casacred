@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Sector;
 use App\Models\Listing;
 use App\Models\Notification;
+use App\Models\Unit;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -346,6 +347,8 @@ class ListingController extends Controller
 
         $cities = DB::table('info_cities')->where('state_id',$getCities)->get();
 
+        $units = Unit::where('listing_id', $listing->id)->get();
+
         $optAttribSector = [];
         $cityID = 0;
         foreach($cities as $city){
@@ -356,7 +359,7 @@ class ListingController extends Controller
         $sectores = Sector::where('city_id', $cityID)->get();
 
         return view('admin.listing.add-tw',compact('listing','benefits','services','types','categories',
-                    'tags','details','states','optAttrib','cities', 'isvalid', 'environments', 'general_characteristics', 'isvalid', 'sectores', 'optAttribSector', 'currentRouteName'));
+                    'tags','details','states','optAttrib','cities', 'environments', 'general_characteristics', 'isvalid', 'sectores', 'optAttribSector', 'currentRouteName'));
     } 
 
     public function update(Request $request, Listing $listing){
