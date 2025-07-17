@@ -138,8 +138,16 @@
                 </div>
                 <div class="grid grid-cols-2 px-2 py-2 w-full">
                     <div>
-                        <span class="inline-block bg-gray-200 rounded-full px-2 text-sm font-semibold text-gray-700">{{ $propertie->listingtypestatus}}</span>
-                        <p class="mx-2 text-red-600 font-extrabold text-xl">${{ number_format($propertie->property_price)}}</p class="mx-2 text-red-600 font-bold">
+                        <span class="inline-block bg-gray-200 rounded-full px-2 text-sm font-semibold text-gray-700">
+                            {{ $propertie->listingtypestatus}}
+                        </span>
+                        <p class="mx-2 text-red-600 font-extrabold text-xl">
+                            @if($propertie->customized_price != null)
+                                {{ $propertie->customized_price}}
+                            @else
+                                ${{ number_format($propertie->property_price)}}
+                            @endif
+                        </p>
                     </div>
                     <div style="@if($propertie->listingtagstatus==2 && $propertie->listingtype != 26) margin-left: -20px @else margin-left: 0px @endif">
                         <div class="bottom-0 right-0 flex">
