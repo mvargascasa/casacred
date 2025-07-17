@@ -961,10 +961,11 @@
 </section>
 
 <x-modal-update-contact-date></x-modal-update-contact-date>
-
-@if(count($units) > 0)
-    <x-modal-units :units="$units"></x-modal-units>
-@endif
+@isset($units)
+    @if(count($units) > 0)
+        <x-modal-units :units="$units"></x-modal-units>
+    @endif
+@endisset
 
 </main>
 @endsection
