@@ -474,6 +474,13 @@
                 </div>
                 @endif
             </div>
+
+            @isset($units)
+                @if(count($units)>0)
+                    <x-units-web :units="$units"></x-units-web>
+                @endif
+            @endisset
+
             <h2 style="font-family: 'Sharp Grotesk', sans-serif;">Acerca de esta propiedad</h2>
 
             <p style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Sector:</strong> {{ $listing->sector }}</p>

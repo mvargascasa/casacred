@@ -9,6 +9,7 @@ use App\Models\SeoPage;
 use App\Models\Service;
 use App\Models\User;
 use App\Models\Sector;
+use App\Models\Unit;
 use App\Traits\SendEmailTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -325,7 +326,9 @@ class WebController extends Controller
         // if($ismobile) return view('detailmobile',compact('listing','details','benefits','services','types'));
         // else
 
-        if($listing->status != 0) return view('detailprop2',compact('listing','details','benefits','services','types','mobile', 'user', 'values', 'generalcharacteristics', 'environments', 'media'));
+        $units = Unit::where('listing_id', $listing->id)->get();
+
+        if($listing->status != 0) return view('detailprop2',compact('listing','details','benefits','services','types','mobile', 'user', 'values', 'generalcharacteristics', 'environments', 'media', 'units'));
         else return redirect('/propiedades-en-general');
     }
 
