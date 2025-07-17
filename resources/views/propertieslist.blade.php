@@ -934,12 +934,20 @@
                 .substring(0, 120) + '...' :
                 'Descripción no disponible.';
 
+            let property_price = "";
+
             let formattedPrice = new Intl.NumberFormat('es-EC', {
                 style: 'currency',
                 currency: 'USD',
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 0
             }).format(property.property_price);
+
+            if(property.customized_price != null){
+                property_price = property.customized_price;
+            } else {
+                property_price = formattedPrice;
+            }
 
             return `<article class="col-12 my-1 property-item" style="padding-left: 0px !important; padding-right: 0px !important;">
         <div class="card mb-3 rounded-0">
@@ -971,7 +979,7 @@
                         <a href="/propiedad/${property.slug}" class="text-dark order-1" style="text-decoration: none;">
                             <h3 class="card-title" style="font-family: 'Sharp Grotesk', sans-serif; font-size: 1.4rem; padding-right: 60px; font-weight: 500;">${property.listing_title.charAt(0).toUpperCase() + property.listing_title.slice(1).toLowerCase()}</h3>
                         </a>
-                        <p class="card-text" style="font-weight:500; font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">${formattedPrice}</p>
+                        <p class="card-text" style="font-weight:500; font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">${property_price}</p>
                         ${aliquotInfo}
                         <h4 class="h6 description-clamp">${property.listing_description}</h4>
                         <hr>
@@ -1083,12 +1091,20 @@
                 .substring(0, 120) + '...' :
                 'Descripción no disponible.';
 
+            let property_price = "";
+
             let formattedPrice = new Intl.NumberFormat('es-EC', {
                 style: 'currency',
                 currency: 'USD',
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 0
             }).format(property.property_price);
+
+            if(property.customized_price != null){
+                property_price = property.customized_price;
+            } else {
+                property_price = formattedPrice;
+            }
             
             return `
     <article class="col-12 col-md-4 mb-4 property-item">
@@ -1144,7 +1160,7 @@
                                 <p class="pt-3" style="font-weight: 600; font-size: 15px">${areaInfo}</p>
                             </div>` : ''}
                         </div>
-                        <p class="card-text" style="font-weight: 500; font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">${formattedPrice}</p>
+                        <p class="card-text" style="font-weight: 500; font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">${property_price}</p>
                     </div>
                     <div class="mt-auto">
                         <div class="d-flex justify-content-center gap-3 mt-3">
