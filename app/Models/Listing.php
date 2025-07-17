@@ -13,6 +13,7 @@ class Listing extends Model
         'id', 'listing_title', 'product_code', 'slug', 'images', 'video', //nueva variable video
         'bedroom', 'bathroom', 'garage', //new variables to filters
         'meta_description', 'keywords', 'Front','Fund','land_area','construction_area', 'property_price_min','property_price',
+        'customized_price',
         'listing_description','listing_type', 'num_factura', 'address','state','city','listingtype',
         'sector', // nueva variable para select dinamico
         'listingcharacteristic','listinglistservices','listingtypestatus','listingtagstatus', 'listinggeneralcharacteristics', 'listingenvironments',

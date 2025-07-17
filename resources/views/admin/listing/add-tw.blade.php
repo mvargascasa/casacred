@@ -597,6 +597,19 @@
                         @endif
                     </div>
                 </div>
+
+                <div class="grid grid-cols-1 mt-3">
+                    <button type="button"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
+                        onclick="showCustomizedPrice()"
+                        >
+                        Agregar precio personalizado
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1" id="container-customized-price" style="display: @if($listing->customized_price != null || $listing->customized_price > 0) block @else none @endif">
+                    <input type="text" name="customized_price" id="customized_price" class="{{ $inputs}}" @if($listing->customized_price > 0 || $listing->customized_price != null) value="{{ $listing->customized_price }}" @endif placeholder="Agregar precio personalizado">
+                </div>
                 
                 <div id="divcomment" class="grid grid-cols-1 mt-4" style="display: none">
                     {!! Form::label('comment', 'Comentario', ['class' => 'font-semibold']) !!}
@@ -1552,6 +1565,20 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
 })
+
+function showCustomizedPrice(){
+
+    let containerCustomizedPrice = document.getElementById('container-customized-price');
+
+    if(containerCustomizedPrice.style.display == "none"){
+        containerCustomizedPrice.style.display = 'block';
+        document.getElementById('customized_price').required = true;
+    } else {
+        containerCustomizedPrice.style.display = 'none';
+        document.getElementById('customized_price').required = false;
+    }
+
+}
 
 
     function requiredFalse(available_value){

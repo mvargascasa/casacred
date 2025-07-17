@@ -387,7 +387,13 @@
                 </h1>
                 <div class="d-flex align-items-center px-2 py-1 rounded" style="gap: 10px; background-color: #242B40; color: #fff; width: fit-content">
                     <div>
-                        <span class="h3" style="font-weight: 100">Precio: ${{ number_format($listing->property_price, 0, ',', '.') }}</span>
+                        <span class="h3" style="font-weight: 100">
+                            @if($listing->customized_price != null)
+                                Precio: {{ $listing->customized_price }}
+                            @else
+                                Precio: ${{ number_format($listing->property_price, 0, ',', '.') }}
+                            @endif
+                        </span>
                     </div>
                     @if($listing->aliquot && $listing->aliquot > 0)
                         <div class="d-flex align-items-center" style="gap: 10px; font-weight: 500">
@@ -693,7 +699,11 @@
                         <div class="col-12 col-md-auto mb-2 mb-md-0">
                             <span class="fw-bold"
                                 style="font-size: 40px; line-height: 50px; font-family: 'Sharp Grotesk'; font-weight: 500;">
-                                ${{ number_format($listing->property_price, 0, ',', '.') }}
+                                @if($listing->customized_price != null)
+                                    {{ $listing->customized_price }}
+                                @else
+                                    ${{ number_format($listing->property_price, 0, ',', '.') }}
+                                @endif
                             </span>
                         </div>
                         @if ($listing->aliquot && $listing->aliquot > 0)

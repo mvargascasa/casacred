@@ -294,8 +294,10 @@ class ListingController extends Controller
             if($request->num_pisos <= 0) $listing->num_pisos = null; else $listing->num_pisos = $request->num_pisos;
             if($request->pisos_constr <= 0) $listing->pisos_constr = null; else $listing->pisos_constr = $request->pisos_constr;
 
-            $request->land_appraisal <= 0 ? $listing->land_appraisal = null : $listing->land_appraisal = $request->land_appraisal;
-            $request->construction_appraisal <= 0 ? $listing->construction_appraisal = null : $listing->construction_appraisal = $request->construction_appraisal;
+            $listing->land_appraisal = $request->land_appraisal;
+            $listing->construction_appraisal = $request->construction_appraisal;
+
+            $listing->customized_price = $request->customized_price;
 
             if(!$listing->locked && ($listing->owner_name != null || $request->owner_name != null) && ($listing->identification != null || $request->identification != null) && ($listing->phone_number != null || $request->phone_number != null) && ($listing->owner_email != null || $request->owner_email != null) && ($listing->owner_address != null || $request->owner_address != null)) $listing->locked = true;
             
@@ -376,6 +378,7 @@ class ListingController extends Controller
             'meta_description' => 'metadescripcion',
             'property_price' => 'precio',
             'property_price_min' => 'precio minimo',
+            'customized_price' => 'precio personalizado',
             'construction_area' => 'area de construccion',
             'land_area' => 'area de terreno',
             'Front' => 'frente',
@@ -520,6 +523,8 @@ class ListingController extends Controller
         $listing->bedroom = $bedrooms;
         $listing->bathroom = $bathrooms;
         $listing->garage = $garage;
+
+        $listing->customized_price = $request->customized_price;
 
         if($request->niv_constr <= 0) $listing->niv_constr = null; else $listing->niv_constr = $request->niv_constr;
         if($request->num_pisos <= 0) $listing->num_pisos = null; else $listing->num_pisos = $request->num_pisos;
