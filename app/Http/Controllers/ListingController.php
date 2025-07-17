@@ -359,7 +359,7 @@ class ListingController extends Controller
         $sectores = Sector::where('city_id', $cityID)->get();
 
         return view('admin.listing.add-tw',compact('listing','benefits','services','types','categories',
-                    'tags','details','states','optAttrib','cities', 'environments', 'general_characteristics', 'isvalid', 'sectores', 'optAttribSector', 'currentRouteName'));
+                    'tags','details','states','optAttrib','cities', 'environments', 'general_characteristics', 'isvalid', 'sectores', 'optAttribSector', 'currentRouteName', 'units'));
     } 
 
     public function update(Request $request, Listing $listing){
