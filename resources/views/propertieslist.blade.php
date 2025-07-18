@@ -1288,7 +1288,7 @@
 
             // Variables para el texto dinámico
             let propertyTypeText = formattedPropertyType || 'propiedades';
-            let operationText = formattedOperation ? `en ${formattedOperation}` : '';
+            let operationText = formattedOperation ? `de ${formattedOperation}` : '';
             let locationText = formattedLocation ? `en ${formattedLocation}` : 'en Ecuador'; // Default si no hay ubicación
 
             // === Lógica para construir el párrafo dinámico ===
