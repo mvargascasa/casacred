@@ -607,9 +607,11 @@
                     </button>
                 </div>
 
+                @isset($listing)
                 <div class="grid grid-cols-1" id="container-customized-price" style="display: @if($listing->customized_price != null || $listing->customized_price > 0) block @else none @endif">
                     <input type="text" name="customized_price" id="customized_price" class="{{ $inputs}}" @if($listing->customized_price > 0 || $listing->customized_price != null) value="{{ $listing->customized_price }}" @endif placeholder="Agregar precio personalizado">
                 </div>
+                @endisset
                 
                 <div id="divcomment" class="grid grid-cols-1 mt-4" style="display: none">
                     {!! Form::label('comment', 'Comentario', ['class' => 'font-semibold']) !!}
