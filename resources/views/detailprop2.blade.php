@@ -323,7 +323,7 @@
         ->where('id', $listing->listingtype)
         ->first();
 @endphp
-@php
+{{-- @php
     $images = array_filter(explode('|', $listing->images));
     $filexists = false;
     if (file_exists(public_path() . '/uploads/listing/thumb/600/' . strtok($listing->images, '|'))) {
@@ -332,7 +332,7 @@
     $listingtype = DB::table('listing_types')
         ->where('id', $listing->listingtype)
         ->first();
-@endphp
+@endphp --}}
 @section('content')
     <div class="container mt-5">
         <div class="row">
@@ -341,7 +341,7 @@
                     <div class="carousel-inner">
                         @foreach (explode('|', $listing->images) as $image)
                             <div class="carousel-item @if ($loop->index == 0) active @endif" style="background-color: transparent; backdrop-filter: blur(20px)">
-                                <img src="{{ $filexists ? url('uploads/listing/', $image) : url('uploads/listing/', $image) }}"
+                                <img src="{{ $filexists ? url('uploads/listing/thumb/', $image) : url('uploads/listing/', $image) }}"
                                     class="d-block w-100 carousel-image" style="border-radius: 15px; object-fit: contain !important">
                             </div>
                         @endforeach
