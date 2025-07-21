@@ -280,11 +280,80 @@ if(strpos($actual_link, 'localhost') === false){
                 /* Espacio interno a la derecha */
             }
 
-    .whatsapp-group {
+    .contact-group {
         position: fixed;
-        bottom: 62px;
-        right: 5px;
-        z-index: 5000;
+        bottom: 22px;
+        right: 10px;
+        z-index: 50000;
+    }
+
+    .telf-contact{
+        margin-bottom: 10px;
+    }
+
+    .telf-contact i{
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        font-size: 25px;
+        background-color: #182741;
+        border: 1px solid #ffffff93;
+        cursor: pointer;
+    }
+
+    .container-numbers{
+        position: fixed;
+        bottom: 170px;
+        right: 10px;
+        width: 250px;
+    }
+
+    .container-numbers .header{
+        background-color: #ffffff;
+        padding: 8px 5px;
+        border-radius: 10px 10px 0 0;
+        font-weight: 600;
+        border: 1px solid #0000003f;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .container-numbers .body{
+        background-color: #182741;
+        text-align: start;
+        padding: 8px 5px;
+        border-radius: 0 0 10px 10px;
+        column-gap: 10px;
+    }
+
+    .container-numbers div a span{
+        color: #ffffff;
+    }
+
+    @keyframes breathe {
+        0% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+        }
+        70% {
+            box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+        }
+    }
+
+        /*Estilos de animacion del icono latiendo*/
+    @keyframes beat {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.2);
+        }
+        100% {
+            transform: scale(1);
+        }
     }
 
     .whatsapp-float {
@@ -302,15 +371,28 @@ if(strpos($actual_link, 'localhost') === false){
         border: none;
         outline: none;
         transition: transform 0.3s ease, background-color 0.3s ease;
+        animation: breathe 2s ease-in-out infinite;
+    }
+
+    .icon-close{
+        background-color: #b7b7b79c;
+        border-radius: 30px;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
     }
 
     .whatsapp-float i {
         transition: color 0.3s;
+        animation: beat 2s ease-in-out infinite;
         /* Suavizar la transición de color del ícono */
     }
 
     .whatsapp-float:hover {
-        transform: scale(1.5);
+        transform: scale(1.1);
         background-color: #ffffff;
         /* Fondo a blanco */
         color: #25d366;
@@ -333,6 +415,39 @@ if(strpos($actual_link, 'localhost') === false){
         box-shadow: 0 0 10px #25d366;
         /* Sombra más pronunciada y de color verde */
     }
+
+    /* Animación de entrada (derecha a izquierda) */
+    .animacion-contacto {
+        animation: deslizarDesdeDerecha 1s forwards ease-out;
+    }
+
+    @keyframes deslizarDesdeDerecha {
+        from {
+            right: -100%; /* Empieza completamente fuera de la derecha */
+            opacity: 0; /* Opcional: Empieza invisible */
+        }
+        to {
+            right: 10px; /* Termina en su posición normal */
+            opacity: 1; /* Termina visible */
+        }
+    }
+
+    /* Animación de salida (izquierda a derecha) */
+    .animar-salida {
+        animation: deslizarHaciaDerecha 1s forwards ease-in;
+    }
+
+    @keyframes deslizarHaciaDerecha {
+        from {
+            right: 0; /* Empieza en su posición normal */
+            opacity: 1; /* Empieza visible */
+        }
+        to {
+            right: -100%; /* Termina completamente fuera de la derecha */
+            opacity: 0; /* Termina invisible */
+        }
+    }
+
     /* Enlace del número de teléfono */
     .phone-number {
         background-color: #182741;
@@ -753,13 +868,41 @@ if(strpos($actual_link, 'localhost') === false){
         </div>
     </div>
 
-    <div class="whatsapp-group">
+    <div class="contact-group">
+        <div class="telf-contact" onclick="openContactContainer()">
+            <div>
+                <i class="fas fa-phone-alt p-2 text-light d-flex justify-content-center align-items-center"></i>
+            </div>
+        </div>
         <a href="https://api.whatsapp.com/send?phone=593987595789&text=Hola Grupo Housing, estoy interesado en una propiedad" target="_blank" class="whatsapp-float">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
 
-    <div class="telf d-flex">
+    <div class="container-numbers" id="containerNumbers" style="display: none">
+        <div class="header">
+            <span>Contáctate a:</span>
+            <div class="icon-close" onclick="openContactContainer()">X</div>
+        </div>
+        <div class="body">
+            <a href="tel:+593987595789">
+                <div class="border rounded pb-1 pl-1 mb-1">
+                    <img width="45px" height="30px" class="mt-2" src="{{ asset('img/ECUADOR-04.webp') }}"
+                        alt="Telefono Grupo Housing">
+                    <span>098-759-5789</span>
+                </div>
+            </a>
+            <a href="tel:+17186903740">
+                <div class="border rounded pb-1 pl-1">
+                    <img width="45px" height="30px" class="mt-2" src="{{ asset('img/USA-05.webp') }}"
+                        alt="Telefono Grupo Housing EEUU">
+                    <span>718-690-3740</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="telf d-none">
         <div id="call-usa-ecu" class="bg-danger text-light d-flex" style="margin-right: -105px">
             <div onclick="openDivCallUsaEcu()" style="cursor: pointer; ">
                 <i class="fas fa-phone-alt fa-2x bg-danger p-2 text-light"></i>
@@ -807,9 +950,7 @@ if(strpos($actual_link, 'localhost') === false){
         let stylesheet = document.createElement('link');
         stylesheet.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css";
         stylesheet.rel = 'stylesheet';
-        setTimeout(function() {
-            document.getElementsByTagName('head')[0].appendChild(stylesheet);
-        }, 3500);
+        document.getElementsByTagName('head')[0].appendChild(stylesheet);
     </script>
 
     <script>
@@ -942,6 +1083,34 @@ if(strpos($actual_link, 'localhost') === false){
                 return false;
             });
         }, 3500);
+
+        function openContactContainer() {
+            let container = document.getElementById('containerNumbers');
+
+            container.removeEventListener('animationend', handleAnimationEnd);
+
+            if (container.classList.contains('animacion-contacto')) {
+                container.classList.remove('animacion-contacto'); // Quita la clase de entrada
+                container.classList.add('animar-salida'); // Agrega la clase de salida
+
+                container.addEventListener('animationend', handleAnimationEnd, { once: true });
+
+            } else {
+                container.style.display = 'block'; 
+                container.classList.remove('animar-salida'); 
+                container.classList.add('animacion-contacto'); 
+            }
+        }
+
+        // Función manejadora del evento 'animationend'
+        function handleAnimationEnd(event) {
+            let container = document.getElementById('containerNumbers');
+
+            if (event.animationName === 'deslizarHaciaDerecha') {
+                container.style.display = 'none'; 
+                container.style.right = '-100%';
+            }
+        }
     </script>
 </body>
 
