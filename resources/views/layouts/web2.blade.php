@@ -284,7 +284,7 @@ if(strpos($actual_link, 'localhost') === false){
         position: fixed;
         bottom: 22px;
         right: 10px;
-        z-index: 50000;
+        z-index: 5000;
     }
 
     .telf-contact{
@@ -306,6 +306,7 @@ if(strpos($actual_link, 'localhost') === false){
         bottom: 170px;
         right: 10px;
         width: 250px;
+        z-index: 5000;
     }
 
     .container-numbers .header{
