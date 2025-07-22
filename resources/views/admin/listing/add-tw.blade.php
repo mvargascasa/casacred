@@ -181,7 +181,7 @@
         @if(isset($listing->status) && $listing->status == "0")
             <div class="bg-green-300 rounded mt-2 mb-2 p-2"><i class="fa-solid fa-circle-info"></i> El Administrador activará la propiedad una vez los campos hayan sido completados.</div>
         @elseif(isset($listing->status) && $listing->status == "1")
-            <div class="bg-green-300 rounded mt-2 mb-2 p-2"><i class="fa-solid fa-circle-info"></i> Si necesita desactivar la propiedad, por favor <a style="color: blue; text-decoration: blue" href="https://grouphomeroserrano.com/properties/{{$listing->id}}" target="_blank">comunicarse</a> con el Administrador indicando la razón.</div>
+            <div class="bg-green-300 rounded mt-2 mb-2 p-2"><i class="fa-solid fa-circle-info"></i> Si necesita desactivar la propiedad, por favor comunicarse con el Administrador indicando la razón.</div>
         @elseif(!isset($listing))
             <div class="bg-green-300 rounded mt-2 mb-2 p-2"><i class="fa-solid fa-circle-info"></i> Completar todos los campos para que el Administrador active la nueva propiedad.</div>
         @endif
@@ -202,12 +202,6 @@
                 <div id="paso2" class="bg-gray-500" style="width: auto; height: 15px;"></div>
             </div>
         </div>
-        {{-- <div>
-            <div>
-                <span class="font-semibold">Paso 3</span>
-                <div id="paso3" class="bg-gray-500" style="width: auto; height: 15px;"></div>
-            </div>
-        </div> --}}
         <div>
             <div>
                 <span class="font-semibold">Paso 3</span>
@@ -992,7 +986,7 @@
     <script>
         let currentRoute = @json(Route::current()->getName());
     </script>
-    <script src="{{ asset('js/listings/validate.min.js?v=5') }}" defer></script>
+    <script src="{{ asset('js/listings/validate.min.js?v=7') }}" defer></script>
     <script>let bandera = false;</script>
     @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.promotora.property.create")
         <script>
@@ -1758,7 +1752,6 @@ function showCustomizedPrice(){
 
     const saveandclose = (event) => {
         if(!validate() || validateCommentChangePrice()){
-        // if(validateCommentChangePrice()){
             event.preventDefault();
             return;
         }
