@@ -766,7 +766,8 @@ class ListingController extends Controller
         $details = DB::table('listing_characteristics')->get();
         $general_characteristics = DB::table('listing_general_characteristics')->get();
         $environments = DB::table('listing_environments')->get();
-        return view('admin.listing.show-tw', compact('propertie', 'benefits', 'services', 'details', 'comments', 'similarProperties', 'general_characteristics', 'environments'));
+        $units = Unit::where('listing_id', $id)->get();
+        return view('admin.listing.show-tw', compact('propertie', 'benefits', 'services', 'details', 'comments', 'similarProperties', 'general_characteristics', 'environments', 'units'));
     }
 
     public function unlocked($id){

@@ -470,9 +470,46 @@
           <button type="button" class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full mr-1" data-bs-toggle="modal" data-bs-target="#modalMap">Mapa</button>
         </div>
 
-        <div>
-          
-        </div>
+        {{-- Unidades --}}
+        @if(isset($units) && count($units)>0)
+          <div class="mt-3" style="height: 450px; overflow-y: auto">
+            <h2 class="h3 font-weight-bold text-center py-2" style="background-color: #dc3545; color: #ffffff">Unidades del proyecto</h2>
+            @foreach ($units as $unit)
+            <div>
+              <div class="col mt-3">
+                <div class="card border rounded shadow-sm p-2">
+                    <div class="card-body p-2">
+                        <h6 class="card-title mb-1">{{ $unit->name }}</h6>
+                        @if($unit->unit_number)
+                          <small class="text-muted d-block mb-1">Unidad #{{ $unit->unit_number ?? '-' }}</small>
+                        @endif
+                        <div class="mb-1">
+                            @if($unit->floor)
+                              <small><strong>Piso:</strong> {{ $unit->floor ?? '-' }}</small><br>
+                            @endif
+                            @if($unit->area_m2)
+                              <small><strong>Área:</strong> {{ $unit->area_m2 ?? '-' }} m²</small><br>
+                            @endif
+                            @if($unit->bedrooms)
+                              <small><strong>Hab:</strong> {{ $unit->bedrooms ?? '-' }} </small><br>
+                            @endif
+                            @if($unit->bathrooms)
+                              <small><strong>Baños:</strong> {{ $unit->bathrooms ?? '-' }}</small><br>
+                            @endif
+                            @if($unit->unit_price)
+                              <small><strong>Precio:</strong> ${{ number_format($unit->price ?? 0, 2) }}</small>
+                            @endif
+                        </div>
+                        <span class="badge bg-{{ $unit->status === 'available' ? 'success' : 'secondary' }}">
+                            {{ ucfirst($unit->status) }}
+                        </span>
+                    </div>
+                </div>
+              </div>
+            </div>
+            @endforeach
+          </div>
+        @endif
       </div>
     </div>
     </div>

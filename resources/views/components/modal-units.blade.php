@@ -7,14 +7,39 @@
             <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
             <div class="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                 <div>
-                    <div class="mt-3 text-center sm:mt-5">
+                    <div class="mt-3 sm:mt-5">
                         @foreach ($units as $unit)
-                        <div>
-                            <div class="border rounded mb-2 text-left px-3 py-3">
-                                <p class="font-semibold">Nombre: {{ $unit->name }}</p>
-                                <span>Unidad número: {{ $unit->unit_number }}</span>
+                            <div class="w-full mt-3">
+                                <div class="bg-white border rounded-lg shadow-sm p-3">
+                                    <div class="mb-2">
+                                        <h6 class="text-base font-semibold text-gray-800">{{ $unit->name }}</h6>
+                                        @if($unit->unit_number)
+                                            <small class="text-gray-500 block">Unidad #{{ $unit->unit_number ?? '-' }}</small>
+                                        @endif
+                                    </div>
+                                    <div class="text-sm text-gray-700 mb-2 space-y-1">
+                                        @if($unit->floor)
+                                            <div><span class="font-medium">Piso:</span> {{ $unit->floor ?? '-' }}</div>
+                                        @endif
+                                        @if($unit->area_m2)
+                                            <div><span class="font-medium">Área:</span> {{ $unit->area_m2 ?? '-' }} m²</div>
+                                        @endif
+                                        @if($unit->bedrooms)
+                                            <div><span class="font-medium">Hab:</span> {{ $unit->bedrooms ?? '-' }} </div>
+                                        @endif
+                                        @if($unit->bathrooms)
+                                            <div><span class="font-medium">Baños:</span> {{ $unit->bathrooms ?? '-' }}</div>
+                                        @endif
+                                        @if($unit->price)
+                                            <div><span class="font-medium">Precio:</span> ${{ number_format($unit->price ?? 0, 2) }}</div>
+                                        @endif
+                                    </div>
+                                    <span class="inline-block px-2 py-0.5 rounded-full text-xs font-semibold 
+                                        {{ $unit->status === 'available' ? 'bg-green-100 text-green-800' : 'bg-gray-200 text-gray-700' }}">
+                                        {{ ucfirst($unit->status) }}
+                                    </span>
+                                </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>
