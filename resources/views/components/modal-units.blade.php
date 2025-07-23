@@ -14,24 +14,24 @@
                                     <div class="mb-2">
                                         <h6 class="text-base font-semibold text-gray-800">{{ $unit->name }}</h6>
                                         @if($unit->unit_number)
-                                            <small class="text-gray-500 block">Unidad #{{ $unit->unit_number ?? '-' }}</small>
+                                            <strong class="text-gray-500 block">Unidad #{{ $unit->unit_number ?? '-' }}</strong>
                                         @endif
                                     </div>
                                     <div class="text-sm text-gray-700 mb-2 space-y-1">
                                         @if($unit->floor)
-                                            <div><span class="font-medium">Piso:</span> {{ $unit->floor ?? '-' }}</div>
+                                            <div><span>Piso:</span> {{ $unit->floor ?? '-' }}</div>
                                         @endif
                                         @if($unit->area_m2)
-                                            <div><span class="font-medium">Área:</span> {{ $unit->area_m2 ?? '-' }} m²</div>
+                                            <div><span>Área:</span> {{ $unit->area_m2 ?? '-' }} m²</div>
                                         @endif
                                         @if($unit->bedrooms)
-                                            <div><span class="font-medium">Hab:</span> {{ $unit->bedrooms ?? '-' }} </div>
+                                            <div><span>Hab:</span> {{ $unit->bedrooms ?? '-' }} </div>
                                         @endif
                                         @if($unit->bathrooms)
-                                            <div><span class="font-medium">Baños:</span> {{ $unit->bathrooms ?? '-' }}</div>
+                                            <div><span>Baños:</span> {{ $unit->bathrooms ?? '-' }}</div>
                                         @endif
                                         @if($unit->price)
-                                            <div><span class="font-medium">Precio:</span> ${{ number_format($unit->price ?? 0, 2) }}</div>
+                                            <div><span>Precio:</span> ${{ number_format($unit->price ?? 0, 2) }}</div>
                                         @endif
                                     </div>
 
