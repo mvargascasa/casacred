@@ -149,13 +149,6 @@
                         </button>
                     </div>
                 @endif
-                @if(count($units) > 0)
-                    <div>
-                        <button onclick="abrirModalUnits()" class="text-white text-center bg-red-600 rounded px-2 mr-2">
-                            <span class="text-sm text-white font-semibold">Ver Unidades</span>
-                        </button>
-                    </div>
-                @endif
                 <form action="{{ route('home.tw.setoutstanding') }}" method="POST">
                     @csrf
                     <input type="hidden" id="outstanding" name="outstanding" value="{{$listing->id}}">
@@ -165,6 +158,13 @@
                 </form>
             </div>
         </div>
+        @if(count($units) > 0)
+            <div class="mt-3">
+                <button onclick="abrirModalUnits()" class="text-white text-center bg-red-600 rounded px-2 mr-2">
+                    <span class="text-white font-semibold">Ver Unidades</span>
+                </button>
+            </div>
+        @endif
     </div>
 
     {!! Form::model($listing, ['route' => ['admin.listings.update',$listing->id],'method' => 'PUT', 'enctype' => 'multipart/form-data', 'id' => 'formsave']) !!}
