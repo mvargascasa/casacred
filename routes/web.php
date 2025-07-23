@@ -126,6 +126,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']]
 
     //Ruta para crear una unidad dentro de una propiedad (EN PROYECTO)
     Route::post('/unit/create', [UnitController::class, 'store'])->name('units.store');
+    Route::put('/unit/{unit}', [UnitController::class, 'update'])->name('units.update');
 
     Route::resource('services', ServiceController::class, ['as' => 'admin']);
     Route::get('/words', [AdminController::class, 'words'])->name('admin.words');
