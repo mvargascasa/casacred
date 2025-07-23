@@ -496,7 +496,7 @@
                             @if($unit->bathrooms)
                               <small><strong>Baños:</strong> {{ $unit->bathrooms ?? '-' }}</small><br>
                             @endif
-                            @if($unit->unit_price)
+                            @if($unit->price)
                               <small><strong>Precio:</strong> ${{ number_format($unit->price ?? 0, 2) }}</small>
                             @endif
                         </div>
