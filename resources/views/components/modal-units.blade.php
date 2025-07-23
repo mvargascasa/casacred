@@ -34,6 +34,14 @@
                                             <div><span class="font-medium">Precio:</span> ${{ number_format($unit->price ?? 0, 2) }}</div>
                                         @endif
                                     </div>
+
+                                    @if($unit->description)
+                                        <div>
+                                            <strong>Detalles:</strong>
+                                            <p>{{ $unit->description }}</p>
+                                        </div>
+                                    @endif
+
                                     <span class="inline-block px-2 py-0.5 rounded-full text-xs font-semibold 
                                         {{ $unit->status === 'available' ? 'bg-green-100 text-green-800' : 'bg-gray-200 text-gray-700' }}">
                                         {{ ucfirst($unit->status) }}
