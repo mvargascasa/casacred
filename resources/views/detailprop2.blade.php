@@ -481,14 +481,6 @@
                 @endif
             </div>
 
-            @isset($units)
-                <div class="mb-4">
-                    @if(count($units)>0)
-                        <x-units-web :units="$units"></x-units-web>
-                    @endif
-                </div>
-            @endisset
-
             <h2 style="font-family: 'Sharp Grotesk', sans-serif;">Acerca de esta propiedad</h2>
 
             <p style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Sector:</strong> {{ $listing->sector }}</p>
@@ -510,8 +502,13 @@
                     {{ $listing->construction_area }} m<sup>2</sup></p>
             @endif
 
-
-
+            @isset($units)
+                <div class="mb-4">
+                    @if(count($units)>0)
+                        <x-units-web :units="$units"></x-units-web>
+                    @endif
+                </div>
+            @endisset
 
             @if (is_array(json_decode($listing->heading_details)))
                 <div style="border: none; background-color: transparent;" class="card my-4">
