@@ -326,7 +326,7 @@ class WebController extends Controller
         // if($ismobile) return view('detailmobile',compact('listing','details','benefits','services','types'));
         // else
 
-        $units = Unit::where('listing_id', $listing->id)->get();
+        $units = Unit::where('listing_id', $listing->id)->orderByRaw('CAST(unit_number AS UNSIGNED) asc')->get();
 
         if($listing->status != 0) return view('detailprop2',compact('listing','details','benefits','services','types','mobile', 'user', 'values', 'generalcharacteristics', 'environments', 'media', 'units'));
         else return redirect('/propiedades-en-general');
