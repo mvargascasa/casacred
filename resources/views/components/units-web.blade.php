@@ -22,7 +22,7 @@
                         <strong>Baños:</strong> {{ $unit->bathrooms ?? '-' }}<br>
                       @endif
                       @if($unit->price)
-                        <small><strong>Precio:</strong> ${{ number_format($unit->price ?? 0, 2) }}</small>
+                        <strong>Precio:</strong> ${{ number_format($unit->price ?? 0, 2) }}
                       @endif
                       @if($unit->description)
                         <div>
