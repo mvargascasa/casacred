@@ -9,44 +9,122 @@
                 <div>
                     <div class="mt-3 sm:mt-5">
                         @foreach ($units as $unit)
-                            <div class="w-full mt-3">
-                                <div class="bg-white border rounded-lg shadow-sm p-3">
+                            <div class="w-full mt-3 border rounded-lg shadow-sm p-3 bg-white">
+                                <form id="unit-form-{{ $unit->id }}">
+                                    <!-- TIPO DE PROPIEDAD -->
                                     <div class="mb-2">
-                                        <h6 class="text-base font-semibold text-gray-800">{{ $unit->name }}</h6>
-                                        @if($unit->unit_number)
-                                            <strong class="text-gray-500 block">Unidad #{{ $unit->unit_number ?? '-' }}</strong>
-                                        @endif
+                                        <label class="text-sm font-medium text-gray-700">Tipo de Propiedad</label>
+                                        <select name="listing_type_id"
+                                                class="w-full border rounded px-2 py-1 focus:outline-none focus:ring"
+                                                disabled>
+                                            <option value="">-- Selecciona --</option>
+                                            @foreach ($types as $type)
+                                                <option value="{{ $type->id }}"
+                                                    {{ $unit->listing_type_id == $type->id ? 'selected' : '' }}>
+                                                    {{ $type->type_title }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    <div class="text-sm text-gray-700 mb-2 space-y-1">
-                                        @if($unit->floor)
-                                            <div><span>Piso:</span> {{ $unit->floor ?? '-' }}</div>
-                                        @endif
-                                        @if($unit->area_m2)
-                                            <div><span>Área:</span> {{ $unit->area_m2 ?? '-' }} m²</div>
-                                        @endif
-                                        @if($unit->bedrooms)
-                                            <div><span>Hab:</span> {{ $unit->bedrooms ?? '-' }} </div>
-                                        @endif
-                                        @if($unit->bathrooms)
-                                            <div><span>Baños:</span> {{ $unit->bathrooms ?? '-' }}</div>
-                                        @endif
-                                        @if($unit->price)
-                                            <div><span>Precio:</span> ${{ number_format($unit->price ?? 0, 2) }}</div>
-                                        @endif
+                        
+                                    <!-- NOMBRE -->
+                                    <div class="mb-2">
+                                        <label class="text-sm font-medium text-gray-700">Nombre</label>
+                                        <input type="text" name="name" value="{{ $unit->name }}"
+                                            class="w-full border-b bg-transparent focus:outline-none"
+                                            disabled>
                                     </div>
-
-                                    @if($unit->description)
-                                        <div>
-                                            <strong>Detalles:</strong>
-                                            <p>{{ $unit->description }}</p>
-                                        </div>
-                                    @endif
-
-                                    <span class="inline-block px-2 py-0.5 rounded-full text-xs font-semibold 
-                                        {{ $unit->status === 'available' ? 'bg-green-100 text-green-800' : 'bg-gray-200 text-gray-700' }}">
-                                        {{ ucfirst($unit->status) }}
-                                    </span>
-                                </div>
+                        
+                                    <!-- UNIT NUMBER -->
+                                    <div class="mb-2">
+                                        <label class="text-sm font-medium text-gray-700">Número de Unidad</label>
+                                        <input type="text" name="unit_number" value="{{ $unit->unit_number }}"
+                                            class="w-full border-b bg-transparent focus:outline-none"
+                                            disabled>
+                                    </div>
+                        
+                                    <!-- FLOOR -->
+                                    <div class="mb-2">
+                                        <label class="text-sm font-medium text-gray-700">Piso</label>
+                                        <input type="number" name="floor" value="{{ $unit->floor }}"
+                                            class="w-full border-b bg-transparent focus:outline-none"
+                                            disabled>
+                                    </div>
+                        
+                                    <!-- AREA M2 -->
+                                    <div class="mb-2">
+                                        <label class="text-sm font-medium text-gray-700">Área m²</label>
+                                        <input type="number" step="0.01" name="area_m2" value="{{ $unit->area_m2 }}"
+                                            class="w-full border-b bg-transparent focus:outline-none"
+                                            disabled>
+                                    </div>
+                        
+                                    <!-- BEDROOMS -->
+                                    <div class="mb-2">
+                                        <label class="text-sm font-medium text-gray-700">Habitaciones</label>
+                                        <input type="number" name="bedrooms" value="{{ $unit->bedrooms }}"
+                                            class="w-full border-b bg-transparent focus:outline-none"
+                                            disabled>
+                                    </div>
+                        
+                                    <!-- BATHROOMS -->
+                                    <div class="mb-2">
+                                        <label class="text-sm font-medium text-gray-700">Baños</label>
+                                        <input type="number" name="bathrooms" value="{{ $unit->bathrooms }}"
+                                            class="w-full border-b bg-transparent focus:outline-none"
+                                            disabled>
+                                    </div>
+                        
+                                    <!-- PRICE -->
+                                    <div class="mb-2">
+                                        <label class="text-sm font-medium text-gray-700">Precio</label>
+                                        <input type="number" step="0.01" name="price" value="{{ $unit->price }}"
+                                            class="w-full border-b bg-transparent focus:outline-none"
+                                            disabled>
+                                    </div>
+                        
+                                    <!-- MIN PRICE -->
+                                    <div class="mb-2">
+                                        <label class="text-sm font-medium text-gray-700">Precio Mínimo</label>
+                                        <input type="number" step="0.01" name="min_price" value="{{ $unit->min_price }}"
+                                            class="w-full border-b bg-transparent focus:outline-none"
+                                            disabled>
+                                    </div>
+                        
+                                    <!-- STATUS -->
+                                    <div class="mb-2">
+                                        <label class="text-sm font-medium text-gray-700">Estado</label>
+                                        <select name="status"
+                                                class="w-full border rounded px-2 py-1 focus:outline-none focus:ring"
+                                                disabled>
+                                            <option value="available" {{ $unit->status === 'available' ? 'selected' : '' }}>Disponible</option>
+                                            <option value="unavailable" {{ $unit->status === 'unavailable' ? 'selected' : '' }}>No disponible</option>
+                                        </select>
+                                    </div>
+                        
+                                    <!-- DESCRIPTION -->
+                                    <div class="mb-2">
+                                        <label class="text-sm font-medium text-gray-700">Detalles</label>
+                                        <textarea name="description" rows="2"
+                                                class="w-full border rounded px-2 py-1 focus:outline-none"
+                                                disabled>{{ $unit->description }}</textarea>
+                                    </div>
+                        
+                                    <!-- BOTONES -->
+                                    <div class="flex gap-2 mt-3">
+                                        <button type="button"
+                                                class="edit-btn bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm"
+                                                data-unit="{{ $unit->id }}">
+                                            Editar
+                                        </button>
+                                        <button type="button"
+                                                class="save-btn bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm hidden"
+                                                data-unit="{{ $unit->id }}">
+                                            Guardar
+                                        </button>
+                                    </div>
+                                </form>
+                                <p id="msg-{{ $unit->id }}" class="text-xs mt-2"></p>
                             </div>
                         @endforeach
                     </div>
@@ -101,4 +179,58 @@
             console.error('Error:', error);
         });
     }
+
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const id = this.dataset.unit;
+            const form = document.getElementById(`unit-form-${id}`);
+            form.querySelectorAll('input, textarea, select').forEach(input => input.removeAttribute('disabled'));
+            this.classList.add('hidden');
+            form.querySelector(`.save-btn[data-unit="${id}"]`).classList.remove('hidden');
+        });
+    });
+
+    //Ruta para actualizar la unidad
+    const unitUpdateUrl = "{{ route('units.update', ['unit' => ':id']) }}";
+
+    document.querySelectorAll('.save-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const id = this.dataset.unit;
+            const form = document.getElementById(`unit-form-${id}`);
+            const msg = document.getElementById(`msg-${id}`);
+
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => data[key] = value);
+
+            const url = unitUpdateUrl.replace(':id', id);
+
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    msg.innerText = '✅ Actualizado correctamente';
+                    msg.classList.add('text-green-600');
+                } else {
+                    msg.innerText = '❌ Error al actualizar';
+                    msg.classList.add('text-red-600');
+                }
+
+                form.querySelectorAll('input, textarea').forEach(input => input.setAttribute('disabled', true));
+                this.classList.add('hidden');
+                form.querySelector(`.edit-btn[data-unit="${id}"]`).classList.remove('hidden');
+            })
+            .catch(err => {
+                msg.innerText = '❌ Error al enviar datos';
+                msg.classList.add('text-red-600');
+            });
+        });
+    });
 </script>

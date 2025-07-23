@@ -60,4 +60,22 @@ class UnitController extends Controller
             'unit' => $unit
         ]);
     }
+
+    public function update(Request $request, Unit $unit)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'unit_number' => 'nullable|string|max:255',
+            'floor' => 'nullable|integer',
+            'area_m2' => 'nullable|numeric',
+            'bedrooms' => 'nullable|integer',
+            'bathrooms' => 'nullable|integer',
+            'price' => 'nullable|numeric',
+            'description' => 'nullable|string',
+        ]);
+
+        $unit->update($validated);
+
+        return response()->json(['success' => true]);
+    }
 }
