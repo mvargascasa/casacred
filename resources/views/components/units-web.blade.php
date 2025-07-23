@@ -24,6 +24,9 @@
                       @if($unit->price)
                         <small><strong>Precio:</strong> ${{ number_format($unit->price ?? 0, 2) }}</small>
                       @endif
+                      @if($unit->description)
+                        <p>{{ $unit->description }}</p>
+                      @endif
                   </div>
                   <span class="badge bg-{{ $unit->status === 'available' ? 'success' : 'secondary' }}">
                       {{ ucfirst($unit->status) }}
