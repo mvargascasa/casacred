@@ -766,7 +766,7 @@ class ListingController extends Controller
         $details = DB::table('listing_characteristics')->get();
         $general_characteristics = DB::table('listing_general_characteristics')->get();
         $environments = DB::table('listing_environments')->get();
-        $units = Unit::where('listing_id', $id)->orderBy('unit_number', 'asc')->get();
+        $units = Unit::where('listing_id', $id)->orderByRaw('CAST(unit_number AS UNSIGNED) asc')->get();
         return view('admin.listing.show-tw', compact('propertie', 'benefits', 'services', 'details', 'comments', 'similarProperties', 'general_characteristics', 'environments', 'units'));
     }
 
