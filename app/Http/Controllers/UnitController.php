@@ -16,12 +16,14 @@ class UnitController extends Controller
             'listing_id' => 'required',
             'name' => 'required|string|max:255',
             'unit_number' => 'nullable|string|max:255',
+            'unit_type' => 'nullable',
             'floor' => 'nullable|integer',
             'area_m2' => 'nullable|numeric',
             'bedrooms' => 'nullable|numeric',
             'bathrooms' => 'nullable|numeric',
             'price' => 'nullable|numeric',
-            'min_price' => 'nullable|numeric'
+            'min_price' => 'nullable|numeric',
+            'description' => 'nullable|string'
         ]);
     
         if ($validator->fails()) {
@@ -41,12 +43,14 @@ class UnitController extends Controller
         $unit->listing_id = $listing->id;
         $unit->name = $validated['name'];
         $unit->unit_number = $validated['unit_number'] ?? null;
+        $unit->listing_type_id = $validated['unit_type'] ?? null;
         $unit->floor = $validated['floor'] ?? null;
         $unit->area_m2 = $validated['area_m2'] ?? null;
         $unit->bedrooms = $validated['bedrooms'] ?? null;
         $unit->bathrooms = $validated['bathrooms'] ?? null;
         $unit->price = $validated['price'] ?? null;
         $unit->min_price = $validated['min_price'] ?? null;
+        $unit->description = $validated['description'] ?? null;
         $unit->status = UnitStatus::AVAILABLE;
         $unit->save();
     

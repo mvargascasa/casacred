@@ -496,6 +496,17 @@
                                 <input type="text" id="unit_number" name="unit_number"
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                             </div>
+
+                            <div>
+                                <label for="unit_type" class="block text-gray-700 text-sm font-bold mb-2">Tipo de Propiedad</label>
+                                <select id="unit_type" name="unit_type"
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="">Seleccione un tipo</option>
+                                    @foreach ($types as $type)
+                                        <option value="{{ $type->id }}">{{ $type->type_title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                 
                             <div>
                                 <label for="unit_floor" class="block text-gray-700 text-sm font-bold mb-2">Piso</label>
@@ -531,6 +542,16 @@
                                 <label for="unit_min_price" class="block text-gray-700 text-sm font-bold mb-2">Precio Mínimo</label>
                                 <input type="number" id="unit_min_price" name="unit_min_price" step="0.01"
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+
+                        </div>
+
+                        <div class="grid grid-cols-1">
+                            <div class="mb-4">
+                                <label for="unit_description" class="block text-gray-700 text-sm font-bold mb-2">Descripción</label>
+                                <textarea id="unit_description" name="unit_description"
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    rows="4"></textarea>
                             </div>
                         </div>
                 
@@ -1520,9 +1541,11 @@ document.addEventListener('DOMContentLoaded', function(){
             floor: document.getElementById('unit_floor').value,
             area_m2: document.getElementById('unit_area').value,
             bedrooms: document.getElementById('unit_rooms').value,
+            unit_type: document.getElementById('unit_type').value,
             bathrooms: document.getElementById('unit_bathrooms').value,
             price: document.getElementById('unit_price').value,
-            min_price: document.getElementById('unit_min_price').value
+            min_price: document.getElementById('unit_min_price').value,
+            description: document.getElementById('unit_description').value,
         };
 
         fetch("{{ route('units.store') }}", {
@@ -1547,12 +1570,14 @@ document.addEventListener('DOMContentLoaded', function(){
             alert('✅ Unidad creada correctamente');
             document.getElementById('unit_name').value = "";
             document.getElementById('unit_number').value = "";
+            document.getElementById('unit_type').value = "";
             document.getElementById('unit_floor').value = "";
             document.getElementById('unit_area').value = "";
             document.getElementById('unit_rooms').value = "";
             document.getElementById('unit_bathrooms').value = "";
             document.getElementById('unit_price').value = "";
             document.getElementById('unit_min_price').value = "";
+            document.getElementById('unit_description').value = "";
         })
         .catch(error => {
             console.error(error);

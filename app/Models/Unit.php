@@ -12,6 +12,7 @@ class Unit extends Model
 
     protected $fillable = [
         'listing_id',
+        'listing_type_id',
         'name',
         'unit_number',
         'floor',
