@@ -8,7 +8,7 @@
                     <div class="w-full mb-4 border rounded-lg shadow-sm p-3 bg-white">
                         <form id="unit-form-{{ $unit->id }}">
                         
-                            <div class="grid grid-cols-4 gap-4">
+                            <div class="grid grid-cols-5 gap-4">
                                 <!-- NOMBRE -->
                                 <div class="mb-2">
                                     <label class="text-sm font-medium text-gray-700">Nombre</label>
@@ -96,21 +96,24 @@
                                             class="w-full border rounded px-2 focus:outline-none focus:ring"
                                             disabled>
                                         <option value="available" {{ $unit->status === 'available' ? 'selected' : '' }}>Disponible</option>
-                                        <option value="unavailable" {{ $unit->status === 'unavailable' ? 'selected' : '' }}>No disponible</option>
+                                        <option value="sold" {{ $unit->status === 'sold' ? 'selected' : '' }}>No disponible</option>
                                     </select>
                                 </div>
                             
+                            </div>
+
+                            <div class="grid grid-cols-1">
                                 <!-- DESCRIPTION -->
                                 <div class="mb-2">
                                     <label class="text-sm font-medium text-gray-700">Detalles</label>
-                                    <textarea name="description" rows="2"
+                                    <textarea name="description" rows="3"
                                             class="w-full border rounded px-2 py-1 focus:outline-none"
                                             disabled>{{ $unit->description }}</textarea>
                                 </div>
                             </div>
                         
                             <!-- BOTONES -->
-                            <div class="flex gap-2 mt-3">
+                            <div class="flex gap-2 mt-2">
                                 <button type="button"
                                         class="edit-btn bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm"
                                         data-unit="{{ $unit->id }}">
@@ -124,6 +127,9 @@
                             </div>
                         </form>
                         <p id="msg-{{ $unit->id }}" class="text-xs mt-2"></p>
+                        @if($unit->status === "sold")
+                            <p class="text-red-600 font-semibold">Esta unidad no está disponible</p>
+                        @endif
                     </div>
                 @endforeach
             </div>
@@ -223,7 +229,13 @@
                     msg.classList.add('text-red-600');
                 }
 
-                form.querySelectorAll('input, textarea').forEach(input => input.setAttribute('disabled', true));
+                //Clean the message
+                setTimeout(() => {
+                    msg.innerText = ''; // Clear the text
+                    msg.classList.remove('text-green-600', 'text-red-600'); // Remove the color classes
+                }, 3000);
+
+                form.querySelectorAll('input, textarea, select').forEach(input => input.setAttribute('disabled', true));
                 this.classList.add('hidden');
                 form.querySelector(`.edit-btn[data-unit="${id}"]`).classList.remove('hidden');
             })

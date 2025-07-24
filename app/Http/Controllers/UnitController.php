@@ -71,6 +71,8 @@ class UnitController extends Controller
             'bedrooms' => 'nullable|integer',
             'bathrooms' => 'nullable|integer',
             'price' => 'nullable|numeric',
+            'min_price' => 'nullable|numeric',
+            'status' => 'nullable',
             'description' => 'nullable|string',
         ]);
 
