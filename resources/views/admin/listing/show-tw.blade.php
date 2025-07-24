@@ -252,7 +252,11 @@
             <div class="row mt-2">
               <div class="col-sm-6">
                 <div style="margin: 0px; color: #dc3545; font-size: 20px; font-weight: 700;">
-                  ${{ number_format($propertie->property_price) }}
+                  @if($propertie->customized_price)
+                    {{ $propertie->customized_price }}
+                  @else
+                    ${{ number_format($propertie->property_price) }}
+                  @endif
                 </div>
               </div>
               <div class="col-sm-6 d-flex justify-content-end">
