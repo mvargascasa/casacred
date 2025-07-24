@@ -11,15 +11,17 @@ class ModalUnits extends Component
 
     public $units;
     public $types;
+    public $listing;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($units, $types)
+    public function __construct($units, $types, $listing)
     {
         $this->units = $units;
         $this->types = $types;
+        $this->listing = $listing;
     }
 
     /**

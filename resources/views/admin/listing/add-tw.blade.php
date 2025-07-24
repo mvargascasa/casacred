@@ -993,7 +993,7 @@
 <x-modal-update-contact-date></x-modal-update-contact-date>
 @isset($units)
     @if(count($units) > 0)
-        <x-modal-units :units="$units" :types="$types"></x-modal-units>
+        <x-modal-units :units="$units" :types="$types" :listing="$listing"></x-modal-units>
     @endif
 @endisset
 

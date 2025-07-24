@@ -1,139 +1,139 @@
 <div>
-    <div id="modalUnits" class="fixed inset-0 overflow-y-auto hidden">
-        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-            </div>
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-            <div class="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                <div>
-                    <div class="mt-3 sm:mt-5">
-                        @foreach ($units as $unit)
-                            <div class="w-full mt-3 border rounded-lg shadow-sm p-3 bg-white">
-                                <form id="unit-form-{{ $unit->id }}">
-                                    <!-- TIPO DE PROPIEDAD -->
-                                    <div class="mb-2">
-                                        <label class="text-sm font-medium text-gray-700">Tipo de Propiedad</label>
-                                        <select name="listing_type_id"
-                                                class="w-full border rounded px-2 py-1 focus:outline-none focus:ring"
-                                                disabled>
-                                            <option value="">-- Selecciona --</option>
-                                            @foreach ($types as $type)
-                                                <option value="{{ $type->id }}"
-                                                    {{ $unit->listing_type_id == $type->id ? 'selected' : '' }}>
-                                                    {{ $type->type_title }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+    <div id="modalUnits" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50">
+        <div class="bg-white rounded-lg shadow-xl w-9/12 flex flex-col" style="height: 90vh">
+            <!-- CONTENIDO SCROLLEABLE -->
+            <h2 class="text-lg px-5 mt-4 font-semibold pb-4">Unidades de la propiedad {{ $listing->product_code }}</h2>
+            <div class="overflow-y-auto p-5">
+                @foreach ($units as $unit)
+                    <div class="w-full mb-4 border rounded-lg shadow-sm p-3 bg-white">
+                        <form id="unit-form-{{ $unit->id }}">
                         
-                                    <!-- NOMBRE -->
-                                    <div class="mb-2">
-                                        <label class="text-sm font-medium text-gray-700">Nombre</label>
-                                        <input type="text" name="name" value="{{ $unit->name }}"
-                                            class="w-full border-b bg-transparent focus:outline-none"
+                            <div class="grid grid-cols-4 gap-4">
+                                <!-- NOMBRE -->
+                                <div class="mb-2">
+                                    <label class="text-sm font-medium text-gray-700">Nombre</label>
+                                    <input type="text" name="name" value="{{ $unit->name }}"
+                                        class="w-full border-b bg-transparent focus:outline-none"
+                                        disabled>
+                                </div>
+                            
+                                <!-- UNIT NUMBER -->
+                                <div class="mb-2">
+                                    <label class="text-sm font-medium text-gray-700">Número de Unidad</label>
+                                    <input type="text" name="unit_number" value="{{ $unit->unit_number }}"
+                                        class="w-full border-b bg-transparent focus:outline-none"
+                                        disabled>
+                                </div>
+
+                                <!-- TIPO DE PROPIEDAD -->
+                                <div class="mb-2">
+                                    <label class="text-sm font-medium text-gray-700">Tipo de Propiedad</label>
+                                    <select name="listing_type_id"
+                                            class="w-full border rounded px-2 focus:outline-none focus:ring"
                                             disabled>
-                                    </div>
-                        
-                                    <!-- UNIT NUMBER -->
-                                    <div class="mb-2">
-                                        <label class="text-sm font-medium text-gray-700">Número de Unidad</label>
-                                        <input type="text" name="unit_number" value="{{ $unit->unit_number }}"
-                                            class="w-full border-b bg-transparent focus:outline-none"
+                                        <option value="">-- Seleccione --</option>
+                                        @foreach ($types as $type)
+                                            <option value="{{ $type->id }}"
+                                                {{ $unit->listing_type_id == $type->id ? 'selected' : '' }}>
+                                                {{ $type->type_title }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            
+                                <!-- FLOOR -->
+                                <div class="mb-2">
+                                    <label class="text-sm font-medium text-gray-700">Piso</label>
+                                    <input type="number" name="floor" value="{{ $unit->floor }}"
+                                        class="w-full border-b bg-transparent focus:outline-none"
+                                        disabled>
+                                </div>
+                            
+                                <!-- AREA M2 -->
+                                <div class="mb-2">
+                                    <label class="text-sm font-medium text-gray-700">Área m²</label>
+                                    <input type="number" step="0.01" name="area_m2" value="{{ $unit->area_m2 }}"
+                                        class="w-full border-b bg-transparent focus:outline-none"
+                                        disabled>
+                                </div>
+                            
+                                <!-- BEDROOMS -->
+                                <div class="mb-2">
+                                    <label class="text-sm font-medium text-gray-700">Habitaciones</label>
+                                    <input type="number" name="bedrooms" value="{{ $unit->bedrooms }}"
+                                        class="w-full border-b bg-transparent focus:outline-none"
+                                        disabled>
+                                </div>
+                            
+                                <!-- BATHROOMS -->
+                                <div class="mb-2">
+                                    <label class="text-sm font-medium text-gray-700">Baños</label>
+                                    <input type="number" name="bathrooms" value="{{ $unit->bathrooms }}"
+                                        class="w-full border-b bg-transparent focus:outline-none"
+                                        disabled>
+                                </div>
+                            
+                                <!-- PRICE -->
+                                <div class="mb-2">
+                                    <label class="text-sm font-medium text-gray-700">Precio</label>
+                                    <input type="number" step="0.01" name="price" value="{{ $unit->price }}"
+                                        class="w-full border-b bg-transparent focus:outline-none"
+                                        disabled>
+                                </div>
+                            
+                                <!-- MIN PRICE -->
+                                <div class="mb-2">
+                                    <label class="text-sm font-medium text-gray-700">Precio Mínimo</label>
+                                    <input type="number" step="0.01" name="min_price" value="{{ $unit->min_price }}"
+                                        class="w-full border-b bg-transparent focus:outline-none"
+                                        disabled>
+                                </div>
+                            
+                                <!-- STATUS -->
+                                <div class="mb-2">
+                                    <label class="text-sm font-medium text-gray-700">Estado</label>
+                                    <select name="status"
+                                            class="w-full border rounded px-2 focus:outline-none focus:ring"
                                             disabled>
-                                    </div>
-                        
-                                    <!-- FLOOR -->
-                                    <div class="mb-2">
-                                        <label class="text-sm font-medium text-gray-700">Piso</label>
-                                        <input type="number" name="floor" value="{{ $unit->floor }}"
-                                            class="w-full border-b bg-transparent focus:outline-none"
-                                            disabled>
-                                    </div>
-                        
-                                    <!-- AREA M2 -->
-                                    <div class="mb-2">
-                                        <label class="text-sm font-medium text-gray-700">Área m²</label>
-                                        <input type="number" step="0.01" name="area_m2" value="{{ $unit->area_m2 }}"
-                                            class="w-full border-b bg-transparent focus:outline-none"
-                                            disabled>
-                                    </div>
-                        
-                                    <!-- BEDROOMS -->
-                                    <div class="mb-2">
-                                        <label class="text-sm font-medium text-gray-700">Habitaciones</label>
-                                        <input type="number" name="bedrooms" value="{{ $unit->bedrooms }}"
-                                            class="w-full border-b bg-transparent focus:outline-none"
-                                            disabled>
-                                    </div>
-                        
-                                    <!-- BATHROOMS -->
-                                    <div class="mb-2">
-                                        <label class="text-sm font-medium text-gray-700">Baños</label>
-                                        <input type="number" name="bathrooms" value="{{ $unit->bathrooms }}"
-                                            class="w-full border-b bg-transparent focus:outline-none"
-                                            disabled>
-                                    </div>
-                        
-                                    <!-- PRICE -->
-                                    <div class="mb-2">
-                                        <label class="text-sm font-medium text-gray-700">Precio</label>
-                                        <input type="number" step="0.01" name="price" value="{{ $unit->price }}"
-                                            class="w-full border-b bg-transparent focus:outline-none"
-                                            disabled>
-                                    </div>
-                        
-                                    <!-- MIN PRICE -->
-                                    <div class="mb-2">
-                                        <label class="text-sm font-medium text-gray-700">Precio Mínimo</label>
-                                        <input type="number" step="0.01" name="min_price" value="{{ $unit->min_price }}"
-                                            class="w-full border-b bg-transparent focus:outline-none"
-                                            disabled>
-                                    </div>
-                        
-                                    <!-- STATUS -->
-                                    <div class="mb-2">
-                                        <label class="text-sm font-medium text-gray-700">Estado</label>
-                                        <select name="status"
-                                                class="w-full border rounded px-2 py-1 focus:outline-none focus:ring"
-                                                disabled>
-                                            <option value="available" {{ $unit->status === 'available' ? 'selected' : '' }}>Disponible</option>
-                                            <option value="unavailable" {{ $unit->status === 'unavailable' ? 'selected' : '' }}>No disponible</option>
-                                        </select>
-                                    </div>
-                        
-                                    <!-- DESCRIPTION -->
-                                    <div class="mb-2">
-                                        <label class="text-sm font-medium text-gray-700">Detalles</label>
-                                        <textarea name="description" rows="2"
-                                                class="w-full border rounded px-2 py-1 focus:outline-none"
-                                                disabled>{{ $unit->description }}</textarea>
-                                    </div>
-                        
-                                    <!-- BOTONES -->
-                                    <div class="flex gap-2 mt-3">
-                                        <button type="button"
-                                                class="edit-btn bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm"
-                                                data-unit="{{ $unit->id }}">
-                                            Editar
-                                        </button>
-                                        <button type="button"
-                                                class="save-btn bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm hidden"
-                                                data-unit="{{ $unit->id }}">
-                                            Guardar
-                                        </button>
-                                    </div>
-                                </form>
-                                <p id="msg-{{ $unit->id }}" class="text-xs mt-2"></p>
+                                        <option value="available" {{ $unit->status === 'available' ? 'selected' : '' }}>Disponible</option>
+                                        <option value="unavailable" {{ $unit->status === 'unavailable' ? 'selected' : '' }}>No disponible</option>
+                                    </select>
+                                </div>
+                            
+                                <!-- DESCRIPTION -->
+                                <div class="mb-2">
+                                    <label class="text-sm font-medium text-gray-700">Detalles</label>
+                                    <textarea name="description" rows="2"
+                                            class="w-full border rounded px-2 py-1 focus:outline-none"
+                                            disabled>{{ $unit->description }}</textarea>
+                                </div>
                             </div>
-                        @endforeach
+                        
+                            <!-- BOTONES -->
+                            <div class="flex gap-2 mt-3">
+                                <button type="button"
+                                        class="edit-btn bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm"
+                                        data-unit="{{ $unit->id }}">
+                                    Editar
+                                </button>
+                                <button type="button"
+                                        class="save-btn bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm hidden"
+                                        data-unit="{{ $unit->id }}">
+                                    Guardar
+                                </button>
+                            </div>
+                        </form>
+                        <p id="msg-{{ $unit->id }}" class="text-xs mt-2"></p>
                     </div>
-                </div>
-                <div class="mt-5 sm:mt-6 flex gap-2">
-                    <button type="button" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" onclick="cerrarModalUnits()">
-                        Cerrar
-                    </button>
-                </div>
+                @endforeach
+            </div>
+            <!-- BOTÓN CERRAR FIJO -->
+            <div class="border-t p-4 bg-white sticky bottom-0 flex justify-end rounded-lg">
+                <button type="button"
+                    class="px-4 py-2 text-base font-medium text-white bg-red-600 rounded-md shadow-sm hover:bg-red-700"
+                    onclick="cerrarModalUnits()">
+                    Cerrar
+                </button>
             </div>
         </div>
     </div>
