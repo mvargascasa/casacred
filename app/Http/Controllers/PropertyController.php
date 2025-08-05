@@ -117,15 +117,17 @@ class PropertyController extends Controller
             ->where('listings.status', 1)
             ->orderBy('listings.product_code', 'desc');
 
-        if ($request->has('normalized_status') && $request->input('normalized_status') != '' && $request->input('normalized_status') != 'general') {
-            $normalizedStatus = strtolower($request->input('normalized_status'));
-            $statusVariants = $this->getStatusVariants();
-
-            if (array_key_exists($normalizedStatus, $statusVariants)) {
-                $variants = $statusVariants[$normalizedStatus];
-                $properties_filter->where(function ($query) use ($variants) {
-                    $query->whereIn(DB::raw("LOWER(listingtypestatus)"), $variants);
-                });
+        if(!empty($productCode)){
+            if ($request->has('normalized_status') && $request->input('normalized_status') != '' && $request->input('normalized_status') != 'general') {
+                $normalizedStatus = strtolower($request->input('normalized_status'));
+                $statusVariants = $this->getStatusVariants();
+    
+                if (array_key_exists($normalizedStatus, $statusVariants)) {
+                    $variants = $statusVariants[$normalizedStatus];
+                    $properties_filter->where(function ($query) use ($variants) {
+                        $query->whereIn(DB::raw("LOWER(listingtypestatus)"), $variants);
+                    });
+                }
             }
         }
 
