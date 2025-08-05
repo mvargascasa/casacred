@@ -25,6 +25,12 @@ class PropertyController extends Controller
             'LOCALES COMERCIALES' => [32, 6],
             'OFICINAS' => [35, 7],
             'SUITES' => [36, 8],
+            'EDIFICIOS' => [37],
+            'HOTELES' => [39],
+            'FABRICAS' => [41],
+            'PARQUEADEROS' => [42],
+            'BODEGAS' => [43],
+            'NAVES INDUSTRIALES' => [45],
             'QUINTAS' => [29, 9],
             'HACIENDAS' => [30, 30],
             'TERRENOS' => [26, 10]
@@ -160,6 +166,14 @@ class PropertyController extends Controller
 
 
         if (count($typeIds) >= 2) {
+            $listingTypeId = $typeIds[0];
+
+            if (!empty($listingTypeId)) {
+                $properties_filter->where('listingtype', $listingTypeId);
+            }
+        }
+
+        if (count($typeIds) >= 1) {
             $listingTypeId = $typeIds[0];
 
             if (!empty($listingTypeId)) {
