@@ -795,8 +795,7 @@ class ListingController extends Controller
             $listing->listing_description === null || 
             $listing->state === null || 
             $listing->city === null || 
-            empty($address) || 
-            $listing->construction_area === null || 
+            empty($address) ||  
             $listing->land_area === null || 
             $listing->Front === null || 
             $listing->Fund === null || 
@@ -811,6 +810,11 @@ class ListingController extends Controller
             $listing->listingcharacteristic === "" || 
             $listing->images === ""
         ) {
+            $isvalid = false;
+        }
+
+        // Validar construction_area solo si NO es terreno
+        if ($listing->listing_type != 26 && $listing->construction_area === null) {
             $isvalid = false;
         }
 
@@ -901,11 +905,10 @@ class ListingController extends Controller
             // Verificar si la propiedad está completa
             if ($this->iscomplete($listing)) {
                 $listing->isvalid = 1;
-                $listing->save();
             } else {
                 $listing->isvalid = 0;
-                $listing->save();
             }
+            $listing->save();
         }
 
         return response()->json(['message' => 'Validación completada correctamente.']);
