@@ -785,20 +785,45 @@ class ListingController extends Controller
         if($listing->address) $address = $listing->address;
         if($listing->sector) $address = $listing->sector;
 
-        if($listing->listing_type == null || $listing->owner_name == null || $listing->identification == null || $listing->phone_number == null || $listing->owner_email == null || $listing->owner_address == null || $listing->listing_title == null || $listing->listing_description == null || $listing->state == null || $listing->city == null || $address == null || $listing->construction_area == null || $listing->land_area == null || $listing->Front == null || $listing->Fund == null || $listing->property_price == null || $listing->property_price_min == null || $listing->lat == null || $listing->lng == null || $listing->listyears === null || $listing->listinglistservices == "" || $listing->listinggeneralcharacteristics == "" || $listing->listingenvironments == "" || $listing->listingcharacteristic == "" || $listing->images == "") $isvalid = false;    
+        if(
+            $listing->listing_type == null || 
+            $listing->owner_name == null || 
+            $listing->identification == null || 
+            $listing->phone_number == null || 
+            $listing->owner_email == null || 
+            $listing->owner_address == null || 
+            $listing->listing_title == null || 
+            $listing->listing_description == null || 
+            $listing->state == null || 
+            $listing->city == null || 
+            $address == null || 
+            $listing->construction_area == null || 
+            $listing->land_area == null || 
+            $listing->Front == null || 
+            $listing->Fund == null || 
+            $listing->property_price == null || 
+            $listing->property_price_min == null || 
+            $listing->lat == null || 
+            $listing->lng == null || 
+            $listing->listyears === null || 
+            $listing->listinglistservices == "" || 
+            $listing->listinggeneralcharacteristics == "" || 
+            $listing->listingenvironments == "" || 
+            $listing->listingcharacteristic == "" || 
+            $listing->images == "") $isvalid = false;    
         // $aux_heading_details = json_decode($listing->heading_details);
         // if($aux_heading_details[0][0] == null || count($aux_heading_details[0]) <= 1) $isvalid = false;
 
-        $aux_heading_details = json_decode($listing->heading_details);
+        // $aux_heading_details = json_decode($listing->heading_details);
 
-        if (
-            is_array($aux_heading_details) &&
-            isset($aux_heading_details[0]) &&
-            is_array($aux_heading_details[0]) &&
-            (empty($aux_heading_details[0][0]) || count($aux_heading_details[0]) <= 1)
-        ) {
-            $isvalid = false;
-        }
+        // if (
+        //     is_array($aux_heading_details) &&
+        //     isset($aux_heading_details[0]) &&
+        //     is_array($aux_heading_details[0]) &&
+        //     (empty($aux_heading_details[0][0]) || count($aux_heading_details[0]) <= 1)
+        // ) {
+        //     $isvalid = false;
+        // }
 
         // Validar aval solo si es en venta
         if ($listing->listingtypestatus === 'en-venta') {
