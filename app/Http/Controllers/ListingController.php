@@ -655,6 +655,11 @@ class ListingController extends Controller
 
         $listing->save();
 
+        if($this->iscomplete($listing)){
+            $listing->isvalid = 1;
+            $listing->save();
+        }
+
         // return response()->json([
         //     'listing' => $listing
         // ]);
