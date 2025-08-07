@@ -894,6 +894,9 @@ class ListingController extends Controller
                     $listing->isvalid = 1;
                     $listing->save();
                 }
+            } else {
+                $listing->isvalid = 0;
+                $listing->save();
             }
         }
 
