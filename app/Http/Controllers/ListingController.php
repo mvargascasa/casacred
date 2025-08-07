@@ -812,7 +812,7 @@ class ListingController extends Controller
         }
 
         // Validar construction_area solo si NO es terreno
-        if ($listing->listing_type != 26) {
+        if ($listing->listingtype != 26) {
             if($listing->listingenvironments === "" || $listing->construction_area === null || $listing->listyears === null){
                 $isvalid = false;
             }
