@@ -914,11 +914,8 @@ class ListingController extends Controller
         foreach ($listings as $listing) {
             // Verificar si la propiedad está completa
             if ($this->iscomplete($listing)) {
-                // Actualizar isvalid a 1 solo si no está ya validada
-                if (!$listing->isvalid) {
-                    $listing->isvalid = 1;
-                    $listing->save();
-                }
+                $listing->isvalid = 1;
+                $listing->save();
             } else {
                 $listing->isvalid = 0;
                 $listing->save();
