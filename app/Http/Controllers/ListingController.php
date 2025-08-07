@@ -814,16 +814,16 @@ class ListingController extends Controller
             }
         
             // Validar datos de hipoteca si la propiedad está hipotecada
-            if (
-                $listing->mortgaged &&
-                (
-                    $listing->entity_mortgaged === null ||
-                    $listing->mount_mortgaged === null ||
-                    $listing->warranty === null
-                )
-            ) {
-                $isvalid = false;
-            }
+            // if (
+            //     $listing->mortgaged &&
+            //     (
+            //         $listing->entity_mortgaged === null ||
+            //         $listing->mount_mortgaged === null ||
+            //         $listing->warranty === null
+            //     )
+            // ) {
+            //     $isvalid = false;
+            // }
         }
 
         
