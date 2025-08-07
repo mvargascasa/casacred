@@ -777,15 +777,14 @@ class ListingController extends Controller
         return redirect()->route('admin.listings.edit', $listing)->with('message', 'Propiedad ' . $listing->product_code . ' desbloqueada');
     }
 
-    public function iscomplete(Listing $listing){
-        
+    public function iscomplete(Listing $listing)
+    {
         $isvalid = true;
 
-        $address = "";
-        if($listing->address != null) $address = $listing->address;
-        if($listing->sector != null) $address = $listing->sector;
+        // Corregir lógica de address
+        $address = $listing->address ?? $listing->sector;
 
-        if(
+        if (
             $listing->listing_type === null || 
             $listing->owner_name === null || 
             $listing->identification === null || 
@@ -796,7 +795,7 @@ class ListingController extends Controller
             $listing->listing_description === null || 
             $listing->state === null || 
             $listing->city === null || 
-            $address === null || 
+            empty($address) || 
             $listing->construction_area === null || 
             $listing->land_area === null || 
             $listing->Front === null || 
@@ -810,61 +809,48 @@ class ListingController extends Controller
             $listing->listinggeneralcharacteristics === "" || 
             $listing->listingenvironments === "" || 
             $listing->listingcharacteristic === "" || 
-            $listing->images === "") $isvalid = false;    
-        // $aux_heading_details = json_decode($listing->heading_details);
-        // if($aux_heading_details[0][0] == null || count($aux_heading_details[0]) <= 1) $isvalid = false;
+            $listing->images === ""
+        ) {
+            $isvalid = false;
+        }
 
-        // $aux_heading_details = json_decode($listing->heading_details);
+        // Validar heading_details
+        $aux_heading_details = json_decode($listing->heading_details);
 
-        // if (
-        //     is_array($aux_heading_details) &&
-        //     isset($aux_heading_details[0]) &&
-        //     is_array($aux_heading_details[0]) &&
-        //     (empty($aux_heading_details[0][0]) || count($aux_heading_details[0]) <= 1)
-        // ) {
-        //     $isvalid = false;
-        // }
+        if (
+            is_array($aux_heading_details) &&
+            isset($aux_heading_details[0]) &&
+            is_array($aux_heading_details[0]) &&
+            (empty($aux_heading_details[0][0]) || count($aux_heading_details[0]) <= 1)
+        ) {
+            $isvalid = false;
+        }
 
-        // Validar aval solo si es en venta
+        // Validaciones solo si es en venta
         if ($listing->listingtypestatus === 'en-venta') {
             if ($listing->aval === null) {
                 $isvalid = false;
             }
-        }
 
-        if ($listing->listingtypestatus === 'en-venta') {
-            // Validar clave catastral
             if ($listing->cadastral_key === null) {
                 $isvalid = false;
             }
-        
-            // Validar datos de hipoteca si la propiedad está hipotecada
-            // if (
-            //     $listing->mortgaged &&
-            //     (
-            //         $listing->entity_mortgaged === null ||
-            //         $listing->mount_mortgaged === null ||
-            //         $listing->warranty === null
-            //     )
-            // ) {
-            //     $isvalid = false;
-            // }
+
+            if (
+                $listing->mortgaged &&
+                (
+                    $listing->entity_mortgaged === null ||
+                    $listing->mount_mortgaged === null ||
+                    $listing->warranty === null
+                )
+            ) {
+                $isvalid = false;
+            }
         }
 
-        
-        // if($listing->property_by != "Housing"){
-        //     if($listing->cadastral_key == null) $isvalid = false;
-        //     else $isvalid = true;
-        // }
-
-        // if($listing->property_by != "Housing"){
-        //     if($listing->mortgaged && ($listing->entity_mortgaged == null || $listing->mount_mortgaged == null || $listing->warranty == null)) $isvalid = false;
-        // }
-        
-        if($listing->listing_type == 2 && $listing->num_factura == null) $isvalid = false;
-        
         return $isvalid;
     }
+
 
     public function isMobile(){
         $mobile = false; 
