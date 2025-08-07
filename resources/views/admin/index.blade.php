@@ -1,7 +1,6 @@
 @extends('layouts.dashtw')
 @section('firstscript')
-<title>Dashboard - Casa Crédito</title>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA9HaUDMtwi6jqW1M8avBHmOpspAUFto4"></script>
+<title>Dashboard - Grupo Housing</title>
 
 {{-- map leaflet --}}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
@@ -63,6 +62,13 @@
             </div>
         </div>
     </div>
+
+    @if(Auth::user()->id)
+        <div class="grid grid-cols-1 mx-4 w-max-content">
+            <a class="bg-green-700 p-2 rounded-md text-white" href="{{ route('update.valid.properties') }}">Actualizar propiedades validas</a>
+        </div>
+    @endif
+
     <div class="grid grid-cols-2 mx-4 my-2 w-auto border rounded py-4">
         <div>
             <p class="font-semibold mx-4 pb-1"><i class="fas fa-location text-gray-800"></i> UBICACIÓN DE PROPIEDADES</p>

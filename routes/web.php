@@ -112,7 +112,11 @@ Route::get('/mobiledet/{listing:slug}', [WebController::class, 'mobiledet'])->na
 Route::get('/test88', function () {
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified', 'check.ip']], function () {
+// Route::get('/test-home', function(){
+//     return view('home4');
+// });
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::resource('listings', ListingController::class, ['as' => 'admin']);
     Route::post('storing-property', [ListingController::class, 'storing_property'])->name('admin.storing.property');
@@ -228,6 +232,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified', 
 
     Route::get('/updated-properties', [UpdatedPropertiesController::class, 'index'])->name('updated.properties');
     Route::post('/update-contact-date', [ListingController::class, 'updateContactDate'])->name('update.contact.date');
+
+    Route::get('/properties/valid/update', [ListingController::class, 'validateListingsCompleteness'])->name('update.valid.properties');
 });
 
 //BLOG
