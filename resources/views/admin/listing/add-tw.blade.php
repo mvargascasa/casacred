@@ -104,11 +104,24 @@
 @section('content')
 
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-
+    
     <div class="loader absolute" style="top: 50%; left: 50%; z-index: 300; display: none">
         <div class="loader-wheel"></div>
         <div class="loader-text"></div>
-      </div>
+    </div>
+
+    @if (!empty($fields_to_edit))
+        <div class="fixed top-20 right-10 z-50 bg-red-500 text-white rounded-lg shadow-lg p-4 w-72">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold">Campos incompletos</h3>
+            </div>
+            <ul class="mt-2 list-disc list-inside">
+                @foreach ($fields_to_edit as $field)
+                    <li>{{ $field }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
  <section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md mt-10">
     

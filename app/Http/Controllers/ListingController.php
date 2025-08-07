@@ -326,10 +326,10 @@ class ListingController extends Controller
     }
     
     public function edit(Listing $listing){
-        // if(Auth::user()->role != "administrator" && $listing->user_id!= Auth::id()){
-        //     return redirect()->route('admin.listings.show',compact('listing'));
-        // }
+        
         $currentRouteName = Route::currentRouteName();
+
+        $fields_to_edit = $this->getMissingFields($listing);
 
         $isvalid = $this->iscomplete($listing);
 
@@ -366,7 +366,7 @@ class ListingController extends Controller
         $sectores = Sector::where('city_id', $cityID)->get();
 
         return view('admin.listing.add-tw',compact('listing','benefits','services','types','categories',
-                    'tags','details','states','optAttrib','cities', 'environments', 'general_characteristics', 'isvalid', 'sectores', 'optAttribSector', 'currentRouteName', 'units'));
+                    'tags','details','states','optAttrib','cities', 'environments', 'general_characteristics', 'isvalid', 'sectores', 'optAttribSector', 'currentRouteName', 'units', 'fields_to_edit'));
     } 
 
     public function update(Request $request, Listing $listing){
@@ -865,6 +865,67 @@ class ListingController extends Controller
         return $isvalid;
     }
 
+    public function getMissingFields(Listing $listing): array
+    {
+        $missing = [];
+
+        $address = $listing->address ?? $listing->sector;
+
+        // Campos básicos
+        if (empty($listing->listing_type)) $missing[] = 'Tipo de propiedad';
+        if (empty($listing->owner_name)) $missing[] = 'Nombre del propietario';
+        if (empty($listing->identification)) $missing[] = 'Identificación del propietario';
+        if (empty($listing->phone_number)) $missing[] = 'Teléfono del propietario';
+        if (empty($listing->owner_email)) $missing[] = 'Correo electrónico del propietario';
+        if (empty($listing->owner_address)) $missing[] = 'Dirección del propietario';
+        if (empty($listing->listing_title)) $missing[] = 'Título de la propiedad';
+        if (empty($listing->listing_description)) $missing[] = 'Descripción de la propiedad';
+        if (empty($listing->state)) $missing[] = 'Provincia';
+        if (empty($listing->city)) $missing[] = 'Ciudad';
+        if (empty($address)) $missing[] = 'Dirección o sector';
+        if (empty($listing->land_area)) $missing[] = 'Área de terreno';
+        if (empty($listing->Front)) $missing[] = 'Frente del terreno';
+        if (empty($listing->Fund)) $missing[] = 'Fondo del terreno';
+        if (empty($listing->property_price)) $missing[] = 'Precio de la propiedad';
+        if (empty($listing->property_price_min)) $missing[] = 'Precio mínimo';
+        if (empty($listing->lat) || empty($listing->lng)) $missing[] = 'Ubicación en el mapa';
+        if (empty($listing->listinglistservices)) $missing[] = 'Servicios';
+        if (empty($listing->listinggeneralcharacteristics)) $missing[] = 'Características generales';
+        if (empty($listing->listingcharacteristic)) $missing[] = 'Características internas';
+        if (empty($listing->images)) $missing[] = 'Imágenes';
+
+        // Validar solo si NO es terreno
+        if ($listing->listingtype != 26) {
+            if (empty($listing->listingenvironments)) $missing[] = 'Ambientes';
+            if (empty($listing->construction_area)) $missing[] = 'Área de construcción';
+            if (empty($listing->listyears)) $missing[] = 'Años de construcción';
+        }
+
+        // Heading details
+        $aux_heading_details = json_decode($listing->heading_details);
+        if (
+            is_array($aux_heading_details) &&
+            isset($aux_heading_details[0]) &&
+            is_array($aux_heading_details[0]) &&
+            (empty($aux_heading_details[0][0]) || count($aux_heading_details[0]) <= 1)
+        ) {
+            $missing[] = 'Información destacada';
+        }
+
+        // Solo si es venta
+        if ($listing->listingtypestatus === 'en-venta') {
+            if (empty($listing->aval)) $missing[] = 'Avaluo municipal';
+            if (empty($listing->cadastral_key)) $missing[] = 'Clave catastral';
+
+            if ($listing->mortgaged) {
+                if (empty($listing->entity_mortgaged)) $missing[] = 'Entidad hipotecaria';
+                if (empty($listing->mount_mortgaged)) $missing[] = 'Monto de hipoteca';
+                if (empty($listing->warranty)) $missing[] = 'Tipo de garantía';
+            }
+        }
+
+        return $missing;
+    }
 
     public function isMobile(){
         $mobile = false; 
