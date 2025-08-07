@@ -803,10 +803,8 @@ class ListingController extends Controller
             $listing->property_price_min === null || 
             $listing->lat === null || 
             $listing->lng === null || 
-            $listing->listyears === null || 
             $listing->listinglistservices === "" || 
             $listing->listinggeneralcharacteristics === "" || 
-            $listing->listingenvironments === "" || 
             $listing->listingcharacteristic === "" || 
             $listing->images === ""
         ) {
@@ -814,8 +812,10 @@ class ListingController extends Controller
         }
 
         // Validar construction_area solo si NO es terreno
-        if ($listing->listing_type != 26 && $listing->construction_area === null) {
-            $isvalid = false;
+        if ($listing->listing_type != 26) {
+            if($listing->listingenvironments === "" || $listing->construction_area === null || $listing->listyears === null){
+                $isvalid = false;
+            }
         }
 
         // Validar heading_details
