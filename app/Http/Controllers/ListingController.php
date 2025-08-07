@@ -310,6 +310,11 @@ class ListingController extends Controller
             $listing->is_dual_operation = $request->is_dual_operation;
 
             $listing->save();
+
+            if($this->iscomplete($listing)){
+                $listing->isvalid = 1;
+                $listing->save();
+            }
         }
 
         return response()->json([
