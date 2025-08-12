@@ -117,7 +117,7 @@ class PropertyController extends Controller
             ->where('listings.status', 1)
             ->orderBy('listings.product_code', 'desc');
 
-        if(!empty($productCode)){
+        //if(!empty($productCode)){
             if ($request->has('normalized_status') && $request->input('normalized_status') != '' && $request->input('normalized_status') != 'general') {
                 $normalizedStatus = strtolower($request->input('normalized_status'));
                 $statusVariants = $this->getStatusVariants();
@@ -129,7 +129,7 @@ class PropertyController extends Controller
                     });
                 }
             }
-        }
+        //}
 
         // Aplicación de filtros básicos
         if (!empty($productCode)) {
