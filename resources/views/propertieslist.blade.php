@@ -341,7 +341,7 @@
                 <form id="searchFormDesktop" class="row g-2 align-items-center justify-content-center">
                     <div class="col-3">
                         <input type="text" id="searchTerm" class="form-control form-control-sm"
-                            placeholder="Buscar por ubicación, tipo de propiedad, codígo">
+                            placeholder="Ingresa una ubicación">
                     </div>
                     <div class="col-auto">
                         <select class="form-control form-control-sm" id="propertyType">
@@ -576,6 +576,8 @@
             const initialStatus = '{{ $status ?? '' }}';
             const initialCity = '{{ $city ?? '' }}';
             const initialParish = '{{ $parish ?? '' }}';
+            const initialMinPrice = '{{ $minPrice ?? '' }}';
+            const initialMaxPrice = '{{ $maxPrice ?? '' }}';
             const initialTypeIds = JSON.parse('{{ json_encode($typeId) }}' || '[]');
             const searchTerm = new URLSearchParams(window.location.search).get('searchTerm') || '';
 
@@ -584,6 +586,8 @@
             if (initialCity) document.getElementById('city').value = initialCity;
             if (initialParish) document.getElementById('sector').value = initialParish;
             if (searchTerm) document.getElementById('searchTerm').value = searchTerm;
+            if(initialMinPrice) document.getElementById('minPrice').value = initialMinPrice;
+            if(initialMaxPrice) document.getElementById('maxPrice').value = initialMaxPrice;
             setInitialPropertyType(initialTypeIds, 'propertyType');
             setInitialPropertyStatus(initialStatus, 'propertyStatus');
 
@@ -592,6 +596,8 @@
             if (initialCity) document.getElementById('cityModal').value = initialCity;
             if (initialParish) document.getElementById('sectorModal').value = initialParish;
             if (searchTerm) document.getElementById('searchTermModal').value = searchTerm;
+            if(initialMinPrice) document.getElementById('minPriceModal').value = initialMinPrice;
+            if(initialMaxPrice) document.getElementById('maxPriceModal').value = initialMaxPrice;
             setInitialPropertyType(initialTypeIds, 'propertyTypeModal');
             setInitialPropertyStatus(initialStatus, 'propertyStatusModal');
 
@@ -606,7 +612,6 @@
             for (let i = 0; i < options.length; i++) {
                 if (options[i].getAttribute('data-ids') === JSON.stringify(typeIds)) {
 
-                    console.log('entra aqui');
                     console.log(typeof options[i].getAttribute('data-ids')); // "string"
                     console.log(typeof JSON.stringify(typeIds));
 
@@ -627,7 +632,6 @@
                     selectElement.dispatchEvent(event);
                     break;
                 }
-                console.log('fuera del if');
             }
         }
 
@@ -674,8 +678,6 @@
 
         window.searchProperties = function(page = 1, isModal = false) {
 
-            
-
             page = parseInt(page);
             var currentTypeIds = isModal ? typeIdsArrayModal : typeIdsArray;
             var selectElement = isModal ? document.getElementById('propertyTypeModal') : document.getElementById(
@@ -697,36 +699,23 @@
             }
 
             const searchParams = new URLSearchParams({
-                searchTerm: document.getElementById(isModal ? 'searchTermModal' : 'searchTerm') ? document
-                    .getElementById(isModal ? 'searchTermModal' : 'searchTerm').value : '',
-                bedrooms: document.getElementById(isModal ? 'bedroomsModal' : 'bedrooms') ? document
-                    .getElementById(isModal ? 'bedroomsModal' : 'bedrooms').value : '',
-                bathrooms: document.getElementById(isModal ? 'bathroomsModal' : 'bathrooms') ? document
-                    .getElementById(isModal ? 'bathroomsModal' : 'bathrooms').value : '',
-                garage: document.getElementById(isModal ? 'garageModal' : 'garage') ? document.getElementById(
-                    isModal ? 'garageModal' : 'garage').value : '',
-                min_price: document.getElementById(isModal ? 'minPriceModal' : 'minPrice') ? document
-                    .getElementById(isModal ? 'minPriceModal' : 'minPrice').value : '',
-                max_price: document.getElementById(isModal ? 'maxPriceModal' : 'maxPrice') ? document
-                    .getElementById(isModal ? 'maxPriceModal' : 'maxPrice').value : '',
-                city: document.getElementById(isModal ? 'cityModal' : 'city') ? document.getElementById(
-                    isModal ? 'cityModal' : 'city').value : '',
-                state: document.getElementById(isModal ? 'stateModal' : 'state') ? document.getElementById(
-                    isModal ? 'stateModal' : 'state').value : '',
-                sector: document.getElementById(isModal ? 'sectorModal' : 'sector') ? document.getElementById(
-                    isModal ? 'sectorModal' : 'sector').value : '',
+                searchTerm: document.getElementById(isModal ? 'searchTermModal' : 'searchTerm')?.value || '',
+                bedrooms: document.getElementById(isModal ? 'bedroomsModal' : 'bedrooms')?.value || '',
+                bathrooms: document.getElementById(isModal ? 'bathroomsModal' : 'bathrooms')?.value || '',
+                garage: document.getElementById(isModal ? 'garageModal' : 'garage')?.value || '',
+                min_price: document.getElementById(isModal ? 'minPriceModal' : 'minPrice')?.value || '',
+                max_price: document.getElementById(isModal ? 'maxPriceModal' : 'maxPrice')?.value || '',
+                city: document.getElementById(isModal ? 'cityModal' : 'city')?.value || '',
+                state: document.getElementById(isModal ? 'stateModal' : 'state')?.value || '',
+                sector: document.getElementById(isModal ? 'sectorModal' : 'sector')?.value || '',
                 page: page,
-                normalized_status: document.getElementById(isModal ? 'propertyStatusModal' : 'propertyStatus') ?
-                    document.getElementById(
-                        isModal ? 'propertyStatusModal' : 'propertyStatus').value : ''
+                normalized_status: document.getElementById(isModal ? 'propertyStatusModal' : 'propertyStatus')?.value || ''
             });
 
             let urlSlug = `/${typeName}`;
             if (statusValue) {
                 urlSlug += `-en-${statusValue}`;
             }
-
-            console.log('typeName: ' + typeName, 'statusValue: ' + statusValue);
 
             let titleComponents = [typeName.charAt(0).toUpperCase() + typeName.slice(1)];
             if (searchParams.get('sector')) {
@@ -740,6 +729,20 @@
             if (searchParams.get('city')) {
                 urlSlug += `-en-${searchParams.get('city').toLowerCase().replace(/\s+/g, '-')}`;
                 titleComponents.push(searchParams.get('city'));
+            }
+            
+
+            //Se agrego esta validacion para agregar al SLUG la variable que viene por searchTerm
+            if(searchTerm.value != ""){
+                urlSlug += `-en-${searchTerm.value.toLowerCase().replace(/\s+/g, '-')}`;
+            }
+
+            if(searchParams.get('min_price')){
+                urlSlug += `-desde-${searchParams.get('min_price')}`;
+            }
+
+            if (searchParams.get('max_price')) {
+                urlSlug += `-hasta-${searchParams.get('max_price')}`;
             }
 
             document.title = `${titleComponents.join(' en ')} - ${statusText}`;
@@ -756,9 +759,13 @@
                 path: urlSlug
             }, '', urlSlug);
 
-            generateDynamicContent(typeName, statusValue, searchParams.get('city'));
+            //generateDynamicContent(typeName, statusValue, searchParams.get('city'));
 
-            generateDynamicDescriptionParagraph(typeName, statusValue, searchParams.get('city'));
+            //generateDynamicDescriptionParagraph(typeName, statusValue, searchParams.get('city'));
+
+            generateDynamicContent(typeName, statusValue, searchTerm.value.toLowerCase().replace(/\s+/g, '-'));
+
+            generateDynamicDescriptionParagraph(typeName, statusValue, searchTerm.value.toLowerCase().replace(/\s+/g, '-'));
 
             canonical.href = urlSlug;
 
@@ -797,6 +804,7 @@
             const state = searchParams.get('state');
             const city = searchParams.get('city');
             const sector = searchParams.get('sector');
+            const searchTerm = document.getElementById(isModal ? 'searchTermModal' : 'searchTerm');
 
             let titleSuffix = `propiedades`;
             if (selectedTypeIndex !== 0 && typeName.toLowerCase() !== "tipo de propiedad") {
@@ -809,12 +817,16 @@
                 titleSuffix += ` en general`;
             }
 
-            let locationDetails = [];
-            if (sector) locationDetails.push(sector);
-            if (city) locationDetails.push(city);
-            if (state) locationDetails.push(state);
-            if (locationDetails.length) {
-                titleSuffix += ` en ${locationDetails.join(", ")}`;
+            if(searchTerm.value != ""){
+                titleSuffix += ` en ${searchTerm.value.toLowerCase().replace(/\s+/g, '-')}`;
+            } else {
+                let locationDetails = [];
+                if (sector) locationDetails.push(sector);
+                if (city) locationDetails.push(city);
+                if (state) locationDetails.push(state);
+                if (locationDetails.length) {
+                    titleSuffix += ` en ${locationDetails.join(", ")}`;
+                }
             }
 
             let metaDescripcion = document.querySelector('meta[name="description"]');

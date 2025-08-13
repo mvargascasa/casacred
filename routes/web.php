@@ -28,7 +28,8 @@ Route::get('/{type}-en-{status}{details?}', [PropertyController::class, 'view'])
     ->name('view.property')
     ->where('type', '[a-zA-Z-]+')
     ->where('status', 'general|venta|renta|proyectos') // Asegúrate de que 'status' solo puede ser uno de estos valores predefinidos.
-    ->where('details', '(?:-en-.*)?');
+    //->where('details', '(?:-en-.*)?');
+    ->where('details', '(?:-(en|desde|hasta).*)?');
 
 
 

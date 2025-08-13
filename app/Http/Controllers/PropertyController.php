@@ -17,7 +17,7 @@ class PropertyController extends Controller
 
     public function view($type, $status = null, $details = null)
     {
-        //dd(request()->all(), request()->route()->parameters());
+        // --- Mapeo de tipos a IDs ---
         $typeIds = [
             'CASAS' => [23, 1],
             'DEPARTAMENTOS' => [24, 3],
@@ -33,37 +33,78 @@ class PropertyController extends Controller
             'NAVES INDUSTRIALES' => [45],
             'QUINTAS' => [29, 9],
             'HACIENDAS' => [30, 30],
-            'TERRENOS' => [26, 10]
+            'TERRENOS' => [26, 10],
         ];
-    
-        $type = strtoupper(str_replace('-', ' ', $type));
-        $typeId = isset($typeIds[$type]) ? $typeIds[$type] : null;
-    
-        // Asegurarse de que details si existe, comienza correctamente con 'en-'
-        if ($details && strpos($details, '-en-') === 0) {
-            $details = substr($details, 4); // Remover el prefijo '-en-'
-        }
-        $elements = $details ? explode('-en-', strtolower($details)) : [];
-    
+
+        // Normalizar tipo para buscar en el mapa
+        $typeKey  = strtoupper(str_replace('-', ' ', $type));
+        $typeId   = $typeIds[$typeKey] ?? null;
+
+        // --- Extraer rangos de precio y ubicaciones desde {details} ---
+        $minPrice = null;
+        $maxPrice = null;
         $state = $city = $parish = null;
-    
-        foreach ($elements as $element) {
-            $stateMatch = info_state::whereRaw('LOWER(name) = ?', [$element])->first();
-            $cityMatch = info_city::whereRaw('LOWER(name) = ?', [$element])->first();
-            $parishMatch = info_parishes::whereRaw('LOWER(name) = ?', [$element])->first();
-    
-            if (!$state && $stateMatch) {
-                $state = $stateMatch->name;
+
+        $elements = []; // elementos "en-xxx" (estado/ciudad/parroquia/otros términos)
+        if ($details) {
+            $detailsLower = strtolower($details);
+
+            // 1) Capturar -desde-xxx y -hasta-yyy (en cualquier orden y posición)
+            if (preg_match('/(?:^|-)desde-([0-9\.,]+)/i', $detailsLower, $mDesde)) {
+                $minPrice = (int) preg_replace('/\D/', '', $mDesde[1]); // limpiar separadores
             }
-            if (!$city && $cityMatch) {
-                $city = $cityMatch->name;
+            if (preg_match('/(?:^|-)hasta-([0-9\.,]+)/i', $detailsLower, $mHasta)) {
+                $maxPrice = (int) preg_replace('/\D/', '', $mHasta[1]);
             }
-            if (!$parish && $parishMatch) {
-                $parish = $parishMatch->name;
+
+            // 2) Quitar los fragmentos de precio del string antes de buscar ubicaciones
+            $detailsForLocations = preg_replace('/(?:-desde-[0-9\.,]+)|(?:-hasta-[0-9\.,]+)/i', '', $detailsLower);
+
+            // 3) Si comienza con -en-, retirarlo para poder hacer explode limpio
+            if ($detailsForLocations && strpos($detailsForLocations, '-en-') === 0) {
+                $detailsForLocations = substr($detailsForLocations, 4); // remove leading "-en-"
             }
+
+            // 4) Separar por "-en-" para obtener posibles términos de ubicación
+            $elements = $detailsForLocations ? array_filter(explode('-en-', $detailsForLocations)) : [];
         }
 
-        return view('propertieslist', compact('type', 'typeId', 'status', 'state', 'city', 'parish'));
+        // --- También aceptar min/max por query string (tienen prioridad si vienen) ---
+        $qpMin = request()->input('min_price');
+        $qpMax = request()->input('max_price');
+        if ($qpMin !== null && $qpMin !== '') {
+            $minPrice = (int) preg_replace('/\D/', '', (string) $qpMin);
+        }
+        if ($qpMax !== null && $qpMax !== '') {
+            $maxPrice = (int) preg_replace('/\D/', '', (string) $qpMax);
+        }
+
+        // Corregir si vienen invertidos
+        if ($minPrice !== null && $maxPrice !== null && $minPrice > $maxPrice) {
+            [$minPrice, $maxPrice] = [$maxPrice, $minPrice];
+        }
+
+        // --- Resolver ubicaciones contra la BD ---
+        foreach ($elements as $element) {
+            $element = trim($element);
+            if ($element === '') continue;
+
+            $stateMatch  = info_state::whereRaw('LOWER(name) = ?', [$element])->first();
+            $cityMatch   = info_city::whereRaw('LOWER(name) = ?', [$element])->first();
+            $parishMatch = info_parishes::whereRaw('LOWER(name) = ?', [$element])->first();
+
+            if (!$state && $stateMatch)   { $state  = $stateMatch->name; }
+            if (!$city && $cityMatch)     { $city   = $cityMatch->name; }
+            if (!$parish && $parishMatch) { $parish = $parishMatch->name; }
+        }
+
+        // dd($state, $city, $type, $typeId, $parish, $minPrice, $maxPrice);
+
+        // Nota: $type lo pasamos como venía en la URL (p. ej. "casas") para tu vista/JS.
+        // Si prefieres mostrarlo normalizado, puedes usar $typeKey.
+        return view('propertieslist', compact(
+            'type', 'typeId', 'status', 'state', 'city', 'parish', 'minPrice', 'maxPrice'
+        ));
     }
 
     public function search(Request $request)
