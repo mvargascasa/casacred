@@ -142,6 +142,9 @@ if(strpos($actual_link, 'localhost') === false){
             .dropdown-menu-style {
                 width: auto !important
             }
+            .section-info{
+                justify-content: start !important;
+            }
         }
 
         input[type=number]::-webkit-inner-spin-button,
@@ -183,6 +186,9 @@ if(strpos($actual_link, 'localhost') === false){
 
                 .divtwoptionsright {
                     margin-left: 0px !important;
+                }
+                .cta-nav{
+                    display: none !important;
                 }
             }
 
@@ -451,9 +457,10 @@ if(strpos($actual_link, 'localhost') === false){
 
     /* Enlace del número de teléfono */
     .phone-number {
-        background-color: #182741;
-        color: white !important; /* Color del texto */
-        font-weight: 500; /* Grosor de la fuente */
+        width: 200px;
+        background-color: #f7b731;
+        color: #0d2345 !important; /* Color del texto */
+        font-weight: 400; /* Grosor de la fuente */
         text-decoration: none; /* Sin subrayado */
         z-index: 8000000; /* Asegura que esté encima del video */
     }
@@ -465,36 +472,17 @@ if(strpos($actual_link, 'localhost') === false){
             transition: background-color 0.3s, color 0.3s;
         }
 
-        .navbar-light{
-            background-color: #ffffff;
+        .navbar-nav .nav-link{
+            font-size: 18px;
         }
 
-        .navbar-light .navbar-nav .nav-link {
-            color: #182741;
-            transition: background-color 0.3s, color 0.3s;
+        .navbar-nav{
+            display: flex;
+            gap: 30px !important;
         }
 
-        .navbar-light.scrolled .navbar-nav .nav-link {
-            color: #182741;
-        }
-
-        .navbar-light.scrolled .navbar-nav .nav-link:hover {
-            background-color: #182741;
-            color: white !important;
-        }
-
-        .navbar-light .navbar-nav .nav-link:hover {
-            background-color: #182741;
-            color: white;
-        }
-
-        .navbar-light.scrolled .navbar-brand img {
-            filter: none;
-        }
-
-        .navbar-light.scrolled {
-            background-color: white !important;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        .logo-white {
+            filter: brightness(0) invert(1);
         }
     </style>
     <script>
@@ -512,293 +500,167 @@ if(strpos($actual_link, 'localhost') === false){
 <body>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="navbar">
-            <div class="container" style="font-family: 'Sharp grotesk'; font-weight: 500">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3" id="navbar" style="background-color: #0d2345;">
+            <div class="container-fluid" style="max-width: 85vw; margin: 0 auto; font-family: 'Sharp grotesk'; font-weight: 500; justify-content: space-between;">
+        
+                <!-- LOGO -->
                 <a class="navbar-brand" href="{{ route('web.index') }}">
-                    <img src="{{ asset('img/logo-azul-grupo-housing.png') }}" width="110" height="45"
-                        alt="Grupo Housing">
+                    <img src="{{ asset('img/logo-azul-grupo-housing.png') }}"  width="110" height="45" class="logo-white" alt="Grupo Housing">
                 </a>
+        
+                <!-- TOGGLER MOBILE -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        {{-- <li class="nav-item pr-2"> <a class="nav-link @if (Route::is('home')) active @endif"
-                            href="{{ route('web.home') }}">Inicio</a> 
-                        </li> --}}
-                        {{-- <li class="nav-item">
-                            <a class="nav-link @if (Route::is('/propiedades-en-venta')) active @endif"
-                                href="/propiedades-en-venta">Comprar</a>
-                        </li> --}}
-                        {{-- <li class="nav-item">
-                            <a class="nav-link @if (Route::is('/propiedades-en-renta')) active @endif"
-                                href="/propiedades-en-renta">Rentar</a>
-                        </li> --}}
+        
+                <!-- MENÚ CENTRAL -->
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link @if (Request::is('propiedades/*')) active @endif"
+                            <a class="nav-link text-white font-weight-light @if (Request::is('/')) active @endif"
+                                href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white font-weight-light @if (Request::is('propiedades/*')) active @endif"
                                 href="/propiedades-en-general">Propiedades</a>
                         </li>
-                        {{-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Propiedades
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/propiedades-en-venta">En Venta</a>
-                                <a class="dropdown-item" href="/propiedades-en-renta">En Renta</a>
-                            </div>
-                        </li> --}}
                         <li class="nav-item">
-                            <a class="nav-link @if(Request::is('servicios/construye')) active @endif"
-                                href="{{ Route('web.servicios', 'construye') }}"
-                            >
-                            Servicios
+                            <a class="nav-link text-white font-weight-light @if(Request::is('servicios/construye')) active @endif"
+                                href="{{ Route('web.servicios', 'construye') }}">
+                                Servicios
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @if (Request::is('servicio/vende-tu-casa')) active @endif"
-                                href="{{ route('web.servicio', 'vende-tu-casa') }}">Vende tu propiedad</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @if (Request::is('servicios/nosotros')) active @endif"
+                            <a class="nav-link text-white font-weight-light @if (Request::is('servicios/nosotros')) active @endif"
                                 href="{{ route('web.servicios', 'nosotros') }}">Nosotros</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @if (Request::is('blog')) active @endif"
+                            <a class="nav-link text-white font-weight-light @if (Request::is('blog')) active @endif"
                                 href="{{ route('web.blog') }}">Blog</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link phone-number" href="tel:+593987595789">098-759-5789</a>
-                        </li>
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">
-                                    <i class="fas fa-user-circle"></i>
-                                </a>
-                            </li>
-                        @else
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                                    data-toggle="dropdown" aria-expanded="false">
-                                    {{ Auth::user()->name }}
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('admin.index') }}">Dashboard</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
                     </ul>
                 </div>
+        
+                <!-- BOTÓN TELÉFONO -->
+                <div class="d-flex align-items-center cta-nav">
+                    <a class="btn rounded-pill px-4 phone-number" href="tel:+593987595789">
+                        098-759-5789
+                    </a>
+                    @guest
+                        <div class="nav-item">
+                            <a class="nav-link text-white font-weight-light" href="{{ route('login') }}">
+                                <i class="fas fa-user-circle fa-2x"></i>
+                            </a>
+                        </div>
+                    @else
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::user()->name }}
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('admin.index') }}">Dashboard</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </div>
+                    @endguest
+                </div>
+        
             </div>
         </nav>
+             
     </header>
 
     @yield('content')
 
-    <footer>
-        <div style="background-color: #182741" class="grotesk text-white">
-            <div class="custom-container pt-5">
-                <div class="row">
-                    <div class="col-md-4 column-padding mt-5" style="border-right: 1px solid #ffffff;">
-                        <p class="desing-t" style="font-size: 20px ; font-weight: 500;  font-family: 'Sharp Grotesk';">
-                            Cuenca | Ecuador</p>
-                        <div class="row">
-                            <div class="col-6">
-                                <p><strong style="font-size: 16px; text-transform: uppercase; font-weight: 500;">Lunes
-                                        a Viernes</strong>
-                                </p>
-                                <p style="font-weight: 100;">9:00am – 18:00pm</p>
-                            </div>
-                            <div class="col-6">
-                                <p><strong
-                                        style="font-size: 16px; text-transform: uppercase; font-weight: 500;">Sábados</strong>
-                                </p>
-                                <p style="font-weight: 100;">9:00am - 13:00pm</p>
-                            </div>
-                        </div>
-
-                        <div class="row align-items-center mt-2">
-                            <div class="col-2 text-center">
-                                <span
-                                    style="color: #182741; background-color: #ffffff; border-radius: 50%; width: 35px; height: 35px; display: inline-flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-map-marker-alt" style="font-size: 18px;"></i>
-                                </span>
-                            </div>
-                            <div class="col-10">
-                                <div style="color: #ffffff; text-align: justify;">
-                                    <span class="desing-t">Oficina:</span><span class="desing-p"> 
-                                        <a target="_blank"
-                                            style="color: #ffffff" href="https://maps.app.goo.gl/WctLFek7TAYvaQ2V9">
-                                            Remigio Tamariz Crespo y Av. Fray Vicente Solano
-                                        </a>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row align-items-center mt-2">
-                            <div class="col-2 text-center">
-                                <span
-                                    style="color: #182741; background-color: #ffffff; border-radius: 50%; width: 35px; height: 35px; display: inline-flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-envelope" style="font-size: 18px;"></i>
-                                </span>
-                            </div>
-                            <div class="col-10">
-                                <div style="color: #ffffff;"><span class="desing-p"><a
-                                            href="mailto:info@grupohousing.com"
-                                            style="color: #ffffff">info@grupohousing.com</a></span></div>
-                            </div>
-                        </div>
-                        <div class="row align-items-center mt-3">
-                            <div class="col-2 text-center">
-                                <span
-                                    style="color: #182741; background-color: #ffffff; border-radius: 50%; width: 35px; height: 35px; display: inline-flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-phone" style="font-size: 18px;"></i>
-                                </span>
-                            </div>
-                            <div class="col-10">
-                                <div style="color: #ffffff;"><span class="desing-t"></span><span
-                                        class="desing-p"> <a href="tel:+593987595789" class="asindeco"
-                                            style="color: #ffffff !important">
-                                            098-759-5789</a></span></div>
-                            </div>
-                        </div>
+    <footer style="background-color: #0f2344; font-family: 'Sharp Grotesk', sans-serif; color: #fff; padding: 50px 0 0 0">
+        <div style="max-width: 85vw; margin: 0 auto;">
+            
+            <!-- Barra superior con tres bloques -->
+            <div class="section-info" style="background-color: #1c2f54; padding: 20px; border-radius: 15px; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
+                <!-- Ubicación -->
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="width: 50px; height: 50px; border: 2px solid #ffa500; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-map-marker-alt" style="color: #ffa500; font-size: 22px;"></i>
                     </div>
-
-
-                    <!-- New York, USA -->
-                    <div class="col-md-4 column-padding mt-5" style="border-right: 1px solid #ffffff;">
-                        <p class="desing-t" style="font-size: 20px">New York | Estados Unidos</p>
-                        <div class="row">
-                            <div class="col-6">
-                                <p><strong style="font-size: 16px; text-transform: uppercase; font-weight: 500;">Lunes
-                                        a Viernes</strong></p>
-                                <p style="font-weight: 100;">9:00am – 18:00pm</p>
-                            </div>
-                            <div class="col-6">
-                                <p><strong
-                                        style="font-size: 16px; text-transform: uppercase; font-weight: 500;">Sábados</strong>
-                                </p>
-                                <p style="font-weight: 100;">9:00am - 13:00pm</p>
-                            </div>
-                        </div>
-                        <!-- Icon Rows -->
-                        <div class="row align-items-center mt-2">
-                            <div class="col-2 text-center">
-                                <span
-                                    style="color: #182741; background-color: #ffffff; border-radius: 50%; width: 35px; height: 35px; display: inline-flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-map-marker-alt" style="font-size: 18px;"></i>
-                                </span>
-                            </div>
-                            <div class="col-10">
-                                <div style="color: #ffffff;"><span class="desing-p"><a target="_blank"
-                                            style="color: #ffffff" href="https://g.page/r/Cdf-npU-D1gdEAE">67-03
-                                            Roosevelt Avenue Woodside, NY 11377
-                                        </a></span></div>
-                            </div>
-                        </div>
-                        <div class="row align-items-center mt-2">
-                            <div class="col-2 text-center">
-                                <span
-                                    style="color: #182741; background-color: #ffffff; border-radius: 50%; width: 35px; height: 35px; display: inline-flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-phone" style="font-size: 18px;"></i>
-                                </span>
-                            </div>
-                            <div class="col-10">
-                                <div style="color: #ffffff;"><span class="desing-p"> <a href="tel:+17186903740"
-                                            class="asindeco" style="color: #ffffff !important">
-                                            718 690 3740</a></span></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- New Jersey, USA -->
-                    <div class="col-md-4 column-padding mt-5">
-                        <p class="desing-t" style="font-size: 20px">New Jersey | Estados Unidos</p>
-                        <div class="row">
-                            <div class="col-6">
-                                <p><strong style="font-size: 16px; text-transform: uppercase; font-weight: 500;">Lunes
-                                        a Viernes</strong></p>
-                                <p style="font-weight: 100;">9:00am – 18:00pm</p>
-                            </div>
-                            <div class="col-6">
-                                <p><strong
-                                        style="font-size: 16px; text-transform: uppercase; font-weight: 500;">Sábados</strong>
-                                </p>
-                                <p style="font-weight: 100;">9:00am - 13:00pm</p>
-                            </div>
-                        </div>
-                        <!-- Icon Rows -->
-                        <div class="row align-items-center mt-2">
-                            <div class="col-2 text-center">
-                                <span
-                                    style="color: #182741; background-color: #ffffff; border-radius: 50%; width: 35px; height: 35px; display: inline-flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-map-marker-alt" style="font-size: 18px;"></i>
-                                </span>
-                            </div>
-                            <div class="col-10">
-
-                                <div style="color: #ffffff;"><span class="desing-p"><a target="_blank"
-                                            style="color: #ffffff"
-                                            href="https://maps.app.goo.gl/854Wc86FooRbCJZe7">1146 East Jersey St
-                                            Elizabeth, NJ 07201
-                                        </a></span></div>
-                            </div>
-                        </div>
-                        <div class="row align-items-center mt-2">
-                            <div class="col-2 text-center">
-                                <span
-                                    style="color: #182741; background-color: #ffffff; border-radius: 50%; width: 35px; height: 35px; display: inline-flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-phone" style="font-size: 18px;"></i>
-                                </span>
-                            </div>
-                            <div class="col-10">
-                                <div style="color: #ffffff;"><span class="desing-p"> <a href="tel:+19083810090"
-                                            class="asindeco" style="color: #ffffff !important">
-                                            908 381 0090</a></span></div>
-                            </div>
-                        </div>
+                    <div>
+                        <p style="margin: 0; font-weight: bold;">Ubicación–Ecuador</p>
+                        <p style="margin: 0;">Remigio Tamariz y Av. Solano</p>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-12 text-center mt-4">
-                        <a href="https://www.facebook.com/profile.php?id=61555792821989" target="_blank">
-                            <span
-                                style="color: #182741; background-color: #ffffff; width: 50px; height: 50px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">
-                                <i class="fab fa-facebook-f" style="font-size: 24px;"></i>
-                            </span>
-                        </a>
-                        <a href="https://www.instagram.com/grupo_housing" target="_blank">
-                            <span
-                                style="color: #182741; background-color: #ffffff; width: 50px; height: 50px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">
-                                <i class="fab fa-instagram" style="font-size: 24px;"></i>
-                            </span>
-                        </a>
-                        <!--<a href="https://www.youtube.com/" target="_blank">
-                            <span style="color: #182741; background-color: #ffffff; width: 50px; height: 50px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px;">
-                                <i class="fab fa-youtube" style="font-size: 24px;"></i>
-                            </span>-->
-                        </a>
+                <!-- Email -->
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="width: 50px; height: 50px; border: 2px solid #ffa500; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-envelope" style="color: #ffa500; font-size: 20px;"></i>
+                    </div>
+                    <div>
+                        <p style="margin: 0; font-weight: bold;">E-mail</p>
+                        <p style="margin: 0;"><a href="mailto:info@grupohousing.com" style="color: #fff; text-decoration: none;">info@grupohousing.com</a></p>
+                    </div>
+                </div>
+                <!-- Teléfono -->
+                <div style="display: flex; justify-content: center; gap: 15px;">
+                    <div style="width: 50px; height: 50px; border: 2px solid #ffa500; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-phone" style="color: #ffa500; font-size: 20px;"></i>
+                    </div>
+                    <div>
+                        <p style="margin: 0; font-weight: bold;">Contacto-Ecuador</p>
+                        <p style="margin: 0;"><a href="tel:+593987595789" style="color: #fff; text-decoration: none;">098-759-5789</a></p>
                     </div>
                 </div>
             </div>
+    
+            <!-- Sección inferior -->
+            <div style="margin-top: 40px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px;">
+                <!-- Logo y redes -->
+                <div style="flex: 1; min-width: 220px;">
+                    <img src="{{ asset('img/logo-azul-grupo-housing.png') }}" alt="Grupo Housing" style="max-width: 150px; margin-bottom: 20px;" class="logo-white">
+                    <div style="display: flex; gap: 15px;">
+                        <a href="https://www.facebook.com/profile.php?id=61555792821989" target="_blank" style="color: #fff; font-size: 24px;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/grupo_housing" target="_blank" style="color: #fff; font-size: 24px;"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <!-- New York -->
+                <div style="flex: 1; min-width: 220px;">
+                    <p style="font-weight: light; text-transform: uppercase;" class="m-0">E.E.U.U.</p>
+                    <p style="font-size: 18px; font-weight: bold; border-bottom: 3px solid #ffa500; display: inline-block;">New York</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 67-03 Roosevelt Avenue<br>Woodside, NY 11377</p>
+                    <p><i class="fas fa-phone"></i> 718 690 3740</p>
+                </div>
+                <!-- New Jersey -->
+                <div style="flex: 1; min-width: 220px;">
+                    <p style="font-weight: light; text-transform: uppercase;" class="m-0">E.E.U.U.</p>
+                    <p style="font-size: 18px; font-weight: bold; border-bottom: 3px solid #ffa500; display: inline-block;">New Jersey</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 1146 East Jersey St<br>Elizabeth, NJ 07201</p>
+                    <p><i class="fas fa-phone"></i> 908 381 0090</p>
+                </div>
+                <!-- Horarios -->
+                <div style="flex: 1; min-width: 220px;">
+                    <br>
+                    <p style="font-size: 18px; font-weight: bold; border-bottom: 3px solid #ffa500; display: inline-block;">Horarios</p>
+                    <p>Lunes a Viernes<br>9:00am - 18:00pm</p>
+                    <p>Sábado<br>9:00am - 13:00pm</p>
+                </div>
+            </div>
+    
+            <!-- Copyright -->
+            <div style="text-align: center; padding: 20px; margin-top: 30px; font-size: 14px; border-top: 1px solid rgba(255,255,255,0.2);">
+                Copyright © 2024. All rights reserved.<br>
+                <a href="{{ route('web.politicas') }}" style="color: #fff; font-weight: 500; text-decoration: none;">Políticas de Privacidad</a> -
+                <a href="{{ route('web.seo') }}" style="color: #fff; text-decoration: none;">SEO</a>
+            </div>
         </div>
-        <div style="background-color: #182741" class="text-center py-3 text-white">
-            Copyright © 2024. All rights reserved.
-            <br><a href="{{ route('web.politicas') }}" style="color: #ffffff; font-weight: 500"> Políticas de
-                Privacidad</a> <span style="color: #ffffff">-</span> <a style="color: #ffffff"
-                href="{{ route('web.seo') }}">SEO</a>
-        </div>
-    </footer>   
+    </footer>
+    
+       
 
 
 
