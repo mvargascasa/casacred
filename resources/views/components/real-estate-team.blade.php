@@ -87,7 +87,7 @@
 }
 
 .learn-more-btn {
-    background-color: #1e293b;
+    background-color: #142743;
     color: white;
     padding: 15px 30px;
     border-radius: 50px;
@@ -204,7 +204,7 @@
 }
 
 .member-title-2{
-    background-color: #1e293b !important;
+    background-color: #142743 !important;
     color: #ff8800;
     border-radius: 25px;
     padding: 0px 30px;

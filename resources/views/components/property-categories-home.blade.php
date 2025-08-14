@@ -1,4 +1,4 @@
-<section class="property-categories">
+<section class="property-categories" id="section-property-categories">
     <div class="categories-container">
         <!-- Título -->
         <div class="section-title-categories">
@@ -96,7 +96,7 @@
 }
 
 .property-categories {
-    background: #182741;
+    background: #142743;
     padding: 80px 0;
     position: relative;
     overflow: hidden;

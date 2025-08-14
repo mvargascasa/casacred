@@ -104,7 +104,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     align-items: center;
-    background-color: #1e3a5f;
+    background-color: #142743;
     padding: 40px 40px;
     border-radius: 10px;
 }

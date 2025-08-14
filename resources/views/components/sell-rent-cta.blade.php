@@ -40,7 +40,7 @@
 }
 
 .cta-banner {
-    background: #1e293b;
+    background: #142743;
     border-radius: 30px;
     display: flex;
     align-items: flex-end;

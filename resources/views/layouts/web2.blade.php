@@ -500,7 +500,7 @@ if(strpos($actual_link, 'localhost') === false){
 <body>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3" id="navbar" style="background-color: #0d2345;">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3" id="navbar" style="background-color: #142743;">
             <div class="container-fluid" style="max-width: 85vw; margin: 0 auto; font-family: 'Sharp grotesk'; font-weight: 500; justify-content: space-between;">
         
                 <!-- LOGO -->
@@ -581,7 +581,7 @@ if(strpos($actual_link, 'localhost') === false){
 
     @yield('content')
 
-    <footer style="background-color: #0f2344; font-family: 'Sharp Grotesk', sans-serif; color: #fff; padding: 50px 0 0 0">
+    <footer style="background-color: #142743; font-family: 'Sharp Grotesk', sans-serif; color: #fff; padding: 50px 0 0 0">
         <div style="max-width: 85vw; margin: 0 auto;">
             
             <!-- Barra superior con tres bloques -->

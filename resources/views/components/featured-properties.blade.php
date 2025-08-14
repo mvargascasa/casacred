@@ -128,7 +128,7 @@
 }
 
 .view-all-btn {
-    background-color: #1e293b;
+    background-color: #142743;
     color: #ffffff;
     padding: 15px 30px;
     border-radius: 50px;
@@ -294,7 +294,7 @@
 }
 
 .view-property-btn {
-    background-color: #1e293b;
+    background-color: #142743;
     color: white;
     padding: 12px 25px;
     border-radius: 25px;
@@ -506,7 +506,7 @@
 }
 
 .property-card:hover .property-code{
-    background-color: #1e293b;
+    background-color: #142743;
     color: #ffffff;
 }
 </style>

@@ -3,8 +3,11 @@
         <div class="hero-content">
             <!-- Título principal -->
             <div class="hero-title">
-                <p class="one-title">Tu futuro hogar</p>
-                <p class="two-title">te está esperando</p>
+                <h1>
+                    <span class="one-title">Tu futuro hogar</span>
+                    <br>
+                    <span class="two-title">te está esperando</span>
+                </h1>
             </div>
 
             <!-- Formulario de búsqueda -->
@@ -68,7 +71,7 @@
                         <!-- Botón buscar -->
                         <div class="form-group">
                             <button type="submit" class="search-btn">
-                                <span class="search-icon">🔍</span>
+                                <img width="20px" src="{{ asset('img/icono-buscar-boton-filtros-banner.webp') }}" alt="Icono de buscar">
                                 Buscar
                             </button>
                         </div>
@@ -79,7 +82,7 @@
                 <div class="sell-property">
                     <a class="sell-btn" href="/servicio/vende-tu-casa">
                         Vender Propiedad
-                        <span class="arrow">→</span>
+                        <img width="30px" src="{{ asset('img/flecha-derecha-boton-vender-propiedad-banner.webp') }}" alt="Icono de flecha apuntando a la derecha">
                     </a>
                 </div>
             </div>
@@ -87,8 +90,8 @@
     </div>
 
     <!-- Flecha scroll -->
-    <div class="scroll-arrow">
-        <div class="arrow-down">⌄</div>
+    <div class="scroll-arrow" id="scroll-button">
+        <img src="{{ asset('img/flecha-abajo-banner.webp') }}" alt="Icono de flecha apuntando abajo">
     </div>
 </section>
 
@@ -314,6 +317,7 @@
     color: white;
     font-size: 2rem;
     animation: bounce 2s infinite;
+    cursor: pointer;
 }
 
 @keyframes bounce {
@@ -451,6 +455,35 @@
 </style>
 
 <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. Selecciona el botón de scroll por su ID
+        const scrollButton = document.getElementById('scroll-button');
+
+        // 2. Selecciona la sección de destino por su ID
+        const targetSection = document.getElementById('section-property-categories');
+
+        // 3. Añade un escuchador de eventos de clic al botón
+        scrollButton.addEventListener('click', function() {
+            if (targetSection) {
+                // 4. Obtiene la posición (coordenadas) de la sección de destino
+                const sectionPosition = targetSection.getBoundingClientRect().top;
+                
+                // 5. Define el desplazamiento (-20px)
+                const offset = -20;
+                
+                // 6. Calcula la posición final ajustada
+                const finalPosition = sectionPosition + window.scrollY + offset;
+
+                // 7. Realiza el scroll suave a la posición final
+                window.scrollTo({
+                    top: finalPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
     let inpSearchTxt = document.getElementById('ftop_txt');
     if (inpSearchTxt) {
         inpSearchTxt.addEventListener("keypress", function(event) {
