@@ -114,9 +114,9 @@ Route::get('/mobiledet/{listing:slug}', [WebController::class, 'mobiledet'])->na
 Route::get('/test88', function () {
 });
 
-Route::get('/test-home', function(){
-    return view('home4');
-});
+// Route::get('/test-home', function(){
+//     return view('home4');
+// });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');

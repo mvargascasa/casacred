@@ -239,7 +239,8 @@ class WebController extends Controller
         // if($ismobile) return view('indexmobile', compact('states'));
         // else 
         $listings_outstanding = Listing::where('status', 1)->where('available', 1)->where('outstanding', 1)->take(4)->inRandomOrder()->get();
-        return view('home3', compact('ismobile', 'listings_outstanding', 'properties'));
+        //return view('home3', compact('ismobile', 'listings_outstanding', 'properties'));
+        return view('home4');
     }
 
     public function creditos(){
@@ -792,6 +793,33 @@ class WebController extends Controller
 
         return view('thank');
 
+    }
+
+    public function sendLeadContactSection(Request $request){
+        // Construir mensaje en HTML
+        $message = "
+            <br><strong>Nuevo Lead Grupo Housing</strong>
+            <br> Nombre: " . strip_tags($request->nombre) . " " . strip_tags($request->apellido) . "
+            <br> Teléfono: " . strip_tags($request->telefono) . "
+            <br> Email: " . strip_tags($request->email) . "
+            <br> Asunto: " . strip_tags($request->asunto) . "
+            <br> Mensaje: " . nl2br(strip_tags($request->mensaje)) . "
+            <br> Fuente: Website
+        ";
+
+        // Encabezados del correo
+        $header = '';
+        $header .= 'From: <leads@grupohousing.com>' . "\r\n";
+        $header .= 'Reply-To: ' . strip_tags($request->email) . "\r\n"; // Responder al email del cliente
+        $header .= "MIME-Version: 1.0\r\n";
+        $header .= "Content-type:text/html;charset=UTF-8\r\n";
+
+        // Enviar correos
+        mail('info@casacredito.com', 'Lead Grupo Housing: ' . strip_tags($request->nombre) . " " . strip_tags($request->apellido), $message, $header);
+        mail('sebas31051999@gmail.com', 'Lead Grupo Housing: ' . strip_tags($request->nombre) . " " . strip_tags($request->apellido), $message, $header);
+
+        // Retornar vista de agradecimiento
+        return view('thank');
     }
 
 }
