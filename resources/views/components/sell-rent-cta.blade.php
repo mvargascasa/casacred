@@ -43,12 +43,12 @@
     background: #1e293b;
     border-radius: 30px;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
-    padding: 50px 60px;
+    /* padding: 50px 60px; */
     position: relative;
     overflow: hidden;
-    min-height: 280px;
+    /* min-height: 280px; */
     box-shadow: 0 20px 60px rgba(30, 58, 95, 0.3);
 }
 
@@ -59,9 +59,8 @@
     gap: 35px;
     position: relative;
     z-index: 2;
+    padding: 50px 60px;
 }
-
-
 
 .cta-title {
     font-size: 3rem;
@@ -129,8 +128,8 @@
 }
 
 .image-container {
-    width: 400px;
-    height: 280px;
+    width: 600px;
+    /* height: 280px; */
     position: relative;
     display: flex;
     align-items: center;
@@ -165,7 +164,7 @@
 /* Responsive Design */
 @media (max-width: 1200px) {
     .cta-banner {
-        padding: 40px 50px;
+        /* padding: 40px 50px; */
     }
     
     .cta-title {
@@ -182,13 +181,14 @@
     .cta-banner {
         flex-direction: column;
         text-align: center;
-        padding: 50px 40px;
+        /* padding: 50px 40px; */
         gap: 40px;
     }
     
     .cta-content {
         align-items: center;
         gap: 30px;
+        padding: 30px 20px 0 20px;
     }
     
     .cta-text {
@@ -216,7 +216,7 @@
     
     .cta-banner {
         border-radius: 20px;
-        padding: 40px 30px;
+        /* padding: 40px 30px; */
         min-height: auto;
     }
     
@@ -237,7 +237,7 @@
 
 @media (max-width: 480px) {
     .cta-banner {
-        padding: 30px 20px;
+        /* padding: 30px 20px; */
         border-radius: 15px;
     }
     
@@ -253,8 +253,8 @@
     }
     
     .image-container {
-        width: 200px;
-        height: 150px;
+        width: 300px;
+        /* height: 150px; */
     }
 }
 
