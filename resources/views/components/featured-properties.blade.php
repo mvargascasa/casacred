@@ -73,7 +73,11 @@
                         <!-- Property Footer -->
                         <div class="property-footer">
                             <div class="property-price">
-                                $ {{ number_format($property->property_price, 0, ',', '.') }}
+                                @if($property->property_price > 0)
+                                    $ {{ number_format($property->property_price, 0, ',', '.') }}
+                                @else
+                                    {{ $property->customized_price }}
+                                @endif
                             </div>
                             <div class="property-action">
                                 <a href="/propiedad/{{$property->slug}}" class="view-property-btn">
