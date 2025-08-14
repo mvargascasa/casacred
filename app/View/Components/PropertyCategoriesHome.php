@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Listing;
 use Illuminate\View\Component;
 
 class PropertyCategoriesHome extends Component
@@ -16,48 +17,65 @@ class PropertyCategoriesHome extends Component
      */
     public function __construct()
     {
-        $this->categories = [
-            [
+        // Mapear IDs de tipo de propiedad con sus datos visuales
+        $map = [
+            23 => [
                 'id' => 'casas',
                 'name' => 'Casas',
-                'count' => 120,
                 'icon' => 'house',
-                'active' => false,
                 'url' => '/casas-en-venta'
             ],
-            [
+            24 => [
                 'id' => 'departamentos',
                 'name' => 'Departamentos',
-                'count' => 45,
                 'icon' => 'building',
-                'active' => false,
                 'url' => '/departamentos-en-venta'
             ],
-            [
+            25 => [
                 'id' => 'comerciales',
                 'name' => 'Casas Comerciales',
-                'count' => 35,
                 'icon' => 'store',
-                'active' => true,
                 'url' => '/casas-comerciales-en-venta'
             ],
-            [
+            26 => [
                 'id' => 'terrenos',
                 'name' => 'Terrenos',
-                'count' => 67,
                 'icon' => 'terrain',
-                'active' => false,
                 'url' => '/terrenos-en-venta'
             ],
-            [
+            29 => [
                 'id' => 'quintas',
                 'name' => 'Quintas',
-                'count' => 12,
                 'icon' => 'cabin',
-                'active' => false,
                 'url' => '/quintas-en-venta'
             ]
         ];
+
+        // Consultar conteos reales desde la BD
+        $counts = Listing::where('status', 1)
+            ->where('available', 1)
+            ->whereIn('listingtype', array_keys($map))
+            ->selectRaw('listingtype, COUNT(*) as total')
+            ->groupBy('listingtype')
+            ->pluck('total', 'listingtype');
+
+        // Construir array final $categories con datos reales
+        $this->categories = [];
+        foreach ($map as $typeId => $data) {
+            $this->categories[] = [
+                'id' => $data['id'],
+                'name' => $data['name'],
+                'count' => $counts[$typeId] ?? 0,
+                'icon' => $data['icon'],
+                'active' => false,
+                'url' => $data['url']
+            ];
+        }
+
+        // Si quieres que uno salga activo por defecto
+        if (!empty($this->categories)) {
+            $this->categories[0]['active'] = true; 
+        }
     }
 
     /**
