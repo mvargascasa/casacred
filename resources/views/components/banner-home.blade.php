@@ -175,6 +175,7 @@
     border-radius: 0 15px 15px 15px;
     margin-bottom: 30px;
     max-width: 65vw;
+    border: 1px solid #ffffff;
 }
 
 .form-grid {
@@ -419,7 +420,7 @@
   display: flex;
   max-width: 300px;
   gap: 20px;
-  justify-content: center;
+  justify-content: start;
 }
 
 .tab {
