@@ -96,7 +96,7 @@
 .hero-real-estate {
     position: relative;
     min-height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("{{ asset('img/banner-home-grupo-housing.jpg') }}");
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("{{ asset('img/banner-home-grupo-housing.webp') }}");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
