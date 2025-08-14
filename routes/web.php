@@ -104,6 +104,7 @@ Route::get('/politicas-de-privacidad', [WebController::class, 'politicas'])->nam
 Route::post('sendlead', [WebController::class, 'sendlead'])->name('web.sendlead');
 Route::post('sendcite', [WebController::class, 'sendcite'])->name('web.sendcite');
 Route::post('send-contact-form', [WebController::class, 'sendLeadHome'])->name('send.lead.form.home');
+Route::post('send-lead-contact-section', [WebController::class, 'sendLeadContactSection'])->name('send.lead.contact.section');
 Route::post('sendleadaval', [WebController::class, 'sendleadaval'])->name('web.sendleadaval');
 Route::post('sendemailinterested', [WebController::class, 'sendemailinterested'])->name('web.send.email.interested');
 Route::get('indextest', [WebController::class, 'indextest'])->name('web.indextest');
@@ -113,9 +114,9 @@ Route::get('/mobiledet/{listing:slug}', [WebController::class, 'mobiledet'])->na
 Route::get('/test88', function () {
 });
 
-// Route::get('/test-home', function(){
-//     return view('home4');
-// });
+Route::get('/test-home', function(){
+    return view('home4');
+});
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
