@@ -16,7 +16,7 @@ class RealEstateTeam extends Component
         $sectionTitle = 'Conoce a nuestro',
         $sectionSubtitle = 'equipo inmobiliario',
         $learnMoreText = 'Conoce más sobre nosotros',
-        $learnMoreLink = '#'
+        $learnMoreLink = '/nosotros'
     ) {
         $this->sectionTitle = $sectionTitle;
         $this->sectionSubtitle = $sectionSubtitle;
