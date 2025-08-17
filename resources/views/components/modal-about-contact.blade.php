@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #182741; color: #ffffff">
-          <p class="modal-title h5" id="exampleModalLongTitle">Conoce el valor de tu propiedad</p>
+          <p class="modal-title h5" id="exampleModalLongTitle">Contáctanos para más información</p>
           <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
