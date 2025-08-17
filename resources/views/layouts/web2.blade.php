@@ -505,7 +505,7 @@ if(strpos($actual_link, 'localhost') === false){
         
                 <!-- LOGO -->
                 <a class="navbar-brand" href="{{ route('web.index') }}">
-                    <img src="{{ asset('img/logo-azul-grupo-housing.png') }}"  width="110" height="45" class="logo-white" alt="Grupo Housing">
+                    <img src="{{ asset('img/logo-azul-grupo-housing.png') }}"  width="115" height="55" class="logo-white" alt="Grupo Housing">
                 </a>
         
                 <!-- TOGGLER MOBILE -->
@@ -532,8 +532,8 @@ if(strpos($actual_link, 'localhost') === false){
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white font-weight-light @if (Request::is('servicios/nosotros')) active @endif"
-                                href="{{ route('web.servicios', 'nosotros') }}">Nosotros</a>
+                            <a class="nav-link text-white font-weight-light @if (Request::is('/nosotros')) active @endif"
+                                href="{{ route('about.page') }}">Nosotros</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white font-weight-light @if (Request::is('blog')) active @endif"
@@ -579,7 +579,10 @@ if(strpos($actual_link, 'localhost') === false){
              
     </header>
 
-    @yield('content')
+    <main>
+        @yield('content')
+    </main>
+
 
     <footer style="background-color: #142743; font-family: 'Sharp Grotesk', sans-serif; color: #fff; padding: 50px 0 0 0">
         <div style="max-width: 85vw; margin: 0 auto;">
@@ -592,8 +595,12 @@ if(strpos($actual_link, 'localhost') === false){
                         <i class="fas fa-map-marker-alt" style="color: #ffa500; font-size: 22px;"></i>
                     </div>
                     <div>
-                        <p style="margin: 0; font-weight: bold;">Ubicación–Ecuador</p>
-                        <p style="margin: 0;">Remigio Tamariz y Av. Solano</p>
+                        <p style="margin: 0; font-weight: bold;">Ubicación-Ecuador</p>
+                        <p style="margin: 0;">
+                            <a target="_blank" class="text-white" href="https://maps.app.goo.gl/6wPhDNe9SSd126As9">
+                                Remigio Tamariz y Av. Solano
+                            </a>
+                        </p>
                     </div>
                 </div>
                 <!-- Email -->
@@ -632,15 +639,27 @@ if(strpos($actual_link, 'localhost') === false){
                 <div style="flex: 1; min-width: 220px;">
                     <p style="font-weight: light; text-transform: uppercase;" class="m-0">E.E.U.U.</p>
                     <p style="font-size: 18px; font-weight: bold; border-bottom: 3px solid #ffa500; display: inline-block;">New York</p>
-                    <p><i class="fas fa-map-marker-alt"></i> 67-03 Roosevelt Avenue<br>Woodside, NY 11377</p>
-                    <p><i class="fas fa-phone"></i> 718 690 3740</p>
+                    <p>
+                        <a target="_blank" class="text-white" href="https://maps.app.goo.gl/epMwggDmETEfwvAB7">
+                            <i class="fas fa-map-marker-alt"></i> 67-03 Roosevelt Avenue<br>Woodside, NY 11377
+                        </a>
+                    </p>
+                    <p>
+                        <a class="text-white" href="tel:+17186903740">
+                            <i class="fas fa-phone"></i> 718 690 3740
+                        </a>
+                    </p>
                 </div>
                 <!-- New Jersey -->
                 <div style="flex: 1; min-width: 220px;">
                     <p style="font-weight: light; text-transform: uppercase;" class="m-0">E.E.U.U.</p>
                     <p style="font-size: 18px; font-weight: bold; border-bottom: 3px solid #ffa500; display: inline-block;">New Jersey</p>
                     <p><i class="fas fa-map-marker-alt"></i> 1146 East Jersey St<br>Elizabeth, NJ 07201</p>
-                    <p><i class="fas fa-phone"></i> 908 381 0090</p>
+                    <p>
+                        <a class="text-white" href="tel:+19083810090">
+                            <i class="fas fa-phone"></i> 908 381 0090
+                        </a>
+                    </p>
                 </div>
                 <!-- Horarios -->
                 <div style="flex: 1; min-width: 220px;">

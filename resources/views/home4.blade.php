@@ -64,6 +64,7 @@
     {{-- modals --}}
     <x-modal-vender-propiedad></x-modal-vender-propiedad>
     <x-modal-rentar-propiedad></x-modal-rentar-propiedad>
+    <x-modal-avaluo></x-modal-avaluo>
 
 @endsection
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\LandingController;
@@ -23,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WebController::class, 'home'])->name('web.index');
 Route::post('/search-properties', [WebController::class, 'searchHome'])->name('search.home');
+
+Route::get('/nosotros', [AboutController::class, 'aboutPage'])->name('about.page');
 
 Route::get('/{type}-en-{status}{details?}', [PropertyController::class, 'view'])
     ->name('view.property')
@@ -82,6 +85,7 @@ Route::redirect('/propiedades', '/propiedades-en-general', 301);
 Route::get('/home', [WebController::class, 'home'])->name('web.home');
 Route::get('/creditos', [WebController::class, 'creditos'])->name('web.creditos');
 Route::post('/send-lead-contact', [WebController::class, 'sendLeadContact'])->name('web.lead.contact');
+Route::post('/lead/about-contact', [AboutController::class, 'sendLeadAboutContact'])->name('web.lead.about-contact');
 
 //Route::get('/avaluo-de-propiedad', [WebController::class, 'avaluo'])->name('web.avaluo.propiedad');
 

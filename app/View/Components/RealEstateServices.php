@@ -49,7 +49,7 @@ class RealEstateServices extends Component
                 'subtitle' => 'propiedad',
                 'link' => '/avaluar',
                 'featured' => false,
-                'action' => ''
+                'action' => '#modalAvaluo'
             ]
         ];
     }
