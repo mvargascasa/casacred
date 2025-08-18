@@ -1,6 +1,6 @@
 <section class="hero-real-estate">
 
-    <video class="hero-video" autoplay muted loop playsinline preload="none" poster="{{ asset('img/banner-home-grupo-housing.webp') }}">
+    <video class="hero-video" autoplay muted loop playsinline preload="none">
         <source src="{{ asset('img/banner-home.webm') }}" type="video/webm">
         <source src="{{ asset('img/banner-home.mp4') }}" type="video/mp4">
         Tu navegador no soporta videos en HTML5.
