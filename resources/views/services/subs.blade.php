@@ -1,4 +1,4 @@
-@extends('layouts.web')
+@extends('layouts.web2')
 @section('header')
 <title>{{$service->page_title}}</title>
 <link rel="stylesheet" href="{{asset('css/style-not.css?4')}}">

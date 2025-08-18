@@ -1,4 +1,4 @@
-@extends('layouts.web')
+@extends('layouts.web2')
 @section('header')
     <title>Grupo Housing - Propiedades en Venta en Ecuador</title>
     <meta name="description"
@@ -21,7 +21,7 @@
             position: -webkit-sticky;
             /* Soporte para Safari */
             position: sticky;
-            top: 0;
+            top: 97px;
             /* Se pegará a 0px del top del viewport */
             z-index: 1050;
             /* Estilo opcional */
@@ -414,7 +414,7 @@
         </div>
     </section>
 
-    <div class="container d-flex justify-content-between align-items-center mt-5">
+    <div class="container d-flex justify-content-between align-items-center" style="margin-top: 140px">
         <div>
             <h1 style="font-family: 'Sharp Grotesk'; text-align: left;" class="h3 fw-bold">
                 <span style="font-weight: 500">Total</span>
