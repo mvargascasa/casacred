@@ -1,4 +1,13 @@
 <section class="hero-real-estate">
+
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="{{ asset('img/banner-home.mp4') }}" type="video/mp4">
+        Tu navegador no soporta videos en HTML5.
+    </video>
+
+    <!-- Overlay oscuro -->
+    <div class="overlay"></div>
+
     <div class="hero-container">
         <div class="hero-content">
             <!-- Título principal -->
@@ -99,13 +108,29 @@
 .hero-real-estate {
     position: relative;
     min-height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("{{ asset('img/banner-home-grupo-housing.webp') }}");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
     display: flex;
     align-items: center;
     overflow: hidden;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Recorta y ajusta el video */
+    z-index: 0; /* detrás del contenido */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.124); /* mismo efecto que tenías con linear-gradient */
+    z-index: 0;
 }
 
 .hero-container {
@@ -113,6 +138,7 @@
     max-width: 85vw;
     margin: 0 auto;
     padding: 0 20px;
+    z-index: 1;
 }
 
 .hero-content {
@@ -319,6 +345,7 @@
     font-size: 2rem;
     animation: bounce 2s infinite;
     cursor: pointer;
+    z-index: 2;
 }
 
 @keyframes bounce {
