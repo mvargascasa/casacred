@@ -353,13 +353,16 @@ class WebController extends Controller
     }         
     
     public function serviciosall(){
-        $services=Service::where('status',1)->where('parent',0)->get();
-        foreach($services as $serv){
-            
-            echo '<img src="'.url('uploads/services',$serv->image).'">';
-            echo '<a href="'.url('servicios/'.$serv->slug).'">'.$serv->title.'</a><br>';
 
-        }
+        return view('services');
+
+        // $services=Service::where('status',1)->where('parent',0)->get();
+        // foreach($services as $serv){
+            
+        //     echo '<img src="'.url('uploads/services',$serv->image).'">';
+        //     echo '<a href="'.url('servicios/'.$serv->slug).'">'.$serv->title.'</a><br>';
+
+        // }
         
     }
     
