@@ -737,7 +737,7 @@
             @if ($user->profile_photo_path != null && $user->status == 1)
                 <div class="advisor-card advisor-card-desktop">
                     <div class="advisor-image">
-                        <img width="150px" height="200px" style="object-fit: cover" src="{{ asset('uploads/profiles/' . $user->profile_photo_path) }}" alt="Imagen de Asesora">
+                        <img width="150px" height="200px" src="{{ asset('uploads/profiles/' . $user->profile_photo_path) }}" alt="Imagen de Asesora">
                     </div>
                     <div class="advisor-info">
                         <div>
@@ -887,7 +887,7 @@
                 @if ($user->profile_photo_path != null && $user->status == 1)
                     <div class="advisor-card advisor-card-mobile">
                         <div class="advisor-image">
-                            <img width="150px" height="200px" style="object-fit: cover" src="{{ asset('uploads/profiles/' . $user->profile_photo_path) }}" alt="Imagen de Asesora">
+                            <img width="150px" height="200px" src="{{ asset('uploads/profiles/' . $user->profile_photo_path) }}" alt="Imagen de Asesora">
                         </div>
                         <div class="advisor-info">
                             <div>
