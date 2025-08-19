@@ -46,8 +46,8 @@ class UserController extends Controller
                     if(strlen($ext)>0){
                         $ruta = public_path('uploads/profiles/');
                         $namefile = "IMG_".Str::slug($request->name).rand(1000,9999).$ext;
-                        $img->fit(300,300, function($constraint){$constraint->upsize(); $constraint->aspectRatio();});
-                        $img->save($ruta.$namefile, 72);
+                        $img->fit(300,500, function($constraint){$constraint->upsize(); $constraint->aspectRatio();});
+                        $img->save($ruta.$namefile, 100);
                         //$name_firstimage = $namefile;
                         $user->profile_photo_path = $namefile;
                     }
