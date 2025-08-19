@@ -38,7 +38,7 @@
     position: relative;
     height: 650px;
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+                url('{{ asset('img/imagen-fondo-servicios.webp') }}') center/cover;
     display: flex;
     align-items: center;
     overflow: hidden;
