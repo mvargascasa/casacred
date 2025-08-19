@@ -310,6 +310,52 @@
         .zoom-img {
             transition: transform 0.3s; /* Agrega una transición suave al efecto de zoom */
         }
+
+        .advisor-card-desktop{
+            display: block;
+        }
+
+        .advisor-card-mobile{
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .advisor-card-desktop{
+                display: none !important;
+            }
+            .advisor-card-mobile{
+                display: flex !important;
+            }
+            .advisor-card-mobile .advisor-info p{
+                font-size: 17px;
+            }
+        }
+
+        .advisor-card{
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .advisor-image img{
+            border-radius: 10px;
+        }
+        .advisor-info{
+            display: flex;
+            align-items: center;
+        }
+        .advisor-info h3{
+            font-weight: 700;
+        }
+        .advisor-info p{
+            font-size: 20px;
+        }
+        .advisor-code{
+            background-color: #142743;
+            color: #ffffff;
+            border-radius: 50px;
+            padding: 10px 20px;
+        }
+
     </style>
 @endsection
 
@@ -687,6 +733,28 @@
                     </div>
                 </div>
             </div>
+
+            @if ($user->profile_photo_path != null && $user->status == 1)
+                <div class="advisor-card advisor-card-desktop">
+                    <div class="advisor-image">
+                        <img width="150px" height="200px" style="object-fit: cover" src="{{ asset('uploads/profiles/' . $user->profile_photo_path) }}" alt="Imagen de Asesora">
+                    </div>
+                    <div class="advisor-info">
+                        <div>
+                            @if ($user->role == 'ASESOR')
+                                <h3>Asesora</h3>
+                            @else
+                                <h3>Gestora</h3>
+                            @endif
+                            <p>{{ $user->name }}</p>
+                            <div class="advisor-code">
+                                <span>Cod: GH-1234</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
         </div>
 
         <div class="col-md-5 mb-5">
@@ -817,39 +885,20 @@
                     </div>
                 </div>
                 @if ($user->profile_photo_path != null && $user->status == 1)
-                    <div class="container">
-                        <div class="text-center border px-3 mt-3 rounded py-3 card-asesor">
-                            <img class="rounded-circle img-profile" width="170px" height="170px"
-                                src="{{ asset('uploads/profiles/' . $user->profile_photo_path) }}"
-                                alt="Imagen de perfil">
-                            <p class="mt-3 mb-0" style="font-weight: 200">{{ $user->name }}</p>
-                            <p class="font-weight-normal m-0" style="font-size: small">
+                    <div class="advisor-card advisor-card-mobile">
+                        <div class="advisor-image">
+                            <img width="150px" height="200px" style="object-fit: cover" src="{{ asset('uploads/profiles/' . $user->profile_photo_path) }}" alt="Imagen de Asesora">
+                        </div>
+                        <div class="advisor-info">
+                            <div>
                                 @if ($user->role == 'ASESOR')
-                                    Asesor Inmobiliario
+                                    <h3>Asesora</h3>
                                 @else
-                                    Gestor Inmobiliario
+                                    <h3>Gestora</h3>
                                 @endif
-                            </p>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-4 col-4">
-                                    <a href="tel:+593987595789">
-                                        <i class="fas fa-phone-alt text-light p-2 rounded-circle icon-phone border border-white"
-                                            style="background-color: #242B40"></i>
-                                    </a>
-                                </div>
-                                <div class="col-sm-4 col-4">
-                                    <a target="_blank"
-                                        href="https://api.whatsapp.com/send?phone=593987595789&text=Hola, estoy interesado en la propiedad *{{ $listing->product_code }}* - *{{ $listing->listing_title }}* y deseo que me contacten. Gracias 😊%0A{{ url()->current() }}">
-                                        <i class="fab fa-whatsapp text-light p-2 rounded-circle border border-white"
-                                            style="background-color: #242B40"></i>
-                                    </a>
-                                </div>
-                                <div class="col-sm-4 col-4">
-                                    <a href="mailto:info@grupohousing.com">
-                                        <i class="fas fa-envelope text-light p-2 rounded-circle border border-white"
-                                            style="background-color: #242B40"></i>
-                                    </a>
+                                <p>{{ $user->name }}</p>
+                                <div class="advisor-code">
+                                    <span>Cod: GH-1234</span>
                                 </div>
                             </div>
                         </div>
