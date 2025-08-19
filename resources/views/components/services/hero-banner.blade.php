@@ -5,7 +5,7 @@
             <div class="hero-text">
                 <h1 class="hero-title">
                     <span class="hero-title-line">Conoce todos</span>
-                    <span class="hero-title-line">nuestros servicios</span>
+                    <span class="hero-title-two_line">nuestros servicios</span>
                 </h1>
                 
                 <div class="hero-cta">
@@ -38,7 +38,7 @@
     position: relative;
     height: 650px;
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                url('{{ asset('img/imagen-fondo-servicios.webp') }}') center/cover;
+                url("{{ asset('img/imagen-fondo-servicios.webp') }}") center/cover;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -73,6 +73,10 @@
 
 .hero-title-line {
     display: block;
+}
+
+.hero-title-two_line{
+    font-weight: 100;
 }
 
 .hero-cta {
