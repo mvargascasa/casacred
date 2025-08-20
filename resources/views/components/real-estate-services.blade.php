@@ -141,7 +141,7 @@
 
 .view-all-btn-services {
     background: transparent;
-    border: 2px solid #fbbf24;
+    border: 2px solid #FFB41F;
     color: #ffffff;
     padding: 18px 35px;
     border-radius: 50px;
@@ -171,7 +171,7 @@
 }
 
 .view-all-btn-services:hover {
-    background-color: #fbbf24;
+    background-color: #FFB41F;
     color: #1e3a5f;
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4);
@@ -221,12 +221,12 @@
 
 .service-card:hover {
     transform: translateY(-10px);
-    border-color: #fbbf24;
+    border-color: #FFB41F;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 .service-card:hover .service-icon{
-    border: 2px solid #fbbf24;
+    border: 2px solid #FFB41F;
 }
 
 .service-icon {

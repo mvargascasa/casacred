@@ -186,7 +186,7 @@
 }
 
 .tab.active {
-    background-color: #ffc107;
+    background-color: #FFB41F;
     color: #000;
 }
 
@@ -242,7 +242,7 @@
 .form-group .inpBanner:focus,
 .form-group .selBanner:focus {
     outline: none;
-    border-bottom-color: #ffc107;
+    border-bottom-color: #FFB41F;
 }
 
 .form-group .inpBanner::placeholder {
@@ -259,7 +259,7 @@
 }
 
 .search-btn {
-    background-color: #ffc107;
+    background-color: #FFB41F;
     color: #000;
     border: none;
     padding: 15px 25px;
@@ -274,7 +274,7 @@
 }
 
 .search-btn:hover {
-    background-color: #ffb300;
+    background-color: #FFB41F;
 }
 
 .sell-property {
@@ -333,7 +333,7 @@
 }
 
 .phone {
-    background-color: #ffc107;
+    background-color: #FFB41F;
     color: #000;
 }
 
@@ -477,7 +477,7 @@
 /* Estilo del tab activo basado en input:checked */
 #ftop_category_0:checked + label,
 #ftop_category_1:checked + label {
-  background-color: #ffc107;
+  background-color: #FFB41F;
   color: #000;
 }
 

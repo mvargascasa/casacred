@@ -185,7 +185,7 @@
 }
 
 .category-card:hover {
-    border-color: #fbbf24;
+    border-color: #FFB41F;
     /* background: rgba(251, 191, 36, 0.1); */
     box-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
 }
@@ -205,7 +205,7 @@
 
 .category-card:hover .category-icon {
     background: rgba(251, 191, 36, 0.2);
-    border-color: #fbbf24;
+    border-color: #FFB41F;
 }
 
 .category-icon svg {
@@ -216,7 +216,7 @@
 }
 
 .category-card:hover .category-icon .icono {
-    background-color: #fbbf24;
+    background-color: #FFB41F;
     transform: scale(1.1);
 }
 
@@ -393,7 +393,7 @@
 
 /* Mejoras para accesibilidad */
 .category-card:focus {
-    outline: 2px solid #fbbf24;
+    outline: 2px solid #FFB41F;
     outline-offset: 4px;
 }
 

@@ -82,7 +82,7 @@
 
 .cta-button {
     background: transparent;
-    border: 2px solid #fbbf24;
+    border: 2px solid #FFB41F;
     color: #ffffff;
     padding: 18px 40px;
     border-radius: 50px;
@@ -111,7 +111,7 @@
 }
 
 .cta-button:hover {
-    background-color: #fbbf24;
+    background-color: #FFB41F;
     color: #1e3a5f;
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4);

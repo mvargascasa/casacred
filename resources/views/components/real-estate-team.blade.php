@@ -108,7 +108,7 @@
 /* Team Grid */
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 40px;
     margin: 0 auto;
 }
@@ -128,7 +128,7 @@
 .member-image-container {
     position: relative;
     width: 100%;
-    height: 650px;
+    height: 550px;
     border-radius: 25px;
     overflow: hidden;
 }
@@ -205,7 +205,7 @@
 
 .member-title-2{
     background-color: #142743 !important;
-    color: #ff8800;
+    color: #FFB41F;
     border-radius: 25px;
     padding: 0px 30px;
     font-weight: 600;
@@ -283,12 +283,12 @@
 }
 
 .advisor-btn.featured {
-    background-color: #f59e0b;
+    background-color: #FFB41F;
     color: #1e293b;
 }
 
 .advisor-btn.featured:hover {
-    background-color: #d97706;
+    background-color: #FFB41F;
 }
 
 /* Efecto de click */

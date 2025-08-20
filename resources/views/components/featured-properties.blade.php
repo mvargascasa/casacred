@@ -501,7 +501,7 @@
 }
 
 .property-card:hover .view-property-btn{
-    background-color: #f59e0b;
+    background-color: #FFB41F;
     color: #1e293b;
 }
 

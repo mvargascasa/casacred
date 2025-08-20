@@ -59,15 +59,6 @@ class TeamSection extends Component
                 'email' => 'ana@inmobiliaria.com',
                 'phone' => '+593 99 345 6789',
                 'specialties' => ['Rentas', 'Propiedades de Lujo'],
-            ],
-            [
-                'id' => 5,
-                'name' => 'Lucrecia Charras',
-                'title' => 'Gestora',
-                'image' => 'gestora-lucrecia.webp',
-                'email' => 'ana@inmobiliaria.com',
-                'phone' => '+593 99 345 6789',
-                'specialties' => ['Rentas', 'Propiedades de Lujo'],
             ]
         ];
     }
