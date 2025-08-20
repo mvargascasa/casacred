@@ -74,7 +74,6 @@
     color: white;
     margin-bottom: 0.5rem;
     line-height: 1.1;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .hero-subtitle {
@@ -83,7 +82,6 @@
     color: white;
     margin-bottom: 3rem;
     line-height: 1.2;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .hero-button {

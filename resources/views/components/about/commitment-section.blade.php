@@ -76,7 +76,6 @@
     font-size: 2.5rem;
     line-height: 1.2;
     margin-bottom: 2.5rem;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .title-primary {
@@ -105,7 +104,6 @@
     color: #1f2937;
     letter-spacing: 0.1em;
     margin-bottom: 0.75rem;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .section-description {
@@ -113,7 +111,6 @@
     line-height: 1.6;
     color: #4b5563;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 @media (max-width: 768px) {
