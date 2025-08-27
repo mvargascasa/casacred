@@ -829,7 +829,7 @@
                   </div>
                   <div class="d-grid gap-2">
                     <button id="btnEnviar" type="button" class="btn btn-block mb-1"  onclick="sendFormDetail({{$listing->product_code}}, event)">Enviar</button>
-                    <a id="btnWhatsapp" target="_blank" class="btn btn-block" href="https://wa.me/+593983849073/?text=Me interesa esta propiedad con código: {{ $listing->product_code}}">Contactar por Whatsapp <i id="iconwpp" class="fab fa-whatsapp"></i></a>
+                    <a id="btnWhatsapp" target="_blank" class="btn btn-block" href="https://wa.me/+593967867998/?text=Me interesa esta propiedad con código: {{ $listing->product_code}}">Contactar por Whatsapp <i id="iconwpp" class="fab fa-whatsapp"></i></a>
                   </div>
                 </form>
                   <p id="textoCondicionesEmail">Al enviar está aceptando los términos de Uso y la Política de privacidad</p>
@@ -885,12 +885,12 @@
                 <hr>
                 <div class="row">
                   <div class="col-sm-4 col-4">
-                    <a href="tel:+593983849073">
+                    <a href="tel:+593964034035">
                       <i class="fas fa-phone-alt text-light p-2 rounded-circle icon-phone border border-white" style="background-color: #242B40"></i>
                     </a>
                   </div>
                   <div class="col-sm-4 col-4">
-                    <a target="_blank" href="https://api.whatsapp.com/send?phone=593983849073&text=Hola, estoy interesado en la propiedad *{{$listing->product_code}}* - *{{$listing->listing_title}}* y deseo que me contacten. Gracias 😊%0A{{url()->current()}}">
+                    <a target="_blank" href="https://api.whatsapp.com/send?phone=593967867998&text=Hola, estoy interesado en la propiedad *{{$listing->product_code}}* - *{{$listing->listing_title}}* y deseo que me contacten. Gracias 😊%0A{{url()->current()}}">
                       <i class="fab fa-whatsapp text-light p-2 rounded-circle border border-white" style="background-color: #242B40"></i>
                     </a>
                   </div>

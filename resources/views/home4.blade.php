@@ -27,7 +27,7 @@
         "name": "Grupo Housing - Inmobiliaria en Cuenca",
         "image": "{{ asset('img/grupo-housing-og.png') }}",
         "url": "{{ Request::url() }}",
-        "telephone": "+593987595789",
+        "telephone": "+593967867998",
         "address": {
         "@type": "PostalAddress",
         "streetAddress": "Remigio Tamariz Crespo",

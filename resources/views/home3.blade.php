@@ -26,7 +26,7 @@
         "name": "Grupo Housing - Inmobiliaria en Cuenca",
         "image": "{{ asset('img/grupo-housing-og.png') }}",
         "url": "{{ Request::url() }}",
-        "telephone": "+593987595789",
+        "telephone": "+593967867998",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Remigio Tamariz Crespo",
@@ -967,7 +967,7 @@
               <div id="collapseThree" class="accordion-collapse collapse p-4" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                   <h4 style="font-size: 17px; font-weight: 100">
-                    Puedes contactarnos a través de nuestro sitio web, por <a href="https://api.whatsapp.com/send?phone=593987595789&text=Hola%20Grupo%20Housing,%20estoy%20interesado%20en%20uno%20de%20sus%20servicios">teléfono</a> o visitando nuestras oficinas en Cuenca. Nos encontramos ubicados en la Juan Iñiguez 3-87 y Gonzalo Cordero.
+                    Puedes contactarnos a través de nuestro sitio web, por <a href="https://api.whatsapp.com/send?phone=593967867998&text=Hola%20Grupo%20Housing,%20estoy%20interesado%20en%20uno%20de%20sus%20servicios">teléfono</a> o visitando nuestras oficinas en Cuenca. Nos encontramos ubicados en la Juan Iñiguez 3-87 y Gonzalo Cordero.
                   </h4>
                 </div>
               </div>
@@ -1071,35 +1071,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('superfhasta').value = "";
     }
 
-    // const selProvince = document.getElementById('selProvince');
-    // const selCity = document.getElementById('selCity');
-
-    const selProvincea = document.getElementById('selProvincea');
-    const selCitya = document.getElementById('selCitya');
 
     const selProvinceb = document.getElementById('selProvinceb');
     const selCityb = document.getElementById('selCityb');
 
     const selProvincec = document.getElementById('selProvincec');
     const selCityc = document.getElementById('selCityc');
-
-    //   selProvince.addEventListener("change", async function() {
-    //     selCity.options.length = 0;
-    //   let id = selProvince.options[selProvince.selectedIndex].dataset.id;
-    //   const response = await fetch("{{ url('getcities') }}/"+id );
-    //   const cities = await response.json();
-
-    //   var opt = document.createElement('option');
-    //         opt.appendChild( document.createTextNode('Elige Ciudad') );
-    //         opt.value = '';
-    //         selCity.appendChild(opt);
-    //   cities.forEach(city => {
-    //         var opt = document.createElement('option');
-    //         opt.appendChild( document.createTextNode(city.name) );
-    //         opt.value = city.name;
-    //         selCity.appendChild(opt);
-    //   });
-    // });
 
     selProvincea.addEventListener("change", async function() {
         selCitya.options.length = 0;

@@ -544,8 +544,8 @@ if(strpos($actual_link, 'localhost') === false){
         
                 <!-- BOTÓN TELÉFONO -->
                 <div class="d-flex align-items-center cta-nav">
-                    <a class="btn rounded-pill px-4 phone-number" href="tel:+593987595789">
-                        098-759-5789
+                    <a class="btn rounded-pill px-4 phone-number" href="tel:+593967867998">
+                        096-786-7998
                     </a>
                     @guest
                         <div class="nav-item">
@@ -620,7 +620,7 @@ if(strpos($actual_link, 'localhost') === false){
                     </div>
                     <div>
                         <p style="margin: 0; font-weight: bold;">Contacto-Ecuador</p>
-                        <p style="margin: 0;"><a href="tel:+593987595789" style="color: #fff; text-decoration: none;">098-759-5789</a></p>
+                        <p style="margin: 0;"><a href="tel:+593967867998" style="color: #fff; text-decoration: none;">096-786-7998</a></p>
                     </div>
                 </div>
             </div>
@@ -756,7 +756,7 @@ if(strpos($actual_link, 'localhost') === false){
                 <i class="fas fa-phone-alt p-2 text-light d-flex justify-content-center align-items-center"></i>
             </div>
         </div>
-        <a href="https://api.whatsapp.com/send?phone=593987595789&text=Hola Grupo Housing, estoy interesado en una propiedad" target="_blank" class="whatsapp-float">
+        <a href="https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en una propiedad" target="_blank" class="whatsapp-float">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
@@ -767,11 +767,11 @@ if(strpos($actual_link, 'localhost') === false){
             <div class="icon-close" onclick="openContactContainer()">X</div>
         </div>
         <div class="body">
-            <a href="tel:+593987595789">
+            <a href="tel:+593967867998">
                 <div class="border rounded pb-1 pl-1 mb-1">
                     <img width="45px" height="30px" class="mt-2" src="{{ asset('img/ECUADOR-04.webp') }}"
                         alt="Telefono Grupo Housing">
-                    <span>098-759-5789</span>
+                    <span>096-786-7998</span>
                 </div>
             </a>
             <a href="tel:+17186903740">
@@ -790,7 +790,7 @@ if(strpos($actual_link, 'localhost') === false){
                 <i class="fas fa-phone-alt fa-2x bg-danger p-2 text-light"></i>
             </div>
             <div id="diviconsusaecu" style="margin-left: 15px;">
-                <a href="tel:+593987595789">
+                <a href="tel:+593967867998">
                     <img width="45px" height="30px" class="mt-2" src="{{ asset('img/ECUADOR-04.webp') }}"
                         alt="Telefono Grupo Housing">
                 </a>
@@ -950,21 +950,21 @@ if(strpos($actual_link, 'localhost') === false){
             loadscript();
         }, 3000);
 
-        setTimeout(() => {
-            $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
-                if (!$(this).next().hasClass('show')) {
-                    $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
-                }
-                var $subMenu = $(this).next(".dropdown-menu");
-                $subMenu.toggleClass('show');
+        // setTimeout(() => {
+        //     $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+        //         if (!$(this).next().hasClass('show')) {
+        //             $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+        //         }
+        //         var $subMenu = $(this).next(".dropdown-menu");
+        //         $subMenu.toggleClass('show');
 
 
-                $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
-                    $('.dropdown-submenu .show').removeClass("show");
-                });
-                return false;
-            });
-        }, 3500);
+        //         $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+        //             $('.dropdown-submenu .show').removeClass("show");
+        //         });
+        //         return false;
+        //     });
+        // }, 3500);
 
         function openContactContainer() {
             let container = document.getElementById('containerNumbers');
