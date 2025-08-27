@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\LocationSearchController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\TwController;
 use Illuminate\Http\Request;
@@ -50,4 +51,6 @@ Route::group(["middleware" => "apikey.validate"], function(){
 Route::get('/propertys/list', [PropertyController::class, 'search'])->name('search.property');
 
 Route::get('/properties/nearby/{id}', [TwController::class, 'getNearbyProperties']);
+
+Route::get('/search-locations', [LocationSearchController::class, 'search'])->name('locations.search');
 

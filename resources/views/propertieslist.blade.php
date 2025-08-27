@@ -368,6 +368,10 @@
             box-shadow: 0 0 5px rgba(51, 122, 183, 0.5); /* Agrega un resplandor suave */
         }
 
+        .list-group-item{
+            cursor: pointer;
+        }
+
 /* Contenedor principal para alinear el input y los botones */
 .custom-number-input {
     display: flex;
@@ -529,8 +533,17 @@
                     <div>
                         <label for="searchTerm">Ubicación</label>
                         <br>
-                        <input type="text" id="searchTerm" class="custom-input" style="width: 250px"
-                            placeholder="Sector, Parroquia, Provincia">
+                        {{-- <input type="text" id="searchTerm" class="custom-input" style="width: 250px"
+                            placeholder="Sector, Parroquia, Provincia"> --}}
+                            <div style="position: relative; width: max-content;">
+                                <input type="text" id="searchTerm" class="custom-input"
+                                    placeholder="Sector, Parroquia, Provincia" style="width: 250px" autocomplete="off">
+                            
+                                <!-- Contenedor de resultados -->
+                                <div id="resultsContainer" class="list-group position-absolute w-100 shadow-sm"
+                                    style="z-index: 1000; max-height: 200px; overflow-y: auto; display: none;">
+                                </div>
+                            </div>
                     </div>
                     <div class="inline-filters"></div>
                     <div>
@@ -847,7 +860,8 @@
 @endsection
 
 @section('script')
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script defer src="{{ asset('js/search-locations.js') }}"></script>
     <script>
 
         document.querySelectorAll('.dropdown-menu').forEach(function (element) {
