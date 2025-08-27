@@ -20,28 +20,39 @@
         .search-bar-container {
             position: -webkit-sticky;
             /* Soporte para Safari */
-            position: sticky;
-            top: 97px;
+            
+            margin-top: 97px;
             /* Se pegará a 0px del top del viewport */
-            z-index: 1050;
+            z-index: 0;
             /* Estilo opcional */
             width: 100%;
             /* Se extiende a lo ancho del contenedor */
+            background-color: rgb(238, 238, 238) !important;
         }
 
 
         .search-bar {
             position: sticky;
-            z-index: 1050;
+            z-index: 2;
             border: 1px solid #e0e0e0;
             /* Color más suave para el borde */
             border-radius: 12px;
-            background-color: #ffffff;
+            /* background-color: #ffffff; */
             /* Blanco para mantener la uniformidad */
-            padding: 20px;
             width: 100%;
+            padding: 30px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             /* Sutil sombra para dar profundidad */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-bar form{
+            gap: 20px;
+            padding: 20px 20px;
+            border-radius: 0 10px 10px 10px;
+            background-color: #ffffff;
         }
 
         .form-control {
@@ -82,6 +93,9 @@
             .dropdown-toggle {
                 font-size: 14px;
                 /* Tamaño de letra más manejable en dispositivos pequeños */
+            }
+            .header-container{
+                padding-top: 40px;
             }
         }
 
@@ -321,6 +335,179 @@
             font-family: 'Sharp Grotesk', sans-serif;
             font-weight: 100;
         }
+
+        .inline-filters{
+            width: 1px;
+            background-color: #1427433c;
+            height: 80px;
+            margin: 0 10px;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .custom-input{
+            border: none !important;
+            border-bottom: 1px solid #0000008a !important;
+            background-color: #ffffff;
+        }
+
+        /* Estilos del input por defecto */
+        input, select, .dropdown-toggle {
+            border: 1px solid #ccc;
+            padding: 8px;
+            transition: all 0.3s ease;
+        }
+
+        /* Quita el outline y agrega un box-shadow en el estado :focus */
+        input:focus, select:focus, .dropdown-toggle:focus {
+            outline: none;
+            border-color: #337ab7; /* Cambia el color del borde real */
+            box-shadow: 0 0 5px rgba(51, 122, 183, 0.5); /* Agrega un resplandor suave */
+        }
+
+/* Contenedor principal para alinear el input y los botones */
+.custom-number-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ced4da !important;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    flex-grow: 1;
+}
+
+/* Estilos del input */
+.custom-number-input input[type="number"] {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: none;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 0.375rem 0.75rem;
+    height: calc(1.5em + 0.75rem + 2px);
+    width: 100% !important;
+    text-align: center;
+}
+
+/* Oculta los spinners nativos en Chrome, Safari, Edge, y Firefox */
+.custom-number-input input::-webkit-outer-spin-button,
+.custom-number-input input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Contenedor para los botones */
+.custom-number-input .input-buttons {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Estilos de los botones */
+.custom-number-input button {
+    background-color: #f8f9fa;
+    border: none;
+    border-left: 1px solid #ced4da;
+    color: #495057;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 2rem;
+    height: 50%;
+    padding: 0;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+/* Separa los botones */
+.custom-number-input .btn-up {
+    border-bottom: 1px solid #ced4da;
+    outline: none;
+}
+.custom-number-input .btn-down {
+    border-top: none;
+    outline: none;
+}
+
+.custom-number-input button:hover {
+    background-color: #e9ecef;
+}
+
+/* Nuevo breakpoint intermedio: entre 1399px y 992px */
+@media (max-width: 1399.98px) {
+    .search-bar form {
+        flex-wrap: wrap; /* Permite que los filtros salten de fila */
+        gap: 15px;
+    }
+
+    /* Cada bloque de filtro ocupa aprox 30% */
+    .search-bar form > div {
+        flex: 1 1 30%;
+        min-width: 250px; /* evita que se encojan demasiado */
+    }
+
+    .inline-filters {
+        display: none; /* quitamos las barras divisorias */
+    }
+
+    /* El bloque de botones al final */
+    .search-bar form > div:last-child {
+        flex: 1 1 100%;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    input, select, .dropdown-toggle{
+        width: 250px !important;
+    }
+}
+
+/* Responsividad del search-bar hasta md */
+@media (max-width: 991.98px) {
+    .search-bar {
+        padding: 20px;
+    }
+
+    .search-bar form {
+        flex-wrap: wrap; /* Permite que los filtros se apilen */
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .search-bar form > div {
+        flex: 1 1 45%; /* Cada filtro ocupa 45% en tablets */
+        min-width: 200px;
+    }
+
+    .inline-filters {
+        display: none; /* Ocultamos las barras divisorias */
+    }
+
+    input, select, .dropdown-toggle{
+        width: auto !important;
+    }
+
+    #minPrice, #maxPrice{
+        width: 100px !important;
+    }
+}
+
+/* Más compacto en móviles pequeños (<768px) pero recuerda que se oculta */
+@media (max-width: 767.98px) {
+    .search-bar {
+        display: none !important; /* Oculta la barra en móvil */
+    }
+
+    .btn-fixed {
+        display: block;
+    }
+}
     </style>
 @endsection
 
@@ -334,18 +521,23 @@
     </section>
 
 
-    <section class="container-fluid text-center search-bar-container">
+    <section class="search-bar-container">
         <!-- Contenido para desktop -->
         <div class="d-none d-md-block mx-auto">
-            <div class="card search-bar rounded-0">
-                <form id="searchFormDesktop" class="row g-2 align-items-center justify-content-center">
-                    <div class="col-3">
-                        <input type="text" id="searchTerm" class="form-control form-control-sm"
-                            placeholder="Ingresa una ubicación">
+            <div class="search-bar rounded-0">
+                <form id="searchFormDesktop" class="d-flex">
+                    <div>
+                        <label for="searchTerm">Ubicación</label>
+                        <br>
+                        <input type="text" id="searchTerm" class="custom-input" style="width: 250px"
+                            placeholder="Sector, Parroquia, Provincia">
                     </div>
-                    <div class="col-auto">
-                        <select class="form-control form-control-sm" id="propertyType">
-                            <option value="">Propiedades</option>
+                    <div class="inline-filters"></div>
+                    <div>
+                        <label for="propertyType">Propiedad</label>
+                        <br>
+                        <select class="custom-input" id="propertyType">
+                            <option value="">Elije tipo de propiedad</option>
                             <option data-ids="[23,1]" value="1">Casas</option>
                             <option data-ids="[24,3]" value="2">Departamentos</option>
                             <option data-ids="[25,5]" value="3">Casas Comerciales</option>
@@ -363,15 +555,19 @@
                             <option data-ids="[26,10]" value="15">Terrenos</option>
                         </select>
                     </div>
-                    <div class="col-auto">
-                        <select class="form-control form-control-sm" id="propertyStatus">
+                    <div class="inline-filters"></div>
+                    <div>
+                        <label for="propertyStatus">Operación</label>
+                        <br>
+                        <select class="custom-input" id="propertyStatus">
                             <option data-ids="general" value="general">Todas</option>
                             <option data-ids="venta" value="venta">Venta</option>
                             <option data-ids="renta" value="renta">Renta</option>
                             <option data-ids="proyectos" value="proyectos">Proyectos</option>
                         </select>
                     </div>
-                    <div class="col-auto">
+                    <div class="inline-filters"></div>
+                    {{-- <div class="col-auto">
                         <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="locationInput"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Ubicación
@@ -381,40 +577,136 @@
                             <input type="text" id="city" class="form-control mb-2 form-control-sm" placeholder="Ciudad">
                             <input type="text" id="state" class="form-control form-control-sm" placeholder="Provincia">
                         </div>
-                    </div>
-                    <div class="col-auto">
-                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="priceInput"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Precio
-                        </button>
-                        <div class="dropdown-menu p-2" aria-labelledby="priceInput">
-                            <input type="number" id="minPrice" class="form-control mb-2 form-control-sm"
+                    </div> --}}
+                    <div>
+                        <label for="minPrice">Precio</label>
+                        <div class="d-flex" style="gap: 10px">
+                            <input type="number" id="minPrice" class="custom-input" style="width: 120px"
                                 placeholder="Mínimo">
-                            <input type="number" id="maxPrice" class="form-control form-control-sm" placeholder="Máximo">
+                            <input type="number" id="maxPrice" class="custom-input" style="width: 120px" placeholder="Máximo">
                         </div>
                     </div>
-                    <div class="col-auto">
-                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="featuresInput"
+                    <div class="inline-filters"></div>
+                    <div class="dropdown">
+                        <label for="bedrooms">Más Filtros</label>
+                        <br>
+                        <button class="dropdown-toggle custom-input" type="button" id="featuresInput"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Características
                         </button>
-                        <div class="dropdown-menu p-2" aria-labelledby="featuresInput">
-                            <input type="number" id="bedrooms" class="form-control mb-2 form-control-sm"
-                                placeholder="Hab.">
-                            <input type="number" id="bathrooms" class="form-control mb-2 form-control-sm" placeholder="Baños">
-                            <input type="number" id="garage" class="form-control form-control-sm" placeholder="Garajes">
+                    
+                        <!-- Dropdown padre -->
+                        <div class="dropdown-menu p-3" aria-labelledby="featuresInput" style="min-width: 300px;">
+                            
+                            <!-- Dropdown hijo -->
+                            <div class="dropdown dropend w-100">
+                                <button class="dropdown-toggle btn btn-sm w-100 mb-2" type="button"
+                                    id="btnCharacteristics" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Seleccione características
+                                </button>
+                    
+                                <!-- Menú hijo -->
+                                <div class="dropdown-menu p-2" aria-labelledby="btnCharacteristics" style="width: 250px;">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gym">
+                                        <label class="form-check-label" for="gym">Gimnasio</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="wifi">
+                                        <label class="form-check-label" for="wifi">Internet/Wifi</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="pool">
+                                        <label class="form-check-label" for="pool">Piscina</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="cistern" checked>
+                                        <label class="form-check-label" for="cistern">Cisterna</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="terrace">
+                                        <label class="form-check-label" for="terrace">Terraza</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="garden">
+                                        <label class="form-check-label" for="garden">Jardín</label>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <!-- Inputs adicionales -->
+                            <div class="row g-2 mt-2">
+                                <div class="col-6 d-flex align-items-center" style="gap: 5px">
+                                    <label for="bathrooms">Baños:</label>
+                                    <div class="custom-number-input">
+                                        <input type="number" min="0" id="bathrooms" class="form-control form-control-sm" value="0">
+                                        <div class="input-buttons">
+                                            <button type="button" class="btn-up">+</button>
+                                            <button type="button" class="btn-down">-</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 d-flex align-items-center" style="gap: 5px">
+                                    <label for="bedrooms">Habit:</label>
+                                    <div class="custom-number-input">
+                                        <input type="number" min="0" id="bedrooms" class="form-control form-control-sm" value="0">
+                                        <div class="input-buttons">
+                                            <button type="button" class="btn-up">+</button>
+                                            <button type="button" class="btn-down">-</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 d-flex align-items-center" style="gap: 5px">
+                                    <label for="garage">Garaje:</label>
+                                    <div class="custom-number-input">
+                                        <input type="number" min="0" id="garage" class="form-control form-control-sm" value="0">
+                                        <div class="input-buttons">
+                                            <button type="button" class="btn-up">+</button>
+                                            <button type="button" class="btn-down">-</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <hr>
+                            <div class="row g-2">
+                                <div class="col-12">
+                                    <label class="form-label mb-1">Área de construcción</label>
+                                    <div class="d-flex" style="gap: 10px">
+                                        <input type="number" class="custom-input" style="width: 100px" placeholder="Mínimo" id="constructionAreaMin">
+                                        <input type="number" class="custom-input" style="width: 100px" placeholder="Máximo" id="constructionAreaMax">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label mb-1">Área de terreno</label>
+                                    <div class="d-flex" style="gap: 10px">
+                                        <input type="number" class="custom-input" style="width: 100px" placeholder="Mínimo" id="landAreaMin">
+                                        <input type="number" class="custom-input" style="width: 100px" placeholder="Máximo" id="landAreaMax">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-primary btn-sm">Buscar</button>
-                        <button type="button" class="btn btn-secondary btn-sm" onclick="clearSearch(false)">Limpiar</button>
+                    <div>
+                        <div class="mb-1">
+                            <button type="button" class="btn btn-sm rounded-pill" onclick="clearSearch(false)" style="background-color: #14274311;">
+                                <img width="20" src="{{ asset('img/icono-filtrar.webp') }}" alt="Icono de Limpiar Filtros">
+                                Limpiar
+                            </button>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-sm rounded-pill" style="background-color: #142743; color: #ffffff">
+                                <img width="20" src="{{ asset('img/icono-limpiar-filtros.webp') }}" alt="Icono de filtrar">
+                                Buscar
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
     </section>
 
-    <div class="container d-flex justify-content-between align-items-center" style="margin-top: 140px">
+    <div class="container d-flex justify-content-between align-items-center header-container" style="margin-top: 40px">
         <div>
             <h1 style="font-family: 'Sharp Grotesk'; text-align: left;" class="h3 fw-bold">
                 <span style="font-weight: 500">Total</span>
@@ -551,13 +843,19 @@
         <div id="dynamic_content" class="row justify-content-center align-items-center mb-4">
 
         </div>
-
     </section>
 @endsection
 
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+
+        document.querySelectorAll('.dropdown-menu').forEach(function (element) {
+            element.addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
+        });
+
         var typeIdsArray = [];
         var typeIdsArrayModal = [];
         let useCardView = false;
@@ -567,6 +865,23 @@
             searchProperties(pagegobal, false); // Recargar las propiedades con la nueva vista
         });
         document.addEventListener('DOMContentLoaded', function() {
+
+            document.querySelectorAll('.custom-number-input').forEach(container => {
+                const input = container.querySelector('input[type="number"]');
+                const btnUp = container.querySelector('.btn-up');
+                const btnDown = container.querySelector('.btn-down');
+
+                btnUp.addEventListener('click', () => {
+                    input.stepUp();
+                    input.dispatchEvent(new Event('change'));
+                });
+
+                btnDown.addEventListener('click', () => {
+                    input.stepDown();
+                    input.dispatchEvent(new Event('change'));
+                });
+            });
+
             if (window.innerWidth <= 767) {
                 document.getElementById('toggleViewBtn').checked = true;
                 useCardView = true;
@@ -580,22 +895,23 @@
             const initialMaxPrice = '{{ $maxPrice ?? '' }}';
             const initialTypeIds = JSON.parse('{{ json_encode($typeId) }}' || '[]');
             const searchTerm = new URLSearchParams(window.location.search).get('searchTerm') || '';
+            const finalLocation = initialCity ?? initialParish ?? searchTerm;
 
             // Configuración inicial para el formulario de desktop
-            if (initialState) document.getElementById('state').value = initialState;
-            if (initialCity) document.getElementById('city').value = initialCity;
-            if (initialParish) document.getElementById('sector').value = initialParish;
-            if (searchTerm) document.getElementById('searchTerm').value = searchTerm;
+            //if (initialState) document.getElementById('state').value = initialState;
+            //if (initialCity) document.getElementById('city').value = initialCity;
+            //if (initialParish) document.getElementById('sector').value = initialParish;
+            if (finalLocation) document.getElementById('searchTerm').value = finalLocation || '';
             if(initialMinPrice) document.getElementById('minPrice').value = initialMinPrice;
             if(initialMaxPrice) document.getElementById('maxPrice').value = initialMaxPrice;
             setInitialPropertyType(initialTypeIds, 'propertyType');
             setInitialPropertyStatus(initialStatus, 'propertyStatus');
 
             // Configuración inicial para el formulario modal
-            if (initialState) document.getElementById('stateModal').value = initialState;
-            if (initialCity) document.getElementById('cityModal').value = initialCity;
-            if (initialParish) document.getElementById('sectorModal').value = initialParish;
-            if (searchTerm) document.getElementById('searchTermModal').value = searchTerm;
+            //if (initialState) document.getElementById('stateModal').value = initialState;
+            //if (initialCity) document.getElementById('cityModal').value = initialCity;
+            //if (initialParish) document.getElementById('sectorModal').value = initialParish;
+            if (initialCity || initialParish || searchTerm) document.getElementById('searchTermModal').value = searchTerm;
             if(initialMinPrice) document.getElementById('minPriceModal').value = initialMinPrice;
             if(initialMaxPrice) document.getElementById('maxPriceModal').value = initialMaxPrice;
             setInitialPropertyType(initialTypeIds, 'propertyTypeModal');
@@ -708,6 +1024,10 @@
                 city: document.getElementById(isModal ? 'cityModal' : 'city')?.value || '',
                 state: document.getElementById(isModal ? 'stateModal' : 'state')?.value || '',
                 sector: document.getElementById(isModal ? 'sectorModal' : 'sector')?.value || '',
+                construction_area_min: document.getElementById(isModal ? 'constructionAreaMinModal' : 'constructionAreaMin')?.value || '',
+                construction_area_max: document.getElementById(isModal ? 'constructionAreaMaxModal' : 'constructionAreaMax')?.value || '',
+                land_area_min: document.getElementById(isModal ? 'landAreaMinModal' : 'landAreaMin')?.value || '',
+                land_area_max: document.getElementById(isModal ? 'landAreaMaxModal' : 'landAreaMax')?.value || '',
                 page: page,
                 normalized_status: document.getElementById(isModal ? 'propertyStatusModal' : 'propertyStatus')?.value || ''
             });
@@ -717,25 +1037,31 @@
                 urlSlug += `-en-${statusValue}`;
             }
 
+            console.log("SearchTerm: " + searchParams.get('searchTerm'));
+
             let titleComponents = [typeName.charAt(0).toUpperCase() + typeName.slice(1)];
-            if (searchParams.get('sector')) {
-                urlSlug += `-en-${searchParams.get('sector').toLowerCase().replace(/\s+/g, '-')}`;
-                titleComponents.push(searchParams.get('sector'));
-            }
-            if (searchParams.get('state')) {
-                urlSlug += `-en-${searchParams.get('state').toLowerCase().replace(/\s+/g, '-')}`;
-                titleComponents.push(searchParams.get('state'));
-            }
-            if (searchParams.get('city')) {
-                urlSlug += `-en-${searchParams.get('city').toLowerCase().replace(/\s+/g, '-')}`;
-                titleComponents.push(searchParams.get('city'));
+            // if (searchParams.get('sector')) {
+            //     urlSlug += `-en-${searchParams.get('sector').toLowerCase().replace(/\s+/g, '-')}`;
+            //     titleComponents.push(searchParams.get('sector'));
+            // }
+            // if (searchParams.get('state')) {
+            //     urlSlug += `-en-${searchParams.get('state').toLowerCase().replace(/\s+/g, '-')}`;
+            //     titleComponents.push(searchParams.get('state'));
+            // }
+            // if (searchParams.get('city')) {
+            //     urlSlug += `-en-${searchParams.get('city').toLowerCase().replace(/\s+/g, '-')}`;
+            //     titleComponents.push(searchParams.get('city'));
+            // }
+            if(searchParams.get('searchTerm')){
+                urlSlug += `-en-${searchParams.get('searchTerm').toLowerCase().replace(/\s+/g, '-')}`;
+                titleComponents.push(searchParams.get('searchTerm'))
             }
             
 
             //Se agrego esta validacion para agregar al SLUG la variable que viene por searchTerm
-            if(searchTerm.value != ""){
-                urlSlug += `-en-${searchTerm.value.toLowerCase().replace(/\s+/g, '-')}`;
-            }
+            // if(searchTerm.value != ""){
+            //     urlSlug += `-en-${searchTerm.value.toLowerCase().replace(/\s+/g, '-')}`;
+            // }
 
             if(searchParams.get('min_price')){
                 urlSlug += `-desde-${searchParams.get('min_price')}`;
@@ -919,11 +1245,11 @@
             let aliquotInfo = property.aliquot > 0 ?
                 `<p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Alícuota:</strong> $${property.aliquot}</p>` :
                 '';
-            let phoneNumber = '593987595789'; // Número por defecto para venta
-            let phoneNumberWhatsapp = '593987595789'; //Numero de venta que tiene whatsapp
+            let phoneNumber = '593967867998'; // Número por defecto para venta
+            let phoneNumberWhatsapp = '593967867998'; //Numero de venta que tiene whatsapp
             let transactionType = "venta";
             if (property.listingtypestatus.includes('rent') || property.listingtypestatus.includes('alquilar')) {
-                phoneNumber = '593987595789'; // Cambiar si es renta
+                phoneNumber = '593967867998'; // Cambiar si es renta
                 transactionType = "alquiler";
             }
 
@@ -1086,11 +1412,11 @@
                 `<p class="card-text" style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Alícuota:</strong> $${property.aliquot}</p>` :
                 '';
 
-            let phoneNumber = '593987595789'; // Número por defecto para venta
-            let phoneNumberWhatsapp = '593987595789';
+            let phoneNumber = '593967867998'; // Número por defecto para venta
+            let phoneNumberWhatsapp = '593967867998';
             let transactionType = "venta";
             if (property.listingtypestatus.includes('rent') || property.listingtypestatus.includes('alquilar')) {
-                phoneNumber = '593987595789'; // Cambiar si es renta
+                phoneNumber = '593967867998'; // Cambiar si es renta
                 transactionType = "alquiler";
             }
 
@@ -1221,6 +1547,10 @@
             const garageId = isModal ? 'garageModal' : 'garage';
             const minPriceId = isModal ? 'minPriceModal' : 'minPrice';
             const maxPriceId = isModal ? 'maxPriceModal' : 'maxPrice';
+            const minConstructionAreaId = isModal ? 'constructionAreaMinModal' : 'constructionAreaMin';
+            const maxConstructionAreaId = isModal ? 'constructionAreaMaxModal' : 'constructionAreaMax';
+            const minLandAreaId = isModal ? 'landAreaMinModal' : 'landAreaMin';
+            const maxLandAreaId = isModal ? 'landAreaMaxModal' : 'landAreaMax';
             const cityId = isModal ? 'cityModal' : 'city';
             const stateId = isModal ? 'stateModal' : 'state';
             const sectorId = isModal ? 'sectorModal' : 'sector';
@@ -1228,14 +1558,18 @@
             const propertyStatusId = isModal ? 'propertyStatusModal' : 'propertyStatus';
             // Clear all the fields
             document.getElementById(searchTermId).value = '';
-            document.getElementById(bedroomsId).value = '';
+            //document.getElementById(bedroomsId).value = '';
             document.getElementById(bathroomsId).value = '';
             document.getElementById(garageId).value = '';
             document.getElementById(minPriceId).value = '';
             document.getElementById(maxPriceId).value = '';
+            document.getElementById(minConstructionAreaId).value = '';
+            document.getElementById(maxConstructionAreaId).value = '';
+            document.getElementById(minLandAreaId).value = '';
+            document.getElementById(maxLandAreaId).value = '';
             document.getElementById(cityId).value = '';
             document.getElementById(stateId).value = '';
-            document.getElementById(sectorId).value = '';
+            //document.getElementById(sectorId).value = '';
             document.getElementById(propertyTypeId).selectedIndex = 0;
             document.getElementById(propertyStatusId).selectedIndex = 0;
             // Reset the typeIdsArray based on whether it is modal or desktop

@@ -102,6 +102,9 @@ class PropertyController extends Controller
 
         // Nota: $type lo pasamos como venía en la URL (p. ej. "casas") para tu vista/JS.
         // Si prefieres mostrarlo normalizado, puedes usar $typeKey.
+
+        //dd($type, $typeId, $status, $state, $city, $parish, $minPrice, $maxPrice);
+
         return view('propertieslist', compact(
             'type', 'typeId', 'status', 'state', 'city', 'parish', 'minPrice', 'maxPrice'
         ));
@@ -117,6 +120,10 @@ class PropertyController extends Controller
         $garage = $request->input('garage');
         $minPrice = $request->input('min_price');
         $maxPrice = $request->input('max_price');
+        $constructionAreaMin = $request->filled('construction_area_min') ? (int) $request->input('construction_area_min') : null;
+        $constructionAreaMax = $request->filled('construction_area_max') ? (int) $request->input('construction_area_max') : null;
+        $landAreaMin = $request->filled('land_area_min') ? (int) $request->input('land_area_min') : null;
+        $landAreaMax = $request->filled('land_area_max') ? (int) $request->input('land_area_max') : null;
         $typeIds = $request->input('type_ids', []);
         $city = $request->input('city');
         $state = $request->input('state');
@@ -183,15 +190,15 @@ class PropertyController extends Controller
         }
 
         if ($bedrooms) {
-            $properties_filter->where('bedroom', '>=', $bedrooms);
+            $properties_filter->where('bedroom', '=', $bedrooms);
         }
 
         if ($bathrooms) {
-            $properties_filter->where('bathroom', '>=', $bathrooms);
+            $properties_filter->where('bathroom', '=', $bathrooms);
         }
 
         if ($garage) {
-            $properties_filter->where('garage', '>=', $garage);
+            $properties_filter->where('garage', '=', $garage);
         }
 
         if ($city) {
@@ -234,6 +241,20 @@ class PropertyController extends Controller
 
             // Aplicar el ordenamiento por precio solo si se está filtrando por precio
             $properties_filter->orderBy('property_price', 'asc');
+        }
+
+        if (!is_null($constructionAreaMin)) {
+            $properties_filter->where('construction_area', '>=', $constructionAreaMin);
+        }
+        if (!is_null($constructionAreaMax)) {
+            $properties_filter->where('construction_area', '<=', $constructionAreaMax);
+        }
+        
+        if (!is_null($landAreaMin)) {
+            $properties_filter->where('land_area', '>=', $landAreaMin);
+        }
+        if (!is_null($landAreaMax)) {
+            $properties_filter->where('land_area', '<=', $landAreaMax);
         }
 
 
