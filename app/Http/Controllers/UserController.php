@@ -20,9 +20,16 @@ class UserController extends Controller
                
     }   
        
-    public function index(Request $request){ 
-        $users = User::where('status',1)->orderBy('email','asc')->get();
-        return view('admin.users.index',compact('users'));
+    public function index(Request $request)
+    {
+        $users = User::query()
+            ->where('status', 1) // ✅ Solo activos
+            ->search($request->get('q')) // usa el scope
+            ->orderBy('email', 'asc')
+            ->paginate(10)
+            ->appends($request->only('q')); // mantiene el parámetro en la paginación
+
+        return view('admin.users.index', compact('users'));
     }
        
     public function edit(User $user){ 
