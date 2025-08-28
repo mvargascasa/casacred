@@ -61,7 +61,7 @@
             <!-- Imagen -->
             <div class="flex flex-col items-center justify-center">
                 @if ($user->profile_photo_path != null)
-                    <img class="w-32 h-32 object-cover rounded-full shadow-md" 
+                    <img class="w-72 h-72 object-contain rounded-full shadow-md bg-gray-100" 
                          src="{{asset('uploads/profiles/'.$user->profile_photo_path)}}" 
                          alt="Imagen de perfil">
                 @else
