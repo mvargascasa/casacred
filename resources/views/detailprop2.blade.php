@@ -482,6 +482,9 @@
         font-size: 12px;
         padding: 4px 10px;
     }
+    .container-price-and-code{
+        display: inline !important;
+    }
 }
 
 .image-counter {
@@ -765,7 +768,7 @@
                             @endif
                         </span>
                     </div>
-                    <div>
+                    <div class="code-listing">
                         <span>COD: {{ $listing->product_code }}</span>
                     </div>
                 </div>
