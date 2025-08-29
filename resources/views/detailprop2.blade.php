@@ -773,7 +773,7 @@
                 <!-- Íconos de características -->
                 <div class="d-flex justify-content-between flex-wrap mt-4 feature-icons">
                     @if ($listing->bedroom > 0)
-                        <div>
+                        <div class="parent">
                             <div class="feature-box">
                                 <img src="{{ asset('img/dormitorios.png') }}" alt="Habitaciones">
                             </div>
@@ -781,7 +781,7 @@
                         </div>
                     @endif
                     @if ($listing->bathroom > 0)
-                        <div>
+                        <div class="parent">
                             <div class="feature-box">
                                 <img src="{{ asset('img/banio.png') }}" alt="Baños">
                             </div>
@@ -789,7 +789,7 @@
                         </div>
                     @endif
                     @if ($listing->garage > 0)
-                        <div>
+                        <div class="parent">
                             <div class="feature-box">
                                 <img src="{{ asset('img/estacionamiento.png') }}" alt="Garajes">
                             </div>
@@ -797,7 +797,7 @@
                         </div>
                     @endif
                     @if(isset($listing->land_area) && $listing->land_area != 0)
-                        <div>
+                        <div class="parent">
                             <div class="feature-box">
                                 <img src="{{ asset('img/area.png') }}" alt="Terreno">
                             </div>
