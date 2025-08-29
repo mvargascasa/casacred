@@ -800,7 +800,7 @@
                         </div>
                     @endif
                     @if(isset($listing->construction_area) && $listing->construction_area != 0)
-                        <div>
+                        <div class="text-center">
                             <div class="feature-box">
                                 <img src="{{ asset('img/area.png') }}" alt="Casa">
                             </div>
