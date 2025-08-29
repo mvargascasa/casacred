@@ -330,7 +330,7 @@
                 font-size: 17px;
             }
             .custom-container-property{
-                padding-top: 120px !important;
+                padding: 120px 2% 0 2% !important;
             }
         }
 
@@ -359,8 +359,231 @@
             padding: 10px 20px;
         }
         .custom-container-property{
-            padding-top: 150px;
+            padding: 150px 8% 0 8%;
         }
+
+        /* Imagen principal */
+.main-carousel-img {
+    border-radius: 15px;
+    object-fit: cover;
+    height: 700px;
+    width: 100%;
+}
+
+/* Miniaturas */
+.thumb-wrapper {
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: pointer;
+    flex: 1;
+    max-height: 160px;
+}
+
+.thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.thumb-img:hover {
+    opacity: 1;
+    transform: scale(1.1); /* Efecto dentro del contenedor */
+}
+
+/* Botón ver todas */
+.btn-overlay {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(20,39,67,0.85);
+    color: white;
+    border-radius: 20px;
+    padding: 6px 15px;
+    font-size: 14px;
+}
+
+.btn-overlay:hover{
+    background-color: #142743;
+    font-weight: 600;
+}
+
+/* Controles personalizados (flechas) */
+.custom-control {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    background-color: #142743;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.custom-control:hover {
+    opacity: 1;
+}
+
+.custom-icon {
+    color: #ffffff;
+    background-color: #142743; /* para que las flechas sean blancas */
+}
+
+/* Modal estilo */
+.modal-gallery {
+    background: transparent; /* más amigable, tipo dark */
+    border-radius: 10px;
+    border: none;
+}
+
+.modal-img {
+    border-radius: 10px;
+    max-height: 80vh;
+    object-fit: contain;
+    margin: auto;
+    display: block;
+}
+
+.close-modal-btn {
+    color: #000000;
+    font-size: 2rem;
+    opacity: 0.8;
+}
+
+.close-modal-btn:hover {
+    opacity: 1;
+}
+
+/* Responsividad */
+@media (max-width: 992px) {
+    .main-carousel-img {
+        height: 350px;
+    }
+
+    .thumb-wrapper {
+        max-height: 90px;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-carousel-img {
+        height: 250px;
+    }
+
+    .thumb-wrapper {
+        max-height: 70px;
+    }
+
+    .btn-overlay {
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+}
+
+.image-counter {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: 600;
+    z-index: 1055; /* por encima del modal y las imágenes */
+    pointer-events: none; /* no bloquea clics */
+}
+
+/* Título */
+.property-title {
+    font-family: 'Sharp Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+/* Dirección */
+.property-location {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Precio */
+.price-container {
+    background-color: #142743;
+    color: #fff;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    display: inline-block;
+    margin: 15px 0;
+}
+
+.container-price-and-code{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-price-and-code span{
+    background-color: #142743;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+/* Sección de características */
+.feature-icons {
+    gap: 20px;
+}
+.feature-box {
+    background-color: #f3f4f6;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+.feature-box img {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 5px;
+}
+.feature-box p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+.feature-box:hover {
+    transform: scale(1.05);
+}
+
+/* Descripción */
+.section-title {
+    font-family: 'Sharp Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+.property-description {
+    font-size: 15px;
+    color: #444;
+    text-align: justify;
+    line-height: 1.6;
+}
+
+
     </style>
 @endsection
 
@@ -385,8 +608,87 @@
         ->first();
 @endphp --}}
 @section('content')
-    <div class="container custom-container-property">
+    <div class="custom-container-property">
+
         <div class="row">
+            <!-- Carrusel principal -->
+            <div class="col-lg-9 col-md-12 position-relative mb-3">
+                <div id="carouselImages" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        @foreach (explode('|', $listing->images) as $image)
+                            <div class="carousel-item @if ($loop->first) active @endif">
+                                <img src="{{ $filexists ? url('uploads/listing/thumb/', $image) : url('uploads/listing/', $image) }}"
+                                     class="d-block w-100 main-carousel-img">
+                            </div>
+                        @endforeach
+                    </div>
+        
+                    <!-- Controles personalizados -->
+                    <a class="carousel-control-prev custom-control" href="#carouselImages" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon custom-icon" aria-hidden="true"></span>
+                    </a>
+                    <a class="carousel-control-next custom-control" href="#carouselImages" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon custom-icon" aria-hidden="true"></span>
+                    </a>
+                </div>
+        
+                <!-- Botón Ver todas -->
+                <button class="btn-overlay" data-toggle="modal" data-target="#allPhotosModal">
+                    Ver todas las fotos
+                </button>
+            </div>
+        
+            <!-- Miniaturas -->
+            <div class="col-lg-3 col-md-12 d-flex flex-lg-column flex-row justify-content-between">
+                @foreach (explode('|', $listing->images) as $image)
+                    @if ($loop->index < 4)
+                        <div class="thumb-wrapper mb-3 mr-2">
+                            <img src="{{ $filexists ? url('uploads/listing/thumb/', $image) : url('uploads/listing/', $image) }}"
+                                 class="img-fluid thumb-img"
+                                 data-target="#carouselImages"
+                                 data-slide-to="{{ $loop->index }}">
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+        
+        <!-- Modal para todas las fotos -->
+        <div class="modal fade" id="allPhotosModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-xl" role="document">
+              <div class="modal-content modal-gallery">
+                <div class="modal-header border-0">
+                  <button type="button" class="close close-modal-btn" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body position-relative">
+                    <!-- Contador -->
+                    <div id="imageCounter" class="image-counter">1 / {{ count(explode('|', $listing->images)) }}</div>
+                
+                    <div id="modalCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            @foreach (explode('|', $listing->images) as $image)
+                              <div class="carousel-item @if ($loop->first) active @endif">
+                                <img src="{{ $filexists ? url('uploads/listing/', $image) : url('uploads/listing/', $image) }}"
+                                     class="d-block w-100 modal-img">
+                              </div>
+                            @endforeach
+                        </div>
+                
+                        <!-- Controles -->
+                        <a class="carousel-control-prev custom-control" href="#modalCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon custom-icon"></span>
+                        </a>
+                        <a class="carousel-control-next custom-control" href="#modalCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon custom-icon"></span>
+                        </a>
+                    </div>
+                </div>                
+              </div>
+            </div>
+        </div>
+        
+
+        {{-- <div class="row">
             <div class="col-12 position-relative">
                 <div id="carouselImages" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
@@ -410,9 +712,9 @@
                     style="background-color: #242B40; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom-left-radius: 10px; right: 12px; top: 0; z-index: 2;">COD:
                     {{ $listing->product_code }}</span>
             </div>
-        </div>
+        </div> --}}
 
-        <div class="row mt-4 justify-content-center">
+        {{-- <div class="row mt-4 justify-content-center">
             <div class="col-12">
                 <div class="d-flex justify-content-center position-relative">
                     <button id="scrollLeft" class="scroll-button left"><i style="text-color:#242B40"
@@ -427,16 +729,88 @@
                     <button id="scrollRight" class="scroll-button right"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
     
     <div class="custom-container mt-5">
         <div class="row">
             <div class="col-md-7">
-                <h1 class="" style="font-family: 'Sharp Grotesk'; font-weight: 500;" id="listing-title">
-                    {{ Str::title($listing->listing_title) }}</h1>
+                
+                <!-- Título -->
+                <h1 class="property-title">
+                    {{ Str::title($listing->listing_title) }}
                 </h1>
-                <div class="d-flex align-items-center px-2 py-1 rounded" style="gap: 10px; background-color: #242B40; color: #fff; width: fit-content">
+
+                <!-- Dirección -->
+                <div class="d-flex align-items-center mb-3">
+                    <i class="fa-solid fa-location-dot me-2 text-muted"></i>
+                    <span class="property-location">
+                        {{ $listing->sector }}, {{ $listing->city }}, {{ $listing->state }}
+                    </span>
+                </div>
+
+                <!-- Precio -->
+                <div class="container-price-and-code">
+                    <div class="price-container">
+                        <span>
+                            @if($listing->customized_price != null)
+                                Precio: {{ $listing->customized_price }}
+                            @else
+                                Precio: ${{ number_format($listing->property_price, 0, ',', '.') }}
+                            @endif
+                        </span>
+                    </div>
+                    <div>
+                        <span>COD: {{ $listing->product_code }}</span>
+                    </div>
+                </div>
+
+                <!-- Íconos de características -->
+                <div class="d-flex justify-content-between flex-wrap mt-4 feature-icons">
+                    @if ($listing->bedroom > 0)
+                        <div class="feature-box">
+                            <img src="{{ asset('img/dormitorios.png') }}" alt="Habitaciones">
+                            <p>{{ $listing->bedroom }} Habitaciones</p>
+                        </div>
+                    @endif
+                    @if ($listing->bathroom > 0)
+                        <div class="feature-box">
+                            <img src="{{ asset('img/banio.png') }}" alt="Baños">
+                            <p>{{ $listing->bathroom }} {{ $listing->bathroom > 1 ? 'Baños' : 'Baño' }}</p>
+                        </div>
+                    @endif
+                    @if ($listing->garage > 0)
+                        <div class="feature-box">
+                            <img src="{{ asset('img/estacionamiento.png') }}" alt="Garajes">
+                            <p>{{ $listing->garage }} {{ $listing->garage > 1 ? 'Garajes' : 'Garaje' }}</p>
+                        </div>
+                    @endif
+                    @if(isset($listing->land_area) && $listing->land_area != 0)
+                        <div>
+                            <div class="feature-box">
+                                <img src="{{ asset('img/area.png') }}" alt="Terreno">
+                            </div>
+                            <p class="mt-2">{{ $listing->land_area }} m² Terreno</p>
+                        </div>
+                    @endif
+                    @if(isset($listing->construction_area) && $listing->construction_area != 0)
+                        <div class="feature-box">
+                            <img src="{{ asset('img/area.png') }}" alt="Casa">
+                            <p>{{ $listing->construction_area }} m² Casa</p>
+                        </div>
+                    @endif
+                </div>
+
+                <!-- Descripción -->
+                <div class="mt-5">
+                    <h2 class="section-title">Acerca de esta propiedad</h2>
+                    <p class="property-description">
+                        {{ $listing->listing_description }}
+                    </p>
+                </div>
+
+
+                {{-- <div class="d-flex align-items-center px-2 py-1 rounded" style="gap: 10px; background-color: #242B40; color: #fff; width: fit-content">
                     <div>
                         <span class="h3" style="font-weight: 100">
                             @if($listing->customized_price != null)
@@ -452,9 +826,9 @@
                             <span class="text-center">Alicuota <br> ${{ number_format($listing->aliquot)}}</span>
                         </div>
                     @endif
-                </div>
+                </div> --}}
 
-                <div class="d-flex align-items-center mt-3">
+                {{-- <div class="d-flex align-items-center mt-3">
                     <i class="fa-solid fa-location-dot fs-5 me-2"></i>
                     <p class="mb-0 ml-2 ms-2">{{ $listing->sector }}, {{ $listing->city }}, {{ $listing->state }}</p>
                     <span class="ms-2 ml-2 badge"
@@ -477,7 +851,7 @@
                         @endswitch
                     </span>
                     
-                </div>
+                </div> --}}
 
                 @if($listing->is_dual_operation)
                     <div class="row mt-3 ml-1">
@@ -494,27 +868,27 @@
 
                 <div class="d-flex justify-content-around flex-wrap mt-4">
 
-                    @if ($listing->bedroom > 0)
+                    {{-- @if ($listing->bedroom > 0)
                         <div class="d-flex align-items-center justify-content-center flex-column text-center p-2">
                             <img src="{{ asset('img/dormitorios.png') }}" alt="Habitaciones" width="50px" height="50px">
                             <p class="pt-2 fw-bold">{{ $listing->bedroom }} Hab.</p>
                         </div>
-                    @endif
-                    @if ($listing->bathroom > 0)
+                    @endif --}}
+                    {{-- @if ($listing->bathroom > 0)
                         <div class="d-flex align-items-center justify-content-center flex-column text-center p-2">
                             <img src="{{ asset('img/banio.png') }}" alt="Baños" width="50px" height="50px">
                             <p class="pt-2 fw-bold">{{ $listing->bathroom }}
                                 {{ $listing->bathroom > 1 ? 'Baños' : 'Baño' }}</p>
                         </div>
-                    @endif
-                    @if ($listing->garage > 0)
+                    @endif --}}
+                    {{-- @if ($listing->garage > 0)
                         <div class="d-flex align-items-center justify-content-center flex-column text-center p-2">
                             <img src="{{ asset('img/estacionamiento.png') }}" alt="Garaje" width="50px" height="50px">
                             <p class="pt-2 fw-bold">{{ $listing->garage }}
                                 {{ $listing->garage > 1 ? 'Garajes' : 'Garaje' }}</p>
                         </div>
-                    @endif
-                    @if (
+                    @endif --}}
+                    {{-- @if (
                         (isset($listing->construction_area) && !empty($listing->construction_area)) ||
                             (isset($listing->land_area) && !empty($listing->land_area)))
                         <div class="d-flex align-items-center justify-content-center flex-column text-center p-2">
@@ -526,16 +900,14 @@
                             </p>
                         @elseif (isset($listing->land_area) && !empty($listing->land_area))
                             {{ $listing->land_area }} m<sup>2</sup></p>
-                    @endif
-                    </p>
-                </div>
-                @endif
+                    @endif --}}
+                
             </div>
 
-            <h2 style="font-family: 'Sharp Grotesk', sans-serif;">Acerca de esta propiedad</h2>
+            {{-- <h2 style="font-family: 'Sharp Grotesk', sans-serif;">Acerca de esta propiedad</h2>
 
-            <p style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Sector:</strong> {{ $listing->sector }}</p>
-            <p style="font-family: 'Sharp Grotesk', sans-serif; text-align: justify;" id="description">
+            <p style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Sector:</strong> {{ $listing->sector }}</p> --}}
+            {{-- <p style="font-family: 'Sharp Grotesk', sans-serif; text-align: justify;" id="description">
                 <strong>Descripción:</strong>
                 <span id="short-desc">{{ Str::limit($listing->listing_description, 200, '...') }}</span>
                 <span id="full-desc" style="display: none;">{{ $listing->listing_description }}</span>
@@ -543,15 +915,15 @@
                     <a href="#" onclick="toggleDescription(); return false;" id="desc-toggle"
                         style="color: gray; text-decoration: underline; cursor: pointer;">Ver más</a>
                 @endif
-            </p>
-            @if (isset($listing->land_area) && $listing->land_area != 0)
+            </p> --}}
+            {{-- @if (isset($listing->land_area) && $listing->land_area != 0)
                 <p style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Metros de terreno:</strong>
                     {{ $listing->land_area }} m<sup>2</sup></p>
             @endif
             @if (isset($listing->construction_area) && $listing->construction_area != 0)
                 <p style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Metros de construcción:</strong>
                     {{ $listing->construction_area }} m<sup>2</sup></p>
-            @endif
+            @endif --}}
 
             @isset($units)
                 <div class="mb-4">
@@ -1048,8 +1420,15 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // let title = document.getElementById('listing-title').textContent;
-            // document.getElementById('listing-title').textContent = capitalizeSentences(title);
+            const modalCarousel = document.getElementById("modalCarousel");
+            const counter = document.getElementById("imageCounter");
+            const totalSlides = modalCarousel.querySelectorAll(".carousel-item").length;
+
+            modalCarousel.addEventListener("slid.bs.carousel", function (e) {
+                const index = Array.from(modalCarousel.querySelectorAll(".carousel-item"))
+                                .indexOf(e.relatedTarget) + 1;
+                counter.textContent = `${index} / ${totalSlides}`;
+            });
         });
     </script>
     <script>
