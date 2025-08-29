@@ -582,7 +582,12 @@
     text-align: justify;
     line-height: 1.6;
 }
-
+.parent {
+    display: flex;
+    flex-direction: column; /* para que la imagen quede arriba y el texto abajo */
+    align-items: center; /* centra horizontalmente */
+    text-align: center; /* opcional para el texto */
+}
 
     </style>
 @endsection
@@ -800,7 +805,7 @@
                         </div>
                     @endif
                     @if(isset($listing->construction_area) && $listing->construction_area != 0)
-                        <div class="text-center">
+                        <div class="parent">
                             <div class="feature-box">
                                 <img src="{{ asset('img/area.png') }}" alt="Casa">
                             </div>
