@@ -1407,7 +1407,7 @@
                                 </a>
                             </div>
                             <div class="w-100 d-flex align-items-center ml-2">
-                                <a onclick="gtag_report_conversion_whatsapp('https://wa.me/${phoneNumberWhatsapp}?text=${whatsappMessage}')" href="https://wa.me/${phoneNumberWhatsapp}?text=${whatsappMessage}" class="btn btn-outline-success rounded-pill w-100 d-flex align-items-center">
+                                <a onclick="gtag_report_conversion('https://wa.me/${phoneNumberWhatsapp}?text=${whatsappMessage}')" href="https://wa.me/${phoneNumberWhatsapp}?text=${whatsappMessage}" class="btn btn-outline-success rounded-pill w-100 d-flex align-items-center">
                                     <i class="fab fa-whatsapp me-2 mr-1"></i> WhatsApp
                                 </a>
                             </div>

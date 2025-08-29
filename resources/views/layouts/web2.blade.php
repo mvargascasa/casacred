@@ -98,7 +98,8 @@ if(strpos($actual_link, 'localhost') === false){
 
     <!-- Event snippet for Botón WhatsApp Grupo Housing conversion page In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. --> 
     <script> 
-        function gtag_report_conversion_whatsapp(url) { 
+        function gtag_report_conversion(url) { 
+            console.log('conversion click');
             var callback = function () { 
                 if (typeof(url) != 'undefined') { 
                     window.location = url; 
@@ -772,7 +773,7 @@ if(strpos($actual_link, 'localhost') === false){
                 <i class="fas fa-phone-alt p-2 text-light d-flex justify-content-center align-items-center"></i>
             </div>
         </div>
-        <a onclick="gtag_report_conversion_whatsapp('https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en una propiedad')" href="https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en una propiedad" target="_blank" class="whatsapp-float">
+        <a onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en una propiedad')" href="https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en una propiedad" target="_blank" class="whatsapp-float">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
