@@ -75,6 +75,18 @@ if(strpos($actual_link, 'localhost') === false){
             gtag('js', new Date());
         
             gtag('config', 'G-6VW469F5K3');
+
+            function gtag_report_conversion(url) { 
+                console.log('conversion click');
+                var callback = function () { 
+                    if (typeof(url) != 'undefined') { 
+                        window.location = url; 
+                        } 
+                }; 
+                gtag('event', 'conversion', { 'send_to': 'AW-11250334200/PlHOCOfbo7IZEPjzyfQp', 'event_callback': callback }); 
+                return false; 
+            } 
+
         }, 3500);
     </script>
 
@@ -111,16 +123,7 @@ if(strpos($actual_link, 'localhost') === false){
 
     <!-- Event snippet for Botón WhatsApp Grupo Housing conversion page In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. --> 
     <script> 
-        function gtag_report_conversion(url) { 
-            console.log('conversion click');
-            var callback = function () { 
-                if (typeof(url) != 'undefined') { 
-                    window.location = url; 
-                    } 
-            }; 
-            gtag('event', 'conversion', { 'send_to': 'AW-11250334200/PlHOCOfbo7IZEPjzyfQp', 'event_callback': callback }); 
-            return false; 
-        } 
+        
     </script>
 
 
