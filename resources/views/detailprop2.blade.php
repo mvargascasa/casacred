@@ -1,4 +1,4 @@
-@extends('layouts.web')
+@extends('layouts.web2')
 @section('header')
     <title>{{ Str::ucfirst(Str::lower($listing->listing_title)) }}</title>
     @php

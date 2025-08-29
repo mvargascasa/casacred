@@ -464,6 +464,9 @@ if(strpos($actual_link, 'localhost') === false){
         text-decoration: none; /* Sin subrayado */
         z-index: 8000000; /* Asegura que esté encima del video */
     }
+    .dropdown-toggle::after {
+        display: none !important;
+    }
 
     </style>
 
@@ -554,10 +557,10 @@ if(strpos($actual_link, 'localhost') === false){
                             </a>
                         </div>
                     @else
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button"
+                        <div class="nav-item dropdown ml-1">
+                            <a class="nav-link dropdown-toggle text-white border rounded-pill" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-expanded="false">
-                                {{ Auth::user()->name }}
+                                {{ substr(Auth::user()->name, 0, 1) }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('admin.index') }}">Dashboard</a>
