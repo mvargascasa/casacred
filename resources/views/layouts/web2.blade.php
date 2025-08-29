@@ -558,7 +558,7 @@ if(strpos($actual_link, 'localhost') === false){
                         </div>
                     @else
                         <div class="nav-item dropdown ml-1">
-                            <a class="nav-link dropdown-toggle text-white border rounded-pill" id="navbarDropdown" role="button"
+                            <a class="nav-link dropdown-toggle text-white border rounded-pill px-3" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-expanded="false">
                                 {{ substr(Auth::user()->name, 0, 1) }}
                             </a>
