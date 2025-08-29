@@ -558,7 +558,7 @@
 .feature-box img {
     width: 35px;
     height: 35px;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
 }
 .feature-box p {
     font-size: 14px;
