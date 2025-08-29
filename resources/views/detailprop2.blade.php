@@ -768,20 +768,26 @@
                 <!-- Íconos de características -->
                 <div class="d-flex justify-content-between flex-wrap mt-4 feature-icons">
                     @if ($listing->bedroom > 0)
-                        <div class="feature-box">
-                            <img src="{{ asset('img/dormitorios.png') }}" alt="Habitaciones">
+                        <div>
+                            <div class="feature-box">
+                                <img src="{{ asset('img/dormitorios.png') }}" alt="Habitaciones">
+                            </div>
                             <p>{{ $listing->bedroom }} Habitaciones</p>
                         </div>
                     @endif
                     @if ($listing->bathroom > 0)
-                        <div class="feature-box">
-                            <img src="{{ asset('img/banio.png') }}" alt="Baños">
+                        <div>
+                            <div class="feature-box">
+                                <img src="{{ asset('img/banio.png') }}" alt="Baños">
+                            </div>
                             <p>{{ $listing->bathroom }} {{ $listing->bathroom > 1 ? 'Baños' : 'Baño' }}</p>
                         </div>
                     @endif
                     @if ($listing->garage > 0)
-                        <div class="feature-box">
-                            <img src="{{ asset('img/estacionamiento.png') }}" alt="Garajes">
+                        <div>
+                            <div class="feature-box">
+                                <img src="{{ asset('img/estacionamiento.png') }}" alt="Garajes">
+                            </div>
                             <p>{{ $listing->garage }} {{ $listing->garage > 1 ? 'Garajes' : 'Garaje' }}</p>
                         </div>
                     @endif
@@ -794,8 +800,10 @@
                         </div>
                     @endif
                     @if(isset($listing->construction_area) && $listing->construction_area != 0)
-                        <div class="feature-box">
-                            <img src="{{ asset('img/area.png') }}" alt="Casa">
+                        <div>
+                            <div class="feature-box">
+                                <img src="{{ asset('img/area.png') }}" alt="Casa">
+                            </div>
                             <p>{{ $listing->construction_area }} m² Casa</p>
                         </div>
                     @endif
