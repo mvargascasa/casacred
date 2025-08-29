@@ -34,15 +34,6 @@ class RealEstateTeam extends Component
                 'specialties' => ['Ventas', 'Casas Residenciales']
             ],
             [
-                'id' => 5,
-                'name' => 'Gabriela Astudillo',
-                'title' => 'Gestora',
-                'image' => 'gestora-gabriela-astudillo.webp',
-                'email' => 'ana@inmobiliaria.com',
-                'phone' => '+593 99 345 6789',
-                'specialties' => ['Rentas', 'Propiedades de Lujo'],
-            ],
-            [
                 'id' => 6,
                 'name' => 'Andrea Paez',
                 'title' => 'Gestora',
