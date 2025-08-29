@@ -558,7 +558,7 @@
 .feature-box img {
     width: 35px;
     height: 35px;
-    /* margin-bottom: 5px; */
+    margin-bottom: 5px;
 }
 .feature-box p {
     font-size: 14px;
@@ -801,7 +801,7 @@
                     @endif
                     @if(isset($listing->construction_area) && $listing->construction_area != 0)
                         <div class="text-center">
-                            <div class="feature-box d-inline-block">
+                            <div class="feature-box">
                                 <img src="{{ asset('img/area.png') }}" alt="Casa">
                             </div>
                             <p class="mt-2">{{ $listing->construction_area }} m² Construcción</p>
