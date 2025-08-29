@@ -50,8 +50,7 @@ if(strpos($actual_link, 'localhost') === false){
     <script id="script_analytics" async></script>
     <script>
         setTimeout(() => {
-            document.getElementById('script_analytics').src =
-                'https://www.googletagmanager.com/gtag/js?id=UA-124437679-1';
+            document.getElementById('script_analytics').src = 'https://www.googletagmanager.com/gtag/js?id=UA-124437679-1';
             window.dataLayer = window.dataLayer || [];
 
             function gtag() {
@@ -61,10 +60,24 @@ if(strpos($actual_link, 'localhost') === false){
 
             gtag('config', 'AW-806267889'); //    Adwords
             gtag('config', 'UA-124437679-1'); //  Analytics 
-            gtag('config', 'G-6VW469F5K3');
+        }, 3500);
 
+        
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async id="script_conversions"></script>
+    <script>
+        setTimeout(() => {
+            document.getElementById('script_conversions').src="https://www.googletagmanager.com/gtag/js?id=G-6VW469F5K3";
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+        
+            gtag('config', 'G-6VW469F5K3');
         }, 3500);
     </script>
+
 
     <!-- Facebook Pixel Code -->
     <script>
