@@ -61,6 +61,7 @@ if(strpos($actual_link, 'localhost') === false){
 
             gtag('config', 'AW-806267889'); //    Adwords
             gtag('config', 'UA-124437679-1'); //  Analytics 
+            gtag('config', 'G-6VW469F5K3');
 
         }, 3500);
     </script>
@@ -95,6 +96,18 @@ if(strpos($actual_link, 'localhost') === false){
             src="https://www.facebook.com/tr?id=3081509562095231&ev=PageView&noscript=1" /></noscript>
     <!-- End Facebook Pixel Code -->
 
+    <!-- Event snippet for Botón WhatsApp Grupo Housing conversion page In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. --> 
+    <script> 
+        function gtag_report_conversion_whatsapp(url) { 
+            var callback = function () { 
+                if (typeof(url) != 'undefined') { 
+                    window.location = url; 
+                    } 
+            }; 
+            gtag('event', 'conversion', { 'send_to': 'AW-11250334200/PlHOCOfbo7IZEPjzyfQp', 'event_callback': callback }); 
+            return false; 
+        } 
+    </script>
 
 
     <?php };// fin de if url localhost ?>
@@ -759,7 +772,7 @@ if(strpos($actual_link, 'localhost') === false){
                 <i class="fas fa-phone-alt p-2 text-light d-flex justify-content-center align-items-center"></i>
             </div>
         </div>
-        <a href="https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en una propiedad" target="_blank" class="whatsapp-float">
+        <a onclick="gtag_report_conversion_whatsapp('https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en una propiedad')" href="https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en una propiedad" target="_blank" class="whatsapp-float">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
