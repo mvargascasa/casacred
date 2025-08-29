@@ -772,7 +772,7 @@
                             <div class="feature-box">
                                 <img src="{{ asset('img/dormitorios.png') }}" alt="Habitaciones">
                             </div>
-                            <p>{{ $listing->bedroom }} Habitaciones</p>
+                            <p class="mt-2">{{ $listing->bedroom }} Habitaciones</p>
                         </div>
                     @endif
                     @if ($listing->bathroom > 0)
@@ -780,7 +780,7 @@
                             <div class="feature-box">
                                 <img src="{{ asset('img/banio.png') }}" alt="Baños">
                             </div>
-                            <p>{{ $listing->bathroom }} {{ $listing->bathroom > 1 ? 'Baños' : 'Baño' }}</p>
+                            <p class="mt-2">{{ $listing->bathroom }} {{ $listing->bathroom > 1 ? 'Baños' : 'Baño' }}</p>
                         </div>
                     @endif
                     @if ($listing->garage > 0)
@@ -788,7 +788,7 @@
                             <div class="feature-box">
                                 <img src="{{ asset('img/estacionamiento.png') }}" alt="Garajes">
                             </div>
-                            <p>{{ $listing->garage }} {{ $listing->garage > 1 ? 'Garajes' : 'Garaje' }}</p>
+                            <p class="mt-2">{{ $listing->garage }} {{ $listing->garage > 1 ? 'Garajes' : 'Garaje' }}</p>
                         </div>
                     @endif
                     @if(isset($listing->land_area) && $listing->land_area != 0)
@@ -804,7 +804,7 @@
                             <div class="feature-box">
                                 <img src="{{ asset('img/area.png') }}" alt="Casa">
                             </div>
-                            <p>{{ $listing->construction_area }} m² Casa</p>
+                            <p class="mt-2">{{ $listing->construction_area }} m² Construcción</p>
                         </div>
                     @endif
                 </div>
