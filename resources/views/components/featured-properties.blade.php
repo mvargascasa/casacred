@@ -15,77 +15,81 @@
             @foreach($properties as $property)
                 <div class="property-card">
                     <!-- Property Image -->
-                    <div class="property-image">
-                        <img src="{{ asset('uploads/listing/600/'.strtok($property->images, '|')) }}" alt="{{ $property->listing_title }}">
-                        <div class="property-code"> <span>COD:</span> {{ $property->product_code }}</div>
-                    </div>
-
-                    <!-- Property Content -->
-                    <div class="property-content">
-                        <!-- Title -->
-                        <h3 class="property-title">{{ $property->listing_title }}</h3>
-
-                        <!-- Location -->
-                        <div class="property-location">
-                            <div class="location-icon">
-                                <img width="25px" src="{{ asset('img/ubicacion-icon.webp') }}" alt="Icono de Ubicacion">
-                            </div>
-                            <span>{{ $property->address }}</span>
+                    <a href="/propiedad/{{$property->slug}}">
+                        <div class="property-image">
+                            <img src="{{ asset('uploads/listing/600/'.strtok($property->images, '|')) }}" alt="{{ $property->listing_title }}">
+                            <div class="property-code"> <span>COD:</span> {{ $property->product_code }}</div>
                         </div>
+                    </a>
 
-                        <!-- Property Features -->
-                        <div class="property-features">
-                            @if($property->bedroom > 0)
+                    <a href="/propiedad/{{$property->slug}}">
+                        <!-- Property Content -->
+                        <div class="property-content">
+                            <!-- Title -->
+                            <h3 class="property-title">{{ $property->listing_title }}</h3>
+    
+                            <!-- Location -->
+                            <div class="property-location">
+                                <div class="location-icon">
+                                    <img width="25px" src="{{ asset('img/ubicacion-icon.webp') }}" alt="Icono de Ubicacion">
+                                </div>
+                                <span>{{ $property->address }}</span>
+                            </div>
+    
+                            <!-- Property Features -->
+                            <div class="property-features">
+                                @if($property->bedroom > 0)
+                                    <div class="feature">
+                                        <div class="feature-icon">
+                                            <img width="25px" src="{{ asset('img/habitaciones-icon.webp') }}" alt="Icono de Habitaciones">
+                                        </div>
+                                        <div>{{ $property->bedroom }} Hab.</div>
+                                    </div>
+                                
+                                    <div class="feature-divider"></div>
+                                @endif
+    
+                                @if($property->bathroom > 0)
                                 <div class="feature">
                                     <div class="feature-icon">
-                                        <img width="25px" src="{{ asset('img/habitaciones-icon.webp') }}" alt="Icono de Habitaciones">
+                                        <img width="25px" src="{{ asset('img/baños-icon.webp') }}" alt="Icono de Baños">
                                     </div>
-                                    <div>{{ $property->bedroom }} Hab.</div>
+                                    <span>{{ $property->bathroom }} Baños</span>
                                 </div>
-                            
+    
                                 <div class="feature-divider"></div>
-                            @endif
-
-                            @if($property->bathroom > 0)
-                            <div class="feature">
-                                <div class="feature-icon">
-                                    <img width="25px" src="{{ asset('img/baños-icon.webp') }}" alt="Icono de Baños">
+    
+                                @endif
+    
+                                @if($property->garage > 0)
+                                
+                                <div class="feature">
+                                    <div class="feature-icon">
+                                        <img width="25px" src="{{ asset('img/garage-icon.webp') }}" alt="Icono de Garage">
+                                    </div>
+                                    <span>{{ $property->garage }} Garajes</span>
                                 </div>
-                                <span>{{ $property->bathroom }} Baños</span>
-                            </div>
-
-                            <div class="feature-divider"></div>
-
-                            @endif
-
-                            @if($property->garage > 0)
-                            
-                            <div class="feature">
-                                <div class="feature-icon">
-                                    <img width="25px" src="{{ asset('img/garage-icon.webp') }}" alt="Icono de Garage">
-                                </div>
-                                <span>{{ $property->garage }} Garajes</span>
-                            </div>
-
-                            @endif
-                        </div>
-
-                        <!-- Property Footer -->
-                        <div class="property-footer">
-                            <div class="property-price">
-                                @if($property->property_price > 0)
-                                    $ {{ number_format($property->property_price, 0, ',', '.') }}
-                                @else
-                                    {{ $property->customized_price }}
+    
                                 @endif
                             </div>
-                            <div class="property-action">
-                                <a href="/propiedad/{{$property->slug}}" class="view-property-btn">
-                                    Ver Propiedad
-                                </a>
+    
+                            <!-- Property Footer -->
+                            <div class="property-footer">
+                                <div class="property-price">
+                                    @if($property->property_price > 0)
+                                        $ {{ number_format($property->property_price, 0, ',', '.') }}
+                                    @else
+                                        {{ $property->customized_price }}
+                                    @endif
+                                </div>
+                                <div class="property-action">
+                                    <span class="view-property-btn">
+                                        Ver Propiedad
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
         </div>
