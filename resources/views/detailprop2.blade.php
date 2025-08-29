@@ -329,6 +329,9 @@
             .advisor-card-mobile .advisor-info p{
                 font-size: 17px;
             }
+            .custom-container-property{
+                padding-top: 120px !important;
+            }
         }
 
         .advisor-card{
@@ -355,7 +358,9 @@
             border-radius: 50px;
             padding: 10px 20px;
         }
-
+        .custom-container-property{
+            padding-top: 150px;
+        }
     </style>
 @endsection
 
@@ -380,7 +385,7 @@
         ->first();
 @endphp --}}
 @section('content')
-    <div class="container mt-5">
+    <div class="container custom-container-property">
         <div class="row">
             <div class="col-12 position-relative">
                 <div id="carouselImages" class="carousel slide" data-ride="carousel">
@@ -402,7 +407,7 @@
                     </a>
                 </div>
                 <span class="position-absolute top-0 end-0 p-2 text-white"
-                    style="background-color: #242B40; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom-left-radius: 10px; right: 12px; top: 0; z-index: 1050;">COD:
+                    style="background-color: #242B40; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom-left-radius: 10px; right: 12px; top: 0; z-index: 2;">COD:
                     {{ $listing->product_code }}</span>
             </div>
         </div>
@@ -758,7 +763,7 @@
         </div>
 
         <div class="col-md-5 mb-5">
-            <div class="sticky-top form-contact" style="top: 0;">
+            <div class="sticky-top form-contact" style="top: 120px;">
 
                 <div class="text-center text-white py-3 shadow"
                     style="background-color: #242B40; border-radius: 25px 25px 0 0;">
