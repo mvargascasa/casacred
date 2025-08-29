@@ -752,8 +752,10 @@
                                 <h3>Gestora</h3>
                             @endif
                             <p>{{ $user->name }}</p>
-                            <div class="advisor-code">
-                                <span>Cod: GH-1234</span>
+                            <div class="advisor-code text-center">
+                                <span>
+                                    Cod: {{ $user->code != null ? $user->code : 'GH-1234'}}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -902,8 +904,10 @@
                                     <h3>Gestora</h3>
                                 @endif
                                 <p>{{ $user->name }}</p>
-                                <div class="advisor-code">
-                                    <span>Cod: GH-1234</span>
+                                <div class="advisor-code text-center">
+                                    <span>
+                                        Cod: {{ $user->code != null ? $user->code : 'GH-1234'}}
+                                    </span>
                                 </div>
                             </div>
                         </div>
