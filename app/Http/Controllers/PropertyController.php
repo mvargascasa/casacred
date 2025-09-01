@@ -15,6 +15,21 @@ use NunoMaduro\Collision\Adapters\Phpunit\State;
 class PropertyController extends Controller
 {
 
+    public function viewPropertyCode($propertyCode)
+    {
+        return view('propertieslist', [
+            'type' => null,
+            'typeId' => null,
+            'status' => null,
+            'state' => null,
+            'city' => null,
+            'parish' => null,
+            'minPrice' => null,
+            'maxPrice' => null,
+            'propertyCode' => $propertyCode
+        ]);
+    }
+
     public function view($type, $status = null, $details = null)
     {
         // --- Mapeo de tipos a IDs ---
@@ -131,7 +146,59 @@ class PropertyController extends Controller
         $page = $request->input('page', 1);
         $perPage = $request->input('per_page', 20);
 
+        // 🔥 Verificar si searchTerm contiene un código de propiedad (buscar directamente por product_code)
+        if (!empty($searchTerm)) {
+            // Buscar si existe una propiedad con el código exacto en searchTerm
+            $propertyByProductCode = DB::table('listings')
+                ->join('listing_types', 'listings.listingtype', '=', 'listing_types.id')
+                ->select(
+                    'listings.id as id',
+                    'listings.product_code',
+                    'listings.listing_title',
+                    'listings.listing_description',
+                    'listings.listingtype',
+                    'listings.listingtypestatus',
+                    'listings.bedroom',
+                    'listings.bathroom',
+                    'listings.garage',
+                    'listings.construction_area',
+                    'listings.land_area',
+                    'listings.property_price',
+                    'listings.customized_price',
+                    'listings.state',
+                    'listings.city',
+                    'listings.sector',
+                    'listings.images',
+                    'listings.slug',
+                    'listings.available',
+                    'listings.status',
+                    'listing_types.type_title as type_name',
+                    'listings.aliquot'
+                )
+                ->where('listings.available', 1)
+                ->where('listings.status', 1)
+                ->where('listings.product_code', $searchTerm) // busca código exacto
+                ->first();
 
+            // Si encontró una propiedad por código exacto, retornarla directamente
+            if ($propertyByProductCode) {
+                return response()->json([
+                    'properties' => [$propertyByProductCode], // Retornar como array con un solo elemento
+                    'pagination' => [
+                        'current_page' => 1,
+                        'from' => 1,
+                        'to' => 1,
+                        'per_page' => 1,
+                        'total' => 1,
+                        'last_page' => 1,
+                        'first_page_url' => $request->url(),
+                        'last_page_url' => $request->url(),
+                        'next_page_url' => null,
+                        'prev_page_url' => null,
+                    ]
+                ]);
+            }
+        }
 
         $searchWords = explode(' ', $searchTerm);
 

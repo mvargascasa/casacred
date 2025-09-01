@@ -27,6 +27,11 @@ Route::post('/search-properties', [WebController::class, 'searchHome'])->name('s
 
 Route::get('/nosotros', [AboutController::class, 'aboutPage'])->name('about.page');
 
+// Nueva ruta para códigos de propiedad (debe ir ANTES de la ruta existente)
+Route::get('/{propertyCode}', [PropertyController::class, 'viewPropertyCode'])
+    ->name('view.property.code')
+    ->where('propertyCode', '[0-9]{3,10}');
+
 Route::get('/{type}-en-{status}{details?}', [PropertyController::class, 'view'])
     ->name('view.property')
     ->where('type', '[a-zA-Z-]+')
