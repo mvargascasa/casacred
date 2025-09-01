@@ -1172,9 +1172,11 @@
 
             // Agregar manualmente los `type_ids[]` asegurando el formato correcto
             let queryString = searchParams.toString();
-            currentTypeIds.forEach(id => {
-                queryString += `&type_ids[]=${encodeURIComponent(id)}`;
-            });
+            if (Array.isArray(currentTypeIds) && currentTypeIds.length > 0) {
+                currentTypeIds.forEach(id => {
+                    queryString += `&type_ids[]=${encodeURIComponent(id)}`;
+                });
+            }
 
             let canonical = document.querySelector("link[rel='canonical']");
 
@@ -1739,8 +1741,7 @@ function updateDynamicTitle(total, searchParams, isModal, isPropertyCode = false
             //searchProperties(1, false);
         });
 
-        function generateDynamicContent(property_type, operation, location) 
-        {
+        function generateDynamicContent(property_type, operation, location) {
             let content = '';
             let qaPairs = [];
 
@@ -1749,19 +1750,35 @@ function updateDynamicTitle(total, searchParams, isModal, isPropertyCode = false
                 let operationDisplay = (operation === 'venta' || operation === 'renta') ? operation : 'general';
                 let locationDisplay = location ? location.replace(/[-_]/g, ' ') : 'Ecuador';
 
+                // Variante 1 (tu formato actual): casas en venta en Cuenca
+                let keywordV1 = `${propertyTypeDisplay} en ${operationDisplay} en ${locationDisplay}`;
+                // Variante 2 (nuevo formato): venta de casas en Cuenca
+                let keywordV2 = `${operationDisplay} de ${propertyTypeDisplay} en ${locationDisplay}`;
+
+                // -----------------------------
+                // Bloques originales (se mantienen)
+                // -----------------------------
                 qaPairs.push({
-                    question: `¿Por qué ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'buscar'} ${propertyTypeDisplay} en ${operationDisplay} en ${locationDisplay}?`,
-                    answer: `Encontrar ${propertyTypeDisplay} en ${operationDisplay} en ${locationDisplay} ofrece diversas ventajas. Se presenta como una opción inmobiliaria atractiva debido a su notable crecimiento turístico, lo que impulsa una economía local en expansión y ofrece oportunidades de inversión con potencial de valorización.`
+                    question: `¿Por qué ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'buscar'} ${keywordV1}?`,
+                    answer: `Encontrar ${keywordV1} ofrece diversas ventajas. Se presenta como una opción inmobiliaria atractiva debido a su notable crecimiento turístico, lo que impulsa una economía local en expansión y ofrece oportunidades de inversión con potencial de valorización.`
                 });
 
                 qaPairs.push({
-                    question: `¿Dónde puedo ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'encontrar'} ${propertyTypeDisplay} en ${operationDisplay} en ${locationDisplay}?`,
-                    answer: `Puedes encontrar una amplia variedad de ${propertyTypeDisplay} en ${operationDisplay} en ${locationDisplay} en nuestra inmobiliaria. En Grupo Housing, comprendemos la importancia de esta decisión y nos comprometemos a brindarte un servicio integral y personalizado. Nuestro equipo de profesionales te acompañará en cada paso.`
+                    question: `¿Dónde puedo ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'encontrar'} ${keywordV1}?`,
+                    answer: `Puedes encontrar una amplia variedad de ${keywordV1} en nuestra inmobiliaria. En Grupo Housing, comprendemos la importancia de esta decisión y nos comprometemos a brindarte un servicio integral y personalizado. Nuestro equipo de profesionales te acompañará en cada paso.`
                 });
 
                 qaPairs.push({
-                    question: `¿Cómo puedo ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'buscar'} ${propertyTypeDisplay} en ${operationDisplay} en ${locationDisplay}?`,
-                    answer: `Para ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'buscar'} ${propertyTypeDisplay} en ${operationDisplay} en ${locationDisplay}, puedes definir tu presupuesto y necesidades, explorar opciones en línea mediante nuestro sitio web o contáctarnos directamente en Grupo Housing por teléfono, WhatsApp o redes sociales. Te brindaremos asesoramiento profesional, gestionaremos trámites y te guiaremos en todo el proceso.`
+                    question: `¿Cómo puedo ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'buscar'} ${keywordV1}?`,
+                    answer: `Para ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'buscar'} ${keywordV1}, puedes definir tu presupuesto y necesidades, explorar opciones en línea mediante nuestro sitio web o contáctarnos directamente en Grupo Housing por teléfono, WhatsApp o redes sociales. Te brindaremos asesoramiento profesional, gestionaremos trámites y te guiaremos en todo el proceso.`
+                });
+
+                // -----------------------------
+                // Bloque extra con la variante nueva (venta de casas en Cuenca)
+                // -----------------------------
+                qaPairs.push({
+                    question: `Beneficios de la ${keywordV2}`,
+                    answer: `La ${keywordV2} representa una excelente oportunidad de inversión en el mercado inmobiliario. Gracias al desarrollo constante de ${locationDisplay}, la demanda se mantiene en crecimiento, lo que favorece la valorización de las propiedades y garantiza una decisión inteligente a mediano y largo plazo.`
                 });
             }
 
@@ -1779,6 +1796,7 @@ function updateDynamicTitle(total, searchParams, isModal, isPropertyCode = false
                 containerDynamicContent.innerHTML = content;
             }
         }
+
 
         /**
          * Genera un párrafo descriptivo dinámico basado en los filtros de búsqueda.
