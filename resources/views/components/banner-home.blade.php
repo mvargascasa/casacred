@@ -42,7 +42,7 @@
                     <div class="form-grid">
                         <!-- Ubicación -->
                         <div class="form-group">
-                            <label class="labelsBanner">Ubicación</label>
+                            <label class="labelsBanner">Ubicación o código</label>
                             <input type="text" id="searchtxt" class="inpBanner" placeholder="Sector, Parroquia, Provincia">
                         </div>
 
