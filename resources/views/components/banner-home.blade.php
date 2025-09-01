@@ -373,10 +373,12 @@
 
     .hero-container{
         padding: 0;
+        max-width: 100%;
     }
 
     .hero-title{
         margin-bottom: 30px;
+        text-align: center;
     }
 
     .hero-title .one-title {
@@ -389,6 +391,8 @@
 
     .search-wrapper {
         width: 100vw;
+        max-width: 100%;
+        padding: 0 10px;
     }
 
     .search-form{
