@@ -493,8 +493,14 @@
         display: none; /* Ocultamos las barras divisorias */
     }
 
-    input, select, .dropdown-toggle{
+    input,
+    select,
+    .dropdown-toggle {
         width: auto !important;
+    }
+
+    .custom-input{
+        width: 100% !important;
     }
 
     #minPrice, #maxPrice{
@@ -511,6 +517,10 @@
     .btn-fixed {
         display: block;
     }
+}
+
+.modal.show {
+    z-index: 6000; /* Un valor mayor al de tus botones flotantes */
 }
     </style>
 @endsection
@@ -580,17 +590,6 @@
                         </select>
                     </div>
                     <div class="inline-filters"></div>
-                    {{-- <div class="col-auto">
-                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="locationInput"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Ubicación
-                        </button>
-                        <div class="dropdown-menu p-2" aria-labelledby="locationInput">
-                            <input type="text" id="sector" class="form-control mb-2 form-control-sm" placeholder="Sector">
-                            <input type="text" id="city" class="form-control mb-2 form-control-sm" placeholder="Ciudad">
-                            <input type="text" id="state" class="form-control form-control-sm" placeholder="Provincia">
-                        </div>
-                    </div> --}}
                     <div>
                         <label for="minPrice">Precio</label>
                         <div class="d-flex" style="gap: 10px">
@@ -739,32 +738,39 @@
     <p id="dynamic-description-paragraph" class="container"></p>
 
 
-    <section class="container-fluid text-center">
-        <!-- Botón para abrir modal en dispositivos móviles -->
+    <section class="container-fluid">
         <div class="d-md-none mt-3">
             <button class="btn btn-primary btn-fixed" type="button" data-bs-toggle="modal"
                 data-bs-target="#filtersModal">
                 Abrir Filtros
             </button>
         </div>
-
-        <!-- Modal para los filtros -->
+    
         <div class="modal fade" id="filtersModal" tabindex="-1" aria-labelledby="filtersModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <p class="modal-title h5" id="filtersModalLabel">Filtros de Búsqueda</p>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="searchFormModal" class="row g-3 align-items-end">
+                        <form id="searchFormModal" class="row g-3">
                             <div class="col-12">
-                                <input type="text" id="searchTermModal" class="form-control" placeholder="Buscar...">
+                                <label for="searchTermModal" class="form-label">Ubicación o código</label>
+                                <div style="position: relative; width: 100%;">
+                                    <input type="text" id="searchTermModal" class="custom-input w-100"
+                                        placeholder="Sector, Parroquia, Provincia" autocomplete="off">
+                                    <div id="resultsContainerModal" class="list-group position-absolute w-100 shadow-sm"
+                                        style="z-index: 1000; max-height: 200px; overflow-y: auto; display: none;">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-auto dropdown">
-                                <select class="form-control" id="propertyTypeModal">
-                                    <option value="">Propiedades</option>
+    
+                            <div class="col-12 col-md-6">
+                                <label for="propertyTypeModal" class="form-label">Tipo de Propiedad</label>
+                                <select class="custom-input w-100" id="propertyTypeModal">
+                                    <option value="">Elije tipo de propiedad</option>
                                     <option data-ids="[23,1]" value="1">Casas</option>
                                     <option data-ids="[24,3]" value="2">Departamentos</option>
                                     <option data-ids="[25,5]" value="3">Casas Comerciales</option>
@@ -782,59 +788,123 @@
                                     <option data-ids="[26,10]" value="15">Terrenos</option>
                                 </select>
                             </div>
-                            <div class="col-auto dropdown">
-                                <select class="form-control" id="propertyStatusModal">
+                            <div class="col-12 col-md-6">
+                                <label for="propertyStatusModal" class="form-label">Operación</label>
+                                <select class="custom-input w-100" id="propertyStatusModal">
                                     <option data-ids="general" value="general">Todas</option>
                                     <option data-ids="venta" value="venta">Venta</option>
                                     <option data-ids="renta" value="renta">Renta</option>
                                     <option data-ids="proyectos" value="proyectos">Proyectos</option>
                                 </select>
                             </div>
-                            <div class="col-auto dropdown">
-                                <button class="btn btn-light dropdown-toggle" type="button" id="locationInputModal"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Ubicación
-                                </button>
-                                <div class="dropdown-menu p-2" aria-labelledby="locationInputModal">
-                                    <input type="text" id="sectorModal" class="form-control" placeholder="Sector">
-                                    <input type="text" id="cityModal" class="form-control mb-2" placeholder="Ciudad">
-                                    <input type="text" id="stateModal" class="form-control mb-2"
-                                        placeholder="Provincia">
+                            
+                            <div class="col-12">
+                                <label class="form-label">Precio (USD)</label>
+                                <div class="row g-2">
+                                    <div class="col-6">
+                                        <input type="number" id="minPriceModal" class="custom-input" placeholder="Mínimo">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="number" id="maxPriceModal" class="custom-input" placeholder="Máximo">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-auto dropdown">
-                                <button class="btn btn-light dropdown-toggle" type="button" id="priceInputModal"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Precio
-                                </button>
-                                <div class="dropdown-menu p-2" aria-labelledby="priceInputModal">
-                                    <input type="number" id="minPriceModal" class="form-control mb-2"
-                                        placeholder="Precio mínimo">
-                                    <input type="number" id="maxPriceModal" class="form-control"
-                                        placeholder="Precio máximo">
+    
+                            <div class="col-12 mt-3">
+                                <p class="h6">Más Filtros</p>
+                                <hr class="mt-0">
+                            </div>
+    
+                            <div class="col-12">
+                                <p class="form-label mb-1">Características</p>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gymModal">
+                                            <label class="form-check-label" for="gymModal">Gimnasio</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="wifiModal">
+                                            <label class="form-check-label" for="wifiModal">Internet/Wifi</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="poolModal">
+                                            <label class="form-check-label" for="poolModal">Piscina</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="cisternModal">
+                                            <label class="form-check-label" for="cisternModal">Cisterna</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="terraceModal">
+                                            <label class="form-check-label" for="terraceModal">Terraza</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gardenModal">
+                                            <label class="form-check-label" for="gardenModal">Jardín</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-auto dropdown">
-                                <button class="btn btn-light dropdown-toggle" type="button" id="featuresInputModal"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Características
-                                </button>
-                                <div class="dropdown-menu p-2" aria-labelledby="featuresInputModal">
-                                    <input type="number" id="bedroomsModal" class="form-control mb-2"
-                                        placeholder="Habitaciones">
-                                    <input type="number" id="bathroomsModal" class="form-control mb-2"
-                                        placeholder="Baños">
-                                    <input type="number" id="garageModal" class="form-control" placeholder="Garajes">
+    
+                            <div class="col-12 mt-3">
+                                <p class="form-label mb-1">Número de:</p>
+                                <div class="row g-2">
+                                    <div class="col-6">
+                                        <label for="bedroomsModal" class="form-label">Habitaciones</label>
+                                        <input type="number" min="0" id="bedroomsModal" class="custom-input" value="0">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="bathroomsModal" class="form-label">Baños</label>
+                                        <input type="number" min="0" id="bathroomsModal" class="custom-input" value="0">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="garageModal" class="form-label">Garajes</label>
+                                        <input type="number" min="0" id="garageModal" class="custom-input" value="0">
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="col-auto">
-                                <button type="submit" class="btn btn-primary">Buscar</button>
-                                <button type="button" class="btn btn-secondary"
-                                    onclick="clearSearch(true)">Limpiar</button>
+    
+                            <div class="col-12 mt-3">
+                                <label class="form-label">Área Constucción (m²)</label>
+                                <div class="row g-2">
+                                    <div class="col-6">
+                                        <label for="constructionAreaMinModal" class="form-label">Mínimo</label>
+                                        <input type="number" class="custom-input" placeholder="Mínimo" id="constructionAreaMinModal">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="constructionAreaMaxModal" class="form-label">Máximo</label>
+                                        <input type="number" class="custom-input" placeholder="Máximo" id="constructionAreaMaxModal">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="landAreaMinModal" class="form-label">Terreno Mín.</label>
+                                        <input type="number" class="custom-input" placeholder="Mínimo" id="landAreaMinModal">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="landAreaMaxModal" class="form-label">Terreno Máx.</label>
+                                        <input type="number" class="custom-input" placeholder="Máximo" id="landAreaMaxModal">
+                                    </div>
+                                </div>
                             </div>
-
+    
                         </form>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <div>
+                            <button type="button" class="btn btn-outline-secondary me-2" onclick="clearSearchModal()">Limpiar</button>
+                            <button type="submit" form="searchFormModal" class="btn btn-primary" data-bs-dismiss="modal">Buscar</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -861,7 +931,7 @@
 
 @section('script')
     <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script defer src="{{ asset('js/search-locations.js') }}"></script>
+    <script defer src="{{ asset('js/search-locations.js?v=1') }}"></script>
     <script>
 
         document.querySelectorAll('.dropdown-menu').forEach(function (element) {
@@ -932,7 +1002,20 @@
 
             // Simular el clic en el botón de búsqueda en ambos formularios
             document.querySelector('#searchFormDesktop button[type="submit"]').click();
-            document.querySelector('#searchFormModal button[type="submit"]').click();
+            //document.querySelector('#searchFormModal button[type="submit"]').click();
+            const myModalEl = document.getElementById('searchFormModal');
+            myModalEl.addEventListener('shown.bs.modal', event => {
+                // Ahora el modal y su contenido están en el DOM y visibles
+                // Puedes ejecutar tu código de forma segura aquí
+                const searchButton = document.querySelector('#searchFormModal button[type="submit"]');
+
+                // Verifica que el elemento exista antes de intentar hacer clic
+                if (searchButton) {
+                    searchButton.click();
+                } else {
+                    console.error("No se encontró el botón de búsqueda en el modal.");
+                }
+            });
         });
 
         function setInitialPropertyType(typeIds, propertyTypeId) {
@@ -1781,6 +1864,34 @@ function generateDynamicDescriptionForPropertyCode(propertyCode, exists = true) 
     if (paragraphContainer) {
         paragraphContainer.innerHTML = descriptionText;
     }
+}
+
+function clearSearchModal() {
+    // Limpia el input de texto de búsqueda
+    document.getElementById('searchTermModal').value = '';
+
+    // Restablece los selects a su valor por defecto (la primera opción)
+    document.getElementById('propertyTypeModal').value = '';
+    document.getElementById('propertyStatusModal').value = 'general';
+
+    // Limpia los inputs de precio y áreas
+    document.getElementById('minPriceModal').value = '';
+    document.getElementById('maxPriceModal').value = '';
+    document.getElementById('constructionAreaMinModal').value = '';
+    document.getElementById('constructionAreaMaxModal').value = '';
+    document.getElementById('landAreaMinModal').value = '';
+    document.getElementById('landAreaMaxModal').value = '';
+
+    // Restablece los inputs numéricos de baños, habitaciones y garajes a 0
+    document.getElementById('bedroomsModal').value = 0;
+    document.getElementById('bathroomsModal').value = 0;
+    document.getElementById('garageModal').value = 0;
+
+    // Desmarca todos los checkboxes de características
+    const checkboxes = document.querySelectorAll('#searchFormModal .form-check-input');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
 }
     </script>
 @endsection
