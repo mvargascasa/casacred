@@ -1774,7 +1774,7 @@ function generateDynamicDescriptionForPropertyCode(propertyCode, exists = true) 
     if (exists) {
         descriptionText = `En Grupo Housing, te brindamos acceso directo a la información de la <b>propiedad ${propertyCode}</b>. Nuestro equipo especializado está preparado para proporcionarte todos los detalles sobre esta <b>propiedad código ${propertyCode}</b>, incluyendo características únicas, ubicación estratégica y condiciones especiales. <strong>Contacta ahora</strong> para una asesoría personalizada sobre la <b>propiedad ${propertyCode}</b> y descubre por qué es la opción ideal para ti.`;
     } else {
-        descriptionText = `⚠️ No hemos encontrado la propiedad con el código <b>${propertyCode}</b>. Por favor verifica el código o contáctanos para ayudarte a encontrar la opción ideal para ti.`;
+        descriptionText = `No hemos encontrado la propiedad con el código <b>${propertyCode}</b>. Por favor verifica el código o contáctanos para ayudarte a encontrar la opción ideal para ti.`;
     }
 
     const paragraphContainer = document.getElementById('dynamic-description-paragraph');
