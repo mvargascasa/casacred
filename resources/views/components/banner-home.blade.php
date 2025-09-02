@@ -159,6 +159,23 @@
     width: 100%;
 }
 
+.selBanner{
+    appearance: none; /* Quita la flecha nativa */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='32' viewBox='0 0 24 24' width='32' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 28px; /* tamaño más grande */
+}
+
+.inpBanner:focus, .selBanner:focus{
+    outline: none;
+    box-shadow: none;
+    border-color: inherit;
+}
+
 .inpBanner::placeholder {
     color: rgb(255, 255, 255);
 }
