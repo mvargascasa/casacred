@@ -36,7 +36,7 @@ class SimilarProperties extends Component
             ->where('status', 1)
             ->where('listingtype', $type)
             ->inRandomOrder()
-            ->limit(4)
+            ->limit(3)
             ->get();
     }
 
