@@ -1421,7 +1421,7 @@
                 <a class="btn btn-outline-light rounded-pill w-100" onclick="gtag_report_conversion_whatsapp('https://api.whatsapp.com/send?phone=593967867998&text=Hola%20Grupo%20Housing,%20estoy%20interesado/a%20en%20esta%20propiedad:%20*{{$listing->product_code}}*%0A{{Request::url()}}')" href="https://api.whatsapp.com/send?phone=593967867998&text=Hola%20Grupo%20Housing,%20estoy%20interesado/a%20en%20esta%20propiedad:%20*{{$listing->product_code}}*%0A{{Request::url()}}">WhatsApp</a>
             </div>
             <div class="w-100">
-                <a class="btn btn-outline-light rounded-pill w-100" href="tel:+593967867998">Llamar</a>
+                <a class="btn btn-outline-light rounded-pill w-100" href="tel:+593967867998" onclick="gtag_report_conversion('tel:+593967867998')">Llamar</a>
             </div>
         </div>
     </section>
