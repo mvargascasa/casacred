@@ -57,7 +57,7 @@
     <x-sell-rent-cta></x-sell-rent-cta>
     <x-real-estate-team></x-real-estate-team>
     <x-real-estate-services></x-real-estate-services>
-    <x-contact-section></x-contact-section>
+    <x-contact-section :backgroundColor="'#142743'" :theme="'dark'"></x-contact-section>
     <x-testimonials-section></x-testimonials-section>
     <x-faq-section></x-faq-section>
 

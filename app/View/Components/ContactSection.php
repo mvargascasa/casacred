@@ -15,6 +15,8 @@ class ContactSection extends Component
     public $businessCoordinates;
     public $privacyText;
     public $termsLink;
+    public $backgroundColor;
+    public $theme;
 
     public function __construct(
         $title = 'Contáctanos',
@@ -25,7 +27,9 @@ class ContactSection extends Component
         $businessAddress = 'Remigio Tamariz Crespo, Cuenca 010107',
         $businessCoordinates = '-2.9001285,-79.0058965',
         $privacyText = 'Deseo ser contactado y entiendo como van a ser manipulados mis datos según los',
-        $termsLink = '#'
+        $termsLink = '#',
+        $backgroundColor = "#142743",
+        $theme = 'dark'
     ) {
         $this->title = $title;
         $this->subtitle = $subtitle;
@@ -36,6 +40,8 @@ class ContactSection extends Component
         $this->businessCoordinates = $businessCoordinates;
         $this->privacyText = $privacyText;
         $this->termsLink = $termsLink;
+        $this->backgroundColor = $backgroundColor;
+        $this->theme = $theme;
     }
 
     public function render()

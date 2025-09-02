@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ListingController;
@@ -26,6 +27,8 @@ Route::get('/', [WebController::class, 'home'])->name('web.index');
 Route::post('/search-properties', [WebController::class, 'searchHome'])->name('search.home');
 
 Route::get('/nosotros', [AboutController::class, 'aboutPage'])->name('about.page');
+
+Route::get('/contacto', [ContactController::class, 'contactPage'])->name('contact.page');
 
 // Nueva ruta para códigos de propiedad (debe ir ANTES de la ruta existente)
 Route::get('/{propertyCode}', [PropertyController::class, 'viewPropertyCode'])
