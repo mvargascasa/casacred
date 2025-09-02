@@ -10,99 +10,70 @@
     <div class="overlay"></div>
 
     <div class="hero-container">
-        <div class="hero-content">
-            <!-- Título principal -->
-            <div class="hero-title">
-                <h1>
-                    <span class="one-title">Tu futuro hogar</span>
-                    <br>
-                    <span class="two-title">te está esperando</span>
-                </h1>
-            </div>
+        <!-- Texto principal -->
+        <div class="hero-title">
+            <h1 id="hero-text">
+                <span class="one-title">Tu futuro hogar</span>
+                <br>
+                <span class="two-title">te está esperando</span>
+            </h1>
+        </div>
 
-            <!-- Formulario de búsqueda -->
-            <div class="search-wrapper">
-                <!-- Tabs -->
-                <div class="tabs-container">
-                    
-                    <div class="tabs-container">
-                        <!-- Radio 1: Venta -->
-                        <input type="radio" class="tab-radio" name="category" id="ftop_category_0" value="en-venta" checked>
-                        <label for="ftop_category_0" class="tab">Venta</label>
-                      
-                        <!-- Radio 2: Renta -->
-                        <input type="radio" class="tab-radio" name="category" id="ftop_category_1" value="alquilar">
-                        <label for="ftop_category_1" class="tab">Renta</label>
+        <!-- Formulario de búsqueda -->
+        <div class="search-wrapper">
+            <form class="search-form" id="searchForm">
+                <div class="form-grid">
+                    <!-- Ubicación -->
+                    <div class="form-group">
+                        <input type="text" id="searchtxt" class="inpBanner" placeholder="Sector, Parroquia, Provincia">
                     </div>
 
-                </div>
-
-                <!-- Formulario -->
-                <form class="search-form" id="searchForm">
-                    <div class="form-grid">
-                        <!-- Ubicación -->
-                        <div class="form-group">
-                            <label class="labelsBanner">Ubicación o código</label>
-                            <input type="text" id="searchtxt" class="inpBanner" placeholder="Sector, Parroquia, Provincia">
-                        </div>
-
-                        <!-- Propiedad -->
-                        <div class="form-group">
-                            <label class="labelsBanner">Propiedad</label>
-                            <select id="ftop_ptype" class="selBanner">
-                                <option value="">Elija tipo de propiedad</option>
-                                <option data-ids="[23,1]" value="1">Casas</option>
-                                <option data-ids="[24,3]" value="2">Departamentos</option>
-                                <option data-ids="[25,5]" value="3">Casas Comerciales</option>
-                                <option data-ids="[32,6]" value="4">Locales Comerciales</option>
-                                <option data-ids="[37]" value="5">Edificios</option>
-                                <option data-ids="[39]" value="6">Hoteles</option>
-                                <option data-ids="[41]" value="7">Fabricas</option>
-                                <option data-ids="[42]" value="8">Parqueaderos</option>
-                                <option data-ids="[43]" value="9">Bodegas</option>
-                                <option data-ids="[35,7]" value="10">Oficinas</option>
-                                <option data-ids="[36,8]" value="11">Suites</option>
-                                <option data-ids="[29,9]" value="12">Quintas</option>
-                                <option data-ids="[30,30]" value="13">Haciendas</option>
-                                <option data-ids="[45]" value="14">Naves Industriales</option>
-                                <option data-ids="[26,10]" value="15">Terrenos</option>
-                            </select>
-                        </div>
-
-                        <!-- Precio -->
-                        <div class="form-group">
-                            <label class="labelsBanner">Precio</label>
-                            <div class="price-inputs">
-                                <input type="number" id="min_price" class="inpBanner" placeholder="Mínimo">
-                                <input type="number" id="max_price" class="inpBanner" placeholder="Máximo">
-                            </div>
-                        </div>
-
-                        <!-- Botón buscar -->
-                        <div class="form-group">
-                            <button type="submit" class="search-btn">
-                                <img width="20px" src="{{ asset('img/icono-buscar-boton-filtros-banner.webp') }}" alt="Icono de buscar">
-                                Buscar
-                            </button>
-                        </div>
+                    <!-- Propiedad -->
+                    <div class="form-group">
+                        <select id="ftop_ptype" class="selBanner">
+                            <option value="">Elija tipo de propiedad</option> 
+                            <option data-ids="[23,1]" value="1">Casas</option> 
+                            <option data-ids="[24,3]" value="2">Departamentos</option> 
+                            <option data-ids="[25,5]" value="3">Casas Comerciales</option> 
+                            <option data-ids="[32,6]" value="4">Locales Comerciales</option> <option data-ids="[37]" value="5">Edificios</option> 
+                            <option data-ids="[39]" value="6">Hoteles</option> 
+                            <option data-ids="[41]" value="7">Fabricas</option> 
+                            <option data-ids="[42]" value="8">Parqueaderos</option> 
+                            <option data-ids="[43]" value="9">Bodegas</option> 
+                            <option data-ids="[35,7]" value="10">Oficinas</option> 
+                            <option data-ids="[36,8]" value="11">Suites</option> 
+                            <option data-ids="[29,9]" value="12">Quintas</option> 
+                            <option data-ids="[30,30]" value="13">Haciendas</option> 
+                            <option data-ids="[45]" value="14">Naves Industriales</option> 
+                            <option data-ids="[26,10]" value="15">Terrenos</option>
+                        </select>
                     </div>
-                </form>
 
-                <!-- Botón vender propiedad -->
-                <div class="sell-property">
-                    <a class="sell-btn" href="/servicio/vende-tu-casa">
-                        Vender Propiedad
-                        <img width="30px" src="{{ asset('img/flecha-derecha-boton-vender-propiedad-banner.webp') }}" alt="Icono de flecha apuntando a la derecha">
-                    </a>
+                    <!-- Categoría -->
+                    <div class="form-group">
+                        <select id="ftop_category" class="selBanner">
+                            <option value="venta">Venta</option>
+                            <option value="renta">Renta</option>
+                        </select>
+                    </div>
+
+                    <!-- Botón buscar -->
+                    <div class="form-group">
+                        <button type="submit" class="search-btn">
+                            <img width="20px" src="{{ asset('img/icono-buscar-boton-filtros-banner.webp') }}" alt="Icono de buscar">
+                            Buscar
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
-    <!-- Flecha scroll -->
-    <div class="scroll-arrow" id="scroll-button">
-        <img src="{{ asset('img/flecha-abajo-banner.webp') }}" alt="Icono de flecha apuntando abajo">
+    <!-- Flecha scroll --> 
+    <div class="scroll-arrow" id="scroll-button"> 
+        <img src="{{ asset('img/flecha-abajo-banner.webp') }}" alt="Icono de flecha apuntando abajo"> 
     </div>
+
 </section>
 
 <style>
@@ -110,382 +81,163 @@
     position: relative;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     overflow: hidden;
+    text-align: center;
 }
 
 .hero-video {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Recorta y ajusta el video */
-    z-index: 0; /* detrás del contenido */
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
 }
 
 .overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.124); /* mismo efecto que tenías con linear-gradient */
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.3);
     z-index: 0;
 }
 
 .hero-container {
-    width: 100%;
-    max-width: 85vw;
-    margin: 0 auto;
-    padding: 0 20px;
+    position: relative;
     z-index: 1;
-}
-
-.hero-content {
     width: 100%;
+    max-width: 1100px;
+    padding: 0 20px;
 }
 
 .hero-title {
-    text-align: start;
+    margin-top: 250px;
+    margin-bottom: 200px;
     color: white;
-    margin-bottom: 60px;
 }
 
 .hero-title .one-title {
-    font-size: 4rem;
+    font-size: 5rem;
     font-weight: bold;
-    margin: 0px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
 }
 
 .hero-title .two-title {
-    font-size: 3rem;
-    font-weight: 300;
-    margin: 0px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-size: 4rem;
+    font-weight: 100;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
 }
 
 .search-wrapper {
-    max-width: 85vw;
-    margin: 0 auto;
-}
-
-.tabs-container {
+    width: 100%;
     display: flex;
-    max-width: 300px;
-    gap: 20px;
-}
-
-.tab {
-    padding: 15px 30px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 10px 10px 0 0;
-}
-
-.tab.active {
-    background-color: #FFB41F;
-    color: #000;
-}
-
-.tab:not(.active) {
-    background-color: rgba(255,255,255,0.2);
-    color: white;
+    justify-content: center;
 }
 
 .search-form {
-    background-color: rgba(0, 0, 0, 0.321);
-    backdrop-filter: blur(3px);
-    padding: 30px;
-    border-radius: 0 15px 15px 15px;
-    margin-bottom: 30px;
-    max-width: 65vw;
-    border: 1px solid #ffffff;
+    width: 100%;
+    max-width: 950px;
 }
 
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr auto;
-    gap: 30px;
-    align-items: end;
+    gap: 20px;
+    align-items: center;
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group .labelsBanner {
-    color: white;
-    font-weight: 600;
-    margin-bottom: 10px;
-    font-size: 1rem;
-}
-
-.form-group .inpBanner,
-.form-group .selBanner {
+.inpBanner,
+.selBanner {
     background: transparent;
-    border: none;
-    border-bottom: 2px solid rgba(255,255,255,0.3);
-    color: white;
-    padding: 10px 0;
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 15px;
     font-size: 1rem;
-    transition: border-color 0.3s ease;
-}
-
-.form-group select option{
-    color: #000;
-}
-
-.form-group .inpBanner:focus,
-.form-group .selBanner:focus {
-    outline: none;
-    border-bottom-color: #FFB41F;
-}
-
-.form-group .inpBanner::placeholder {
-    color: rgba(255,255,255,0.7);
-}
-
-.price-inputs {
-    display: flex;
-    gap: 15px;
-}
-
-.price-inputs input {
+    color: white;
     width: 100%;
 }
 
+.inpBanner::placeholder {
+    color: rgb(255, 255, 255);
+}
+
+.selBanner option {
+    color: black; /* para que se lean en el dropdown */
+}
+
 .search-btn {
-    background-color: #FFB41F;
+    background: white;
     color: #000;
     border: none;
-    padding: 15px 25px;
-    border-radius: 25px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: background-color 0.3s ease;
-    white-space: nowrap;
-}
-
-.search-btn:hover {
-    background-color: #FFB41F;
-}
-
-.sell-property {
-    text-align: left;
-}
-
-.sell-btn {
-    background: transparent;
-    border: 2px solid white;
-    color: white;
+    border-radius: 8px;
     padding: 15px 30px;
-    border-radius: 10px;
-    font-weight: 600;
+    font-weight: bold;
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
     transition: all 0.3s ease;
 }
 
-.sell-btn:hover {
-    background-color: white;
-    color: #000;
-}
-
-.floating-buttons {
-    position: fixed;
-    right: 30px;
-    bottom: 100px;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.float-btn {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-size: 1.5rem;
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-.float-btn:hover {
-    transform: scale(1.1);
-}
-
-.whatsapp {
-    background-color: #25d366;
-    color: white;
-}
-
-.phone {
-    background-color: #FFB41F;
-    color: #000;
-}
-
-.scroll-arrow {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-size: 2rem;
-    animation: bounce 2s infinite;
-    cursor: pointer;
-    z-index: 2;
-}
-
-@keyframes bounce {
-    0%, 20%, 53%, 80%, 100% {
-        transform: translateX(-50%) translateY(0);
-    }
-    40%, 43% {
-        transform: translateX(-50%) translateY(-15px);
-    }
-    70% {
-        transform: translateX(-50%) translateY(-7px);
-    }
-    90% {
-        transform: translateX(-50%) translateY(-2px);
-    }
+.search-btn:hover {
+    background: #f1f1f1;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-
-    .hero-real-estate{
-        padding-top: 100px;
-    }
-
-    .hero-container{
-        padding: 0;
-        max-width: 100%;
-    }
-
-    .hero-title{
-        margin-bottom: 30px;
-        text-align: center;
-    }
-
     .hero-title .one-title {
-        font-size: 1.5rem;
+        font-size: 2.2rem;
     }
-    
     .hero-title .two-title {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
     }
-
-    .search-wrapper {
-        width: 100vw;
-        max-width: 100%;
-        padding: 0 10px;
-    }
-
-    .search-form{
-        max-width: 100%;
-        border-radius: 0px 0px 15px 15px;
-    }
-    
     .form-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 0px;
     }
 
-    .form-group {
-        margin-bottom: 0px !important;
-    }
-
-    .form-group .labelsBanner{
-        margin-bottom: 0px;
-    }
-
-    .form-group .inpBanner{
-        padding: 0;
-    }
-    
-    .tabs-container {
-        max-width: 100%;
-    }
-    
-    .tab {
-        flex: 1;
-        text-align: center;
-        padding: 10px 30px;
-    }
-    
-    .floating-buttons {
-        right: 20px;
-        bottom: 80px;
-    }
-
-    .search-btn{
-        padding: 10px 15px;
-    }
-
-    .sell-property{
-        display: none;
+    .hero-title {
+        margin-top: 120px;
+        margin-bottom: 50px;
     }
 }
 
-/* Nuevo diseño de inputs type radio */
-
-/* Ocultar los input radio */
-.tab-radio {
-  display: none;
+.scroll-arrow { 
+    position: absolute; 
+    bottom: 30px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    color: white; 
+    font-size: 2rem; 
+    animation: bounce 2s infinite; 
+    cursor: pointer; 
+    z-index: 2; 
 }
 
-.tabs-container {
-  display: flex;
-  max-width: 300px;
-  gap: 20px;
-  justify-content: start;
+@keyframes bounce { 
+    0%, 20%, 53%, 80%, 100% { 
+        transform: translateX(-50%) translateY(0); 
+    } 
+    40%, 43% { 
+        transform: translateX(-50%) translateY(-15px); 
+    } 
+    70% { 
+        transform: translateX(-50%) translateY(-7px); 
+    } 
+    90% { 
+        transform: translateX(-50%) translateY(-2px); 
+    } 
 }
 
-.tab {
-  padding: 15px 30px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-radius: 10px 10px 0 0;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: white;
-  text-align: center;
+#hero-text span {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
 }
 
-/* Responsive: adaptar el tamaño en móviles */
-@media (max-width: 768px) {
-  .tabs-container {
-    max-width: 100%;
-  }
-
-  .tab {
-    flex: 1;
-    padding: 10px 30px;
-  }
+#hero-text.show span {
+    opacity: 1;
 }
-
-/* Estilo del tab activo basado en input:checked */
-#ftop_category_0:checked + label,
-#ftop_category_1:checked + label {
-  background-color: #FFB41F;
-  color: #000;
-}
-
 </style>
+
 
 <script>
 
@@ -515,6 +267,41 @@
                 });
             }
         });
+
+        // Textos en dos líneas
+        const texts = [
+            { one: "Tu futuro hogar", two: "te está esperando" },
+            { one: "Encuentra la propiedad", two: "perfecta para ti" },
+            { one: "Haz realidad tus", two: "sueños de vivienda" },
+            { one: "Vive donde siempre", two: "lo imaginaste" }
+        ];
+
+        let index = 0;
+        const heroText = document.getElementById("hero-text");
+        const oneSpan = heroText.querySelector(".one-title");
+        const twoSpan = heroText.querySelector(".two-title");
+
+        function changeText() {
+            // Fade out
+            heroText.classList.remove("show");
+
+            setTimeout(() => {
+                // Cambiar texto
+                index = (index + 1) % texts.length;
+                oneSpan.textContent = texts[index].one;
+                twoSpan.textContent = texts[index].two;
+
+                // Fade in
+                heroText.classList.add("show");
+            }, 1000); // 1s = duración de la transición CSS
+        }
+
+        // Mostrar primero
+        heroText.classList.add("show");
+
+        // Cambiar cada 4 segundos
+        setInterval(changeText, 4000);
+
     });
 
     let inpSearchTxt = document.getElementById('ftop_txt');
@@ -550,15 +337,17 @@
                 // Capturar los elementos del formulario y sus valores.
                 const typeSelect = document.getElementById('ftop_ptype');
                 const searchInput = document.getElementById('searchtxt');
-                const check1 = document.getElementById('ftop_category_0');
-                const check2 = document.getElementById('ftop_category_1');
-                const minPriceInput = document.getElementById('min_price');
-                const maxPriceInput = document.getElementById('max_price');
+                const operationType = document.getElementById('ftop_category');
+                // const check1 = document.getElementById('ftop_category_0');
+                // const check2 = document.getElementById('ftop_category_1');
+                // const minPriceInput = document.getElementById('min_price');
+                // const maxPriceInput = document.getElementById('max_price');
 
                 // Establecer la categoría basada en qué checkbox está seleccionado.
                 let category = "general"; // Valor por defecto.
-                if (check1.checked) category = "venta";
-                if (check2.checked) category = "renta";
+                if(operationType.value != ""){
+                    category = operationType.value;
+                }
 
                 // Obtener el nombre del tipo de propiedad seleccionado o usar 'propiedades' como valor por defecto.
                 let typeName = typeSelect.options[typeSelect.selectedIndex].text.toLowerCase().replace(
@@ -576,18 +365,18 @@
                 }
 
                 // Agregar rangos de precio a la URL amigable
-                const minPrice = minPriceInput.value.trim();
-                const maxPrice = maxPriceInput.value.trim();
-                if (minPrice) {
-                    detailsParts.push(`desde-${minPrice}`);
-                }
-                if (maxPrice) {
-                    detailsParts.push(`hasta-${maxPrice}`);
-                }
+                // const minPrice = minPriceInput.value.trim();
+                // const maxPrice = maxPriceInput.value.trim();
+                // if (minPrice) {
+                //     detailsParts.push(`desde-${minPrice}`);
+                // }
+                // if (maxPrice) {
+                //     detailsParts.push(`hasta-${maxPrice}`);
+                // }
 
                 // Construcción final
-                let detailsSegment = detailsParts.length ? '-' + detailsParts.join('-') : '';
-                let finalUrl = `/${typeName}-en-${category}${detailsSegment}${queryParams}`;
+                //let detailsSegment = detailsParts.length ? '-' + detailsParts.join('-') : '';
+                let finalUrl = `/${typeName}-en-${category}${queryParams}`;
 
                 // Construir la URL final y redireccionar.
                 window.location.href = finalUrl;
