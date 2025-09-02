@@ -50,15 +50,6 @@ class TeamSection extends Component
                 'email' => 'maria@inmobiliaria.com',
                 'phone' => '+593 99 123 4567',
                 'specialties' => ['Ventas', 'Casas Residenciales']
-            ],
-            [
-                'id' => 4,
-                'name' => 'Gabriela Astudillo',
-                'title' => 'Gestora',
-                'image' => 'gestora-gabriela-astudillo.webp',
-                'email' => 'ana@inmobiliaria.com',
-                'phone' => '+593 99 345 6789',
-                'specialties' => ['Rentas', 'Propiedades de Lujo'],
             ]
         ];
     }
