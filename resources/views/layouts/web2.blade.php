@@ -567,6 +567,10 @@ if(strpos($actual_link, 'localhost') === false){
                                 href="{{ route('about.page') }}">Nosotros</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-white font-weight-light @if (Request::is('/contacto')) active @endif"
+                                href="{{ route('contact.page') }}">Contacto</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-white font-weight-light @if (Request::is('blog')) active @endif"
                                 href="{{ route('web.blog') }}">Blog</a>
                         </li>
