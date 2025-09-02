@@ -1533,7 +1533,7 @@ function updateDynamicTitle(total, searchParams, isModal, isPropertyCode = false
                             </div>
                             <div class="col-sm-4 d-flex gap-3">
                                 <div class="w-100 d-flex align-items-center">
-                                <a href="tel:${phoneNumber}" class="btn btn-outline-primary rounded-pill w-100 d-flex align-items-center">
+                                <a href="tel:${phoneNumber}" onclick="gtag_report_conversion('tel:${phoneNumber}')" class="btn btn-outline-primary rounded-pill w-100 d-flex align-items-center">
                                     <i class="fas fa-phone-alt me-2 mr-1"></i>Llamar
                                 </a>
                             </div>
@@ -1668,7 +1668,7 @@ function updateDynamicTitle(total, searchParams, isModal, isPropertyCode = false
                     <div class="mt-auto">
                         <div class="d-flex justify-content-center gap-3 mt-3">
                             <div class="w-100 d-flex justify-content-center">
-                                <a href="tel:${phoneNumber}" class="btn btn-outline-primary rounded-pill w-75 d-flex justify-content-center align-items-center">
+                                <a href="tel:${phoneNumber}" onclick="gtag_report_conversion('tel:${phoneNumber}')" class="btn btn-outline-primary rounded-pill w-75 d-flex justify-content-center align-items-center">
                                     <i class="fas fa-phone-alt me-2 mr-1"></i>Llamar
                                 </a>
                             </div>
