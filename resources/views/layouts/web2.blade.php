@@ -97,7 +97,7 @@ if(strpos($actual_link, 'localhost') === false){
     <!-- End Facebook Pixel Code -->
 
     <!-- Event snippet for Botón WhatsApp Grupo Housing conversion page In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. --> 
-    <script> 
+    {{-- <script> 
         setTimeout(() => {
             function gtag_report_conversion(url) { 
                 console.log('conversion click');
@@ -110,7 +110,7 @@ if(strpos($actual_link, 'localhost') === false){
                 return false; 
             } 
         }, 3600);
-    </script>
+    </script> --}}
 
 
     <?php };// fin de if url localhost ?>
@@ -775,7 +775,7 @@ if(strpos($actual_link, 'localhost') === false){
                 <i class="fas fa-phone-alt p-2 text-light d-flex justify-content-center align-items-center"></i>
             </div>
         </div>
-        <a onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en una propiedad')" href="https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en una propiedad" target="_blank" class="whatsapp-float">
+        <a onclick="gtag_report_conversion_whatsapp('https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en una propiedad')" href="https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en una propiedad" target="_blank" class="whatsapp-float">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
@@ -786,7 +786,7 @@ if(strpos($actual_link, 'localhost') === false){
             <div class="icon-close" onclick="openContactContainer()">X</div>
         </div>
         <div class="body">
-            <a href="tel:+593967867998">
+            <a href="tel:+593967867998" onclick="gtag_report_conversion('tel:+593967867998')">
                 <div class="border rounded pb-1 pl-1 mb-1">
                     <img width="45px" height="30px" class="mt-2" src="{{ asset('img/ECUADOR-04.webp') }}"
                         alt="Telefono Grupo Housing">
@@ -847,7 +847,7 @@ if(strpos($actual_link, 'localhost') === false){
     <!-- Event snippet for Botón WhatsApp Grupo Housing conversion page
     In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
     <script>
-        function gtag_report_conversion(url) {
+        function gtag_report_conversion_whatsapp(url) {
         var callback = function () {
             if (typeof(url) != 'undefined') {
             window.location = url;
@@ -860,6 +860,24 @@ if(strpos($actual_link, 'localhost') === false){
         return false;
         }
     </script>
+
+    <!-- Event snippet for LLamadas Grupo Housing conversion page
+    In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+    <script>
+        function gtag_report_conversion(url) {
+        var callback = function () {
+            if (typeof(url) != 'undefined') {
+            window.location = url;
+            }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-11250334200/3jQICOaopLIZEPjzyfQp',
+            'event_callback': callback
+        });
+        return false;
+        }
+    </script>
+    
     
 
     <script>
