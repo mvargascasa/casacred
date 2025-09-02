@@ -2,8 +2,11 @@
     <div class="faq-container">
         <!-- Header -->
         <div class="faq-header">
-            <h3 class="section-subtitle">Preguntas</h3>
-            <h2 class="section-title-faq">Frecuentes</h2>
+            <h2>
+                <span class="section-subtitle">Preguntas</span>
+                <br>
+                <span class="section-title-faq">Frecuentes</span>
+            </h2>
         </div>
 
         <!-- FAQ Grid -->
@@ -12,7 +15,7 @@
                 <div class="faq-item" data-faq-id="{{ $faq['id'] }}">
                     <!-- Question -->
                     <div class="faq-question" role="button" tabindex="0" aria-expanded="{{ $faq['isOpen'] ? 'true' : 'false' }}">
-                        <span class="question-text">{{ $faq['question'] }}</span>
+                        <h3 class="question-text">{{ $faq['question'] }}</h3>
                         <button class="toggle-btn" aria-label="Toggle answer">
                             <span class="toggle-icon {{ $faq['isOpen'] ? 'open' : '' }}">
                                 <svg class="plus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -29,7 +32,7 @@
                     <!-- Answer -->
                     <div class="faq-answer {{ $faq['isOpen'] ? 'open' : '' }}">
                         <div class="answer-content">
-                            <p>{{ $faq['answer'] }}</p>
+                            <h4>{{ $faq['answer'] }}</h4>
                         </div>
                     </div>
                 </div>
@@ -121,6 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
     flex: 1;
     margin-right: 10px;
     font-size: 18px;
+    font-weight: 400;
 }
 
 .toggle-btn {
@@ -181,12 +185,13 @@ document.addEventListener("DOMContentLoaded", function () {
     margin-top: 10px;
 }
 
-.answer-content {
+.answer-content h4 {
     background-color: #e2e8f0;
     padding: 20px;
     border-radius: 12px;
     color: #334155;
     font-size: 17px;
+    font-weight: 400;
 }
 
 @media (max-width: 768px) {

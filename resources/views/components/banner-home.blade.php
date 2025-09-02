@@ -12,11 +12,11 @@
     <div class="hero-container">
         <!-- Texto principal -->
         <div class="hero-title">
-            <h1 id="hero-text">
+            <p id="hero-text">
                 <span class="one-title">Tu futuro hogar</span>
                 <br>
                 <span class="two-title">te está esperando</span>
-            </h1>
+            </p>
         </div>
 
         <!-- Formulario de búsqueda -->
@@ -243,6 +243,10 @@
     90% { 
         transform: translateX(-50%) translateY(-2px); 
     } 
+}
+
+#hero-text{
+    line-height: 1.2;
 }
 
 #hero-text span {

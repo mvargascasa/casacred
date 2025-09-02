@@ -33,7 +33,7 @@
                                 <div class="location-icon">
                                     <img width="25px" src="{{ asset('img/ubicacion-icon.webp') }}" alt="Icono de Ubicacion">
                                 </div>
-                                <span>{{ $property->address }}</span>
+                                <h4>{{ $property->address }}</h4>
                             </div>
     
                             <!-- Property Features -->
@@ -76,11 +76,13 @@
                             <!-- Property Footer -->
                             <div class="property-footer">
                                 <div class="property-price">
-                                    @if($property->property_price > 0)
-                                        $ {{ number_format($property->property_price, 0, ',', '.') }}
-                                    @else
-                                        {{ $property->customized_price }}
-                                    @endif
+                                    <h4>
+                                        @if($property->property_price > 0)
+                                            $ {{ number_format($property->property_price, 0, ',', '.') }}
+                                        @else
+                                            {{ $property->customized_price }}
+                                        @endif
+                                    </h4>
                                 </div>
                                 <div class="property-action">
                                     <span class="view-property-btn">
@@ -227,7 +229,11 @@
     gap: 8px;
     margin-bottom: 20px;
     color: #64748b;
+}
+
+.property-location h4{
     font-size: 1rem;
+    margin-top: 10px;
 }
 
 .location-icon {
@@ -290,11 +296,12 @@
     border-radius: 25px;
 }
 
-.property-price {
+.property-price h4 {
     font-size: 1rem;
     font-weight: 400;
     color: #1e293b;
     padding: 0 0 0 25px;
+    margin-top: 10px;
 }
 
 .view-property-btn {
@@ -373,7 +380,7 @@
         display: none;
     }
     
-    .property-price {
+    .property-price h4 {
         font-size: 1.3rem;
     }
     
@@ -432,7 +439,7 @@
         font-size: 0.8rem;
     }
     
-    .property-price {
+    .property-price h4 {
         font-size: 1.1rem;
         font-weight: 600;
     }

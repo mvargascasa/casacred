@@ -22,16 +22,16 @@
                         <div class="testimonial-header">
                             <div class="testimonial-avatar"></div>
                             <div class="testimonial-info">
-                                <p class="testimonial-name">Paola Cordero</p>
+                                <h3 class="testimonial-name">Paola Cordero</h3>
                                 <div class="testimonial-stars">
                                     ★★★★★
                                 </div>
                             </div>
                             <div class="testimonial-quote">❝</div>
                         </div>
-                        <p class="testimonial-text">
+                        <h4 class="testimonial-text">
                           Trabajé con Grupo Housing para vender mi casa. El proceso fue sorprendentemente rápido y transparente. Consiguieron un excelente precio para la propiedad. Muy agradecido.
-                        </p>
+                        </h4>
                       </div>
                   
                     </div>
@@ -41,16 +41,16 @@
                         <div class="testimonial-header">
                             <div class="testimonial-avatar"></div>
                             <div class="testimonial-info">
-                                <p class="testimonial-name">Andrés Ledesma</p>
+                                <h3 class="testimonial-name">Andrés Ledesma</h3>
                                 <div class="testimonial-stars">
                                     ★★★★★
                                 </div>
                             </div>
                             <div class="testimonial-quote">❝</div>
                         </div>
-                        <p class="testimonial-text">
+                        <h4 class="testimonial-text">
                           Comprar mi primera casa fue una experiencia mucho más fácil de lo que esperaba. Grupo Housing me guió en cada paso, desde la búsqueda hasta la firma de los documentos. Muy agradecida por su ayuda.
-                        </p>
+                        </h4>
                       </div>
 
                     </div>
@@ -64,16 +64,16 @@
                         <div class="testimonial-header">
                             <div class="testimonial-avatar"></div>
                             <div class="testimonial-info">
-                                <p class="testimonial-name">Fabián Ordóñez</p>
+                                <h3 class="testimonial-name">Fabián Ordóñez</h3>
                                 <div class="testimonial-stars">
                                     ★★★★★
                                 </div>
                             </div>
                             <div class="testimonial-quote">❝</div>
                         </div>
-                        <p class="testimonial-text">
+                        <h4 class="testimonial-text">
                           Solicité un avalúo para una propiedad familiar. El servicio fue rápido, profesional y muy detallado. La valoración fue justa y me sirvió perfectamente para mi trámite.
-                        </p>
+                        </h4>
                       </div>
                   
                     </div>
@@ -83,16 +83,16 @@
                         <div class="testimonial-header">
                             <div class="testimonial-avatar"></div>
                             <div class="testimonial-info">
-                                <p class="testimonial-name">Gabriela Viteri</p>
+                                <h3 class="testimonial-name">Gabriela Viteri</h3>
                                 <div class="testimonial-stars">
                                     ★★★★★
                                 </div>
                             </div>
                             <div class="testimonial-quote">❝</div>
                         </div>
-                        <p class="testimonial-text">
+                        <h4 class="testimonial-text">
                           Gracias a Grupo Housing, pude vender mi departamento y comprar mi nueva casa al mismo tiempo. Ellos coordinaron todo de manera perfecta, lo que me ahorró mucho estrés y tiempo.
-                        </p>
+                        </h4>
                       </div>
 
                     </div>
@@ -106,16 +106,16 @@
                         <div class="testimonial-header">
                             <div class="testimonial-avatar"></div>
                             <div class="testimonial-info">
-                                <p class="testimonial-name">David Peña</p>
+                                <h3 class="testimonial-name">David Peña</h3>
                                 <div class="testimonial-stars">
                                     ★★★★★
                                 </div>
                             </div>
                             <div class="testimonial-quote">❝</div>
                         </div>
-                        <p class="testimonial-text">
+                        <h4 class="testimonial-text">
                           Tenía un problema con los títulos de mi terreno. La asesoría legal de Grupo Housing fue clave para resolverlo. Su conocimiento del mercado local es impresionante.
-                        </p>
+                        </h4>
                       </div>
                   
                     </div>
@@ -125,16 +125,16 @@
                         <div class="testimonial-header">
                             <div class="testimonial-avatar"></div>
                             <div class="testimonial-info">
-                                <p class="testimonial-name">Daniela León</p>
+                                <h3 class="testimonial-name">Daniela León</h3>
                                 <div class="testimonial-stars">
                                     ★★★★★
                                 </div>
                             </div>
                             <div class="testimonial-quote">❝</div>
                         </div>
-                        <p class="testimonial-text">
+                        <h4 class="testimonial-text">
                           Encontré un apartamento perfecto en la zona de El Vergel gracias a Grupo Housing. El proceso de alquiler fue sencillo y rápido. Su equipo es muy amable y profesional.
-                        </p>
+                        </h4>
                       </div>
 
                     </div>
@@ -324,6 +324,7 @@
 }
 
 .testimonial-name {
+    font-size: 20px;
     font-weight: bold;
     margin: 0;
 }
@@ -343,6 +344,7 @@
     margin-top: 15px;
     color: #FFFFFF;
     font-size: 14px;
+    font-weight: 400;
 }
 
 /* CSS para cambiar la posicion de los indicadores del carousel*/

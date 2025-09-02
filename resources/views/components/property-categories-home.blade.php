@@ -2,6 +2,7 @@
     <div class="categories-container">
         <!-- Título -->
         <div class="section-title-categories">
+            <h1 class="text-white">Inmobiliaria en <span class="highlight">Cuenca</span></h1>
             <h2>Explora Nuestras <span class="highlight">Propiedades</span></h2>
         </div>
 
@@ -40,7 +41,7 @@
                     <!-- Contenido -->
                     <div class="category-content">
                         <h3 class="category-name">{{ $category['name'] }}</h3>
-                        <p class="category-count">{{ $category['count'] }} Propiedades</p>
+                        <h4 class="category-count">{{ $category['count'] }} Propiedades</h4>
                     </div>
 
                     <!-- Efecto hover -->
@@ -53,6 +54,10 @@
 </section>
 
 <style>
+h1{
+    font-size: 1.5rem;
+    font-weight: 200;
+}
 .icono {
   width: 50px;
   height: 50px;
@@ -230,6 +235,10 @@
     z-index: 2;
 }
 
+.category-content h4{
+    font-size: 18px;
+}
+
 .category-name {
     font-size: 1.3rem;
     font-weight: 600;
@@ -322,6 +331,10 @@
     
     .category-name {
         font-size: 1.3rem;
+    }
+
+    h1{
+        font-size: 1rem;
     }
 }
 
