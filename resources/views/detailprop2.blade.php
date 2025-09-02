@@ -1307,112 +1307,11 @@
         </div>
     </div>
     </div>
-    @php
-        $listingsSimilar = \App\Models\Listing::select(
-            'listing_title',
-            'images',
-            'property_price',
-            'heading_details',
-            'city',
-            'state',
-            'country',
-            'slug',
-            'listingtype',
-        )
-            ->where('city', $listing->city)
-            ->where('status', 1)
-            ->where('listingtype', $listing->listingtype)
-            ->inRandomOrder()
-            ->limit(4)
-            ->get();
-    @endphp
+    
 
-    @if (count($listingsSimilar) > 0)
-        <div class="custom-container">
-            <div class="row my-5 justify-content-center" data-aos="zoom-in">
-                <h2 class="text-center mb-5" style="font-family: 'Sharp Grotesk', sans-serif;">Propiedades similares</h2>
-                @foreach ($listingsSimilar as $listing_s)
-                    <div
-                        class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 mb-2 d-flex justify-content-center text-center">
-                        <a style="text-decoration: none; color: #000000"
-                            href="{{ route('web.detail', $listing_s->slug) }}">
-                            <div data-aos="zoom-in" class="card cardsimilarlisting" style="width: 18rem;">
-                                @php
-                                    $imageVerification = asset(
-                                        'uploads/listing/thumb/600' . strtok($listing_s->images, '|'),
-                                    );
-                                @endphp
-                                <img class="card-img-top lazyLoad" width="100%" height="100%"
-                                    data-src="@if (file_exists($imageVerification)) {{ asset('uploads/listing/thumb/600/' . strtok($listing_s->images, '|')) }} @else {{ asset('uploads/listing/600/' . strtok($listing_s->images, '|')) }} @endif"
-                                    alt="{{ $listing_s->listing_title }}">
-                                <div class="card-body">
-                                    <p style="margin: 0px" class="card-title h5">
-                                        ${{ number_format($listing_s->property_price) }}</p>
-                                    @php
-                                        $bedroom = 0; //bedroom 41&86&49 //garage 43 //bathroom 48&76&81 // squarefit 44
-                                        $bathroom = 0;
-                                        $garage = 0;
-                                        $squarefit = 0;
-                                        if (!empty($listing_s->heading_details)) {
-                                            $allheadingdeatils = json_decode($listing_s->heading_details);
-                                            foreach ($allheadingdeatils as $singleedetails) {
-                                                unset($singleedetails[0]);
-                                                for ($i = 1; $i <= count($singleedetails); $i++) {
-                                                    if ($i % 2 == 0) {
-                                                        if (
-                                                            $singleedetails[$i - 1] == 41 ||
-                                                            $singleedetails[$i - 1] == 86 ||
-                                                            $singleedetails[$i - 1] == 49
-                                                        ) {
-                                                            $bedroom += $singleedetails[$i];
-                                                        }
-                                                        if (
-                                                            $singleedetails[$i - 1] == 48 ||
-                                                            $singleedetails[$i - 1] == 76 ||
-                                                            $singleedetails[$i - 1] == 81 ||
-                                                            $singleedetails[$i - 1] == 49
-                                                        ) {
-                                                            $bathroom += $singleedetails[$i];
-                                                        }
-                                                        if ($singleedetails[$i - 1] == 43) {
-                                                            $garage += $singleedetails[$i];
-                                                        }
-                                                    }
-                                                }
-                                                $i++;
-                                            }
-                                        }
-                                    @endphp
-                                    @if ($bedroom > 0 || $bathroom > 0)
-                                        <p style="font-size: 15px; margin: 0px" class="card-text">
-                                            @if ($bedroom > 0)
-                                                {{ $bedroom }} @if ($bedroom > 1)
-                                                    habitaciones
-                                                @else
-                                                    habitación
-                                                @endif
-                                                @endif @if ($bathroom > 0)
-                                                    {{ $bathroom }} @if ($bathroom > 1)
-                                                        baños
-                                                    @else
-                                                        baño
-                                                    @endif
-                                                @endif
-                                        </p>
-                                    @endif
-                                    <p style="font-size: 15px; margin: 0px" class="card-text">
-                                        @isset($listing_s->country)
-                                            {{ $listing_s->country }} |
-                                        @endisset {{ $listing_s->state }} | {{ $listing_s->city }}
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    @endif
+    <div>
+        <x-similar-properties :city="$listing->city" :type="$listing->listingtype"></x-similar-properties>
+    </div>
 
     <section class="w-100 py-3 px-3 section-interest" style="position: fixed; bottom: 0px; background-color: #242B40; z-index: 10000">
         <p style="font-size: medium" class="text-white m-0 p-0">¿Te interesa esta propiedad? <span style="font-weight: 700;">¡Contáctanos!</span></p>
