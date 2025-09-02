@@ -66,6 +66,18 @@ if(strpos($actual_link, 'localhost') === false){
     </script>
 
 
+    {{-- SCRIPT PARA MICROSOFT CLARITY --}}
+    <script type="text/javascript">
+        setTimeout(() => {
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "t4j82uq6w1");
+        }, 3500);
+    </script>
+
+
     <!-- Facebook Pixel Code -->
     <script>
         setTimeout(() => {
