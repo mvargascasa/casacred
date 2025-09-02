@@ -1247,6 +1247,7 @@
                                     <i class="fa-brands fa-whatsapp"></i>
                                 </div>
                                 <a style="text-decoration: none"
+                                    onclick="gtag_report_conversion_whatsapp('https://api.whatsapp.com/send?phone=593967867998&text=Hola%20*Grupo%20Housing*,%20deseo%20consultar%20por%20esta%20propiedad:%20*{{ $listing->product_code }}*')"
                                     href="https://api.whatsapp.com/send?phone={{ $listing->listingtypestatus == 'en-venta' ? '593967867998' : '593967867998' }}&text=Hola%20*Grupo%20Housing*,%20deseo%20consultar%20por%20esta%20propiedad:%20*{{ $listing->product_code }}*"
                                     class="mt-1 ml-2 text-dark">{{ $listing->listingtypestatus == 'en-venta' ? '096-786-7998' : '096-786-7998' }}</a>
                             </div>
@@ -1417,7 +1418,7 @@
         <p style="font-size: medium" class="text-white m-0 p-0">¿Te interesa esta propiedad? <span style="font-weight: 700;">¡Contáctanos!</span></p>
         <div class="d-flex justify-content-center align-items-center mt-1" style="gap: 10px">
             <div class="w-100">
-                <a class="btn btn-outline-light rounded-pill w-100" href="https://api.whatsapp.com/send?phone=593967867998&text=Hola%20Grupo%20Housing,%20estoy%20interesado/a%20en%20esta%20propiedad:%20*{{$listing->product_code}}*%0A{{Request::url()}}">WhatsApp</a>
+                <a class="btn btn-outline-light rounded-pill w-100" onclick="gtag_report_conversion_whatsapp('https://api.whatsapp.com/send?phone=593967867998&text=Hola%20Grupo%20Housing,%20estoy%20interesado/a%20en%20esta%20propiedad:%20*{{$listing->product_code}}*%0A{{Request::url()}}')" href="https://api.whatsapp.com/send?phone=593967867998&text=Hola%20Grupo%20Housing,%20estoy%20interesado/a%20en%20esta%20propiedad:%20*{{$listing->product_code}}*%0A{{Request::url()}}">WhatsApp</a>
             </div>
             <div class="w-100">
                 <a class="btn btn-outline-light rounded-pill w-100" href="tel:+593967867998">Llamar</a>
