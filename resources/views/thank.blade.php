@@ -23,9 +23,28 @@
 
         gtag('config', 'AW-11250334200');
     </script>
-
+        
     <!-- Event snippet for Formulario Casa credito conversion page --> 
     <script> gtag('event', 'conversion', {'send_to': 'AW-11250334200/jN3KCPfWtPAYEPjzyfQp'}); </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6VW469F5K3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-6VW469F5K3');
+    </script>
+
+    <!-- Event snippet for Registro de Formulario (PROPIEDADES) conversion page GRUPO HOUSING -->
+    <script>
+        gtag('event', 'conversion', {'send_to': 'AW-11250334200/hgmsCMHm184ZEPjzyfQp'});
+    </script>
+  
+
+
+
 @endsection
 
 @section('content')
