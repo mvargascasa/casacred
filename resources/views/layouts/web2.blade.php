@@ -563,7 +563,7 @@ if(strpos($actual_link, 'localhost') === false){
         
                 <!-- BOTÓN TELÉFONO -->
                 <div class="d-flex align-items-center cta-nav">
-                    <a class="btn rounded-pill px-4 phone-number" href="tel:+593967867998">
+                    <a class="btn rounded-pill px-4 phone-number" href="tel:+593967867998" onclick="gtag_report_conversion('tel:+593967867998')">
                         096-786-7998
                     </a>
                     @guest
@@ -639,7 +639,7 @@ if(strpos($actual_link, 'localhost') === false){
                     </div>
                     <div>
                         <p style="margin: 0; font-weight: bold;">Contacto-Ecuador</p>
-                        <p style="margin: 0;"><a href="tel:+593967867998" style="color: #fff; text-decoration: none;">096-786-7998</a></p>
+                        <p style="margin: 0;"><a href="tel:+593967867998" onclick="gtag_report_conversion('tel:+593967867998')" style="color: #fff; text-decoration: none;">096-786-7998</a></p>
                     </div>
                 </div>
             </div>

@@ -1236,6 +1236,7 @@
                                     <i class="fa-solid fa-phone"></i>
                                 </div>
                                 <a style="text-decoration: none"
+                                    onclick="gtag_report_conversion('tel:+593967867998')"
                                     href="tel:{{ $listing->listingtypestatus == 'en-venta' ? '+593967867998' : '+593967867998' }}"
                                     class="mt-1 ml-2 text-dark">{{ $listing->listingtypestatus == 'en-venta' ? '096-786-7998' : '096-786-7998' }}</a>
                             </div>
