@@ -825,7 +825,7 @@ class WebController extends Controller
         // Por defecto asumimos que es SPAM
         $isValid = false;
 
-        if (!app()->environment('local', 'testing')) {
+        //if (!app()->environment('local', 'testing')) {
             $verify = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
                 'secret'   => config('services.recaptcha.secret_key'),
                 'response' => $request->input('g-recaptcha-response'),
@@ -843,7 +843,7 @@ class WebController extends Controller
                 $isValid = ($payload['success'] ?? false) 
                     && (($payload['score'] ?? 0) >= $minScore);
             }
-        }
+        //}
 
         // Enviar a correos distintos según validación
         if ($isValid) {
