@@ -69,6 +69,7 @@
 @endsection
 
 @section('script')
+    <script defer src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
     <script>
         const selProvinceModalVender = document.getElementById('selProvinceModalVender');
         const selCityModalVender = document.getElementById('selCityModalVender');
@@ -89,6 +90,29 @@
                 opt.value = city.name;
                 selCityModalVender.appendChild(opt);
             });
+        });
+
+        const forms = document.querySelectorAll('form.js-recaptcha');
+
+        forms.forEach(function (form) {
+            form.addEventListener('submit', function (e) {
+                // Evitar envío hasta tener token fresco (expira rápido)
+                e.preventDefault();
+
+                const action = form.dataset.recaptchaAction || 'submit';
+
+                grecaptcha.ready(function () {
+                    grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', { action: action })
+                        .then(function (token) {
+                            const tokenField = form.querySelector('input[name="g-recaptcha-response"]');
+                            if (tokenField) tokenField.value = token;
+                            form.submit();
+                        })
+                        .catch(function () {
+                            alert('No se pudo generar el token de verificación. Intenta de nuevo.');
+                        });
+                });
+            }, { once: false });
         });
     </script>
 @endsection

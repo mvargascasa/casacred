@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class WebController extends Controller
 {
@@ -407,7 +408,7 @@ class WebController extends Controller
         $header .= "Reply-To: ".'info@casacredito.com'."\r\n";
         $header .= "MIME-Version: 1.0\r\n";
         $header .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-        mail('mvargas@casacredito.com,info@casacredito.com','Lead GrupoHousing: '.strip_tags($request->fname), $message, $header);
+        //mail('mvargas@casacredito.com,info@casacredito.com','Lead GrupoHousing: '.strip_tags($request->fname), $message, $header);
         mail('sebas31051999@gmail.com', 'Lead GrupoHousing: '.strip_tags($request->fname), $message, $header);
         //mvargas@casacredito.com,info@casacredito.com,ventas@casacredito.com
 
@@ -802,6 +803,7 @@ class WebController extends Controller
     }
 
     public function sendLeadContactSection(Request $request){
+
         // Construir mensaje en HTML
         $message = "
             <br><strong>Nuevo Lead Grupo Housing</strong>
@@ -814,18 +816,44 @@ class WebController extends Controller
         ";
 
         // Encabezados del correo
-        $header = '';
-        $header .= 'From: <leads@grupohousing.com>' . "\r\n";
-        $header .= 'Reply-To: ' . strip_tags($request->email) . "\r\n"; // Responder al email del cliente
+        $header  = 'From: <leads@grupohousing.com>' . "\r\n";
+        $header .= 'Reply-To: ' . strip_tags($request->email) . "\r\n";
         $header .= "MIME-Version: 1.0\r\n";
         $header .= "Content-type:text/html;charset=UTF-8\r\n";
 
-        // Enviar correos
-        mail('info@casacredito.com', 'Lead Grupo Housing: ' . strip_tags($request->nombre) . " " . strip_tags($request->apellido), $message, $header);
-        mail('sebas31051999@gmail.com', 'Lead Grupo Housing: ' . strip_tags($request->nombre) . " " . strip_tags($request->apellido), $message, $header);
+        // Por defecto asumimos que es SPAM
+        $isValid = false;
 
-        // Retornar vista de agradecimiento
+        if (!app()->environment('local', 'testing')) {
+            $verify = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                'secret'   => config('services.recaptcha.secret_key'),
+                'response' => $request->input('g-recaptcha-response'),
+                'remoteip' => $request->ip(),
+            ]);
+
+            if ($verify->ok()) {
+                $payload  = $verify->json();
+                $minScore = (float) config('services.recaptcha.score', 0.5);
+
+                // ✅ Validación más sencilla: solo success + score
+                $isValid = ($payload['success'] ?? false) 
+                    && (($payload['score'] ?? 0) >= $minScore);
+            }
+        }
+
+        // Enviar a correos distintos según validación
+        if ($isValid) {
+            // Lead real -> correos oficiales
+            mail('info@casacredito.com', 'Lead Grupo Housing: ' . strip_tags($request->nombre) . " " . strip_tags($request->apellido), $message, $header);
+            mail('sebas31051999@gmail.com', 'Lead Grupo Housing: ' . strip_tags($request->nombre) . " " . strip_tags($request->apellido), $message, $header);
+        } else {
+            // Lead sospechoso -> correo de pruebas
+            mail('sebas31051999@gmail.com', 'Posible SPAM Grupo Housing: ' . strip_tags($request->nombre) . " " . strip_tags($request->apellido), $message, $header);
+        }
+
+        // Retornar vista de agradecimiento 
         return view('thank');
+        
     }
 
 }

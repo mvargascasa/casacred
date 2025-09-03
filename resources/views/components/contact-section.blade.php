@@ -7,7 +7,7 @@
                 <h2 class="contact-title">{{ $title }}</h2> 
                 <h3 class="contact-subtitle">{{ $subtitle }}</h3> 
             </div> 
-            <form class="contact-form" action="{{ route('send.lead.contact.section') }}" method="POST" id="contactForm"> 
+            <form class="contact-form js-recaptcha" action="{{ route('send.lead.contact.section') }}" method="POST" id="contactForm"> 
                 @csrf 
                 <!-- Name and Last Name Row --> 
                 <div class="form-row"> 
@@ -35,6 +35,10 @@
                 <div class="form-group full-width mt-4"> 
                     <textarea name="mensaje" id="mensaje" placeholder="Mensaje" rows="3" required class="form-textarea"></textarea> 
                 </div> 
+
+                <input type="hidden" name="g-recaptcha-response" id="recaptcha_token">
+                <input type="hidden" name="recaptcha_action" value="contact">
+                
                 <!-- Privacy Checkbox --> 
                 <div class="form-group checkbox-group"> 
                     <label class="checkbox-container"> 
