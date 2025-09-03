@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Log;
 
 class WebController extends Controller
 {
@@ -833,6 +834,9 @@ class WebController extends Controller
 
             if ($verify->ok()) {
                 $payload  = $verify->json();
+                
+                Log::info('reCAPTCHA payload', $payload);
+
                 $minScore = (float) config('services.recaptcha.score', 0.5);
 
                 // ✅ Validación más sencilla: solo success + score
