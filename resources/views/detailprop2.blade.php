@@ -228,6 +228,29 @@
             .form-contact{
                 padding: 0px 0px !important;
             }
+            
+            .feature-icons {
+                justify-content: center !important;
+            }
+
+            .parent {
+                flex: 0 0 calc(33.33% - 20px); /* 3 por fila, restando gap */
+                max-width: calc(33.33% - 20px);
+            }
+
+            .feature-box {
+                width: 70px;   /* más pequeños en mobile */
+                height: 70px;
+            }
+
+            .feature-box img {
+                width: 25px;
+                height: 25px;
+            }
+
+            .parent p {
+                font-size: 12px; /* texto un poco más chico en mobile */
+            }
         }
 
         .scroll-button {
