@@ -159,7 +159,7 @@
     /* RESPONSIVE DESIGN */
     @media (max-width: 640px) {
         .whatsapp-card {
-            max-width: 350px;
+            /* max-width: 350px; */
             padding: 25px 20px;
         }
 
@@ -194,7 +194,7 @@
 
     @media (max-width: 480px) {
         .whatsapp-card {
-            max-width: 320px;
+            /* max-width: 320px; */
             padding: 20px 15px;
         }
 
@@ -218,8 +218,8 @@
 
     @media (max-width: 360px) {
         .whatsapp-card {
-            max-width: 300px;
-            padding: 18px 12px;
+            /* max-width: 300px; */
+            padding: 40px 40px;
         }
 
         .card-title {
