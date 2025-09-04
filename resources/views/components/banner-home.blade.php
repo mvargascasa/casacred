@@ -105,16 +105,6 @@
     height: 20px;
 }
 
-/* #typewriter::after {
-    content: '|';
-    animation: blink 0.7s infinite;
-}
-
-@keyframes blink {
-    0%, 50%, 100% { opacity: 1; }
-    25%, 75% { opacity: 0; }
-} */
-
 .hero-video {
     position: absolute;
     top: 0; left: 0;
@@ -127,7 +117,7 @@
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.211);
     z-index: 0;
 }
 
