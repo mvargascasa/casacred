@@ -1,8 +1,8 @@
 <section class="hero-real-estate">
 
     <video class="hero-video" autoplay muted loop playsinline preload="none">
-        <source src="{{ asset('img/banner-home.webm') }}" type="video/webm">
-        <source src="{{ asset('img/banner-home.mp4') }}" type="video/mp4">
+        <source src="{{ asset('img/grupo-housing-inmobiliaria-en-cuenca-banner-mobile.webm') }}" type="video/webm">
+        {{-- <source src="{{ asset('img/banner-home.mp4') }}" type="video/mp4"> --}}
         Tu navegador no soporta videos en HTML5.
     </video>
 
@@ -19,11 +19,16 @@
             </p>
         </div>
 
+        <!-- Texto con efecto typewriter -->
+        <div id="hero-services" class="hero-services">
+            <p><span id="typewriter"></span></p>
+        </div>
+
         <!-- Formulario de búsqueda -->
         <div class="search-wrapper">
             <form class="search-form" id="searchForm">
                 <div class="form-grid">
-                    <!-- Ubicación -->
+                    <!-- Ubicación -->  
                     <div class="form-group">
                         <input type="text" id="searchtxt" class="inpBanner" placeholder="Sector, Parroquia, Provincia">
                     </div>
@@ -35,7 +40,8 @@
                             <option data-ids="[23,1]" value="1">Casas</option> 
                             <option data-ids="[24,3]" value="2">Departamentos</option> 
                             <option data-ids="[25,5]" value="3">Casas Comerciales</option> 
-                            <option data-ids="[32,6]" value="4">Locales Comerciales</option> <option data-ids="[37]" value="5">Edificios</option> 
+                            <option data-ids="[32,6]" value="4">Locales Comerciales</option> 
+                            <option data-ids="[37]" value="5">Edificios</option> 
                             <option data-ids="[39]" value="6">Hoteles</option> 
                             <option data-ids="[41]" value="7">Fabricas</option> 
                             <option data-ids="[42]" value="8">Parqueaderos</option> 
@@ -88,6 +94,27 @@
     text-align: center;
 }
 
+.hero-services {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    z-index: 1;
+    text-align: center;
+    margin: 40px 0 100px 0; /* Espaciado vertical entre título y filtros */
+    line-height: 1.3;
+    height: 20px;
+}
+
+/* #typewriter::after {
+    content: '|';
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+} */
+
 .hero-video {
     position: absolute;
     top: 0; left: 0;
@@ -113,8 +140,8 @@
 }
 
 .hero-title {
-    margin-top: 250px;
-    margin-bottom: 200px;
+    margin-top: 200px;
+    margin-bottom: 100px; /* reducido para dar espacio al nuevo texto */
     color: white;
 }
 
@@ -160,14 +187,14 @@
 }
 
 .selBanner{
-    appearance: none; /* Quita la flecha nativa */
+    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
 
     background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='32' viewBox='0 0 24 24' width='32' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
     background-repeat: no-repeat;
     background-position: right 15px center;
-    background-size: 28px; /* tamaño más grande */
+    background-size: 28px;
 }
 
 .inpBanner:focus, .selBanner:focus{
@@ -181,7 +208,7 @@
 }
 
 .selBanner option {
-    color: black; /* para que se lean en el dropdown */
+    color: black;
 }
 
 .search-btn {
@@ -215,6 +242,23 @@
     .hero-title {
         margin-top: 120px;
         margin-bottom: 50px;
+    }
+
+    .hero-services {
+        font-size: 1.5rem;
+        margin: 30px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title .one-title {
+        font-size: 1.8rem;
+    }
+    .hero-title .two-title {
+        font-size: 1.4rem;
+    }
+    .hero-services {
+        font-size: 1.1rem;
     }
 }
 
@@ -261,27 +305,16 @@
 
 
 <script>
-
     document.addEventListener('DOMContentLoaded', function() {
-        // 1. Selecciona el botón de scroll por su ID
+        // Scroll suave
         const scrollButton = document.getElementById('scroll-button');
-
-        // 2. Selecciona la sección de destino por su ID
         const targetSection = document.getElementById('section-property-categories');
 
-        // 3. Añade un escuchador de eventos de clic al botón
         scrollButton.addEventListener('click', function() {
             if (targetSection) {
-                // 4. Obtiene la posición (coordenadas) de la sección de destino
                 const sectionPosition = targetSection.getBoundingClientRect().top;
-                
-                // 5. Define el desplazamiento (-20px)
                 const offset = -20;
-                
-                // 6. Calcula la posición final ajustada
                 const finalPosition = sectionPosition + window.scrollY + offset;
-
-                // 7. Realiza el scroll suave a la posición final
                 window.scrollTo({
                     top: finalPosition,
                     behavior: 'smooth'
@@ -289,12 +322,12 @@
             }
         });
 
-        // Textos en dos líneas
+        // Textos dinámicos del título
         const texts = [
-            { one: "Tu futuro hogar", two: "te está esperando" },
-            { one: "Encuentra la propiedad", two: "perfecta para ti" },
-            { one: "Haz realidad tus", two: "sueños de vivienda" },
-            { one: "Vive donde siempre", two: "lo imaginaste" }
+            { one: "Tu nuevo hogar", two: "te está esperando" },
+            { one: "Encuentra tu casa", two: "ideal en pocos pasos" },
+            { one: "Haz realidad tus", two: "sueños inmobiliarios" },
+            { one: "Vive la experiencia", two: "de un nuevo comienzo" }
         ];
 
         let index = 0;
@@ -303,105 +336,80 @@
         const twoSpan = heroText.querySelector(".two-title");
 
         function changeText() {
-            // Fade out
             heroText.classList.remove("show");
 
             setTimeout(() => {
-                // Cambiar texto
                 index = (index + 1) % texts.length;
                 oneSpan.textContent = texts[index].one;
                 twoSpan.textContent = texts[index].two;
-
-                // Fade in
                 heroText.classList.add("show");
-            }, 1000); // 1s = duración de la transición CSS
+            }, 1000);
         }
 
-        // Mostrar primero
         heroText.classList.add("show");
-
-        // Cambiar cada 4 segundos
         setInterval(changeText, 4000);
 
-    });
-
-    let inpSearchTxt = document.getElementById('ftop_txt');
-    if (inpSearchTxt) {
-        inpSearchTxt.addEventListener("keypress", function(event) {
-            if (event.keyCode == 13) {
-                search();
-            }
-        })
-    }
-
-    function onSubmit(token) {
-        document.getElementById("demo-form").submit();
-    }
-
-    function limpiarCampos() {
-        document.getElementById('searchtxt').value = "";
-        document.getElementById('order').value = "";
-        document.getElementById('tipobusqueda').value = "";
-        document.getElementById('tipopropiedad').value = "";
-        document.getElementById('preciodesde').value = "";
-        document.getElementById('preciohasta').value = "";
-        document.getElementById('superfdesde').value = "";
-        document.getElementById('superfhasta').value = "";
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
+        // Formulario búsqueda
         const searchForm = document.getElementById('searchForm');
         if (searchForm) {
             searchForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Evitar el envío del formulario.
-
-                // Capturar los elementos del formulario y sus valores.
+                event.preventDefault();
                 const typeSelect = document.getElementById('ftop_ptype');
                 const searchInput = document.getElementById('searchtxt');
                 const operationType = document.getElementById('ftop_category');
-                // const check1 = document.getElementById('ftop_category_0');
-                // const check2 = document.getElementById('ftop_category_1');
-                // const minPriceInput = document.getElementById('min_price');
-                // const maxPriceInput = document.getElementById('max_price');
-
-                // Establecer la categoría basada en qué checkbox está seleccionado.
-                let category = "general"; // Valor por defecto.
+                let category = "general";
                 if(operationType.value != ""){
                     category = operationType.value;
                 }
-
-                // Obtener el nombre del tipo de propiedad seleccionado o usar 'propiedades' como valor por defecto.
                 let typeName = typeSelect.options[typeSelect.selectedIndex].text.toLowerCase().replace(
                     /\s+/g, '-');
                 if (!typeSelect.value || typeName === 'tipo-de-propiedad') {
                     typeName = 'propiedades';
                 }
-
-                let detailsParts = [];
-
                 const searchTerm = searchInput.value.trim();
                 let queryParams = '';
                 if (searchTerm) {
                     queryParams = `?searchTerm=${encodeURIComponent(searchTerm)}`;
                 }
-
-                // Agregar rangos de precio a la URL amigable
-                // const minPrice = minPriceInput.value.trim();
-                // const maxPrice = maxPriceInput.value.trim();
-                // if (minPrice) {
-                //     detailsParts.push(`desde-${minPrice}`);
-                // }
-                // if (maxPrice) {
-                //     detailsParts.push(`hasta-${maxPrice}`);
-                // }
-
-                // Construcción final
-                //let detailsSegment = detailsParts.length ? '-' + detailsParts.join('-') : '';
                 let finalUrl = `/${typeName}-en-${category}${queryParams}`;
-
-                // Construir la URL final y redireccionar.
                 window.location.href = finalUrl;
             });
+        }
+
+        // Typewriter effect corregido
+        const words = ["Vende tu propiedad", "Compra tu vivienda", "Avalua tu propiedad"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterElement = document.getElementById("typewriter");
+
+        function typeEffect() {
+            const currentWord = words[wordIndex];
+
+            if (!isDeleting) {
+                typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            } else {
+                typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            }
+
+            let typingSpeed = isDeleting ? 70 : 120; // más rápido
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                typingSpeed = 2000; // pausa al terminar palabra completa
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typingSpeed = 300;
+            }
+
+            setTimeout(typeEffect, typingSpeed);
+        }
+
+        if (typewriterElement) {
+            typeEffect();
         }
     });
 </script>
