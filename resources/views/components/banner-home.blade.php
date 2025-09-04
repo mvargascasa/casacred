@@ -377,7 +377,7 @@
         }
 
         // Typewriter effect corregido
-        const words = ["Vende tu propiedad", "Compra tu vivienda", "Avalua tu propiedad"];
+        const words = ["Vende tu propiedad", "Compra tu vivienda", "Avalúo de tu propiedad"];
         let wordIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
