@@ -699,7 +699,7 @@
                         <div class="carousel-inner">
                             @foreach (explode('|', $listing->images) as $image)
                               <div class="carousel-item @if ($loop->first) active @endif">
-                                <img src="{{ $filexists ? url('uploads/listing/', $image) : url('uploads/listing/', $image) }}"
+                                <img loading="lazy" src="{{ $filexists ? url('uploads/listing/', $image) : url('uploads/listing/', $image) }}"
                                      class="d-block w-100 modal-img">
                               </div>
                             @endforeach
@@ -1304,10 +1304,15 @@
                         </form>
                     </div>
                 </div>
+
+                <div>
+                    <x-whatsapp-channel-section></x-whatsapp-channel-section>
+                </div>
+
                 @if ($user->profile_photo_path != null && $user->status == 1)
                     <div class="advisor-card advisor-card-mobile">
                         <div class="advisor-image">
-                            <img width="150px" height="200px" style="object-fit: cover" src="{{ asset('uploads/profiles/' . $user->profile_photo_path) }}" alt="Imagen de Asesora">
+                            <img loading="lazy" width="150px" height="200px" style="object-fit: cover" src="{{ asset('uploads/profiles/' . $user->profile_photo_path) }}" alt="Imagen de Asesora">
                         </div>
                         <div class="advisor-info">
                             <div>
