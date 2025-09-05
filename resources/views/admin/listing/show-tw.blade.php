@@ -932,24 +932,30 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
     function setLinkToShare(){
       let link = "https://api.whatsapp.com/send?text=";
       let message = "https://grupohousing.com/propiedad/{{$propertie->slug}}";
-      message += "%0AReciba un cordial saludo de Grupo Housing 👋🏻🏠 Le hacemos llegar la propiedad en la que se encuentra interesado.%0A"
+      message += "%0AReciba un cordial saludo de Grupo Housing 👋🏻🏠 Le hacemos llegar la propiedad en la que se encuentra interesado.%0A";
+
+      let checkboxes = document.querySelectorAll("input[name^='similarwpp']");
       let firstparagraph = false;
-      for (let i = 0; i < {{count($similarProperties)}}; i++) {
-        if(document.querySelector("input[name='similarwpp"+i+"']").checked) firstparagraph = true;
-      }
-      
-      for (let i = 0; i < {{count($similarProperties)}}; i++) {
-        if(document.querySelector("input[name='similarwpp"+i+"']").checked){
-          if(firstparagraph == true && i == 0)message += "%0ATambién adjuntamos enlaces a propiedades similares a la búsqueda:";
-          let value = document.querySelector("input[name='similarwpp"+i+"']").value;
+
+      checkboxes.forEach(chk => {
+        if (chk.checked) firstparagraph = true;
+      });
+
+      checkboxes.forEach((chk, idx) => {
+        if (chk.checked) {
+          if (firstparagraph && idx === 0) {
+            message += "%0ATambién adjuntamos enlaces a propiedades similares a la búsqueda:";
+          }
+          let value = chk.value;
           let index = value.indexOf("|");
           let linklisting = value.substring(0, index);
           let title = value.substring(index+1);
-          message += "%0A✅"+title+"%0Ahttps://grupohousing.com/propiedad/"+linklisting+"%0A";
+          message += "%0A✅" + title + "%0Ahttps://grupohousing.com/propiedad/" + linklisting + "%0A";
         }
-      }
-      message += "%0A_*Grupo Housing, Haciendo sus sueños realidad*_%0A"
-      window.open(link+message, '_blank');
+      });
+
+      message += "%0A_*Grupo Housing, Haciendo sus sueños realidad*_%0A";
+      window.open(link + message, '_blank');
     }
     
     // const overlay = document.querySelector('.modal-overlay')
