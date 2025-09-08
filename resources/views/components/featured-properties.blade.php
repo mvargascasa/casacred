@@ -17,7 +17,7 @@
                     <!-- Property Image -->
                     <a href="/propiedad/{{$property->slug}}">
                         <div class="property-image">
-                            <img src="{{ asset('uploads/listing/600/'.strtok($property->images, '|')) }}" alt="{{ $property->listing_title }}">
+                            <img loading="lazy" src="{{ asset('uploads/listing/600/'.strtok($property->images, '|')) }}" alt="{{ $property->listing_title }}">
                             <div class="property-code"> <span>COD:</span> {{ $property->product_code }}</div>
                         </div>
                     </a>

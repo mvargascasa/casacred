@@ -490,6 +490,9 @@
     .thumb-wrapper {
         max-height: 90px;
     }
+    .property-title-h1{
+        font-size: 1.5rem !important;   
+    }
 }
 
 @media (max-width: 576px) {
@@ -526,17 +529,17 @@
 }
 
 /* Título */
-.property-title {
+.property-title-h1 {
     font-family: 'Sharp Grotesk', sans-serif;
     font-weight: 600;
-    font-size: 32px;
+    font-size: 2rem;
     color: #1a1a1a;
     margin-bottom: 10px;
 }
 
 /* Dirección */
-.property-location {
-    font-size: 16px;
+.property-location-principal {
+    font-size: 18px;
     color: #555;
 }
 
@@ -558,9 +561,17 @@
     align-items: center;
 }
 
-.container-price-and-code span{
+.container-price-and-code .price-container{
     background-color: #142743;
     color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+.code-listing{
+    border: 1px solid #142743;
+    color: #142743;
     padding: 10px 20px;
     border-radius: 30px;
     font-weight: 600;
@@ -674,7 +685,7 @@
                 @foreach (explode('|', $listing->images) as $image)
                     @if ($loop->index < 4)
                         <div class="thumb-wrapper mb-3 mr-2">
-                            <img src="{{ $filexists ? url('uploads/listing/thumb/', $image) : url('uploads/listing/', $image) }}"
+                            <img src="{{ $filexists ? url('uploads/listing/thumb/600/', $image) : url('uploads/listing/', $image) }}"
                                  class="img-fluid thumb-img"
                                  data-target="#carouselImages"
                                  data-slide-to="{{ $loop->index }}">
@@ -718,49 +729,6 @@
             </div>
         </div>
         
-
-        {{-- <div class="row">
-            <div class="col-12 position-relative">
-                <div id="carouselImages" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        @foreach (explode('|', $listing->images) as $image)
-                            <div class="carousel-item @if ($loop->index == 0) active @endif" style="background-color: transparent; backdrop-filter: blur(20px)">
-                                <img src="{{ $filexists ? url('uploads/listing/thumb/', $image) : url('uploads/listing/', $image) }}"
-                                    class="d-block w-100 carousel-image" style="border-radius: 15px; object-fit: contain !important">
-                            </div>
-                        @endforeach
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselImages" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Anterior</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselImages" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Siguiente</span>
-                    </a>
-                </div>
-                <span class="position-absolute top-0 end-0 p-2 text-white"
-                    style="background-color: #242B40; font-family: 'Sharp Grotesk'; font-weight: 500; border-bottom-left-radius: 10px; right: 12px; top: 0; z-index: 2;">COD:
-                    {{ $listing->product_code }}</span>
-            </div>
-        </div> --}}
-
-        {{-- <div class="row mt-4 justify-content-center">
-            <div class="col-12">
-                <div class="d-flex justify-content-center position-relative">
-                    <button id="scrollLeft" class="scroll-button left"><i style="text-color:#242B40"
-                            class="fas fa-chevron-left"></i></button>
-                    <div class="d-inline-flex overflow-hidden thumbnail-container">
-                        @foreach (explode('|', $listing->images) as $index => $image)
-                            <img onclick="switchImage({{ $index }})"
-                                src="{{ $filexists ? url('uploads/listing/thumb/600', $image) : url('uploads/listing/600', $image) }}"
-                                class="img-thumbnail m-1 thumbnail-standard" style="cursor: pointer;">
-                        @endforeach
-                    </div>
-                    <button id="scrollRight" class="scroll-button right"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </div> --}}
     </div>
     
     <div class="custom-container mt-5">
@@ -768,16 +736,16 @@
             <div class="col-md-7">
                 
                 <!-- Título -->
-                <h1 class="property-title">
+                <h1 class="property-title-h1">
                     {{ Str::title($listing->listing_title) }}
                 </h1>
 
                 <!-- Dirección -->
-                <div class="d-flex align-items-center mb-3">
-                    <i class="fa-solid fa-location-dot me-2 text-muted"></i>
-                    <span class="property-location">
+                <div class="d-flex align-items-center" style="gap: 8px">
+                    <i class="fa-solid fa-location-dot me-2 text-muted fa-2x"></i>
+                    <div class="property-location-principal">
                         {{ $listing->sector }}, {{ $listing->city }}, {{ $listing->state }}
-                    </span>
+                    </div>
                 </div>
 
                 <!-- Precio -->
@@ -801,7 +769,7 @@
                     @if ($listing->bedroom > 0)
                         <div class="parent">
                             <div class="feature-box">
-                                <img src="{{ asset('img/dormitorios.png') }}" alt="Habitaciones">
+                                <img loading="lazy" src="{{ asset('img/dormitorios.png') }}" alt="Habitaciones">
                             </div>
                             <p class="mt-2">{{ $listing->bedroom }} Habitaciones</p>
                         </div>
@@ -809,7 +777,7 @@
                     @if ($listing->bathroom > 0)
                         <div class="parent">
                             <div class="feature-box">
-                                <img src="{{ asset('img/banio.png') }}" alt="Baños">
+                                <img loading="lazy" src="{{ asset('img/banio.png') }}" alt="Baños">
                             </div>
                             <p class="mt-2">{{ $listing->bathroom }} {{ $listing->bathroom > 1 ? 'Baños' : 'Baño' }}</p>
                         </div>
@@ -817,7 +785,7 @@
                     @if ($listing->garage > 0)
                         <div class="parent">
                             <div class="feature-box">
-                                <img src="{{ asset('img/estacionamiento.png') }}" alt="Garajes">
+                                <img loading="lazy" src="{{ asset('img/estacionamiento.png') }}" alt="Garajes">
                             </div>
                             <p class="mt-2">{{ $listing->garage }} {{ $listing->garage > 1 ? 'Garajes' : 'Garaje' }}</p>
                         </div>
@@ -825,7 +793,7 @@
                     @if(isset($listing->land_area) && $listing->land_area != 0)
                         <div class="parent">
                             <div class="feature-box">
-                                <img src="{{ asset('img/area.png') }}" alt="Terreno">
+                                <img loading="lazy" src="{{ asset('img/area.png') }}" alt="Terreno">
                             </div>
                             <p class="mt-2">{{ $listing->land_area }} m² Terreno</p>
                         </div>
@@ -833,7 +801,7 @@
                     @if(isset($listing->construction_area) && $listing->construction_area != 0)
                         <div class="parent">
                             <div class="feature-box">
-                                <img src="{{ asset('img/area.png') }}" alt="Casa">
+                                <img loading="lazy" src="{{ asset('img/area.png') }}" alt="Casa">
                             </div>
                             <p class="mt-2">{{ $listing->construction_area }} m² Construcción</p>
                         </div>
@@ -847,50 +815,6 @@
                         {{ $listing->listing_description }}
                     </p>
                 </div>
-
-
-                {{-- <div class="d-flex align-items-center px-2 py-1 rounded" style="gap: 10px; background-color: #242B40; color: #fff; width: fit-content">
-                    <div>
-                        <span class="h3" style="font-weight: 100">
-                            @if($listing->customized_price != null)
-                                Precio: {{ $listing->customized_price }}
-                            @else
-                                Precio: ${{ number_format($listing->property_price, 0, ',', '.') }}
-                            @endif
-                        </span>
-                    </div>
-                    @if($listing->aliquot && $listing->aliquot > 0)
-                        <div class="d-flex align-items-center" style="gap: 10px; font-weight: 500">
-                            <span>+</span>
-                            <span class="text-center">Alicuota <br> ${{ number_format($listing->aliquot)}}</span>
-                        </div>
-                    @endif
-                </div> --}}
-
-                {{-- <div class="d-flex align-items-center mt-3">
-                    <i class="fa-solid fa-location-dot fs-5 me-2"></i>
-                    <p class="mb-0 ml-2 ms-2">{{ $listing->sector }}, {{ $listing->city }}, {{ $listing->state }}</p>
-                    <span class="ms-2 ml-2 badge"
-                        style="background-color: #f9a322; color: #ffffff; border-radius: 5px; font-weight: 500; font-size: 13px; padding: 3px 6px;">
-                        {{ $listingtype->type_title }}
-                    </span>
-                    <span class="ms-2 ml-2 badge"
-                        style="background-color: #dc3545; color: #ffffff; border-radius: 5px; font-weight: 500; font-size: 13px; padding: 3px 6px;">
-                        @switch($listing->listingtypestatus)
-                            @case('en-venta')
-                                Venta
-                            @break
-
-                            @case('alquilar')
-                                Alquilar
-                            @break
-
-                            @default
-                                Proyectos
-                        @endswitch
-                    </span>
-                    
-                </div> --}}
 
                 @if($listing->is_dual_operation)
                     <div class="row mt-3 ml-1">
@@ -907,62 +831,7 @@
 
                 <div class="d-flex justify-content-around flex-wrap mt-4">
 
-                    {{-- @if ($listing->bedroom > 0)
-                        <div class="d-flex align-items-center justify-content-center flex-column text-center p-2">
-                            <img src="{{ asset('img/dormitorios.png') }}" alt="Habitaciones" width="50px" height="50px">
-                            <p class="pt-2 fw-bold">{{ $listing->bedroom }} Hab.</p>
-                        </div>
-                    @endif --}}
-                    {{-- @if ($listing->bathroom > 0)
-                        <div class="d-flex align-items-center justify-content-center flex-column text-center p-2">
-                            <img src="{{ asset('img/banio.png') }}" alt="Baños" width="50px" height="50px">
-                            <p class="pt-2 fw-bold">{{ $listing->bathroom }}
-                                {{ $listing->bathroom > 1 ? 'Baños' : 'Baño' }}</p>
-                        </div>
-                    @endif --}}
-                    {{-- @if ($listing->garage > 0)
-                        <div class="d-flex align-items-center justify-content-center flex-column text-center p-2">
-                            <img src="{{ asset('img/estacionamiento.png') }}" alt="Garaje" width="50px" height="50px">
-                            <p class="pt-2 fw-bold">{{ $listing->garage }}
-                                {{ $listing->garage > 1 ? 'Garajes' : 'Garaje' }}</p>
-                        </div>
-                    @endif --}}
-                    {{-- @if (
-                        (isset($listing->construction_area) && !empty($listing->construction_area)) ||
-                            (isset($listing->land_area) && !empty($listing->land_area)))
-                        <div class="d-flex align-items-center justify-content-center flex-column text-center p-2">
-                            <img src="{{ asset('img/area.png') }}" alt="Área de construcción" width="50px"
-                                height="50px">
-                            <p class="pt-2 fw-bold">
-                                @if (isset($listing->construction_area) && !empty($listing->construction_area))
-                                    {{ $listing->construction_area }} m<sup>2</sup>
-                            </p>
-                        @elseif (isset($listing->land_area) && !empty($listing->land_area))
-                            {{ $listing->land_area }} m<sup>2</sup></p>
-                    @endif --}}
-                
-            </div>
-
-            {{-- <h2 style="font-family: 'Sharp Grotesk', sans-serif;">Acerca de esta propiedad</h2>
-
-            <p style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Sector:</strong> {{ $listing->sector }}</p> --}}
-            {{-- <p style="font-family: 'Sharp Grotesk', sans-serif; text-align: justify;" id="description">
-                <strong>Descripción:</strong>
-                <span id="short-desc">{{ Str::limit($listing->listing_description, 200, '...') }}</span>
-                <span id="full-desc" style="display: none;">{{ $listing->listing_description }}</span>
-                @if (strlen($listing->listing_description) > 200)
-                    <a href="#" onclick="toggleDescription(); return false;" id="desc-toggle"
-                        style="color: gray; text-decoration: underline; cursor: pointer;">Ver más</a>
-                @endif
-            </p> --}}
-            {{-- @if (isset($listing->land_area) && $listing->land_area != 0)
-                <p style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Metros de terreno:</strong>
-                    {{ $listing->land_area }} m<sup>2</sup></p>
-            @endif
-            @if (isset($listing->construction_area) && $listing->construction_area != 0)
-                <p style="font-family: 'Sharp Grotesk', sans-serif;"><strong>Metros de construcción:</strong>
-                    {{ $listing->construction_area }} m<sup>2</sup></p>
-            @endif --}}
+                </div>
 
             @isset($units)
                 <div class="mb-4">
@@ -984,8 +853,6 @@
                             <div class="row" style="padding-left: 7px">
                                 <?php unset($dets[0]);
                                 $printControl = 0; ?>
-                                {{-- @php dd($dets); @endphp      --}}
-                                {{-- @foreach ($dets as $det) --}}
                                 @for ($i = 1; $i < count($dets); $i++)
                                     @if ($printControl == 0)
                                         <?php $printControl = 1; ?>
@@ -1088,13 +955,6 @@
                 </div>
             @endif
 
-            {{-- <h2 class="mt-4" style="font-family: 'Sharp Grotesk'">Ubicación</h2>
-            <div class="d-flex align-items-center mt-3">
-                <i class="fa-solid fa-location-dot fs-5 me-2"></i>
-                <p class="mb-0 ml-2" style="font-family: 'Sharp Grotesk'">{{ $listing->sector }},
-                    {{ $listing->city }},
-                    {{ $listing->state }}</p>
-            </div> --}}
             <div class="position-relative">
                 <div id="map" style="height: 400px;" class="my-3"></div>
                 <div id="absolutemap" class="position-absolute d-flex justify-content-center align-items-center px-2" style="height: 400px; width: 100%; top: 0px; right: 0px; z-index: 1000; background-color: #6464643d; backdrop-filter: blur(4px)">
@@ -1277,7 +1137,7 @@
                             <div class="d-flex gap-3 ms-4 mt-2">
                                 <div class="rounded-circle d-flex justify-content-center align-items-center"
                                     style="border: 1px solid #242b40a2; width: 30px; height: 30px">
-                                    <img width="15px" src="{{ asset('img/email-icon.png') }}" alt="">
+                                    <img width="15px" src="{{ asset('img/email-icon.png') }}" alt="Icono de Correo de la empresa Grupo Housing">
                                 </div>
                                 <a style="text-decoration: none" href="mailto:info@grupohousing.com"
                                     class="mt-2 text-dark ml-2">info@grupohousing.com</a>
@@ -1286,7 +1146,7 @@
                             <div class="d-flex gap-3 ms-4 mt-2">
                                 <div class="rounded-circle d-flex justify-content-center align-items-center"
                                     style="border: 1px solid #242b40a2; width: 30px; height: 30px">
-                                    <img width="15px" src="{{ asset('img/location-icon.png') }}" alt="">
+                                    <img loading="lazy" width="15px" src="{{ asset('img/location-icon.png') }}" alt="Icono de Ubicacion de la empresa Grupo Housing">
                                 </div>
                                 <a style="text-decoration: none" class="mt-1 text-dark ml-2"
                                     href="https://maps.app.goo.gl/WctLFek7TAYvaQ2V9">

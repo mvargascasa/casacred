@@ -19,7 +19,7 @@
             
             <div class="cta-image">
                 <div class="image-container">
-                    <img src="/img/sell-rent-cta-image.webp" alt="Vende tu propiedad con nosotros" class="hand-house-image">
+                    <img loading="lazy" src="/img/sell-rent-cta-image.webp" alt="Vende tu propiedad con nosotros" class="hand-house-image">
                 </div>
             </div>
         </div>

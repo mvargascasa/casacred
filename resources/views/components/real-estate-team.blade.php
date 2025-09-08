@@ -18,7 +18,7 @@
             @foreach($teamMembers as $member)
                 <div class="team-member">
                     <div class="member-image-container">
-                        <img src="{{ asset('img/'.$member['image']) }}" alt="{{ $member['name'] }}" class="member-image">
+                        <img loading="lazy" src="{{ asset('img/'.$member['image']) }}" alt="{{ $member['name'] }}" class="member-image">
                         
                         <!-- Overlay con información -->
                         <div class="member-overlay">

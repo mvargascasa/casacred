@@ -28,7 +28,7 @@
                             <!-- Location -->
                             <div class="property-location">
                                 <div class="location-icon">
-                                    <img width="25px" src="{{ asset('img/ubicacion-icon.webp') }}" alt="Icono de Ubicacion">
+                                    <img loading="lazy" width="25px" src="{{ asset('img/ubicacion-icon.webp') }}" alt="Icono de Ubicacion" title="Icono de Ubicacion">
                                 </div>
                                 <span>{{ $property->address }}</span>
                             </div>
@@ -38,7 +38,7 @@
                                 @if($property->bedroom > 0)
                                     <div class="feature">
                                         <div class="feature-icon">
-                                            <img width="25px" src="{{ asset('img/habitaciones-icon.webp') }}" alt="Icono de Habitaciones">
+                                            <img loading="lazy" width="25px" src="{{ asset('img/habitaciones-icon.webp') }}" alt="Icono de Habitaciones" title="Icono de Habitaciones">
                                         </div>
                                         <div>{{ $property->bedroom }} Hab.</div>
                                     </div>
@@ -49,7 +49,7 @@
                                 @if($property->bathroom > 0)
                                 <div class="feature">
                                     <div class="feature-icon">
-                                        <img width="25px" src="{{ asset('img/baños-icon.webp') }}" alt="Icono de Baños">
+                                        <img width="25px" src="{{ asset('img/baños-icon.webp') }}" alt="Icono de Baños" title="Icono de Baños">
                                     </div>
                                     <span>{{ $property->bathroom }} Baños</span>
                                 </div>
@@ -62,7 +62,7 @@
                                 
                                 <div class="feature">
                                     <div class="feature-icon">
-                                        <img width="25px" src="{{ asset('img/garage-icon.webp') }}" alt="Icono de Garage">
+                                        <img width="25px" src="{{ asset('img/garage-icon.webp') }}" alt="Icono de Garaje" title="Icono de Garajes">
                                     </div>
                                     <span>{{ $property->garage }} Garajes</span>
                                 </div>

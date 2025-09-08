@@ -2,7 +2,7 @@
     <div class="testimonios-contenido">
         {{-- Contenedor de la imagen --}}
         <div class="imagen-contenedor">
-            <img src="{{ asset($backgroundImage) }}" alt="Imagen de llaves" class="imagen-redondeada">
+            <img loading="lazy" src="{{ asset($backgroundImage) }}" alt="Imagen de llaves" class="imagen-redondeada">
         </div>
 
         {{-- Contenedor de los testimonios --}}
