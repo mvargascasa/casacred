@@ -744,7 +744,7 @@
                 <div class="d-flex align-items-center" style="gap: 8px">
                     <i class="fa-solid fa-location-dot me-2 text-muted fa-2x"></i>
                     <div class="property-location-principal">
-                        {{ ucfirst($listing->sector ?? $listing->address) }}, {{ $listing->city }}, {{ $listing->state }}
+                        {{ ucfirst(strtolower($listing->sector ?? $listing->address)) }}, {{ $listing->city }}, {{ $listing->state }}
                     </div>
                 </div>
 
