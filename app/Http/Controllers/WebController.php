@@ -331,7 +331,7 @@ class WebController extends Controller
 
         $units = Unit::where('listing_id', $listing->id)->orderByRaw('CAST(unit_number AS UNSIGNED) asc')->get();
 
-        if($listing->status != 0) return view('detailprop2',compact('listing','details','benefits','services','types','mobile', 'user', 'values', 'generalcharacteristics', 'environments', 'media', 'units'));
+        if($listing->available == 1) return view('detailprop2',compact('listing','details','benefits','services','types','mobile', 'user', 'values', 'generalcharacteristics', 'environments', 'media', 'units'));
         else return redirect('/propiedades-en-general');
     }
 
