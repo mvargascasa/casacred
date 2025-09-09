@@ -700,6 +700,11 @@ class="modal-content border-none shadow-lg relative flex flex-col w-full pointer
         <div class="border mb-2 flex">
           <img width="100px" height="70px" src="{{asset('/uploads/listing/300/'.strtok($similar_propertie->images, '|'))}}" alt="No se puedo cargar la imagen">
           <div class="text-xs mx-1">
+            @if($similar_propertie->status == 0)
+              <span class="text-red-600 font-semibold">
+                Propiedad desactivada
+              </span>
+            @endif
             <p>{{$similar_propertie->listing_title}} - {{$similar_propertie->product_code}}</p>
             <p>@if(Str::contains($similar_propertie->address, ',')){{ Str::limit($similar_propertie->address, 30, '...')}} @else {{Str::limit($similar_propertie->state . ', ' . $similar_propertie->city . ', ' . $similar_propertie->address, 30, '...') }} @endif</p>
             <p class="text-red-600">${{number_format($similar_propertie->property_price)}}</p>
