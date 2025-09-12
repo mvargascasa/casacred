@@ -130,7 +130,7 @@ Route::get('/test88', function () {
 //     return view('home4');
 // });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified', 'check.ip']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::resource('listings', ListingController::class, ['as' => 'admin']);
     Route::post('storing-property', [ListingController::class, 'storing_property'])->name('admin.storing.property');
