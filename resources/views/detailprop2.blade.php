@@ -198,7 +198,7 @@
                 height: 150px;
             }
             .section-interest{
-                display: none !important;
+                display: none;
             }
             #map, #absolutemap{
                 height: 500px !important;
@@ -220,7 +220,7 @@
                 display: none !important;
             }
             .section-interest{
-                display: block !important;
+                display: block;
             }
             #map, #absolutemap{
                 height: 450px !important
@@ -418,9 +418,9 @@
 /* Botón ver todas */
 .btn-overlay {
     position: absolute;
-    bottom: 15px;
-    right: 15px;
-    background: rgba(20,39,67,0.85);
+    bottom: 20px;
+    right: 30px;
+    background: #142743;
     color: white;
     border-radius: 20px;
     padding: 6px 15px;
@@ -626,6 +626,161 @@
     text-align: center; /* opcional para el texto */
 }
 
+.play-intro-overlay {
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+}
+
+.play-intro-icon {
+    width: 100px;
+    height: 100px;
+    animation: rotate-smooth 8s linear infinite;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes rotate-smooth {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Para hacer el ícono clickeable si es necesario */
+.play-intro-overlay.clickable {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* relación 16:9 */
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-gallery {
+            background: #000;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* Ratio 16:9 por defecto */
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Estilos específicos para móviles */
+        @media (max-width: 768px) {
+            .modal-dialog.modal-xl {
+                max-width: 95%;
+                margin: 10px auto;
+            }
+            
+            .modal-content.modal-gallery {
+                height: 90vh; /* Usar casi toda la altura de la pantalla */
+            }
+            
+            .modal-body {
+                height: calc(90vh - 60px); /* Restar altura del header */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px;
+            }
+            
+            /* Para videos verticales (shorts) en móvil */
+            .video-container {
+                padding-bottom: 177.78%; /* Ratio 9:16 para shorts */
+                max-height: 100%;
+                max-width: 56.25vh; /* Mantener proporción */
+            }
+            
+            /* Si el contenedor es muy alto, limitamos y centramos */
+            .video-container {
+                height: auto;
+                max-height: calc(90vh - 80px);
+            }
+            .play-intro-icon{
+                width: 50px;
+                height: 50px;
+            }
+        }
+        
+        /* Para pantallas muy pequeñas */
+        @media (max-width: 480px) {
+            .modal-dialog.modal-xl {
+                max-width: 98%;
+                margin: 5px auto;
+            }
+            
+            .modal-content.modal-gallery {
+                height: 95vh;
+            }
+            
+            .modal-body {
+                height: calc(95vh - 50px);
+                padding: 5px;
+            }
+        }
+        
+        /* Estilos para el botón de cerrar */
+        .close-modal-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            z-index: 1050;
+            color: white;
+            font-size: 2rem;
+            background: rgba(0,0,0,0.5);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .close-modal-btn:hover {
+            opacity: 1;
+            color: white;
+        }
+        
+        /* Clase adicional para forzar video vertical en móvil */
+        .video-container.vertical-mobile {
+            padding-bottom: 177.78% !important;
+        }
+        
+        @media (min-width: 769px) {
+            .video-container.vertical-mobile {
+                padding-bottom: 56.25% !important; /* Volver a 16:9 en desktop */
+            }
+        }
     </style>
 @endsection
 
@@ -655,7 +810,7 @@
         <div class="row">
             <!-- Carrusel principal -->
             <div class="col-lg-9 col-md-12 position-relative mb-3">
-                <div id="carouselImages" class="carousel slide" data-ride="carousel">
+                <div id="carouselImages" class="carousel slide" data-ride="carousel" style="position: relative;">
                     <div class="carousel-inner">
                         @foreach (explode('|', $listing->images) as $image)
                             <div class="carousel-item @if ($loop->first) active @endif">
@@ -664,7 +819,14 @@
                             </div>
                         @endforeach
                     </div>
-        
+                
+                    @if($listing->video && !Str::endsWith($listing->video, '.mp4'))
+                        <!-- Ícono SVG superpuesto -->
+                        <div class="play-intro-overlay" data-toggle="modal" data-target="#videoModalProperty">
+                            <img class="play-intro-icon" src="{{ asset('img/icono-reproducir-video-propiedad.webp') }}" alt="Icono de Reproducir Video" title="Icono de Reproducir Video">
+                        </div>
+                    @endif
+                
                     <!-- Controles personalizados -->
                     <a class="carousel-control-prev custom-control" href="#carouselImages" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon custom-icon" aria-hidden="true"></span>
@@ -728,6 +890,30 @@
               </div>
             </div>
         </div>
+
+        @if($listing->video && !Str::endsWith($listing->video, '.mp4'))
+            <div class="modal fade" id="videoModalProperty" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content modal-gallery">
+                        <div class="modal-header border-0">
+                            <button type="button" class="close close-modal-btn" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body position-relative">
+                            <div class="video-container vertical-mobile">
+                                <iframe
+                                    data-src="https://www.youtube.com/embed/{{$listing->video}}"
+                                    src=""
+                                    title="Video de Propiedad"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>             
+                    </div>
+                </div>
+            </div>
+        @endif
         
     </div>
     
@@ -815,6 +1001,16 @@
                         {{ $listing->listing_description }}
                     </p>
                 </div>
+
+                <!-- Años de antiguedad -->
+                @if($listing->listyears > 0)
+                    <div>
+                        <p>
+                            <strong>Años de antigüedad:</strong>
+                            {{ $listing->listyears . ' ' . ($listing->listyears > 1 ? 'años' : 'año') }}
+                        </p>
+                    </div>
+                @endif
 
                 @if($listing->is_dual_operation)
                     <div class="row mt-3 ml-1">
@@ -1201,14 +1397,17 @@
         <x-similar-properties :city="$listing->city" :type="$listing->listingtype"></x-similar-properties>
     </div>
 
-    <section class="w-100 py-3 px-3 section-interest" style="position: fixed; bottom: 0px; background-color: #242B40; z-index: 10000">
+    <section id="contact-mobile-section" class="w-100 py-3 px-3 section-interest" style="position: fixed; bottom: 0px; background-color: #242B40; z-index: 10000">
+        <div style="float: right" onclick="document.getElementById('contact-mobile-section').style.display='none'">
+            <span class="text-white font-weight-bold">x</span>
+        </div>
         <p style="font-size: medium" class="text-white m-0 p-0">¿Te interesa esta propiedad? <span style="font-weight: 700;">¡Contáctanos!</span></p>
         <div class="d-flex justify-content-center align-items-center mt-1" style="gap: 10px">
             <div class="w-100">
-                <a class="btn btn-outline-light rounded-pill w-100" onclick="gtag_report_conversion_whatsapp('https://api.whatsapp.com/send?phone=593967867998&text=Hola%20Grupo%20Housing,%20estoy%20interesado/a%20en%20esta%20propiedad:%20*{{$listing->product_code}}*%0A{{Request::url()}}')" href="https://api.whatsapp.com/send?phone=593967867998&text=Hola%20Grupo%20Housing,%20estoy%20interesado/a%20en%20esta%20propiedad:%20*{{$listing->product_code}}*%0A{{Request::url()}}">WhatsApp</a>
+                <a class="btn btn-outline-light rounded-pill w-100 border" onclick="gtag_report_conversion_whatsapp('https://api.whatsapp.com/send?phone=593967867998&text=Hola%20Grupo%20Housing,%20estoy%20interesado/a%20en%20esta%20propiedad:%20*{{$listing->product_code}}*%0A{{Request::url()}}')" href="https://api.whatsapp.com/send?phone=593967867998&text=Hola%20Grupo%20Housing,%20estoy%20interesado/a%20en%20esta%20propiedad:%20*{{$listing->product_code}}*%0A{{Request::url()}}">WhatsApp</a>
             </div>
             <div class="w-100">
-                <a class="btn btn-outline-light rounded-pill w-100" href="tel:+593967867998" onclick="gtag_report_conversion('tel:+593967867998')">Llamar</a>
+                <a class="btn btn-outline-light rounded-pill w-100 border" href="tel:+593967867998" onclick="gtag_report_conversion('tel:+593967867998')">Llamar</a>
             </div>
         </div>
     </section>
@@ -1234,6 +1433,21 @@
                                 .indexOf(e.relatedTarget) + 1;
                 counter.textContent = `${index} / ${totalSlides}`;
             });
+
+            const videoModal = document.getElementById('videoModalProperty');
+            const iframe = videoModal.querySelector('iframe');
+            const videoUrl = iframe.getAttribute('data-src');
+
+            // Cuando se abre el modal
+            videoModal.addEventListener('show.bs.modal', function () {
+                iframe.src = videoUrl; // siempre asigna la URL
+            });
+
+            // Cuando se cierra el modal
+            videoModal.addEventListener('hidden.bs.modal', function () {
+                iframe.src = ""; // limpia para detener el video
+            });
+
         });
     </script>
     <script>
