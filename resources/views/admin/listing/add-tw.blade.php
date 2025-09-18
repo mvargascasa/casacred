@@ -155,7 +155,7 @@
                 @endif
             </div>
             <div class="flex">
-                @if(Auth::user()->id == 934 || Auth::user()->id == 935 || Auth::user()->id == 147 || Auth::user()->id == 942 || Auth::user()->id == 945 || Auth::user()->id == 942)
+                @if(Auth::user()->id == 934 || Auth::user()->id == 935 || Auth::user()->id == 147 || Auth::user()->id == 942 || Auth::user()->id == 945 || Auth::user()->id == 942 || Auth::user()->id == 949)
                     <div>
                         <button onclick="abrirModal()" class="text-white text-center bg-red-600 rounded px-2 mr-2">
                             <span class="text-sm text-white font-semibold">Actualizar fecha de contacto</span>
@@ -264,22 +264,16 @@
                         {!! Form::label('available', 'Disponibilidad', ['class' => 'font-semibold']) !!}
                         {!! Form::select('available', ['1' => 'DISPONIBLE', '2' => 'NO DISPONIBLE'], null, ['class' => $inputs, 'onchange' => 'requiredFalse(this.value);', 'required']) !!}
                     </div>
-                    {{-- @if($currentRouteName != "admin.housing.property.create" && $currentRouteName != "admin.housing.property.edit") --}}
                         <div>       
                             {!! Form::label('listing_type', 'Plan',['class' => 'font-semibold']) !!}
                             {!! Form::select('listing_type',['' => 'Seleccione', '2'=>'PAGO','1'=>'GRATIS'], null, ['class' => $inputs]) !!}
                         </div>
-                    {{-- @endif --}}
             
                     @if(Auth::user()->role == "administrator")
                         @if(isset($isvalid) && $isvalid || isset($listing) && $listing->status == 1)
                             <div>
                                 {!! Form::label('status', 'Status',['class' => 'font-semibold']) !!}
-                                {{-- @if(isset($listing) && $listing->locked)
-                                    {!! Form::select('status',['0'=>'DESACTIVADO','1'=>'ACTIVO'], null, ['class' => $inputs, 'disabled']) !!}
-                                @else --}}
-                                    {!! Form::select('status',['0'=>'DESACTIVADO','1'=>'ACTIVO'], null, ['class' => $inputs]) !!}
-                                {{-- @endif --}}
+                                {!! Form::select('status',['0'=>'DESACTIVADO','1'=>'ACTIVO'], null, ['class' => $inputs]) !!}
                             </div>
                         @else
                             <div class="text-xs mt-8">
@@ -1020,7 +1014,7 @@
     <script>
         let currentRoute = @json(Route::current()->getName());
     </script>
-    <script src="{{ asset('js/listings/validate.min.js?v=7') }}" defer></script>
+    <script src="{{ asset('js/listings/validate.js?v=8') }}" defer></script>
     <script>let bandera = false;</script>
     @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.promotora.property.create")
         <script>
