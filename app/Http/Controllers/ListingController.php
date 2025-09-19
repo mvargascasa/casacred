@@ -951,11 +951,17 @@ class ListingController extends Controller
         $product_code = $request->input('product_code');
         $comment = $request->input('comentario');
         $updatedDate = $request->input('fecha_contacto');
+        $response = $request->input('respuesta_contacto');
 
         $propertie = Listing::where('product_code', $product_code)->first();
-        $propertie->contact_at = $updatedDate;
-        $propertie->save();
 
+        // Verificamos si la respuesta no es "NO CONTESTA" para actualizar la fecha
+        if ($response !== 'NO CONTESTA' && $propertie) {
+            $propertie->contact_at = $updatedDate;
+            $propertie->save();
+        }
+
+        // Creamos el comentario con el valor de la respuesta
         Comment::create([
             'listing_id' => $propertie->id,
             'user_id' => Auth::user()->id,

@@ -154,38 +154,6 @@
         document.getElementById('modalUnits').classList.add('hidden');
     }
 
-    function saveData() {
-        const comentario = document.getElementById('comentario').value;
-        const fecha_contacto = document.getElementById('fecha_contacto').value;
-        const product_code = document.getElementById('product_code').value;
-
-        fetch("{{ Route('update.contact.date') }}", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}' // Asegúrate de tener esto en tu Blade
-            },
-            body: JSON.stringify({
-                comentario: comentario,
-                fecha_contacto: fecha_contacto,
-                product_code: product_code
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                cerrarModal();
-                alert('Fecha actualizada con éxito.');
-                // Aquí puedes agregar una notificación de éxito o actualizar la tabla
-            } else {
-                alert('Error al actualizar la fecha de contacto.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-
     document.querySelectorAll('.edit-btn').forEach(btn => {
         btn.addEventListener('click', function () {
             const id = this.dataset.unit;
