@@ -1,13 +1,11 @@
 @extends('layouts.dashtw')
 
 @section('firstscript')
-<title> @if(isset($listing->id)) Editar: {{$listing->product_code}} {{$listing->listing_title}} @else Crear @endif Propiedad</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title> @if(isset($listing->id)) Editar: {{$listing->product_code}} {{$listing->listing_title}} @else Crear @endif Propiedad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-{{-- link para el loading button --}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
@@ -20,7 +18,6 @@
     body{
         scroll-behavior: smooth !important;
     }
-    /* input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none; margin: 0;} */
     .modal, .modalSuccess {
       transition: opacity 0.25s ease;
     }
@@ -87,19 +84,6 @@
 </style>
 
 @endsection
-
-@php
-    if(isset($listing)){
-        $createdDay = Illuminate\Support\Carbon::parse($listing->contact_at)->addDays(31);
-        $now = Illuminate\Support\Carbon::now();
-    
-        if($now > $createdDay){
-            $callAt = 0;
-        } else {
-            $callAt = $createdDay->diffInDays($now);
-        }
-    }
-@endphp
 
 @section('content')
 
@@ -875,8 +859,15 @@
 
                         @if($currentRouteName != "admin.housing.property.create" && $currentRouteName != "admin.housing.property.edit")
                             <div class="grid grid-cols-1 mt-4">
-                                {!! Form::label('cadastral_key', 'Clave Catastral', ['class' => 'font-semibold']) !!}
-                                {!! Form::text('cadastral_key', null, ['class' => $inputs]) !!}
+                                <div class="flex items-end gap-2 w-full">
+                                    <div class="w-3/4">
+                                        {!! Form::label('cadastral_key', 'Clave Catastral', ['class' => 'font-semibold']) !!}
+                                        {!! Form::text('cadastral_key', null, ['class' => $inputs]) !!}
+                                    </div>
+                                    <div class="w-1/4">
+                                        <button id="btn-search-cadastral-key" class="bg-green-800 text-white p-2 rounded w-full">Buscar</button>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -1011,6 +1002,10 @@
 
 @section('endscript')
     <script src="{{asset('js/sortable.min.js')}}"></script>
+    <script>
+        const searchCadastralKeyBaseUrl = "{{ route('search.cadastral.key') }}";
+    </script>
+    <script defer src="{{ asset('js/listings/search-cadastral-key.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         let currentRoute = @json(Route::current()->getName());
@@ -1454,28 +1449,28 @@
     })
   );
 
-  function getTotalAppraisal() {
-    let inp_land_appraisal = document.getElementById('land_appraisal');
-    let inp_construction_appraisal = document.getElementById('construction_appraisal');
-    let inp_aval = document.getElementById('aval');
+    function getTotalAppraisal() {
+        let inp_land_appraisal = document.getElementById('land_appraisal');
+        let inp_construction_appraisal = document.getElementById('construction_appraisal');
+        let inp_aval = document.getElementById('aval');
 
-    // Función para calcular y actualizar el aval
-    const actualizarAval = () => {
-        const landValue = parseFloat(inp_land_appraisal.value) || 0;
-        const constructionValue = parseFloat(inp_construction_appraisal.value) || 0;
-        const total = landValue + constructionValue;
-        inp_aval.value = total;
-    };
+        // Función para calcular y actualizar el aval
+        const actualizarAval = () => {
+            const landValue = parseFloat(inp_land_appraisal.value) || 0;
+            const constructionValue = parseFloat(inp_construction_appraisal.value) || 0;
+            const total = landValue + constructionValue;
+            inp_aval.value = total.toFixed(2);
+        };
 
-    // Adjunta los event listeners a los inputs
-    if (inp_land_appraisal && inp_construction_appraisal && inp_aval) {
-        inp_land_appraisal.addEventListener('keyup', actualizarAval);
-        inp_construction_appraisal.addEventListener('keyup', actualizarAval);
+        // Adjunta los event listeners a los inputs
+        if (inp_land_appraisal && inp_construction_appraisal && inp_aval) {
+            inp_land_appraisal.addEventListener('keyup', actualizarAval);
+            inp_construction_appraisal.addEventListener('keyup', actualizarAval);
 
-        // También puedes llamar a actualizarAval() inicialmente si quieres un valor inicial en 'aval'
-        // actualizarAval();
+            // También puedes llamar a actualizarAval() inicialmente si quieres un valor inicial en 'aval'
+            // actualizarAval();
+        }
     }
-}
 
 // Asegúrate de llamar a getTotalAppraisal() después de que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', getTotalAppraisal);

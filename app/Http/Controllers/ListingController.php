@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 class ListingController extends Controller
@@ -989,6 +990,32 @@ class ListingController extends Controller
         }
 
         return response()->json(['message' => 'Validación completada correctamente.']);
+    }
+
+    public function searchCadastralKey($clave){
+        try {
+            $url = "https://enlinea.cuenca.gob.ec/geoservicios/rest/predios/{$clave}?tipo=A";
+
+            $response = Http::withoutVerifying()->get($url);
+
+            if ($response->successful()) {
+                return response()->json([
+                    'success' => true,
+                    'data' => $response->json()
+                ]);
+            }
+
+            return response()->json([
+                'success' => false,
+                'message' => 'No se pudo obtener la información del predio'
+            ], 500);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error en la consulta: ' . $e->getMessage()
+            ], 500);
+        }
     }
 
 }

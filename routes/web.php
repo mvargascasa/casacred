@@ -248,6 +248,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified', 
     Route::post('/update-contact-date', [ListingController::class, 'updateContactDate'])->name('update.contact.date');
 
     Route::get('/properties/valid/update', [ListingController::class, 'validateListingsCompleteness'])->name('update.valid.properties');
+    Route::get('/search-cadastral-key/{clave?}', [ListingController::class, 'searchCadastralKey'])->name('search.cadastral.key');
 });
 
 //BLOG
