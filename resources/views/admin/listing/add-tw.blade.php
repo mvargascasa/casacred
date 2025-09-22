@@ -855,17 +855,21 @@
                             </div>
                         </div>
                     </div>   
+                        
                     <div>
-
                         @if($currentRouteName != "admin.housing.property.create" && $currentRouteName != "admin.housing.property.edit")
-                            <div class="grid grid-cols-1 mt-4">
-                                <div class="flex items-end gap-2 w-full">
-                                    <div class="w-3/4">
-                                        {!! Form::label('cadastral_key', 'Clave Catastral', ['class' => 'font-semibold']) !!}
-                                        {!! Form::text('cadastral_key', null, ['class' => $inputs]) !!}
-                                    </div>
-                                    <div class="w-1/4">
-                                        <button id="btn-search-cadastral-key" class="bg-green-800 text-white p-2 rounded w-full">Buscar</button>
+
+                            <div>
+                                <div class="grid grid-cols-1 mt-4">
+                                    <div class="flex items-end gap-2 w-full">
+                                        <div class="w-3/4">
+                                            {!! Form::label('cadastral_key', 'Clave Catastral', ['class' => 'font-semibold']) !!}
+                                            <p class="text-sm"><strong>Ingrese la clave catastral</strong> y realice la búsqueda para completar los datos automáticamente. </p>
+                                            {!! Form::text('cadastral_key', null, ['class' => $inputs]) !!}
+                                        </div>
+                                        <div class="w-1/4">
+                                            <button id="btn-search-cadastral-key" class="bg-green-800 text-white p-2 rounded w-full">Buscar</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
