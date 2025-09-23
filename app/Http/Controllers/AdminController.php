@@ -48,7 +48,7 @@ class AdminController extends Controller
         $totalavailableproperties = Listing::where('available', 1)->count();
 
         $properties = []; $properties_aux = [];
-        $properties = Listing::select('product_code', 'lat', 'lng', 'listing_title', 'id', 'address', 'images', 'created_at')
+        $properties = Listing::select('product_code', 'lat', 'lng', 'listing_title', 'id', 'address', 'images', 'created_at', 'listingtype')
                                 ->where('city', 'LIKE', "%Cuenca%")
                                 // ->where('listingtype', 'LIKE', "%%")
                                 ->where('available', 1)

@@ -69,37 +69,12 @@
         </div>
     @endif
 
-    <div class="grid grid-cols-2 mx-4 my-2 w-auto border rounded py-4">
+    <div class="grid grid-cols-1 mx-4 my-2 w-auto border rounded py-4">
         <div>
             <p class="font-semibold mx-4 pb-1"><i class="fas fa-location text-gray-800"></i> UBICACIÓN DE PROPIEDADES</p>
             <p class="text-xs mx-4 pb-2">*Puede hacer clic sobre la ubicación de cada propiedad para más información</p>
             {{-- <div id="map" class="mx-4 rounded" style="height: 400px"></div> --}}
-            <div id="map" style="height: 500px; z-index: 3"></div>
-        </div>
-        <div class="mt-5" style="height: 500px; overflow: auto">
-            <p class=" bg-white font-semibold text-center sticky top-0">Ultimas propiedades subidas</p>
-            <div class="flex justify-center mx-2">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
-                        <tr>
-                            <th class="px-4 py-2">Código</th>
-                            <th class="px-4 py-2">Detalle</th>
-                            <th class="px-4 py-2">Sector</th>
-                            <th class="px-4 py-2">Fecha</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($properties_aux as $prop)
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-xs">
-                            <td class="px-4 py-4">{{$prop->product_code}}</td>
-                            <td class="px-4 py-4">{{$prop->listing_title}}</td>
-                            <td class="px-4 py-4">{{$prop->address}}</td>
-                            <td class="px-4 py-4">{{$prop->created_at->format('d-M-y')}}</td>
-                        </tr>    
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+            <div id="map" style="height: 600px; z-index: 3"></div>
         </div>
     </div>
     <div class="mx-4 my-3 w-auto border rounded py-4">
@@ -258,23 +233,88 @@
         ]
     }).addTo(map);
 
-    newarray = @json($properties_aux);
+    // --- Colores por listingtype (ajusta colores si quieres) ---
+const colorsByType = {
+    23: '#ff4d4d', // Casas
+    24: '#4d79ff', // Departamentos
+    25: '#39b54a', // Casas Comerciales
+    26: '#ff9900', // Terrenos
+    29: '#9933ff', // Quintas
+    30: '#009999', // Haciendas
+    32: '#ff66cc', // Locales Comerciales
+    35: '#666666', // Oficinas
+    36: '#000000', // Suites
+    37: '#ffff00', // Edificio
+    38: '#996600', // Colonial
+    39: '#00ffff', // Hotel
+    40: '#ff0066', // En Proyecto
+    41: '#006600', // Fábrica
+    42: '#660000', // Parqueadero
+    43: '#999999', // Bodega
+    44: '#333333', // No Aplica
+    45: '#ff3300', // Naves Industriales
+    46: '#0066ff'  // Penthouse
+};
 
-    for(let i = 0; i < newarray.length; i++){
-        let images = newarray[i]['images'] ? newarray[i]['images'].split('|') : [];
-        //let images = newarray[i]['images'].split('|');
-        let imageUrl = images.length > 0 ? `https://grupohousing.com/uploads/listing/600/${images[0]}` : 'https://grupohousing.com/img/logo-azul-grupo-housing.png';
-        let marker = L.marker([newarray[i]['lat'], newarray[i]['lng']]).addTo(map)
-            .bindPopup(`<div style='display: flex; gap: 5px; align-items: center'>
-                <div>
-                    <span style='font-weight: bold'>Propiedad ${newarray[i]['product_code']}</span><br>
-                    <span>${newarray[i]['listing_title']}</span><br>
-                    <a target='blank' href='https://api.whatsapp.com/send?text=https://maps.google.com/?q=${newarray[i]['lat']},${newarray[i]['lng']}'>Compartir Ubicación</a><br>
-                    <a href="https://grupohousing.com/admin/show-listing/${newarray[i]['id']}">Ver propiedad</a>
-                </div>
-                <div><img width='200px' src='${imageUrl}'></div>
-            </div>`)
-            .openPopup();
-    }
+// --- Helpers para crear SVG data-url como icono ---
+function createSvgDataUrl(color, size = 40) {
+    // Un ícono tipo "pin" simple (puedes modificar path si quieres otro estilo)
+    const svg = `
+        <svg xmlns='http://www.w3.org/2000/svg' width='${size}' height='${size}' viewBox='0 0 24 24' >
+            <path d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z'
+                  fill='${color}' stroke='#ffffff' stroke-width='1.2'/>
+            <circle cx='12' cy='9' r='2.5' fill='#fff'/>
+        </svg>
+    `;
+    return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+}
+
+function createColoredIcon(color, size = 40) {
+    const url = createSvgDataUrl(color, size);
+    return L.divIcon({
+        html: `<img src="${url}" style="width:${size}px;height:${size}px;display:block;">`,
+        className: '', // evita estilos por defecto del divIcon
+        iconSize: [size, size],
+        iconAnchor: [Math.round(size/2), size], // ancla abajo-centro
+        popupAnchor: [0, -Math.round(size/2)]
+    });
+}
+
+// --- Añadir propiedades al mapa ---
+let newarray = @json($properties_aux) || [];
+
+for (let i = 0; i < newarray.length; i++) {
+    const item = newarray[i];
+    const lat = parseFloat(item.lat);
+    const lng = parseFloat(item.lng);
+
+    if (!lat || !lng) continue; // omitir si no hay coords válidas
+
+    const listingType = parseInt(item.listingtype, 10);
+    const color = colorsByType[listingType] || '#808080'; // gris por defecto
+    const icon = createColoredIcon(color, 40);
+
+    // imagen de la propiedad (fallback si no hay)
+    const images = item.images ? item.images.split('|') : [];
+    const imageUrl = images.length > 0
+        ? `https://grupohousing.com/uploads/listing/600/${images[0]}`
+        : 'https://grupohousing.com/img/logo-azul-grupo-housing.png';
+
+    const marker = L.marker([lat, lng], { icon }).addTo(map);
+
+    // Popup — ajusta contenido/links según tus rutas
+    marker.bindPopup(`
+        <div style="text-align:center; min-width:180px;">
+            <img src="${imageUrl}" alt="Imagen" style="width:140px;height:auto;border-radius:4px;margin-bottom:6px;">
+            <div><strong>Propiedad ${item.product_code || ''}</strong></div>
+            <div style="font-size:13px;margin-top:4px;">${item.listing_title || ''}</div>
+            <div style="margin-top:8px;font-size:13px;">
+                <a target="_blank" href="https://wa.me/?text=Ubicación:%20${lat},${lng}">Compartir Ubicación</a>
+                &nbsp;|&nbsp;
+                <a href="/propiedad/${item.id}">Ver propiedad</a>
+            </div>
+        </div>
+    `);
+}
 </script>
 @endsection
