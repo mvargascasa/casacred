@@ -112,13 +112,13 @@
                                         <option value="">Todas</option>	
                                         <option value="23">Casas </option>
                                         <option value="24">Departamentos </option>
-                                        <option value="25">Casas Comerciales</option>
                                         <option value="26">Terrenos</option>
+                                        <option value="25">Casas Comerciales</option>
+                                        <option value="32">Locales Comerciales</option>
+                                        <option value="36">Suites</option>
                                         <option value="29">Quintas</option>
                                         <option value="30">Haciendas</option>
-                                        <option value="32">Locales Comerciales</option>
                                         <option value="35">Oficinas</option>
-                                        <option value="36">Suites</option>
                                         <option value="37">Edificio</option>
                                         <option value="38">Colonial</option>
                                         <option value="39">Hotel</option>
