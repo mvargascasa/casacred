@@ -614,6 +614,7 @@
                             <option value="">Elije tipo de propiedad</option>
                             <option data-ids="[23,1]" value="1">Casas</option>
                             <option data-ids="[24,3]" value="2">Departamentos</option>
+                            <option data-ids="[26,10]" value="15">Terrenos</option>
                             <option data-ids="[25,5]" value="3">Casas Comerciales</option>
                             <option data-ids="[32,6]" value="4">Locales Comerciales</option>
                             <option data-ids="[37]" value="5">Edificios</option>
@@ -626,7 +627,6 @@
                             <option data-ids="[29,9]" value="12">Quintas</option>
                             <option data-ids="[30,30]" value="13">Haciendas</option>
                             <option data-ids="[45]" value="14">Naves Industriales</option>
-                            <option data-ids="[26,10]" value="15">Terrenos</option>
                         </select>
                     </div>
     
