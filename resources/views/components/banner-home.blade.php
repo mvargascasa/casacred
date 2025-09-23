@@ -238,6 +238,9 @@
         font-size: 1.5rem;
         margin: 30px 0;
     }
+    .scroll-arrow{
+        display: none;
+    }
 }
 
 @media (max-width: 480px) {
