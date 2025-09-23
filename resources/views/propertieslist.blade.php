@@ -132,7 +132,11 @@
                 /* Tamaño de letra más manejable en dispositivos pequeños */
             }
             .header-container{
-                padding-top: 40px;
+                padding-top: 0px;
+            }
+
+            .search-bar-container{
+                margin-top: 0px;
             }
         }
 
@@ -559,6 +563,133 @@
 .modal.show {
     z-index: 6000; /* Un valor mayor al de tus botones flotantes */
 }
+
+/* Empieza estilos de filtros para moviles */
+
+.mobile-filters {
+            background-color: #f8f9fa;
+            padding: 12px 15px;
+            border-bottom: 1px solid #dee2e6;
+            margin-top: 90px;
+        }
+        
+        .custom-input {
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 13px;
+            width: 100%;
+            height: 38px;
+        }
+        
+        .custom-input:focus {
+            border-color: #142743;
+            box-shadow: 0 0 0 0.2rem rgba(20, 39, 67, 0.25);
+            outline: none;
+        }
+        
+        .search-button {
+            background-color: #142743;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 8px;
+            font-size: 12px;
+            height: 38px;
+            min-width: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .search-button:hover {
+            background-color: #0f1e34;
+            color: white;
+        }
+        
+        .more-filters-btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .more-filters-btn:hover {
+            background-color: #5a6268;
+            color: white;
+        }
+        
+        .form-label {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 3px;
+            color: #495057;
+        }
+        
+        .results-container {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .results-container .list-group-item {
+            padding: 8px 12px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        
+        .results-container .list-group-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .custom-number-input {
+            position: relative;
+            width: 70px;
+        }
+        
+        .custom-number-input input {
+            text-align: center;
+            padding-right: 22px;
+            font-size: 12px;
+            height: 32px;
+        }
+        
+        .input-buttons {
+            position: absolute;
+            right: 3px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .btn-up, .btn-down {
+            background: none;
+            border: none;
+            font-size: 10px;
+            padding: 0;
+            width: 12px;
+            height: 8px;
+            line-height: 1;
+            color: #666;
+        }
+        
+        .btn-up:hover, .btn-down:hover {
+            color: #142743;
+        }
     </style>
 @endsection
 
@@ -570,6 +701,195 @@
             </p>
         </section>
     </section>
+
+    {{-- Empieza filtros para moviles --}}
+
+    <section class="mobile-filters d-md-none">
+        <form id="searchFormModal" class="row g-2">
+            <!-- Primera fila: Tipo de Propiedad y Operación -->
+            <div class="col-6">
+                <label for="propertyTypeModal" class="form-label">Tipo de Propiedad</label>
+                <select class="custom-input" id="propertyTypeModal">
+                    <option value="">Elije tipo de propiedad</option>
+                    <option data-ids="[23,1]" value="1">Casas</option>
+                    <option data-ids="[24,3]" value="2">Departamentos</option>
+                    <option data-ids="[26,10]" value="15">Terrenos</option>
+                    <option data-ids="[25,5]" value="3">Casas Comerciales</option>
+                    <option data-ids="[32,6]" value="4">Locales Comerciales</option>
+                    <option data-ids="[37]" value="5">Edificios</option>
+                    <option data-ids="[39]" value="6">Hoteles</option>
+                    <option data-ids="[41]" value="7">Fábricas</option>
+                    <option data-ids="[42]" value="8">Parqueaderos</option>
+                    <option data-ids="[43]" value="9">Bodegas</option>
+                    <option data-ids="[35,7]" value="10">Oficinas</option>
+                    <option data-ids="[36,8]" value="11">Suites</option>
+                    <option data-ids="[29,9]" value="12">Quintas</option>
+                    <option data-ids="[30,30]" value="13">Haciendas</option>
+                    <option data-ids="[45]" value="14">Naves Industriales</option>
+                </select>
+            </div>
+            
+            <div class="col-6">
+                <label for="propertyStatusModal" class="form-label">Operación</label>
+                <select class="custom-input" id="propertyStatusModal">
+                    <option data-ids="general" value="general">Todas</option>
+                    <option data-ids="venta" value="venta">Venta</option>
+                    <option data-ids="renta" value="renta">Renta</option>
+                    <option data-ids="proyectos" value="proyectos">Proyectos</option>
+                </select>
+            </div>
+            
+            <!-- Segunda fila: Ubicación, Buscar y Más Filtros -->
+            <div class="col-8">
+                <label for="searchTermModal" class="form-label">Ubicación o código</label>
+                <div style="position: relative;">
+                    <input type="text" id="searchTermModal" class="custom-input" 
+                           placeholder="Sector, Parroquia, Provincia" autocomplete="off">
+                    <div id="resultsContainerModal" class="results-container list-group shadow-sm"></div>
+                </div>
+            </div>
+            
+            <div class="col-2 d-flex align-items-end">
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <div class="col-2 d-flex align-items-end">
+                <button type="button" class="more-filters-btn" data-bs-toggle="modal" data-bs-target="#filtersModal" title="Más filtros">
+                    <i class="fas fa-sliders-h"></i>
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Modal para filtros adicionales -->
+    <div class="modal fade" id="filtersModal" tabindex="-1" aria-labelledby="filtersModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title h5" id="filtersModalLabel">Filtros de Búsqueda</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <!-- Precio -->
+                        <div class="col-12">
+                            <label class="form-label">Precio (USD)</label>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <input type="number" id="minPriceModal" class="custom-input" placeholder="Mínimo">
+                                </div>
+                                <div class="col-6">
+                                    <input type="number" id="maxPriceModal" class="custom-input" placeholder="Máximo">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <p class="h6">Más Filtros</p>
+                            <hr class="mt-0">
+                        </div>
+
+                        <!-- Características -->
+                        <div class="col-12">
+                            <p class="form-label mb-1">Características</p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gymModal">
+                                        <label class="form-check-label" for="gymModal">Gimnasio</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="wifiModal">
+                                        <label class="form-check-label" for="wifiModal">Internet/Wifi</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="poolModal">
+                                        <label class="form-check-label" for="poolModal">Piscina</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="cisternModal">
+                                        <label class="form-check-label" for="cisternModal">Cisterna</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="terraceModal">
+                                        <label class="form-check-label" for="terraceModal">Terraza</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gardenModal">
+                                        <label class="form-check-label" for="gardenModal">Jardín</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Número de habitaciones, baños, garajes -->
+                        <div class="col-12 mt-3">
+                            <p class="form-label mb-1">Número de:</p>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <label for="bedroomsModal" class="form-label">Habitaciones</label>
+                                    <input type="number" min="0" id="bedroomsModal" class="custom-input" value="0">
+                                </div>
+                                <div class="col-6">
+                                    <label for="bathroomsModal" class="form-label">Baños</label>
+                                    <input type="number" min="0" id="bathroomsModal" class="custom-input" value="0">
+                                </div>
+                                <div class="col-6">
+                                    <label for="garageModal" class="form-label">Garajes</label>
+                                    <input type="number" min="0" id="garageModal" class="custom-input" value="0">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Áreas -->
+                        <div class="col-12 mt-3">
+                            <label class="form-label">Área Construcción (m²)</label>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <label for="constructionAreaMinModal" class="form-label">Mínimo</label>
+                                    <input type="number" class="custom-input" placeholder="Mínimo" id="constructionAreaMinModal">
+                                </div>
+                                <div class="col-6">
+                                    <label for="constructionAreaMaxModal" class="form-label">Máximo</label>
+                                    <input type="number" class="custom-input" placeholder="Máximo" id="constructionAreaMaxModal">
+                                </div>
+                                <div class="col-6">
+                                    <label for="landAreaMinModal" class="form-label">Terreno Mín.</label>
+                                    <input type="number" class="custom-input" placeholder="Mínimo" id="landAreaMinModal">
+                                </div>
+                                <div class="col-6">
+                                    <label for="landAreaMaxModal" class="form-label">Terreno Máx.</label>
+                                    <input type="number" class="custom-input" placeholder="Máximo" id="landAreaMaxModal">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <div>
+                        <button type="button" class="btn btn-outline-secondary me-2" onclick="clearSearchModal()">Limpiar</button>
+                        <button type="submit" form="searchFormModal" class="btn btn-primary" data-bs-dismiss="modal">Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{-- Termina filtros para moviles --}}
 
     <section class="search-bar-container">
         <!-- Contenido para desktop -->
@@ -786,7 +1106,7 @@
     <p id="dynamic-description-paragraph" class="container"></p>
 
 
-    <section class="container-fluid">
+    {{-- <section class="container-fluid">
         <div class="d-md-none mt-3">
             <button class="btn btn-primary btn-fixed" type="button" data-bs-toggle="modal"
                 data-bs-target="#filtersModal">
@@ -957,7 +1277,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="container mt-5" id="propertiesContainer">
         <section class="row">
