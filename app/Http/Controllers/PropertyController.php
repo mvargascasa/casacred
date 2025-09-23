@@ -55,6 +55,8 @@ class PropertyController extends Controller
         $typeKey  = strtoupper(str_replace('-', ' ', $type));
         $typeId   = $typeIds[$typeKey] ?? null;
 
+        $provinces = DB::table('info_states')->where('country_id', 63)->get();
+
         // --- Extraer rangos de precio y ubicaciones desde {details} ---
         $minPrice = null;
         $maxPrice = null;
@@ -121,7 +123,7 @@ class PropertyController extends Controller
         //dd($type, $typeId, $status, $state, $city, $parish, $minPrice, $maxPrice);
 
         return view('propertieslist', compact(
-            'type', 'typeId', 'status', 'state', 'city', 'parish', 'minPrice', 'maxPrice'
+            'type', 'typeId', 'status', 'state', 'city', 'parish', 'minPrice', 'maxPrice', 'provinces'
         ));
     }
 

@@ -17,16 +17,11 @@
         content="@isset($meta_seo)En Grupo Housing Contamos con {{ ucfirst(str_replace('-', ' ', $meta_seo)) }}. Accede a nuestro sitio web y encuentra la propiedad que estás buscando. @else Encuentre la casa de sus sueños, donde los sueños se hacen realidad 😉 Contamos con una gran variedad de propiedades disponibles ¡Contáctenos! @endisset" />
     <meta property="og:image" content="{{ asset('img/meta-image-social-cc.jpg') }}" />
     <style>
-        .search-bar-container {
+        /* .search-bar-container {
             position: -webkit-sticky;
-            /* Soporte para Safari */
-            
             margin-top: 97px;
-            /* Se pegará a 0px del top del viewport */
             z-index: 0;
-            /* Estilo opcional */
             width: 100%;
-            /* Se extiende a lo ancho del contenedor */
             background-color: rgb(238, 238, 238) !important;
         }
 
@@ -35,18 +30,60 @@
             position: sticky;
             z-index: 2;
             border: 1px solid #e0e0e0;
-            /* Color más suave para el borde */
             border-radius: 12px;
-            /* background-color: #ffffff; */
-            /* Blanco para mantener la uniformidad */
             width: 100%;
             padding: 30px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            /* Sutil sombra para dar profundidad */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        } */
+
+
+        .search-bar-container {
+            position: -webkit-sticky;
+            margin-top: 97px;
+            z-index: 0;
+            width: 100%;
+            background-color: rgb(238, 238, 238) !important;
+        }
+
+        .search-bar {
+            position: sticky;
+            z-index: 2;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            width: 100%;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
         }
+
+        .search-form {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            padding: 20px;
+            border-radius: 0 10px 10px 10px;
+            background-color: #ffffff;
+        }
+
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .filter-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: flex-end;
+            align-items: flex-start;
+        }
+
 
         .search-bar form{
             gap: 20px;
@@ -534,31 +571,45 @@
         </section>
     </section>
 
-
     <section class="search-bar-container">
         <!-- Contenido para desktop -->
         <div class="d-none d-md-block mx-auto">
             <div class="search-bar rounded-0">
-                <form id="searchFormDesktop" class="d-flex">
-                    <div>
-                        <label for="searchTerm">Ubicación o código</label>
-                        <br>
-                        {{-- <input type="text" id="searchTerm" class="custom-input" style="width: 250px"
-                            placeholder="Sector, Parroquia, Provincia"> --}}
-                            <div style="position: relative; width: max-content;">
-                                <input type="text" id="searchTerm" class="custom-input"
-                                    placeholder="Sector, Parroquia, Provincia" style="width: 250px" autocomplete="off">
-                            
-                                <!-- Contenedor de resultados -->
-                                <div id="resultsContainer" class="list-group position-absolute w-100 shadow-sm"
-                                    style="z-index: 1000; max-height: 200px; overflow-y: auto; display: none;">
-                                </div>
-                            </div>
+                <form id="searchFormDesktop" class="search-form">
+                    
+                    <!-- Provincia -->
+                    <div class="filter-item">
+                        <label for="state">Provincia</label>
+                        <select id="state" class="custom-input">
+                            <option value="">Seleccione provincia</option>
+                            @foreach ($provinces as $province)
+                                <option data-id="{{ $province->id }}" value="{{ $province->name }}">{{ $province->name }}</option>
+                            @endforeach
+                            <!-- Más provincias -->
+                        </select>
                     </div>
-                    <div class="inline-filters"></div>
-                    <div>
+    
+                    <!-- Ciudad -->
+                    <div class="filter-item">
+                        <label for="city">Ciudad</label>
+                        <select id="city" class="custom-input">
+                            <option value="">Seleccione ciudad</option>
+                        </select>
+                    </div>
+    
+                    <!-- Sector -->
+                    <div class="filter-item">
+                        <label for="sector">Sector o Código</label>
+                        <input type="text" id="searchTerm" class="custom-input" placeholder="Ej: El Vergel, Cumbayá, Samborondón">
+
+                        {{-- <div id="resultsContainer" class="list-group position-absolute w-100 shadow-sm" style="z-index: 1000; max-height: 200px; overflow-y: auto; display: none;">
+                        </div> --}}
+
+                    </div>
+    
+                    <!-- Tipo de Propiedad -->
+                    <div class="filter-item">
                         <label for="propertyType">Propiedad</label>
-                        <br>
                         <select class="custom-input" id="propertyType">
                             <option value="">Elije tipo de propiedad</option>
                             <option data-ids="[23,1]" value="1">Casas</option>
@@ -578,10 +629,10 @@
                             <option data-ids="[26,10]" value="15">Terrenos</option>
                         </select>
                     </div>
-                    <div class="inline-filters"></div>
-                    <div>
+    
+                    <!-- Operación -->
+                    <div class="filter-item">
                         <label for="propertyStatus">Operación</label>
-                        <br>
                         <select class="custom-input" id="propertyStatus">
                             <option data-ids="general" value="general">Todas</option>
                             <option data-ids="venta" value="venta">Venta</option>
@@ -589,27 +640,24 @@
                             <option data-ids="proyectos" value="proyectos">Proyectos</option>
                         </select>
                     </div>
-                    <div class="inline-filters"></div>
-                    <div>
+    
+                    <!-- Precio -->
+                    <div class="filter-item">
                         <label for="minPrice">Precio</label>
                         <div class="d-flex" style="gap: 10px">
-                            <input type="number" id="minPrice" class="custom-input" style="width: 120px"
-                                placeholder="Mínimo">
-                            <input type="number" id="maxPrice" class="custom-input" style="width: 120px" placeholder="Máximo">
+                            <input type="number" id="minPrice" class="custom-input" placeholder="Mínimo">
+                            <input type="number" id="maxPrice" class="custom-input" placeholder="Máximo">
                         </div>
                     </div>
-                    <div class="inline-filters"></div>
-                    <div class="dropdown">
+    
+                    <!-- Más Filtros -->
+                    <div class="filter-item">
                         <label for="bedrooms">Más Filtros</label>
-                        <br>
                         <button class="dropdown-toggle custom-input" type="button" id="featuresInput"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Características
                         </button>
-                    
-                        <!-- Dropdown padre -->
-                        <div class="dropdown-menu p-3" aria-labelledby="featuresInput" style="min-width: 300px;">
-                            
+                        <div class="dropdown-menu p-3" aria-labelledby="featuresInput" style="max-width: 300px;">
                             <!-- Dropdown hijo -->
                             <div class="dropdown dropend w-100">
                                 <button class="dropdown-toggle btn btn-sm w-100 mb-2" type="button"
@@ -699,24 +747,24 @@
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <div class="mb-1">
-                            <button type="button" class="btn btn-sm rounded-pill" onclick="clearSearch(false)" style="background-color: #14274311;">
-                                <img width="20" src="{{ asset('img/icono-filtrar.webp') }}" alt="Icono de Limpiar Filtros">
-                                Limpiar
-                            </button>
-                        </div>
-                        <div>
-                            <button type="submit" class="btn btn-sm rounded-pill" style="background-color: #142743; color: #ffffff">
-                                <img width="20" src="{{ asset('img/icono-limpiar-filtros.webp') }}" alt="Icono de filtrar">
-                                Buscar
-                            </button>
-                        </div>
+    
+                    <!-- Botones -->
+                    <div class="filter-actions">
+                        <button type="button" class="btn btn-sm rounded-pill" onclick="clearSearch(false)" style="background-color: #14274311;">
+                            <img width="20" src="{{ asset('img/icono-filtrar.webp') }}" alt="Icono de Limpiar Filtros">
+                            Limpiar
+                        </button>
+                        <button type="submit" class="btn btn-sm rounded-pill" style="background-color: #142743; color: #ffffff">
+                            <img width="20" src="{{ asset('img/icono-limpiar-filtros.webp') }}" alt="Icono de filtrar">
+                            Buscar
+                        </button>
                     </div>
+    
                 </form>
             </div>
         </div>
     </section>
+    
 
     <div class="container d-flex justify-content-between align-items-center header-container" style="margin-top: 40px">
         <div>
@@ -931,7 +979,7 @@
 
 @section('script')
     <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script defer src="{{ asset('js/search-locations.js?v=1') }}"></script>
+    {{-- <script defer src="{{ asset('js/search-locations.js?v=2') }}"></script> --}}
     <script>
 
         document.querySelectorAll('.dropdown-menu').forEach(function (element) {
@@ -1016,6 +1064,52 @@
                     console.error("No se encontró el botón de búsqueda en el modal.");
                 }
             });
+
+
+
+            const provinceSelect = document.getElementById('state');
+            const citySelect = document.getElementById('city');
+
+            provinceSelect.addEventListener('change', function () {
+                const selectedOption = this.options[this.selectedIndex];
+                const provinceId = selectedOption.getAttribute('data-id');
+
+                citySelect.innerHTML = '<option value="">Seleccione ciudad</option>';
+
+                if (provinceId) {
+                    const url = `/getcities/${provinceId}`;
+
+                    fetch(url)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(cities => {
+                            if (cities.length === 0) {
+                                const option = document.createElement('option');
+                                option.textContent = "No se encontraron ciudades";
+                                citySelect.appendChild(option);
+                            } else {
+                                // Rellena el select con las nuevas ciudades
+                                cities.forEach(city => {
+                                    const option = document.createElement('option');
+                                    option.setAttribute('data-id', city.id);
+                                    option.value = city.name;
+                                    option.textContent = city.name;
+                                    citySelect.appendChild(option);
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error al obtener las ciudades:', error);
+                            alert('Error al cargar las ciudades. Intente de nuevo más tarde.');
+                        });
+                }
+            });
+
+
         });
 
         function setInitialPropertyType(typeIds, propertyTypeId) {
@@ -1087,247 +1181,251 @@
 
 
 
+        // window.searchProperties = function(page = 1, isModal = false) {
+        //     page = parseInt(page);
+        //     var currentTypeIds = isModal ? typeIdsArrayModal : typeIdsArray;
+        //     var selectElement = isModal ? document.getElementById('propertyTypeModal') : document.getElementById('propertyType');
+        //     var selectedOption = selectElement.options[selectElement.selectedIndex];
+        //     var typeName = selectedOption.text;
+        //     var typeValue = selectedOption.value;
 
-        window.searchProperties = function(page = 1, isModal = false) {
-            page = parseInt(page);
-            var currentTypeIds = isModal ? typeIdsArrayModal : typeIdsArray;
-            var selectElement = isModal ? document.getElementById('propertyTypeModal') : document.getElementById('propertyType');
-            var selectedOption = selectElement.options[selectElement.selectedIndex];
-            var typeName = selectedOption.text;
-            var typeValue = selectedOption.value;
+        //     var statusElement = isModal ? document.getElementById('propertyStatusModal') : document.getElementById('propertyStatus');
+        //     var statusValue = statusElement.value; // "venta", "renta", o "proyectos"
+        //     var statusText = statusElement.options[statusElement.selectedIndex].text;
 
-            var statusElement = isModal ? document.getElementById('propertyStatusModal') : document.getElementById('propertyStatus');
-            var statusValue = statusElement.value; // "venta", "renta", o "proyectos"
-            var statusText = statusElement.options[statusElement.selectedIndex].text;
-
-            // Obtener el searchTerm
-            const searchTermValue = document.getElementById(isModal ? 'searchTermModal' : 'searchTerm')?.value || '';
+        //     // Obtener el searchTerm
+        //     const searchTermValue = document.getElementById(isModal ? 'searchTermModal' : 'searchTerm')?.value || '';
             
-            // NUEVA FUNCIÓN: Detectar si el searchTerm es un código de propiedad
-            const isPropertyCode = /^[0-9]{3,10}$/.test(searchTermValue.trim());
+        //     // NUEVA FUNCIÓN: Detectar si el searchTerm es un código de propiedad
+        //     const isPropertyCode = /^[0-9]{3,10}$/.test(searchTermValue.trim());
 
-            // Asegúrate de que el tipo tiene un valor significativo, y no es simplemente el marcador de posición
-            if (!typeValue) {
-                typeName = 'propiedades';
-            } else {
-                typeName = typeName.toLowerCase().replace(/\s+/g, '-');
-            }
+        //     // Asegúrate de que el tipo tiene un valor significativo, y no es simplemente el marcador de posición
+        //     if (!typeValue) {
+        //         typeName = 'propiedades';
+        //     } else {
+        //         typeName = typeName.toLowerCase().replace(/\s+/g, '-');
+        //     }
 
-            const searchParams = new URLSearchParams({
-                searchTerm: searchTermValue,
-                bedrooms: document.getElementById(isModal ? 'bedroomsModal' : 'bedrooms')?.value || '',
-                bathrooms: document.getElementById(isModal ? 'bathroomsModal' : 'bathrooms')?.value || '',
-                garage: document.getElementById(isModal ? 'garageModal' : 'garage')?.value || '',
-                min_price: document.getElementById(isModal ? 'minPriceModal' : 'minPrice')?.value || '',
-                max_price: document.getElementById(isModal ? 'maxPriceModal' : 'maxPrice')?.value || '',
-                city: document.getElementById(isModal ? 'cityModal' : 'city')?.value || '',
-                state: document.getElementById(isModal ? 'stateModal' : 'state')?.value || '',
-                sector: document.getElementById(isModal ? 'sectorModal' : 'sector')?.value || '',
-                construction_area_min: document.getElementById(isModal ? 'constructionAreaMinModal' : 'constructionAreaMin')?.value || '',
-                construction_area_max: document.getElementById(isModal ? 'constructionAreaMaxModal' : 'constructionAreaMax')?.value || '',
-                land_area_min: document.getElementById(isModal ? 'landAreaMinModal' : 'landAreaMin')?.value || '',
-                land_area_max: document.getElementById(isModal ? 'landAreaMaxModal' : 'landAreaMax')?.value || '',
-                page: page,
-                normalized_status: document.getElementById(isModal ? 'propertyStatusModal' : 'propertyStatus')?.value || ''
-            });
+        //     const searchParams = new URLSearchParams({
+        //         searchTerm: searchTermValue,
+        //         bedrooms: document.getElementById(isModal ? 'bedroomsModal' : 'bedrooms')?.value || '',
+        //         bathrooms: document.getElementById(isModal ? 'bathroomsModal' : 'bathrooms')?.value || '',
+        //         garage: document.getElementById(isModal ? 'garageModal' : 'garage')?.value || '',
+        //         min_price: document.getElementById(isModal ? 'minPriceModal' : 'minPrice')?.value || '',
+        //         max_price: document.getElementById(isModal ? 'maxPriceModal' : 'maxPrice')?.value || '',
+        //         city: document.getElementById(isModal ? 'cityModal' : 'city')?.value || '',
+        //         state: document.getElementById(isModal ? 'stateModal' : 'state')?.value || '',
+        //         sector: document.getElementById(isModal ? 'sectorModal' : 'sector')?.value || '',
+        //         construction_area_min: document.getElementById(isModal ? 'constructionAreaMinModal' : 'constructionAreaMin')?.value || '',
+        //         construction_area_max: document.getElementById(isModal ? 'constructionAreaMaxModal' : 'constructionAreaMax')?.value || '',
+        //         land_area_min: document.getElementById(isModal ? 'landAreaMinModal' : 'landAreaMin')?.value || '',
+        //         land_area_max: document.getElementById(isModal ? 'landAreaMaxModal' : 'landAreaMax')?.value || '',
+        //         page: page,
+        //         normalized_status: document.getElementById(isModal ? 'propertyStatusModal' : 'propertyStatus')?.value || ''
+        //     });
 
-            // MODIFICACIÓN: Generar URL slug diferente si es código de propiedad
-            let urlSlug;
-            if (isPropertyCode) {
-                // Si es código de propiedad, solo usar el código
-                urlSlug = `/${searchTermValue.trim()}`;
-            } else {
-                // Lógica normal para ubicaciones
-                urlSlug = `/${typeName}`;
-                if (statusValue) {
-                    urlSlug += `-en-${statusValue}`;
-                }
+        //     // MODIFICACIÓN: Generar URL slug diferente si es código de propiedad
+        //     let urlSlug;
+        //     if (isPropertyCode) {
+        //         // Si es código de propiedad, solo usar el código
+        //         urlSlug = `/${searchTermValue.trim()}`;
+        //     } else {
+        //         // Lógica normal para ubicaciones
+        //         urlSlug = `/${typeName}`;
+        //         if (statusValue) {
+        //             urlSlug += `-en-${statusValue}`;
+        //         }
 
-                let titleComponents = [typeName.charAt(0).toUpperCase() + typeName.slice(1)];
+        //         let titleComponents = [typeName.charAt(0).toUpperCase() + typeName.slice(1)];
                 
-                if(searchTermValue){
-                    urlSlug += `-en-${searchTermValue.toLowerCase().replace(/\s+/g, '-')}`;
-                    titleComponents.push(searchTermValue)
-                }
+        //         if(searchTermValue){
+        //             urlSlug += `-en-${searchTermValue.toLowerCase().replace(/\s+/g, '-')}`;
+        //             titleComponents.push(searchTermValue)
+        //         }
 
-                if(searchParams.get('min_price')){
-                    urlSlug += `-desde-${searchParams.get('min_price')}`;
-                }
+        //         if(searchParams.get('min_price')){
+        //             urlSlug += `-desde-${searchParams.get('min_price')}`;
+        //         }
 
-                if (searchParams.get('max_price')) {
-                    urlSlug += `-hasta-${searchParams.get('max_price')}`;
-                }
-            }
+        //         if (searchParams.get('max_price')) {
+        //             urlSlug += `-hasta-${searchParams.get('max_price')}`;
+        //         }
+        //     }
 
-            // Título diferente para códigos de propiedad
-            if (isPropertyCode) {
-                document.title = `Propiedad ${searchTermValue} - Grupo Housing`;
-            } else {
-                let titleComponents = [typeName.charAt(0).toUpperCase() + typeName.slice(1)];
-                if(searchTermValue) {
-                    titleComponents.push(searchTermValue);
-                }
-                document.title = `${titleComponents.join(' en ')} - ${statusText}`;
-            }
+        //     // Título diferente para códigos de propiedad
+        //     if (isPropertyCode) {
+        //         document.title = `Propiedad ${searchTermValue} - Grupo Housing`;
+        //     } else {
+        //         let titleComponents = [typeName.charAt(0).toUpperCase() + typeName.slice(1)];
+        //         if(searchTermValue) {
+        //             titleComponents.push(searchTermValue);
+        //         }
+        //         document.title = `${titleComponents.join(' en ')} - ${statusText}`;
+        //     }
 
-            // Agregar manualmente los `type_ids[]` asegurando el formato correcto
-            let queryString = searchParams.toString();
-            if (Array.isArray(currentTypeIds) && currentTypeIds.length > 0) {
-                currentTypeIds.forEach(id => {
-                    queryString += `&type_ids[]=${encodeURIComponent(id)}`;
-                });
-            }
+        //     // Agregar manualmente los `type_ids[]` asegurando el formato correcto
+        //     let queryString = searchParams.toString();
+        //     if (Array.isArray(currentTypeIds) && currentTypeIds.length > 0) {
+        //         currentTypeIds.forEach(id => {
+        //             queryString += `&type_ids[]=${encodeURIComponent(id)}`;
+        //         });
+        //     }
 
-            let canonical = document.querySelector("link[rel='canonical']");
+        //     let canonical = document.querySelector("link[rel='canonical']");
 
-            window.history.pushState({
-                path: urlSlug
-            }, '', urlSlug);
+        //     window.history.pushState({
+        //         path: urlSlug
+        //     }, '', urlSlug);
 
-            // MODIFICACIÓN: Generar contenido dinámico diferente para códigos de propiedad
-            if (isPropertyCode) {
-                generateDynamicContentForPropertyCode(searchTermValue);
-                generateDynamicDescriptionForPropertyCode(searchTermValue);
-            } else {
-                generateDynamicContent(typeName, statusValue, searchTermValue.toLowerCase().replace(/\s+/g, '-'));
-                generateDynamicDescriptionParagraph(typeName, statusValue, searchTermValue.toLowerCase().replace(/\s+/g, '-'));
-            }
+        //     // MODIFICACIÓN: Generar contenido dinámico diferente para códigos de propiedad
+        //     if (isPropertyCode) {
+        //         generateDynamicContentForPropertyCode(searchTermValue);
+        //         generateDynamicDescriptionForPropertyCode(searchTermValue);
+        //     } else {
+        //         generateDynamicContent(typeName, statusValue, searchTermValue.toLowerCase().replace(/\s+/g, '-'));
+        //         generateDynamicDescriptionParagraph(typeName, statusValue, searchTermValue.toLowerCase().replace(/\s+/g, '-'));
+        //     }
 
-            canonical.href = urlSlug;
+        //     canonical.href = urlSlug;
 
-            axios.get('/api/propertys/list?' + queryString)
-                .then(function(response) {
-                    const properties = response.data.properties;
-                    let html = '';
-                    if (properties.length > 0) {
-                        properties.forEach((property, index) => {
-                            let imageUrl = getImageUrl(property);
-                            html += useCardView ? buildCardPropertyHTML(property, index) :
-                                buildHorizontalPropertyHTML(property, index);
-                        });
-                        updateDynamicTitle(response.data.pagination.total, searchParams, isModal, isPropertyCode);
+        //     axios.get('/api/propertys/list?' + queryString)
+        //         .then(function(response) {
+        //             const properties = response.data.properties;
+        //             let html = '';
+        //             if (properties.length > 0) {
+        //                 properties.forEach((property, index) => {
+        //                     let imageUrl = getImageUrl(property);
+        //                     html += useCardView ? buildCardPropertyHTML(property, index) :
+        //                         buildHorizontalPropertyHTML(property, index);
+        //                 });
+        //                 updateDynamicTitle(response.data.pagination.total, searchParams, isModal, isPropertyCode);
 
-                        if (isPropertyCode) {
-                            generateDynamicDescriptionForPropertyCode(searchTermValue, true);
-                        }
+        //                 if (isPropertyCode) {
+        //                     generateDynamicDescriptionForPropertyCode(searchTermValue, true);
+        //                 }
 
-                    } else {
-                        html = '<section class="row"><p class="text-center fw-bold">No hemos encontrado propiedades</p></section>';
-                        updateDynamicTitle(response.data.pagination.total, searchParams, isModal, isPropertyCode);
+        //             } else {
+        //                 html = '<section class="row"><p class="text-center fw-bold">No hemos encontrado propiedades</p></section>';
+        //                 updateDynamicTitle(response.data.pagination.total, searchParams, isModal, isPropertyCode);
 
-                        // ✅ Si es código de propiedad y NO existe
-                        if (isPropertyCode) {
-                            generateDynamicDescriptionForPropertyCode(searchTermValue, false);
-                        }
+        //                 // ✅ Si es código de propiedad y NO existe
+        //                 if (isPropertyCode) {
+        //                     generateDynamicDescriptionForPropertyCode(searchTermValue, false);
+        //                 }
 
-                    }
-                    document.getElementById('propertiesList').innerHTML = html;
-                    updatePagination(response.data.pagination, isModal);
-                })
-                .catch(function(error) {
-                    console.error('Error en la búsqueda:', error.response ? error.response.data : 'Error desconocido');
-                    document.getElementById('propertiesList').innerHTML =
-                        '<section class="row"><p class="text-center fw-bold">Error al cargar propiedades.</p></section>';
-                });
-        };
+        //             }
+        //             document.getElementById('propertiesList').innerHTML = html;
+        //             updatePagination(response.data.pagination, isModal);
+        //         })
+        //         .catch(function(error) {
+        //             console.error('Error en la búsqueda:', error.response ? error.response.data : 'Error desconocido');
+        //             document.getElementById('propertiesList').innerHTML =
+        //                 '<section class="row"><p class="text-center fw-bold">Error al cargar propiedades.</p></section>';
+        //         });
+        // };
 
-function updateDynamicTitle(total, searchParams, isModal, isPropertyCode = false) {
-    const searchTerm = document.getElementById(isModal ? 'searchTermModal' : 'searchTerm');
+// function updateDynamicTitle(total, searchParams, isModal, isPropertyCode = false) {
+//     const searchTerm = document.getElementById(isModal ? 'searchTermModal' : 'searchTerm');
     
-    let metaDescripcion = document.querySelector('meta[name="description"]');
-    let keywords = document.querySelector('meta[name="keywords"]');
-    let description_banner = document.getElementById('description_banner');
+//     let metaDescripcion = document.querySelector('meta[name="description"]');
+//     let keywords = document.querySelector('meta[name="keywords"]');
+//     let description_banner = document.getElementById('description_banner');
 
-    // CASO ESPECIAL: Si es código de propiedad
-    if (isPropertyCode) {
-        const propertyCode = searchTerm.value.trim();
+//     // CASO ESPECIAL: Si es código de propiedad
+//     if (isPropertyCode) {
+//         const propertyCode = searchTerm.value.trim();
         
-        let contentMetaDescription = "";
-        let contentBannerDescription = "";
-        let titleComponents = "";
+//         let contentMetaDescription = "";
+//         let contentBannerDescription = "";
+//         let titleComponents = "";
         
-        if (total < 1) {
-            contentMetaDescription = `No encontramos la propiedad con código ${propertyCode}. Contáctanos para más información sobre propiedades disponibles.`;
-            contentBannerDescription = `No se encontró la propiedad ${propertyCode}. Te mostramos otras opciones disponibles.`;
-            titleComponents = `Propiedad ${propertyCode} - No encontrada`;
-        } else if (total === 1) {
-            contentMetaDescription = `Propiedad ${propertyCode} encontrada. ¡Solicita ahora una visita y descubre todos los detalles! Clic aquí para más información.`;
-            contentBannerDescription = `Propiedad ${propertyCode} encontrada.`;
-            titleComponents = `Propiedad ${propertyCode} - Grupo Housing`;
-        } else {
-            // Caso raro: múltiples propiedades con el mismo código
-            contentMetaDescription = `Encontramos ${total} propiedades relacionadas con ${propertyCode}. ¡Descubre todas las opciones disponibles!`;
-            contentBannerDescription = `Se encontraron ${total} propiedades relacionadas con ${propertyCode}.`;
-            titleComponents = `${total} propiedades encontradas para ${propertyCode}`;
-        }
+//         if (total < 1) {
+//             contentMetaDescription = `No encontramos la propiedad con código ${propertyCode}. Contáctanos para más información sobre propiedades disponibles.`;
+//             contentBannerDescription = `No se encontró la propiedad ${propertyCode}. Te mostramos otras opciones disponibles.`;
+//             titleComponents = `Propiedad ${propertyCode} - No encontrada`;
+//         } else if (total === 1) {
+//             contentMetaDescription = `Propiedad ${propertyCode} encontrada. ¡Solicita ahora una visita y descubre todos los detalles! Clic aquí para más información.`;
+//             contentBannerDescription = `Propiedad ${propertyCode} encontrada.`;
+//             titleComponents = `Propiedad ${propertyCode} - Grupo Housing`;
+//         } else {
+//             // Caso raro: múltiples propiedades con el mismo código
+//             contentMetaDescription = `Encontramos ${total} propiedades relacionadas con ${propertyCode}. ¡Descubre todas las opciones disponibles!`;
+//             contentBannerDescription = `Se encontraron ${total} propiedades relacionadas con ${propertyCode}.`;
+//             titleComponents = `${total} propiedades encontradas para ${propertyCode}`;
+//         }
 
-        if (metaDescripcion) {
-            metaDescripcion.setAttribute('content', contentMetaDescription);
-            keywords.setAttribute('content', `propiedad ${propertyCode}, código ${propertyCode}, inmueble ${propertyCode}`);
-            description_banner.innerHTML = contentBannerDescription;
-        }
+//         if (metaDescripcion) {
+//             metaDescripcion.setAttribute('content', contentMetaDescription);
+//             keywords.setAttribute('content', `propiedad ${propertyCode}, código ${propertyCode}, inmueble ${propertyCode}`);
+//             description_banner.innerHTML = contentBannerDescription;
+//         }
 
-        document.title = titleComponents;
-        document.querySelector('h1').innerHTML = total === 1 
-            ? `<span style="font-weight: 500">Propiedad</span><span style="font-weight: 100"> ${propertyCode}</span>`
-            : `<span style="font-weight: 500">${total}</span><span style="font-weight: 100"> resultado${total !== 1 ? 's' : ''} para ${propertyCode}</span>`;
+//         document.title = titleComponents;
+//         document.querySelector('h1').innerHTML = total === 1 
+//             ? `<span style="font-weight: 500">Propiedad</span><span style="font-weight: 100"> ${propertyCode}</span>`
+//             : `<span style="font-weight: 500">${total}</span><span style="font-weight: 100"> resultado${total !== 1 ? 's' : ''} para ${propertyCode}</span>`;
         
-        return; // Salir temprano para códigos de propiedad
-    }
+//         return; // Salir temprano para códigos de propiedad
+//     }
 
-    // LÓGICA ORIGINAL para ubicaciones
-    const typeElement = document.getElementById(isModal ? 'propertyTypeModal' : 'propertyType');
-    const selectedTypeIndex = typeElement.selectedIndex;
-    const typeName = typeElement.options[selectedTypeIndex].text;
-    const state = searchParams.get('state');
-    const city = searchParams.get('city');
-    const sector = searchParams.get('sector');
+//     // LÓGICA ORIGINAL para ubicaciones
+//     const typeElement = document.getElementById(isModal ? 'propertyTypeModal' : 'propertyType');
+//     const selectedTypeIndex = typeElement.selectedIndex;
+//     const typeName = typeElement.options[selectedTypeIndex].text;
+//     const state = searchParams.get('state');
+//     const city = searchParams.get('city');
+//     const sector = searchParams.get('sector');
 
-    let titleSuffix = `propiedades`;
-    if (selectedTypeIndex !== 0 && typeName.toLowerCase() !== "tipo de propiedad") {
-        titleSuffix = `${typeName.toLowerCase()}`;
-    }
+//     let titleSuffix = `propiedades`;
+//     if (selectedTypeIndex !== 0 && typeName.toLowerCase() !== "tipo de propiedad") {
+//         titleSuffix = `${typeName.toLowerCase()}`;
+//     }
 
-    if (searchParams.get('normalized_status')) {
-        titleSuffix += ` en ${searchParams.get('normalized_status')}`;
-    } else {
-        titleSuffix += ` en general`;
-    }
+//     if (searchParams.get('normalized_status')) {
+//         titleSuffix += ` en ${searchParams.get('normalized_status')}`;
+//     } else {
+//         titleSuffix += ` en general`;
+//     }
 
-    if(searchTerm.value != ""){
-        titleSuffix += ` en ${searchTerm.value.toLowerCase().replace(/\s+/g, '-')}`;
-    } else {
-        let locationDetails = [];
-        if (sector) locationDetails.push(sector);
-        if (city) locationDetails.push(city);
-        if (state) locationDetails.push(state);
-        if (locationDetails.length) {
-            titleSuffix += ` en ${locationDetails.join(", ")}`;
-        }
-    }
+//     if(searchTerm.value != ""){
+//         titleSuffix += ` en ${searchTerm.value.toLowerCase().replace(/\s+/g, '-')}`;
+//     } else {
+//         let locationDetails = [];
+//         if (sector) locationDetails.push(sector);
+//         if (city) locationDetails.push(city);
+//         if (state) locationDetails.push(state);
+//         if (locationDetails.length) {
+//             titleSuffix += ` en ${locationDetails.join(", ")}`;
+//         }
+//     }
 
-    if (metaDescripcion) {
-        let contentMetaDescription = "";
-        let contentBannerDescription = "";
+//     if (metaDescripcion) {
+//         let contentMetaDescription = "";
+//         let contentBannerDescription = "";
 
-        if(total < 1){
-            contentMetaDescription = 'Encuentre la casa de sus sueños, donde los sueños se hacen realidad 😉 Contamos con una gran variedad de propiedades disponibles ¡Contáctenos!';
-            contentBannerDescription = 'Descubre todas las propiedades en venta y renta que Grupo Housing tiene para ti';
-        } else{
-            contentMetaDescription = `Encontramos ${total} ${strTitle(titleSuffix)} disponibles. ¡Solicita ahora una visita y descubre tu opción ideal! Clic aquí para más información`;
-            contentBannerDescription = `Hemos encontrado ${total} ${replaceFirstEnWithDe(titleSuffix)} disponibles.`;
-        }
+//         if(total < 1){
+//             contentMetaDescription = 'Encuentre la casa de sus sueños, donde los sueños se hacen realidad 😉 Contamos con una gran variedad de propiedades disponibles ¡Contáctenos!';
+//             contentBannerDescription = 'Descubre todas las propiedades en venta y renta que Grupo Housing tiene para ti';
+//         } else{
+//             contentMetaDescription = `Encontramos ${total} ${strTitle(titleSuffix)} disponibles. ¡Solicita ahora una visita y descubre tu opción ideal! Clic aquí para más información`;
+//             contentBannerDescription = `Hemos encontrado ${total} ${replaceFirstEnWithDe(titleSuffix)} disponibles.`;
+//         }
         
-        metaDescripcion.setAttribute('content', contentMetaDescription);
-        keywords.setAttribute('content', titleSuffix);
-        description_banner.innerHTML = contentBannerDescription;
-    }
+//         metaDescripcion.setAttribute('content', contentMetaDescription);
+//         keywords.setAttribute('content', titleSuffix);
+//         description_banner.innerHTML = contentBannerDescription;
+//     }
 
-    let titleComponents = `${total} ${titleSuffix} en Ecuador`;
-    document.title = `${titleComponents}`;
-    document.querySelector('h1').innerHTML =
-        `<span style="font-weight: 500">${total}</span><span style="font-weight: 100"> ${titleSuffix}</span>`;        
-}
+//     let titleComponents = `${total} ${titleSuffix} en Ecuador`;
+//     document.title = `${titleComponents}`;
+//     document.querySelector('h1').innerHTML =
+//         `<span style="font-weight: 500">${total}</span><span style="font-weight: 100"> ${titleSuffix}</span>`;        
+// }
+
+
+
+   
+
 
         function getImageUrl(property) {
             const imageList = property.images.split('|');
@@ -1741,61 +1839,55 @@ function updateDynamicTitle(total, searchParams, isModal, isPropertyCode = false
             //searchProperties(1, false);
         });
 
-        function generateDynamicContent(property_type, operation, location) {
-            let content = '';
-            let qaPairs = [];
+        // function generateDynamicContent(property_type, operation, location) {
+        //     let content = '';
+        //     let qaPairs = [];
 
-            if (property_type && operation) {
-                let propertyTypeDisplay = property_type.replace(/[-_]/g, ' ');
-                let operationDisplay = (operation === 'venta' || operation === 'renta') ? operation : 'general';
-                let locationDisplay = location ? location.replace(/[-_]/g, ' ') : 'Ecuador';
+        //     if (property_type && operation) {
+        //         let propertyTypeDisplay = property_type.replace(/[-_]/g, ' ');
+        //         let operationDisplay = (operation === 'venta' || operation === 'renta') ? operation : 'general';
+        //         let locationDisplay = location ? location.replace(/[-_]/g, ' ') : 'Ecuador';
 
-                // Variante 1 (tu formato actual): casas en venta en Cuenca
-                let keywordV1 = `${propertyTypeDisplay} en ${operationDisplay} en ${locationDisplay}`;
-                // Variante 2 (nuevo formato): venta de casas en Cuenca
-                let keywordV2 = `${operationDisplay} de ${propertyTypeDisplay} en ${locationDisplay}`;
+        //         let keywordV1 = `${propertyTypeDisplay} en ${operationDisplay} en ${locationDisplay}`;
+        //         let keywordV2 = `${operationDisplay} de ${propertyTypeDisplay} en ${locationDisplay}`;
 
-                // -----------------------------
-                // Bloques originales (se mantienen)
-                // -----------------------------
-                qaPairs.push({
-                    question: `¿Por qué ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'buscar'} ${keywordV1}?`,
-                    answer: `Encontrar ${keywordV1} ofrece diversas ventajas. Se presenta como una opción inmobiliaria atractiva debido a su notable crecimiento turístico, lo que impulsa una economía local en expansión y ofrece oportunidades de inversión con potencial de valorización.`
-                });
+        //         qaPairs.push({
+        //             question: `¿Por qué ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'buscar'} ${keywordV1}?`,
+        //             answer: `Encontrar ${keywordV1} ofrece diversas ventajas. Se presenta como una opción inmobiliaria atractiva debido a su notable crecimiento turístico, lo que impulsa una economía local en expansión y ofrece oportunidades de inversión con potencial de valorización.`
+        //         });
 
-                qaPairs.push({
-                    question: `¿Dónde puedo ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'encontrar'} ${keywordV1}?`,
-                    answer: `Puedes encontrar una amplia variedad de ${keywordV1} en nuestra inmobiliaria. En Grupo Housing, comprendemos la importancia de esta decisión y nos comprometemos a brindarte un servicio integral y personalizado. Nuestro equipo de profesionales te acompañará en cada paso.`
-                });
+        //         qaPairs.push({
+        //             question: `¿Dónde puedo ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'encontrar'} ${keywordV1}?`,
+        //             answer: `Puedes encontrar una amplia variedad de ${keywordV1} en nuestra inmobiliaria. En Grupo Housing, comprendemos la importancia de esta decisión y nos comprometemos a brindarte un servicio integral y personalizado. Nuestro equipo de profesionales te acompañará en cada paso.`
+        //         });
 
-                qaPairs.push({
-                    question: `¿Cómo puedo ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'buscar'} ${keywordV1}?`,
-                    answer: `Para ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'buscar'} ${keywordV1}, puedes definir tu presupuesto y necesidades, explorar opciones en línea mediante nuestro sitio web o contáctarnos directamente en Grupo Housing por teléfono, WhatsApp o redes sociales. Te brindaremos asesoramiento profesional, gestionaremos trámites y te guiaremos en todo el proceso.`
-                });
+        //         qaPairs.push({
+        //             question: `¿Cómo puedo ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'buscar'} ${keywordV1}?`,
+        //             answer: `Para ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'buscar'} ${keywordV1}, puedes definir tu presupuesto y necesidades, explorar opciones en línea mediante nuestro sitio web o contáctarnos directamente en Grupo Housing por teléfono, WhatsApp o redes sociales. Te brindaremos asesoramiento profesional, gestionaremos trámites y te guiaremos en todo el proceso.`
+        //         });
 
-                // -----------------------------
-                // Bloque extra con la variante nueva (venta de casas en Cuenca)
-                // -----------------------------
-                qaPairs.push({
-                    question: `Beneficios de la ${keywordV2}`,
-                    answer: `La ${keywordV2} representa una excelente oportunidad de inversión en el mercado inmobiliario. Gracias al desarrollo constante de ${locationDisplay}, la demanda se mantiene en crecimiento, lo que favorece la valorización de las propiedades y garantiza una decisión inteligente a mediano y largo plazo.`
-                });
-            }
+        //         qaPairs.push({
+        //             question: `Beneficios de la ${keywordV2}`,
+        //             answer: `La ${keywordV2} representa una excelente oportunidad de inversión en el mercado inmobiliario. Gracias al desarrollo constante de ${locationDisplay}, la demanda se mantiene en crecimiento, lo que favorece la valorización de las propiedades y garantiza una decisión inteligente a mediano y largo plazo.`
+        //         });
+        //     }
 
-            qaPairs.forEach(qa => {
-                content += `
-                    <section class="mt-4">
-                        <h2>${qa.question}</h2>
-                        <h3>${qa.answer}</h3>
-                    </section>
-                `;
-            });
+        //     qaPairs.forEach(qa => {
+        //         content += `
+        //             <section class="mt-4">
+        //                 <h2>${qa.question}</h2>
+        //                 <h3>${qa.answer}</h3>
+        //             </section>
+        //         `;
+        //     });
 
-            let containerDynamicContent = document.getElementById('dynamic_content');
-            if (containerDynamicContent) {
-                containerDynamicContent.innerHTML = content;
-            }
-        }
+        //     let containerDynamicContent = document.getElementById('dynamic_content');
+        //     if (containerDynamicContent) {
+        //         containerDynamicContent.innerHTML = content;
+        //     }
+        // }
+
+        
 
 
         /**
@@ -1805,46 +1897,49 @@ function updateDynamicTitle(total, searchParams, isModal, isPropertyCode = false
          * @param {string} operation - Tipo de operación (ej: 'venta', 'renta').
          * @param {string} location - Ubicación de la búsqueda (ej: 'cuenca', 'tarqui').
          */
-        function generateDynamicDescriptionParagraph(property_type, operation, location) {
-            let descriptionText = '';
+        // function generateDynamicDescriptionParagraph(property_type, operation, location) {
+        //     let descriptionText = '';
 
-            // Limpieza y formateo de los parámetros para una mejor lectura
-            const formattedPropertyType = property_type ? property_type.replace(/[-_]/g, ' ').toLowerCase() : '';
-            const formattedOperation = operation ? (operation === 'venta' ? 'venta' : 'renta') : '';
-            const formattedLocation = location ? location.replace(/[-_]/g, ' ').toLowerCase() : '';
+        //     // Limpieza y formateo de los parámetros para una mejor lectura
+        //     const formattedPropertyType = property_type ? property_type.replace(/[-_]/g, ' ').toLowerCase() : '';
+        //     const formattedOperation = operation ? (operation === 'venta' ? 'venta' : 'renta') : '';
+        //     const formattedLocation = location ? location.replace(/[-_]/g, ' ').toLowerCase() : '';
 
-            // Variables para el texto dinámico
-            let propertyTypeText = formattedPropertyType || 'propiedades';
-            let operationText = formattedOperation ? `de ${formattedOperation}` : '';
-            let locationText = formattedLocation ? `en ${formattedLocation}` : 'en Ecuador'; // Default si no hay ubicación
+        //     // Variables para el texto dinámico
+        //     let propertyTypeText = formattedPropertyType || 'propiedades';
+        //     let operationText = formattedOperation ? `de ${formattedOperation}` : '';
+        //     let locationText = formattedLocation ? `en ${formattedLocation}` : 'en Ecuador'; // Default si no hay ubicación
 
-            // === Lógica para construir el párrafo dinámico ===
+        //     // === Lógica para construir el párrafo dinámico ===
 
-            // Caso más específico: Tipo de propiedad, Operación y Ubicación
-            if (formattedPropertyType && formattedOperation && formattedLocation) {
-                descriptionText = `En Grupo Housing, te ofrecemos una selecta variedad de <b>${propertyTypeText} ${operationText} en ${formattedLocation}</b>. Desde acogedoras viviendas hasta exclusivas <b>${propertyTypeText} ${operationText} en ${formattedLocation} nuevas</b> y atractivas de <strong>oportunidad</strong>, nuestro catálogo está diseñado para satisfacer tus necesidades en ${formattedLocation}.`;
-            }
-            // Tipo de propiedad y Operación (sin ubicación específica)
-            else if (formattedPropertyType && formattedOperation) {
-                descriptionText = `Explora nuestra amplia oferta de <b>${propertyTypeText} ${operationText}</b> en diversas ubicaciones ${locationText}. En Grupo Housing, encontrarás desde <b>${propertyTypeText} ${operationText} baratas</b> hasta opciones de lujo, todas con el respaldo y asesoramiento que mereces.`;
-            }
-            // Solo Ubicación (para cualquier tipo de propiedad u operación)
-            else if (formattedLocation) {
-                descriptionText = `Descubre las mejores <b>propiedades de venta en ${formattedLocation}</b> con Grupo Housing. Si buscas <b>casas de venta en ${formattedLocation} de oportunidad</b> o cualquier otro tipo de inmueble, somos tu mejor opción para encontrar tu nuevo hogar o inversión en ${formattedLocation}, Azuay.`;
-            }
-            // Caso general (sin filtros específicos, o solo Cuenca/Ecuador por defecto)
-            else {
-                // Este sería el texto si la búsqueda es muy general, o si por defecto es "casas de venta en Cuenca"
-                // Puedes combinar algunas de las keywords generales aquí.
-                descriptionText = `Bienvenido al catálogo de Grupo Housing, donde encontrarás una extensa selección de <b>casas de venta en Cuenca</b>. Explora nuestras <b>propiedades de venta en Cuenca</b>, incluyendo opciones <b>nuevas</b> y de <b>oportunidad</b> en Cuenca, Azuay, Ecuador.`;
-            }
+        //     // Caso más específico: Tipo de propiedad, Operación y Ubicación
+        //     if (formattedPropertyType && formattedOperation && formattedLocation) {
+        //         descriptionText = `En Grupo Housing, te ofrecemos una selecta variedad de <b>${propertyTypeText} ${operationText} en ${formattedLocation}</b>. Desde acogedoras viviendas hasta exclusivas <b>${propertyTypeText} ${operationText} en ${formattedLocation} nuevas</b> y atractivas de <strong>oportunidad</strong>, nuestro catálogo está diseñado para satisfacer tus necesidades en ${formattedLocation}.`;
+        //     }
+        //     // Tipo de propiedad y Operación (sin ubicación específica)
+        //     else if (formattedPropertyType && formattedOperation) {
+        //         descriptionText = `Explora nuestra amplia oferta de <b>${propertyTypeText} ${operationText}</b> en diversas ubicaciones ${locationText}. En Grupo Housing, encontrarás desde <b>${propertyTypeText} ${operationText} baratas</b> hasta opciones de lujo, todas con el respaldo y asesoramiento que mereces.`;
+        //     }
+        //     // Solo Ubicación (para cualquier tipo de propiedad u operación)
+        //     else if (formattedLocation) {
+        //         descriptionText = `Descubre las mejores <b>propiedades de venta en ${formattedLocation}</b> con Grupo Housing. Si buscas <b>casas de venta en ${formattedLocation} de oportunidad</b> o cualquier otro tipo de inmueble, somos tu mejor opción para encontrar tu nuevo hogar o inversión en ${formattedLocation}, Azuay.`;
+        //     }
+        //     // Caso general (sin filtros específicos, o solo Cuenca/Ecuador por defecto)
+        //     else {
+        //         // Este sería el texto si la búsqueda es muy general, o si por defecto es "casas de venta en Cuenca"
+        //         // Puedes combinar algunas de las keywords generales aquí.
+        //         descriptionText = `Bienvenido al catálogo de Grupo Housing, donde encontrarás una extensa selección de <b>casas de venta en Cuenca</b>. Explora nuestras <b>propiedades de venta en Cuenca</b>, incluyendo opciones <b>nuevas</b> y de <b>oportunidad</b> en Cuenca, Azuay, Ecuador.`;
+        //     }
 
-            // === Inyectar el contenido en el DOM ===
-            const paragraphContainer = document.getElementById('dynamic-description-paragraph');
-            if (paragraphContainer) {
-                paragraphContainer.innerHTML = descriptionText;
-            }
-        }
+        //     // === Inyectar el contenido en el DOM ===
+        //     const paragraphContainer = document.getElementById('dynamic-description-paragraph');
+        //     if (paragraphContainer) {
+        //         paragraphContainer.innerHTML = descriptionText;
+        //     }
+        // }
+
+        
+
 
         function generateDynamicContentForPropertyCode(propertyCode) {
     let content = `
@@ -1911,5 +2006,388 @@ function clearSearchModal() {
         checkbox.checked = false;
     });
 }
+
+// Función auxiliar para capitalizar la primera letra
+function capitalizeFirstLetter(str) {
+    if (!str || typeof str !== 'string') return str;
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
+// Función auxiliar para construir la ubicación completa (para contenido y títulos)
+function buildLocationString(searchTerm, city, state) {
+    let locationParts = [];
+    
+    // Agregar searchTerm si existe (capitalizado)
+    if (searchTerm && searchTerm.trim() !== '') {
+        locationParts.push(capitalizeFirstLetter(searchTerm.trim()));
+    }
+    
+    // Agregar city si existe y es diferente al searchTerm (capitalizado)
+    if (city && city.trim() !== '' && city.toLowerCase() !== searchTerm?.toLowerCase()) {
+        locationParts.push(capitalizeFirstLetter(city.trim()));
+    }
+    
+    // Agregar state si existe y es diferente a los anteriores (capitalizado)
+    if (state && state.trim() !== '' && 
+        state.toLowerCase() !== city?.toLowerCase() && 
+        state.toLowerCase() !== searchTerm?.toLowerCase()) {
+        locationParts.push(capitalizeFirstLetter(state.trim()));
+    }
+    
+    return locationParts.length > 0 ? locationParts.join(', ') : 'Ecuador';
+}
+
+// Función auxiliar para generar el slug de ubicación SOLO para URL (prioriza searchTerm > city > state)
+function buildLocationSlugForURL(searchTerm, city, state) {
+    // Prioridad: searchTerm es lo más importante
+    if (searchTerm && searchTerm.trim() !== '') {
+        return searchTerm.toLowerCase().replace(/\s+/g, '-');
+    }
+    
+    // Si no hay searchTerm pero hay city, usar city
+    if (city && city.trim() !== '') {
+        return city.toLowerCase().replace(/\s+/g, '-');
+    }
+    
+    // Si solo hay state, usar state
+    if (state && state.trim() !== '') {
+        return state.toLowerCase().replace(/\s+/g, '-');
+    }
+    
+    // Si no hay nada, retornar vacío
+    return '';
+}
+
+// Función actualizada para generar contenido dinámico
+function generateDynamicContent(property_type, operation, searchTerm = '', city = '', state = '') {
+    let content = '';
+    let qaPairs = [];
+    
+    if (property_type && operation) {
+        let propertyTypeDisplay = property_type.replace(/[-_]/g, ' ');
+        let operationDisplay = (operation === 'venta' || operation === 'renta') ? operation : 'general';
+        let locationDisplay = buildLocationString(searchTerm, city, state);
+        
+        // Variante 1: casas en venta en [ubicación completa]
+        let keywordV1 = `${propertyTypeDisplay} en ${operationDisplay} en ${locationDisplay}`;
+        // Variante 2: venta de casas en [ubicación completa]
+        let keywordV2 = `${operationDisplay} de ${propertyTypeDisplay} en ${locationDisplay}`;
+        
+        // Bloques de preguntas y respuestas
+        qaPairs.push({
+            question: `¿Por qué ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'buscar'} ${keywordV1}?`,
+            answer: `Encontrar ${keywordV1} ofrece diversas ventajas. Se presenta como una opción inmobiliaria atractiva debido a su notable crecimiento turístico, lo que impulsa una economía local en expansión y ofrece oportunidades de inversión con potencial de valorización.`
+        });
+        
+        qaPairs.push({
+            question: `¿Dónde puedo ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'encontrar'} ${keywordV1}?`,
+            answer: `Puedes encontrar una amplia variedad de ${keywordV1} en nuestra inmobiliaria. En Grupo Housing, comprendemos la importancia de esta decisión y nos comprometemos a brindarte un servicio integral y personalizado. Nuestro equipo de profesionales te acompañará en cada paso.`
+        });
+        
+        qaPairs.push({
+            question: `¿Cómo puedo ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'buscar'} ${keywordV1}?`,
+            answer: `Para ${operationDisplay === 'venta' ? 'comprar' : operationDisplay === 'renta' ? 'alquilar' : 'buscar'} ${keywordV1}, puedes definir tu presupuesto y necesidades, explorar opciones en línea mediante nuestro sitio web o contáctarnos directamente en Grupo Housing por teléfono, WhatsApp o redes sociales. Te brindaremos asesoramiento profesional, gestionaremos trámites y te guiaremos en todo el proceso.`
+        });
+        
+        // Bloque extra con la variante nueva
+        qaPairs.push({
+            question: `Beneficios de la ${keywordV2}`,
+            answer: `La ${keywordV2} representa una excelente oportunidad de inversión en el mercado inmobiliario. Gracias al desarrollo constante de ${locationDisplay}, la demanda se mantiene en crecimiento, lo que favorece la valorización de las propiedades y garantiza una decisión inteligente a mediano y largo plazo.`
+        });
+    }
+    
+    qaPairs.forEach(qa => {
+        content += `
+            <section class="mt-4">
+                <h2>${qa.question}</h2>
+                <h3>${qa.answer}</h3>
+            </section>
+        `;
+    });
+    
+    let containerDynamicContent = document.getElementById('dynamic_content');
+    if (containerDynamicContent) {
+        containerDynamicContent.innerHTML = content;
+    }
+}
+
+// Función actualizada para generar descripción dinámica
+function generateDynamicDescriptionParagraph(property_type, operation, searchTerm = '', city = '', state = '') {
+    let descriptionText = '';
+   
+    // Limpieza y formateo de los parámetros
+    const formattedPropertyType = property_type ? property_type.replace(/[-_]/g, ' ').toLowerCase() : '';
+    const formattedOperation = operation ? (operation === 'venta' ? 'venta' : 'renta') : '';
+   
+    // Construir la ubicación completa (ya viene capitalizada de buildLocationString)
+    const fullLocation = buildLocationString(searchTerm, city, state);
+    const formattedLocation = fullLocation !== 'Ecuador' ? fullLocation : '';
+   
+    // Variables para el texto dinámico
+    let propertyTypeText = formattedPropertyType || 'propiedades';
+    let operationText = formattedOperation ? `de ${formattedOperation}` : '';
+    let locationText = formattedLocation ? `en ${formattedLocation}` : 'en Ecuador';
+   
+    // Lógica para construir el párrafo dinámico
+    if (formattedPropertyType && formattedOperation && formattedLocation) {
+        descriptionText = `En Grupo Housing, te ofrecemos una selecta variedad de <b>${propertyTypeText} ${operationText} en ${formattedLocation}</b>. Desde acogedoras viviendas hasta exclusivas <b>${propertyTypeText} ${operationText} en ${formattedLocation} nuevas</b> y atractivas de <strong>oportunidad</strong>, nuestro catálogo está diseñado para satisfacer tus necesidades en ${formattedLocation}.`;
+    }
+    else if (formattedPropertyType && formattedOperation) {
+        descriptionText = `Explora nuestra amplia oferta de <b>${propertyTypeText} ${operationText}</b> en diversas ubicaciones ${locationText}. En Grupo Housing, encontrarás desde <b>${propertyTypeText} ${operationText} baratas</b> hasta opciones de lujo, todas con el respaldo y asesoramiento que mereces.`;
+    }
+    else if (formattedLocation) {
+        descriptionText = `Descubre las mejores <b>propiedades de venta en ${formattedLocation}</b> con Grupo Housing. Si buscas <b>casas de venta en ${formattedLocation} de oportunidad</b> o cualquier otro tipo de inmueble, somos tu mejor opción para encontrar tu nuevo hogar o inversión en ${formattedLocation}.`;
+    }
+    else {
+        descriptionText = `Bienvenido al catálogo de Grupo Housing, donde encontrarás una extensa selección de <b>casas de venta en Cuenca</b>. Explora nuestras <b>propiedades de venta en Cuenca</b>, incluyendo opciones <b>nuevas</b> y de <b>oportunidad</b> en Cuenca, Azuay, Ecuador.`;
+    }
+   
+    const paragraphContainer = document.getElementById('dynamic-description-paragraph');
+    if (paragraphContainer) {
+        paragraphContainer.innerHTML = descriptionText;
+    }
+}
+
+// Función actualizada updateDynamicTitle con state y city
+function updateDynamicTitle(total, searchParams, isModal, isPropertyCode = false) {
+    const searchTerm = document.getElementById(isModal ? 'searchTermModal' : 'searchTerm');
+    
+    let metaDescripcion = document.querySelector('meta[name="description"]');
+    let keywords = document.querySelector('meta[name="keywords"]');
+    let description_banner = document.getElementById('description_banner');
+
+    // CASO ESPECIAL: Si es código de propiedad
+    if (isPropertyCode) {
+        const propertyCode = searchTerm.value.trim();
+        
+        let contentMetaDescription = "";
+        let contentBannerDescription = "";
+        let titleComponents = "";
+        
+        if (total < 1) {
+            contentMetaDescription = `No encontramos la propiedad con código ${propertyCode}. Contáctanos para más información sobre propiedades disponibles.`;
+            contentBannerDescription = `No se encontró la propiedad ${propertyCode}. Te mostramos otras opciones disponibles.`;
+            titleComponents = `Propiedad ${propertyCode} - No encontrada`;
+        } else if (total === 1) {
+            contentMetaDescription = `Propiedad ${propertyCode} encontrada. ¡Solicita ahora una visita y descubre todos los detalles! Clic aquí para más información.`;
+            contentBannerDescription = `Propiedad ${propertyCode} encontrada.`;
+            titleComponents = `Propiedad ${propertyCode} - Grupo Housing`;
+        } else {
+            // Caso raro: múltiples propiedades con el mismo código
+            contentMetaDescription = `Encontramos ${total} propiedades relacionadas con ${propertyCode}. ¡Descubre todas las opciones disponibles!`;
+            contentBannerDescription = `Se encontraron ${total} propiedades relacionadas con ${propertyCode}.`;
+            titleComponents = `${total} propiedades encontradas para ${propertyCode}`;
+        }
+
+        if (metaDescripcion) {
+            metaDescripcion.setAttribute('content', contentMetaDescription);
+            keywords.setAttribute('content', `propiedad ${propertyCode}, código ${propertyCode}, inmueble ${propertyCode}`);
+            description_banner.innerHTML = contentBannerDescription;
+        }
+
+        document.title = titleComponents;
+        document.querySelector('h1').innerHTML = total === 1 
+            ? `<span style="font-weight: 500">Propiedad</span><span style="font-weight: 100"> ${propertyCode}</span>`
+            : `<span style="font-weight: 500">${total}</span><span style="font-weight: 100"> resultado${total !== 1 ? 's' : ''} para ${propertyCode}</span>`;
+        
+        return; // Salir temprano para códigos de propiedad
+    }
+
+    // LÓGICA ORIGINAL para ubicaciones - ACTUALIZADA con state y city
+    const typeElement = document.getElementById(isModal ? 'propertyTypeModal' : 'propertyType');
+    const selectedTypeIndex = typeElement.selectedIndex;
+    const typeName = typeElement.options[selectedTypeIndex].text;
+    const state = searchParams.get('state');
+    const city = searchParams.get('city');
+    const sector = searchParams.get('sector');
+
+    let titleSuffix = `propiedades`;
+    if (selectedTypeIndex !== 0 && typeName.toLowerCase() !== "tipo de propiedad") {
+        titleSuffix = `${typeName.toLowerCase()}`;
+    }
+
+    if (searchParams.get('normalized_status')) {
+        titleSuffix += ` en ${searchParams.get('normalized_status')}`;
+    } else {
+        titleSuffix += ` en general`;
+    }
+
+    // Usar la ubicación completa para el título (capitalizada)
+    const fullLocation = buildLocationString(searchTerm.value, city, state);
+    if(fullLocation !== 'Ecuador'){
+        titleSuffix += ` en ${fullLocation}`;
+    } else {
+        let locationDetails = [];
+        if (sector) locationDetails.push(capitalizeFirstLetter(sector));
+        if (locationDetails.length) {
+            titleSuffix += ` en ${locationDetails.join(", ")}`;
+        }
+    }
+
+    if (metaDescripcion) {
+        let contentMetaDescription = "";
+        let contentBannerDescription = "";
+
+        if(total < 1){
+            contentMetaDescription = 'Encuentre la casa de sus sueños, donde los sueños se hacen realidad 😉 Contamos con una gran variedad de propiedades disponibles ¡Contáctenos!';
+            contentBannerDescription = 'Descubre todas las propiedades en venta y renta que Grupo Housing tiene para ti';
+        } else{
+            contentMetaDescription = `Encontramos ${total} ${strTitle(titleSuffix)} disponibles. ¡Solicita ahora una visita y descubre tu opción ideal! Clic aquí para más información`;
+            contentBannerDescription = `Hemos encontrado ${total} ${replaceFirstEnWithDe(titleSuffix)} disponibles.`;
+        }
+        
+        metaDescripcion.setAttribute('content', contentMetaDescription);
+        keywords.setAttribute('content', titleSuffix);
+        description_banner.innerHTML = contentBannerDescription;
+    }
+
+    let titleComponents = `${total} ${titleSuffix} en Ecuador`;
+    document.title = `${titleComponents}`;
+    document.querySelector('h1').innerHTML =
+        `<span style="font-weight: 500">${total}</span><span style="font-weight: 100"> ${titleSuffix}</span>`;        
+}
+
+
+// Función actualizada para searchProperties con lógica de URL optimizada
+window.searchProperties = function(page = 1, isModal = false) {
+    page = parseInt(page);
+    var currentTypeIds = isModal ? typeIdsArrayModal : typeIdsArray;
+    var selectElement = isModal ? document.getElementById('propertyTypeModal') : document.getElementById('propertyType');
+    var selectedOption = selectElement.options[selectElement.selectedIndex];
+    var typeName = selectedOption.text;
+    var typeValue = selectedOption.value;
+
+    var statusElement = isModal ? document.getElementById('propertyStatusModal') : document.getElementById('propertyStatus');
+    var statusValue = statusElement.value;
+    var statusText = statusElement.options[statusElement.selectedIndex].text;
+
+    // Obtener todos los valores de ubicación
+    const searchTermValue = document.getElementById(isModal ? 'searchTermModal' : 'searchTerm')?.value || '';
+    const cityValue = document.getElementById(isModal ? 'cityModal' : 'city')?.value || '';
+    const stateValue = document.getElementById(isModal ? 'stateModal' : 'state')?.value || '';
+    
+    // Detectar si el searchTerm es un código de propiedad
+    const isPropertyCode = /^[0-9]{3,10}$/.test(searchTermValue.trim());
+
+    // Asegúrate de que el tipo tiene un valor significativo
+    if (!typeValue) {
+        typeName = 'propiedades';
+    } else {
+        typeName = typeName.toLowerCase().replace(/\s+/g, '-');
+    }
+
+    const searchParams = new URLSearchParams({
+        searchTerm: searchTermValue,
+        bedrooms: document.getElementById(isModal ? 'bedroomsModal' : 'bedrooms')?.value || '',
+        bathrooms: document.getElementById(isModal ? 'bathroomsModal' : 'bathrooms')?.value || '',
+        garage: document.getElementById(isModal ? 'garageModal' : 'garage')?.value || '',
+        min_price: document.getElementById(isModal ? 'minPriceModal' : 'minPrice')?.value || '',
+        max_price: document.getElementById(isModal ? 'maxPriceModal' : 'maxPrice')?.value || '',
+        city: cityValue,
+        state: stateValue,
+        sector: document.getElementById(isModal ? 'sectorModal' : 'sector')?.value || '',
+        construction_area_min: document.getElementById(isModal ? 'constructionAreaMinModal' : 'constructionAreaMin')?.value || '',
+        construction_area_max: document.getElementById(isModal ? 'constructionAreaMaxModal' : 'constructionAreaMax')?.value || '',
+        land_area_min: document.getElementById(isModal ? 'landAreaMinModal' : 'landAreaMin')?.value || '',
+        land_area_max: document.getElementById(isModal ? 'landAreaMaxModal' : 'landAreaMax')?.value || '',
+        page: page,
+        normalized_status: document.getElementById(isModal ? 'propertyStatusModal' : 'propertyStatus')?.value || ''
+    });
+
+    // Generar URL slug con lógica optimizada
+    let urlSlug;
+    if (isPropertyCode) {
+        urlSlug = `/${searchTermValue.trim()}`;
+    } else {
+        urlSlug = `/${typeName}`;
+        if (statusValue) {
+            urlSlug += `-en-${statusValue}`;
+        }
+
+        // Usar la nueva función que prioriza searchTerm > city > state para URL
+        const locationSlugForURL = buildLocationSlugForURL(searchTermValue, cityValue, stateValue);
+        if (locationSlugForURL) {
+            urlSlug += `-en-${locationSlugForURL}`;
+        }
+
+        if(searchParams.get('min_price')){
+            urlSlug += `-desde-${searchParams.get('min_price')}`;
+        }
+
+        if (searchParams.get('max_price')) {
+            urlSlug += `-hasta-${searchParams.get('max_price')}`;
+        }
+    }
+
+    // Título diferente para códigos de propiedad
+    if (isPropertyCode) {
+        document.title = `Propiedad ${searchTermValue} - Grupo Housing`;
+    } else {
+        const fullLocation = buildLocationString(searchTermValue, cityValue, stateValue);
+        let titleComponents = [typeName.charAt(0).toUpperCase() + typeName.slice(1)];
+        if(fullLocation !== 'Ecuador') {
+            titleComponents.push(fullLocation); // Ya viene capitalizado de buildLocationString
+        }
+        document.title = `${titleComponents.join(' en ')} - ${statusText}`;
+    }
+
+    // Agregar manualmente los `type_ids[]`
+    let queryString = searchParams.toString();
+    if (Array.isArray(currentTypeIds) && currentTypeIds.length > 0) {
+        currentTypeIds.forEach(id => {
+            queryString += `&type_ids[]=${encodeURIComponent(id)}`;
+        });
+    }
+
+    let canonical = document.querySelector("link[rel='canonical']");
+
+    window.history.pushState({
+        path: urlSlug
+    }, '', urlSlug);
+
+    // Generar contenido dinámico
+    if (isPropertyCode) {
+        generateDynamicContentForPropertyCode(searchTermValue);
+        generateDynamicDescriptionForPropertyCode(searchTermValue);
+    } else {
+        generateDynamicContent(typeName, statusValue, searchTermValue, cityValue, stateValue);
+        generateDynamicDescriptionParagraph(typeName, statusValue, searchTermValue, cityValue, stateValue);
+    }
+
+    canonical.href = urlSlug;
+
+    axios.get('/api/propertys/list?' + queryString)
+        .then(function(response) {
+            const properties = response.data.properties;
+            let html = '';
+            if (properties.length > 0) {
+                properties.forEach((property, index) => {
+                    let imageUrl = getImageUrl(property);
+                    html += useCardView ? buildCardPropertyHTML(property, index) :
+                        buildHorizontalPropertyHTML(property, index);
+                });
+                updateDynamicTitle(response.data.pagination.total, searchParams, isModal, isPropertyCode);
+
+                if (isPropertyCode) {
+                    generateDynamicDescriptionForPropertyCode(searchTermValue, true);
+                }
+
+            } else {
+                html = '<section class="row"><p class="text-center fw-bold">No hemos encontrado propiedades</p></section>';
+                updateDynamicTitle(response.data.pagination.total, searchParams, isModal, isPropertyCode);
+
+                if (isPropertyCode) {
+                    generateDynamicDescriptionForPropertyCode(searchTermValue, false);
+                }
+            }
+            document.getElementById('propertiesList').innerHTML = html;
+            updatePagination(response.data.pagination, isModal);
+        })
+        .catch(function(error) {
+            console.error('Error en la búsqueda:', error.response ? error.response.data : 'Error desconocido');
+            document.getElementById('propertiesList').innerHTML =
+                '<section class="row"><p class="text-center fw-bold">Error al cargar propiedades.</p></section>';
+        });
+};
     </script>
 @endsection
