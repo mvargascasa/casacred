@@ -2,7 +2,7 @@
 
     <video class="hero-video" autoplay muted loop playsinline preload="none">
         <source src="{{ asset('img/grupo-housing-inmobiliaria-en-cuenca-banner-mobile.webm') }}" type="video/webm">
-        {{-- <source src="{{ asset('img/banner-home.mp4') }}" type="video/mp4"> --}}
+        <source src="{{ asset('img/grupo-housing-inmobiliaria-en-cuenca-banner-mobile.mp4') }}" type="video/mp4">
         Tu navegador no soporta videos en HTML5.
     </video>
 
