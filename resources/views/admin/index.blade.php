@@ -304,14 +304,36 @@ for (let i = 0; i < newarray.length; i++) {
 
     // Popup — ajusta contenido/links según tus rutas
     marker.bindPopup(`
-        <div style="text-align:center; min-width:180px;">
-            <img src="${imageUrl}" alt="Imagen" style="width:140px;height:auto;border-radius:4px;margin-bottom:6px;">
-            <div><strong>Propiedad ${item.product_code || ''}</strong></div>
-            <div style="font-size:13px;margin-top:4px;">${item.listing_title || ''}</div>
-            <div style="margin-top:8px;font-size:13px;">
-                <a target="_blank" href="https://wa.me/?text=Ubicación:%20${lat},${lng}">Compartir Ubicación</a>
-                &nbsp;|&nbsp;
-                <a href="/propiedad/${item.id}">Ver propiedad</a>
+        <div style="width:300px; border-radius:8px; overflow:hidden;
+        ">
+            
+            <!-- Imagen principal -->
+            <div style="width:100%; height:140px; overflow:hidden;">
+                <img src="${imageUrl}" alt="Imagen de propiedad" 
+                    style="width:100%; height:100%; object-fit:cover; display:block;">
+            </div>
+
+            <!-- Información -->
+            <div style="background:#fff;">
+                <div style="font-size:14px; color:#666; margin-bottom:4px;">
+                    Código: <strong style="color:#000;">${item.product_code || ''}</strong>
+                </div>
+                <div style="font-size:16px; font-weight:bold; color:#333; margin-bottom:8px;">
+                    ${item.listing_title || ''}
+                </div>
+
+                <!-- Acciones -->
+                <div style="display:flex; justify-content:space-between; margin-top:8px;">
+                    <a target="_blank" 
+                    href="https://wa.me/?text=Ubicación:%20${lat},${lng}" 
+                    style="flex:1; text-align:center; background:#25d366; color:#fff; padding:6px 0; text-decoration:none; font-size:13px; border-radius:4px; margin-right:4px;">
+                    Compartir Ubicación
+                    </a>
+                    <a href="/propiedad/${item.id}" 
+                    style="flex:1; text-align:center; background:#007bff; color:#fff; padding:6px 0; text-decoration:none; font-size:13px; border-radius:4px; margin-left:4px;">
+                    Ver Propiedad
+                    </a>
+                </div>
             </div>
         </div>
     `);
