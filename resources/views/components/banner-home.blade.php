@@ -39,19 +39,19 @@
                             <option value="">Elija tipo de propiedad</option> 
                             <option data-ids="[23,1]" value="1">Casas</option> 
                             <option data-ids="[24,3]" value="2">Departamentos</option> 
+                            <option data-ids="[26,10]" value="15">Terrenos</option>
                             <option data-ids="[25,5]" value="3">Casas Comerciales</option> 
                             <option data-ids="[32,6]" value="4">Locales Comerciales</option> 
+                            <option data-ids="[36,8]" value="11">Suites</option> 
                             <option data-ids="[37]" value="5">Edificios</option> 
                             <option data-ids="[39]" value="6">Hoteles</option> 
                             <option data-ids="[41]" value="7">Fabricas</option> 
                             <option data-ids="[42]" value="8">Parqueaderos</option> 
                             <option data-ids="[43]" value="9">Bodegas</option> 
                             <option data-ids="[35,7]" value="10">Oficinas</option> 
-                            <option data-ids="[36,8]" value="11">Suites</option> 
                             <option data-ids="[29,9]" value="12">Quintas</option> 
                             <option data-ids="[30,30]" value="13">Haciendas</option> 
                             <option data-ids="[45]" value="14">Naves Industriales</option> 
-                            <option data-ids="[26,10]" value="15">Terrenos</option>
                         </select>
                     </div>
 
