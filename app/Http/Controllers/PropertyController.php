@@ -145,6 +145,9 @@ class PropertyController extends Controller
         $city = $request->input('city');
         $state = $request->input('state');
         $sector = $request->input('sector');
+        $is_new = $request->input('is_new');
+        $listyearsmin = $request->filled('listyears_min') ? (int) $request->input('listyears_min') : null;
+        $listyearsmax = $request->filled('listyears_max') ? (int) $request->input('listyears_max') : null;
         $page = $request->input('page', 1);
         $perPage = $request->input('per_page', 20);
 
@@ -274,6 +277,18 @@ class PropertyController extends Controller
             $properties_filter->where('city', 'LIKE', "%{$city}%");
         }
 
+        if ($is_new == 1) {
+            $properties_filter->where('listingtagstatus', 2);
+        }
+
+        if (!is_null($listyearsmin)) {
+            $properties_filter->where('listyears', '>=', $listyearsmin);
+        }
+        
+        if (!is_null($listyearsmax)) {
+            $properties_filter->where('listyears', '<=', $listyearsmax);
+        }
+
         if ($state) {
             $properties_filter->where('state', 'LIKE', "%{$state}%");
         }
@@ -281,6 +296,35 @@ class PropertyController extends Controller
         if ($sector) {
             $properties_filter->where('sector', 'LIKE', "%{$sector}%");
             $properties_filter->where('address', 'LIKE', "%{$sector}%");
+        }
+
+        //filtrar por caracteristicas
+
+        if ($request->filled('listingcharacteristic')) {
+            $ids = explode(',', $request->listingcharacteristic);
+            $properties_filter->where(function($q) use ($ids) {
+                foreach ($ids as $id) {
+                    $q->orWhere('listingcharacteristic', 'like', "%$id%");
+                }
+            });
+        }
+        
+        if ($request->filled('listinggeneralcharacteristics')) {
+            $ids = explode(',', $request->listinggeneralcharacteristics);
+            $properties_filter->where(function($q) use ($ids) {
+                foreach ($ids as $id) {
+                    $q->orWhere('listinggeneralcharacteristics', 'like', "%$id%");
+                }
+            });
+        }
+        
+        if ($request->filled('listinglistservices')) {
+            $ids = explode(',', $request->listinglistservices);
+            $properties_filter->where(function($q) use ($ids) {
+                foreach ($ids as $id) {
+                    $q->orWhere('listinglistservices', 'like', "%$id%");
+                }
+            });
         }
 
 
