@@ -2769,7 +2769,7 @@ window.searchProperties = function(page = 1, isModal = false) {
 
     // IDs de las características
     const featuresMap = {
-        gymModal: { field: 'listingcharacteristic', ids: [25] },
+        gymModal: { field: 'listingcharacteristic', ids: [99] },
         wifiModal: { field: 'listinglistservices', ids: [33,5] },
         poolModal: { field: 'listinggeneralcharacteristics', ids: [5] },
         cisternModal: { field: 'listingcharacteristic', ids: [42] },
