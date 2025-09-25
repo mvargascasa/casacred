@@ -34,12 +34,6 @@
                             </div>
 
                             <textarea id="comentario" class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:ring focus:border-blue-300" rows="4" placeholder="Comentario......"></textarea>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                  <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-                                </div>
-                                <input id="fecha_contacto" type="datetime-local" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Selecciona una fecha">
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -91,7 +85,6 @@
 
     function cleanData(){
         document.getElementById('comentario').value = "";
-        document.getElementById('fecha_contacto').value = "";
 
         // Obtener todos los radio buttons con el nombre "respuesta"
         const radioButtons = document.getElementsByName('respuesta');
@@ -121,7 +114,6 @@
         
         // Get and trim the value of the comment field
         const comentario = document.getElementById('comentario').value.trim();
-        const fecha_contacto = document.getElementById('fecha_contacto').value;
         const product_code = document.getElementById('product_code').value;
 
         // Get the value of the selected radio button
@@ -129,7 +121,7 @@
         const respuesta = respuestaElement ? respuestaElement.value : '';
 
         // Check if all fields are filled
-        if (!comentario || !fecha_contacto || !respuesta) {
+        if (!comentario || !respuesta) {
             showMessageModal('Error de Formulario', 'Por favor, complete todos los campos.');
             return;
         }
@@ -142,7 +134,6 @@
             },
             body: JSON.stringify({
                 comentario: comentario,
-                fecha_contacto: fecha_contacto,
                 respuesta_contacto: respuesta,
                 product_code: product_code
             })
