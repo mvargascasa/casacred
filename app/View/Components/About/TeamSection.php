@@ -34,15 +34,6 @@ class TeamSection extends Component
                 'specialties' => ['Ventas', 'Casas Residenciales']
             ],
             [
-                'id' => 2,
-                'name' => 'Virginia Peña',
-                'title' => 'Asesora',
-                'image' => 'asesora-virginia-pena.webp',
-                'email' => 'maria@inmobiliaria.com',
-                'phone' => '+593 99 123 4567',
-                'specialties' => ['Ventas', 'Casas Residenciales']
-            ],
-            [
                 'id' => 3,
                 'name' => 'Andrea Paez',
                 'title' => 'Gestora',
@@ -50,6 +41,24 @@ class TeamSection extends Component
                 'email' => 'maria@inmobiliaria.com',
                 'phone' => '+593 99 123 4567',
                 'specialties' => ['Ventas', 'Casas Residenciales']
+            ],
+            [
+                'id' => 5,
+                'name' => 'Belen Astudillo',
+                'title' => 'Gestora',
+                'image' => 'belen-astudillo.webp',
+                'email' => 'ana@inmobiliaria.com',
+                'phone' => '+593 99 345 6789',
+                'specialties' => ['Rentas', 'Propiedades de Lujo'],
+            ],
+            [
+                'id' => 2,
+                'name' => 'Daysi Peralta',
+                'title' => 'Asesora',
+                'image' => 'daysi-peralta.webp',
+                'email' => 'ana@inmobiliaria.com',
+                'phone' => '+593 99 345 6789',
+                'specialties' => ['Rentas', 'Propiedades de Lujo'],
             ]
         ];
     }
