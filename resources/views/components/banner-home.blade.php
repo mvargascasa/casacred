@@ -1,8 +1,8 @@
 <section class="hero-real-estate">
 
-    <video class="hero-video" autoplay muted loop playsinline preload="none">
-        <source src="{{ asset('img/grupo-housing-inmobiliaria-en-cuenca-banner-mobile.webm') }}" type="video/webm">
-        <source src="{{ asset('img/grupo-housing-inmobiliaria-en-cuenca-banner-mobile.mp4') }}" type="video/mp4">
+    <video id="heroVideo" class="hero-video" autoplay muted loop playsinline preload="none">
+        {{-- <source src="{{ asset('img/grupo-housing-inmobiliaria-en-cuenca-banner-mobile.webm') }}" type="video/webm"> --}}
+        <source src="" type="video/mp4">
         Tu navegador no soporta videos en HTML5.
     </video>
 
@@ -404,5 +404,52 @@
         if (typewriterElement) {
             typeEffect();
         }
+
+        //REPRODUCCION DE VIDEO MOVIL O ESCRITORIO
+        const videoElement = document.getElementById('heroVideo');
+        const sourceElement = videoElement.querySelector('source');
+
+        // Define las rutas de video usando el helper asset() de Laravel
+        const desktopVideo = "{{ asset('img/inmobiliaria-en-cuenca-grupo-housing-video-banner.mp4') }}";
+        const mobileVideo = "{{ asset('img/Inmobiliaria-En-Cuenca-Grupo-Housing-Video-Banner-Movil.mp4') }}";
+
+        // Define el punto de corte (breakpoint) para la pantalla.
+        // Un valor común es 768px, pero puedes ajustarlo.
+        const BREAKPOINT = 768; // Pantallas de 768px o menos se consideran móviles.
+
+        /**
+         * Función que determina y carga el video correcto.
+         */
+        function loadVideoBasedOnScreenSize() {
+            // Verifica si el ancho de la ventana es menor o igual al breakpoint.
+            const isMobileScreen = window.innerWidth <= BREAKPOINT;
+            
+            let newVideoUrl = isMobileScreen ? mobileVideo : desktopVideo;
+
+            // Optimización: Solo cambia y recarga si la URL es diferente a la actual.
+            // Esto evita recargas innecesarias del video.
+            if (sourceElement.src !== newVideoUrl) {
+                sourceElement.src = newVideoUrl;
+                
+                // Debemos llamar a .load() para que el elemento de video sepa 
+                // que debe cargar la nueva fuente que hemos asignado.
+                videoElement.load();
+                
+                // Opcional: reiniciar la reproducción por si estaba pausado
+                videoElement.play(); 
+            }
+        }
+
+        // 1. Ejecuta la función inmediatamente al cargar la página.
+        loadVideoBasedOnScreenSize();
+
+        // 2. Ejecuta la función cada vez que se redimensione la ventana.
+        // Es buena práctica usar un 'debounce' para limitar la frecuencia de ejecución durante el resize.
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(loadVideoBasedOnScreenSize, 150); // Espera 150ms antes de ejecutar
+        });
+
     });
 </script>
