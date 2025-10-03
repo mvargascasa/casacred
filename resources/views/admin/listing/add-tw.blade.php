@@ -1014,7 +1014,7 @@
     <script>
         let currentRoute = @json(Route::current()->getName());
     </script>
-    <script src="{{ asset('js/listings/validate.js?v=8') }}" defer></script>
+    <script src="{{ asset('js/listings/validate.js?v=9') }}" defer></script>
     <script>let bandera = false;</script>
     @if(Route::current()->getName() == "admin.listings.create" || Route::current()->getName() == "admin.housing.property.create" || Route::currentRouteName() == "admin.promotora.property.create")
         <script>
