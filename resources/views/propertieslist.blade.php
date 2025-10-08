@@ -2076,31 +2076,31 @@
                             <div class="col-sm-8 d-flex justify-content-around">
                                 ${property.bedroom > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
                                                 <div>
-                                                    <img width="50px" height="50px" src="{{ asset('img/dormitorios.png') }}" alt="Icono dormitorios de propiedad ${property.product_code}">
+                                                    <img width="50px" height="50px" src="{{ asset('img/dormitorios.png') }}" alt="Icono dormitorios de propiedad ${property.product_code}" title="Icono dormitorios de propiedad ${property.product_code}">
                                                     <h4 class="p-0 m-0" style="font-weight: 600; font-size: 15px">${property.bedroom} hab.</h4>
                                                 </div>
                                             </div>` : ''}
                                 ${property.bathroom > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
                                                 <div>
-                                                    <img width="50px" height="50px" src="{{ asset('img/banio.png') }}" alt="Icono de baños de propiedad ${property.product_code}">
+                                                    <img width="50px" height="50px" src="{{ asset('img/banio.png') }}" alt="Icono de baños de propiedad ${property.product_code}" title="Icono de baños de la propiedad ${property.product_code}">
                                                     <h4 class="p-0 m-0" style="font-weight: 600; font-size: 15px">${property.bathroom} bañ.</h4>
                                                 </div>
                                             </div>` : ''}
                                 ${property.garage > 0 ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
                                                 <div>
-                                                    <img width="50px" height="50px" src="{{ asset('img/estacionamiento.png') }}" alt="">
+                                                    <img width="50px" height="50px" src="{{ asset('img/estacionamiento.png') }}" alt="Icono de estacionamientos de la propiedad ${property.product_code}" title="Icono de estacionamientos de la propiedad ${property.product_code}">
                                                     <h4 class="p-0 m-0" style="font-weight: 600; font-size: 15px">${property.garage} estac.</h4>
                                                 </div>
                                             </div>` : ''}
-                                ${areaInfo ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
+                                ${areaInfo ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
                                                 <div>
-                                                    <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
+                                                    <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="Icono de área de construcción de la propiedad ${property.product_code}" title="Icono de área de construcción de la propiedad ${property.product_code}">
                                                     <h4 class="p-0 m-0" style="font-weight: 600; font-size: 15px">${areaInfo}</h4>
                                                 </div>
                                             </div>` : ''}
                                 ${landArea ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
                                                 <div>
-                                                    <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="">
+                                                    <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="Icono de área de terreno de la propiedad ${property.product_code}" title="Icono de área de terreno de la propiedad ${property.product_code}">
                                                     <h4 class="p-0 m-0" style="font-weight: 600; font-size: 15px">${landArea}</h4>
                                                 </div>
                                             </div>` : ''}
