@@ -2238,15 +2238,15 @@
                         <div class="d-flex flex-wrap">
                             ${property.bedroom > 0 ? `<div class="characteristics text-center pl-2">
                                 <img width="30px" height="30px" src="{{ asset('img/dormitorios.png') }}" alt="Icono de dormitorios de la propiedad ${property.product_code}" title="Icono de dormitorios de la propiedad ${property.product_code}">
-                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bedroom}</p>
+                                <p style="font-weight: 600; font-size: 15px">${property.bedroom}</p>
                             </div>` : ''}
                             ${property.bathroom > 0 ? `<div class="characteristics text-center pl-2">
                                 <img width="30px" height="30px" src="{{ asset('img/banio.png') }}" alt="Icono de baños de la propiedad ${property.product_code}" title="Icono de baños de la propiedad ${property.product_code}">
-                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bathroom}</p>
+                                <p style="font-weight: 600; font-size: 15px">${property.bathroom}</p>
                             </div>` : ''}
                             ${property.garage > 0 ? `<div class="characteristics text-center pl-2">
                                 <img width="30px" height="30px" src="{{ asset('img/estacionamiento.png') }}" alt="Icono de estacionamientos de la propiedad ${property.product_code}" title="Icono de dormitorios de la propiedad ${property.product_code}">
-                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage}</p>
+                                <p style="font-weight: 600; font-size: 15px">${property.garage}</p>
                             </div>` : ''}
                             ${areaInfo ? `<div class="characteristics text-center pl-2">
                                 <img width="30px" height="30px" src="{{ asset('img/icono-de-area-de-construccion.png') }}" alt="Icono de area de construccion de la propiedad ${property.product_code}" title="Icono de area de construccion de la propiedad ${property.product_code}">
