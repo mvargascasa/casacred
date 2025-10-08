@@ -2094,8 +2094,8 @@
                                             </div>` : ''}
                                 ${areaInfo ? `<div class="d-flex align-items-center justify-content-center w-100 border-end characteristics">
                                                 <div>
-                                                    <img width="50px" height="50px" src="{{ asset('img/area.png') }}" alt="Icono de área de construcción de la propiedad ${property.product_code}" title="Icono de área de construcción de la propiedad ${property.product_code}">
-                                                    <h4 class="p-0 m-0" style="font-weight: 600; font-size: 15px">${areaInfo}</h4>
+                                                    <img width="40px" height="40px" src="{{ asset('img/icono-de-area-de-construccion.png') }}" alt="Icono de área de construcción de la propiedad ${property.product_code}" title="Icono de área de construcción de la propiedad ${property.product_code}">
+                                                    <h4 class="p-0 m-0 pt-2" style="font-weight: 600; font-size: 15px">${areaInfo}</h4>
                                                 </div>
                                             </div>` : ''}
                                 ${landArea ? `<div class="d-flex align-items-center justify-content-center w-100 characteristics">
@@ -2172,9 +2172,13 @@
             let areaInfo = '';
             if (property.construction_area > 0) {
                 areaInfo = `${property.construction_area} m<sup>2</sup>`;
-            } else if (property.land_area > 0) {
-                areaInfo = `${property.land_area} m<sup>2</sup>`;
             }
+
+            let landArea = '';
+            if (property.land_area > 0) {
+                landArea = `${property.land_area} m<sup>2</sup>`;
+            }
+
             let formattedDescription = property.listing_description ?
                 property.listing_description.toLowerCase().replace(/(^\w{1})|(\.\s*\w{1})/g, letter => letter.toUpperCase())
                 .substring(0, 120) + '...' :
@@ -2232,21 +2236,25 @@
                 <div class="mt-auto">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div class="d-flex flex-wrap">
-                            ${property.bedroom > 0 ? `<div class="d-flex align-items-center characteristics pl-2">
-                                <img width="30px" height="30px" src="{{ asset('img/dormitorios.png') }}" alt="">
+                            ${property.bedroom > 0 ? `<div class="characteristics text-center pl-2">
+                                <img width="30px" height="30px" src="{{ asset('img/dormitorios.png') }}" alt="Icono de dormitorios de la propiedad ${property.product_code}" title="Icono de dormitorios de la propiedad ${property.product_code}">
                                 <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bedroom}</p>
                             </div>` : ''}
-                            ${property.bathroom > 0 ? `<div class="d-flex align-items-center characteristics pl-2">
-                                <img width="30px" height="30px" src="{{ asset('img/banio.png') }}" alt="">
+                            ${property.bathroom > 0 ? `<div class="characteristics text-center pl-2">
+                                <img width="30px" height="30px" src="{{ asset('img/banio.png') }}" alt="Icono de baños de la propiedad ${property.product_code}" title="Icono de baños de la propiedad ${property.product_code}">
                                 <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.bathroom}</p>
                             </div>` : ''}
-                            ${property.garage > 0 ? `<div class="d-flex align-items-center characteristics pl-2">
-                                <img width="30px" height="30px" src="{{ asset('img/estacionamiento.png') }}" alt="">
+                            ${property.garage > 0 ? `<div class="characteristics text-center pl-2">
+                                <img width="30px" height="30px" src="{{ asset('img/estacionamiento.png') }}" alt="Icono de estacionamientos de la propiedad ${property.product_code}" title="Icono de dormitorios de la propiedad ${property.product_code}">
                                 <p class="pt-3" style="font-weight: 600; font-size: 15px">${property.garage}</p>
                             </div>` : ''}
-                            ${areaInfo ? `<div class="d-flex align-items-center characteristics pl-2">
-                                <img width="30px" height="30px" src="{{ asset('img/area.png') }}" alt="">
-                                <p class="pt-3" style="font-weight: 600; font-size: 15px">${areaInfo}</p>
+                            ${areaInfo ? `<div class="characteristics text-center pl-2">
+                                <img width="30px" height="30px" src="{{ asset('img/icono-de-area-de-construccion.png') }}" alt="Icono de area de construccion de la propiedad ${property.product_code}" title="Icono de area de construccion de la propiedad ${property.product_code}">
+                                <p style="font-weight: 600; font-size: 15px">${areaInfo}</p>
+                            </div>` : ''}
+                            ${landArea ? `<div class="characteristics text-center pl-2">
+                                <img width="30px" height="30px" src="{{ asset('img/area.png') }}" alt="Icono de area de terreno de la propiedad ${property.product_code}" title="Icono de area de terreno de la propiedad ${property.product_code}">
+                                <p style="font-weight: 600; font-size: 15px">${landArea}</p>
                             </div>` : ''}
                         </div>
                         <p class="card-text" style="font-weight: 500; font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">${property_price}</p>
