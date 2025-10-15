@@ -124,23 +124,50 @@ class ListingController extends Controller
         $bathrooms = 0;
         $bedrooms = 0;
         $garage = 0;
+
+        //codigo antiguo
+        // if (count($result) > 0) {
+        //     $request->merge(['heading_details' => json_encode($result)]);
+        //     //return count($result);
+        //     foreach ($result as $r) {
+        //         for ($i = 0; $i < count($r); $i++) {
+        //             if ($r[$i] == 109) $bedrooms = $bedrooms + $r[$i + 1];
+        //             if ($r[$i] == 110) $bedrooms = $bedrooms + $r[$i + 2];
+        //             if ($r[$i] == 111) $bedrooms = $bedrooms + $r[$i + 3];
+        //             if ($r[$i] == 49 || $r[$i] == 86 || $r[$i] == 41 || $r[$i] == 115 || $r[$i] == 62 || $r[$i] == 113) $bedrooms = $bedrooms + $r[$i + 1];
+        //             if ($r[$i] == 48 || $r[$i] == 76 || $r[$i] == 81 || $r[$i] == 49 || $r = [$i] == 113) $bathrooms = $bathrooms + $r[$i + 1];
+        //             if ($r[$i] == 43) $garage = $garage + $r[$i + 1];
+        //         }
+        //     }
+        // } else {
+        //     $request->merge(['heading_details' => '']);
+        // }
+
+
+        // Codigo nuevo con validacion
         if (count($result) > 0) {
             $request->merge(['heading_details' => json_encode($result)]);
-            //return count($result);
+
             foreach ($result as $r) {
+
+                if (!is_array($r)) {
+                    continue;
+                }
+
                 for ($i = 0; $i < count($r); $i++) {
                     if ($r[$i] == 109) $bedrooms = $bedrooms + $r[$i + 1];
                     if ($r[$i] == 110) $bedrooms = $bedrooms + $r[$i + 2];
                     if ($r[$i] == 111) $bedrooms = $bedrooms + $r[$i + 3];
                     if ($r[$i] == 49 || $r[$i] == 86 || $r[$i] == 41 || $r[$i] == 115 || $r[$i] == 62 || $r[$i] == 113) $bedrooms = $bedrooms + $r[$i + 1];
-                    if ($r[$i] == 48 || $r[$i] == 76 || $r[$i] == 81 || $r[$i] == 49 || $r = [$i] == 113) $bathrooms = $bathrooms + $r[$i + 1];
+
+                    if ($r[$i] == 48 || $r[$i] == 76 || $r[$i] == 81 || $r[$i] == 49 || $r[$i] == 113) $bathrooms = $bathrooms + $r[$i + 1];
+
                     if ($r[$i] == 43) $garage = $garage + $r[$i + 1];
                 }
             }
         } else {
             $request->merge(['heading_details' => '']);
         }
-        //return "bedrooms " . $bedrooms . " bathrooms " . $bathrooms . " garage " . $garage;
 
         $uploads = [];
 
