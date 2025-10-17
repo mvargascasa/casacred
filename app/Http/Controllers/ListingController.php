@@ -205,7 +205,6 @@ class ListingController extends Controller
 
                             //agregando marca de agua
                             $folder_1 = 'uploads/listing/thumb/';
-                            //$namefile = "THUMB_IMG_$listing->id-".uniqid().$ext;
                             $watermark = Image::make(public_path('img/MARCADEAGUA.png'));
                             $imageWidth = $img->width();
 
@@ -213,6 +212,8 @@ class ListingController extends Controller
                             $watermark->resize($watermarkSize, null, function ($constraint) {
                                 $constraint->aspectRatio();
                             });
+
+                            $watermark->opacity(25);
 
                             $img->insert($watermark, 'center', 0, 0);
                             $img->save($folder_1 . $nameFile);
