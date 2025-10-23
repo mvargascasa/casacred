@@ -711,6 +711,8 @@ class ListingController extends Controller
                                 $constraint->aspectRatio();
                             });
 
+                            $watermark->opacity(25);
+
                             $img->insert($watermark, 'center', 0, 0);
                             $img->save($folder_1 . $nameFile);
 
