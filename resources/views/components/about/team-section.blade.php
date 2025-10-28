@@ -14,7 +14,7 @@
             @foreach($teamMembers as $member)
                 <div class="team-member">
                     <div class="member-image-container">
-                        <img src="{{ asset('img/'.$member['image']) }}" alt="{{ $member['name'] }}" class="member-image">
+                        <img loading="lazy" src="{{ asset('img/'.$member['image']) }}" alt="{{ $member['name'] }}" class="member-image">
                         
                         <!-- Overlay con información -->
                         <div class="member-overlay">
@@ -95,7 +95,7 @@
 /* Team Grid */
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
     gap: 40px;
     margin: 0 auto;
 }
