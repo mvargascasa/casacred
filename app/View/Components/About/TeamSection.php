@@ -22,22 +22,22 @@ class TeamSection extends Component
         $this->sectionSubtitle = $sectionSubtitle;
         $this->learnMoreText = $learnMoreText;
         $this->learnMoreLink = $learnMoreLink;
-        
+
         $this->teamMembers = [
             [
                 'id' => 1,
-                'name' => 'Sofía Mejia',
-                'title' => 'Asesora',
-                'image' => 'asesora-sofia-mejia.webp',
+                'name' => 'Anael Mosquera',
+                'title' => 'Gestora',
+                'image' => 'anael-mosquera.webp',
                 'email' => 'maria@inmobiliaria.com',
                 'phone' => '+593 99 123 4567',
                 'specialties' => ['Ventas', 'Casas Residenciales']
             ],
             [
                 'id' => 3,
-                'name' => 'Andrea Paez',
+                'name' => 'Andrea Hurtado',
                 'title' => 'Gestora',
-                'image' => 'gestora-andrea-paez.webp',
+                'image' => 'andrea-hurtado.webp',
                 'email' => 'maria@inmobiliaria.com',
                 'phone' => '+593 99 123 4567',
                 'specialties' => ['Ventas', 'Casas Residenciales']
