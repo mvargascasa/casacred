@@ -123,14 +123,13 @@ Route::get('indextest', [WebController::class, 'indextest'])->name('web.indextes
 Route::get('mobile', [WebController::class, 'mobile'])->name('web.mobile');
 Route::get('/mobiledet/{listing:slug}', [WebController::class, 'mobiledet'])->name('web.mobiledet');
 
-Route::get('/test88', function () {
-});
+Route::get('/test88', function () {});
 
 // Route::get('/test-home', function(){
 //     return view('home4');
 // });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified', 'check.ip']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::resource('listings', ListingController::class, ['as' => 'admin']);
     Route::post('storing-property', [ListingController::class, 'storing_property'])->name('admin.storing.property');
