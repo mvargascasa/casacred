@@ -1495,7 +1495,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-8 px-5 py-3 padding-mobile-0 position-relative" style="background-color: rgb(219, 219, 219)">
+                        <div class="col-md-8 px-5 py-3 padding-mobile-0 position-relative" style="background-color: rgb(235, 235, 235)">
                             <div class="position-absolute" style="font-family: 'Sharp Grotesk', sans-serif;top: 0px; right: 0px; background-color: #242B40; color: #ffffff; border-radius: 0px 0px 0px 25px !important;">
                                 <p class="m-0 py-3 px-3 h5">Cod: {{ $featuredProperty->product_code }}</p>
                             </div>
