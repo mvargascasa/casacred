@@ -51,22 +51,19 @@ class PropertyController extends Controller
             'TERRENOS' => [26, 10],
         ];
 
-        // Normalizar tipo para buscar en el mapa
         $typeKey  = strtoupper(str_replace('-', ' ', $type));
         $typeId   = $typeIds[$typeKey] ?? null;
 
         $provinces = DB::table('info_states')->where('country_id', 63)->get();
 
-        // --- Extraer rangos de precio y ubicaciones desde {details} ---
         $minPrice = null;
         $maxPrice = null;
         $state = $city = $parish = null;
 
-        $elements = []; // elementos "en-xxx" (estado/ciudad/parroquia/otros términos)
+        $elements = [];
         if ($details) {
             $detailsLower = strtolower($details);
 
-            // 1) Capturar -desde-xxx y -hasta-yyy (en cualquier orden y posición)
             if (preg_match('/(?:^|-)desde-([0-9\.,]+)/i', $detailsLower, $mDesde)) {
                 $minPrice = (int) preg_replace('/\D/', '', $mDesde[1]); // limpiar separadores
             }
@@ -74,19 +71,15 @@ class PropertyController extends Controller
                 $maxPrice = (int) preg_replace('/\D/', '', $mHasta[1]);
             }
 
-            // 2) Quitar los fragmentos de precio del string antes de buscar ubicaciones
             $detailsForLocations = preg_replace('/(?:-desde-[0-9\.,]+)|(?:-hasta-[0-9\.,]+)/i', '', $detailsLower);
 
-            // 3) Si comienza con -en-, retirarlo para poder hacer explode limpio
             if ($detailsForLocations && strpos($detailsForLocations, '-en-') === 0) {
                 $detailsForLocations = substr($detailsForLocations, 4); // remove leading "-en-"
             }
 
-            // 4) Separar por "-en-" para obtener posibles términos de ubicación
             $elements = $detailsForLocations ? array_filter(explode('-en-', $detailsForLocations)) : [];
         }
 
-        // --- También aceptar min/max por query string (tienen prioridad si vienen) ---
         $qpMin = request()->input('min_price');
         $qpMax = request()->input('max_price');
         if ($qpMin !== null && $qpMin !== '') {
@@ -96,12 +89,10 @@ class PropertyController extends Controller
             $maxPrice = (int) preg_replace('/\D/', '', (string) $qpMax);
         }
 
-        // Corregir si vienen invertidos
         if ($minPrice !== null && $maxPrice !== null && $minPrice > $maxPrice) {
             [$minPrice, $maxPrice] = [$maxPrice, $minPrice];
         }
 
-        // --- Resolver ubicaciones contra la BD ---
         foreach ($elements as $element) {
             $element = trim($element);
             if ($element === '') continue;
@@ -110,20 +101,36 @@ class PropertyController extends Controller
             $cityMatch   = info_city::whereRaw('LOWER(name) = ?', [$element])->first();
             $parishMatch = info_parishes::whereRaw('LOWER(name) = ?', [$element])->first();
 
-            if (!$state && $stateMatch)   { $state  = $stateMatch->name; }
-            if (!$city && $cityMatch)     { $city   = $cityMatch->name; }
-            if (!$parish && $parishMatch) { $parish = $parishMatch->name; }
+            if (!$state && $stateMatch) {
+                $state  = $stateMatch->name;
+            }
+            if (!$city && $cityMatch) {
+                $city   = $cityMatch->name;
+            }
+            if (!$parish && $parishMatch) {
+                $parish = $parishMatch->name;
+            }
         }
 
-        // dd($state, $city, $type, $typeId, $parish, $minPrice, $maxPrice);
+        $featuredProperty = Listing::where('id', 2096)->first();
 
-        // Nota: $type lo pasamos como venía en la URL (p. ej. "casas") para tu vista/JS.
-        // Si prefieres mostrarlo normalizado, puedes usar $typeKey.
-
-        //dd($type, $typeId, $status, $state, $city, $parish, $minPrice, $maxPrice);
+        $images = array_filter(explode('|', $featuredProperty->images));
+        $filexists = false;
+        if (file_exists(public_path() . '/uploads/listing/thumb/600/' . strtok($featuredProperty->images, '|'))) {
+            $filexists = true;
+        }
 
         return view('propertieslist', compact(
-            'type', 'typeId', 'status', 'state', 'city', 'parish', 'minPrice', 'maxPrice', 'provinces'
+            'type',
+            'typeId',
+            'status',
+            'state',
+            'city',
+            'parish',
+            'minPrice',
+            'maxPrice',
+            'provinces',
+            'featuredProperty'
         ));
     }
 
@@ -238,17 +245,17 @@ class PropertyController extends Controller
             ->orderBy('listings.product_code', 'desc');
 
         //if(!empty($productCode)){
-            if ($request->has('normalized_status') && $request->input('normalized_status') != '' && $request->input('normalized_status') != 'general') {
-                $normalizedStatus = strtolower($request->input('normalized_status'));
-                $statusVariants = $this->getStatusVariants();
-    
-                if (array_key_exists($normalizedStatus, $statusVariants)) {
-                    $variants = $statusVariants[$normalizedStatus];
-                    $properties_filter->where(function ($query) use ($variants) {
-                        $query->whereIn(DB::raw("LOWER(listingtypestatus)"), $variants);
-                    });
-                }
+        if ($request->has('normalized_status') && $request->input('normalized_status') != '' && $request->input('normalized_status') != 'general') {
+            $normalizedStatus = strtolower($request->input('normalized_status'));
+            $statusVariants = $this->getStatusVariants();
+
+            if (array_key_exists($normalizedStatus, $statusVariants)) {
+                $variants = $statusVariants[$normalizedStatus];
+                $properties_filter->where(function ($query) use ($variants) {
+                    $query->whereIn(DB::raw("LOWER(listingtypestatus)"), $variants);
+                });
             }
+        }
         //}
 
         // Aplicación de filtros básicos
@@ -284,7 +291,7 @@ class PropertyController extends Controller
         if (!is_null($listyearsmin)) {
             $properties_filter->where('listyears', '>=', $listyearsmin);
         }
-        
+
         if (!is_null($listyearsmax)) {
             $properties_filter->where('listyears', '<=', $listyearsmax);
         }
@@ -302,25 +309,25 @@ class PropertyController extends Controller
 
         if ($request->filled('listingcharacteristic')) {
             $ids = explode(',', $request->listingcharacteristic);
-            $properties_filter->where(function($q) use ($ids) {
+            $properties_filter->where(function ($q) use ($ids) {
                 foreach ($ids as $id) {
                     $q->orWhere('listingcharacteristic', 'like', "%$id%");
                 }
             });
         }
-        
+
         if ($request->filled('listinggeneralcharacteristics')) {
             $ids = explode(',', $request->listinggeneralcharacteristics);
-            $properties_filter->where(function($q) use ($ids) {
+            $properties_filter->where(function ($q) use ($ids) {
                 foreach ($ids as $id) {
                     $q->orWhere('listinggeneralcharacteristics', 'like', "%$id%");
                 }
             });
         }
-        
+
         if ($request->filled('listinglistservices')) {
             $ids = explode(',', $request->listinglistservices);
-            $properties_filter->where(function($q) use ($ids) {
+            $properties_filter->where(function ($q) use ($ids) {
                 foreach ($ids as $id) {
                     $q->orWhere('listinglistservices', 'like', "%$id%");
                 }
@@ -362,7 +369,7 @@ class PropertyController extends Controller
         if (!is_null($constructionAreaMax)) {
             $properties_filter->where('construction_area', '<=', $constructionAreaMax);
         }
-        
+
         if (!is_null($landAreaMin)) {
             $properties_filter->where('land_area', '>=', $landAreaMin);
         }
