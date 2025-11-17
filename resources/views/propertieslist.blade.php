@@ -1501,7 +1501,7 @@
                             </div>
                             <div class="card-body">
                                 <h2 class="h5 text-muted order-2" style="font-family: 'Sharp Grotesk', sans-serif; font-weight: 300;"><i class="fas fa-map-marker-alt"></i> {{ $featuredProperty->sector ? $featuredProperty->sector . ', ' : '' }}{{ $featuredProperty->city }}{{ $featuredProperty->state ? ', ' . $featuredProperty->state : '' }}</h2>
-                                <a href="/propiedad/${property.slug}" class="text-dark order-1" style="text-decoration: none;">
+                                <a href="/propiedad/{{ $featuredProperty->slug }}" class="text-dark order-1" style="text-decoration: none;">
                                     <h3 class="card-title" style="font-family: 'Sharp Grotesk', sans-serif; font-size: 1.4rem; padding-right: 60px; font-weight: 500;">{{ ucwords(strtolower($featuredProperty->listing_title)) }}</h3>
                                 </a>
                                 <p class="card-text" style="font-weight:500; font-size: 23px; font-family: 'Sharp Grotesk', sans-serif;">{{ $featuredProperty->property_price}}</p>
