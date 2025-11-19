@@ -360,7 +360,7 @@ class ListingController extends Controller
 
             $listing->customized_price = $request->customized_price;
 
-            if (!$listing->locked && ($listing->owner_name != null || $request->owner_name != null) && ($listing->identification != null || $request->identification != null) && ($listing->phone_number != null || $request->phone_number != null) && ($listing->owner_email != null || $request->owner_email != null) && ($listing->owner_address != null || $request->owner_address != null)) $listing->locked = true;
+            if (!$listing->locked && ($listing->owner_name != null || $request->owner_name != null) && ($listing->identification != null || $request->identification != null) && ($listing->phone_number != null || $request->phone_number != null) && ($listing->owner_email != null || $request->owner_email != null) && ($listing->owner_address != null || $request->owner_address != null) && ($listing->property_price != null || $request->property_price != null) && ($listing->property_price_min != null || $request->property_price_min)) $listing->locked = true;
 
             if ($request->currentUrl == "admin.housing.property.create") $listing->property_by = 'Housing';
             if ($request->currentUrl == "admin.promotora.property.create") $listing->property_by = 'Promotora';
@@ -597,8 +597,6 @@ class ListingController extends Controller
             ]);
         }
 
-        // if(!$listing->locked && ($listing->owner_name != null || $request->owner_name != null) && ($listing->identification != null || $request->identification != null) && ($listing->phone_number != null || $request->phone_number != null) && ($listing->owner_email != null || $request->owner_email != null)) $listing->locked = true;
-
         if (Auth::user()->role == "administrator" && $listing->status == null && $request->status == 1) {
             $comment = Comment::create([
                 'listing_id' => $listing->id,
@@ -662,7 +660,7 @@ class ListingController extends Controller
 
         $listing->is_dual_operation = $request->is_dual_operation;
 
-        if (!$listing->locked && ($listing->owner_name != null || $request->owner_name != null) && ($listing->identification != null || $request->identification != null) && ($listing->phone_number != null || $request->phone_number != null) && ($listing->owner_email != null || $request->owner_email != null) && ($listing->owner_address != null || $request->owner_address != null)) $listing->locked = true;
+        if (!$listing->locked && ($listing->owner_name != null || $request->owner_name != null) && ($listing->identification != null || $request->identification != null) && ($listing->phone_number != null || $request->phone_number != null) && ($listing->owner_email != null || $request->owner_email != null) && ($listing->owner_address != null || $request->owner_address != null) && ($listing->property_price != null || $request->property_price != null) && ($listing->property_price_min != null || $request->property_price_min != null)) $listing->locked = true;
 
         $uploads = [];
 
@@ -762,14 +760,6 @@ class ListingController extends Controller
                 $listing->update(['images'  => $save_uploads]);
             }
         }
-
-        // $isvalid = $this->iscomplete($listing);
-        // if(!$isvalid){
-        //     $delete_at = Carbon::parse($listing->created_at)->addDay();
-        //     $listing->delete_at = $delete_at;
-        // } else {
-        //     $listing->delete_at = null;
-        // }
 
         $listing->save();
 

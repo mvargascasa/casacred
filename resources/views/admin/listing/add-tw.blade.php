@@ -588,19 +588,19 @@
                 <div class="grid grid-cols-2 gap-4 mt-4 sm:gap-6">
                     <div>
                         {!! Form::label('property_price', 'Precio Max', ['class' => 'font-semibold']) !!}
-                        @if(isset($listing) && $listing->locked)
+                        {{-- @if(isset($listing) && $listing->locked)
                             {!! Form::text('property_price', null, ['class' => $inputs, 'disabled']) !!}
-                        @else
+                        @else --}}
                             {!! Form::text('property_price', null, ['class' => $inputs]) !!}
-                        @endif
+                        {{-- @endif --}}
                     </div>
                     <div>
                         {!! Form::label('property_price_min', 'Precio Min', ['class' => 'font-semibold']) !!}
-                        @if(isset($listing) && $listing->locked)
+                        {{-- @if(isset($listing) && $listing->locked)
                         {!! Form::text('property_price_min', null, ['class' => $inputs, 'disabled']) !!}
-                        @else
+                        @else --}}
                         {!! Form::text('property_price_min', null, ['class' => $inputs]) !!}
-                        @endif
+                        {{-- @endif --}}
                     </div>
                 </div>
 
@@ -1023,9 +1023,11 @@
                     event.preventDefault();
                 } else {
                     let dataform = new FormData(document.getElementById('formsave'));
+                    console.log(dataform);
                     const response = await fetch("{{route('admin.listings.store')}}",
                     { body: dataform, method: 'POST', headers: {"X-CSRF-Token": "{!!csrf_token()!!}"}});
                     let mensaje = await response.json();
+                    console.log(mensaje);
                     document.querySelector('.loader').style.display = "none";
                     if(mensaje.success && mensaje.fragment == "first"){ 
                         document.getElementById('first').style.display="none";
