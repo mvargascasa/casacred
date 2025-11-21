@@ -88,8 +88,23 @@
             </div>
             @endif
   
-            <div>
-              <a class="btn btn-success rounded-pill btn-sm" href="{{ route('download.images', $propertie->id) }}"><i class="fas fa-download"></i>Download Images</a>
+            <div class="dropdown">
+                <a class="btn btn-success rounded-pill btn-sm dropdown-toggle" href="#" role="button" id="downloadImagesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-download"></i> Descargar imágenes...
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="downloadImagesDropdown">
+                    <li>
+                        <a class="dropdown-item" href="{{ route('download.images', ['listing_id' => $propertie->id, 'watermark' => 'true']) }}">
+                            Con marca de agua
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('download.images', ['listing_id' => $propertie->id, 'watermark' => 'false']) }}">
+                            Sin marca de agua
+                        </a>
+                    </li>
+                </ul>
             </div>
           </section>
           
