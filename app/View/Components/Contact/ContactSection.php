@@ -10,7 +10,7 @@ class ContactSection extends Component
     public $telefono;
     public $email;
 
-    public function __construct($ubicacion = 'Remigio Tamariz y Av. Solano', $telefono = '096-786-7999', $email = 'info@grupohousing.com')
+    public function __construct($ubicacion = 'Remigio Tamariz y Av. Solano', $telefono = '096-786-7998', $email = 'info@grupohousing.com')
     {
         $this->ubicacion = $ubicacion;
         $this->telefono = $telefono;
