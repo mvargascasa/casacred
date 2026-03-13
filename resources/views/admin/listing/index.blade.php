@@ -567,10 +567,10 @@
                         <option value="41">Fábrica</option>
                         <option value="42">Parqueadero</option>
                         <option value="43">Bodega</option>
-                        <option value="45">Naves Industriales</option>
+                        <option value="44">Naves Industriales</option>
+                        <option value="45">Hostal</option>
                         <option value="46">Penthouse</option>
                         <option value="41">En Proyecto</option>
-                        <option value="44">No Aplica</option>
                     </select>
                 </div>
 
