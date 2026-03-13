@@ -652,6 +652,47 @@
                         @endif
                     </div>
                 </div>
+
+                {{-- Zona Cardinal - se calcula automáticamente pero puede editarse --}}
+                <div class="grid grid-cols-1 gap-4 mt-4">
+                    <div class="bg-blue-50 border border-blue-200 rounded-md p-3">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <label class="font-semibold text-sm">
+                                    Zona Cardinal
+                                    <span class="text-gray-400 font-normal ml-1">(se asigna automáticamente al guardar)</span>
+                                </label>
+                                @if(isset($listing->cardinal_zone) && $listing->cardinal_zone)
+                                    <div class="mt-1">
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold
+                                            @if($listing->cardinal_zone == 'norte')  bg-blue-100 text-blue-800
+                                            @elseif($listing->cardinal_zone == 'sur') bg-yellow-100 text-yellow-800
+                                            @elseif($listing->cardinal_zone == 'este') bg-green-100 text-green-800
+                                            @elseif($listing->cardinal_zone == 'oeste') bg-purple-100 text-purple-800
+                                            @else bg-gray-100 text-gray-800 @endif">
+                                            {{ $listing->cardinal_zone_label ?? ucfirst($listing->cardinal_zone) }}
+                                        </span>
+                                    </div>
+                                @else
+                                    <p class="text-gray-400 text-sm mt-1">Se calculará al guardar si tiene coordenadas</p>
+                                @endif
+                            </div>
+
+                            {{-- Solo administrador puede sobreescribir manualmente --}}
+                            @if(Auth::user()->role == 'administrator')
+                                <div>
+                                    {!! Form::select('cardinal_zone', 
+                                        ['' => 'Auto-calcular', 'norte' => '⬆ Norte', 'sur' => '⬇ Sur', 
+                                        'este' => '➡ Este', 'oeste' => '⬅ Oeste', 'centro' => '⊙ Centro'],
+                                        isset($listing->cardinal_zone) ? $listing->cardinal_zone : null,
+                                        ['class' => 'block px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring']
+                                    ) !!}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
     
                 <p class="@if($currentRouteName == "admin.housing.property.create" || $currentRouteName == "admin.housing.property.edit") bg-blue-900 @elseif(Route::currentRouteName() == "admin.promotora.property.create" || Route::currentRouteName() == "admin.promotora.property.edit") bg-red-800 @else bg-red-600 @endif text-white w-64 font-semibold absolute text-center top-0" style="margin-top: -13px; letter-spacing: 1px">DATOS DEL INMUEBLE</p>
             </div>
@@ -1747,7 +1788,6 @@ function showCustomizedPrice(){
 
             break;
             case 'third': first_fragment.style.display='none';second_fragment.style.display='none';third_fragment.style.display='block';setfragmentvalue('third');changeclass('third');break;
-            //case 'fourth': first_fragment.style.display='none';second_fragment.style.display='none';third_fragment.style.display='none';fourth_fragment.style.display='block';setfragmentvalue('fourth');changeclass('fourth');break;
             default: break;
         }
     }

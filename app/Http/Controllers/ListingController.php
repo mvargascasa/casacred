@@ -17,6 +17,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+use App\Services\CardinalZoneService;
 
 class ListingController extends Controller
 {
@@ -332,8 +333,14 @@ class ListingController extends Controller
             $listing->listingtagstatus = $request->listingtagstatus;
 
             $listing->listyears = $request->listyears;
+
             $listing->lat = $request->lat;
             $listing->lng = $request->lng;
+            $listing->cardinal_zone = (new CardinalZoneService())->calculate(
+                (float) $request->lat,
+                (float) $request->lng,
+                $request->city
+            );
 
             $listing->available = $request->available;
 
@@ -762,6 +769,12 @@ class ListingController extends Controller
             }
         }
 
+        $listing->cardinal_zone = (new CardinalZoneService())->calculate(
+            (float) $request->lat,
+            (float) $request->lng,
+            $request->city ?? $listing->city
+        );
+
         $listing->save();
 
         if ($this->iscomplete($listing)) {
@@ -1145,5 +1158,31 @@ class ListingController extends Controller
                 'message' => 'Error en la consulta: ' . $e->getMessage()
             ], 500);
         }
+    }
+
+    public function mapPins()
+    {
+        $pins = Listing::select(
+            'id',
+            'listing_title',
+            'product_code',
+            'lat',
+            'lng',
+            'cardinal_zone',
+            'property_price',
+            'property_by',
+            'listingtype',
+            'listingtypestatus',  // <-- necesarios para filtrar en el mapa
+            'city',
+            'slug'
+        )
+            ->where('available', 1)
+            ->whereNotNull('lat')
+            ->whereNotNull('lng')
+            ->where('lat', '!=', '')
+            ->where('lng', '!=', '')
+            ->get();
+
+        return response()->json($pins);
     }
 }

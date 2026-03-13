@@ -131,6 +131,7 @@ Route::get('/test88', function () {});
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('listings/map-pins', [ListingController::class, 'mapPins'])->name('admin.listings.map.pins');
     Route::resource('listings', ListingController::class, ['as' => 'admin']);
     Route::post('storing-property', [ListingController::class, 'storing_property'])->name('admin.storing.property');
     Route::post('/listings/create_code', [ListingController::class, 'create_code'])->name('admin.listings.create_code');

@@ -8,22 +8,55 @@ use Illuminate\Database\Eloquent\Model;
 class Listing extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
-        'id', 'listing_title', 'product_code', 'slug', 'images', 'video', //nueva variable video
-        'bedroom', 'bathroom', 'garage', //new variables to filters
-        'meta_description', 'keywords', 'Front','Fund','land_area','construction_area', 'property_price_min','property_price',
+        'id',
+        'listing_title',
+        'product_code',
+        'slug',
+        'images',
+        'video', //nueva variable video
+        'bedroom',
+        'bathroom',
+        'garage', //new variables to filters
+        'meta_description',
+        'keywords',
+        'Front',
+        'Fund',
+        'land_area',
+        'construction_area',
+        'property_price_min',
+        'property_price',
         'customized_price',
-        'listing_description','listing_type', 'num_factura', 'address','state','city','listingtype',
+        'listing_description',
+        'listing_type',
+        'num_factura',
+        'address',
+        'state',
+        'city',
+        'listingtype',
         'sector', // nueva variable para select dinamico
-        'listingcharacteristic','listinglistservices','listingtypestatus','listingtagstatus', 'listinggeneralcharacteristics', 'listingenvironments',
-        'listyears',//se agrego esta nueva variable
-        'lat', 'lng', //nuevas variables se quito lat y lng como variables
+        'listingcharacteristic',
+        'listinglistservices',
+        'listingtypestatus',
+        'listingtagstatus',
+        'listinggeneralcharacteristics',
+        'listingenvironments',
+        'listyears', //se agrego esta nueva variable
+        'lat',
+        'lng', //nuevas variables se quito lat y lng como variables
         //'ubication_url', //se agrego esto para la ubicacion
+        'cardinal_zone',
         'available',
-        'status','user_id',
-        'threedegreeview','heading_details','owner_name', 'owner_email', 'owner_address',
-        'identification', 'phone_number', // new variables to save cedula and numero telefonico
+        'status',
+        'user_id',
+        'threedegreeview',
+        'heading_details',
+        'owner_name',
+        'owner_email',
+        'owner_address',
+        'identification',
+        'phone_number', // new variables to save cedula and numero telefonico
         'aval', //new variable to avaluo
         'locked',
         'vip',
@@ -37,36 +70,67 @@ class Listing extends Model
         'cavity_error',
         'warranty',
         'plusvalia',
-        'niv_constr', 'num_pisos', 'pisos_constr', // nuevas variables para las caracteristicas generales
-        'land_appraisal', 'construction_appraisal',
+        'niv_constr',
+        'num_pisos',
+        'pisos_constr', // nuevas variables para las caracteristicas generales
+        'land_appraisal',
+        'construction_appraisal',
         'delete_at',
         'posted_on_facebook',
         'date_posted_facebook',
         'contact_at',
+        'no_answer_at',
         'is_dual_operation'
-    ];   
-    
+    ];
+
     public function user()
     {
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopeFilterByState($query, $state){
-        if($state){
+    public function scopeFilterByState($query, $state)
+    {
+        if ($state) {
             return $query->where('state', 'LIKE', $state);
         }
     }
 
-    public function scopeFilterByCity($query, $city){
-        if($city){
+    public function scopeFilterByCity($query, $city)
+    {
+        if ($city) {
             return $query->where('city', 'LIKE', "%$city%");
         }
     }
 
-    public function scopeFilterByListingTitle($query, $ubication){
-        if($ubication){
+    public function scopeFilterByListingTitle($query, $ubication)
+    {
+        if ($ubication) {
             return $query->where('listing_title', 'LIKE', "%$ubication%");
         }
     }
-    
+
+    public function scopeFilterByCardinalZone($query, $cardinalZone)
+    {
+        if ($cardinalZone) {
+            return $query->where('cardinal_zone', $cardinalZone);
+        }
+    }
+
+    /**
+     * Accessor para mostrar el label con ícono.
+     */
+    public function getCardinalZoneLabelAttribute(): ?string
+    {
+        if (!$this->cardinal_zone) return null;
+
+        $labels = [
+            'norte'  => '⬆ Norte',
+            'sur'    => '⬇ Sur',
+            'este'   => '➡ Este',
+            'oeste'  => '⬅ Oeste',
+            'centro' => '⊙ Centro',
+        ];
+
+        return $labels[$this->cardinal_zone] ?? $this->cardinal_zone;
+    }
 }

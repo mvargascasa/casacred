@@ -342,7 +342,7 @@ class WebController extends Controller
     
     public function getcities($id){
             $cities = DB::table('info_cities')->where('state_id',$id)->get();
-            return response()->json($cities);      
+            return response()->json($cities);
     }    
 
     public function getsector($city_id){

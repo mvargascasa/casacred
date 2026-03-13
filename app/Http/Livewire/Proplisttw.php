@@ -22,6 +22,7 @@ class Proplisttw extends Component
         $view = 'grid', $available,
         $current_url,
         //$country, 
+        $cardinal_zone,
         $state, $city, $sector, $zona,
         $fromprice, $uptoprice,
         $asesor,
@@ -37,6 +38,18 @@ class Proplisttw extends Component
     public $idContactDay, $commentContactDay, $dateContactDay;
 
     public $show;
+
+    protected $listeners = [
+        'applyCardinalFilters' => 'applyCardinalFilters',
+    ];
+
+    public function applyCardinalFilters($filters)
+    {
+        $this->cardinal_zone = $filters['cardinal_zone'] ?? '';
+        $this->categoria     = $filters['categoria']     ?? $this->categoria;
+        $this->transaccion   = $filters['transaccion']   ?? $this->transaccion;
+        $this->resetPage();
+    }
 
     public function storeContactDay()
     {
@@ -106,6 +119,10 @@ class Proplisttw extends Component
 
         if ($this->code) {
             $properties_filter->where('product_code', 'LIKE', "%$this->code%");
+        }
+
+        if ($this->cardinal_zone) {
+            $properties_filter->where('cardinal_zone', $this->cardinal_zone);
         }
 
         if ($this->status == 'A')                                  $properties_filter->where('status', 1); //agregarle || $this->variable == null para muestre por defecto las activas y disponibles

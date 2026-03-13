@@ -18,7 +18,7 @@
                 }
                 
             @endphp
-            <div class="rounded overflow-hidden shadow-lg w-full relative mt-4 mb-2 hover-trigger relative pb-2">
+            <div class="rounded overflow-hidden shadow-lg w-full relative mt-4 mb-2 hover-trigger pb-2">
                 {{-- web.detail  --}}
                 {{-- {{route('admin.listings.edit',$propertie->id)}} --}}
                 @if(Auth::user()->role == "user" || Auth::user()->role == "ASESOR")
@@ -121,20 +121,34 @@
 
 
                 <div class="px-2 py-2">
-                <div class="text-xs text-gray-500">{{$propertie->created_at->format('d-M-y')}}</div>
-                <div class="font-bold text-sm">{{ Str::limit($propertie->listing_title, 30, '...')}}</div>
-                @php
-                    $address = "";
-                    if($propertie->address != null && $propertie->sector == null) $address = $propertie->address;
-                    if($propertie->sector != null) $address = $propertie->sector;
-                @endphp
-                <p class="text-gray-700 text-base">
-                    @if(Str::contains($address, ',')){{ Str::limit($propertie->address, 30, '...')}} @else {{Str::limit($propertie->state . ', ' . $propertie->city . ', ' . $address, 30, '...') }} @endif
-                </p>
-                @if($propertie->address != null)
-                    <p class="text-gray-600 text-sm"> <span class="font-bold">Sector:</span> {{ $propertie->address }}</p>
-                @endif
-                <p>@if(Auth::id()==123)<span style="font-size: 10px">{{$propertie->slug}}</span> <br>@endif</p>
+                    <div class="text-xs text-gray-500">{{$propertie->created_at->format('d-M-y')}}</div>
+                    <div class="font-bold text-sm">{{ Str::limit($propertie->listing_title, 30, '...')}}</div>
+                    @php
+                        $address = "";
+                        if($propertie->address != null && $propertie->sector == null) $address = $propertie->address;
+                        if($propertie->sector != null) $address = $propertie->sector;
+                    @endphp
+                    <p class="text-gray-700 text-base">
+                        @if(Str::contains($address, ',')){{ Str::limit($propertie->address, 30, '...')}} @else {{Str::limit($propertie->state . ', ' . $propertie->city . ', ' . $address, 30, '...') }} @endif
+                    </p>
+                    @if($propertie->address != null)
+                        <p class="text-gray-600 text-sm"> <span class="font-bold">Sector:</span> {{ $propertie->address }}</p>
+                    @endif
+                    @if($propertie->cardinal_zone)
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold
+                            @if($propertie->cardinal_zone == 'norte')  bg-blue-100 text-blue-700
+                            @elseif($propertie->cardinal_zone == 'sur') bg-yellow-100 text-yellow-700
+                            @elseif($propertie->cardinal_zone == 'este') bg-green-100 text-green-700
+                            @elseif($propertie->cardinal_zone == 'oeste') bg-purple-100 text-purple-700
+                            @else bg-gray-100 text-gray-600 @endif">
+                            @if($propertie->cardinal_zone == 'norte') ↑ Norte
+                            @elseif($propertie->cardinal_zone == 'sur') ↓ Sur
+                            @elseif($propertie->cardinal_zone == 'este') → Este
+                            @elseif($propertie->cardinal_zone == 'oeste') ← Oeste
+                            @else ⊙ Centro @endif
+                        </span>
+                    @endif
+                    <p>@if(Auth::id()==123)<span style="font-size: 10px">{{$propertie->slug}}</span> <br>@endif</p>
                 </div>
                 <div class="grid grid-cols-2 px-2 py-2 w-full">
                     <div>
@@ -290,6 +304,20 @@
                     <p class="text-gray-700 text-base">
                         @if(Str::contains($s_propertie->address, ',')){{ Str::limit($s_propertie->address, 30, '...')}} @else {{Str::limit($s_propertie->state . ', ' . $s_propertie->city . ', ' . $s_propertie->address, 30, '...') }} @endif
                     </p>
+                    @if($propertie->cardinal_zone)
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold
+                            @if($propertie->cardinal_zone == 'norte')  bg-blue-100 text-blue-700
+                            @elseif($propertie->cardinal_zone == 'sur') bg-yellow-100 text-yellow-700
+                            @elseif($propertie->cardinal_zone == 'este') bg-green-100 text-green-700
+                            @elseif($propertie->cardinal_zone == 'oeste') bg-purple-100 text-purple-700
+                            @else bg-gray-100 text-gray-600 @endif">
+                            @if($propertie->cardinal_zone == 'norte') ↑ Norte
+                            @elseif($propertie->cardinal_zone == 'sur') ↓ Sur
+                            @elseif($propertie->cardinal_zone == 'este') → Este
+                            @elseif($propertie->cardinal_zone == 'oeste') ← Oeste
+                            @else ⊙ Centro @endif
+                        </span>
+                    @endif
                     <p>@if(Auth::id()==123)<span style="font-size: 10px">{{$s_propertie->slug}}</span> <br>@endif</p>
                 </div>
                 <div class="grid grid-cols-2 px-2 py-2 w-full">
@@ -537,6 +565,11 @@
 @push('scripts')
 <script src="{{ asset('js/flowbite.min.js') }}" defer></script>
 <script type="text/javascript">
+
+window.addEventListener('cardinal-filter-changed', function(event) {
+    @this.call('applyCardinalFilters', event.detail);
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('totalProperties').innerText="{{$properties->total()}}";
     document.getElementById('unoalcien').innerText="{{$pagActual}}";
@@ -637,6 +670,9 @@ function filter_properties(){
 
     let b_tagstatus = document.getElementById('b_tagstatus').value;
 
+    let b_cardinal_zone = document.getElementById('b_cardinal_zone');
+    if (b_cardinal_zone) b_cardinal_zone = b_cardinal_zone.value;
+
     //filtrar por asesor
     // let b_asesor = document.getElementById('b_asesor').value;
 
@@ -702,6 +738,7 @@ function filter_properties(){
 
     @this.set('bedrooms', b_bedrooms);
     @this.set('bathrooms', b_bathrooms);
+    @this.set('cardinal_zone', b_cardinal_zone);
 
 }
 
