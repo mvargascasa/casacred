@@ -54,12 +54,29 @@ class UpdateCardinalZones extends Command
         $query->chunk(100, function ($listings) use ($service, $dryRun, $bar, &$counts, &$updated) {
             foreach ($listings as $listing) {
 
-                $lat  = (float) $listing->lat;
-                $lng  = (float) $listing->lng;
+                // Sanitizar: reemplazar coma por punto (datos europeos)
+                $latRaw = str_replace(',', '.', (string) $listing->lat);
+                $lngRaw = str_replace(',', '.', (string) $listing->lng);
 
-                // Coordenadas inválidas
-                if ($lat === 0.0 || $lng === 0.0) {
+                $lat = (float) $latRaw;
+                $lng = (float) $lngRaw;
+
+                // ✅ Validar que sean coordenadas geográficas reales
+                $latValida = ($lat !== 0.0 && $lat >= -90  && $lat <= 90);
+                $lngValida = ($lng !== 0.0 && $lng >= -180 && $lng <= 180);
+
+                if (!$latValida || !$lngValida) {
                     $counts['omitidas']++;
+
+                    // ✅ Limpiar coordenadas inválidas en la BD (ponerlas en null)
+                    if (!$dryRun) {
+                        $listing->timestamps = false;
+                        $listing->lat = null;
+                        $listing->lng = null;
+                        $listing->cardinal_zone = null;
+                        $listing->save();
+                    }
+
                     $bar->advance();
                     continue;
                 }
@@ -93,14 +110,14 @@ class UpdateCardinalZones extends Command
         $this->table(
             ['Zona', 'Propiedades'],
             [
-                ['Norte',    $counts['norte']],
-                ['Sur',      $counts['sur']],
-                ['Este',     $counts['este']],
-                ['Oeste',    $counts['oeste']],
-                ['Centro',   $counts['centro']],
-                ['Sin zona (ciudad no reconocida)', $counts['sin_zona']],
-                ['Omitidas (coords inválidas)',     $counts['omitidas']],
-                ['TOTAL ACTUALIZADAS', $updated],
+                ['Norte',                                    $counts['norte']],
+                ['Sur',                                      $counts['sur']],
+                ['Este',                                     $counts['este']],
+                ['Oeste',                                    $counts['oeste']],
+                ['Centro',                                   $counts['centro']],
+                ['Sin zona (ciudad no reconocida)',           $counts['sin_zona']],
+                ['Omitidas y limpiadas (coords inválidas)',  $counts['omitidas']],
+                ['TOTAL ACTUALIZADAS',                       $updated],
             ]
         );
 
