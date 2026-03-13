@@ -1205,11 +1205,19 @@ function renderMapMarkers(data) {
     // Limpiar markers anteriores
     allMapMarkers.forEach(m => cardinalMapInstance.removeLayer(m));
     allMapMarkers = [];
-
     let count = 0;
 
     data.forEach(function(prop) {
-        if (!prop.lat || !prop.lng || prop.lat == 0 || prop.lng == 0) return;
+
+        // ✅ Sanitizar: reemplazar coma por punto y convertir a float
+        const lat = parseFloat(String(prop.lat || '').replace(',', '.'));
+        const lng = parseFloat(String(prop.lng || '').replace(',', '.'));
+
+        // ✅ Validar coordenadas antes de crear el marker
+        if (isNaN(lat) || isNaN(lng)) return;
+        if (lat === 0 || lng === 0) return;
+        if (lat < -90  || lat > 90)  return;
+        if (lng < -180 || lng > 180) return;
 
         const zone  = prop.cardinal_zone || 'null';
         const color = ZONE_COLORS[zone]  || ZONE_COLORS['null'];
@@ -1244,12 +1252,15 @@ function renderMapMarkers(data) {
             '</div>'
         );
 
-        const marker = L.marker([prop.lat, prop.lng], { icon: icon })
-            .addTo(cardinalMapInstance)
-            .bindPopup(popup);
-
-        allMapMarkers.push(marker);
-        count++;
+        try {
+            const marker = L.marker([lat, lng], { icon: icon })
+                .addTo(cardinalMapInstance)
+                .bindPopup(popup);
+            allMapMarkers.push(marker);
+            count++;
+        } catch (e) {
+            console.warn('Marker inválido — ID ' + prop.id + ': ' + e.message);
+        }
     });
 
     document.getElementById('map-counter').textContent = count + ' propiedades en mapa';
