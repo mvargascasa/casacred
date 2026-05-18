@@ -815,7 +815,8 @@
                         @foreach (explode('|', $listing->images) as $image)
                             <div class="carousel-item @if ($loop->first) active @endif">
                                 <img src="{{ $listing->resolveImageUrl($image, 'thumb') }}"
-                                    class="d-block w-100 main-carousel-img">
+                                    class="d-block w-100 main-carousel-img"
+                                    onerror="this.onerror=null; this.src='/uploads/listing/thumb/' + this.src.split('/').pop();">
                             </div>
                         @endforeach
                     </div>
@@ -847,7 +848,8 @@
                             <img src="{{ $listing->resolveImageUrl($image, 'thumb_600') }}"
                                 class="img-fluid thumb-img"
                                 data-target="#carouselImages"
-                                data-slide-to="{{ $loop->index }}">
+                                data-slide-to="{{ $loop->index }}"
+                                onerror="this.onerror=null; this.src='/uploads/listing/thumb/600/' + this.src.split('/').pop();">
                         </div>
                     @endif
                 @endforeach
@@ -869,10 +871,11 @@
                         <div class="carousel-inner">
                             @foreach (explode('|', $listing->images) as $image)
                               <div class="carousel-item @if ($loop->first) active @endif">
-                                <img 
-                                    loading="lazy" 
-                                    src="{{ $listing->resolveImageUrl($image) }}" 
-                                    class="d-block w-100 modal-img">
+                                <img
+                                    loading="lazy"
+                                    src="{{ $listing->resolveImageUrl($image) }}"
+                                    class="d-block w-100 modal-img"
+                                    onerror="this.onerror=null; this.src='/uploads/listing/' + this.src.split('/').pop();">
                               </div>
                             @endforeach
                         </div>
