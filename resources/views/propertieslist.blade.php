@@ -1888,7 +1888,7 @@
                 let activeClass = index === 0 ? 'active' : '';
                 carouselItems += `
                 <div class="carousel-item ${activeClass}">
-                    <img src="${image}" class="d-block w-100 carousel-image" style="height:330px" loading="lazy" alt="${property.listing_title} - img ${index+1}">
+                    <img src="${image}" class="d-block w-100 carousel-image" style="height:330px" loading="lazy" alt="${property.listing_title} - img ${index+1}" onerror="this.onerror=null; this.src='/uploads/listing/600/' + this.src.split('/').pop();">
                 </div>`;
             });
 
@@ -2069,7 +2069,7 @@
                 let activeClass = index === 0 ? 'active' : '';
                 carouselItems += `
                 <div class="carousel-item ${activeClass}">
-                    <img src="${image}" class="d-block w-100 carousel-image" style="height:330px" loading="lazy">
+                    <img src="${image}" class="d-block w-100 carousel-image" style="height:330px" loading="lazy" onerror="this.onerror=null; this.src='/uploads/listing/600/' + this.src.split('/').pop();">
                 </div>`;
             });
 
