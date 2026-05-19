@@ -26,15 +26,6 @@ class RealEstateTeam extends Component
         $this->teamMembers = [
             [
                 'id' => 1,
-                'name' => 'Karen Salas',
-                'title' => 'Gestora',
-                'image' => 'karen-salas.webp',
-                'email' => 'ana@inmobiliaria.com',
-                'phone' => '+593 99 345 6789',
-                'specialties' => ['Rentas', 'Propiedades de Lujo'],
-            ],
-            [
-                'id' => 2,
                 'name' => 'Veronica Medina',
                 'title' => 'Asesora',
                 'image' => 'veronica-medina.webp',
@@ -43,14 +34,32 @@ class RealEstateTeam extends Component
                 'specialties' => ['Rentas', 'Propiedades de Lujo'],
             ],
             [
-                'id' => 3,
+                'id' => 2,
                 'name' => 'Anael Mosquera',
                 'title' => 'Gestora',
                 'image' => 'anael-mosquera.webp',
                 'email' => 'ana@inmobiliaria.com',
                 'phone' => '+593 99 345 6789',
                 'specialties' => ['Rentas', 'Propiedades de Lujo'],
-            ]
+            ],
+            [
+                'id' => 3,
+                'name' => 'Daniela Apolo',
+                'title' => 'Asesora',
+                'image' => 'daniela-apolo-asesora.webp',
+                'email' => 'ana@inmobiliaria.com',
+                'phone' => '+593 99 345 6789',
+                'specialties' => ['Rentas', 'Propiedades de Lujo'],
+            ],
+            [
+                'id' => 4,
+                'name' => 'Johnny Cabezas',
+                'title' => 'Asesor',
+                'image' => 'johnny-cabezas-asesor.webp',
+                'email' => 'ana@inmobiliaria.com',
+                'phone' => '+593 99 345 6789',
+                'specialties' => ['Rentas', 'Propiedades de Lujo'],
+            ],
         ];
     }
 
