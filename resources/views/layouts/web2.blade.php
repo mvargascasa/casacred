@@ -319,6 +319,9 @@ if(strpos($actual_link, 'localhost') === false){
         bottom: 22px;
         right: 10px;
         z-index: 5000;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
     }
 
     .telf-contact{
@@ -330,7 +333,7 @@ if(strpos($actual_link, 'localhost') === false){
         height: 60px;
         border-radius: 50%;
         font-size: 25px;
-        background-color: #182741;
+        background-color: #ffa500;
         border: 1px solid #ffffff93;
         cursor: pointer;
     }
@@ -495,6 +498,97 @@ if(strpos($actual_link, 'localhost') === false){
     .dropdown-toggle::after {
         display: none !important;
     }
+
+    @keyframes vendeLabelEntrada {
+        from { opacity: 0; transform: translateY(30px); }
+        to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    .vende-label {
+        background-color: #ffffff;
+        color: #075e54;
+        font-weight: 700;
+        font-size: 16px;
+        padding: 11px 20px;
+        border-radius: 25px;
+        box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+        cursor: pointer;
+        white-space: nowrap;
+        user-select: none;
+        opacity: 0;
+        animation: vendeLabelEntrada 0.7s ease-out 2.5s forwards;
+    }
+
+    .whatsapp-options-popup {
+        position: fixed;
+        bottom: 100px;
+        right: 10px;
+        width: 290px;
+        z-index: 5001;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    }
+
+    .whatsapp-options-popup .wa-popup-header {
+        background-color: #075e54;
+        color: #ffffff;
+        padding: 10px 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .whatsapp-options-popup .wa-popup-body {
+        background-color: #ece5dd;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .wa-option-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background-color: #25d366;
+        color: #ffffff !important;
+        text-decoration: none !important;
+        padding: 12px 14px;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 13px;
+        transition: background-color 0.2s;
+    }
+
+    .wa-option-btn:hover {
+        background-color: #128c7e;
+        color: #ffffff !important;
+    }
+
+    .wa-option-btn i {
+        font-size: 20px;
+        flex-shrink: 0;
+    }
+
+    .wa-option-btn span {
+        white-space: nowrap;
+    }
+
+    @keyframes waSlideIn {
+        from { right: -300px; opacity: 0; }
+        to   { right: 10px;   opacity: 1; }
+    }
+
+    @keyframes waSlideOut {
+        from { right: 10px;   opacity: 1; }
+        to   { right: -300px; opacity: 0; }
+    }
+
+    .wa-slide-in  { animation: waSlideIn  0.4s ease-out forwards; }
+    .wa-slide-out { animation: waSlideOut 0.4s ease-in  forwards; }
 
     </style>
 
@@ -791,9 +885,37 @@ if(strpos($actual_link, 'localhost') === false){
                 <i class="fas fa-phone-alt p-2 text-light d-flex justify-content-center align-items-center"></i>
             </div>
         </div>
-        <a onclick="gtag_report_conversion_whatsapp('https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en una propiedad')" href="https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en una propiedad" target="_blank" class="whatsapp-float">
-            <i class="fab fa-whatsapp"></i>
-        </a>
+        <div style="display: flex; align-items: center; gap: 10px; justify-content: flex-end;">
+            <div class="vende-label" onclick="toggleWhatsappOptions()">
+                ¡Vende tu propiedad!
+            </div>
+            <button onclick="toggleWhatsappOptions()" class="whatsapp-float" style="border: none; flex-shrink: 0;">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="whatsapp-options-popup" id="whatsappOptionsPopup" style="display: none;">
+        <div class="wa-popup-header">
+            <span>¿En qué podemos ayudarte?</span>
+            <div class="icon-close" onclick="toggleWhatsappOptions()">X</div>
+        </div>
+        <div class="wa-popup-body">
+            <a href="https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en vender mi propiedad con ustedes"
+               target="_blank"
+               onclick="gtag_report_conversion_whatsapp(this.href)"
+               class="wa-option-btn">
+                <i class="fab fa-whatsapp"></i>
+                <span>Quiero vender mi propiedad</span>
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en comprar una propiedad"
+               target="_blank"
+               onclick="gtag_report_conversion_whatsapp(this.href)"
+               class="wa-option-btn">
+                <i class="fab fa-whatsapp"></i>
+                <span>Quiero comprar una propiedad</span>
+            </a>
+        </div>
     </div>
 
     <div class="container-numbers" id="containerNumbers" style="display: none">
@@ -1046,6 +1168,23 @@ if(strpos($actual_link, 'localhost') === false){
         //         return false;
         //     });
         // }, 3500);
+
+        function toggleWhatsappOptions() {
+            let popup = document.getElementById('whatsappOptionsPopup');
+
+            if (popup.classList.contains('wa-slide-in')) {
+                popup.classList.remove('wa-slide-in');
+                popup.classList.add('wa-slide-out');
+                popup.addEventListener('animationend', function() {
+                    popup.style.display = 'none';
+                    popup.classList.remove('wa-slide-out');
+                }, { once: true });
+            } else {
+                popup.style.display = 'block';
+                popup.classList.remove('wa-slide-out');
+                popup.classList.add('wa-slide-in');
+            }
+        }
 
         function openContactContainer() {
             let container = document.getElementById('containerNumbers');
