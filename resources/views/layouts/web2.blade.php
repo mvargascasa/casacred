@@ -901,7 +901,7 @@ if(strpos($actual_link, 'localhost') === false){
             <div class="icon-close" onclick="toggleWhatsappOptions()">X</div>
         </div>
         <div class="wa-popup-body">
-            <a href="https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en vender mi propiedad con ustedes"
+            <a href="https://api.whatsapp.com/send?phone=593967867998&text=Hola Grupo Housing, estoy interesado en vender mi propiedad"
                target="_blank"
                onclick="gtag_report_conversion_whatsapp(this.href)"
                class="wa-option-btn">
