@@ -13,8 +13,11 @@
                 <div class="property-card">
                     <!-- Property Image -->
                     <a href="/propiedad/{{$property->slug}}">
+                        @php $firstImage = strtok($property->images, '|'); @endphp
                         <div class="property-image">
-                            <img src="{{ asset('uploads/listing/600/'.strtok($property->images, '|')) }}" alt="{{ $property->listing_title }}">
+                            <img src="{{ $property->resolveImageUrl($firstImage, 'thumb_600') }}"
+                                 alt="{{ $property->listing_title }}"
+                                 onerror="this.onerror=null; this.src='/uploads/listing/600/' + this.src.split('/').pop();">
                             <div class="property-code"> <span>COD:</span> {{ $property->product_code }}</div>
                         </div>
                     </a>

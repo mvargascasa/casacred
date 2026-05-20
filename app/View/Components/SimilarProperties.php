@@ -20,6 +20,7 @@ class SimilarProperties extends Component
             'product_code',
             'images',
             'property_price',
+            'customized_price',
             'heading_details',
             'bedroom',
             'bathroom',
