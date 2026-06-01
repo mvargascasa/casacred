@@ -19,7 +19,6 @@
 
     <meta name="robots" content="index,follow,snippet">
 
-    <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
 
     <style>
       html, body {

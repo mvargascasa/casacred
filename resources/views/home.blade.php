@@ -17,8 +17,6 @@
 
     <link rel="stylesheet" href="{{ asset('css/font-style.css') }}">
 
-    <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
-
     <style>
       html, body {
         max-width: 100% !important;

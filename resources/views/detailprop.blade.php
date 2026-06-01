@@ -23,7 +23,6 @@
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-<script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
 
 @php $firstImg = array_filter(explode("|", $listing->images)) @endphp
 <meta property="og:image"              content="{{url('uploads/listing/600',$firstImg[0]??'')}}" />
