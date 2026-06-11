@@ -1081,9 +1081,11 @@
                             Detalles
                         </h2>
                         @foreach (json_decode($listing->heading_details) as $dets)
+                            @if(!empty($dets[0]))
+                                <p class="mt-3 mb-1" style="font-family: 'Sharp Grotesk'; font-weight: 600; font-size: 15px; color: #242B40;">{{ $dets[0] }}</p>
+                            @endif
                             <div class="row" style="padding-left: 7px">
-                                <?php unset($dets[0]);
-                                $printControl = 0; ?>
+                                <?php $printControl = 0; ?>
                                 @for ($i = 1; $i < count($dets); $i++)
                                     @if ($printControl == 0)
                                         <?php $printControl = 1; ?>
