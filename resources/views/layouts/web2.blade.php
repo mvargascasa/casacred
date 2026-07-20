@@ -760,7 +760,7 @@ if(strpos($actual_link, 'localhost') === false){
                 <div style="flex: 1; min-width: 220px;">
                     <img src="{{ asset('img/logo-azul-grupo-housing.png') }}" alt="Grupo Housing" style="max-width: 150px; margin-bottom: 20px;" class="logo-white">
                     <div style="display: flex; gap: 15px;">
-                        <a href="https://www.facebook.com/profile.php?id=61555792821989" target="_blank" style="color: #fff; font-size: 24px;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61558563860180" target="_blank" style="color: #fff; font-size: 24px;"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/grupo_housing" target="_blank" style="color: #fff; font-size: 24px;"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
