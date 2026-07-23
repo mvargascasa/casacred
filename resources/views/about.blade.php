@@ -26,7 +26,7 @@
         <x-about.hero-banner></x-about.hero-banner>
         <x-about.solutions-section></x-about.solutions-section>
         <x-about.commitment-section></x-about.commitment-section>
-        <x-about.team-section></x-about.team-section>
+        {{-- <x-about.team-section></x-about.team-section> --}}
 
         {{-- modal --}}
         <x-modal-about-contact></x-modal-about-contact>
